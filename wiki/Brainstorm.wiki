@@ -1,19 +1,19 @@
     * Architecture Naked Objects
-          o Le "business logic" totalement indépendant de la base de données et du module de présentation
-          o Le module de présentation sert à voir dynamique les fonctionnalités du programme.
-                + Chaque fonctionnalité du module de présentation est crée dynamiquement.
-                + Chaque fonctionnalité du module de présentation est le reflet d'une fonctionnalité ou d'un type de donnée de la logique d'affaire.
-                + Il n'est pas nécessaire de modifier le module de présentation car il s'adapte par lui-même.
+          * Le "business logic" totalement indépendant de la base de données et du module de présentation
+          * Le module de présentation sert à voir dynamique les fonctionnalités du programme.
+                * Chaque fonctionnalité du module de présentation est crée dynamiquement.
+                * Chaque fonctionnalité du module de présentation est le reflet d'une fonctionnalité ou d'un type de donnée de la logique d'affaire.
+                * Il n'est pas nécessaire de modifier le module de présentation car il s'adapte par lui-même.
     * Selfaware modules avec warning d'interdépendances
-          o Chaque module de "business logic" peut être assigné comme dépendant d'un autre
-          o Lorsqu'on retire un module, warning des modules qui en dépendent
+          * Chaque module de "business logic" peut être assigné comme dépendant d'un autre
+          * Lorsqu'on retire un module, warning des modules qui en dépendent
     * Workflow: data se propage dans les modules
-          o Chaque module peut en interroger un autre
+          * Chaque module peut en interroger un autre
     * Genre d'ORM
-          o Permet de convertir la logique d'affaire automatiquement/dynamiquement en données persistantes sur un SGBD (oracle)
+          * Permet de convertir la logique d'affaire automatiquement/dynamiquement en données persistantes sur un SGBD (oracle)
     * Hiérarchie des fonctionnalités selon interdépendance représenté dans la vue (genre treeview comme menu principale)
-          o Business logic: permettre de hiérarchiser les fonctionnalités
-          o Présentation: représentation des fonctionnalités selon hiérarchie (pour facilité la navigation utilisateur)
+          * Business logic: permettre de hiérarchiser les fonctionnalités
+          * Présentation: représentation des fonctionnalités selon hiérarchie (pour facilité la navigation utilisateur)
     * Db agile, masquage de colonnes à la vue
     * Db s'adapte aux nouveaux modules seulement (pas d'update de module au niveau des données)
     * "Business logic" au niveau programmation (lightweight)
@@ -25,8 +25,8 @@
     * Faire projet Google code
     * Faire une documentation aussi complète et up to date que possible (néscéssaire pour l'api des module (model))
     * Fonctionnalités prioritaire
-          o Au moins un module de business logic (gestion de profil)
-          o Module de présentation capable de voir au moins un module (gestion de profil)
-          o Module d'Orm qui permet la persistance de l'information
+          * Au moins un module de business logic (gestion de profil)
+          * Module de présentation capable de voir au moins un module (gestion de profil)
+          * Module d'Orm qui permet la persistance de l'information
           
-    [http://code.google.com/p/newtonerp/wiki/DiagrammeERP.png]
+[http://newtonerp.googlecode.com/svn/wiki/DiagrammeERP.png]
