@@ -28,3 +28,5 @@
           o Au moins un module de business logic (gestion de profil)
           o Module de présentation capable de voir au moins un module (gestion de profil)
           o Module d'Orm qui permet la persistance de l'information
+          
+    [http://code.google.com/p/newtonerp/wiki/DiagrammeERP.png]
