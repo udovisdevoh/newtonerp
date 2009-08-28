@@ -1,1 +1,3 @@
 STANDARDS DE PROGRAMMATIONS
+
+Documentez votre code!
