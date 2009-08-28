@@ -1,0 +1,3 @@
+http://www.castor.org/jdo.html
+http://www.castor.org/javadoc/overview-summary.html
+http://www.castor.org/download.html#Samples
