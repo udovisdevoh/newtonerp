@@ -29,4 +29,5 @@
           * Module de présentation capable de voir au moins un module (gestion de profil)
           * Module d'Orm qui permet la persistance de l'information
           
+          
 [http://newtonerp.googlecode.com/svn/wiki/DiagrammeERP.png]
