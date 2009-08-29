@@ -29,10 +29,17 @@ public class Log {
 	private GregorianCalendar gc = new GregorianCalendar();
 	private SimpleDateFormat sdf = new SimpleDateFormat("K:mm yyyy.MM.dd");
 	
+	// States for a log message, we can potentially add more
 	public enum State {
 		INFO, WARNING, ERROR
 	}
 	
+	/**
+	 * Used to log a message, passing a message and the desired state
+	 * 
+	 * @param message
+	 * @param state
+	 */
 	public void log(String message, State state) {
 		try {
 			fstream = new FileWriter("logs.txt",true);
