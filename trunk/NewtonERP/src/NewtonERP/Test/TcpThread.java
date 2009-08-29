@@ -4,6 +4,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+import NewtonERP.Logging.Log;
+
 public class TcpThread extends Thread{
 	// the socket where to listen/talk
 	private Socket socket;

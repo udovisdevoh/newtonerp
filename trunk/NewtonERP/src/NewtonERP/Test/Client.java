@@ -6,6 +6,8 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 
+import NewtonERP.Logging.Log;
+
 public class Client {
 	private ObjectInputStream input;	// to read the socket
 	private ObjectOutputStream output;	// to write on the socket
