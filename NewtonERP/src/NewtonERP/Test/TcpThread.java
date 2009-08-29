@@ -11,7 +11,9 @@ import NewtonERP.Logging.Log;
  * @author r3hallejo
  *
  * Test of a TCP thread to allow multiple client connections to the server
- * To be revised this is only for testing purpose this is not final
+ * To be revised this is only for testing purpose this is not final for now it is only 
+ * returning a string in uppercase be the method readObjects lets us read barely 
+ * anything we want
  */
 public class TcpThread extends Thread{
 	private Socket socket;
