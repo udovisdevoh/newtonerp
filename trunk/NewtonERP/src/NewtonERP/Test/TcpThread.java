@@ -25,8 +25,10 @@ public class TcpThread extends Thread{
 	    this.socket = socket;
 	}
 	
+	/**
+	 * Runs the new tcp/ip thread for the newly connected client
+	 */
 	public void run() {
-		
 		/* Creating both Data Stream */
 	    System.out.println("Thread trying to create Object Input/Output Streams");
 	    try	{
