@@ -27,7 +27,7 @@ public class Log {
 	private FileWriter fstream;
 	private BufferedWriter out;
 	private GregorianCalendar gc = new GregorianCalendar();
-	private SimpleDateFormat sdf = new SimpleDateFormat("k:mm yyyy.MM.dd");
+	private SimpleDateFormat sdf = new SimpleDateFormat("k:mm:ss yyyy.MM.dd");
 	
 	// States for a log message, we can potentially add more
 	public enum State {
