@@ -45,7 +45,7 @@ public class Log {
 			switch (state) {
 				default :
 				case INFO:
-					out.write('\n'+"[INFO "+ sdf.format(gc.getTime())+"] +"+message);
+					out.write('\n'+"[INFO "+ sdf.format(gc.getTime())+"] "+message);
 					break;
 				case WARNING:
 					out.write('\n'+"[WARNING "+ sdf.format(gc.getTime())+"] +"+message);
