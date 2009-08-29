@@ -1,0 +1,13 @@
+
+INFO Server waiting for client on port 1500
+INFO New client asked for a connection
+INFO Connection accepted localhost/127.0.0.1:1500
+INFO Starting a thread for a new Client
+INFO Client sending "aBcDeFgHiJkLmNoPqRsTuVwXyZ" to serveur
+INFO Read back from server: ABCDEFGHIJKLMNOPQRSTUVWXYZ
+[INFO 8:04 2009.08.28] +Server waiting for client on port 1500
+[INFO 8:04 2009.08.28] +New client asked for a connection
+[INFO 8:04 2009.08.28] +Connection accepted localhost/127.0.0.1:1500
+[INFO 8:04 2009.08.28] +Starting a thread for a new Client
+[INFO 8:04 2009.08.28] +Client sending "aBcDeFgHiJkLmNoPqRsTuVwXyZ" to serveur
+[INFO 8:04 2009.08.28] +Read back from server: ABCDEFGHIJKLMNOPQRSTUVWXYZ
