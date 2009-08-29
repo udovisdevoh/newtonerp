@@ -22,12 +22,11 @@ public class Client {
 
 	// Constructor connection receiving a socket number
 	Client(int port) {
-		// we use "localhost" as host name, the server is on the same machine
 		try {
 			socket = new Socket("localhost", port);
 		}
 		catch(Exception ex) {
-			logger.log("Error connectiong to server:" + ex.getMessage(), Log.State.ERROR);
+			logger.log("Error connectiong to server : " + ex.getMessage(), Log.State.ERROR);
 		}
 		
 		logger.log("Connection accepted " +
@@ -77,6 +76,7 @@ public class Client {
 		}
 	}  
 
+	// For testing. Will eventually be removed
 	public static void main(String[] arg) {
 		new Client(1500);
 	}
