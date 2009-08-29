@@ -5,6 +5,12 @@ import java.net.Socket;
 
 import NewtonERP.Logging.Log;
 
+/**
+ * 
+ * @author r3hallejo
+ *
+ * Test server class using TCP/IP protocol. To be revised this is not final
+ */
 public class Server {
 	// the socket used by the server
 	private ServerSocket serverSocket;

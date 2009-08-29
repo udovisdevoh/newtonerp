@@ -6,11 +6,19 @@ import java.net.Socket;
 
 import NewtonERP.Logging.Log;
 
+/**
+ * 
+ * @author r3hallejo
+ *
+ * Test of a TCP thread to allow multiple client connections to the server
+ * To be revised this is only for testing purpose this is not final
+ */
 public class TcpThread extends Thread{
-	// the socket where to listen/talk
 	private Socket socket;
 	private ObjectInputStream Sinput;
 	private ObjectOutputStream Soutput;
+	
+	// TODO : Finish the implementation of the logger into this class
 	private Log logger = new Log();
 	                
 	TcpThread(Socket socket) {
@@ -18,10 +26,10 @@ public class TcpThread extends Thread{
 	}
 	
 	public void run() {
+		
 		/* Creating both Data Stream */
 	    System.out.println("Thread trying to create Object Input/Output Streams");
 	    try	{
-	    	// create output first
 	        Soutput = new ObjectOutputStream(socket.getOutputStream());
 	        Soutput.flush();
 	        Sinput  = new ObjectInputStream(socket.getInputStream());
@@ -30,6 +38,7 @@ public class TcpThread extends Thread{
 	    	ex.printStackTrace();
 	    }
 	    System.out.println("Thread waiting for a String from the Client");
+	    
 	    // read a String (which is an object)
 	    try {
 	    	String str = (String) Sinput.readObject();
