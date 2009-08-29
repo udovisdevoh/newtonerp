@@ -3,6 +3,8 @@ package NewtonERP.Test;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import NewtonERP.Logging.Log;
+
 public class Server {
 	// the socket used by the server
 	private ServerSocket serverSocket;

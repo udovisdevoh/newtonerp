@@ -1,4 +1,4 @@
-package NewtonERP.Test;
+package NewtonERP.Logging;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
