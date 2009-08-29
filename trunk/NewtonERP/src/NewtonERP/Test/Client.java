@@ -13,6 +13,10 @@ import NewtonERP.Logging.Log;
  * @author r3hallejo
  *
  * Test client for TCP/IP protocol test in Java. To be revised this is not final
+ * 
+ * For now it is only sending a string and the server is returning in uppercase, thats all
+ * We will have to adapt the client and the server eventually to pass Objects instead of a 
+ * string. The method used is writeObject so we can send barely anything we want
  */
 public class Client {
 	private ObjectInputStream input;	// to read the socket
