@@ -30,16 +30,18 @@ public class TcpThread extends Thread{
 	 */
 	public void run() {
 		/* Creating both Data Stream */
-	    System.out.println("Thread trying to create Object Input/Output Streams");
+	    logger.log("Thread trying to create Object Input/Output Streams", Log.State.INFO);
+	    
 	    try	{
 	        Soutput = new ObjectOutputStream(socket.getOutputStream());
 	        Soutput.flush();
 	        Sinput  = new ObjectInputStream(socket.getInputStream());
 	    }
 	    catch (Exception ex) {
-	    	ex.printStackTrace();
+	    	logger.log(ex.getMessage(), Log.State.ERROR);
 	    }
-	    System.out.println("Thread waiting for a String from the Client");
+	    
+	    logger.log("Thread waiting for a String from the Client", Log.State.INFO);
 	    
 	    // read a String (which is an object)
 	    try {
@@ -49,14 +51,15 @@ public class TcpThread extends Thread{
 	        Soutput.flush();
 	    }
 	    catch (Exception ex) {
-	    	ex.printStackTrace();
+	    	logger.log(ex.getMessage(), Log.State.ERROR);
 	    }
 	    finally {
 	    	try {
 	    		Soutput.close();
 	            Sinput.close();
 	        }
-	        catch (Exception e) {                                       
+	        catch (Exception ex) {
+	        	logger.log(ex.getMessage(), Log.State.ERROR);
 	        }
 	    }
 	}

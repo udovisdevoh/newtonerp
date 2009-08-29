@@ -12,7 +12,7 @@ import java.util.GregorianCalendar;
  * 
  * Class used to log system messages into an external log for purposes
  * of viewing errors, information messages, warnings and much more 
- * that has happen on a later time. For debugging.
+ * that has happen on a later time.
  * 
  * HOWTO :
  * 
@@ -27,7 +27,7 @@ public class Log {
 	private FileWriter fstream;
 	private BufferedWriter out;
 	private GregorianCalendar gc = new GregorianCalendar();
-	private SimpleDateFormat sdf = new SimpleDateFormat("K:mm yyyy.MM.dd");
+	private SimpleDateFormat sdf = new SimpleDateFormat("k:mm yyyy.MM.dd");
 	
 	// States for a log message, we can potentially add more
 	public enum State {
@@ -44,8 +44,8 @@ public class Log {
 		try {
 			fstream = new FileWriter("logs.txt",true);
 			out = new BufferedWriter(fstream);
-		} catch (IOException e1) {
-			e1.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
         
 		try {
