@@ -8,6 +8,12 @@ import java.net.Socket;
 
 import NewtonERP.Logging.Log;
 
+/**
+ * 
+ * @author r3hallejo
+ *
+ * Test client for TCP/IP protocol test in Java. To be revised this is not final
+ */
 public class Client {
 	private ObjectInputStream input;	// to read the socket
 	private ObjectOutputStream output;	// to write on the socket

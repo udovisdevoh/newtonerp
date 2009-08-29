@@ -6,6 +6,22 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 
+/**
+ * @author r3hallejo
+ * 
+ * 
+ * Class used to log system messages into an external log for purposes
+ * of viewing errors, information messages, warnings and much more 
+ * that has happen on a later time. For debugging.
+ * 
+ * HOWTO :
+ * 
+ * 1. Create a Log object
+ * 2. Use the "log" method like this :
+ * 		logger.log("MY MESSAGE GOES HERE", Log.State.STATE_OF_MESSAGE)
+ * 
+ * See the state enumeration for all the actual states available
+ */
 public class Log {
 	
 	private FileWriter fstream;
@@ -42,7 +58,6 @@ public class Log {
 			e.printStackTrace();
 		}
 		
-		//Close the output stream
 		try {
 			out.close();
 		} catch (IOException e) {
