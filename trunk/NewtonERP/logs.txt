@@ -29,3 +29,10 @@
 [INFO 16:56:21 2009.08.29] Client sending "aBcDeFgHiJkLmNoPqRsTuVwXyZ" to serveur
 [INFO 16:56:21 2009.08.29] Thread waiting for a String from the Client
 [INFO 16:56:21 2009.08.29] Read back from server: ABCDEFGHIJKLMNOPQRSTUVWXYZ
+[INFO 17:06:18 2009.08.31] Server waiting for client on port 1500
+[INFO 17:06:18 2009.08.31] New client asked for a connection
+[INFO 17:06:23 2009.08.31] Connection accepted localhost/127.0.0.1:1500
+[INFO 17:06:18 2009.08.31] Starting a thread for a new Client
+[INFO 17:06:23 2009.08.31] Thread trying to create Object Input/Output Streams
+[INFO 17:06:23 2009.08.31] Client sending "aBcDeFgHiJkLmNoPqRsTuVwXyZ" to serveur
+[INFO 17:06:23 2009.08.31] Read back from server: ABCDEFGHIJKLMNOPQRSTUVWXYZ
