@@ -4,7 +4,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-import newtonERP.logging.Log;
+import newtonERP.logging.Logger;
 
 
 /**
@@ -22,7 +22,7 @@ public class TcpThread extends Thread{
 	private ObjectOutputStream Soutput;
 	
 	// TODO : Finish the implementation of the logger into this class
-	private Log logger = new Log();
+	private Logger logger = new Logger();
 	                
 	TcpThread(Socket socket) {
 	    this.socket = socket;
@@ -33,7 +33,7 @@ public class TcpThread extends Thread{
 	 */
 	public void run() {
 		/* Creating both Data Stream */
-	    logger.log("Thread trying to create Object Input/Output Streams", Log.State.INFO);
+	    logger.log("Thread trying to create Object Input/Output Streams", Logger.State.INFO);
 	    
 	    try	{
 	        Soutput = new ObjectOutputStream(socket.getOutputStream());
@@ -41,10 +41,10 @@ public class TcpThread extends Thread{
 	        Sinput  = new ObjectInputStream(socket.getInputStream());
 	    }
 	    catch (Exception ex) {
-	    	logger.log(ex.getMessage(), Log.State.ERROR);
+	    	logger.log(ex.getMessage(), Logger.State.ERROR);
 	    }
 	    
-	    logger.log("Thread waiting for a String from the Client", Log.State.INFO);
+	    logger.log("Thread waiting for a String from the Client", Logger.State.INFO);
 	    
 	    // read a String (which is an object)
 	    try {
@@ -54,7 +54,7 @@ public class TcpThread extends Thread{
 	        Soutput.flush();
 	    }
 	    catch (Exception ex) {
-	    	logger.log(ex.getMessage(), Log.State.ERROR);
+	    	logger.log(ex.getMessage(), Logger.State.ERROR);
 	    }
 	    finally {
 	    	try {
@@ -62,7 +62,7 @@ public class TcpThread extends Thread{
 	            Sinput.close();
 	        }
 	        catch (Exception ex) {
-	        	logger.log(ex.getMessage(), Log.State.ERROR);
+	        	logger.log(ex.getMessage(), Logger.State.ERROR);
 	        }
 	    }
 	}
