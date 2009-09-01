@@ -22,7 +22,7 @@ import java.util.GregorianCalendar;
  * 
  * See the state enumeration for all the actual states available
  */
-public class Log {
+public class Logger {
 	
 	private FileWriter fstream;
 	private BufferedWriter out;
