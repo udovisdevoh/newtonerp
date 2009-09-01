@@ -6,7 +6,7 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 
-import newtonERP.logging.Log;
+import newtonERP.logging.Logger;
 
 
 /**
@@ -23,7 +23,7 @@ public class Client {
 	private ObjectInputStream input;	// to read the socket
 	private ObjectOutputStream output;	// to write on the socket
 	private Socket socket;
-	private Log logger = new Log();
+	private Logger logger = new Logger();
 
 	// Constructor connection receiving a socket number
 	Client(int port) {
@@ -31,12 +31,12 @@ public class Client {
 			socket = new Socket("localhost", port);
 		}
 		catch(Exception ex) {
-			logger.log("Error connectiong to server : " + ex.getMessage(), Log.State.ERROR);
+			logger.log("Error connectiong to server : " + ex.getMessage(), Logger.State.ERROR);
 		}
 		
 		logger.log("Connection accepted " +
 				socket.getInetAddress() + ":" +
-				socket.getPort(), Log.State.INFO);
+				socket.getPort(), Logger.State.INFO);
 		
 		/* Creating both Data Stream */
 		try
@@ -48,11 +48,11 @@ public class Client {
 			output = new ObjectOutputStream(os);
 		}
 		catch (Exception ex) {
-			logger.log(ex.getMessage(), Log.State.ERROR);
+			logger.log(ex.getMessage(), Logger.State.ERROR);
 		}
 		// now that I have my connection
 		String test = "aBcDeFgHiJkLmNoPqRsTuVwXyZ";
-		logger.log("Client sending \"" + test + "\" to serveur", Log.State.INFO);
+		logger.log("Client sending \"" + test + "\" to serveur", Logger.State.INFO);
 		
 		// send the string to the server
 		try {
@@ -60,16 +60,16 @@ public class Client {
 			output.flush();
 		}
 		catch(Exception ex) {
-			logger.log(ex.getMessage(), Log.State.ERROR);
+			logger.log(ex.getMessage(), Logger.State.ERROR);
 		}
 		// read back the answer from the server
 		String response;
 		try {
 			response = (String) input.readObject();
-			logger.log("Read back from server: " + response, Log.State.INFO);
+			logger.log("Read back from server: " + response, Logger.State.INFO);
 		}
 		catch(Exception ex) {
-			logger.log(ex.getMessage(), Log.State.ERROR);
+			logger.log(ex.getMessage(), Logger.State.ERROR);
 		}
 		
 		try{
@@ -77,7 +77,7 @@ public class Client {
 			output.close();
 		}
 		catch(Exception ex) {
-			logger.log(ex.getMessage(), Log.State.ERROR);
+			logger.log(ex.getMessage(), Logger.State.ERROR);
 		}
 	}  
 
