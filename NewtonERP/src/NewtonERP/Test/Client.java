@@ -6,7 +6,8 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 
-import NewtonERP.Logging.Log;
+import newtonERP.logging.Log;
+
 
 /**
  * 

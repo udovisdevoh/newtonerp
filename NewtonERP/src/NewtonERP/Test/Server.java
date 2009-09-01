@@ -3,7 +3,8 @@ package NewtonERP.Test;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import NewtonERP.Logging.Log;
+import newtonERP.logging.Log;
+
 
 /**
  * 
