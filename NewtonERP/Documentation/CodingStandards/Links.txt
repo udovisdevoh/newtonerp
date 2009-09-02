@@ -1,3 +1,3 @@
-La JPA - Java Persistence API
+Code Conventions - 
 
-http://java.sun.com/javaee/5/docs/tutorial/doc/bnbpz.html
+http://java.sun.com/docs/codeconv/html/CodeConvTOC.doc.html
