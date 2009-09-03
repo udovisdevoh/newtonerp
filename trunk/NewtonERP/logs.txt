@@ -36,3 +36,42 @@
 [INFO 17:06:23 2009.08.31] Thread trying to create Object Input/Output Streams
 [INFO 17:06:23 2009.08.31] Client sending "aBcDeFgHiJkLmNoPqRsTuVwXyZ" to serveur
 [INFO 17:06:23 2009.08.31] Read back from server: ABCDEFGHIJKLMNOPQRSTUVWXYZ
+[INFO 19:47:26 2009.09.02] Server waiting for client on port 1500
+[INFO 19:47:26 2009.09.02] New client asked for a connection
+[INFO 19:47:38 2009.09.02] Connection accepted localhost/127.0.0.1:1500
+[INFO 19:47:26 2009.09.02] Starting a thread for a new Client
+[INFO 19:47:44 2009.09.02] Thread trying to create Object Input/Output Streams
+[ERROR 19:47:44 2009.09.02] +not connected
+[INFO 19:47:44 2009.09.02] Thread waiting for a String from the Client
+[ERROR 19:47:44 2009.09.02] +null
+[ERROR 19:47:44 2009.09.02] +null
+[ERROR 19:47:38 2009.09.02] +Connexion ré-initialisée par le correspondant
+[INFO 19:47:38 2009.09.02] Client sending "aBcDeFgHiJkLmNoPqRsTuVwXyZ" to serveur
+[ERROR 19:47:38 2009.09.02] +null
+[ERROR 19:47:38 2009.09.02] +null
+[ERROR 19:47:38 2009.09.02] +null
+[INFO 19:49:27 2009.09.02] Server waiting for client on port 1500
+[INFO 19:49:27 2009.09.02] New client asked for a connection
+[INFO 19:49:27 2009.09.02] Starting a thread for a new Client
+[INFO 19:49:50 2009.09.02] Thread trying to create Object Input/Output Streams
+[ERROR 19:49:50 2009.09.02] +not connected
+[INFO 19:49:50 2009.09.02] Thread waiting for a String from the Client
+[INFO 19:49:45 2009.09.02] Connection accepted localhost/127.0.0.1:1500
+[ERROR 19:49:50 2009.09.02] +null
+[ERROR 19:49:50 2009.09.02] +null
+[INFO 19:52:14 2009.09.02] Server waiting for client on port 1500
+[INFO 19:52:14 2009.09.02] New client asked for a connection
+[INFO 19:52:14 2009.09.02] Starting a thread for a new Client
+[INFO 19:52:24 2009.09.02] Connection accepted localhost/127.0.0.1:1500
+[INFO 19:52:30 2009.09.02] Thread trying to create Object Input/Output Streams
+[ERROR 19:52:30 2009.09.02] +not connected
+[INFO 19:52:30 2009.09.02] Thread waiting for a String from the Client
+[ERROR 19:52:30 2009.09.02] +null
+[ERROR 19:52:30 2009.09.02] +null
+[ERROR 19:52:24 2009.09.02] +Connexion ré-initialisée par le correspondant
+[INFO 19:52:24 2009.09.02] Client sending "aBcDeFgHiJkLmNoPqRsTuVwXyZ" to serveur
+[ERROR 19:52:24 2009.09.02] +null
+[ERROR 19:52:24 2009.09.02] +null
+[ERROR 19:52:24 2009.09.02] +null
+[INFO 19:56:47 2009.09.02] Server waiting for client on port 1500
+[INFO 19:57:20 2009.09.02] Server waiting for client on port 1500

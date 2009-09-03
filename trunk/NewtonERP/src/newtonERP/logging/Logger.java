@@ -55,10 +55,10 @@ public class Logger {
 					out.write('\n'+"[INFO "+ sdf.format(gc.getTime())+"] "+message);
 					break;
 				case WARNING:
-					out.write('\n'+"[WARNING "+ sdf.format(gc.getTime())+"] +"+message);
+					out.write('\n'+"[WARNING "+ sdf.format(gc.getTime())+"] "+message);
 					break;
 				case ERROR:
-					out.write('\n'+"[ERROR "+ sdf.format(gc.getTime())+"] +"+message);
+					out.write('\n'+"[ERROR "+ sdf.format(gc.getTime())+"] "+message);
 					break;
 			}
 		} catch (IOException e) {

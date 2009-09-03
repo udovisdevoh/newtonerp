@@ -1,0 +1,3 @@
+Pour faire le certificat : keytool -genkey -keystore mySrvKeystore -keyalg RSA
+
+Le programme demandera un mot de passe : AAAaaa123
