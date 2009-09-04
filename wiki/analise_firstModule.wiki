@@ -1,4 +1,4 @@
-# Module de ressources humaines
+* Module de ressources humaines
  * Module d'administration (pour RH)
   * Structure organisationnelle (droits de user)
    * Niveau
@@ -36,7 +36,7 @@
    * Salaire
    * Bonus
    * Statistiques d'émulation (très peu prioritaire)
-# Module de ressources matérielles
+* Module de ressources matérielles
  * Gestion des ressources matérielles (admin d'entrepot)
   * Ressources interne
    * Gestion de l'entrepôt
@@ -52,4 +52,3 @@
   * Réservation de ressource interne
   * Entreposage de ressource matérielle pour employé
   * Réservation de ressource matérielle pour employés
-
