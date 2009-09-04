@@ -16,15 +16,6 @@ public class Server {
 	// the socket used by the server
 	private ServerSocket serverSocket;
 	private Logger logger = new Logger();
-	private boolean status = false; 
-	
-	public void setStatus(boolean status) {
-		this.status = status;
-	}
-
-	public boolean getStatus() {
-		return status;
-	}
 
 	// server constructor
 	Server(int port) {
@@ -37,8 +28,6 @@ public class Server {
 				TcpThread t = new TcpThread(socket);    // make a thread of it
 				logger.log("Starting a thread for a new Client", Logger.State.INFO);
 				t.start();
-				
-				setStatus(true);
 			}	
 		}
 		catch (Exception ex) {
