@@ -75,3 +75,11 @@
 [ERROR 19:52:24 2009.09.02] +null
 [INFO 19:56:47 2009.09.02] Server waiting for client on port 1500
 [INFO 19:57:20 2009.09.02] Server waiting for client on port 1500
+[INFO 8:28:14 2009.09.04] Server waiting for client on port 1500
+[INFO 8:28:14 2009.09.04] New client asked for a connection
+[INFO 8:28:23 2009.09.04] Connection accepted localhost/127.0.0.1:1500
+[INFO 8:28:14 2009.09.04] Starting a thread for a new Client
+[INFO 8:28:23 2009.09.04] Thread trying to create Object Input/Output Streams
+[INFO 8:28:23 2009.09.04] Thread waiting for a String from the Client
+[INFO 8:28:23 2009.09.04] Client sending "aBcDeFgHiJkLmNoPqRsTuVwXyZ" to serveur
+[INFO 8:28:23 2009.09.04] Read back from server: ABCDEFGHIJKLMNOPQRSTUVWXYZ

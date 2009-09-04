@@ -21,6 +21,11 @@ import java.util.GregorianCalendar;
  * 		logger.log("MY MESSAGE GOES HERE", Log.State.STATE_OF_MESSAGE)
  * 
  * See the state enumeration for all the actual states available
+ * 
+ * For better results we might have to think a better way of 
+ * implementing the logging in all the project so we wont have
+ * dozens of logger objects accessing the log file causing multiple
+ * write lines at the same time
  */
 public class Logger {
 	
