@@ -1,0 +1,55 @@
+# Module de ressources humaines
+ * Module d'administration (pour RH)
+  * Structure organisationnelle (droits de user)
+   * Niveau
+    * Accès
+  * Gestion des employés
+   * Politique interne
+   * Formation
+   * Profil d'employé (utilisé par administrateur ou gestionnaire)
+    * Voir
+    * Modifier
+    * Supprimer
+    * Créer
+    * Modifier sortes d'employés
+     * Permanents
+     * Contractuels
+    * Gérer vacances, congés, démission, licenciement
+    * Gérer surtemps (maximum)
+    * Horaire
+     * Gérer horaire
+     * Feuille de temps (punch)
+     * Gestion des quarts de travail
+     * Surtemps
+      * Gestion du surtemps
+      * Lien vers finances -> salaire
+    * Linker vers: Planification des tâches (contrats sur mesure)
+     * Gérer description de tâches
+      * Description
+      * Deadline
+   * Salaire d'employé: vers finance et comptabilité
+   * Associer activité (congrès/formation) à employé (peu prioritaire)
+ * Session d'employé (nécéssite moins de droits)
+  * Punch pour feuille de temps
+  * Voir information concernant son profil d'employé
+   * Horaire
+   * Salaire
+   * Bonus
+   * Statistiques d'émulation (très peu prioritaire)
+# Module de ressources matérielles
+ * Gestion des ressources matérielles (admin d'entrepot)
+  * Ressources interne
+   * Gestion de l'entrepôt
+   * Distribution internes et autres tâches reliées
+  * Ressources externe
+   * Gestion de l'entrepôt
+  * Pour chaque ressource interne ou externe, profil de ressource
+   * Quantité
+   * Statut spécial (genre de flag) de ressource matérielle utilisable par employé
+   * Usage
+   * Prix de vente / achat
+ * Ressources matérielles (user)
+  * Réservation de ressource interne
+  * Entreposage de ressource matérielle pour employé
+  * Réservation de ressource matérielle pour employés
+
