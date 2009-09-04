@@ -1,4 +1,4 @@
-#labels planing
+#labels planning
 || *ÉTAPE* || *TEMP*|| *DATE* ||
 || Mandat || FAIS ||  ||
 || Analyse textuel ||	FAIS || ||
