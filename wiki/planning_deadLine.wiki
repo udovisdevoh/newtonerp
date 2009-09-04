@@ -1,0 +1,13 @@
+#labels planing
+|| *ÉTAPE* || *TEMP*|| *DATE* ||
+|| Mandat || FAIS ||  ||
+|| Analyse textuel ||	FAIS || ||
+|| Cas d'usage / Scénario d'utilisation || 3h || mer 9 sept ||
+|| Dictionnaire de donné / CRC: ||  ||  || 
+|| Début first draft || 2h || jeu 10 sept || 
+|| Crc game || 2h || mer 16 sept || 
+|| Planing Game || 45min  || mer 16 sept || 
+|| Conventionalisation	|| 20 min  || mer 16 sept || 
+|| . || . || . || 
+|| 1h de lousse ||  || mer 16 sept || 	
+|| 2h de lousse ||  || jeu 17 sept || 	
