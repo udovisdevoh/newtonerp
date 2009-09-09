@@ -1,7 +1,7 @@
 #labels planning
 || *ÉTAPE* || *TEMP*|| *DATE* ||
-|| Mandat || FAIS ||  ||
-|| Analyse textuel ||	FAIS || ||
+|| Mandat || FAIT ||  ||
+|| Analyse textuel ||	FAIT || ||
 || Cas d'usage / Scénario d'utilisation || 3h || mer 9 sept ||
 || Dictionnaire de donné / CRC: ||  ||  || 
 || Début first draft || 2h || jeu 10 sept || 
