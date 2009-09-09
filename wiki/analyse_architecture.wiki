@@ -14,6 +14,8 @@ Nécessite  pour fonctionner une table listant les plugins (modules)
 Gestion des User:
  * Sous forme de module OBLIGATOIRE
  * Gestion des droits d'accès a chacun des modules (via des groupe)
+ * a la connection l'utilisateur recois une UniqueID
+ * celle-ci doit être validé a chaque requête faite par le client
 Architecture 3 tiers:
  * Coté serveur: 
   * ORM
