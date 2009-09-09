@@ -1,6 +1,5 @@
 {{{
 : 
-   {
 Ouvrir du serveur
 {
 	-Connecte à DB
@@ -255,7 +254,6 @@ Business logic
 	}
 
 }
-   }
 ;
 
 }}}
