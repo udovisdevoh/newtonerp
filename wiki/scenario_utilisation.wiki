@@ -223,37 +223,6 @@ Business logic
 		}
 	}
 }
-
-
-
-
-
-
-Business logic
-{
-	Liste de specifications
-	{
-		Specification A{
-			->actionx
-		}
-		Specification B{
-			->actiony
-			!->actionx
-		}
-		Specification C{
-			->actionx
-			->actionz
-		}
-	}
-	
-	Liste d'action
-	{
-		Action X
-		Action Y
-		Action Z
-	}
-
-}
 ;
 
 }}}
