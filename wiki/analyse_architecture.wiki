@@ -1,5 +1,5 @@
 #labels analyse
-L'ORM:
+L'ORM: *_(??? Que ORM ?)_*
 Nécessite  pour fonctionner une table listant les plugins (modules)
  * Au démarrage check des plugin installé, comparé avec une liste de plugin déjà installé:
   * Si plugin inexistant l'"installé", création de la structure en DB
