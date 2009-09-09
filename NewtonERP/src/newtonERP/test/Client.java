@@ -50,37 +50,8 @@ public class Client {
 		catch (Exception ex) {
 			logger.log(ex.getMessage(), Logger.State.ERROR);
 		}
-		// now that I have my connection
-		String test = "aBcDeFgHiJkLmNoPqRsTuVwXyZ";
-		logger.log("Client sending \"" + test + "\" to serveur", Logger.State.INFO);
-		
-		// send the string to the server
-		try {
-			output.writeObject(test);
-			output.flush();
-		}
-		catch(Exception ex) {
-			logger.log(ex.getMessage(), Logger.State.ERROR);
-		}
-		// read back the answer from the server
-		String response;
-		try {
-			response = (String) input.readObject();
-			logger.log("Read back from server: " + response, Logger.State.INFO);
-		}
-		catch(Exception ex) {
-			logger.log(ex.getMessage(), Logger.State.ERROR);
-		}
-		
-		try{
-			input.close();
-			output.close();
-		}
-		catch(Exception ex) {
-			logger.log(ex.getMessage(), Logger.State.ERROR);
-		}
-	}  
-
+	}
+	
 	// For testing. Will eventually be removed
 	public static void main(String[] arg) {
 		new Client(1500);

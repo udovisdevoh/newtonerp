@@ -22,13 +22,8 @@ public class Server {
 		try {
 			serverSocket = new ServerSocket(port);
 			logger.log("Server waiting for client on port " + serverSocket.getLocalPort(), Logger.State.INFO);
-			while (true) {
-				Socket socket = serverSocket.accept();  // accept connection
-				logger.log("New client asked for a connection", Logger.State.INFO);
-				TcpThread t = new TcpThread(socket);    // make a thread of it
-				logger.log("Starting a thread for a new Client", Logger.State.INFO);
-				t.start();
-			}	
+			Socket socket = serverSocket.accept();  // accept connection
+			logger.log("New client asked for a connection", Logger.State.INFO);
 		}
 		catch (Exception ex) {
 			logger.log(ex.getMessage(), Logger.State.ERROR);
