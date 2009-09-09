@@ -1,10 +1,8 @@
 package newtonERP.test;
 
+import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-
-import newtonERP.logging.Logger;
-
 
 /**
  * 
@@ -15,18 +13,31 @@ import newtonERP.logging.Logger;
 public class Server {
 	// the socket used by the server
 	private ServerSocket serverSocket;
-	private Logger logger = new Logger();
-
 	// server constructor
 	Server(int port) {
-		try {
+			
+		/* create socket server and wait for connection requests */
+		try 
+		{
 			serverSocket = new ServerSocket(port);
-			logger.log("Server waiting for client on port " + serverSocket.getLocalPort(), Logger.State.INFO);
-			Socket socket = serverSocket.accept();  // accept connection
-			logger.log("New client asked for a connection", Logger.State.INFO);
+			System.out.println("Server waiting for client on port " + serverSocket.getLocalPort());
+			while(true) 
+			{
+				Socket socket = serverSocket.accept();  // accept connection
+				System.out.println("New client asked for a connection");
+				TcpThread t = new TcpThread(socket);    // make a thread of it
+				System.out.println("Starting a thread for a new Client");
+				t.start();
+			}
 		}
-		catch (Exception ex) {
-			logger.log(ex.getMessage(), Logger.State.ERROR);
+		catch (IOException e) {
+			System.out.println("Exception on new ServerSocket: " + e);
 		}
-	}
+	}		
+
+//	you must "run" server to have the server run as a console application
+	public static void main(String[] arg) {
+		// start server on port 1500
+		new Server(1500);
+	}	
 }

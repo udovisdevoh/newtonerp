@@ -1,11 +1,9 @@
 package newtonERP.test;
 
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-
-import newtonERP.logging.Logger;
-
 
 /**
  * 
@@ -20,9 +18,6 @@ public class TcpThread extends Thread{
 	private Socket socket;
 	private ObjectInputStream Sinput;
 	private ObjectOutputStream Soutput;
-	
-	// TODO : Finish the implementation of the logger into this class
-	private Logger logger = new Logger();
 	                
 	TcpThread(Socket socket) {
 	    this.socket = socket;
@@ -33,37 +28,40 @@ public class TcpThread extends Thread{
 	 */
 	public void run() {
 		/* Creating both Data Stream */
-	    logger.log("Thread trying to create Object Input/Output Streams", Logger.State.INFO);
-	    
-	    try	{
-	        Soutput = new ObjectOutputStream(socket.getOutputStream());
-	        Soutput.flush();
-	        Sinput  = new ObjectInputStream(socket.getInputStream());
-	    }
-	    catch (Exception ex) {
-	    	logger.log(ex.getMessage(), Logger.State.ERROR);
-	    }
-	    
-	    logger.log("Thread waiting for a String from the Client", Logger.State.INFO);
-	    
-	    // read a String (which is an object)
-	    try {
-	    	String str = (String) Sinput.readObject();
-	        str = str.toUpperCase();
-	        Soutput.writeObject(str);
-	        Soutput.flush();
-	    }
-	    catch (Exception ex) {
-	    	logger.log(ex.getMessage(), Logger.State.ERROR);
-	    }
-	    finally {
-	    	try {
-	    		Soutput.close();
-	            Sinput.close();
-	        }
-	        catch (Exception ex) {
-	        	logger.log(ex.getMessage(), Logger.State.ERROR);
-	        }
-	    }
+		System.out.println("Thread trying to create Object Input/Output Streams");
+		try
+		{
+			// create output first
+			Soutput = new ObjectOutputStream(socket.getOutputStream());
+			Soutput.flush();
+			Sinput  = new ObjectInputStream(socket.getInputStream());
+		}
+		catch (IOException e) {
+			System.out.println("Exception creating new Input/output Streams: " + e);
+			return;
+		}
+		System.out.println("Thread waiting for a String from the Client");
+		// read a String (which is an object)
+		try {
+			String str = (String) Sinput.readObject();
+			str = str.toUpperCase();
+			Soutput.writeObject(str);
+			Soutput.flush();
+		}
+		catch (IOException e) {
+			System.out.println("Exception reading/writing  Streams: " + e);
+			return;				
+		}
+		// will surely not happen with a String
+		catch (ClassNotFoundException o) {				
+		}
+		finally {
+			try {
+				Soutput.close();
+				Sinput.close();
+			}
+			catch (Exception e) {					
+			}
+		}
 	}
 }
