@@ -1,6 +1,6 @@
 {{{
 : 
-Ouvrir du serveur
+Démarrage du serveur
 {
 	-Connecte à DB
 	-Installe nouveaux plugins
