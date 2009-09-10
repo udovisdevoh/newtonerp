@@ -2,10 +2,10 @@
 || *ÉTAPE* || *TEMP*|| *DATE* ||
 || Mandat || FAIT ||  ||
 || Analyse textuelle ||	FAIT || ||
-|| Cas d'usage / Scénario d'utilisation || 3h || mer 9 sept ||
+|| Cas d'usage / Scénario d'utilisation || FAIT || ||
 || Dictionnaire de donné / CRC: ||  ||  || 
-|| Début first draft || 2h || jeu 10 sept || 
-|| Crc game || 2h || mer 16 sept || 
+|| Début first draft - mise en commun || 3h || mer 16 sept || 
+|| Crc game || 2h || jeu 17 sept || 
 || Planing Game || 45min  || mer 16 sept || 
 || Conventionalisation	|| 20 min  || mer 16 sept || 
 || . || . || . || 
