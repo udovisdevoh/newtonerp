@@ -1,0 +1,17 @@
+=CRC Qui fait quoi= (pour mercredi le 16)
+
+3 statuts possibles (inactif, en cour, fini)
+
+== Guillaume ==
+
+|| Groupe de classe || statut ||
+|| Specification || inactif ||
+|| Task || inactif ||
+|| TaskManager || inactif ||
+
+== Kovalev ==
+
+|| Groupe de classe || statut ||
+|| Server || inactif ||
+|| Orm || inactif ||
+|| ServerMessage || inactif ||
