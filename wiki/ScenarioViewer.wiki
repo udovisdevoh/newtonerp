@@ -1,0 +1,36 @@
+{{{
+Événement lancé d'un module de vue ou d'un menu
+{
+		L'événement est catché par le listener
+		{
+			On va chercher le display name de la source de l'événement
+			On cherche ce display name dans le HashTable
+		}
+		Le listener apelle le controleur client pour envoyer une requête
+}
+
+Ouverture d'une vue 
+{
+	Le viewer recoit
+	{
+		Un modèle de donnée vide (on verra)
+		Un paramètre viewable par (interface, ex : profile, graphic etc...)
+		Liste d'action
+	}
+	
+	Il crée le bon viewer en lui passant en paramètre le modèle de donnée et la liste d'action
+	{
+		Il crée le menuViewer avec la liste d'action
+		{
+			On itère au travers de la liste d'action
+			{
+				On prend le nom viewable de l'action, on l'affecte à un menuItem
+			}
+		}
+		
+		Il crée la vue
+	}
+}
+
+
+}}}
