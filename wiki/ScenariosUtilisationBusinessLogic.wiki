@@ -26,6 +26,13 @@ Business logic
 				Le module génère un entité de type horaire et l'envoie à l'orm
 			}
 		}
+		
+		reception d'action
+		{
+			trouve la bonne action
+			l'éxécute
+		}
+		
 	}
 
 	Tâches automatisées
@@ -41,16 +48,16 @@ Business logic
 			L'orm passe en référence l'entité de boris au TaskManager
 			{
 				Le task manager recoit Boris et détermine que c'est un employé
+				Le task manager a la liste des tâches automatisées par la modification d'un entité de type employé
 				Le task manager traite les tâches associé à la classe Employé
 				{
-					Le task manager a la liste des tâches automatisées par la modification d'un entité de type employé
 					Pour chaque Task
 					{
 						On teste la spécification de manière récrusive pour vérifier si elle est satisfaite
 						
 						Si satisfaite
 						{
-							On execute l'action 1 (par exemple, 
+							On execute l'action 1 (par exemple, congédier boris)
 						}
 						sinon
 						{
