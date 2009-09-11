@@ -21,3 +21,5 @@ voici le format a suivre pour les CRC, ne vous occup√© pas du HTML si sa vous m√
 </table>
 
 </wiki:comment>
+
+<wiki:toc max_depth="1" />
