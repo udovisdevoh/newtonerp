@@ -1,3 +1,4 @@
+#labels Analyse-CRC
 <wiki:comment>
 
 voici le format a suivre pour les CRC, ne vous occupé pas du HTML si sa vous mélange, vous n'Avez qu'a remplacé ce qui est entre [[ ]] (en effaçant les crochet)
