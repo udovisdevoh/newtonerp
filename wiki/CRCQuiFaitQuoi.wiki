@@ -2,18 +2,28 @@
 
 3 statuts possibles (inactif, en cour, fini)
 
+== non assigné ==
+
+|| *Groupe de classe* || *statut* ||
+
 == Guillaume ==
 
-|| Groupe de classe || statut ||
+|| *Groupe de classe* || *statut* ||
 || Specification || inactif ||
 || Task || inactif ||
 || TaskManager || inactif ||
 
 == Kovalev ==
 
-|| Groupe de classe || statut ||
+|| *Groupe de classe* || *statut* ||
 || Server || inactif ||
 || Orm || inactif ||
 || ServerMessage || inactif ||
 
 Trouver autres CRC à faire
+
+== Jonatan==
+
+== Gabriel==
+
+== Pascal==
