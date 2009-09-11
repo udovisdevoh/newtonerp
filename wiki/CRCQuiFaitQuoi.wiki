@@ -1,4 +1,10 @@
-=CRC Qui fait quoi= (pour mercredi le 16)
+= CRC Qui fait quoi = 
+(pour mercredi le 16)
+
+voici la distribution de CRC a faire, choisissé les CRC du groupe *non assigné* puis copié leur ligne sous votre nom si vous voulé le faire
+pour chacun d'entre vous j'ai créé une page vous permettant de travaillé sur vos CRC, le lien est sur votre nom
+dans chacune de ses page un layout de CRC est présent (visible seulement en mode édition) svp l'utiliser pour faire les votres
+Bon travail.
 
 3 statuts possibles (inactif, en cour, fini)
 
@@ -6,14 +12,14 @@
 
 || *Groupe de classe* || *statut* ||
 
-== Guillaume ==
+== [GuillaumeCRC Guillaume] ==
 
 || *Groupe de classe* || *statut* ||
 || Specification || inactif ||
 || Task || inactif ||
 || TaskManager || inactif ||
 
-== Kovalev ==
+== [KovalevCRC Kovalev] ==
 
 || *Groupe de classe* || *statut* ||
 || Server || inactif ||
@@ -22,8 +28,8 @@
 
 Trouver autres CRC à faire
 
-== Jonatan==
+== [JonatanCRC Jonatan] ==
 
-== Gabriel==
+== [GabrielCRC Gabriel] ==
 
-== Pascal==
+== [PascalCRC Pascal] ==
