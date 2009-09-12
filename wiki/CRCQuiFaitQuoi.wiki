@@ -21,9 +21,9 @@ Bon travail.
 || ViewableEntity (de base) || inactif ||
 || SpecilizedViewer (de base) || inactif ||
 || Module (de base) || inactif ||
-|| MainModule || inactif ||
+|| MainModule _(modèle du module du menu principal)_ || inactif ||
 || UserRightModule || inactif ||
-|| Action || inactif ||
+|| Action _(gros morceau à conceptualiser)_ || inactif ||
 || EventListener || inactif ||
 
 == [GuillaumeCRC Guillaume] ==
