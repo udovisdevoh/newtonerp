@@ -42,10 +42,11 @@ Bon travail.
 || Viewer (main Viewer) || inactif ||
 || HttpListener || inactif ||
 
-Servelet correspond aux classes: HttpListener, HttpRequest et Viewer
+Servelet correspond aux classes:
+HttpListener, HttpRequest et Viewer
 Voir pages pour info sur servlet
-*[http://www.exampledepot.com/egs/javax.servlet/com_mycompany_MyServlet.html]
-*[http://java.sun.com/products/servlet/articles/tutorial/]
+[http://www.exampledepot.com/egs/javax.servlet/com_mycompany_MyServlet.html]
+[http://java.sun.com/products/servlet/articles/tutorial/]
 
 == [JonatanCRC Jonatan] ==
 
