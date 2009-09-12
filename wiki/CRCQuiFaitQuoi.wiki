@@ -25,8 +25,6 @@ Bon travail.
 || UserRightModule || inactif ||
 || Action || inactif ||
 || EventListener || inactif ||
-|| TaskViewer || inactif ||
-|| TaskModule || inactif ||
 
 == [GuillaumeCRC Guillaume] ==
 
@@ -34,6 +32,8 @@ Bon travail.
 || Specification || inactif ||
 || Task || inactif ||
 || TaskManager || inactif ||
+|| TaskViewer || inactif ||
+|| TaskModule || inactif ||
 
 == [KovalevCRC Kovalev] ==
 
