@@ -41,6 +41,7 @@ Bon travail.
 || DataOrm || inactif ||
 || Viewer (main Viewer) || inactif ||
 || HttpListener || inactif ||
+|| HttpRequest || inactif ||
 
 Servelet correspond aux classes:
 HttpListener, HttpRequest et Viewer
