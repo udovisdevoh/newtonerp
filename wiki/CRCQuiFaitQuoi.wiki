@@ -40,7 +40,11 @@ Bon travail.
 || *Groupe de classe* || *statut* ||
 || DataOrm || inactif ||
 || Viewer || inactif || //Main Viewer
-|| HttpListener || inactif || //Servelet correspond aux classes: HttpListener, HttpRequest et Viewer, voir page 
+|| HttpListener || inactif ||
+Servelet correspond aux classes: HttpListener, HttpRequest et Viewer, voir pages
+[http://www.exampledepot.com/egs/javax.servlet/com_mycompany_MyServlet.html]
+[http://java.sun.com/products/servlet/articles/tutorial/]
+pour info sur servlet
 
 == [JonatanCRC Jonatan] ==
 
