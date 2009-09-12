@@ -10,6 +10,9 @@ Bon travail.
 
 3 statuts possibles (inactif, en cour, fini)
 
+*Consultez le diagramme WEB de notre projet pour savoir en gros comment les classes interagissent avec les autres*
+[http://newtonerp.googlecode.com/files/Diagramme%20ERP%20Web.class.violet]
+
 == non assigné ==
 
 || *Groupe de classe* || *statut* ||
