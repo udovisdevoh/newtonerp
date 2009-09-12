@@ -17,19 +17,16 @@ Bon travail.
 
 || *Groupe de classe* || *statut* ||
 || Entity (de base) || inactif ||
-|| Entity-ormisable || inactif ||
-|| Entity-viewable (de base) || inactif ||
-|| Main-viewer || inactif ||
-|| specilized-viewer (de base) || inactif ||
-|| menu-viewer || inactif ||
-|| module (de base) || inactif ||
+|| OrmisableEntity || inactif ||
+|| ViewableEntity (de base) || inactif ||
+|| SpecilizedViewer (de base) || inactif ||
+|| Module (de base) || inactif ||
 || MainModule || inactif ||
-|| UserRight-Module || inactif ||
-|| action || inactif ||
-|| eventListener || inactif ||
-|| HttpListener || inactif ||
-|| task-viewer || inactif ||
-|| task-Module || inactif ||
+|| UserRightModule || inactif ||
+|| Action || inactif ||
+|| EventListener || inactif ||
+|| TaskViewer || inactif ||
+|| TaskModule || inactif ||
 
 == [GuillaumeCRC Guillaume] ==
 
@@ -41,8 +38,9 @@ Bon travail.
 == [KovalevCRC Kovalev] ==
 
 || *Groupe de classe* || *statut* ||
-|| Servlet || inactif ||
 || DataOrm || inactif ||
+|| Viewer || inactif || //Main Viewer
+|| HttpListener || inactif || //Servelet correspond aux classes: HttpListener, HttpRequest et Viewer, voir page 
 
 == [JonatanCRC Jonatan] ==
 
