@@ -39,7 +39,7 @@ Bon travail.
 
 || *Groupe de classe* || *statut* ||
 || DataOrm || inactif ||
-|| Viewer || inactif || //Main Viewer
+|| Viewer (main Viewer) || inactif ||
 || HttpListener || inactif ||
 Servelet correspond aux classes: HttpListener, HttpRequest et Viewer, voir pages
 [http://www.exampledepot.com/egs/javax.servlet/com_mycompany_MyServlet.html]
