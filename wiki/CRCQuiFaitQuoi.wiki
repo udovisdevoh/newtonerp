@@ -41,10 +41,11 @@ Bon travail.
 || DataOrm || inactif ||
 || Viewer (main Viewer) || inactif ||
 || HttpListener || inactif ||
-Servelet correspond aux classes: HttpListener, HttpRequest et Viewer, voir pages
-[http://www.exampledepot.com/egs/javax.servlet/com_mycompany_MyServlet.html]
-[http://java.sun.com/products/servlet/articles/tutorial/]
-pour info sur servlet
+
+Servelet correspond aux classes: HttpListener, HttpRequest et Viewer
+Voir pages pour info sur servlet
+*[http://www.exampledepot.com/egs/javax.servlet/com_mycompany_MyServlet.html]
+*[http://java.sun.com/products/servlet/articles/tutorial/]
 
 == [JonatanCRC Jonatan] ==
 
