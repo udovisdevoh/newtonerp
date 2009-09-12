@@ -3,7 +3,7 @@
 (pour mercredi le 16)
 
 voici la distribution de CRC a faire, choisissez les CRC du groupe *non assigné* puis copié leur ligne sous votre nom si vous voulez (et pouvez) le faire
-pour chacun d'entre vous j'ai créé une page vous permettant de travaillé sur vos CRC, le lien est sur votre nom
+pour chacun d'entre vous j'ai créé une page vous permettant de travailler sur vos CRC, le lien est sur votre nom
 dans chacune de ses page un layout de CRC est présent (visible seulement en mode édition) svp l'utiliser pour faire les votres
 les groupe de classe marqué (de base) signifie par exemple pour un module que l'on montre la structure "de base" de tout module qui puisse existé et non pas le CRC d'un module Finance ou Employer, certain module ou viewer doivent etre _CRCiser_ puisque ce sont des module ou des vue obligatoire au fonctionnement de l'aplication
 Bon travail.
