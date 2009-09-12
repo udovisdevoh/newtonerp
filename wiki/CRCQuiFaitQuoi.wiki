@@ -14,7 +14,7 @@ Bon travail.
 [http://newtonerp.googlecode.com/files/Diagramme%20ERP%20Web.class.violet]
 
 == non assigné ==
-||
+
 || *Groupe de classe* || *statut* ||
 || Entity (de base) || inactif ||
 || OrmisableEntity || inactif ||
@@ -27,7 +27,6 @@ Bon travail.
 || EventListener || inactif ||
 || TaskViewer || inactif ||
 || TaskModule || inactif ||
-||
 
 == [GuillaumeCRC Guillaume] ==
 
@@ -47,8 +46,8 @@ Bon travail.
 Servelet correspond aux classes:
 HttpListener, HttpRequest et Viewer
 Voir pages pour info sur servlet
-* [http://www.exampledepot.com/egs/javax.servlet/com_mycompany_MyServlet.html]
-* [http://java.sun.com/products/servlet/articles/tutorial/]
+[http://www.exampledepot.com/egs/javax.servlet/com_mycompany_MyServlet.html]
+[http://java.sun.com/products/servlet/articles/tutorial/]
 
 == [JonatanCRC Jonatan] ==
 
