@@ -39,9 +39,9 @@ Bon travail.
 
 || *Groupe de classe* || *statut* ||
 || DataOrm || inactif ||
-|| Viewer (main Viewer) _une page de servlet qui envoie des HTTP selon ce que l'utilisateur fait_ || inactif ||
-|| HttpListener _une page de servlet qui reçoit la requête HTTP_ || inactif ||
-|| HttpRequest _contient la requête envoyée au servlet, pas forcément une vraie classe qu'on va créer, peut-être classe fournie dans l'API des servlet alors faire en dernier_ || inactif ||
+|| Viewer (main Viewer) _(une page de servlet qui envoie des HTTP selon ce que l'utilisateur fait)_ || inactif ||
+|| HttpListener _(une page de servlet qui reçoit la requête HTTP)_ || inactif ||
+|| HttpRequest _(contient la requête envoyée au servlet, pas forcément une vraie classe qu'on va créer, peut-être classe fournie dans l'API des servlet alors faire en dernier)_ || inactif ||
 
 Servelet correspond aux classes:
 HttpListener, HttpRequest et Viewer
