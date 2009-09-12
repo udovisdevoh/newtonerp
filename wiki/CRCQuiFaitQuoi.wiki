@@ -19,10 +19,8 @@ Bon travail.
 || Main-viewer || inactif ||
 || specilized-viewer (de base) || inactif ||
 || menu-viewer || inactif ||
-|| task-viewer || inactif ||
 || module (de base) || inactif ||
 || MainModule || inactif ||
-|| task-Module || inactif ||
 || UserRight-Module || inactif ||
 || action || inactif ||
 || eventListener || inactif ||
@@ -34,6 +32,8 @@ Bon travail.
 || Specification || inactif ||
 || Task || inactif ||
 || TaskManager || inactif ||
+|| task-viewer || inactif ||
+|| task-Module || inactif ||
 
 == [KovalevCRC Kovalev] ==
 
