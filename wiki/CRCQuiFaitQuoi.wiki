@@ -11,6 +11,20 @@ Bon travail.
 == non assigné ==
 
 || *Groupe de classe* || *statut* ||
+|| Entity (de base) || inactif ||
+|| Entity-ormisable || inactif ||
+|| Entity-viewable (de base) || inactif ||
+|| Main-viewer || inactif ||
+|| specilized-viewer (de base) || inactif ||
+|| menu-viewer || inactif ||
+|| task-viewer || inactif ||
+|| module (de base) || inactif ||
+|| MainModule || inactif ||
+|| task-Module || inactif ||
+|| UserRight-Module || inactif ||
+|| action || inactif ||
+|| eventListener || inactif ||
+|| taskManager || inactif ||
 
 == [GuillaumeCRC Guillaume] ==
 
@@ -22,14 +36,17 @@ Bon travail.
 == [KovalevCRC Kovalev] ==
 
 || *Groupe de classe* || *statut* ||
-|| Server || inactif ||
-|| Orm || inactif ||
-|| ServerMessage || inactif ||
-
-Trouver autres CRC à faire
+|| Servlet || inactif ||
+|| DataOrm || inactif ||
 
 == [JonatanCRC Jonatan] ==
 
+|| *Groupe de classe* || *statut* ||
+
 == [GabrielCRC Gabriel] ==
 
+|| *Groupe de classe* || *statut* ||
+
 == [PascalCRC Pascal] ==
+
+|| *Groupe de classe* || *statut* ||
