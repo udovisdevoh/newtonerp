@@ -34,7 +34,7 @@ Bon travail.
 || Specification || fini ||
 || Task || fini ||
 || TaskManager || fini ||
-|| TaskViewer || inactif ||
+|| TaskViewer || fini ||
 || TaskModule || fini ||
 
 == [KovalevCRC Kovalev] ==
