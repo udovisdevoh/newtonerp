@@ -51,3 +51,20 @@
        </td>
    </tr>
 </table>
+
+== TaskManager ==
+<table border="1">
+   <tr>
+       <td width="60%" width="70%">Guillaume</td>
+       <td rowspan="2">
+           * Task
+           * DataOrm
+       </td>
+   </tr>
+   <tr>
+       <td>
+           * Active tous les tâches associées à une entiée fournie par l'Orm.
+           * Gère de manière persistante les associations entre les types d'entités et les tâches associées
+       </td>
+   </tr>
+</table>
