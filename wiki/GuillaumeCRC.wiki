@@ -4,7 +4,7 @@
    <tr>
        <td width="60%" width="70"%>Guillaume</td>
        <td rowspan="2">
-           * AtomicSpecification
+           * Atomic Specification
            * Task
        </td>
    </tr>
