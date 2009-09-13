@@ -4,6 +4,7 @@
    <tr>
        <td width="60%" width="70%">Guillaume</td>
        <td rowspan="2">
+           * ISpecification (interface)
            * CompositeSpecification (même classe récursivement)
            * AtomicSpecification
            * Task
@@ -21,8 +22,27 @@
    <tr>
        <td width="60%" width="70%">Guillaume</td>
        <td rowspan="2">
+           * ISpecification (interface)
            * CompositeSpecification
            * Task
+       </td>
+   </tr>
+   <tr>
+       <td>
+           * Teste si la spécification atomique est présentement satisfaite
+       </td>
+   </tr>
+</table>
+
+== Task ==
+<table border="1">
+   <tr>
+       <td width="60%" width="70%">Guillaume</td>
+       <td rowspan="2">
+           * ISpecification (interface)
+           * Action
+           * TaskModule
+           * TaskManager
        </td>
    </tr>
    <tr>
