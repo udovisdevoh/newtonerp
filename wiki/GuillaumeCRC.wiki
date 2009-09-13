@@ -8,7 +8,7 @@
        </td>
    </tr>
    <tr>
-       <td>[[* Teste si la spécification est présentement satisfaite]]
+       <td>* Teste si la spécification est présentement satisfaite
        </td>
    </tr>
 </table>
