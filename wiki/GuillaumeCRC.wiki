@@ -97,7 +97,7 @@
    </tr>
    <tr>
        <td>
-           * Permet de voir une Task de manière à pour la modifier
+           * Permet de voir une Task sous forme de "TreeView" de manière à pour la modifier
        </td>
    </tr>
 </table>
