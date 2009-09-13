@@ -8,9 +8,9 @@ voici le format a suivre pour les CRC, ne vous occup√© pas du HTML si sa vous m√
 <table border=1>
    <tr>
        <td width=60% width=70%> [[proprio]] </td>
-       <td rowspan=2> [[
+       <td rowspan=2> 
                       * classe avec laquel elle interagit
-                      * autre classe]]
+                      * autre classe
        </td>
    </tr>
    <tr>
