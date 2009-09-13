@@ -31,9 +31,9 @@ Bon travail.
 == [GuillaumeCRC Guillaume] ==
 
 || *Groupe de classe* || *statut* ||
-|| Specification || inactif ||
-|| Task || inactif ||
-|| TaskManager || inactif ||
+|| Specification || fini ||
+|| Task || fini ||
+|| TaskManager || fini ||
 || TaskViewer || inactif ||
 || TaskModule || inactif ||
 
