@@ -1,9 +1,10 @@
 #labels Analyse-CRC
-== Composite Specification ==
+== CompositeSpecification ==
 <table border="1">
    <tr>
        <td width="60%" width="70%">Guillaume</td>
        <td rowspan="2">
+           * CompositeSpecification (même classe récursivement)
            * AtomicSpecification
            * Task
        </td>
@@ -11,6 +12,22 @@
    <tr>
        <td>
            * Teste si la spécification est présentement satisfaite en testant ses sous-spécifications et en appliquant un opérateur "et" ou "ou"
+       </td>
+   </tr>
+</table>
+
+== AtomicSpecification ==
+<table border="1">
+   <tr>
+       <td width="60%" width="70%">Guillaume</td>
+       <td rowspan="2">
+           * CompositeSpecification
+           * Task
+       </td>
+   </tr>
+   <tr>
+       <td>
+           * Teste si la spécification atomique est présentement satisfaite
        </td>
    </tr>
 </table>
