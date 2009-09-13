@@ -77,6 +77,7 @@
            * Module (TaskModule est une sous-classe de Module)
            * MainModule (TaskModule est une composante de MainModule)
            * TaskManager (TaskModule cré des tâches dans le taskManager)
+           * TaskViewer (TaskViewer permet de voir les Tasks pour les modifier)
        </td>
    </tr>
    <tr>
