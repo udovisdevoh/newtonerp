@@ -82,7 +82,7 @@
    </tr>
    <tr>
        <td>
-           * Permet de modifier/supprimer/créer des Tasks dans le TaskManager
+           * Permet de modifier/supprimer/créer des Tasks dans le TaskManager à l'aide du TaskViewer
        </td>
    </tr>
 </table>
@@ -92,6 +92,8 @@
    <tr>
        <td width="60%" width="70%">Guillaume</td>
        <td rowspan="2">
+           * Viewer (TaskViewer est une composante de Viewer)
+           * IViewer (TaskViewer implémente IViewer)
            * Task (TaskViewer permet de voir une Task)
        </td>
    </tr>
