@@ -24,3 +24,18 @@ voici le format a suivre pour les CRC, ne vous occupé pas du HTML si sa vous m�
 </wiki:comment>
 
 <wiki:toc max_depth="1" />
+
+== [[CompositeSpecification]] ==
+<table border=1>
+   <tr>
+       <td width=60% width=70%> [[Guillaume]] </td>
+       <td rowspan=2> [[
+                      * AtomicSpecification
+                      * Task]]
+       </td>
+   </tr>
+   <tr>
+       <td>[[* Teste si la spécification est présentement satisfaite]]
+       </td>
+   </tr>
+</table>
