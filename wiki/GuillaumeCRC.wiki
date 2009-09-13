@@ -10,7 +10,7 @@
    </tr>
    <tr>
        <td>
-           * Teste si la spécification est présentement satisfaite
+           * Teste si la spécification est présentement satisfaite en testant ses sous-spécifications et en appliquant un opérateur "et" ou "ou"
        </td>
    </tr>
 </table>
