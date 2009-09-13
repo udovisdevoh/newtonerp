@@ -1,10 +1,10 @@
 #labels Analyse-CRC
-== [[Composite_Specification]] ==
+== Composite_Specification ==
 <table border=1>
    <tr>
        <td width=60% width=70%>Guillaume</td>
-       <td rowspan=2> * AtomicSpecification
-                      * Task
+       <td rowspan=2>* AtomicSpecification
+                     * Task
        </td>
    </tr>
    <tr>
