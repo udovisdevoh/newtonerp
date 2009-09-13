@@ -82,8 +82,7 @@
    </tr>
    <tr>
        <td>
-           * Active tous les tâches associées à une entiée fournie par l'Orm.
-           * Gère de manière persistante les associations entre les types d'entités et les tâches associées
+           * Permet de modifier/supprimer/créer des Tasks dans le TaskManager
        </td>
    </tr>
 </table>
