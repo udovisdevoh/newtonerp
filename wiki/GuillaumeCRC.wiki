@@ -29,7 +29,7 @@
    </tr>
    <tr>
        <td>
-           * Lorsque que la tâche est activée, effectue (0/une/des) action(s) si la spécification (est/n'est) pas satisfaite
+           * Teste si la spécification atomique est présentement satisfaite
        </td>
    </tr>
 </table>
@@ -47,7 +47,7 @@
    </tr>
    <tr>
        <td>
-           * Teste si la spécification atomique est présentement satisfaite
+           * Lorsque que la tâche est activée, effectue (0/une/des) action(s) si la spécification (est/n'est) pas satisfaite 
        </td>
    </tr>
 </table>
