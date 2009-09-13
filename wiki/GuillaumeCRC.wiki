@@ -29,9 +29,8 @@ voici le format a suivre pour les CRC, ne vous occup√© pas du HTML si sa vous m√
 <table border=1>
    <tr>
        <td width=60% width=70%> [[Guillaume]] </td>
-       <td rowspan=2> [[
-                      * AtomicSpecification
-                      * Task]]
+       <td rowspan=2> [[* AtomicSpecification]]
+                      [[* Task]]
        </td>
    </tr>
    <tr>
