@@ -25,7 +25,6 @@ Bon travail.
 || Module (de base) || inactif ||
 || MainModule _(modèle du module du menu principal)_ || inactif ||
 || UserRightModule || inactif ||
-|| Action _(gros morceau à conceptualiser)_ || inactif ||
 || EventListener || inactif ||
 
 == [GuillaumeCRC Guillaume] ==
@@ -36,6 +35,7 @@ Bon travail.
 || TaskManager || fini ||
 || TaskViewer || fini ||
 || TaskModule || fini ||
+|| Action || en cour ||
 
 == [KovalevCRC Kovalev] ==
 
