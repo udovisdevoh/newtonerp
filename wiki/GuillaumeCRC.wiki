@@ -104,3 +104,22 @@
        </td>
    </tr>
 </table>
+
+== Action ==
+<table border="1">
+   <tr>
+       <td width="60%" width="70%">Guillaume</td>
+       <td rowspan="2">
+           * Module (une action est une composante d'un module)
+           * Task (une action peut être déclancher par une task si sa spécification est vraie)
+           * Entity pour (critère de recherche, changements à faire)
+       </td>
+   </tr>
+   <tr>
+       <td>
+           * Permet d'encoder une modification sur certaines entité en contenant les critères de recherches?
+           * Permet de faire une modification statique?
+           * Permet de faire une modification de manière dynamique (genre de binding variable?)
+       </td>
+   </tr>
+</table>
