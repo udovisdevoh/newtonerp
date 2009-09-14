@@ -18,9 +18,6 @@ Bon travail.
 == non assigné ==
 
 || *Groupe de classe* || *statut* ||
-|| OrmisableEntity || inactif ||
-|| ViewableEntity (de base) || inactif ||
-|| SpecilizedViewer (de base) || inactif ||
 || Module (de base) || inactif ||
 || MainModule _(modèle du module du menu principal)_ || inactif ||
 
@@ -51,6 +48,9 @@ Voir pages pour info sur servlet
 == [JonatanCRC Jonatan] ==
 
 || *Groupe de classe* || *statut* ||
+|| OrmisableEntity || inactif ||
+|| ViewableEntity (de base) || inactif ||
+|| SpecilizedViewer (de base) || inactif ||
 
 == [GabrielCRC Gabriel] ==
 
