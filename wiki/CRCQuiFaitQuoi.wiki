@@ -18,14 +18,12 @@ Bon travail.
 == non assigné ==
 
 || *Groupe de classe* || *statut* ||
-|| Entity (de base) || inactif ||
 || OrmisableEntity || inactif ||
 || ViewableEntity (de base) || inactif ||
 || SpecilizedViewer (de base) || inactif ||
 || Module (de base) || inactif ||
 || MainModule _(modèle du module du menu principal)_ || inactif ||
 || UserRightModule || inactif ||
-|| EventListener || inactif ||
 
 == [GuillaumeCRC Guillaume] ==
 
@@ -58,6 +56,10 @@ Voir pages pour info sur servlet
 == [GabrielCRC Gabriel] ==
 
 || *Groupe de classe* || *statut* ||
+|| Entity (de base) || inactif ||
+|| EventListener || inactif ||
+|| UserRightModule || inactif ||
+
 
 == [PascalCRC Pascal] ==
 
