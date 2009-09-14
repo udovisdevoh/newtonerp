@@ -43,11 +43,12 @@
            * Action
            * TaskModule
            * TaskManager
+           * Entity (pour critère de recherche pour créer vecteur d'entités affectées)
        </td>
    </tr>
    <tr>
        <td>
-           * Lorsque que la tâche est activée, effectue (0/une/des) action(s) si la spécification (est/n'est) pas satisfaite 
+           * Lorsque que la tâche est activée, effectue action si la spécification est pas satisfaite 
        </td>
    </tr>
 </table>
