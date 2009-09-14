@@ -35,7 +35,7 @@ Bon travail.
 || TaskManager || fini ||
 || TaskViewer || fini ||
 || TaskModule || fini ||
-|| Action || en cours ||
+|| Action || en cours *_(besoin de votre aide pour comprendre comment vous voyez ça)_* ||
 
 == [KovalevCRC Kovalev] ==
 
