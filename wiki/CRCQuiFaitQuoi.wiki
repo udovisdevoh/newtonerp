@@ -35,22 +35,19 @@ Bon travail.
 
 || *Groupe de classe* || *statut* ||
 || DataOrm || inactif ||
-|| Viewer (main Viewer) _(une page de servlet qui envoie des HTTP selon ce que l'utilisateur fait)_ || inactif ||
-|| HttpListener _(une page de servlet qui reçoit la requête HTTP)_ || inactif ||
-|| HttpRequest _(contient la requête envoyée au servlet, pas forcément une vraie classe qu'on va créer, peut-être classe fournie dans l'API des servlet alors faire en dernier)_ || inactif ||
-
-Servelet correspond aux classes:
-HttpListener, HttpRequest et Viewer
-Voir pages pour info sur servlet
-[http://www.exampledepot.com/egs/javax.servlet/com_mycompany_MyServlet.html]
-[http://java.sun.com/products/servlet/articles/tutorial/]
+|| OrmisableEntity || inactif ||
 
 == [JonatanCRC Jonatan] ==
 
 || *Groupe de classe* || *statut* ||
-|| OrmisableEntity || inactif ||
 || ViewableEntity (de base) || inactif ||
 || SpecilizedViewer (de base) || inactif ||
+|| Viewer (main Viewer) || inactif ||
+
+Voir pages pour info sur servlet
+[http://www.exampledepot.com/egs/javax.servlet/com_mycompany_MyServlet.html]
+[http://java.sun.com/products/servlet/articles/tutorial/]
+[http://www.google.com.ca/search?q=tomcat+embedded]
 
 == [GabrielCRC Gabriel] ==
 

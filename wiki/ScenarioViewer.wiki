@@ -19,7 +19,7 @@
 				qui est retourné au servlet
 			}
 		}
-		le servelet appelle le mainViewer(class static) avec l'entity en parametre
+		le servlet appelle le mainViewer(class static) avec l'entity en parametre
 		{
 			le mainViewer apelle les viewer(class static) spécifique permettent d'Affiché l'entity
 			{
