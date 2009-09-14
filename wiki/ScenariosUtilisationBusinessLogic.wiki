@@ -48,22 +48,21 @@ Business logic
 			L'orm passe en référence l'entité de boris au TaskManager
 			{
 				Le task manager recoit Boris et détermine que c'est un employé
-				Le task manager a la liste des tâches automatisées par la modification d'un entité de type employé
 				Le task manager traite les tâches associé à la classe Employé
 				{
+					Le task manager a la liste des tâches automatisées par la modification d'un entité de type employé
 					Pour chaque Task
 					{
 						On teste la spécification de manière récrusive pour vérifier si elle est satisfaite
 						
 						Si satisfaite
 						{
-							On execute l'action 1 (par exemple, congédier boris)
-						}
-						sinon
-						{
-							Si action 2 n'est pas null //genre de if pas de else
+							On utilise l'entité de recherche (membre de Task) pour faire une
+							recherche dans l'orm et cette recherche retourne un vecteur de résultat
+							
+							Pour chaque entité de résultat du vecteur
 							{
-								On exécute action 2
+								On execute l'action sur l'entité
 							}
 						}
 					}
