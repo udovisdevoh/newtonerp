@@ -1,35 +1,34 @@
 {{{
-Événement lancé d'un module de vue ou d'un menu
+Événement lancé d'un module de vue ou d'un menu (clic sur un lien)
 {
-		L'événement est catché par le listener
+		le servelet reçois une requette de type :
 		{
-			On va chercher le display name de la source de l'événement
-			On cherche ce display name dans le HashTable
-		}
-		Le listener apelle le controleur client pour envoyer une requête
-}
-
-Ouverture d'une vue 
-{
-	Le viewer recoit
-	{
-		Un modèle de donnée vide (on verra)
-		Un paramètre viewable par (interface, ex : profile, graphic etc...)
-		Liste d'action
-	}
-	
-	Il crée le bon viewer en lui passant en paramètre le modèle de donnée et la liste d'action
-	{
-		Il crée le menuViewer avec la liste d'action
-		{
-			On itère au travers de la liste d'action
+			GET: ?module=Employer&action=showEmp&Value=172 (montre l'employer 172)
 			{
-				On prend le nom viewable de l'action, on l'affecte à un menuItem
+				le servlet transfere les donnés de la requette a l'eventListner
+				l'eventListener cherche le bon module, l'instanci et appelle l'action en lui passant en paramettre les values
+				le module exécute l'action demandé puis retourne une viewableEntity
+				qui est retourné au servlet
+			}
+			POST: ?module=Employer&action=modEmp&Value=172 (change les donné de l'employer 172)
+				  name:john, timeWork=8...
+			{
+				le servlet transfere les donnés de la requette a l'eventListner en ajoutant une hashTable contenant les donné du POST
+				l'eventListener cherche le bon module, l'instanci et appelle l'action en lui passant en paramettre les values et le hashTable
+				le module exécute l'action demandé puis retourne une viewableEntity
+				qui est retourné au servlet
 			}
 		}
-		
-		Il crée la vue
-	}
+		le servelet appelle le mainViewer(class static) avec l'entity en parametre
+		{
+			le mainViewer apelle les viewer(class static) spécifique permettent d'Affiché l'entity
+			{
+				viewer spécifique créé le code HTML a affiché, peut apellé d'autre viewer si néscéssaire
+			}
+			le main viewer ajoute le code html d'entete et de pied de page ainsi que celui des menus
+			retourne au finale la code HTML au servelet 
+		}
+		le servlet envois la page au client 
 }
 
 
