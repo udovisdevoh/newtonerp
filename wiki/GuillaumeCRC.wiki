@@ -78,6 +78,7 @@
            * MainModule (TaskModule est une composante de MainModule)
            * TaskManager (TaskModule cré des tâches dans le taskManager)
            * TaskViewer (TaskViewer permet de voir les Tasks pour les modifier)
+           * Action (ce sont les actions d'un module qui effectuent les modifications sur les entitées)
        </td>
    </tr>
    <tr>
