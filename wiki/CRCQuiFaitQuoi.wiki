@@ -10,7 +10,7 @@ Les groupe de classe marqué (de base) signifie par exemple pour un module que l
 *ATTENTION* c'est une liste de *groupe de classe* et non pas une liste de classe, un groupe peu donc se traduire par plusieurs CRC, il n'est pas néscéssaire de séparé les groupe en CRC sur cette page-ci.
 Bon travail.
 
-3 statuts possibles (inactif, en cour, fini)
+3 statuts possibles (inactif, en cours, fini)
 
 *Consultez le diagramme notre projet pour savoir en gros comment les classes interagissent avec les autres*
 [http://newtonerp.googlecode.com/files/Diagramme%20ERP%20Web.class.violet]
@@ -35,7 +35,7 @@ Bon travail.
 || TaskManager || fini ||
 || TaskViewer || fini ||
 || TaskModule || fini ||
-|| Action || en cour ||
+|| Action || en cours ||
 
 == [KovalevCRC Kovalev] ==
 
