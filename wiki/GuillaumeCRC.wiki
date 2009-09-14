@@ -113,14 +113,12 @@
        <td rowspan="2">
            * Module (une action est une composante d'un module)
            * Task (une action peut être déclancher par une task si sa spécification est vraie)
-           * Entity pour (critère de recherche, changements à faire)
+           * Entity (paramètre de l'action)
        </td>
    </tr>
    <tr>
        <td>
-           * Permet d'encoder une modification sur certaines entité en contenant les critères de recherches?
-           * Permet de faire une modification statique?
-           * Permet de faire une modification de manière dynamique (genre de binding variable?)
+           * Effectue une action "hard codée" en prenant pour argument une entité 
        </td>
    </tr>
 </table>
