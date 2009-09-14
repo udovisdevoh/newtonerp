@@ -23,7 +23,6 @@ Bon travail.
 || SpecilizedViewer (de base) || inactif ||
 || Module (de base) || inactif ||
 || MainModule _(modèle du module du menu principal)_ || inactif ||
-|| UserRightModule || inactif ||
 
 == [GuillaumeCRC Guillaume] ==
 
