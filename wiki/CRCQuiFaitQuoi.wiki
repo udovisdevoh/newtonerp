@@ -34,8 +34,9 @@ Bon travail.
 == [KovalevCRC Kovalev] ==
 
 || *Groupe de classe* || *statut* ||
-|| DataOrm || inactif ||
-|| OrmisableEntity || en cours ||
+|| DataOrm || fini ||
+|| OrmisableEntity || fini ||
+|| OrmAction || fini ||
 
 == [JonatanCRC Jonatan] ==
 
