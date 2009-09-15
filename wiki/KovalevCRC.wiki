@@ -29,13 +29,48 @@ voici le format a suivre pour les CRC, ne vous occup√© pas du HTML si sa vous m√
 <table border=1>
    <tr>
        <td width=60% width=70%> Jonathan Hallee </td>
-       <td rowspan=2> * Entity
+       <td rowspan=2> 
+           * Entity
        </td>
    </tr>
    <tr>
        <td> 
            *  methode requestData ou formatData
            * S'occupe de formater les donnes afin qu'elles soit Ok pour l'orm
+       </td>
+   </tr>
+</table>
+
+== DataOrm ==
+<table border=1>
+   <tr>
+       <td width=60% width=70%> Jonathan Hallee </td>
+       <td rowspan=2> 
+                      * TaskManager
+                      * ProgramModule       
+       </td>
+   </tr>
+   <tr>
+       <td> 
+            * Effectue les requetes de traitement (select, insert, update, delete...)
+            * Retourne le ou les resultats
+            * Mets a jour les module
+            * Garde une table des plugins installes
+       </td>
+   </tr>
+</table>
+
+== OrmAction ==
+<table border=1>
+   <tr>
+       <td width=60% width=70%> Jonathan Hallee </td>
+       <td rowspan=2> 
+                      * DataOrm    
+       </td>
+   </tr>
+   <tr>
+       <td> 
+            * Contient seulement une enum des actions possible de l'orm de base (ajout    etc...). Comme ca on passe a l'orm une OrmAction
        </td>
    </tr>
 </table>
