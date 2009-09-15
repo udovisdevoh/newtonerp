@@ -25,11 +25,11 @@ voici le format a suivre pour les CRC, ne vous occup√© pas du HTML si sa vous m√
 
 <wiki:toc max_depth="1" />
 
-test
-== [[nom de la classe]] ==
+
+== Entity  ==
 <table border=1>
    <tr>
-       <td width=60% width=70%> [[proprio]] </td>
+       <td width=60% width=70%> Gabriel Therrien </td>
        <td rowspan=2> [[
                       * classe avec laquel elle interagit
                       * autre classe]]
@@ -42,10 +42,10 @@ test
        </td>
    </tr>
 </table>
-== [[nom de la classe]] ==
+== EventListener ==
 <table border=1>
    <tr>
-       <td width=60% width=70%> [[proprio]] </td>
+       <td width=60% width=70%> Gabriel Therrien </td>
        <td rowspan=2> [[
                       * classe avec laquel elle interagit
                       * autre classe]]
@@ -58,10 +58,10 @@ test
        </td>
    </tr>
 </table>
-== [[nom de la classe]] ==
+== UserRightModule ==
 <table border=1>
    <tr>
-       <td width=60% width=70%> [[proprio]] </td>
+       <td width=60% width=70%> Gabriel Therrien </td>
        <td rowspan=2> [[
                       * classe avec laquel elle interagit
                       * autre classe]]
