@@ -37,6 +37,7 @@ voici le format a suivre pour les CRC, ne vous occup√© pas du HTML si sa vous m√
        <td> 
            *  methode requestData ou formatData
            * S'occupe de formater les donnes afin qu'elles soit Ok pour l'orm
+             Genre sous-forme de vecteur etc...
        </td>
    </tr>
 </table>
