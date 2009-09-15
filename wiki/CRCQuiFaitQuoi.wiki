@@ -53,9 +53,9 @@ Voir pages pour info sur servlet
 == [GabrielCRC Gabriel] ==
 
 || *Groupe de classe* || *statut* ||
-|| Entity (de base) || inactif ||
-|| EventListener || inactif ||
-|| UserRightModule || inactif ||
+|| Entity (de base) || En cour ||
+|| EventListener || En cour ||
+|| UserRightModule || En cour ||
 
 
 == [PascalCRC Pascal] ==
