@@ -42,3 +42,35 @@ test
        </td>
    </tr>
 </table>
+== [[nom de la classe]] ==
+<table border=1>
+   <tr>
+       <td width=60% width=70%> [[proprio]] </td>
+       <td rowspan=2> [[
+                      * classe avec laquel elle interagit
+                      * autre classe]]
+       </td>
+   </tr>
+   <tr>
+       <td>[[
+           * action fais par la classe
+           * autre action]]
+       </td>
+   </tr>
+</table>
+== [[nom de la classe]] ==
+<table border=1>
+   <tr>
+       <td width=60% width=70%> [[proprio]] </td>
+       <td rowspan=2> [[
+                      * classe avec laquel elle interagit
+                      * autre classe]]
+       </td>
+   </tr>
+   <tr>
+       <td>[[
+           * action fais par la classe
+           * autre action]]
+       </td>
+   </tr>
+</table>
