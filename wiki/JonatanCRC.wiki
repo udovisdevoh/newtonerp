@@ -24,3 +24,18 @@ voici le format a suivre pour les CRC, ne vous occup√© pas du HTML si sa vous m√
 </wiki:comment>
 
 <wiki:toc max_depth="1" />
+
+== OrmizableEntity ==
+<table border=1>
+   <tr>
+       <td width=60% width=70%> Jonathan Hallee </td>
+       <td rowspan=2> * Entity
+       </td>
+   </tr>
+   <tr>
+       <td>* formatte les donnees de l'entite pour les rendre ormizable par notre orm
+           *  methode requestData ou formatData
+
+       </td>
+   </tr>
+</table>
