@@ -4,10 +4,10 @@
 voici le format a suivre pour les CRC, ne vous occupé pas du HTML si sa vous mélange, vous n'Avez qu'a remplacé ce qui est entre [[ ]] (en effaçant les crochet)
 
 
-== [[nom de la classe]] ==
+== Entities ==
 <table border=1>
    <tr>
-       <td width=60% width=70%> [[proprio]] </td>
+       <td width=60% width=70%> Gabriel Therrien </td>
        <td rowspan=2> [[
                       * classe avec laquel elle interagit
                       * autre classe]]
