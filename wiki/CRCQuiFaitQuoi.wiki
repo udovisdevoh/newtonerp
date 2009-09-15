@@ -35,7 +35,7 @@ Bon travail.
 
 || *Groupe de classe* || *statut* ||
 || DataOrm || inactif ||
-|| OrmisableEntity || inactif ||
+|| OrmisableEntity || en cours ||
 
 == [JonatanCRC Jonatan] ==
 
