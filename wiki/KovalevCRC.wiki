@@ -57,6 +57,7 @@ voici le format a suivre pour les CRC, ne vous occup√© pas du HTML si sa vous m√
             * Retourne le ou les resultats
             * Mets a jour les module
             * Garde une table des plugins installes
+            * Installe les modules, (premiere creation de la db)
        </td>
    </tr>
 </table>
