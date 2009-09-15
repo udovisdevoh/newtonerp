@@ -39,7 +39,7 @@ voici le format a suivre pour les CRC, ne vous occup√© pas du HTML si sa vous m√
        </td>
    </tr>
    <tr>
-       <td>[[
+       <td>
            * elle ne fait pas vraiment d'action elle m√™me, elle subit plutot les actions des autres classes
        </td>
    </tr>
@@ -48,12 +48,12 @@ voici le format a suivre pour les CRC, ne vous occup√© pas du HTML si sa vous m√
 <table border=1>
    <tr>
        <td width=60% width=70%> Gabriel Therrien </td>
-       <td rowspan=2> [[
+       <td rowspan=2> 
                       * Viewer(tout les Viewer)
        </td>
    </tr>
    <tr>
-       <td>[[
+       <td>
            * il fait seulement dire au viewer d'envoyer des donner
        </td>
    </tr>
@@ -62,7 +62,7 @@ voici le format a suivre pour les CRC, ne vous occup√© pas du HTML si sa vous m√
 <table border=1>
    <tr>
        <td width=60% width=70%> Gabriel Therrien </td>
-       <td rowspan=2> [[
+       <td rowspan=2> 
                       * Viewer
                       * User
                       * Module
@@ -70,7 +70,7 @@ voici le format a suivre pour les CRC, ne vous occup√© pas du HTML si sa vous m√
        </td>
    </tr>
    <tr>
-       <td>[[
+       <td>
            * d√©termine les droits des utilisateur se qu'il ont le droit de /ne pas/voir et/ou modifier les choses
        </td>
    </tr>
