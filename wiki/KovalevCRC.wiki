@@ -33,9 +33,9 @@ voici le format a suivre pour les CRC, ne vous occup√© pas du HTML si sa vous m√
        </td>
    </tr>
    <tr>
-       <td>*  formatte les donnees de l'entite pour les rendre ormizable par notre orm
+       <td> 
            *  methode requestData ou formatData
-
+           * S'occupe de formater les donnes afin qu'elles soit Ok pour l'orm
        </td>
    </tr>
 </table>
