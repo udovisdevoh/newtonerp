@@ -48,7 +48,7 @@
    </tr>
    <tr>
        <td>
-           * Lorsque que la tâche est activée, effectue action si la spécification est pas satisfaite 
+           * Lorsque que la tâche est activée, effectue action si la spécification est pas *(??)* satisfaite 
        </td>
    </tr>
 </table>
@@ -119,6 +119,42 @@
    <tr>
        <td>
            * Effectue une action "hard codée" en prenant pour argument une entité 
+       </td>
+   </tr>
+</table>
+== ISpecification ==
+<table border="1">
+   <tr>
+       <td width="60%" width="70%">.</td>
+       <td rowspan="2">
+           * .........................................
+           * .........................................
+           * .........................................
+       </td>
+   </tr>
+   <tr>
+       <td>
+           * .........................................
+           * .........................................
+           * .........................................
+       </td>
+   </tr>
+</table>
+== IViewer ==
+<table border="1">
+   <tr>
+       <td width="60%" width="70%">.</td>
+       <td rowspan="2">
+           * .........................................
+           * .........................................
+           * .........................................
+       </td>
+   </tr>
+   <tr>
+       <td>
+           * .........................................
+           * .........................................
+           * .........................................
        </td>
    </tr>
 </table>
