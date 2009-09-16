@@ -44,7 +44,9 @@ voici le format a suivre pour les CRC, ne vous occup√© pas du HTML si sa vous m√
        </td>
    </tr>
 </table>
+
 == EventListener ==
+*non aplicable a cause d'un changement de structure r√©cent, voir [JonatanCRC#CommandRouter CommandRouter]*
 <table border=1>
    <tr>
        <td width=60% width=70%> Gabriel Therrien </td>
@@ -58,6 +60,7 @@ voici le format a suivre pour les CRC, ne vous occup√© pas du HTML si sa vous m√
        </td>
    </tr>
 </table>
+
 == UserRightModule ==
 <table border=1>
    <tr>
