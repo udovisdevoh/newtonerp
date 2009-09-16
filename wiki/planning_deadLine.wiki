@@ -1,5 +1,5 @@
 #labels planning
-|| *ÉTAPE* || *TEMP*|| *DATE* ||
+|| *ÉTAPE* || *TEMP*|| *DATE FIN* ||
 || Mandat || FAIT ||  ||
 || Analyse textuelle ||	FAIT || ||
 || Cas d'usage / Scénario d'utilisation || FAIT || ||
