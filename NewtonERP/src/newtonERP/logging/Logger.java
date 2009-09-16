@@ -29,10 +29,10 @@ import java.util.GregorianCalendar;
  */
 public class Logger {
 	
-	private FileWriter fstream;
-	private BufferedWriter out;
-	private GregorianCalendar gc = new GregorianCalendar();
-	private SimpleDateFormat sdf = new SimpleDateFormat("k:mm:ss yyyy.MM.dd");
+	private static FileWriter fstream;
+	private static BufferedWriter out;
+	private static GregorianCalendar gc = new GregorianCalendar();
+	private static SimpleDateFormat sdf = new SimpleDateFormat("k:mm:ss yyyy.MM.dd");
 	
 	// States for a log message, we can potentially add more
 	public enum State {
@@ -45,7 +45,7 @@ public class Logger {
 	 * @param message
 	 * @param state
 	 */
-	public void log(String message, State state) {
+	public static void log(String message, State state) {
 		try {
 			fstream = new FileWriter("logs.txt",true);
 			out = new BufferedWriter(fstream);
