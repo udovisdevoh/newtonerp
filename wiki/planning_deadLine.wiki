@@ -3,7 +3,7 @@
 || Mandat || FAIT ||  ||
 || Analyse textuelle ||	FAIT || ||
 || Cas d'usage / Scénario d'utilisation || FAIT || ||
-|| Dictionnaire de donné / CRC: ||  ||  || 
+|| Dictionnaire de donné / CRC: || FAIT ||  || 
 || Début first draft - mise en commun || FAIT  ||  || 
 || Crc game || FAIT  ||  || 
 || Planning Game || 45min  || jeu 17 sept || 
