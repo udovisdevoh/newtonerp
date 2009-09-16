@@ -14,11 +14,8 @@ import java.util.GregorianCalendar;
  * of viewing errors, information messages, warnings and much more 
  * that has happen on a later time.
  * 
- * HOWTO :
- * 
- * 1. Create a Log object
- * 2. Use the "log" method like this :
- * 		logger.log("MY MESSAGE GOES HERE", Log.State.STATE_OF_MESSAGE)
+ * HOWTO : (Static class)
+ * 		Logger.log("MY MESSAGE GOES HERE", Log.State.STATE_OF_MESSAGE)
  * 
  * See the state enumeration for all the actual states available
  * 
