@@ -5,7 +5,7 @@
 || Cas d'usage / Scénario d'utilisation || FAIT || ||
 || Dictionnaire de donné / CRC: ||  ||  || 
 || Début first draft - mise en commun || FAIT  ||  || 
-|| Crc game || 2h || mer 16 sept || 
+|| Crc game || FAIT  ||  || 
 || Planning Game || 45min  || jeu 17 sept || 
 || Conventionalisation	|| 20 min  || jeu 17 sept || 
 || . || . || . || 
