@@ -44,23 +44,6 @@ voici le format a suivre pour les CRC, ne vous occupé pas du HTML si sa vous m�
        </td>
    </tr>
 </table>
-
-== EventListener ==
-*non aplicable a cause d'un changement de structure récent, voir [JonatanCRC#CommandRouter CommandRouter]*
-<table border=1>
-   <tr>
-       <td width=60% width=70%> Gabriel Therrien </td>
-       <td rowspan=2> 
-                      * Viewer(tout les Viewer)
-       </td>
-   </tr>
-   <tr>
-       <td>
-           * il fait seulement dire au viewer d'envoyer des donner
-       </td>
-   </tr>
-</table>
-
 == UserRightModule ==
 <table border=1>
    <tr>
