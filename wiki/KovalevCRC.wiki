@@ -65,7 +65,7 @@ voici le format a suivre pour les CRC, ne vous occup√© pas du HTML si sa vous m√
    </tr>
 </table>
 
-== OrmAction ==
+== OrmAction == @Deprecated
 <table border=1>
    <tr>
        <td width=60% width=70%> Jonathan Hallee </td>
