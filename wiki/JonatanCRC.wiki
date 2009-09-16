@@ -84,7 +84,7 @@ voici le format a suivre pour les CRC, ne vous occupé pas du HTML si sa vous m�
    <tr>
        <td width=60% width=70%> a déterminé </td>
        <td rowspan=2> 
-				* eventListner
+				* CommandRouter
 				* mainViewer
        </td>
    </tr>
@@ -108,7 +108,7 @@ Voir pages pour info sur servlet
        <td width=60% width=70%> a déterminé </td>
        <td rowspan=2> 
 				* Action
-				* EventListner
+				* CommandRouter
 				* Entity
        </td>
    </tr>
@@ -136,6 +136,23 @@ Voir pages pour info sur servlet
                         * lance la vérification de dépendance
                         * lance la vérification de nouveau module et fais faire les installation
                         * lance le server (servlet)
+       </td>
+   </tr>
+</table>
+
+== [[CommandRouter]] ==
+<table border=1>
+   <tr>
+       <td width=60% width=70%> a déterminé </td>
+       <td rowspan=2> 
+				* Module
+				* Servlet
+
+       </td>
+   </tr>
+   <tr>
+       <td>
+			* route le requête client vers le bon module
        </td>
    </tr>
 </table>
