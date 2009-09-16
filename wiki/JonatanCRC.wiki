@@ -114,9 +114,8 @@ Voir pages pour info sur servlet
    </tr>
    <tr>
        <td>
-			* créé le pageHeader, page footer
-			* apelle le MenuViewer et le SpecializeViewer
-			* retourne la page html complete
+			* contient une reference static a l'orm
+			* sert de model pour un module
        </td>
    </tr>
 </table>
@@ -133,10 +132,10 @@ Voir pages pour info sur servlet
    </tr>
    <tr>
        <td>
-       		* sert a lancé l'aplication serveur
-			* lance la vérification de dépendance
-			* lance la vérification de nouveau module et fais faire les installation
-			* lance le server (servlet)
+                        * sert a lancé l'aplication serveur
+                        * lance la vérification de dépendance
+                        * lance la vérification de nouveau module et fais faire les installation
+                        * lance le server (servlet)
        </td>
    </tr>
 </table>
