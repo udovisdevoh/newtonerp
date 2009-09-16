@@ -79,13 +79,37 @@ voici le format a suivre pour les CRC, ne vous occupé pas du HTML si sa vous m�
 </table>
 
 
+== [[servlet]] ==
+<table border=1>
+   <tr>
+       <td width=60% width=70%> a déterminé </td>
+       <td rowspan=2> 
+				* eventListner
+				* mainViewer
+       </td>
+   </tr>
+   <tr>
+       <td>
+			* recois les requette du client et les envoys a l'event listner
+			* recois la réponse des module et l'envois a mainViewer
+			* recois le html du mainViewer et l'envois au client
+       </td>
+   </tr>
+</table>
+
+Voir pages pour info sur servlet
+[http://www.exampledepot.com/egs/javax.servlet/com_mycompany_MyServlet.html]
+[http://java.sun.com/products/servlet/articles/tutorial/]
+[http://www.google.com.ca/search?q=tomcat+embedded]
+
 == [[Module]] ==
 <table border=1>
    <tr>
        <td width=60% width=70%> a déterminé </td>
        <td rowspan=2> 
-				* servlet
-				* specizedViewer
+				* Action
+				* EventListner
+				* Entity
        </td>
    </tr>
    <tr>
@@ -98,20 +122,21 @@ voici le format a suivre pour les CRC, ne vous occupé pas du HTML si sa vous m�
 </table>
 
 
-== [[MainModule]] ==
+== [[Starter]] ==
 <table border=1>
    <tr>
        <td width=60% width=70%> a déterminé </td>
        <td rowspan=2> 
 				* servlet
-				* specizedViewer
+				* DataOrm ?
        </td>
    </tr>
    <tr>
        <td>
-			* créé le pageHeader, page footer
-			* apelle le MenuViewer et le SpecializeViewer
-			* retourne la page html complete
+       		* sert a lancé l'aplication serveur
+			* lance la vérification de dépendance
+			* lance la vérification de nouveau module et fais faire les installation
+			* lance le server (servlet)
        </td>
    </tr>
 </table>

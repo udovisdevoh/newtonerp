@@ -42,13 +42,10 @@ Bon travail.
 || ViewableEntity (de base) || fini ||
 || SpecilizedViewer (de base) || fini ||
 || Viewer (main Viewer) || fini ||
-|| Module (de base) || inactif ||
-|| MainModule _(modèle du module du menu principal)_ || inactif ||
+|| Module (de base) || fini ||
+|| Starter || fini ||
 
-Voir pages pour info sur servlet
-[http://www.exampledepot.com/egs/javax.servlet/com_mycompany_MyServlet.html]
-[http://java.sun.com/products/servlet/articles/tutorial/]
-[http://www.google.com.ca/search?q=tomcat+embedded]
+
 
 == [GabrielCRC Gabriel] ==
 
