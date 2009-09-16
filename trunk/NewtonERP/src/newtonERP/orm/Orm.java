@@ -1,5 +1,7 @@
 package newtonERP.orm;
 
+import newtonERP.logging.Logger;
+
 /**
  * 
  * @author r3hallejo
