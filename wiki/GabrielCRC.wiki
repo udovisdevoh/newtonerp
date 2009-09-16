@@ -53,6 +53,7 @@ voici le format a suivre pour les CRC, ne vous occup√© pas du HTML si sa vous m√
                       * User
                       * Module
                       * action
+                      * Entities
        </td>
    </tr>
    <tr>
