@@ -41,7 +41,7 @@ voici le format a suivre pour les CRC, ne vous occupé pas du HTML si sa vous m�
    </tr>
 </table>
 
-== [[viewer]] ==
+== viewer ==
 <table border=1>
    <tr>
        <td width=60% width=70%> a déterminé </td>
@@ -60,7 +60,7 @@ voici le format a suivre pour les CRC, ne vous occupé pas du HTML si sa vous m�
    </tr>
 </table>
 
-== [[mainViewer]] ==
+== mainViewer ==
 <table border=1>
    <tr>
        <td width=60% width=70%> a déterminé </td>
@@ -79,7 +79,7 @@ voici le format a suivre pour les CRC, ne vous occupé pas du HTML si sa vous m�
 </table>
 
 
-== [[servlet]] ==
+== servlet ==
 <table border=1>
    <tr>
        <td width=60% width=70%> a déterminé </td>
@@ -102,7 +102,7 @@ Voir pages pour info sur servlet
 [http://java.sun.com/products/servlet/articles/tutorial/]
 [http://www.google.com.ca/search?q=tomcat+embedded]
 
-== [[Module]] ==
+== Module ==
 <table border=1>
    <tr>
        <td width=60% width=70%> a déterminé </td>
@@ -121,7 +121,7 @@ Voir pages pour info sur servlet
 </table>
 
 
-== [[Starter]] ==
+== Starter ==
 <table border=1>
    <tr>
        <td width=60% width=70%> a déterminé </td>
@@ -140,7 +140,7 @@ Voir pages pour info sur servlet
    </tr>
 </table>
 
-== [[CommandRouter]] ==
+== CommandRouter ==
 <table border=1>
    <tr>
        <td width=60% width=70%> a déterminé </td>
