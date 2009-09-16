@@ -24,3 +24,94 @@ voici le format a suivre pour les CRC, ne vous occupé pas du HTML si sa vous m�
 </wiki:comment>
 
 <wiki:toc max_depth="1" />
+
+== [[viewable]] ==
+<table border=1>
+   <tr>
+       <td width=60% width=70%> a déterminé </td>
+       <td rowspan=2> 
+					* entity
+					* viewer
+       </td>
+   </tr>
+   <tr>
+       <td>
+			* formatte les donnée pour etre compréhensible par le bon viewer
+       </td>
+   </tr>
+</table>
+
+== [[viewer]] ==
+<table border=1>
+   <tr>
+       <td width=60% width=70%> a déterminé </td>
+       <td rowspan=2> 
+                      * autre viewer
+                      * viewable
+       </td>
+   </tr>
+   <tr>
+       <td>
+			* crée le HTML dont il est responsable (donc pas une page complete)
+			* appelle les autre viewer néscéssaire a la création de *son* html
+			* une implementation de viewer peut contenir des méthode utilitaire internepour compartimenté le code
+			* retourn le html créé
+       </td>
+   </tr>
+</table>
+
+== [[mainViewer]] ==
+<table border=1>
+   <tr>
+       <td width=60% width=70%> a déterminé </td>
+       <td rowspan=2> 
+				* servlet
+				* specizedViewer
+       </td>
+   </tr>
+   <tr>
+       <td>
+			* créé le pageHeader, page footer
+			* apelle le MenuViewer et le SpecializeViewer
+			* retourne la page html complete
+       </td>
+   </tr>
+</table>
+
+
+== [[Module]] ==
+<table border=1>
+   <tr>
+       <td width=60% width=70%> a déterminé </td>
+       <td rowspan=2> 
+				* servlet
+				* specizedViewer
+       </td>
+   </tr>
+   <tr>
+       <td>
+			* créé le pageHeader, page footer
+			* apelle le MenuViewer et le SpecializeViewer
+			* retourne la page html complete
+       </td>
+   </tr>
+</table>
+
+
+== [[MainModule]] ==
+<table border=1>
+   <tr>
+       <td width=60% width=70%> a déterminé </td>
+       <td rowspan=2> 
+				* servlet
+				* specizedViewer
+       </td>
+   </tr>
+   <tr>
+       <td>
+			* créé le pageHeader, page footer
+			* apelle le MenuViewer et le SpecializeViewer
+			* retourne la page html complete
+       </td>
+   </tr>
+</table>

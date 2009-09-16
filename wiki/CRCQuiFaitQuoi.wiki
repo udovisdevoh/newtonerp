@@ -18,8 +18,6 @@ Bon travail.
 == non assigné ==
 
 || *Groupe de classe* || *statut* ||
-|| Module (de base) || inactif ||
-|| MainModule _(modèle du module du menu principal)_ || inactif ||
 
 == [GuillaumeCRC Guillaume] ==
 
@@ -41,9 +39,11 @@ Bon travail.
 == [JonatanCRC Jonatan] ==
 
 || *Groupe de classe* || *statut* ||
-|| ViewableEntity (de base) || inactif ||
-|| SpecilizedViewer (de base) || inactif ||
-|| Viewer (main Viewer) || inactif ||
+|| ViewableEntity (de base) || fini ||
+|| SpecilizedViewer (de base) || fini ||
+|| Viewer (main Viewer) || fini ||
+|| Module (de base) || inactif ||
+|| MainModule _(modèle du module du menu principal)_ || inactif ||
 
 Voir pages pour info sur servlet
 [http://www.exampledepot.com/egs/javax.servlet/com_mycompany_MyServlet.html]
