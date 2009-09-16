@@ -5,9 +5,8 @@
 || Cas d'usage / Scénario d'utilisation || FAIT || ||
 || Dictionnaire de donné / CRC: ||  ||  || 
 || Début first draft - mise en commun || 3h || mer 16 sept || 
-|| Crc game || 2h || jeu 17 sept || 
-|| Planning Game || 45min  || mer 16 sept || 
-|| Conventionalisation	|| 20 min  || mer 16 sept || 
+|| Crc game || 2h || mer 16 sept || 
+|| Planning Game || 45min  || jeu 17 sept || 
+|| Conventionalisation	|| 20 min  || jeu 17 sept || 
 || . || . || . || 
-|| 1h de lousse ||  || mer 16 sept || 	
-|| 2h de lousse ||  || jeu 17 sept || 	
+|| 1h de lousse ||  || jeu 17 sept || 
