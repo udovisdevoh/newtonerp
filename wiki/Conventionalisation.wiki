@@ -1,0 +1,18 @@
+=CONVENTIONALISATION=
+
+==Commentaires==
+
+Dans chacune de vos classes vous mettez un commentaire *javadoc* en header avec un @author et une *breve* description et usage de la classe.
+
+Pour chaque methode autre que les getter et les setter mettre un commentaire javadoc javadoc *au besoin* si le nom de la methode n'est pas clair
+
+==Style de code==
+
+Bon je pense que tout le monde sait coder mais je crois qu'il serait important de mentionner certains points :
+ * Utilisez des noms longs pour les methodes (privilegiez cela a 10 lignes de commentaires)
+ * Utilisez des noms longs pour les variables meme si elles sont internes (pas de variable  nommee t ou f on comprend rien)
+
+Utopique :
+ * Des methodes de 20 lignes ou moins
+
+Etant donne que ce ne sera pas necessairement nous qui allons faire tout le code pour nos modules, essayez de le rendre comprenable pour les autres! Passez du temps a le *refactorer*, vous vous comprendrez vous meme et ce ne sera pas long se "remettre dedans"
