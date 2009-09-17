@@ -29,7 +29,7 @@ Commentaires en anglais aussi? Et si on le fait en anglais, s'il vous plait evit
 
 ==Autres==
 
-Evidemment on oublie pas n'importe qu'elle autre conventionalisation de Java :
+Evidemment on oublie pas n'importe qu'elle autre conventionalisation de Java dont les suivantes :
  * Les packages commencent par des minuscules
  * Les classes par des majuscules
  * Fonctions par des minuscules
