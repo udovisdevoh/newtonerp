@@ -1,23 +1,22 @@
 
-
 || *Priorité* || *Nom de la classe*  || *Développeur(s)* || *Code Reviewer(s)* || *Spécialiste(s) externe(s)* ||
 
-|| 1 || starter || 1 || 1 ||
-|| 2 || DataOrm || 8 || 1 ||
-|| 3 || Entity || 1 || 1 ||
-|| 4 || OrmizableEntity || 2 || 1 ||
-|| 5 || Module || 3 || 1 ||
-|| 6 || Action || 1 || 1 ||
-|| 7 || CommandRouter || 7 || 1 ||
-|| 8 || Servlet || 7 || 1 ||
-|| 9 || IViewer || 4 || 1 ||
-|| 11 ||Viewable || 1 || 1 ||
-|| 12 || MainViewer || 6 || 1 ||
-|| 13 || UserRightModule || 7 || 1 ||
-|| 14 || Task || 17 || 2 ||
-|| 15 || AtomicSpecification || " || 2 ||
-|| 16 || CompositeSpecification || " || 2 ||
-|| 17 || Ispecification || " || 2 ||
-|| 18 || TaskModule || 5 || 2 ||
-|| 19 || TaskViewer || 5 || 2 ||
-|| 20 || TaskManager || 5 || 2 ||
+|| 1 || starter ||  ||  ||  ||
+|| 2 || DataOrm ||  ||  ||  ||
+|| 3 || Entity ||  ||  ||  ||
+|| 4 || OrmizableEntity ||  ||  ||  ||
+|| 5 || Module ||  ||  ||  ||
+|| 6 || Action ||  ||  ||  ||
+|| 7 || CommandRouter ||  ||  ||  ||
+|| 8 || Servlet ||  ||  ||  ||
+|| 9 || IViewer ||  ||  ||  ||
+|| 11 ||Viewable ||  ||  ||  ||
+|| 12 || MainViewer ||  ||  ||  ||
+|| 13 || UserRightModule ||  ||  ||  ||
+|| 14 || Task ||  ||  ||  ||
+|| 15 || AtomicSpecification ||  ||  ||  ||
+|| 16 || CompositeSpecification ||  ||  ||  ||
+|| 17 || Ispecification ||  ||  ||  ||
+|| 18 || TaskModule ||  ||  ||  ||
+|| 19 || TaskViewer ||  ||  ||  ||
+|| 20 || TaskManager ||  ||  ||  ||
