@@ -2,14 +2,14 @@ voici le tableau de priorité tel qu'établie en class, je vous demande donc de 
 *prenez note de ces temp dans un fichier a part, pas sur le wiki svp.*
 vous pouvez (c'est meme conseillez) de vous référé au [CRC] déja fais
 
-|| *priorité* || *pokerScore* || *nom de la classe*  || *temp* || *sprint* ||
-|| 1 || 0 || starter ||  ||  ||
-|| 2 || 0,5 || DataOrm ||  ||  ||
-|| 3 || 0,5 || Entity ||  ||  ||
-|| 4 || 0,5 || OrmizableEntity ||  ||  ||
-|| 5 || 1 || Module ||  ||  ||
-|| 6 || 1,5 || Action ||  ||  ||
-|| 7 || 2 || commandRouter ||  ||  ||
+|| *priorité* || *pokerScore* || *nom de la classe*  || *temp (h)* || *sprint (#)* ||
+|| 1 || 0 || starter || 1 || 1 ||
+|| 2 || 0,5 || DataOrm || 8 || 1 ||
+|| 3 || 0,5 || Entity || 1 || 1 ||
+|| 4 || 0,5 || OrmizableEntity || 2 || 1 ||
+|| 5 || 1 || Module || 3 || 1 ||
+|| 6 || 1,5 || Action || 1 || 1 ||
+|| 7 || 2 || commandRouter || 7 || 1 ||
 || 8 || 2,1 || servlet ||  ||  ||
 || 9 || 2,15 || viewer ||  ||  ||
 || 10 || 2,15 || Iviewer ||  ||  ||
