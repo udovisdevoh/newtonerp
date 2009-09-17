@@ -20,3 +20,9 @@ Etant donne que ce ne sera pas necessairement nous qui allons faire tout le code
 Si vous sentez le besoin, etablissez des procedures pour le bon fonctionnement de votre classe ( genre 1. faites ceci 2. faites cela... )
 
 Egalement, si vous en sentez le besoin, il y a une classe statique nommee *Logger* dans le package newtonERP.logging, par laquelle vous pouvez utiliser afin de logger vos messages d'erreurs afin de les revoirs plus tard. Voir la classe pour plus d'information
+
+==Nommage==
+
+Tout ce qui est non-vu par autrui doit etre en *anglais*. Les view seront en *francais*
+
+Commentaires en anglais aussi? Et si on le fait en anglais, s'il vous plait evitez l'anglais approximatif, rendez ca clair.
