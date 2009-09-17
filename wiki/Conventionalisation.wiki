@@ -26,3 +26,12 @@ Egalement, si vous en sentez le besoin, il y a une classe statique nommee *Logge
 Tout ce qui est non-vu par autrui doit etre en *anglais*. Les view seront en *francais*
 
 Commentaires en anglais aussi? Et si on le fait en anglais, s'il vous plait evitez l'anglais approximatif, rendez ca clair.
+
+==Autres==
+
+Evidemment on oublie pas n'importe qu'elle autre conventionalisation de Java :
+ * Les packages commencent par des minuscules
+ * Les classes par des majuscules
+ * Fonctions par des minuscules
+ * Variables par des minuscules
+ * Interfaces par des majuscules
