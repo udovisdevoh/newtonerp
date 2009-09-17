@@ -1,6 +1,4 @@
-
 || *Priorité* || *Nom de la classe*  || *Développeur(s)* || *Code Reviewer(s)* || *Spécialiste(s) externe(s)* ||
-
 || 1 || starter ||  ||  ||  ||
 || 2 || DataOrm ||  ||  ||  ||
 || 3 || Entity ||  ||  ||  ||
