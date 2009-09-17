@@ -3,23 +3,23 @@ voici le tableau de priorité tel qu'établie en class, je vous demande donc de 
 vous pouvez (c'est meme conseillez) de vous référé au [CRC] déja fais
 
 || *priorité* || *pokerScore* || *nom de la classe*  || *temp* || *sprint* ||
-|| 1 || 0 || starter  ||  ||  ||
-|| 2 || 0,5 || DataOrm  ||  ||  ||
-|| 3 || 0,5 || Entity  ||  ||  ||
-|| 4 || 0,5 || OrmizableEntity  ||  ||  ||
-|| 5 || 1 || Module  ||  ||  ||
-|| 6 || 1,5 || Action  ||  ||  ||
-|| 7 || 2 || commandRouter  ||  ||  ||
-|| 8 || 2,1 || servlet  ||  ||  ||
-|| 9 || 2,15 || viewer  ||  ||  ||
-|| 10 || 2,15 || Iviewer  ||  ||  ||
-|| 11 || 2,2 || viewable  ||  ||  ||
-|| 12 || 2,25 || mainViewer  ||  ||  ||
-|| 13 || 3 || UserRightModule  ||  ||  ||
-|| 14 || 4,5 || Task  ||  ||  ||
-|| 15 || 5 || AtomicSpecification  ||  ||  ||
-|| 16 || 5 || CompositeSpecification  ||  ||  ||
-|| 17 || 5 || Ispecification  ||  ||  ||
-|| 18 || 5,2 || TaskModule  ||  ||  ||
-|| 19 || 5,2 || TaskViewer  ||  ||  ||
-|| 20 || 5,3 || TaskManager  ||  ||  ||
+|| 1 || 0 || starter ||  ||  ||
+|| 2 || 0,5 || DataOrm ||  ||  ||
+|| 3 || 0,5 || Entity ||  ||  ||
+|| 4 || 0,5 || OrmizableEntity ||  ||  ||
+|| 5 || 1 || Module ||  ||  ||
+|| 6 || 1,5 || Action ||  ||  ||
+|| 7 || 2 || commandRouter ||  ||  ||
+|| 8 || 2,1 || servlet ||  ||  ||
+|| 9 || 2,15 || viewer ||  ||  ||
+|| 10 || 2,15 || Iviewer ||  ||  ||
+|| 11 || 2,2 || viewable ||  ||  ||
+|| 12 || 2,25 || mainViewer ||  ||  ||
+|| 13 || 3 || UserRightModule ||  ||  ||
+|| 14 || 4,5 || Task ||  ||  ||
+|| 15 || 5 || AtomicSpecification ||  ||  ||
+|| 16 || 5 || CompositeSpecification ||  ||  ||
+|| 17 || 5 || Ispecification ||  ||  ||
+|| 18 || 5,2 || TaskModule ||  ||  ||
+|| 19 || 5,2 || TaskViewer ||  ||  ||
+|| 20 || 5,3 || TaskManager ||  ||  ||

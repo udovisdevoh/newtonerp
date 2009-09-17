@@ -1,0 +1,386 @@
+<wiki:toc max_depth="1" />
+
+
+== Entity  ==
+<table border=1>
+   <tr>
+       <td width=60% width=70%> Gabriel Therrien </td>
+       <td rowspan=2> 
+                      * ormizable
+                      * viewable
+                      * SearchCriteriable
+                      * Action
+                      * Task
+       </td>
+   </tr>
+   <tr>
+       <td>
+           * elle ne fait pas vraiment d'action elle même, elle subit plutot les actions des autres classes
+       </td>
+   </tr>
+</table>
+== UserRightModule ==
+<table border=1>
+   <tr>
+       <td width=60% width=70%> Gabriel Therrien </td>
+       <td rowspan=2> 
+                      * Viewer
+                      * User
+                      * Module
+                      * action
+                      * Entities
+       </td>
+   </tr>
+   <tr>
+       <td>
+           * détermine les droits des utilisateur se qu'il ont le droit de /ne pas/voir et/ou modifier les choses
+       </td>
+   </tr>
+</table>
+
+== CompositeSpecification ==
+<table border="1">
+   <tr>
+       <td width="60%" width="70%">Guillaume</td>
+       <td rowspan="2">
+           * ISpecification (interface)
+           * CompositeSpecification (même classe récursivement)
+           * AtomicSpecification
+           * Task
+       </td>
+   </tr>
+   <tr>
+       <td>
+           * Teste si la spécification est présentement satisfaite en testant ses sous-spécifications et en appliquant un opérateur "et" ou "ou"
+       </td>
+   </tr>
+</table>
+
+== AtomicSpecification ==
+<table border="1">
+   <tr>
+       <td width="60%" width="70%">Guillaume</td>
+       <td rowspan="2">
+           * ISpecification (interface)
+           * CompositeSpecification
+           * Task
+       </td>
+   </tr>
+   <tr>
+       <td>
+           * Teste si la spécification atomique est présentement satisfaite
+       </td>
+   </tr>
+</table>
+
+== Task ==
+<table border="1">
+   <tr>
+       <td width="60%" width="70%">Guillaume</td>
+       <td rowspan="2">
+           * ISpecification (interface)
+           * Action
+           * TaskModule
+           * TaskManager
+           * Entity (pour critère de recherche pour créer vecteur d'entités affectées)
+       </td>
+   </tr>
+   <tr>
+       <td>
+           * Lorsque que la tâche est activée, effectue action si la spécification est pas *(??)* satisfaite 
+       </td>
+   </tr>
+</table>
+
+== TaskManager ==
+<table border="1">
+   <tr>
+       <td width="60%" width="70%">Guillaume</td>
+       <td rowspan="2">
+           * Task
+           * DataOrm
+       </td>
+   </tr>
+   <tr>
+       <td>
+           * Active tous les tâches associées à une entiée fournie par l'Orm.
+           * Gère de manière persistante les associations entre les types d'entités et les tâches associées
+       </td>
+   </tr>
+</table>
+
+== TaskModule ==
+<table border="1">
+   <tr>
+       <td width="60%" width="70%">Guillaume</td>
+       <td rowspan="2">
+           * Module (TaskModule est une sous-classe de Module)
+           * MainModule (TaskModule est une composante de MainModule)
+           * TaskManager (TaskModule cré des tâches dans le taskManager)
+           * TaskViewer (TaskViewer permet de voir les Tasks pour les modifier)
+           * Action (ce sont les actions d'un module qui effectuent les modifications sur les entitées)
+       </td>
+   </tr>
+   <tr>
+       <td>
+           * Permet de modifier/supprimer/créer des Tasks dans le TaskManager à l'aide du TaskViewer
+       </td>
+   </tr>
+</table>
+
+== TaskViewer ==
+<table border="1">
+   <tr>
+       <td width="60%" width="70%">Guillaume</td>
+       <td rowspan="2">
+           * Viewer (TaskViewer est une composante de Viewer)
+           * IViewer (TaskViewer implémente IViewer)
+           * Task (TaskViewer permet de voir une Task)
+       </td>
+   </tr>
+   <tr>
+       <td>
+           * Permet de voir une Task sous forme de "TreeView" de manière à pour la modifier
+       </td>
+   </tr>
+</table>
+
+== Action ==
+<table border="1">
+   <tr>
+       <td width="60%" width="70%">Guillaume</td>
+       <td rowspan="2">
+           * Module (une action est une composante d'un module)
+           * Task (une action peut être déclancher par une task si sa spécification est vraie)
+           * Entity (paramètre de l'action)
+       </td>
+   </tr>
+   <tr>
+       <td>
+           * Effectue une action "hard codée" en prenant pour argument une entité 
+       </td>
+   </tr>
+</table>
+== ISpecification ==
+<table border="1">
+   <tr>
+       <td width="60%" width="70%">.</td>
+       <td rowspan="2">
+           * .........................................
+           * .........................................
+           * .........................................
+       </td>
+   </tr>
+   <tr>
+       <td>
+           * .........................................
+           * .........................................
+           * .........................................
+       </td>
+   </tr>
+</table>
+== IViewer ==
+<table border="1">
+   <tr>
+       <td width="60%" width="70%">.</td>
+       <td rowspan="2">
+           * .........................................
+           * .........................................
+           * .........................................
+       </td>
+   </tr>
+   <tr>
+       <td>
+           * .........................................
+           * .........................................
+           * .........................................
+       </td>
+   </tr>
+</table>
+
+== viewable (visible par le main viewer) ==
+<table border=1>
+   <tr>
+       <td width=60% width=70%> a déterminé </td>
+       <td rowspan=2> 
+					* entity
+					* viewer
+       </td>
+   </tr>
+   <tr>
+       <td>
+			* formatte les donnée pour etre compréhensible par le bon viewer
+       </td>
+   </tr>
+</table>
+
+== viewer ==
+<table border=1>
+   <tr>
+       <td width=60% width=70%> a déterminé </td>
+       <td rowspan=2> 
+                      * autre viewer
+                      * viewable
+       </td>
+   </tr>
+   <tr>
+       <td>
+			* crée le HTML dont il est responsable (donc pas une page complete)
+			* appelle les autre viewer néscéssaire a la création de *son* html
+			* une implementation de viewer peut contenir des méthode utilitaire internepour compartimenté le code
+			* retourn le html créé
+       </td>
+   </tr>
+</table>
+
+== mainViewer ==
+<table border=1>
+   <tr>
+       <td width=60% width=70%> a déterminé </td>
+       <td rowspan=2> 
+				* servlet
+				* specizedViewer
+       </td>
+   </tr>
+   <tr>
+       <td>
+			* créé le pageHeader, page footer
+			* apelle le MenuViewer et le SpecializeViewer
+			* retourne la page html complete
+       </td>
+   </tr>
+</table>
+
+
+== servlet ==
+<table border=1>
+   <tr>
+       <td width=60% width=70%> a déterminé </td>
+       <td rowspan=2> 
+				* CommandRouter
+				* mainViewer
+       </td>
+   </tr>
+   <tr>
+       <td>
+			* recois les requette du client et les envoys a l'event listner
+			* recois la réponse des module et l'envois a mainViewer
+			* recois le html du mainViewer et l'envois au client
+       </td>
+   </tr>
+</table>
+
+Voir pages pour info sur servlet
+[http://www.exampledepot.com/egs/javax.servlet/com_mycompany_MyServlet.html]
+[http://java.sun.com/products/servlet/articles/tutorial/]
+[http://www.google.com.ca/search?q=tomcat+embedded]
+
+== Module ==
+<table border=1>
+   <tr>
+       <td width=60% width=70%> a déterminé </td>
+       <td rowspan=2> 
+				* Action
+				* CommandRouter
+				* Entity
+       </td>
+   </tr>
+   <tr>
+       <td>
+			* contient une reference static a l'orm
+			* sert de model pour un module
+       </td>
+   </tr>
+</table>
+
+
+== Starter ==
+<table border=1>
+   <tr>
+       <td width=60% width=70%> a déterminé </td>
+       <td rowspan=2> 
+				* servlet
+				* DataOrm ?
+       </td>
+   </tr>
+   <tr>
+       <td>
+                        * sert a lancé l'aplication serveur
+                        * lance la vérification de dépendance
+                        * lance la vérification de nouveau module et fais faire les installation
+                        * lance le server (servlet)
+       </td>
+   </tr>
+</table>
+
+== CommandRouter ==
+<table border=1>
+   <tr>
+       <td width=60% width=70%> a déterminé </td>
+       <td rowspan=2> 
+				* Module
+				* Servlet
+
+       </td>
+   </tr>
+   <tr>
+       <td>
+			* route le requête client vers le bon module
+       </td>
+   </tr>
+</table>
+
+== OrmizableEntity ==
+<table border=1>
+   <tr>
+       <td width=60% width=70%> Jonathan Hallee </td>
+       <td rowspan=2> 
+           * Entity
+           * *DataOrm*
+       </td>
+   </tr>
+   <tr>
+       <td> 
+           * methode requestData ou formatData
+           * S'occupe de formater les donnes afin qu'elles soit Ok pour l'orm
+           * Genre sous-forme de vecteur etc...
+       </td>
+   </tr>
+</table>
+
+== DataOrm ==
+<table border=1>
+   <tr>
+       <td width=60% width=70%> Jonathan Hallee </td>
+       <td rowspan=2> 
+                      * TaskManager
+                      * ProgramModule   
+                      * *Ormizable*
+   
+       </td>
+   </tr>
+   <tr>
+       <td> 
+            * Effectue les requetes de traitement (select, insert, update, delete...)
+            * Retourne le ou les resultats
+            * Mets a jour les module
+            * Garde une table des plugins installes
+            * Installe les modules, (premiere creation de la db)
+       </td>
+   </tr>
+</table>
+
+== OrmAction == @Deprecated
+<table border=1>
+   <tr>
+       <td width=60% width=70%> Jonathan Hallee </td>
+       <td rowspan=2> 
+                      * DataOrm    
+       </td>
+   </tr>
+   <tr>
+       <td> 
+            * Contient seulement une enum des actions possible de l'orm de base (ajout    etc...). Comme ca on passe a l'orm une OrmAction
+       </td>
+   </tr>
+</table>
