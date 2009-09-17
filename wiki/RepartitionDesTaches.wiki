@@ -1,23 +1,23 @@
 =Répartition des tâches=
-Pour chaque classe, il y a deux développeurs qui doivent bien connaître la classe et chaque développeur doit réviser le code de l'autre. Pour chaque classe il y a aussi un spécialiste externe qui peut intervenir en cas de situations ambiguës. Veuillez écrire votre nom vis-à-vis les rôles que vous souhaitez avoir.
+Pour chaque classe, il y a deux développeurs qui doivent bien connaître la classe et chaque développeur doit réviser le code de l'autre. Pour chaque classe il y a aussi un spécialiste externe qui peut intervenir en cas de situations ambiguës. Veuillez écrire votre nom vis-à-vis les rôles que vous souhaitez avoir. Vous pouvez mettre votre nom même s'il y a déjà des noms et nous décideront plus tard qui fait quoi en fonction de nos préférences.
 
 || *Priorité* || *Nom de la classe*  || *Développeur(s)* || *Spécialiste(s) externe(s)* ||
 || 1 || starter ||  ||  ||
-|| 2 || DataOrm ||  ||  ||
+|| 2 || DataOrm ||  || Guillaume ||
 || 3 || Entity ||  ||  ||
-|| 4 || OrmizableEntity ||  ||  ||
+|| 4 || OrmizableEntity || Guillaume ||  ||
 || 5 || Module ||  ||  ||
 || 6 || Action ||  ||  ||
 || 7 || CommandRouter ||  ||  ||
-|| 8 || Servlet ||  ||  ||
-|| 9 || IViewer ||  ||  ||
-|| 11 ||Viewable ||  ||  ||
+|| 8 || Servlet ||  || Guillaume ||
+|| 9 || IViewer || Guillaume ||  ||
+|| 11 ||Viewable ||  || Guillaume ||
 || 12 || MainViewer ||  ||  ||
 || 13 || UserRightModule ||  ||  ||
-|| 14 || Task ||  ||  ||
-|| 15 || AtomicSpecification ||  ||  ||
-|| 16 || CompositeSpecification ||  ||  ||
-|| 17 || Ispecification ||  ||  ||
-|| 18 || TaskModule ||  ||  ||
-|| 19 || TaskViewer ||  ||  ||
-|| 20 || TaskManager ||  ||  ||
+|| 14 || Task || Guillaume ||  ||
+|| 15 || AtomicSpecification || Guillaume ||  ||
+|| 16 || CompositeSpecification || Guillaume ||  ||
+|| 17 || Ispecification || Guillaume ||  ||
+|| 18 || TaskModule || Guillaume ||  ||
+|| 19 || TaskViewer || Guillaume ||  ||
+|| 20 || TaskManager || Guillaume ||  ||
