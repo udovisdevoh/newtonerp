@@ -16,3 +16,7 @@ Utopique :
  * Des methodes de 20 lignes ou moins
 
 Etant donne que ce ne sera pas necessairement nous qui allons faire tout le code pour nos modules, essayez de le rendre comprenable pour les autres! Passez du temps a le *refactorer*, vous vous comprendrez vous meme et ce ne sera pas long se "remettre dedans"
+
+Si vous sentez le besoin, etablissez des procedures pour le bon fonctionnement de votre classe ( genre 1. faites ceci 2. faites cela... )
+
+Egalement, si vous en sentez le besoin, il y a une classe statique nommee *Logger* dans le package newtonERP.logging, par laquelle vous pouvez utiliser afin de logger vos messages d'erreurs afin de les revoirs plus tard. Voir la classe pour plus d'information
