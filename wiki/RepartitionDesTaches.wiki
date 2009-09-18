@@ -1,13 +1,15 @@
 =Répartition des tâches=
 Pour chaque classe, il y a deux développeurs qui doivent bien connaître la classe et chaque développeur doit réviser le code de l'autre. Pour chaque classe il y a aussi un spécialiste externe qui peut intervenir en cas de situations ambiguës. Veuillez écrire votre nom vis-à-vis les rôles que vous souhaitez avoir. *Vous pouvez mettre votre nom même s'il y a déjà des noms* et nous décideront plus tard qui fait quoi en fonction de nos préférences.
 
+pensez au fais que les classe soit en ordre de priorité, il faudrait donc que vous ayez en tout temp un classe a travaillez ne concentré donc pas tout vos assignation au début ou a la fin du projet.
+
 || *Priorité* || *Nom de la classe*  || *Développeur(s)* || *Spécialiste(s) externe(s)* ||
 || 1 || starter || Jonathan H || joclou ||
 || 2 || DataOrm || Jonathan H || Guillaume ||
 || 3 || Entity || joclou  ||  ||
 || 4 || OrmizableEntity || Guillaume ||  ||
 || 5 || Module || joclou  ||  ||
-|| 6 || Action ||  ||  ||
+|| 6 || Action || joclou  ||  ||
 || 7 || CommandRouter || joclou  ||  ||
 || 8 || Servlet || joclou  || Guillaume ||
 || 9 || IViewer || Guillaume joclou  ||  ||
@@ -18,6 +20,6 @@ Pour chaque classe, il y a deux développeurs qui doivent bien connaître la cla
 || 15 || AtomicSpecification || Guillaume ||  ||
 || 16 || CompositeSpecification || Guillaume ||  ||
 || 17 || Ispecification || Guillaume ||  ||
-|| 18 || TaskModule || Guillaume ||  ||
-|| 19 || TaskViewer || Guillaume ||  ||
-|| 20 || TaskManager || Guillaume ||  ||
+|| 18 || TaskModule || Guillaume joclou ||  ||
+|| 19 || TaskViewer || Guillaume joclou  ||  ||
+|| 20 || TaskManager || Guillaume joclou ||  ||
