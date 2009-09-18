@@ -8,7 +8,7 @@ pensez au fais que les classe soit en ordre de priorité, il faudrait donc que v
 || 2 || DataOrm || Jonathan H || Guillaume ||
 || 3 || Entity || joclou pascal  ||  ||
 || 4 || OrmizableEntity || Guillaume Jonathan H ||  ||
-|| 5 || Module || joclou  ||  ||
+|| 5 || Module || joclou Pascal  ||  ||
 || 6 || Action || joclou  ||  ||
 || 7 || CommandRouter || joclou Jonathan H ||  ||
 || 8 || Servlet || joclou Jonathan H || Guillaume ||
