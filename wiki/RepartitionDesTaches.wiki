@@ -10,8 +10,8 @@ pensez au fais que les classe soit en ordre de priorité, il faudrait donc que v
 || 4 || OrmizableEntity || Guillaume Jonathan H ||  ||
 || 5 || Module || joclou  ||  ||
 || 6 || Action || joclou  ||  ||
-|| 7 || CommandRouter || joclou  ||  ||
-|| 8 || Servlet || joclou  || Guillaume ||
+|| 7 || CommandRouter || joclou Jonathan H ||  ||
+|| 8 || Servlet || joclou Jonathan H || Guillaume ||
 || 9 || IViewer || Guillaume joclou  ||  ||
 || 11 || Viewable ||  || Guillaume ||
 || 12 || MainViewer ||  || joclou  ||
