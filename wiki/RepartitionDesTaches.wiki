@@ -7,7 +7,7 @@ pensez au fais que les classe soit en ordre de priorité, il faudrait donc que v
 || 1 || starter || Jonathan H || joclou ||
 || 2 || DataOrm || Jonathan H || Guillaume ||
 || 3 || Entity || joclou  ||  ||
-|| 4 || OrmizableEntity || Guillaume ||  ||
+|| 4 || OrmizableEntity || Guillaume Jonathan H ||  ||
 || 5 || Module || joclou  ||  ||
 || 6 || Action || joclou  ||  ||
 || 7 || CommandRouter || joclou  ||  ||
