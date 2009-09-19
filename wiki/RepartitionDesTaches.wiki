@@ -6,7 +6,7 @@ pensez au fais que les classe soit en ordre de priorité, il faudrait donc que v
 || *Priorité* || *Nom de la classe*  || *Développeur(s)* || *Spécialiste(s) externe(s)* ||
 || 1 || starter || Jonathan H || joclou ||
 || 2 || DataOrm || Jonathan H || Guillaume ||
-|| 3 || Entity || joclou pascal  ||  ||
+|| 3 || Entity || joclou Pascal  ||  ||
 || 4 || OrmizableEntity || Guillaume Jonathan H ||  ||
 || 5 || Module || joclou Pascal  ||  ||
 || 6 || Action || joclou  ||  ||
@@ -16,8 +16,8 @@ pensez au fais que les classe soit en ordre de priorité, il faudrait donc que v
 || 11 || Viewable ||  || Guillaume ||
 || 12 || MainViewer ||Pascal  || joclou  ||
 || 13 || UserRightModule ||  ||  ||
-|| 14 || Task || Guillaume ||  ||
-|| 15 || AtomicSpecification || Guillaume pascal ||  ||
+|| 14 || Task || Guillaume Pascal ||  ||
+|| 15 || AtomicSpecification || Guillaume Pascal ||  ||
 || 16 || CompositeSpecification || Guillaume ||  ||
 || 17 || Ispecification || Guillaume ||  ||
 || 18 || TaskModule || Guillaume joclou ||  ||
