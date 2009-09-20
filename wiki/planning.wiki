@@ -8,7 +8,8 @@ mer 30
 jeu 1 
 mer 7 
 jeu 8 
-j'ai fais un first draft de la répartition dans le temp des différente tache
+
+j'ai fais un first draft de la répartition dans le temp des différente tache celui-ci ne tien pas qu'on des assignation tache/programmeur il y auras donc une révision de faite a ce moment la...
 
 || *priorité* || *pokerScore* || *nom de la classe*  || *temp (h)* || *sprint (#)* || date Début || date fin *fonctionnel* || 
 || 1 || 0 || starter || 1 || 1 || mer 23 || mer 23 || 
