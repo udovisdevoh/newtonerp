@@ -5,20 +5,20 @@ pensez au fais que les classe soit en ordre de priorité, il faudrait donc que v
 
 || *Priorité* || *Nom de la classe*  || *Développeur(s)* || *Spécialiste(s) externe(s)* ||
 || 1 || starter || Jonathan H || joclou ||
-|| 2 || DataOrm || Jonathan H || Guillaume ||
+|| 2 || DataOrm || Jonathan H Gabriel|| Guillaume ||
 || 3 || Entity || joclou Pascal  ||  ||
 || 4 || OrmizableEntity || Guillaume Jonathan H ||  ||
 || 5 || Module || joclou Pascal  ||  ||
-|| 6 || Action || joclou  ||  ||
+|| 6 || Action || joclou Gabriel ||  ||
 || 7 || CommandRouter || joclou Jonathan H ||  ||
 || 8 || Servlet || joclou Jonathan H || Guillaume ||
 || 9 || IViewer || Guillaume joclou  ||  ||
 || 11 || Viewable ||  || Guillaume ||
 || 12 || MainViewer ||Pascal  || joclou  ||
-|| 13 || UserRightModule ||  ||  ||
+|| 13 || UserRightModule || Gabriel ||  ||
 || 14 || Task || Guillaume Pascal ||  ||
-|| 15 || AtomicSpecification || Guillaume Pascal ||  ||
-|| 16 || CompositeSpecification || Guillaume ||  ||
+|| 15 || AtomicSpecification || Guillaume Pascal ||  Gabriel||
+|| 16 || CompositeSpecification || Guillaume || Gabriel ||
 || 17 || Ispecification || Guillaume ||  ||
 || 18 || TaskModule || Guillaume joclou ||  ||
 || 19 || TaskViewer || Guillaume joclou  ||  ||
