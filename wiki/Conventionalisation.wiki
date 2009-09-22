@@ -43,6 +43,8 @@ Evidemment on oublie pas n'importe qu'elle autre convention de Java dont les sui
  * Variables par des minuscules
  * Interfaces par des majuscules
 
+Utilitaire de code review integré dans google code. Mettre un commentaire et si positif, neutre ou négatif
+
 Exemple de code
 
 {{{
