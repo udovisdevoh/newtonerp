@@ -1,3 +1,4 @@
+#labels TACHES
 =Répartition des tâches=
 Pour chaque classe, il y a deux développeurs qui doivent bien connaître la classe et chaque développeur doit réviser le code de l'autre. Pour chaque classe il y a aussi un spécialiste externe qui peut intervenir en cas de situations ambiguës. Veuillez écrire votre nom vis-à-vis les rôles que vous souhaitez avoir. *Vous pouvez mettre votre nom même s'il y a déjà des noms* et nous décideront plus tard qui fait quoi en fonction de nos préférences.
 
