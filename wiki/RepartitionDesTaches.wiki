@@ -13,7 +13,7 @@ pensez au fais que les classe soit en ordre de priorité, il faudrait donc que v
 || 7 || CommandRouter || joclou Jonathan H ||  ||
 || 8 || Servlet || joclou Jonathan H || Guillaume ||
 || 9 || IViewer || Guillaume joclou  ||  ||
-|| 11 || Viewable ||  || Guillaume ||
+|| 11 || Viewable || Pascal Guillaume || Guillaume ||
 || 12 || MainViewer ||Pascal  || joclou  ||
 || 13 || UserRightModule || Gabriel ||  ||
 || 14 || Task || Guillaume Pascal ||  ||
