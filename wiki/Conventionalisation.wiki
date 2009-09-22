@@ -27,15 +27,14 @@ Egalement, si vous en sentez le besoin, il y a une classe statique nommee *Logge
 
 ==Nommage==
 
-Tout ce qui est non-vu par autrui doit etre en *anglais* (djo: nom de varible, fonction, commentair?, javadoc?...). Les view seront en *francais* (djo:seulement ce qui est visible par le End User)
+Tout ce qui est non-vu par autrui doit etre en *anglais*, nom de varible, fonction, classes. Les view seront en *francais*, seulement ce qui est visible par le End User
 
-Commentaires en anglais aussi? Et si on le fait en anglais, s'il vous plait évitez l'anglais approximatif, rendez ca clair. (djo: si on les fais en francais, svp *aucun* accent)
+Commentaires en Français. svp *aucun* accent.
+Verifier votre orthographe svp.
 
 ==Autres==
 
-
-*Essayez de respecter le standard d'indentation de java*
-djo: autoformat d'éclipse peut etre activé avec les meme setting pour tout le monde, on peu aussi faire un autoformat automatique a la sauvegarde.
+Utiliser l'auto format d'eclipse qui va etre setter selon notre convention
 
 Evidemment on oublie pas n'importe qu'elle autre convention de Java dont les suivantes :
  * Les packages commencent par des minuscules
@@ -44,5 +43,29 @@ Evidemment on oublie pas n'importe qu'elle autre convention de Java dont les sui
  * Variables par des minuscules
  * Interfaces par des majuscules
 
-
 *djo: j'aimerai aussi parlé de la procédure de peer review*
+
+Exemple de code
+
+{{{
+public void setTest() 
+{
+    blabla
+
+    if () 
+    {
+        blabla
+    }
+    else if ()
+    {
+    }
+
+    do
+    {
+    } while ();
+
+    while ()
+    {
+    }
+}
+}}}
