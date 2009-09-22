@@ -21,6 +21,8 @@ Si vous sentez le besoin, etablissez des procedures pour le bon fonctionnement d
 
 Egalement, si vous en sentez le besoin, il y a une classe statique nommee *Logger* dans le package newtonERP.logging, par laquelle vous pouvez utiliser afin de logger vos messages d'erreurs afin de les revoirs plus tard. Voir la classe pour plus d'information
 
+*Essayez de respecter le standard d'indentation de java*
+
 ==Nommage==
 
 Tout ce qui est non-vu par autrui doit etre en *anglais*. Les view seront en *francais*
