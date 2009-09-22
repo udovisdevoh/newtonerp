@@ -43,8 +43,6 @@ Evidemment on oublie pas n'importe qu'elle autre convention de Java dont les sui
  * Variables par des minuscules
  * Interfaces par des majuscules
 
-*djo: j'aimerai aussi parlé de la procédure de peer review*
-
 Exemple de code
 
 {{{
