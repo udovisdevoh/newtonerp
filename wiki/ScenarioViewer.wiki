@@ -1,3 +1,4 @@
+#labels CASUSAGES
 {{{
 Événement lancé d'un module de vue ou d'un menu (clic sur un lien)
 {
