@@ -12,5 +12,11 @@ import java.util.Vector;
  */
 public interface Sgbdable
 {
+    /**
+     * Method that executes the sql query passed in paramter
+     * 
+     * @param request
+     * @return le resultat sous forme de strings
+     */
     public Vector<String> Execute(String request);
 }
