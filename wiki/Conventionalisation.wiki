@@ -27,7 +27,7 @@ Egalement, si vous en sentez le besoin, il y a une classe statique nommee *Logge
 Tout ce qui est non-vu par autrui doit etre en *anglais*, nom de varible, fonction, classes. Les view seront en *francais*, seulement ce qui est visible par le End User
 
 Commentaires en Français. svp *aucun* accent.
-Verifier votre orthographe svp.
+Verifiez votre orthographe svp.
 
 ==Autres==
 
