@@ -3,7 +3,7 @@
 
 ==Commentaires==
 
-Dans chacune de vos classes vous mettez un commentaire *javadoc* en header avec un @author et une *breve* description et usage de la classe.
+Dans chacune de vos classes vous mettez un commentaire *javadoc* en header avec un @author et une *breve* description et usage de la classe. Les auteurs sont les deux programmeurs.
 
 Pour chaque methode autre que les getter et les setter mettre un commentaire javadoc
 
