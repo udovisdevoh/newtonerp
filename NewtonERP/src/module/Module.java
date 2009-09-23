@@ -52,7 +52,7 @@ public abstract class Module
     }
 
     // TODO changer void pour Entity des que possible
-    /*
+    /**
      * @call l action et retourne le resultat de l action param action=nom de l
      * action param parametres=liste de parametres (cle,parametre)
      */
