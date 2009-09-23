@@ -1,5 +1,6 @@
 #labels RECHERCHE
-j'ai fais une petite comparaison entre google code et assembla et j'ai mis les point principaux ici (les plus important selon moi sont en gras) si vous voulez voir de quoi sa a l'aire de votre coté j'ai fais un projet le projet s'appelle newtonerp et la création d'un compte utilisateur est assé simple (par contre je ne sais pas comment rejoindre un projet...) [www.assembla.com]  on reparlera de ce sujet au courent de la semaine prochaine
+j'ai fais une petite comparaison entre google code et assembla et j'ai mis les point principaux ici (les plus important selon moi sont en gras) si vous voulez voir de quoi sa a l'aire de votre coté j'ai fais un projet le projet s'appelle newtonerp et la création d'un compte utilisateur est assé simple (par contre je ne sais pas comment rejoindre un projet...) [www.assembla.com]  
+*nous ne changerons pas de systeme, mais je laisse le comparatif a titre d'information pour un certain temp, le projet reste la durant se temp*
 
 =googleCode pour=
  * *wiki sur SVN (work offline)*
