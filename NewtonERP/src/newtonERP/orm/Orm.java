@@ -5,7 +5,6 @@ import java.util.Vector;
 import newtonERP.orm.exceptions.OrmException;
 import newtonERP.orm.sgbd.SgbdSqlite;
 import newtonERP.orm.sgbd.Sgbdable;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  * 
@@ -23,22 +22,19 @@ public class Orm
 
     public static Vector<Ormizable> getSearchResult(Ormizable searchEntity)
     {
-	throw new NotImplementedException();
+	return null;
     }
 
     public static void add(Ormizable newEntity) throws OrmException
     {
-	throw new NotImplementedException();
     }
 
     public static void delete(Ormizable searchEntity) throws OrmException
     {
-	throw new NotImplementedException();
     }
 
     public static void update(Ormizable searchEntity,
 	    Ormizable entityContainingChanges) throws OrmException
     {
-	throw new NotImplementedException();
     }
 }
