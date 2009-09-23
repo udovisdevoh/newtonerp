@@ -24,7 +24,6 @@ Traitements de requêtes
 			Clef unique (genre de session http)
 			Paramètres
 			{
-				ActionId de rercherche
 				Objet de critère de recherche
 			}
 		}
@@ -62,7 +61,6 @@ Traitements de requêtes
 			Clef unique (genre de session http)
 			Paramètres
 			{
-				ActionId
 				Objet à ajouter
 			}
 		}
@@ -103,7 +101,6 @@ Traitements de requêtes
 	{
 		Requète contient
 		{
-			ActionId de modification
 			Objet de critère de recherche //(objet de même que classe l'entitiée à modifier)
 			Objet de champ à modifier //(objet de même que classe l'entitiée à modifier)
 		}
