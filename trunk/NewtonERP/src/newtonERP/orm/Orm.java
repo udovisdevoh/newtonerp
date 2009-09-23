@@ -10,11 +10,10 @@ import newtonERP.orm.sgbd.Sgbdable;
  * 
  * @author r3hallejo, r3lacasgu
  * 
- *         Basic class for the orm. It is used to put the objects in the databse
- *         using SqLite3 and it's java binding. The orm will receive an entity
- *         from which the orm will perform various tasks such has generating the
- *         query. Than it's gonna send the query to the SgbdSqlite classe to
- *         execute it.
+ * Basic class for the orm. It is used to put the objects in the databse using
+ * SqLite3 and its java binding. The orm will receive an entity from which the
+ * orm will perform various tasks such as generating the query. Then it's gonna
+ * send the query to the SgbdSqlite classe to execute it.
  */
 public class Orm
 {
