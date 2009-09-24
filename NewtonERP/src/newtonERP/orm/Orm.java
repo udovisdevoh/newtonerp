@@ -1,5 +1,6 @@
 package newtonERP.orm;
 
+import java.util.Hashtable;
 import java.util.Vector;
 
 import newtonERP.orm.exceptions.OrmException;
@@ -10,10 +11,11 @@ import newtonERP.orm.sgbd.Sgbdable;
  * 
  * @author r3hallejo, r3lacasgu
  * 
- * Basic class for the orm. It is used to put the objects in the databse using
- * SqLite3 and its java binding. The orm will receive an entity from which the
- * orm will perform various tasks such as generating the query. Then it's gonna
- * send the query to the SgbdSqlite classe to execute it.
+ *         Basic class for the orm. It is used to put the objects in the databse
+ *         using SqLite3 and its java binding. The orm will receive an entity
+ *         from which the orm will perform various tasks such as generating the
+ *         query. Then it's gonna send the query to the SgbdSqlite classe to
+ *         execute it.
  */
 public class Orm
 {
@@ -38,6 +40,26 @@ public class Orm
      */
     public static void add(Ormizable newEntity) throws OrmException
     {
+	Hashtable<String, String> data = newEntity.getOrmizableData();
+
+	String sqlQuery = "";
+
+	// On ajoute nom de la table et l'ajout
+	sqlQuery += "INSERT INTO " + newEntity.getTableName() + " VALUES (";
+
+	// TODO: Iterate through the hashtable to build the query, for now we
+	// only need it to work
+
+	/*
+	 * // Iterate throught values Iterator it = data.values().iterator();
+	 * 
+	 * while (it.hasNext()) { // Retrieve key Object key = it.next(); }
+	 */
+	sqlQuery += "'" + data.get("name") + "',";
+	sqlQuery += "'" + data.get("age") + "',";
+	sqlQuery += "'" + data.get("color") + "');";
+
+	System.out.println("SQL query produced : " + sqlQuery);
     }
 
     /**
