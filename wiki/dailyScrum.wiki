@@ -30,7 +30,7 @@ voici le model de scrum
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
   * Classe abstraite du module, interfaces IAction
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
-  * Complexité des paramètres de la classe action, a nécéssité qu'on s'entende sur le fait qu'une action doit avoir en paramêtre une entité et un hashtable<string> de paramètres optionnel. J'ai eut du mal à concevoir qu'une entité puisse servir de définition de table mais ça va. 
+  * Complexité des paramètres de la classe action, a nécéssité qu'on s'entende sur le fait qu'une action doit avoir en paramêtre une entité et un hashtable de string de paramètres optionnel. J'ai eut du mal à concevoir qu'une entité puisse servir de définition de table mais ça va. 
 
 ==Pascal Lemay==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
