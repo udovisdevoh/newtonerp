@@ -53,7 +53,7 @@ public class EmbdedTomCat
 	engine.addChild(host);
 	engine.setDefaultHost("localhost");
 	tomcat.addEngine(engine);
-	tomcat.addConnector(tomcat.createConnector("localhost", 8080, false));
+	tomcat.addConnector(tomcat.createConnector("localhost", 47098, false));
 	registerShutdownHook();
 	try
 	{
