@@ -1,6 +1,7 @@
 package newtonERP.orm;
 
 import java.util.Hashtable;
+import java.util.Iterator;
 import java.util.Vector;
 
 import newtonERP.orm.exceptions.OrmException;
@@ -19,7 +20,7 @@ import newtonERP.orm.sgbd.Sgbdable;
  */
 public class Orm
 {
-    private Sgbdable sgbd = new SgbdSqlite();
+    private static Sgbdable sgbd = new SgbdSqlite();
 
     /**
      * Method used to do search queries done from the views to the databse
@@ -41,24 +42,43 @@ public class Orm
     public static void add(Ormizable newEntity) throws OrmException
     {
 	Hashtable<String, String> data = newEntity.getOrmizableData();
-
 	String sqlQuery = "";
 
-	// On ajoute nom de la table et l'ajout
-	sqlQuery += "INSERT INTO " + newEntity.getTableName() + " VALUES (";
+	// We add the hardcoded statements, in this case INSERT TO
+	sqlQuery += "INSERT INTO " + newEntity.getTableName() + " (";
 
-	// TODO: Iterate through the hashtable to build the query, for now we
-	// only need it to work
+	// We now iterate through the key set so we can add the fields to the
+	// query
+	Iterator keySetIterator = data.keySet().iterator();
+	while (keySetIterator.hasNext())
+	{
+	    // Retrieve key
+	    Object key = keySetIterator.next();
 
-	/*
-	 * // Iterate throught values Iterator it = data.values().iterator();
-	 * 
-	 * while (it.hasNext()) { // Retrieve key Object key = it.next(); }
-	 */
-	sqlQuery += "'" + data.get("name") + "',";
-	sqlQuery += "'" + data.get("age") + "',";
-	sqlQuery += "'" + data.get("color") + "');";
+	    if (!keySetIterator.hasNext())
+		sqlQuery += "'" + key.toString() + "') ";
+	    else
+		sqlQuery += "'" + key.toString() + "', ";
+	}
 
+	// We add the VALUES keyword for the query
+	sqlQuery += "VALUES (";
+
+	// Now we add the values to the query
+	Iterator valueIterator = data.values().iterator();
+	while (valueIterator.hasNext())
+	{
+	    Object value = valueIterator.next();
+
+	    if (!valueIterator.hasNext())
+		sqlQuery += "'" + value.toString() + "') ";
+	    else
+		sqlQuery += "'" + value.toString() + "', ";
+	}
+
+	// We execute the query and print out the sql query produced to see we
+	// have no errors
+	sgbd.Execute(sqlQuery);
 	System.out.println("SQL query produced : " + sqlQuery);
     }
 
