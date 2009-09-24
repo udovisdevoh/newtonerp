@@ -42,11 +42,11 @@ voici le model de scrum
 
 ==Gabriel Therrien==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
-  *...livré...
+  * command routeur livré et le servelet
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
-  *...livré...
+  *liste des fichier 
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
-  *...problème, besoin d'aide, qui aidera...
+  *.non
 
 ==Jonatan Cloutier==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
