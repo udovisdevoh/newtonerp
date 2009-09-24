@@ -2,6 +2,22 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="Librairies"/>
+	<classpathentry kind="lib" path="Librairies/apache-tomcat-5.5.28-embed/lib/catalina-optional.jar"/>
+	<classpathentry kind="lib" path="Librairies/apache-tomcat-5.5.28-embed/lib/catalina.jar"/>
+	<classpathentry kind="lib" path="Librairies/apache-tomcat-5.5.28-embed/lib/commons-el.jar"/>
+	<classpathentry kind="lib" path="Librairies/apache-tomcat-5.5.28-embed/lib/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="Librairies/apache-tomcat-5.5.28-embed/lib/commons-modeler-2.0.1.jar"/>
+	<classpathentry kind="lib" path="Librairies/apache-tomcat-5.5.28-embed/lib/jasper-compiler-jdt.jar"/>
+	<classpathentry kind="lib" path="Librairies/apache-tomcat-5.5.28-embed/lib/jasper-compiler.jar"/>
+	<classpathentry kind="lib" path="Librairies/apache-tomcat-5.5.28-embed/lib/jasper-runtime.jar"/>
+	<classpathentry kind="lib" path="Librairies/apache-tomcat-5.5.28-embed/lib/jsp-api.jar"/>
+	<classpathentry kind="lib" path="Librairies/apache-tomcat-5.5.28-embed/lib/naming-factory.jar"/>
+	<classpathentry kind="lib" path="Librairies/apache-tomcat-5.5.28-embed/lib/naming-resources.jar"/>
+	<classpathentry kind="lib" path="Librairies/apache-tomcat-5.5.28-embed/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="Librairies/apache-tomcat-5.5.28-embed/lib/servlets-default.jar"/>
+	<classpathentry kind="lib" path="Librairies/apache-tomcat-5.5.28-embed/lib/tomcat-coyote.jar"/>
+	<classpathentry kind="lib" path="Librairies/apache-tomcat-5.5.28-embed/lib/tomcat-http.jar"/>
+	<classpathentry kind="lib" path="Librairies/apache-tomcat-5.5.28-embed/lib/tomcat-util.jar"/>
+	<classpathentry kind="lib" path="Librairies/sqlitejdbc-v056.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
