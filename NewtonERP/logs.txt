@@ -1,0 +1,17 @@
+
+[INFO 17:26:02 2009.09.24] Initialion of connection to db
+[INFO 17:26:02 2009.09.24] Connexion has been succesfully initialized
+[INFO 17:26:02 2009.09.24] Attempting to close the connexion to db
+[INFO 17:26:02 2009.09.24] Connexion has been succesfully closed
+[INFO 17:39:00 2009.09.24] Initialisation of connection to db
+[INFO 17:39:00 2009.09.24] Connexion has been succesfully initialized
+[INFO 17:39:00 2009.09.24] Attempting to close the connexion to db
+[INFO 17:39:00 2009.09.24] Connexion has been succesfully closed
+[INFO 17:44:35 2009.09.24] Initialisation of connection to db
+[INFO 17:44:35 2009.09.24] Connexion has been succesfully initialized
+[INFO 17:44:35 2009.09.24] Attempting to close the connexion to db
+[INFO 17:44:35 2009.09.24] Connexion has been succesfully closed
+[INFO 17:46:31 2009.09.24] Initialisation of connection to db
+[INFO 17:46:31 2009.09.24] Connexion has been succesfully initialized
+[INFO 17:46:31 2009.09.24] Attempting to close the connexion to db
+[INFO 17:46:31 2009.09.24] Connexion has been succesfully closed

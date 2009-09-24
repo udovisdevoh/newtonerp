@@ -19,7 +19,7 @@ public class TestEntity implements Ormizable
 
     @Override
     public Hashtable<String, String> getOrmizableData()
-    	throws OrmFieldNotFoundException
+	    throws OrmFieldNotFoundException
     {
 	Hashtable<String, String> ormizableData = new Hashtable<String, String>();
 
@@ -33,14 +33,14 @@ public class TestEntity implements Ormizable
     @Override
     public String getTableName()
     {
-	return "employee";
+	return "Employee";
     }
 
     @Override
     public String getSearchCriteria()
     {
 	// Sera gnr par la vue selon la dfinition de l'entit du module
-	// Pourrait retourner null s'il n'y en a pas et l'orm pourrait se fier 
+	// Pourrait retourner null s'il n'y en a pas et l'orm pourrait se fier
 	// getOrmizableData
 	return "name like %mar% AND age > 13 || color = bleu";
     }
