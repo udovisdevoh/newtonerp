@@ -1,10 +1,14 @@
 /**
  * 
  */
-package module;
+package newtonERP.module;
 
 import java.util.Hashtable;
 import java.util.Vector;
+
+import newtonERP.ActionableEntity;
+import newtonERP.orm.Orm;
+import newtonERP.orm.Ormizable;
 
 /**
  * @author Pascal Lemay
@@ -13,52 +17,71 @@ import java.util.Vector;
 public abstract class Module
 {
     // TODO: changer object par Orm des que possible
-    protected static Object orm;// reference a l orm
+    protected static Orm orm;// reference a l orm
 
-    // TODO changer object par Entity des que possible
-    private Vector<Object> entities;
+    // Sert à conserver les definitions de tables
+    // Genre d'exemple d'une table.
+    private Vector<Ormizable> tableDefinitionList;
 
-    // TODO changer object par Action des que possible
-    private Hashtable<String, Object> actions;
-
-    public static Object getOrm()
-    {
-	return orm;
-    }
+    // Sert à stocker les actions pouvant être appelées
+    private Hashtable<String, IAction> actionList;
 
     /**
      * @return the Vector entities
      */
-    public Vector<Object> getEntities()
+    public Vector<Ormizable> getTableDefinitionList()
     {
-	return entities;
+	return tableDefinitionList;
     }
 
     /**
      * @return the actions HashTable
      */
-    public Hashtable<String, Object> getActions()
+    public Hashtable<String, IAction> getActionListAndNames()
     {
-	return actions;
+	return actionList;
     }
 
     /**
      * @paramactionName=nom de l action
      * @return action de ce nom contenue dans le HashTable
      */
-    public Object getAction(String actionName)
+    public IAction getAction(String actionName) throws ModuleException
     {
-	return actions.get(actionName);
+	IAction action = null;
+	try
+	{
+	    action = actionList.get(actionName);
+	} catch (Exception e)
+	{
+	    throw new ModuleException();
+	}
+
+	if (action == null)
+	    throw new ModuleException();
+
+	return action;
     }
 
-    // TODO changer void pour Entity des que possible
+    /**
+     * 
+     * @param parameters
+     *            =parametre d'execution dans le module concret
+     * @return entite actionable fournie par le module concret
+     */
+    public abstract ActionableEntity getEntityFromParameters(
+	    Hashtable<String, String> parameters);
+
     /**
      * @call l action et retourne le resultat de l action param action=nom de l
-     * action param parametres=liste de parametres (cle,parametre)
+     *       action param parametres=liste de parametres (cle,parametre)
      */
-    public void doAction(String actionName, Hashtable<String, String> parametres)
+    public IEntity doAction(String actionName,
+	    Hashtable<String, String> parameters) throws ModuleException
     {
-
+	IAction action = getAction(actionName);
+	ActionableEntity entity = getEntityFromParameters(parameters);
+	action.perform(entity, parameters);
+	return entity;
     }
-
 }
