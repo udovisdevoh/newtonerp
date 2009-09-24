@@ -1,5 +1,6 @@
-package newtonERP.orm;
+package newtonERP.orm.testClasses;
 
+import newtonERP.orm.Orm;
 import newtonERP.orm.exceptions.OrmException;
 
 /**

@@ -1,7 +1,8 @@
-package newtonERP.orm;
+package newtonERP.orm.testClasses;
 
 import java.util.Hashtable;
 
+import newtonERP.orm.Ormizable;
 import newtonERP.orm.exceptions.OrmFieldNotFoundException;
 
 /**
