@@ -55,7 +55,7 @@ public class EmbeddedTomcat
 
 	Engine engine = null;
 	// Set the home directory
-	System.setProperty("catalina.home", getPath()); // TODO: whathe
+	System.setProperty("catalina.home", getPath());
 
 	// Create an embedded server
 	embedded = new Embedded();
@@ -68,12 +68,11 @@ public class EmbeddedTomcat
 	engine.setDefaultHost("localhost");
 
 	// Create a default virtual host
-	host = embedded.createHost("localhost", getPath() + "/webapps");
+	host = embedded.createHost("localhost", "/webapps");
 	engine.addChild(host);
 
 	// Create the ROOT context
-	Context context = embedded.createContext("al", getPath()
-		+ "/webapps/ROOT/");
+	Context context = embedded.createContext("", "/ROOT/");
 	host.addChild(context);
 
 	// Install the assembled container hierarchy
@@ -147,8 +146,7 @@ public class EmbeddedTomcat
 	{
 
 	    EmbeddedTomcat tomcat = new EmbeddedTomcat();
-	    tomcat
-		    .setPath("/home/djo/workspace/NewtonERP/src/test/servletTest");
+	    tomcat.setPath("src/test/servletTest");
 	    tomcat.startTomcat();
 
 	    // URL url = new URL("file:D:/jakarta-tomcat-4.0.1"
