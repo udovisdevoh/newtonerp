@@ -66,11 +66,11 @@ voici le model de scrum a copier en entier si vous êtes le premier
 
 ==Pascal Lemay==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
-  *...livré...
+  *Création du package module pour les futurs modules du projet. Création de la classe Abstraite Module; avec référence static à l'orm, Hashtable d'actions, vecteur d'entité + méthodes d'accès.Début de la méthode doAction.
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
-  *...livré...
+  *Poursuivre le travail sur la classe abstraite Module (méthode doAction) + l'interface IAction avec guillaume 
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
-  *...problème, besoin d'aide, qui aidera...
+  *Complexité de la structure de la méthode doAction() en mutation et de la classe Module également en mutation.Confusion sur leurs fonctionnements (paramètre...entités).ps Important de mieux analyser et de se consulter avant de coder sinon c'est le bordel.
 
 ==Gabriel Therrien==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
