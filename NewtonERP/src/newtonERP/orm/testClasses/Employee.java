@@ -48,7 +48,7 @@ public class Employee implements Ormizable
     public int getPrimaryKeyValue()
     {
 	// TODO Auto-generated method stub
-	return 0;
+	return index;
     }
 
     public String getSearchCriteria()
