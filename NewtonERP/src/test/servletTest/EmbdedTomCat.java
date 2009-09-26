@@ -1,6 +1,7 @@
-package newtonERP.serveur;
+package test.servletTest;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Properties;
 
 import org.apache.catalina.Context;
@@ -47,7 +48,8 @@ public class EmbdedTomCat
 	Engine engine = tomcat.createEngine();
 	Host host = tomcat.createHost("localhost", projectHome);
 	host.addChild(tomcat.createContext("", ""));
-	Context context = tomcat.createContext("/webapp1", "webapp");
+	Context context = tomcat.createContext("/webapp1", catalinaHome
+		+ "webapps");
 	context.setReloadable(true);
 	host.addChild(context);
 	engine.addChild(host);
@@ -76,9 +78,18 @@ public class EmbdedTomCat
 	 * File f = new File("."); projectHome = f.getAbsolutePath(); } catch
 	 * (IOException e) { throw new RuntimeException(e); }
 	 */
-	catalinaHome = "src/test/servletTest";
+	catalinaHome = "src/test/servletTest/";
 	File f = new File(".");
-	projectHome = f.getAbsolutePath();
+	try
+	{
+	    projectHome = f.getCanonicalPath();
+	} catch (IOException e)
+	{
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	}
+
+	System.out.println(projectHome);
 
     }
 
