@@ -1,4 +1,4 @@
-package test.servletTest;
+package newtonERP.serveur;
 
 import java.net.URL;
 
@@ -68,11 +68,11 @@ public class EmbeddedTomcat
 	engine.setDefaultHost("localhost");
 
 	// Create a default virtual host
-	host = embedded.createHost("localhost", "/webapps");
+	host = embedded.createHost("localhost", "webapps");
 	engine.addChild(host);
 
 	// Create the ROOT context
-	Context context = embedded.createContext("", "/ROOT/");
+	Context context = embedded.createContext("", "ROOT/");
 	host.addChild(context);
 
 	// Install the assembled container hierarchy
@@ -146,18 +146,18 @@ public class EmbeddedTomcat
 	{
 
 	    EmbeddedTomcat tomcat = new EmbeddedTomcat();
-	    tomcat.setPath("src/test/servletTest");
+	    tomcat.setPath("src/test/servletTest/");
 	    tomcat.startTomcat();
 
 	    // URL url = new URL("file:D:/jakarta-tomcat-4.0.1"
 	    // + "/webapps/onjava");
 	    // tomcat.registerWAR("/onjava", url);
 
-	    // Thread.sleep(1000000);
+	    Thread.sleep(1000000);
 
-	    // tomcat.stopTomcat();
+	    tomcat.stopTomcat();
 
-	    // System.exit(0);
+	    System.exit(0);
 	} catch (Exception e)
 	{
 
