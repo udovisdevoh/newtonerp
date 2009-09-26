@@ -24,6 +24,7 @@ public class Employee implements Ormizable
     private String noAssSociale = "345-678-908";
     private String etatCivil = "Celibataire";
     
+    @Override
     public Hashtable<String, String> getOrmizableData() throws OrmFieldNotFoundException
     {
 	Hashtable<String, String> ormizableData = new Hashtable<String, String>();
@@ -45,6 +46,7 @@ public class Employee implements Ormizable
      * (non-Javadoc)
      * @see newtonERP.orm.Ormizable#getPrimaryKeyValue()
      */
+    @Override
     public int getPrimaryKeyValue()
     {
 	// TODO Auto-generated method stub
@@ -63,6 +65,7 @@ public class Employee implements Ormizable
      * (non-Javadoc)
      * @see newtonERP.orm.Ormizable#getTableName()
      */
+    @Override
     public String getTableName()
     {
 	// TODO Auto-generated method stub
