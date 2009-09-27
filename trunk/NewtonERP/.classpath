@@ -3,22 +3,20 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="Librairies/sqlitejdbc-v056.jar"/>
-	<classpathentry kind="lib" path="Librairies/apache-tomcat-6.0.18/bin/tomcat-juli.jar"/>
-	<classpathentry kind="lib" path="Librairies/apache-tomcat-6.0.18/lib/annotations-api.jar"/>
-	<classpathentry kind="lib" path="Librairies/apache-tomcat-6.0.18/lib/catalina-ant.jar"/>
-	<classpathentry kind="lib" path="Librairies/apache-tomcat-6.0.18/lib/catalina-ha.jar"/>
-	<classpathentry kind="lib" path="Librairies/apache-tomcat-6.0.18/lib/catalina-tribes.jar"/>
-	<classpathentry kind="lib" path="Librairies/apache-tomcat-6.0.18/lib/catalina.jar"/>
-	<classpathentry kind="lib" path="Librairies/apache-tomcat-6.0.18/lib/el-api.jar"/>
-	<classpathentry kind="lib" path="Librairies/apache-tomcat-6.0.18/lib/jasper-el.jar"/>
-	<classpathentry kind="lib" path="Librairies/apache-tomcat-6.0.18/lib/jasper-jdt.jar"/>
-	<classpathentry kind="lib" path="Librairies/apache-tomcat-6.0.18/lib/jasper.jar"/>
-	<classpathentry kind="lib" path="Librairies/apache-tomcat-6.0.18/lib/jsp-api.jar"/>
-	<classpathentry kind="lib" path="Librairies/apache-tomcat-6.0.18/lib/servlet-api.jar"/>
-	<classpathentry kind="lib" path="Librairies/apache-tomcat-6.0.18/lib/tomcat-coyote.jar"/>
-	<classpathentry kind="lib" path="Librairies/apache-tomcat-6.0.18/lib/tomcat-dbcp.jar"/>
-	<classpathentry kind="lib" path="Librairies/apache-tomcat-6.0.18/lib/tomcat-i18n-es.jar"/>
-	<classpathentry kind="lib" path="Librairies/apache-tomcat-6.0.18/lib/tomcat-i18n-fr.jar"/>
-	<classpathentry kind="lib" path="Librairies/apache-tomcat-6.0.18/lib/tomcat-i18n-ja.jar"/>
+	<classpathentry kind="lib" path="Librairies/jetty6.1.21/jetty-6.1.21.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="http://jetty.mortbay.org/jetty/jetty-6/apidocs/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="Librairies/jetty6.1.21/jetty-util-6.1.21.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="http://jetty.mortbay.org/jetty/jetty-6/apidocs/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="Librairies/jetty6.1.21/servlet-api-2.5-20081211.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="http://jetty.mortbay.org/jetty/jetty-6/apidocs/"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
