@@ -2,7 +2,7 @@
 <wiki:toc max_depth="2" />
 
 
-== Entity  ==
+==Entity==
 <table border=1>
    <tr>
        <td width=60% width=70%> Gabriel Therrien </td>
@@ -20,7 +20,7 @@
        </td>
    </tr>
 </table>
-== UserRightModule ==
+==!UserRightModule==
 <table border=1>
    <tr>
        <td width=60% width=70%> Gabriel Therrien </td>
@@ -39,7 +39,7 @@
    </tr>
 </table>
 
-== CompositeSpecification ==
+==!CompositeSpecification==
 <table border="1">
    <tr>
        <td width="60%" width="70%">Guillaume</td>
@@ -57,7 +57,7 @@
    </tr>
 </table>
 
-== AtomicSpecification ==
+==!AtomicSpecification==
 <table border="1">
    <tr>
        <td width="60%" width="70%">Guillaume</td>
@@ -74,7 +74,7 @@
    </tr>
 </table>
 
-== Task ==
+==Task==
 <table border="1">
    <tr>
        <td width="60%" width="70%">Guillaume</td>
@@ -93,7 +93,7 @@
    </tr>
 </table>
 
-== TaskManager ==
+==!TaskManager==
 <table border="1">
    <tr>
        <td width="60%" width="70%">Guillaume</td>
@@ -110,7 +110,7 @@
    </tr>
 </table>
 
-== TaskModule ==
+==!TaskModule==
 <table border="1">
    <tr>
        <td width="60%" width="70%">Guillaume</td>
@@ -129,7 +129,7 @@
    </tr>
 </table>
 
-== TaskViewer ==
+==!TaskViewer==
 <table border="1">
    <tr>
        <td width="60%" width="70%">Guillaume</td>
@@ -146,7 +146,7 @@
    </tr>
 </table>
 
-== Action ==
+==Action==
 <table border="1">
    <tr>
        <td width="60%" width="70%">Guillaume</td>
@@ -162,7 +162,7 @@
        </td>
    </tr>
 </table>
-== ISpecification ==
+==!ISpecification==
 <table border="1">
    <tr>
        <td width="60%" width="70%">.</td>
@@ -180,7 +180,7 @@
        </td>
    </tr>
 </table>
-== IViewer ==
+==!IViewer==
 <table border="1">
    <tr>
        <td width="60%" width="70%">.</td>
@@ -199,7 +199,8 @@
    </tr>
 </table>
 
-== viewable (visible par le main viewer) ==
+==Viewable==
+ (visible par le main viewer) 
 <table border=1>
    <tr>
        <td width=60% width=70%> a déterminé </td>
@@ -215,7 +216,7 @@
    </tr>
 </table>
 
-== viewer ==
+==Viewer==
 <table border=1>
    <tr>
        <td width=60% width=70%> a déterminé </td>
@@ -234,7 +235,7 @@
    </tr>
 </table>
 
-== mainViewer ==
+==!MainViewer==
 <table border=1>
    <tr>
        <td width=60% width=70%> a déterminé </td>
@@ -253,7 +254,7 @@
 </table>
 
 
-== servlet ==
+==servlet==
 <table border=1>
    <tr>
        <td width=60% width=70%> a déterminé </td>
@@ -276,7 +277,7 @@ Voir pages pour info sur servlet
 [http://java.sun.com/products/servlet/articles/tutorial/]
 [http://www.google.com.ca/search?q=tomcat+embedded]
 
-== Module ==
+==Module==
 <table border=1>
    <tr>
        <td width=60% width=70%> a déterminé </td>
@@ -295,7 +296,7 @@ Voir pages pour info sur servlet
 </table>
 
 
-== Starter ==
+==Starter==
 <table border=1>
    <tr>
        <td width=60% width=70%> a déterminé </td>
@@ -314,7 +315,7 @@ Voir pages pour info sur servlet
    </tr>
 </table>
 
-== CommandRouter ==
+==!CommandRouter==
 <table border=1>
    <tr>
        <td width=60% width=70%> a déterminé </td>
@@ -331,7 +332,7 @@ Voir pages pour info sur servlet
    </tr>
 </table>
 
-== OrmizableEntity ==
+==!OrmizableEntity==
 <table border=1>
    <tr>
        <td width=60% width=70%> Jonathan Hallee </td>
@@ -349,7 +350,7 @@ Voir pages pour info sur servlet
    </tr>
 </table>
 
-== DataOrm ==
+==!DataOrm==
 <table border=1>
    <tr>
        <td width=60% width=70%> Jonathan Hallee </td>
@@ -371,7 +372,7 @@ Voir pages pour info sur servlet
    </tr>
 </table>
 
-== OrmAction == 
+==!OrmAction== 
 <table border=1>
    <tr>
        <td width=60% width=70%> Jonathan Hallee </td>
