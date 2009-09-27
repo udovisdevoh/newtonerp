@@ -1,4 +1,3 @@
-#labels SCRUMS
 <wiki:toc max_depth="1" />
 <wiki:comment>
 voici le model de scrum a copier en entier si vous êtes le premier 
@@ -53,7 +52,7 @@ voici le model de scrum a copier en entier si vous êtes le premier
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
   * Interface Orm, Sgbdable et Ormizable avec guillaume en pair programming
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
-  * Implementation de la fonction ajout dans l'orm, testage de sqlite, tester l'architecture generale de l'orm pour s'assurer qu'il n'y a pas d'erreurs
+  * Implementation de la fonction ajout dans l'orm, testage de sqlite, tester l'architecture generale de l'orm pour s'assurer qu'il n'y a pas d'erreurs, faudra reparler de qui fait le starter
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
   * Me rapeller des hashtable et de mon sql. Les autoincrements etant donne que il y a pas de sequences dans sqlite *(je ne sais pas si c'est ce que tu cherche http://www.sqlite.org/autoinc.html )*
 
