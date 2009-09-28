@@ -40,6 +40,9 @@ Evidemment on oublie pas n'importe qu'elle autre convention de Java dont les sui
  * Variables par des minuscules
  * Interfaces par des majuscules
 
+===Proposition de convention pour le nomage des interfaces===
+Lorsqu'on peut nommer une interface en terminant par "able", on le fait. Si ça a l'aire illogique, on lui donne un nom qui commence par I. Par exemple: Ormizable vs IModule (on imaginerais bizarement Modulable car c'est pas le module qui se fait moduler). J'attends votre accord pour rendre cette convention officielle. -Guillaume
+
 Utilitaire de code review integré dans google code. Mettre un commentaire et si positif, neutre ou négatif
 
 Exemple de code
