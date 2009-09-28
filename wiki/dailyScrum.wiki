@@ -76,9 +76,9 @@ voici le model de scrum a copier en entier si vous êtes le premier
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
   * command routeur livré et le servelet
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
-  *liste des fichier 
+  * liste des fichier 
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
-  *.non
+  * non
 
 ==Jonatan Cloutier==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
@@ -126,7 +126,9 @@ voici le model de scrum a copier en entier si vous êtes le premier
 
 ==Jonatan Cloutier==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
-  * ...livré...
+  * finalement abandon de embdedTomCat il y a trop de truc pour que sa plante
+  * remplacement par Jetty, fonctionne numéro1
+  * le CommandRouteur et le starter son fonctionnel avec le Servlet 
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
   * ...à livré...
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
