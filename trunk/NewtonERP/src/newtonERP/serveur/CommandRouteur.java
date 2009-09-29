@@ -2,21 +2,32 @@ package newtonERP.serveur;
 
 import java.util.Hashtable;
 
+import newtonERP.ListModule;
+import newtonERP.module.Module;
+
 /**
- * @author Gabriel Therrien
+ * @author Gabriel Therrien JoCloutier
  * 
  */
 public class CommandRouteur
 {
-    // TODO: changer Object par entity quand il va y en avoir
+    /**
+     * dirige une demande client vers une action d'un module
+     * 
+     * @param moduleName nom du module
+     * @param action action a executer
+     * @param parameter parametre a passer a l'action
+     * @return une entity viewable
+     */
     public Object routeCommand(String moduleName, String action,
 	    Hashtable<String, String> parameter)
     {
-	Object module;
+	// TODO: changer Object par viewable quand il va y en avoir
+	Module module;
 	try
 	{
-	    module = openModule(moduleName);
-	    // module.doAction(action,parameter);
+	    module = ListModule.getModule(moduleName);
+	    module.doAction(action, parameter);
 	} catch (Exception e)
 	{
 	    // TODO Auto-generated catch block
@@ -24,11 +35,4 @@ public class CommandRouteur
 	}
 	return 0;
     }
-
-    // TODO: on va voir comment on va pouvoir le gosser plus tard
-    public Object openModule(String moduleName) throws Exception
-    {
-	return 0;
-    }
-
 }
