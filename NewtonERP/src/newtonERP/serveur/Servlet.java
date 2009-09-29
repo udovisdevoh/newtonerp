@@ -27,8 +27,7 @@ public class Servlet extends AbstractHandler
     /**
      * lance le serveur sur le port indique
      * 
-     * @param port
-     *            numero de port a utiliser
+     * @param port numero de port a utiliser
      */
     public Servlet(int port)
     {
@@ -45,6 +44,7 @@ public class Servlet extends AbstractHandler
 	}
     }
 
+    @SuppressWarnings("unchecked")
     public void handle(String target, HttpServletRequest request,
 	    HttpServletResponse response, int dispatch) throws IOException,
 	    ServletException
@@ -68,7 +68,7 @@ public class Servlet extends AbstractHandler
 
 	cmdRouter.routeCommand(moduleName, action, parameter);
 
-	// on formatte la réponse
+	// on formatte la reponse
 	response.setContentType("text/html");
 	response.setStatus(HttpServletResponse.SC_OK);
 	response.getWriter().println("<h1>Hello</h1>"); // TODO: replace by
