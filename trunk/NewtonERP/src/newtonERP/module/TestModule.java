@@ -1,8 +1,8 @@
 package newtonERP.module;
 
-import java.util.Hashtable;
-
-import newtonERP.ActionableEntity;
+import newtonERP.module.actions.TestAction;
+import newtonERP.module.moduleGetters.TestModuleGetter;
+import newtonERP.orm.testClasses.TestEntity;
 
 /**
  * @author r3lemaypa
@@ -10,18 +10,11 @@ import newtonERP.ActionableEntity;
  */
 public class TestModule extends Module
 {
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see newtonERP.module.Module#getEntityFromParameters(java.util.Hashtable)
-     */
-    @Override
-    public ActionableEntity getEntityFromParameters(
-	    Hashtable<String, String> parameters)
+    public TestModule()
     {
-	// TODO Auto-generated method stub
-	return null;
+	definitionEntityList.add(new TestEntity());
+	actionList.put("L'action qui ne fait rien", new TestAction());
+	moduleGetterList.put("Module getter qui ne fait rien",
+		new TestModuleGetter());
     }
-
 }

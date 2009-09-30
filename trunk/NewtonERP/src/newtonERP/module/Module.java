@@ -6,38 +6,43 @@ package newtonERP.module;
 import java.util.Hashtable;
 import java.util.Vector;
 
-import newtonERP.ActionableEntity;
+import newtonERP.module.actions.ActionableEntity;
+import newtonERP.module.actions.IAction;
+import newtonERP.module.moduleGetters.IModuleGetter;
 import newtonERP.orm.Orm;
 import newtonERP.orm.Ormizable;
+import newtonERP.viewers.Viewable;
 
 /**
- * @author Pascal Lemay
- * 
+ * @author Pascal Lemay Gab: jar cf0 chemin:\lenomduJar.jar
+ *         chemin:\dossierModule
  */
 public abstract class Module
 {
     // TODO: changer object par Orm des que possible
     protected static Orm orm;// reference a l orm
 
-    // Sert � conserver les definitions de tables
+    // Sert � conserver les definitions de tables
     // Genre d'exemple d'une table.
-    private Vector<Ormizable> tableDefinitionList;
+    protected Vector<Ormizable> definitionEntityList;
 
-    // Sert � stocker les actions pouvant �tre appel�es
-    private Hashtable<String, IAction> actionList;
+    // Sert � stocker les actions pouvant �tre appel�es
+    protected Hashtable<String, IAction> actionList;
+
+    protected Hashtable<String, IModuleGetter> moduleGetterList;
 
     /**
      * @return the Vector entities
      */
-    public Vector<Ormizable> getTableDefinitionList()
+    public final Vector<Ormizable> getDefinitionEntityList()
     {
-	return tableDefinitionList;
+	return definitionEntityList;
     }
 
     /**
      * @return the actions HashTable
      */
-    public Hashtable<String, IAction> getActionListAndNames()
+    public final Hashtable<String, IAction> getActionList()
     {
 	return actionList;
     }
@@ -46,13 +51,13 @@ public abstract class Module
      * @paramactionName=nom de l action
      * @return action de ce nom contenue dans le HashTable
      */
-    public IAction getAction(String actionName) throws ModuleException
+    public final IAction getAction(String actionName) throws ModuleException
     {
 	IAction action = null;
 	try
 	{
 	    action = actionList.get(actionName);
-	} catch (Exception e)
+	} catch (NullPointerException e)
 	{
 	    throw new ModuleException();
 	}
@@ -64,24 +69,25 @@ public abstract class Module
     }
 
     /**
-     * 
-     * @param parameters
-     *            =parametre d'execution dans le module concret
-     * @return entite actionable fournie par le module concret
+     * @param actionName=Nom de l'action que l'utilisateur veut faire
+     * @param moduleGetterName=Nom du module getter permetant d'obtenir l'entité
+     *            produite par le module (cette entité servira de paramêtre à
+     *            l'action
+     * @param parameters=Paramètres de l'action devant être accomplie, exemple,
+     *            contenu d'un email
+     * @return Entité viewable pour l'output du résultat
+     * @throws ModuleException
      */
-    public abstract ActionableEntity getEntityFromParameters(
-	    Hashtable<String, String> parameters);
-
-    /**
-     * @call l action et retourne le resultat de l action param action=nom de l
-     *       action param parametres=liste de parametres (cle,parametre)
-     */
-    public IEntity doAction(String actionName,
+    public final Viewable doAction(String actionName, String moduleGetterName,
 	    Hashtable<String, String> parameters) throws ModuleException
     {
 	IAction action = getAction(actionName);
-	ActionableEntity entity = getEntityFromParameters(parameters);
-	action.perform(entity, parameters);
-	return entity;
+
+	IModuleGetter moduleGetter = moduleGetterList.get(moduleGetterName);
+
+	ActionableEntity entity = moduleGetter
+		.getEntityFromParameters(parameters);
+
+	return action.perform(entity, parameters);
     }
 }
