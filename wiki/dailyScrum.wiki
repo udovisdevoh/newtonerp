@@ -130,6 +130,6 @@ voici le model de scrum a copier en entier si vous êtes le premier
   * remplacement par Jetty, fonctionne numéro1
   * le CommandRouteur et le starter son fonctionnel avec le Servlet 
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
-  * ...à livré...
+  * comlété le commandeRouteur
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
-  * ...problème, besoin d'aide, qui aidera...
+  * 
