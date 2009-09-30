@@ -1,6 +1,8 @@
 package newtonERP.orm.sgbd;
 
-import java.util.Vector;
+import java.sql.ResultSet;
+
+import newtonERP.orm.OrmActions;
 
 /**
  * 
@@ -13,10 +15,11 @@ import java.util.Vector;
 public interface Sgbdable
 {
     /**
-     * Method that executes the sql query passed in paramter
+     * Method that executes the sql query passed in paramter plus de action from
+     * the OrmAction
      * 
-     * @param request
+     * @param request, l'action a effectue
      * @return le resultat sous forme de strings
      */
-    public Vector<String> Execute(String request);
+    public ResultSet Execute(String request, OrmActions action);
 }

@@ -15,3 +15,33 @@
 [INFO 17:46:31 2009.09.24] Connexion has been succesfully initialized
 [INFO 17:46:31 2009.09.24] Attempting to close the connexion to db
 [INFO 17:46:31 2009.09.24] Connexion has been succesfully closed
+[INFO 12:43:39 2009.09.30] Initialisation of connection to db
+[INFO 12:43:39 2009.09.30] Connexion has been succesfully initialized
+[ERROR 12:43:39 2009.09.30] near "%": syntax error
+[INFO 12:43:39 2009.09.30] Attempting to close the connexion to db
+[INFO 12:43:39 2009.09.30] Connexion has been succesfully closed
+[INFO 12:44:09 2009.09.30] Initialisation of connection to db
+[INFO 12:44:09 2009.09.30] Connexion has been succesfully initialized
+[ERROR 12:44:09 2009.09.30] near "%": syntax error
+[INFO 12:44:09 2009.09.30] Attempting to close the connexion to db
+[INFO 12:44:09 2009.09.30] Connexion has been succesfully closed
+[INFO 12:44:43 2009.09.30] Initialisation of connection to db
+[INFO 12:44:43 2009.09.30] Connexion has been succesfully initialized
+[INFO 12:44:43 2009.09.30] Attempting to close the connexion to db
+[INFO 12:44:43 2009.09.30] Connexion has been succesfully closed
+[INFO 12:46:37 2009.09.30] Initialisation of connection to db
+[INFO 12:46:37 2009.09.30] Connexion has been succesfully initialized
+[INFO 12:46:37 2009.09.30] Attempting to close the connexion to db
+[INFO 12:46:37 2009.09.30] Connexion has been succesfully closed
+[INFO 12:47:39 2009.09.30] Initialisation of connection to db
+[INFO 12:47:39 2009.09.30] Connexion has been succesfully initialized
+[INFO 12:47:39 2009.09.30] Attempting to close the connexion to db
+[INFO 12:47:39 2009.09.30] Connexion has been succesfully closed
+[INFO 13:01:47 2009.09.30] Initialisation of connection to db
+[INFO 13:01:47 2009.09.30] Connexion has been succesfully initialized
+[INFO 13:02:26 2009.09.30] Initialisation of connection to db
+[INFO 13:02:26 2009.09.30] Connexion has been succesfully initialized
+[INFO 13:08:49 2009.09.30] Initialisation of connection to db
+[INFO 13:08:49 2009.09.30] Connexion has been succesfully initialized
+[INFO 14:16:44 2009.09.30] Initialisation of connection to db
+[INFO 14:16:44 2009.09.30] Connexion has been succesfully initialized
