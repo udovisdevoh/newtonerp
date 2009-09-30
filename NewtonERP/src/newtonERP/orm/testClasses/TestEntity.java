@@ -52,4 +52,51 @@ public class TestEntity implements Ormizable
 	// TODO Auto-generated method stub
 	return 0;
     }
+
+    @Override
+    public void setOrmizableData(Hashtable<String, Object> parameters)
+    {
+	for (Object key : parameters.keySet())
+	{
+	    // To be continued!!!!!!!!!!
+	    if (key.toString().equals("name"))
+	    {
+		setName((String) parameters.get(key));
+	    }
+
+	}
+
+    }
+
+    /**
+     * @param index
+     */
+    public void setIndex(int index)
+    {
+	this.index = index;
+    }
+
+    /**
+     * @param name
+     */
+    public void setName(String name)
+    {
+	this.name = name;
+    }
+
+    /**
+     * @param age
+     */
+    public void setAge(String age)
+    {
+	this.age = age;
+    }
+
+    /**
+     * @param color
+     */
+    public void setColor(String color)
+    {
+	this.color = color;
+    }
 }

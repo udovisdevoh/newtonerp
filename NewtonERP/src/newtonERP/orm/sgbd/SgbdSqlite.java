@@ -2,12 +2,13 @@ package newtonERP.orm.sgbd;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Vector;
 
 import newtonERP.logging.Logger;
 import newtonERP.logging.Logger.State;
+import newtonERP.orm.OrmActions;
 
 /**
  * 
@@ -59,8 +60,7 @@ public class SgbdSqlite implements Sgbdable
 	}
     }
 
-    @Override
-    public Vector<String> Execute(String request)
+    public ResultSet Execute(String request, OrmActions action)
     {
 	initializeConnectionToDb();
 
@@ -76,22 +76,42 @@ public class SgbdSqlite implements Sgbdable
 	    // stat
 	    // .execute("CREATE TABLE Employee ( name VARCHAR(30), age VARCHAR(30), color VARCHAR(30))");
 
-	    // We execute the sql query produced by the ORM
-	    stat.execute(request);
+	    if (action.equals(OrmActions.SEARCH))
+	    {
+		ResultSet rs = stat.executeQuery(request);
 
-	    // TODO: For debug purposes, will have to be removed, maybe a log
-	    // file instead
-	    System.out.println("Executed");
+		// TODO: Remove the next line when properly debugged
+		System.out.println("Executed the select statement");
 
-	    /*
-	     * TODO: For debug purposes, will eventually be removed ResultSet rs
-	     * = stat.executeQuery("SELECT * FROM Employee;"); while (rs.next())
-	     * { System.out.println("name = " + rs.getString("name"));
-	     * System.out.println("age = " + rs.getString("age"));
-	     * System.out.println("color = " + rs.getString("color")); }
-	     * 
-	     * rs.close();
-	     */
+		// TODO: Remove the next lines when properly debugged
+		while (rs.next())
+		{
+		    System.out.println("name = " + rs.getString("name"));
+		    System.out.println("age = " + rs.getString("age"));
+		    System.out.println("color = " + rs.getString("color"));
+		}
+
+		rs.close();
+
+		return rs;
+	    }
+	    else if (action.equals(OrmActions.INSERT))
+	    {
+		stat.execute(request);
+
+		// TODO: Remove the next line when properly debugged
+		System.out.println("Executed the insert statement");
+
+		return null;
+	    }
+	    else if (action.equals(OrmActions.UPDATE))
+	    {
+		// To be implemented
+	    }
+	    else if (action.equals(OrmActions.DELETE))
+	    {
+		// To be implemented
+	    }
 	} catch (SQLException e)
 	{
 	    Logger.log(e.getMessage(), State.ERROR);
