@@ -62,6 +62,7 @@ public class ListModule
      */
     public static void initAllModule()
     {
+	System.out.println("initmodu");
 	// TODO: trouve la liste des dossier
     }
 }

@@ -51,13 +51,34 @@ public class Servlet extends AbstractHandler
     {
 	String moduleName;
 	String action;
+	String ModuleGetter;
 	Hashtable<String, String> parameter = new Hashtable<String, String>();
 
 	// on trouve le moduleName et l'actionName dans l'url
-	Matcher urlMatch = Pattern.compile("/(.*)/(.*)").matcher(target);
+	// TODO: ajouté un parametre modulgetter
+	Matcher urlMatch = Pattern.compile("/(.*)/(.*)/(.*)").matcher(target);
 	urlMatch.matches();
-	moduleName = urlMatch.group(1);
-	action = urlMatch.group(2);
+	try
+	{
+	    moduleName = urlMatch.group(1);
+	} catch (IllegalStateException e)
+	{
+	    moduleName = "home";
+	}
+	try
+	{
+	    action = urlMatch.group(2);
+	} catch (IllegalStateException e)
+	{
+	    action = "index";
+	}
+	try
+	{
+	    ModuleGetter = urlMatch.group(3);
+	} catch (IllegalStateException e)
+	{
+	    ModuleGetter = null;
+	}
 
 	// on trouve les parametres pour les mettre dans le hashtable
 	for (Enumeration e = request.getParameterNames(); e.hasMoreElements();)
@@ -66,7 +87,7 @@ public class Servlet extends AbstractHandler
 	    parameter.put(paramName, request.getParameter(paramName));
 	}
 
-	cmdRouter.routeCommand(moduleName, action, parameter);
+	cmdRouter.routeCommand(moduleName, action, ModuleGetter, parameter);
 
 	// on formatte la reponse
 	response.setContentType("text/html");
