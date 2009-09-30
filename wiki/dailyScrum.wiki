@@ -94,11 +94,11 @@ voici le model de scrum a copier en entier si vous êtes le premier
 
 ==Jonathan Hallee==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
-  * ...livré...
+  * Livrer comment ajouter un entity de base dans l'orm. Fonctionnel mais pas necessairement au point. C'est de base seulement. Valider la structure generale de l'orm. Creer une test entity afin de pouvoir mieux travailler
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
-  * ...à livré...
+  * Ajouter les recherches par entity dans l'orm
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
-  * ...problème, besoin d'aide, qui aidera...
+  * Ma structure SQL. J'aurai besoin d'aide afin de definir si on implemente les search criterias supplementaires pour que l'orm soit fonctionnel
 
 ==Guillaume Lacasse==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
