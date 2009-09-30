@@ -59,11 +59,11 @@ public abstract class Module
 	    action = actionList.get(actionName);
 	} catch (NullPointerException e)
 	{
-	    throw new ModuleException();
+	    throw new ModuleException("Action introuvable");
 	}
 
 	if (action == null)
-	    throw new ModuleException();
+	    throw new ModuleException("Action introuvable");
 
 	return action;
     }
@@ -83,7 +83,13 @@ public abstract class Module
     {
 	IAction action = getAction(actionName);
 
+	if (moduleGetterName == null)
+	    throw new ModuleException("Aucun moduleGetter spécifié");
+
 	IModuleGetter moduleGetter = moduleGetterList.get(moduleGetterName);
+
+	if (moduleGetter == null)
+	    throw new ModuleException("ModuleGetter introuvable");
 
 	ActionableEntity entity = moduleGetter
 		.getEntityFromParameters(parameters);
