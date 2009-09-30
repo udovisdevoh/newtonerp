@@ -2,7 +2,6 @@ package newtonERP.orm;
 
 import java.util.Hashtable;
 
-import newtonERP.module.IEntity;
 import newtonERP.orm.exceptions.OrmFieldNotFoundException;
 
 /**
@@ -13,7 +12,7 @@ import newtonERP.orm.exceptions.OrmFieldNotFoundException;
  *         implements in order for the orm to be able to save it in the database
  *         or do any other actions
  */
-public interface Ormizable extends IEntity
+public interface Ormizable
 {
     /**
      * Method used to format the entitie so the orm can save them
@@ -44,4 +43,11 @@ public interface Ormizable extends IEntity
      * @return the search criterias
      */
     public String getSearchCriteria();
+
+    /**
+     * Method used in the entities to set the values
+     * 
+     * @param parameters which are field values
+     */
+    public void setOrmizableData(Hashtable<String, Object> parameters);
 }
