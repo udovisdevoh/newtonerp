@@ -1,3 +1,4 @@
+#labels Scrum
 <wiki:toc max_depth="1" />
 <wiki:comment>
 voici le model de scrum a copier en entier si vous êtes le premier 
@@ -163,18 +164,23 @@ voici le model de scrum a copier en entier si vous êtes le premier
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
   * ...problème, besoin d'aide, qui aidera...
 
+
 ==Gabriel Therrien==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
   * ...livré...
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
-  * ...à livré...
+  * terminé la liste de fichier avec Jonatan 
+  * faire l'analise du module userRightModule avec Jonatan 
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
   * ...problème, besoin d'aide, qui aidera...
 
 ==Jonatan Cloutier==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
-  * ...livré...
+  * réglé plusieurs problème de communication
+  * début la conception de unitTest
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
-  * ...à livré...
+  * terminé la liste de fichier avec Gabriel
+  * faire l'analise du module userRightModule avec Gabriel
+  * complété le unittestage du handled de servlet
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
-  * ...problème, besoin d'aide, qui aidera...
+  * 
