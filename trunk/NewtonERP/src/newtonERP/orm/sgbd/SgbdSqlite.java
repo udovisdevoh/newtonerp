@@ -21,50 +21,7 @@ import newtonERP.orm.exceptions.OrmSqlException;
  */
 public class SgbdSqlite implements Sgbdable
 {
-    private Connection connexion;
-
-    /**
-     * Method used to initialize the connection to the database. Sends a message
-     * to the logger if the connexion has been succesful else it sends exception
-     * to the logger,
-     */
-    private void initialize() throws OrmException
-    {
-	try
-	{
-	    Logger.log("Initialisation of connection to db", Logger.State.INFO);
-	    Class.forName("org.sqlite.JDBC");
-	    connexion = DriverManager.getConnection("jdbc:sqlite:test.db");
-	    Logger.log("Connexion has been succesfully initialized",
-		    Logger.State.INFO);
-	} catch (Exception e)
-	{
-	    Logger.log(e.getMessage(), State.ERROR);
-	    throw new OrmSqlException(e.getMessage());
-	}
-    }
-
-    /**
-     * Method used to disconnect from the database. Sends a message to the
-     * logger if succesful else it sends the exception to the logger.
-     */
-    private void disconnect() throws OrmException
-    {
-
-	try
-	{
-	    Logger.log("Attempting to close the connexion to db",
-		    Logger.State.INFO);
-	    connexion.close();
-	    Logger.log("Connexion has been succesfully closed",
-		    Logger.State.INFO);
-	} catch (SQLException e)
-	{
-	    Logger.log(e.getMessage(), State.ERROR);
-	    throw new OrmSqlException(e.getMessage());
-	}
-
-    }
+    private static Connection connexion;
 
     @Override
     public ResultSet execute(String request, OrmActions action)
@@ -72,7 +29,7 @@ public class SgbdSqlite implements Sgbdable
     {
 	// TODO: Put the connection initialization once it will be plugged into
 	// the starter
-	// initializeConnectionToDb();
+	initializeConnection();
 
 	try
 	{
@@ -124,13 +81,12 @@ public class SgbdSqlite implements Sgbdable
 	    }
 	} catch (SQLException e)
 	{
-	    Logger.log(e.getMessage(), State.ERROR);
 	    throw new OrmSqlException(e.getMessage());
 	}
 
 	// TODO: Put the connection close once it will be plugged into
 	// the starter
-	// disconnectFromDb();
+	disconnectFromDb();
 
 	return null;
     }
@@ -138,12 +94,32 @@ public class SgbdSqlite implements Sgbdable
     @Override
     public void disconnectFromDb() throws OrmException
     {
-	disconnect();
+	try
+	{
+	    Logger.log("Attempting to close the connexion to db",
+		    Logger.State.INFO);
+	    connexion.close();
+	    Logger.log("Connexion has been succesfully closed",
+		    Logger.State.INFO);
+	} catch (SQLException e)
+	{
+	    throw new OrmSqlException(e.getMessage());
+	}
     }
 
     @Override
     public void initializeConnection() throws OrmException
     {
-	initialize();
+	try
+	{
+	    Logger.log("Initialisation of connection to db", Logger.State.INFO);
+	    Class.forName("org.sqlite.JDBC");
+	    connexion = DriverManager.getConnection("jdbc:sqlite:test.db");
+	    Logger.log("Connexion has been succesfully initialized",
+		    Logger.State.INFO);
+	} catch (Exception e)
+	{
+	    throw new OrmSqlException(e.getMessage());
+	}
     }
 }
