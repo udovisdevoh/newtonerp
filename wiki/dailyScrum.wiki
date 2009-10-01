@@ -114,7 +114,7 @@ voici le model de scrum a copier en entier si vous êtes le premier
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
   * Création de:IModuleGetter, TestModule, MainViewer, Viewable et TestViewer
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
-  * un peu de confusion sur le fonctionnement(interactions)de:Module,IAction et IModuleGetter
+  * un peu de confusion sur le fonctionnement(interactions)de:Module,IAction et IModuleGetter...mais là ça va.
 
 ==Gabriel Therrien==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
