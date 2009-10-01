@@ -63,6 +63,14 @@ public class TestEntity implements Ormizable
 	    {
 		setName((String) parameters.get(key));
 	    }
+	    else if (key.toString().equals("age"))
+	    {
+		setAge((String) parameters.get(key));
+	    }
+	    else if (key.toString().equals("color"))
+	    {
+		setColor((String) parameters.get(key));
+	    }
 
 	}
 
