@@ -28,6 +28,7 @@ public class MainExecuteClass
 	{
 	    // Orm.insert(new TestEntity());
 	    Orm.select(new TestEntity(), searchCriterias);
+	    // Orm.delete(new TestEntity(), searchCriterias);
 	} catch (OrmException e)
 	{
 	    // TODO Auto-generated catch block

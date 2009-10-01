@@ -83,16 +83,6 @@ public class SgbdSqlite implements Sgbdable
 		// TODO: Remove the next line when properly debugged
 		System.out.println("Executed the select statement");
 
-		// TODO: Remove the next lines when properly debugged
-		while (rs.next())
-		{
-		    System.out.println("name = " + rs.getString("name"));
-		    System.out.println("age = " + rs.getString("age"));
-		    System.out.println("color = " + rs.getString("color"));
-		}
-
-		rs.close();
-
 		return rs;
 	    }
 	    else if (action.equals(OrmActions.INSERT))
@@ -107,10 +97,16 @@ public class SgbdSqlite implements Sgbdable
 	    else if (action.equals(OrmActions.UPDATE))
 	    {
 		// To be implemented
+		return null;
 	    }
 	    else if (action.equals(OrmActions.DELETE))
 	    {
-		// To be implemented
+		stat.execute(request);
+
+		// TODO: Remove the next line when properly debugged
+		System.out.println("Executed the delete statement");
+
+		return null;
 	    }
 	} catch (SQLException e)
 	{
@@ -119,7 +115,6 @@ public class SgbdSqlite implements Sgbdable
 
 	disconnectFromDb();
 
-	// TODO Auto-generated method stub
 	return null;
     }
 }
