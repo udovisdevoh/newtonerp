@@ -3,6 +3,7 @@ package newtonERP.orm.sgbd;
 import java.sql.ResultSet;
 
 import newtonERP.orm.OrmActions;
+import newtonERP.orm.exceptions.OrmException;
 
 /**
  * 
@@ -21,6 +22,22 @@ public interface Sgbdable
      * @param request l'action a effectue
      * @param action the OrmActions that will be done
      * @return le resultat sous forme de strings
+     * @throws OrmException an exception that can occur in the orm
      */
-    public ResultSet Execute(String request, OrmActions action);
+    public ResultSet execute(String request, OrmActions action)
+	    throws OrmException;
+
+    /**
+     * Method used to initialize the connection to the databse
+     * 
+     * @throws OrmException an exception that can occur in the orm
+     */
+    public void initializeConnection() throws OrmException;
+
+    /**
+     * Method used to disconnect from the database
+     * 
+     * @throws OrmException an exception that can occur in the orm
+     */
+    public void disconnectFromDb() throws OrmException;
 }

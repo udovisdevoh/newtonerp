@@ -9,5 +9,12 @@ package newtonERP.orm.exceptions;
  */
 public class OrmFieldNotFoundException extends OrmException
 {
+    /**
+     * @param message the message of the exception
+     */
+    public OrmFieldNotFoundException(String message)
+    {
+	super(message);
+    }
 
 }
