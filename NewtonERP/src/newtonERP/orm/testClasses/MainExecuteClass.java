@@ -2,6 +2,7 @@ package newtonERP.orm.testClasses;
 
 import java.util.Vector;
 
+import modules.testModule.TestEntity;
 import newtonERP.orm.Orm;
 import newtonERP.orm.exceptions.OrmException;
 

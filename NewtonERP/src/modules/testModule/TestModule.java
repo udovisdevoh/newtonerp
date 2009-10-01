@@ -1,8 +1,6 @@
-package newtonERP.module;
+package modules.testModule;
 
-import newtonERP.module.actions.TestAction;
-import newtonERP.module.moduleGetters.TestModuleGetter;
-import newtonERP.orm.testClasses.TestEntity;
+import newtonERP.module.Module;
 
 /**
  * @author r3lemaypa

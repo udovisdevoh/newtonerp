@@ -1,9 +1,9 @@
-package newtonERP.module.moduleGetters;
+package modules.testModule;
 
 import java.util.Hashtable;
 
 import newtonERP.module.actions.ActionableEntity;
-import newtonERP.module.actions.TestActionableEntity;
+import newtonERP.module.moduleGetters.IModuleGetter;
 
 public class TestModuleGetter implements IModuleGetter
 {
