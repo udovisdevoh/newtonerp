@@ -45,7 +45,7 @@ public class Orm
 	// TODO: Remove the next line when it will be properly debugged
 	System.out.println("SQL query produced : " + sqlQuery);
 
-	ResultSet rs = sgbd.Execute(sqlQuery, OrmActions.SEARCH);
+	ResultSet rs = sgbd.execute(sqlQuery, OrmActions.SEARCH);
 
 	returnedEntities = EntityCreator.createEntitiesFromResultSet(rs,
 		searchEntity);
@@ -106,7 +106,7 @@ public class Orm
 	// TODO: Remove the next line once this will be properly debugged
 	System.out.println("SQL query produced : " + sqlQuery);
 
-	sgbd.Execute(sqlQuery, OrmActions.INSERT);
+	sgbd.execute(sqlQuery, OrmActions.INSERT);
     }
 
     /**
@@ -126,7 +126,7 @@ public class Orm
 	// TODO: Remove the next line once this will be properly debugged
 	System.out.println("Sql query produced : " + sqlQuery);
 
-	sgbd.Execute(sqlQuery, OrmActions.DELETE);
+	sgbd.execute(sqlQuery, OrmActions.DELETE);
     }
 
     /**
@@ -151,6 +151,8 @@ public class Orm
 
 	// TODO: Remove this once it will be properly debugged
 	System.out.println("Sql query produced : " + sqlQuery);
+
+	sgbd.execute(sqlQuery, OrmActions.UPDATE);
     }
 
     /**
@@ -222,5 +224,25 @@ public class Orm
 	}
 
 	return sqlQuery;
+    }
+
+    /**
+     * Used to initialize the connection
+     * 
+     * @throws OrmException an exception that can occur in the orm
+     */
+    public static void initializeConnectionToDb() throws OrmException
+    {
+	sgbd.initializeConnection();
+    }
+
+    /**
+     * Used to disconnect from the db
+     * 
+     * @throws OrmException an exception that can occur in the orm
+     */
+    public static void disconnectFromDb() throws OrmException
+    {
+	sgbd.disconnectFromDb();
     }
 }
