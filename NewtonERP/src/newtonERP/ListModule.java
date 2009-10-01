@@ -3,6 +3,7 @@
  */
 package newtonERP;
 
+import java.io.File;
 import java.util.Hashtable;
 
 import newtonERP.module.Module;
@@ -64,5 +65,16 @@ public class ListModule
     {
 	System.out.println("initmodu");
 	// TODO: trouve la liste des dossier
+	File folder = new File("modules");
+	File[] listOfFiles = folder.listFiles();
+
+	for (int i = 0; i < listOfFiles.length; i++)
+	{
+	    if (listOfFiles[i].isDirectory())
+	    {
+		System.out.println("Directory " + listOfFiles[i].getName());
+	    }
+	}
+
     }
 }
