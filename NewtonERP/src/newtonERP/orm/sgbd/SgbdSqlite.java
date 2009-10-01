@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import newtonERP.logging.Logger;
-import newtonERP.logging.Logger.State;
 import newtonERP.orm.OrmActions;
 import newtonERP.orm.exceptions.OrmException;
 import newtonERP.orm.exceptions.OrmSqlException;
