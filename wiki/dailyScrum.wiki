@@ -151,7 +151,7 @@ voici le model de scrum a copier en entier si vous êtes le premier
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
   * Implémentation fonctionelle de Module abstrait, module test, Interface IModuleGetter et IAction
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
-  * Implémentation fonctionelle deMainViewer, viewer test et vieable
+  * Implémentation fonctionelle de MainViewer, viewer test et vieable
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
   * Je dois expliquer aux autres membres le fonctionnement des modules concrets.
 
