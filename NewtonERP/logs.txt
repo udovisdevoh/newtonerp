@@ -97,3 +97,9 @@
 [INFO 17:52:04 2009.10.01] Connexion has been succesfully initialized
 [INFO 17:52:04 2009.10.01] Attempting to close the connexion to db
 [INFO 17:52:04 2009.10.01] Connexion has been succesfully closed
+[INFO 19:44:52 2009.10.01] Initialisation of connection to db
+[INFO 19:44:52 2009.10.01] Connexion has been succesfully initialized
+[INFO 19:50:13 2009.10.01] Initialisation of connection to db
+[INFO 19:50:13 2009.10.01] Connexion has been succesfully initialized
+[INFO 19:52:20 2009.10.01] Initialisation of connection to db
+[INFO 19:52:20 2009.10.01] Connexion has been succesfully initialized

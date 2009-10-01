@@ -3,6 +3,7 @@ package newtonERP;
 import newtonERP.orm.Orm;
 import newtonERP.orm.exceptions.OrmException;
 import newtonERP.serveur.Servlet;
+import newtonERP.logging.*;
 
 /**
  * @author JoCloutier
@@ -10,8 +11,6 @@ import newtonERP.serveur.Servlet;
  */
 public class Starter
 {
-    private static Orm orm;
-
     /**
      * lance l'aplication et effectue toute les action d'initialisation
      * 
@@ -25,11 +24,9 @@ public class Starter
 	try
 	{
 	    Orm.initializeConnectionToDb();
-	    Orm.disconnectFromDb();
 	} catch (OrmException e)
 	{
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
+	    Logger.log(e.getMessage(), Logger.State.ERROR);
 	}
 
     }
