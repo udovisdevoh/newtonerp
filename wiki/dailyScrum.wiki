@@ -110,11 +110,11 @@ voici le model de scrum a copier en entier si vous êtes le premier
 
 ==Pascal Lemay==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
-  * ...livré...
+  * Poursuite du travail sur la classe abstraite Module (méthode doAction) + interfaces:, IAction, IActionAble en pair programming avec Guillaume
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
-  * ...à livré...
+  * Création de:IModuleGetter, TestModule, MainViewer, Viewable et TestViewer
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
-  * ...problème, besoin d'aide, qui aidera...
+  * un peu de confusion sur le fonctionnement(interactions)de:Module,IAction et IModuleGetter
 
 ==Gabriel Therrien==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
