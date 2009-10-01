@@ -1,13 +1,11 @@
 package newtonERP.orm;
 
-import java.lang.reflect.Field;
 import java.sql.ResultSet;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Vector;
 
 import newtonERP.orm.exceptions.OrmException;
-import newtonERP.orm.exceptions.OrmFieldNotFoundException;
 import newtonERP.orm.sgbd.SgbdSqlite;
 import newtonERP.orm.sgbd.Sgbdable;
 
@@ -18,11 +16,12 @@ import newtonERP.orm.sgbd.Sgbdable;
  *         Basic class for the orm. It is used to put the objects in the databse
  *         using SqLite3 and its java binding. The orm will receive an entity
  *         from which the orm will perform various tasks such as generating the
- *         query. Then it's gonna send the query to the SgbdSqlite class to
- *         execute it.
+ *         query and executing it obviously. Then it's gonna send the query to
+ *         the SgbdSqlite class to execute it.
  */
 public class Orm
 {
+    // Sgbd instance for sqlite
     private static Sgbdable sgbd = new SgbdSqlite();
 
     /**
@@ -39,49 +38,27 @@ public class Orm
 	    Vector<String> searchCriteriasParam) throws OrmException
     {
 	Vector<Ormizable> returnedEntities = new Vector<Ormizable>();
-	String sqlQuery = "SELECT * FROM " + searchEntity.getTableName()
-		+ " WHERE ";
+	String sqlQuery = "SELECT * FROM " + searchEntity.getTableName();
 
 	sqlQuery = buildWhereClauseForQuery(sqlQuery, searchCriteriasParam);
 
-	ResultSet rs = sgbd.Execute(sqlQuery, OrmActions.SEARCH);
+	// TODO: Remove the next line when it will be properly debugged
 	System.out.println("SQL query produced : " + sqlQuery);
 
-	// Now we will iterate through the result set to create the entities
-	try
-	{
-	    // Fort each row in my result set
-	    while (rs.next())
-	    {
-		// Here we initialize our instance of the ormizable entity. Our
-		// Fields array and our parameters hashtable
-		Ormizable entity = searchEntity.getClass().newInstance();
-		Field[] fields = entity.getClass().getFields();
-		Hashtable<String, Object> parameters = new Hashtable<String, Object>();
+	ResultSet rs = sgbd.Execute(sqlQuery, OrmActions.SEARCH);
 
-		// we add each column to the hashtable plus it's value
-		for (int i = 0; i < fields.length; i++)
-		    parameters.put(fields[i].getName(), rs.getObject(i));
+	returnedEntities = EntityCreator.createEntitiesFromResultSet(rs,
+		searchEntity);
 
-		// We format the data into the entities
-		entity.setOrmizableData(parameters);
-
-		// We add the entities to our vector of created entities
-		returnedEntities.add(entity);
-	    }
-	} catch (Exception e)
-	{
-	    e.printStackTrace();
-	}
-
-	// We print out the entities to be sur we have the good result
+	// TODO: Remove the next line when it will be properly debugged
 	printEntitiesForTest(returnedEntities);
 
 	return returnedEntities;
     }
 
     /**
-     * Method used to add an entity in the databse
+     * Method used to insert an entity in the databse based into the entity
+     * passed in parameter
      * 
      * @param newEntity the entity to be inserted
      * @throws OrmException an exception that can occur into the orm
@@ -90,8 +67,7 @@ public class Orm
     public static void insert(Ormizable newEntity) throws OrmException
     {
 	Hashtable<String, String> data = newEntity.getOrmizableData();
-	String sqlQuery = "";
-	sqlQuery += "INSERT INTO " + newEntity.getTableName() + " (";
+	String sqlQuery = "INSERT INTO " + newEntity.getTableName() + " (";
 
 	// We now iterate through the key set so we can add the fields to the
 	// query
@@ -101,6 +77,8 @@ public class Orm
 	    // Retrieve key
 	    Object key = keySetIterator.next();
 
+	    // If it's the end or not we add the key to the query with the right
+	    // string ("," or not)
 	    if (!keySetIterator.hasNext())
 		sqlQuery += "'" + key.toString() + "') ";
 	    else
@@ -114,18 +92,21 @@ public class Orm
 	Iterator valueIterator = data.values().iterator();
 	while (valueIterator.hasNext())
 	{
+	    // Retrieve value
 	    Object value = valueIterator.next();
 
+	    // If it's the end or not we add the key to the query with the right
+	    // string ("," or not)
 	    if (!valueIterator.hasNext())
 		sqlQuery += "'" + value.toString() + "') ";
 	    else
 		sqlQuery += "'" + value.toString() + "', ";
 	}
 
-	// We execute the query and print out the sql query produced to see we
-	// have no errors
-	sgbd.Execute(sqlQuery, OrmActions.INSERT);
+	// TODO: Remove the next line once this will be properly debugged
 	System.out.println("SQL query produced : " + sqlQuery);
+
+	sgbd.Execute(sqlQuery, OrmActions.INSERT);
     }
 
     /**
@@ -138,13 +119,14 @@ public class Orm
     public static void delete(Ormizable searchEntity,
 	    Vector<String> searchCriterias) throws OrmException
     {
-	String sqlQuery = "DELETE FROM " + searchEntity.getTableName()
-		+ " WHERE ";
+	String sqlQuery = "DELETE FROM " + searchEntity.getTableName();
 
 	sqlQuery = buildWhereClauseForQuery(sqlQuery, searchCriterias);
 
-	sgbd.Execute(sqlQuery, OrmActions.DELETE);
+	// TODO: Remove the next line once this will be properly debugged
 	System.out.println("Sql query produced : " + sqlQuery);
+
+	sgbd.Execute(sqlQuery, OrmActions.DELETE);
     }
 
     /**
@@ -160,10 +142,15 @@ public class Orm
 	    Ormizable entityContainingChanges, Vector<String> searchCriterias)
 	    throws OrmException
     {
-	// To implementation is to be finished
-	String sqlQuery = "UPDATE";
+	String sqlQuery = "UPDATE " + searchEntity.getTableName() + " SET ";
+	Hashtable<String, String> data = entityContainingChanges
+		.getOrmizableData();
 
+	sqlQuery = buildSetClauseForQuery(data, sqlQuery);
 	sqlQuery = buildWhereClauseForQuery(sqlQuery, searchCriterias);
+
+	// TODO: Remove this once it will be properly debugged
+	System.out.println("Sql query produced : " + sqlQuery);
     }
 
     /**
@@ -172,28 +159,19 @@ public class Orm
      * 
      * @param entitiesParam the entities that will be printed out
      */
-    public static void printEntitiesForTest(Vector<Ormizable> entitiesParam)
+    private static void printEntitiesForTest(
+	    Vector<Ormizable> entitiesToBePrinted) throws OrmException
     {
-	System.out.println("Entered in print method");
-
-	Vector<Ormizable> entities = entitiesParam;
-
-	for (Ormizable entity : entities)
+	// For every entity into our entities to be printed
+	for (Ormizable entity : entitiesToBePrinted)
 	{
-	    try
-	    {
-		Hashtable<String, String> data = entity.getOrmizableData();
+	    Hashtable<String, String> data = entity.getOrmizableData();
 
-		for (Object key : data.keySet())
-		{
-		    System.out.println(key.toString() + " : " + data.get(key));
-		}
-	    } catch (OrmFieldNotFoundException e)
+	    // For each key into our keySet we print those values
+	    for (Object key : data.keySet())
 	    {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
+		System.out.println(key.toString() + " : " + data.get(key));
 	    }
-
 	}
     }
 
@@ -201,15 +179,47 @@ public class Orm
      * Method used to build the where clause for the delete, select and update
      * methods
      * 
-     * @param sqlQuery the non-finiched sqlQuery that has been produced
+     * @param sqlQuery the non-finished sqlQuery that has been produced
      * @param searchCriterias the parameters of the where clause
      * @return sqlQuery
      */
     private static String buildWhereClauseForQuery(String sqlQuery,
 	    Vector<String> searchCriterias)
     {
+	sqlQuery += " WHERE ";
+
 	for (String parameter : searchCriterias)
 	    sqlQuery += parameter;
+
+	return sqlQuery;
+    }
+
+    /**
+     * Method used internally by the update method to build the set statement
+     * 
+     * @param data
+     * @param sqlQuery
+     * @return the sqlQuery with the set statement
+     */
+    @SuppressWarnings("unchecked")
+    private static String buildSetClauseForQuery(
+	    Hashtable<String, String> data, String sqlQuery)
+    {
+	// We iterate through the entity containing changes to build the SET
+	// statement
+	Iterator keySetIterator = data.keySet().iterator();
+	while (keySetIterator.hasNext())
+	{
+	    // Retrieve key
+	    Object key = keySetIterator.next();
+
+	    // If it's the end or not we add the key to the query with the right
+	    // string ("," or not)
+	    if (keySetIterator.hasNext())
+		sqlQuery += key.toString() + "='" + data.get(key) + "', ";
+	    else
+		sqlQuery += key.toString() + "='" + data.get(key) + "'";
+	}
 
 	return sqlQuery;
     }

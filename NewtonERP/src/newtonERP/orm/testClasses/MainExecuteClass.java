@@ -14,7 +14,7 @@ import newtonERP.orm.exceptions.OrmException;
 public class MainExecuteClass
 {
     /**
-     * @param args
+     * @param args the arguments
      */
     public static void main(String[] args)
     {
@@ -29,6 +29,8 @@ public class MainExecuteClass
 	    // Orm.insert(new TestEntity());
 	    Orm.select(new TestEntity(), searchCriterias);
 	    // Orm.delete(new TestEntity(), searchCriterias);
+	    // Orm.update(new TestEntity(), new TestEntityModified(),
+	    // searchCriterias);
 	} catch (OrmException e)
 	{
 	    // TODO Auto-generated catch block

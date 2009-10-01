@@ -18,7 +18,8 @@ public interface Sgbdable
      * Method that executes the sql query passed in paramter plus de action from
      * the OrmAction
      * 
-     * @param request, l'action a effectue
+     * @param request l'action a effectue
+     * @param action the OrmActions that will be done
      * @return le resultat sous forme de strings
      */
     public ResultSet Execute(String request, OrmActions action);
