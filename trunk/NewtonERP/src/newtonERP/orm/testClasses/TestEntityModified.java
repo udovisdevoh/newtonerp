@@ -7,17 +7,17 @@ import newtonERP.orm.exceptions.OrmFieldNotFoundException;
 
 /**
  * 
- * @author r3lacasgu, r3hallejo
+ * @author r3hallejo
  * 
- *         Test entity
+ *         Test entity modified
  */
-public class TestEntity implements Ormizable
+public class TestEntityModified implements Ormizable
 {
     @SuppressWarnings("unused")
     private int index = 0;
-    private String name = "marcel";
-    private String age = "17";
-    private String color = "bleu";
+    private String name = "Sylvain";
+    private String age = "23";
+    private String color = "vert lime";
 
     @Override
     public Hashtable<String, String> getOrmizableData()

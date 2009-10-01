@@ -12,6 +12,23 @@ package newtonERP.orm;
  */
 public enum OrmActions
 {
-    // Possible actions
-    SEARCH, UPDATE, DELETE, INSERT;
+    /**
+     * Represents a select statement in the Orm
+     */
+    SEARCH,
+
+    /**
+     * Represents an update statement in the orm
+     */
+    UPDATE,
+
+    /**
+     * Represents a delete statement in the orm
+     */
+    DELETE,
+
+    /**
+     * Represents an insert statement in the orm
+     */
+    INSERT;
 }

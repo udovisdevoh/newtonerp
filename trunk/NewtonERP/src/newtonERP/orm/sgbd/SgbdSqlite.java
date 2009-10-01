@@ -62,6 +62,8 @@ public class SgbdSqlite implements Sgbdable
 
     public ResultSet Execute(String request, OrmActions action)
     {
+	// TODO: Put the connection initialization once it will be plugged into
+	// the starter
 	initializeConnectionToDb();
 
 	try
@@ -96,7 +98,11 @@ public class SgbdSqlite implements Sgbdable
 	    }
 	    else if (action.equals(OrmActions.UPDATE))
 	    {
-		// To be implemented
+		stat.execute(request);
+
+		// TODO: Remove the next line when properly debugged
+		System.out.println("Executed the update statement");
+
 		return null;
 	    }
 	    else if (action.equals(OrmActions.DELETE))
@@ -113,6 +119,8 @@ public class SgbdSqlite implements Sgbdable
 	    Logger.log(e.getMessage(), State.ERROR);
 	}
 
+	// TODO: Put the connection close once it will be plugged into
+	// the starter
 	disconnectFromDb();
 
 	return null;
