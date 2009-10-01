@@ -30,6 +30,26 @@ public abstract class Module
 
     protected Hashtable<String, IModuleGetter> moduleGetterList;
 
+    protected final void setDefaultAction(String actionName)
+	    throws ModuleException
+    {
+	IAction defaultAction = getAction(actionName);
+	actionList.put("index", defaultAction);
+    }
+
+    protected final void setDefaultModuleGetter(String moduleGetterName)
+	    throws ModuleException
+    {
+	IModuleGetter defaultModuleGetter = moduleGetterList
+		.get(moduleGetterName);
+
+	if (defaultModuleGetter == null)
+	    throw new ModuleException("ModuleGetter " + moduleGetterName
+		    + " introuvable");
+
+	moduleGetterList.put("defaultModuleGetter", defaultModuleGetter);
+    }
+
     /**
      * @return the Vector entities
      */
