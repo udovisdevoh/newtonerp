@@ -14,8 +14,7 @@ import newtonERP.orm.Ormizable;
 import newtonERP.viewers.Viewable;
 
 /**
- * @author Pascal Lemay Gab: jar cf0 chemin:\lenomduJar.jar
- *         chemin:\dossierModule
+ * @author Pascal Lemay
  */
 public abstract class Module
 {
