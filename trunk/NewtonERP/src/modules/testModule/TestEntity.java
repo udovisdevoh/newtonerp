@@ -1,4 +1,4 @@
-package newtonERP.orm.testClasses;
+package modules.testModule;
 
 import java.util.Hashtable;
 
