@@ -32,12 +32,12 @@ public interface Sgbdable
      * 
      * @throws OrmException an exception that can occur in the orm
      */
-    public void initializeConnection() throws OrmException;
+    public void connect() throws OrmException;
 
     /**
      * Method used to disconnect from the database
      * 
      * @throws OrmException an exception that can occur in the orm
      */
-    public void disconnectFromDb() throws OrmException;
+    public void disconnect() throws OrmException;
 }

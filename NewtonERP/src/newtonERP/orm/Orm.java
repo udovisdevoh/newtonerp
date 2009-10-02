@@ -231,9 +231,9 @@ public class Orm
      * 
      * @throws OrmException an exception that can occur in the orm
      */
-    public static void initializeConnectionToDb() throws OrmException
+    public static void connect() throws OrmException
     {
-	sgbd.initializeConnection();
+	sgbd.connect();
     }
 
     /**
@@ -241,8 +241,8 @@ public class Orm
      * 
      * @throws OrmException an exception that can occur in the orm
      */
-    public static void disconnectFromDb() throws OrmException
+    public static void disconnect() throws OrmException
     {
-	sgbd.disconnectFromDb();
+	sgbd.disconnect();
     }
 }
