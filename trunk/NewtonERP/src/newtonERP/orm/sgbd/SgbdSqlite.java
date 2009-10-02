@@ -82,7 +82,7 @@ public class SgbdSqlite implements Sgbdable
     }
 
     @Override
-    public void connect() throws OrmException
+    public void disconnect() throws OrmException
     {
 	try
 	{
@@ -98,7 +98,7 @@ public class SgbdSqlite implements Sgbdable
     }
 
     @Override
-    public void disconnect() throws OrmException
+    public void connect() throws OrmException
     {
 	try
 	{

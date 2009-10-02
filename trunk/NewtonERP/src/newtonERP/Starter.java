@@ -20,8 +20,8 @@ public class Starter
     {
 	// For testing
 	// Vector<String> searchCriterias = new Vector<String>();
-	// searchCriterias.add("name like '%marcel%'");
-	// searchCriterias.add(" AND age like '%17%';");
+	// searchCriterias.add("name like '%Sylvain%'");
+	// searchCriterias.add(" AND age like '%23%';");
 
 	// ListModule.initAllModule();
 
@@ -30,7 +30,7 @@ public class Starter
 	    Orm.connect();
 
 	    // Orm.insert(new TestEntity());
-	    // Orm.select(new TestEntity(), searchCriterias);
+	    // Orm.select(new TestEntityModified(), searchCriterias);
 	    // Orm.delete(new TestEntity(), searchCriterias);
 	    // Orm.update(new TestEntity(), new TestEntityModified(),
 	    // searchCriterias);
