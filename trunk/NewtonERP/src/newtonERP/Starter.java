@@ -27,7 +27,7 @@ public class Starter
 
 	try
 	{
-	    Orm.initializeConnectionToDb();
+	    Orm.connect();
 
 	    // Orm.insert(new TestEntity());
 	    // Orm.select(new TestEntity(), searchCriterias);
