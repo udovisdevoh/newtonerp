@@ -23,6 +23,8 @@ public class EntityCreator
     private static Vector<Ormizable> returnedEntities = new Vector<Ormizable>();
 
     /**
+     * Default constructor used to create the entities from the result set
+     * 
      * @param rs the result set from which we will create our entities
      * @param searchEntity the entities from which we searched
      * @return a vector of ormizable entities

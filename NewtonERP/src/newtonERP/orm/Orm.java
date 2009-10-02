@@ -210,6 +210,7 @@ public class Orm
 	// We iterate through the entity containing changes to build the SET
 	// statement
 	Iterator keySetIterator = data.keySet().iterator();
+
 	while (keySetIterator.hasNext())
 	{
 	    // Retrieve key
