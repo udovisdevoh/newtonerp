@@ -158,11 +158,11 @@ voici le model de scrum a copier en entier si vous êtes le premier
 
 ==Pascal Lemay==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
-  * ...livré...
+  * collaboration avec guillaume pour l'implémentation de:Module abstrait,IModuleGetter et TestModule  
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
-  * ...à livré...
+  * Me donner un crash cours sur les formulaires HTML en prévision de la création du main viewer et des autres viewers.
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
-  * ...problème, besoin d'aide, qui aidera...
+  * pas de problèmes pour l'instant. 
 
 
 ==Gabriel Therrien==
