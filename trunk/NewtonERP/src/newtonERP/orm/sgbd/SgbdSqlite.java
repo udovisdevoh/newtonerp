@@ -26,10 +26,6 @@ public class SgbdSqlite implements Sgbdable
     public ResultSet execute(String request, OrmActions action)
 	    throws OrmException
     {
-	// TODO: Put the connection initialization once it will be plugged into
-	// the starter
-	initializeConnection();
-
 	try
 	{
 	    Statement stat = connexion.createStatement();
@@ -82,11 +78,6 @@ public class SgbdSqlite implements Sgbdable
 	{
 	    throw new OrmSqlException(e.getMessage());
 	}
-
-	// TODO: Put the connection close once it will be plugged into
-	// the starter
-	disconnectFromDb();
-
 	return null;
     }
 

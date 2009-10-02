@@ -1,9 +1,9 @@
 package newtonERP;
 
+import newtonERP.logging.Logger;
 import newtonERP.orm.Orm;
 import newtonERP.orm.exceptions.OrmException;
 import newtonERP.serveur.Servlet;
-import newtonERP.logging.*;
 
 /**
  * @author JoCloutier
@@ -18,16 +18,28 @@ public class Starter
      */
     public static void main(String[] args)
     {
+	// For testing
+	// Vector<String> searchCriterias = new Vector<String>();
+	// searchCriterias.add("name like '%marcel%'");
+	// searchCriterias.add(" AND age like '%17%';");
+
 	// ListModule.initAllModule();
-	new Servlet(47098);
 
 	try
 	{
 	    Orm.initializeConnectionToDb();
+
+	    // Orm.insert(new TestEntity());
+	    // Orm.select(new TestEntity(), searchCriterias);
+	    // Orm.delete(new TestEntity(), searchCriterias);
+	    // Orm.update(new TestEntity(), new TestEntityModified(),
+	    // searchCriterias);
 	} catch (OrmException e)
 	{
 	    Logger.log(e.getMessage(), Logger.State.ERROR);
 	}
+
+	new Servlet(47098);
 
     }
 }
