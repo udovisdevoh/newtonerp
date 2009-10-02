@@ -6,7 +6,7 @@ le temps donné est en heure pour une personne nous avons donc de disponible pou
 
 || *priorité* || *pokerScore* || *nom de la classe*  || *temp (h)* || *sprint (#)* || date Début || date fin *fonctionnel* ||  *Développeur(s)* || *Spécialiste(s) externe(s)* || *status* ||
 || 1 || 0 || starter || 1 || 1 || mer 23 || mer 23 || Jonathan H || joclou || ajout au besoin ||
-|| 2 || 0,5 || DataOrm || 8 || 1 || mer 23 || jeu 1 || Jonathan H Guillaume || Jo Cloutier || En cours ||
+|| 2 || 0,5 || DataOrm || 8 || 1 || mer 23 || jeu 1 || Jonathan H Guillaume || Jo Cloutier || En cours presque fonctionnel ||
 || 2 || 0,5 || Entity || 1 || 1 || mer 23 || jeu 1 || Jonathan H Guillaume  || Jo Cloutier ||  ||
 || 2 || 0,5 || OrmizableEntity || 2 || 1 || mer 23 || jeu 1 || Jonathan H Guillaume || Jo Cloutier ||  ||
 || 5 || 1 || Module || 3 || 1 || mer 23 || jeu 24 || Pascal joclou || Guillaume ||  ||
