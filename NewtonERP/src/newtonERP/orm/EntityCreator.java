@@ -2,11 +2,10 @@ package newtonERP.orm;
 
 import java.lang.reflect.Field;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Hashtable;
 import java.util.Vector;
 
-import newtonERP.logging.Logger;
+import newtonERP.orm.exceptions.OrmEntityCreationException;
 import newtonERP.orm.exceptions.OrmException;
 
 /**
@@ -56,18 +55,8 @@ public class EntityCreator
 		// We add the entities to our vector of created entities
 		returnedEntities.add(entity);
 	    }
-	} catch (SecurityException e)
-	{
-	    Logger.log(e.getMessage(), Logger.State.ERROR);
-	} catch (SQLException e)
-	{
-	    Logger.log(e.getMessage(), Logger.State.ERROR);
-	} catch (InstantiationException e)
-	{
-	    Logger.log(e.getMessage(), Logger.State.ERROR);
-	} catch (IllegalAccessException e)
-	{
-	    Logger.log(e.getMessage(), Logger.State.ERROR);
+	} catch (Exception e) {
+	    throw new OrmEntityCreationException(e.getMessage());
 	}
 
 	return returnedEntities;
