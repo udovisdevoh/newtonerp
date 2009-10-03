@@ -9,15 +9,16 @@ le temps donné est en heure pour une personne nous avons donc de disponible pou
 || 2 || 0,5 || DataOrm || 8 || 1 || mer 23 || jeu 1 || Jonathan H Guillaume || Jo Cloutier || Fonctionnel ||
 || 2 || 0,5 || Entity || 1 || 1 || mer 23 || jeu 1 || Jonathan H Guillaume  || Jo Cloutier || Fonctionnel ||
 || 2 || 0,5 || OrmizableEntity || 2 || 1 || mer 23 || jeu 1 || Jonathan H Guillaume || Jo Cloutier || Fonctionnel ||
-|| 5 || 1 || Module || 3 || 1 || mer 23 || jeu 24 || Pascal joclou || Guillaume ||  ||
-|| 6 || 1,5 || Action || 1 || 1 || mer 23 || jeu 24 || Pascal joclou || Guillaume ||  ||
-|| 6 || 1,5 || IModuleGetter || 1 || 1 || mer 23 || jeu 24 || Pascal joclou || Guillaume ||  ||
-|| 7 || 2 || commandRouter || 7 || 1 || mer 23 || mer 30 || joclou Gab || Jonathan H || en cour ||
+|| 5 || 1 || Module || 3 || 1 || mer 23 || jeu 24 || Pascal joclou || Guillaume || présumer fonctionnel ||
+|| 6 || 1,5 || Action || 1 || 1 || mer 23 || jeu 24 || Pascal joclou || Guillaume || présumer fonctionnel ||
+|| 6 || 1,5 || IModuleGetter || 1 || 1 || mer 23 || jeu 24 || Pascal joclou || Guillaume || présumer fonctionnel ||
+|| 7 || 2 || commandRouter || 7 || 1 || mer 23 || mer 30 || joclou Gab || Jonathan H || terminer ||
+|| 7 || 2 || ListModule || 7 || 1 || mer 23 || mer 30 || joclou Gab || Jonathan H || fonctionnel (ajouté le jar loader si possible un moment donnée) ||
 || 8 || 2,1 || servlet || 7 || 1 || mer 23 || mer 30 || joclou Gab || Jonathan H || fonctionnel, en attente du mainViewer||
 || 9 || 2,2 || IViewer || 4 || 1 || mer 30  || mer 7 || Pascal Guillaume || joclou ||  ||
 || 9 || 2,2 || viewable || 1 || 1 || mer 30  || mer 7 || Pascal Guillaume || joclou ||  ||
 || 9 || 2,2 || mainViewer || 6 || 1 || mer 30  || mer 7 || Pascal Guillaume || joclou ||  ||
-|| 13 || 3 || UserRightModule || 7 || 1 || jeu 1 || mer 7 || Gabriel joclou || Jonathan H ||  ||
+|| 13 || 3 || UserRightModule || 7 || 1 || jeu 1 || mer 7 || Gabriel joclou || Jonathan H || débuté ||
 || -- || -- || -- || 48 || 1 || mer 23 || jeu 8 ||  ||  ||  ||
 || 14 || 5 || Task || 17 || 2 || - || - || Guillaume Pascal || joclou Jonathan H ||  ||
 || 14 || 5 || AtomicSpecification || " || 2 || - || - || Guillaume Pascal || joclou Jonathan H ||  ||
