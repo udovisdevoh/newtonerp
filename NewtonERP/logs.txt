@@ -123,3 +123,30 @@
 [INFO 9:08:56 2009.10.02] Connexion has been succesfully initialized
 [INFO 20:01:04 2009.10.02] Initialisation of connection to db
 [INFO 20:01:04 2009.10.02] Connexion has been succesfully initialized
+[INFO 20:43:27 2009.10.02] Initialisation of connection to db
+[INFO 20:43:27 2009.10.02] Connexion has been succesfully initialized
+ERROR LORS DEE LAFFICHAGE DE LE PAGE HELLO PAR KOVALEV SOUS UBUNTU 9.04: 
+
+Initialisation of connection to db
+Connexion has been succesfully initialized
+2009-10-02 20:43:28.293::INFO:  Logging to STDERR via org.mortbay.log.StdErrLog
+2009-10-02 20:43:28.294::INFO:  jetty-6.1.21
+2009-10-02 20:43:33.498::INFO:  Started SocketConnector@0.0.0.0:47098
+java.lang.NullPointerException
+   at java.lang.Class.forName(libgcj.so.90)
+   at newtonERP.ListModule.getModule(ListModule.java:77)
+   at newtonERP.serveur.CommandRouteur.routeCommand(CommandRouteur.java:32)
+   at newtonERP.serveur.Servlet.urlToAction(Servlet.java:116)
+   at newtonERP.serveur.Servlet.handle(Servlet.java:53)
+   at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+   at org.mortbay.jetty.Server.handle(Server.java:326)
+   at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:536)
+   at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:915)
+   at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:539)
+   at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+   at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:405)
+   at org.mortbay.jetty.bio.SocketConnector$Connection.run(SocketConnector.java:228)
+   at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+
+[INFO 20:44:49 2009.10.02] Initialisation of connection to db
+[INFO 20:44:49 2009.10.02] Connexion has been succesfully initialized
