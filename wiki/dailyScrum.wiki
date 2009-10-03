@@ -1,4 +1,4 @@
-#labels Scrum
+#labels SCRUM
 <wiki:toc max_depth="1" />
 <wiki:comment>
 voici le model de scrum a copier en entier si vous êtes le premier 
