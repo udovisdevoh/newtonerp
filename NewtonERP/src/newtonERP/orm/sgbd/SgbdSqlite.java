@@ -30,14 +30,6 @@ public class SgbdSqlite implements Sgbdable
 	{
 	    Statement stat = connexion.createStatement();
 
-	    // TODO: Remove this once we will have our tables created
-	    // automatically by the orm
-	    // stat.execute("DROP TABLE IF EXISTS Employee");
-
-	    // TODO: Remove this once the table is automatically created
-	    // stat
-	    // .execute("CREATE TABLE Employee ( name VARCHAR(30), age VARCHAR(30), color VARCHAR(30))");
-
 	    if (action.equals(OrmActions.SEARCH))
 	    {
 		ResultSet rs = stat.executeQuery(request);

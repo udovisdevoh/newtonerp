@@ -21,7 +21,6 @@ import newtonERP.orm.sgbd.Sgbdable;
  */
 public class Orm
 {
-    // Sgbd instance for sqlite
     private static Sgbdable sgbd = new SgbdSqlite();
 
     /**
@@ -85,7 +84,6 @@ public class Orm
 		sqlQuery += "'" + key.toString() + "', ";
 	}
 
-	// We add the VALUES keyword for the query
 	sqlQuery += "VALUES (";
 
 	// Now we add the values to the query
@@ -183,13 +181,14 @@ public class Orm
      * 
      * @param sqlQuery the non-finished sqlQuery that has been produced
      * @param searchCriterias the parameters of the where clause
-     * @return sqlQuery
+     * @return sqlQuery the sqlQuery with the where statement
      */
     private static String buildWhereClauseForQuery(String sqlQuery,
 	    Vector<String> searchCriterias)
     {
 	sqlQuery += " WHERE ";
 
+	// We add each string to the sqlQuery
 	for (String parameter : searchCriterias)
 	    sqlQuery += parameter;
 
@@ -201,7 +200,7 @@ public class Orm
      * 
      * @param data
      * @param sqlQuery
-     * @return the sqlQuery with the set statement
+     * @return sqlQuery the sqlQuery with the set statement
      */
     @SuppressWarnings("unchecked")
     private static String buildSetClauseForQuery(

@@ -18,7 +18,6 @@ import newtonERP.orm.exceptions.OrmException;
  */
 public class EntityCreator
 {
-    // The entities that are gonna be returned
     private static Vector<Ormizable> returnedEntities = new Vector<Ormizable>();
 
     /**
