@@ -217,7 +217,7 @@ voici le model de scrum a copier en entier si vous êtes le premier
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
   * ...à livré...
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
-  * ...problème, besoin d'aide, qui aidera...
+  * problème pour la primary key parce qu'il faut que je me connecte mais je ne peux pas me connecter a partir du UserRightModule
 
 ==Jonatan Cloutier==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
