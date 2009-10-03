@@ -2,7 +2,7 @@ package newtonERP.orm;
 
 import java.util.Hashtable;
 
-import newtonERP.orm.exceptions.OrmFieldNotFoundException;
+import newtonERP.orm.exceptions.OrmException;
 
 /**
  * 
@@ -18,10 +18,10 @@ public interface Ormizable
      * Method used to format the entitie so the orm can save them
      * 
      * @return an Hastable of data
-     * @throws OrmFieldNotFoundException
+     * @throws OrmException
      */
     public Hashtable<String, String> getOrmizableData()
-	    throws OrmFieldNotFoundException;
+	    throws OrmException;
 
     /**
      * Method used to return a table name
