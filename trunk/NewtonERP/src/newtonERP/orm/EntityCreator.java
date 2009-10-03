@@ -33,7 +33,7 @@ public class EntityCreator
     {
 	// Now we will iterate through the result set to create the entities
 	// Here we must handle the sql exceptions that throws the result set
-	// Fort each row in my result set
+	// For each row in my result set
 	try
 	{
 	    while (rs.next())
