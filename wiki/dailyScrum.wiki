@@ -179,8 +179,51 @@ voici le model de scrum a copier en entier si vous êtes le premier
   * réglé plusieurs problème de communication
   * début la conception de unitTest
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
-  * terminé la liste de fichier avec Gabriel
+  * terminé la liste de module avec Gabriel
   * faire l'analise du module userRightModule avec Gabriel
   * complété le unittestage du handled de servlet
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
   * 
+
+=07/10/2009=
+
+==Jonathan Hallee==
+ ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
+  * ...livré...
+ ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
+  * ...à livré...
+ ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
+  * ...problème, besoin d'aide, qui aidera...
+
+==Guillaume Lacasse==
+ ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
+  * ...livré...
+ ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
+  * ...à livré...
+ ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
+  * ...problème, besoin d'aide, qui aidera...
+
+==Pascal Lemay==
+ ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
+  * ...livré...
+ ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
+  * ...à livré...
+ ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
+  * ...problème, besoin d'aide, qui aidera...
+
+==Gabriel Therrien==
+ ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
+  * ...livré...
+ ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
+  * ...à livré...
+ ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
+  * ...problème, besoin d'aide, qui aidera...
+
+==Jonatan Cloutier==
+ ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
+  * list module fonctionne
+  * handled et listModule unitesté
+ ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
+  * ...à livré...
+ ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
+  * le jar loader, feature abandonné pour le moment
