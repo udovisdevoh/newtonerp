@@ -3,7 +3,7 @@ package modules.userRightModule.entityDefinitions;
 import java.util.Hashtable;
 
 import newtonERP.orm.Ormizable;
-import newtonERP.orm.exceptions.OrmFieldNotFoundException;
+import newtonERP.orm.exceptions.OrmException;
 import newtonERP.viewers.ProfileViewable;
 
 public class UserType implements Ormizable, ProfileViewable
@@ -11,7 +11,7 @@ public class UserType implements Ormizable, ProfileViewable
 
     @Override
     public Hashtable<String, String> getOrmizableData()
-	    throws OrmFieldNotFoundException
+	    throws OrmException
     {
 	// TODO Auto-generated method stub
 	return null;
