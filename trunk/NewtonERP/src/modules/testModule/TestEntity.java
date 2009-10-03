@@ -3,7 +3,7 @@ package modules.testModule;
 import java.util.Hashtable;
 
 import newtonERP.orm.Ormizable;
-import newtonERP.orm.exceptions.OrmFieldNotFoundException;
+import newtonERP.orm.exceptions.OrmException;
 
 /**
  * 
@@ -21,7 +21,7 @@ public class TestEntity implements Ormizable
 
     @Override
     public Hashtable<String, String> getOrmizableData()
-	    throws OrmFieldNotFoundException
+	    throws OrmException
     {
 	Hashtable<String, String> ormizableData = new Hashtable<String, String>();
 
