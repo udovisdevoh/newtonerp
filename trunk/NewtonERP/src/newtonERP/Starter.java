@@ -23,7 +23,7 @@ public class Starter
 	// searchCriterias.add("name like '%Sylvain%'");
 	// searchCriterias.add(" AND age like '%23%';");
 
-	// ListModule.initAllModule();
+	ListModule.initAllModule();
 
 	try
 	{

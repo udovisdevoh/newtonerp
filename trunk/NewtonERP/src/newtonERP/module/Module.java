@@ -21,11 +21,11 @@ public abstract class Module
     // TODO: changer object par Orm des que possible
     protected static Orm orm;// reference a l orm
 
-    // Sert � conserver les definitions de tables
+    // Sert a conserver les definitions de tables
     // Genre d'exemple d'une table.
     protected Vector<Ormizable> definitionEntityList;
 
-    // Sert � stocker les actions pouvant �tre appel�es
+    // Sert a stocker les actions pouvant etre appelees
     protected Hashtable<String, IAction> actionList;
 
     protected Hashtable<String, IModuleGetter> moduleGetterList;
@@ -48,6 +48,16 @@ public abstract class Module
 		    + " introuvable");
 
 	moduleGetterList.put("defaultModuleGetter", defaultModuleGetter);
+    }
+
+    /**
+     * 
+     */
+    public Module()
+    {
+	definitionEntityList = new Vector<Ormizable>();
+	actionList = new Hashtable<String, IAction>();
+	moduleGetterList = new Hashtable<String, IModuleGetter>();
     }
 
     /**

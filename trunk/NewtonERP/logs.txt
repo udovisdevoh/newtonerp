@@ -121,3 +121,5 @@
 [INFO 9:08:09 2009.10.02] Connexion has been succesfully initialized
 [INFO 9:08:56 2009.10.02] Initialisation of connection to db
 [INFO 9:08:56 2009.10.02] Connexion has been succesfully initialized
+[INFO 20:01:04 2009.10.02] Initialisation of connection to db
+[INFO 20:01:04 2009.10.02] Connexion has been succesfully initialized

@@ -4,6 +4,7 @@ import java.util.Hashtable;
 
 import newtonERP.ListModule;
 import newtonERP.module.Module;
+import newtonERP.viewers.Viewable;
 
 /**
  * @author Gabriel Therrien JoCloutier
@@ -20,23 +21,21 @@ public class CommandRouteur
      * @param parameter parametre a passer a l'action
      * @return une entity viewable
      */
-    public Object routeCommand(String moduleName, String action,
+    public Viewable routeCommand(String moduleName, String action,
 	    String moduleGetter, Hashtable<String, String> parameter)
     {
 	// TODO: changer Object par viewable quand il va y en avoir
 	Module module;
-	System.out.println(moduleName);
-	System.out.println(action);
-	System.out.println(moduleGetter);
+	Viewable retView = null;
 	try
 	{
 	    module = ListModule.getModule(moduleName);
-	    module.doAction(action, moduleGetter, parameter);
+	    retView = module.doAction(action, moduleGetter, parameter);
 	} catch (Exception e)
 	{
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
-	return 0;
+	return retView;
     }
 }
