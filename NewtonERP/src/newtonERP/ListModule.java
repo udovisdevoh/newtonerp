@@ -22,17 +22,21 @@ import newtonERP.module.ModuleNotFoundException;
  */
 public class ListModule
 {
-    private static Hashtable<String, Module> allModules;
+    private static Hashtable<String, String> allModules = new Hashtable<String, String>();
 
     /**
      * ajoute un module a la liste
      * 
-     * @param module le module a ajoute
+     * @param moduleName le nom du module a ajoute
+     * 
      */
-    public static void addModule(Module module)
+    public static void addModule(String moduleName)
     {
-	String moduleName = module.getClass().getSimpleName();
-	allModules.put(moduleName, module);
+	String name = moduleName.substring(1);
+	String firstChar = moduleName.substring(0, 1);
+	allModules.put(firstChar.toUpperCase() + name, "modules."
+		+ firstChar.toLowerCase() + name + "."
+		+ firstChar.toUpperCase() + name);
     }
 
     /**
@@ -50,7 +54,7 @@ public class ListModule
      * 
      * @return liste de tout les modules
      */
-    public static Hashtable<String, Module> getAllModules()
+    public static Hashtable<String, String> getAllModules()
     {
 	return allModules;
     }
@@ -70,7 +74,7 @@ public class ListModule
 
 	try
 	{
-	    mod = Class.forName(moduleName).newInstance();
+	    mod = Class.forName(allModules.get(moduleName)).newInstance();
 	    if (!(mod instanceof Module))
 	    {
 		throw new ModuleNotFoundException(moduleName);
@@ -94,41 +98,20 @@ public class ListModule
 
     /**
      * initialise la liste de module
-     * 
-     * @return la liste des modules
      */
-    public static Hashtable<String, File> initAllModule()
+    public static void initAllModule()
     {
-	Hashtable<String, File> myModules = new Hashtable<String, File>();
-	File folder = new File("modules");
+	File folder = new File("src/modules");
 	File[] listOfFiles = folder.listFiles();
 
 	for (int i = 0; i < listOfFiles.length; i++)
 	{
-	    if (listOfFiles[i].getName().matches(".*\\.jar"))
+	    if (listOfFiles[i].isDirectory()
+		    && !listOfFiles[i].getName().equals(".svn"))
 	    {
-		myModules.put(listOfFiles[i].getName().split("\\.")[0],
-			listOfFiles[i].getAbsoluteFile());
+		addModule(listOfFiles[i].getName());
 	    }
 	}
-	return myModules;
-
     }
 
-    public static void main(String[] args)
-    {
-	System.out.println(ListModule.initAllModule());
-	try
-	{
-	    getModule("TestModule");
-	} catch (ModuleNotFoundException e)
-	{
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
-	} catch (ModuleException e)
-	{
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
-	}
-    }
 }
