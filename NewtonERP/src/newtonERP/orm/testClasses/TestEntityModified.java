@@ -41,13 +41,6 @@ public class TestEntityModified implements Ormizable
     }
 
     @Override
-    public int getPrimaryKeyValue()
-    {
-	// TODO Auto-generated method stub
-	return 0;
-    }
-
-    @Override
     public void setOrmizableData(Hashtable<String, Object> parameters)
     {
 	for (Object key : parameters.keySet())
