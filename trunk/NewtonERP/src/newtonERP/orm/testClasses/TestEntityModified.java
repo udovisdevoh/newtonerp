@@ -20,8 +20,7 @@ public class TestEntityModified implements Ormizable
     private String color = "vert lime";
 
     @Override
-    public Hashtable<String, String> getOrmizableData()
-	    throws OrmException
+    public Hashtable<String, String> getOrmizableData() throws OrmException
     {
 	Hashtable<String, String> ormizableData = new Hashtable<String, String>();
 
@@ -30,12 +29,6 @@ public class TestEntityModified implements Ormizable
 	ormizableData.put("color", color);
 
 	return ormizableData;
-    }
-
-    @Override
-    public String getTableName()
-    {
-	return "Employee";
     }
 
     @Override

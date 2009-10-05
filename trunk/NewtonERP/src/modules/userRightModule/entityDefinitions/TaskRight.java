@@ -9,8 +9,7 @@ public class TaskRight implements Ormizable
 {
 
     @Override
-    public Hashtable<String, String> getOrmizableData()
-	    throws OrmException
+    public Hashtable<String, String> getOrmizableData() throws OrmException
     {
 	// TODO Auto-generated method stub
 	return null;
@@ -25,13 +24,6 @@ public class TaskRight implements Ormizable
 
     @Override
     public String getSearchCriteria()
-    {
-	// TODO Auto-generated method stub
-	return null;
-    }
-
-    @Override
-    public String getTableName()
     {
 	// TODO Auto-generated method stub
 	return null;

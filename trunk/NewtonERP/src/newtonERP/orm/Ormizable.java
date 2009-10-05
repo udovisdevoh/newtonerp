@@ -23,13 +23,6 @@ public interface Ormizable
     public Hashtable<String, String> getOrmizableData() throws OrmException;
 
     /**
-     * Method used to return a table name
-     * 
-     * @return the table name
-     */
-    public String getTableName();
-
-    /**
      * Method used to return the primary key value of an Entity
      * 
      * @return the primary key value (an autoincrement value)

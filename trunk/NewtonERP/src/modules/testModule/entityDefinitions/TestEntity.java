@@ -33,12 +33,6 @@ public class TestEntity implements Ormizable, Viewable
     }
 
     @Override
-    public String getTableName()
-    {
-	return "Employee";
-    }
-
-    @Override
     public String getSearchCriteria()
     {
 	// Sera gnr par la vue selon la dfinition de l'entit du module
