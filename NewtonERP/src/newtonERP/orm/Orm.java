@@ -37,7 +37,8 @@ public class Orm
 	    Vector<String> searchCriteriasParam) throws OrmException
     {
 	Vector<Ormizable> returnedEntities = new Vector<Ormizable>();
-	String sqlQuery = "SELECT * FROM " + searchEntity.getTableName();
+	String sqlQuery = "SELECT * FROM "
+		+ searchEntity.getClass().getSimpleName();
 
 	sqlQuery = buildWhereClauseForQuery(sqlQuery, searchCriteriasParam);
 
@@ -66,7 +67,8 @@ public class Orm
     public static void insert(Ormizable newEntity) throws OrmException
     {
 	Hashtable<String, String> data = newEntity.getOrmizableData();
-	String sqlQuery = "INSERT INTO " + newEntity.getTableName() + " (";
+	String sqlQuery = "INSERT INTO " + newEntity.getClass().getSimpleName()
+		+ " (";
 
 	// We now iterate through the key set so we can add the fields to the
 	// query
@@ -117,7 +119,8 @@ public class Orm
     public static void delete(Ormizable searchEntity,
 	    Vector<String> searchCriterias) throws OrmException
     {
-	String sqlQuery = "DELETE FROM " + searchEntity.getTableName();
+	String sqlQuery = "DELETE FROM "
+		+ searchEntity.getClass().getSimpleName();
 
 	sqlQuery = buildWhereClauseForQuery(sqlQuery, searchCriterias);
 
@@ -140,7 +143,8 @@ public class Orm
 	    Ormizable entityContainingChanges, Vector<String> searchCriterias)
 	    throws OrmException
     {
-	String sqlQuery = "UPDATE " + searchEntity.getTableName() + " SET ";
+	String sqlQuery = "UPDATE " + searchEntity.getClass().getSimpleName()
+		+ " SET ";
 	Hashtable<String, String> data = entityContainingChanges
 		.getOrmizableData();
 
