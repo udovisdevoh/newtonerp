@@ -17,13 +17,6 @@ public class UserType implements Ormizable, ProfileViewable
     }
 
     @Override
-    public String getSearchCriteria()
-    {
-	// TODO Auto-generated method stub
-	return null;
-    }
-
-    @Override
     public void setOrmizableData(Hashtable<String, Object> parameters)
     {
 	// TODO Auto-generated method stub
