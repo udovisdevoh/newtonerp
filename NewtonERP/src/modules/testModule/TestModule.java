@@ -1,17 +1,30 @@
 package modules.testModule;
 
+import modules.testModule.actions.TestAction;
+import modules.testModule.entityDefinitions.TestEntity;
+import modules.testModule.moduleGetters.TestModuleGetter;
 import newtonERP.module.Module;
 
 /**
- * @author r3lemaypa
+ * @author r3lemaypa Guillaume cloutierJo
  * 
  */
 public class TestModule extends Module
 {
+    /**
+     * constructeur
+     */
     public TestModule()
     {
-	definitionEntityList.add(new TestEntity());
-	actionList.put("TestAction", new TestAction());
-	moduleGetterList.put("TestModuleGetter", new TestModuleGetter());
+	super();
+
+	addDefinitinEntity(new TestEntity());
+	// TODO: on doit revoir notre interface Ientity, elle est probablement
+	// néscéssaire
+	// addDefinitinEntity(new TestActionableEntity());
+
+	addAction(new TestAction(), true);
+
+	addModuleGetter(new TestModuleGetter(), true);
     }
 }

@@ -40,7 +40,7 @@ public class ListModuleTest extends TestCase
     public void testAddModule()
     {
 	ListModule.addModule("TestModule");
-	assertEquals("add TestModule", 1, ListModule.getAllModules().size());
+	assertEquals(1, ListModule.getAllModules().size());
     }
 
     /**
@@ -51,7 +51,7 @@ public class ListModuleTest extends TestCase
     {
 	ListModule.addModule("TestModule");
 	ListModule.removeModule("TestModule");
-	assertEquals("remove TestModule", 0, ListModule.getAllModules().size());
+	assertEquals(0, ListModule.getAllModules().size());
     }
 
     /**
@@ -59,7 +59,7 @@ public class ListModuleTest extends TestCase
      */
     public void testGetAllModules()
     {
-	assertNotNull("getallModule", ListModule.getAllModules());
+	assertNotNull(ListModule.getAllModules());
     }
 
     /**
@@ -70,8 +70,7 @@ public class ListModuleTest extends TestCase
 	ListModule.addModule("TestModule");
 	try
 	{
-	    assertTrue("get TestModule",
-		    ListModule.getModule("TestModule") instanceof TestModule);
+	    assertTrue(ListModule.getModule("TestModule") instanceof TestModule);
 	} catch (Exception e)
 	{
 	    e.printStackTrace();
@@ -86,7 +85,7 @@ public class ListModuleTest extends TestCase
     public void testInitAllModule()
     {
 	ListModule.initAllModule();
-	assertTrue("initallModule", ListModule.getAllModules().size() > 0);
+	assertTrue(ListModule.getAllModules().size() > 0);
     }
 
 }

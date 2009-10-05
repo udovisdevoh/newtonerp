@@ -31,23 +31,62 @@ public abstract class Module
     protected Hashtable<String, IModuleGetter> moduleGetterList;
 
     protected final void setDefaultAction(String actionName)
-	    throws ModuleException
     {
-	IAction defaultAction = getAction(actionName);
-	actionList.put("index", defaultAction);
+	IAction defaultAction;
+	try
+	{
+	    defaultAction = getAction(actionName);
+	    actionList.put("default", defaultAction);
+	} catch (ModuleException e)
+	{
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	}
     }
 
     protected final void setDefaultModuleGetter(String moduleGetterName)
-	    throws ModuleException
     {
-	IModuleGetter defaultModuleGetter = moduleGetterList
-		.get(moduleGetterName);
+	IModuleGetter defaultModuleGetter;
+	try
+	{
+	    defaultModuleGetter = getModuleGetter(moduleGetterName);
+	    moduleGetterList.put("default", defaultModuleGetter);
+	} catch (ModuleException e)
+	{
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	}
+    }
 
-	if (defaultModuleGetter == null)
-	    throw new ModuleException("ModuleGetter " + moduleGetterName
-		    + " introuvable");
+    protected final void addAction(IAction action)
+    {
+	actionList.put(action.getClass().getSimpleName(), action);
+    }
 
-	moduleGetterList.put("defaultModuleGetter", defaultModuleGetter);
+    protected final void addAction(IAction action, boolean isDefault)
+    {
+	addAction(action);
+	if (isDefault)
+	    setDefaultAction(action.getClass().getSimpleName());
+    }
+
+    protected final void addModuleGetter(IModuleGetter moduleGetter)
+    {
+	moduleGetterList.put(moduleGetter.getClass().getSimpleName(),
+		moduleGetter);
+    }
+
+    protected final void addModuleGetter(IModuleGetter moduleGetter,
+	    boolean isDefault)
+    {
+	addModuleGetter(moduleGetter);
+	if (isDefault)
+	    setDefaultModuleGetter(moduleGetter.getClass().getSimpleName());
+    }
+
+    protected final void addDefinitinEntity(Ormizable definitinEntity)
+    {
+	definitionEntityList.add(definitinEntity);
     }
 
     /**
@@ -77,8 +116,34 @@ public abstract class Module
     }
 
     /**
-     * @paramactionName=nom de l action
+     * @param moduleGetterName nom du moduleGetter
+     * @return moduleGetter de ce nom contenue dans le HashTable
+     * @throws ModuleException si le moduleGetter n'existe pas
+     */
+    public final IModuleGetter getModuleGetter(String moduleGetterName)
+	    throws ModuleException
+    {
+	IModuleGetter moduleGetter = null;
+	try
+	{
+	    moduleGetter = moduleGetterList.get(moduleGetterName);
+	} catch (NullPointerException e)
+	{
+	    throw new ModuleException("ModuleGetter: " + moduleGetterName
+		    + " introuvable");
+	}
+
+	if (moduleGetter == null)
+	    throw new ModuleException("ModuleGetter: " + moduleGetterName
+		    + " introuvable");
+
+	return moduleGetter;
+    }
+
+    /**
+     * @param actionName nom de l action
      * @return action de ce nom contenue dans le HashTable
+     * @throws ModuleException si l'action n'Existe pas
      */
     public final IAction getAction(String actionName) throws ModuleException
     {
@@ -98,14 +163,14 @@ public abstract class Module
     }
 
     /**
-     * @param actionName=Nom de l'action que l'utilisateur veut faire
-     * @param moduleGetterName=Nom du module getter permetant d'obtenir l'entité
+     * @param actionName Nom de l'action que l'utilisateur veut faire
+     * @param moduleGetterName Nom du module getter permetant d'obtenir l'entité
      *            produite par le module (cette entité servira de paramêtre à
      *            l'action
-     * @param parameters=Paramètres de l'action devant être accomplie, exemple,
+     * @param parameters Paramètres de l'action devant être accomplie, exemple,
      *            contenu d'un email
      * @return Entité viewable pour l'output du résultat
-     * @throws ModuleException
+     * @throws ModuleException voir le message...
      */
     public final Viewable doAction(String actionName, String moduleGetterName,
 	    Hashtable<String, String> parameters) throws ModuleException
