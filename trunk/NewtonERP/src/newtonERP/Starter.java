@@ -23,22 +23,12 @@ public class Starter
      */
     public static void main(String[] args) throws Exception
     {
-	// For testing
-	// Vector<String> searchCriterias = new Vector<String>();
-	// searchCriterias.add("name like '%Sylvain%'");
-	// searchCriterias.add(" AND age like '%23%';");
-
 	ListModule.initAllModule();
 
 	try
 	{
+	    // connecte l'orm a la db
 	    Orm.connect();
-
-	    // Orm.insert(new TestEntity());
-	    // Orm.select(new TestEntityModified(), searchCriterias);
-	    // Orm.delete(new TestEntity(), searchCriterias);
-	    // Orm.update(new TestEntity(), new TestEntityModified(),
-	    // searchCriterias);
 	} catch (OrmException e)
 	{
 	    Logger.log(e.getMessage(), Logger.State.ERROR);
