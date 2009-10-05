@@ -32,15 +32,6 @@ public class TestEntityModified implements Ormizable
     }
 
     @Override
-    public String getSearchCriteria()
-    {
-	// Sera gnr par la vue selon la dfinition de l'entit du module
-	// Pourrait retourner null s'il n'y en a pas et l'orm pourrait se fier
-	// getOrmizableData
-	return "name like %mar% AND age > 13 || color = bleu";
-    }
-
-    @Override
     public void setOrmizableData(Hashtable<String, Object> parameters)
     {
 	for (Object key : parameters.keySet())

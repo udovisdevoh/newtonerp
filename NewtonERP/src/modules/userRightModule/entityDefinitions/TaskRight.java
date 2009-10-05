@@ -16,13 +16,6 @@ public class TaskRight implements Ormizable
     }
 
     @Override
-    public String getSearchCriteria()
-    {
-	// TODO Auto-generated method stub
-	return null;
-    }
-
-    @Override
     public void setOrmizableData(Hashtable<String, Object> parameters)
     {
 	// TODO Auto-generated method stub
