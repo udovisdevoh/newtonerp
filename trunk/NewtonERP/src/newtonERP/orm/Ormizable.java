@@ -12,7 +12,7 @@ import newtonERP.orm.exceptions.OrmException;
  *         implements in order for the orm to be able to save it in the database
  *         or do any other actions
  * 
- *         Pour la primary key value, le field name sera précédé du siffixe "PK"
+ *         Pour la primary key value, le field name sera précédé du suffixe "PK"
  */
 public interface Ormizable
 {
