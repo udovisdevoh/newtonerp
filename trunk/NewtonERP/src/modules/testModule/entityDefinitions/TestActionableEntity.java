@@ -1,4 +1,4 @@
-package modules.testModule;
+package modules.testModule.entityDefinitions;
 
 import newtonERP.module.actions.ActionableEntity;
 

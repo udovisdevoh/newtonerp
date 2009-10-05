@@ -1,4 +1,4 @@
-package modules.testModule;
+package modules.testModule.actions;
 
 import java.util.Hashtable;
 
@@ -14,6 +14,7 @@ public class TestAction implements IAction
     public Viewable perform(ActionableEntity entity,
 	    Hashtable<String, String> parameters)
     {
+	System.out.println("testAction.perform()");
 	return new TestViewable();
     }
 }

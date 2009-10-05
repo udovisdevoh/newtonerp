@@ -1,9 +1,10 @@
-package modules.testModule;
+package modules.home.entityDefinitions;
 
 import java.util.Hashtable;
 
 import newtonERP.orm.Ormizable;
 import newtonERP.orm.exceptions.OrmException;
+import newtonERP.viewers.Viewable;
 
 /**
  * 
@@ -11,7 +12,7 @@ import newtonERP.orm.exceptions.OrmException;
  * 
  *         Test entity
  */
-public class TestEntity implements Ormizable
+public class TestEntity implements Ormizable, Viewable
 {
     @SuppressWarnings("unused")
     private int index = 0;
@@ -20,8 +21,7 @@ public class TestEntity implements Ormizable
     private String color = "bleu";
 
     @Override
-    public Hashtable<String, String> getOrmizableData()
-	    throws OrmException
+    public Hashtable<String, String> getOrmizableData() throws OrmException
     {
 	Hashtable<String, String> ormizableData = new Hashtable<String, String>();
 
@@ -108,4 +108,37 @@ public class TestEntity implements Ormizable
     {
 	this.color = color;
     }
+
+    /**
+     * @return the index
+     */
+    public int getIndex()
+    {
+	return index;
+    }
+
+    /**
+     * @return the name
+     */
+    public String getName()
+    {
+	return name;
+    }
+
+    /**
+     * @return the age
+     */
+    public String getAge()
+    {
+	return age;
+    }
+
+    /**
+     * @return the color
+     */
+    public String getColor()
+    {
+	return color;
+    }
+
 }

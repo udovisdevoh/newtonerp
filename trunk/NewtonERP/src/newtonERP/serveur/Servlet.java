@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import newtonERP.viewers.Viewable;
 
 import org.mortbay.jetty.Request;
-import org.mortbay.jetty.Server;
 import org.mortbay.jetty.handler.AbstractHandler;
 
 /**
@@ -24,27 +23,8 @@ import org.mortbay.jetty.handler.AbstractHandler;
  */
 public class Servlet extends AbstractHandler
 {
+
     CommandRouteur cmdRouter = new CommandRouteur();
-
-    /**
-     * lance le serveur sur le port indique
-     * 
-     * @param port numero de port a utiliser
-     */
-    public Servlet(int port)
-    {
-	// lance le serveur web
-
-	Server server = new Server(port);
-	server.setHandler(this);
-	try
-	{
-	    server.start();
-	} catch (Exception e)
-	{
-	    e.printStackTrace();
-	}
-    }
 
     public void handle(String target, HttpServletRequest request,
 	    HttpServletResponse response, int dispatch) throws IOException,
@@ -70,34 +50,29 @@ public class Servlet extends AbstractHandler
     {
 	String moduleName;
 	String action;
-	String ModuleGetter;
+	String moduleGetter;
 	Hashtable<String, String> parameter = new Hashtable<String, String>();
 
 	// on trouve le moduleName et l'actionName dans l'url
-	Matcher urlMatch = Pattern.compile("/(.*)/(.*)/(.*)").matcher(target);
+	Matcher urlMatch = Pattern.compile("(/(\\w*)(/(\\w*)(/(\\w*))?)?)?")
+		.matcher(target);
 	urlMatch.matches();
-	try
-	{
-	    moduleName = urlMatch.group(1);
-	} catch (IllegalStateException e)
-	{
-	    moduleName = "home";
-	}
-	try
-	{
-	    action = urlMatch.group(2);
-	} catch (IllegalStateException e)
-	{
-	    action = "index";
-	}
-	try
-	{
-	    ModuleGetter = urlMatch.group(3);
-	} catch (IllegalStateException e)
-	{
-	    ModuleGetter = null;
-	}
 
+	moduleName = urlMatch.group(2);
+	if (moduleName == null)
+	    moduleName = "Home";
+
+	action = urlMatch.group(4);
+	if (action == null)
+	    action = "default";
+
+	moduleGetter = urlMatch.group(6);
+	if (moduleGetter == null)
+	    moduleGetter = "default";
+
+	System.out.println(moduleName);
+	System.out.println(action);
+	System.out.println(moduleGetter);
 	try
 	{
 	    // on trouve les parametres pour les mettre dans le hashtable
@@ -113,7 +88,7 @@ public class Servlet extends AbstractHandler
 	    parameter = null;
 	}
 
-	return cmdRouter.routeCommand(moduleName, action, ModuleGetter,
+	return cmdRouter.routeCommand(moduleName, action, moduleGetter,
 		parameter);
     }
 }

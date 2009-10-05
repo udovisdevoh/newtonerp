@@ -23,7 +23,8 @@ public class ServletTest extends TestCase
     protected void setUp() throws Exception
     {
 	super.setUp();
-	testServlet = new Servlet(8080);
+	testServlet = new Servlet();
+	ListModule.initAllModule();
     }
 
     /*
@@ -37,14 +38,35 @@ public class ServletTest extends TestCase
     }
 
     /**
-     * Test method for
-     * {@link newtonERP.serveur.Servlet#handle(java.lang.String, javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, int)}
-     * .
+     * 
      */
-    public void testHandle()
+    public void testHandleFullAdress()
     {
-	ListModule.initAllModule();
-	assertNotNull("test full adress,no parameter", testServlet.urlToAction(
+	assertNotNull(testServlet.urlToAction(
 		"/TestModule/TestAction/TestModuleGetter", null));
+    }
+
+    /**
+     * 
+     */
+    public void testHandleNoModuleGetter()
+    {
+	assertNotNull(testServlet.urlToAction("/TestModule/TestAction", null));
+    }
+
+    /**
+     * 
+     */
+    public void testHandleNoAction()
+    {
+	assertNotNull(testServlet.urlToAction("/TestModule", null));
+    }
+
+    /**
+     * 
+     */
+    public void testHandleNoModule()
+    {
+	assertNotNull(testServlet.urlToAction("", null));
     }
 }
