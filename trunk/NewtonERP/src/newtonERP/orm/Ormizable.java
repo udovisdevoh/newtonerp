@@ -18,10 +18,9 @@ public interface Ormizable
      * Method used to format the entitie so the orm can save them
      * 
      * @return an Hastable of data
-     * @throws OrmException
+     * @throws OrmException an exception that can occur in the orm
      */
-    public Hashtable<String, String> getOrmizableData()
-	    throws OrmException;
+    public Hashtable<String, String> getOrmizableData() throws OrmException;
 
     /**
      * Method used to return a table name
