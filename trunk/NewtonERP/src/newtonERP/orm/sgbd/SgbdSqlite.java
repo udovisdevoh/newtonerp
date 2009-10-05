@@ -39,38 +39,19 @@ public class SgbdSqlite implements Sgbdable
 
 		return rs;
 	    }
-	    else if (action.equals(OrmActions.INSERT))
-	    {
-		stat.execute(request);
 
-		// TODO: Remove the next line when properly debugged
-		System.out.println("Executed the insert statement");
+	    // Sinon peut importe l'action on retourne a rien!
+	    stat.execute(request);
 
-		return null;
-	    }
-	    else if (action.equals(OrmActions.UPDATE))
-	    {
-		stat.execute(request);
+	    // TODO: Remove the next line when properly debugged
+	    System.out.println("Executed the statement");
 
-		// TODO: Remove the next line when properly debugged
-		System.out.println("Executed the update statement");
+	    return null;
 
-		return null;
-	    }
-	    else if (action.equals(OrmActions.DELETE))
-	    {
-		stat.execute(request);
-
-		// TODO: Remove the next line when properly debugged
-		System.out.println("Executed the delete statement");
-
-		return null;
-	    }
 	} catch (SQLException e)
 	{
 	    throw new OrmSqlException(e.getMessage());
 	}
-	return null;
     }
 
     @Override

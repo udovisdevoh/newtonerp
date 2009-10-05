@@ -16,13 +16,6 @@ public class TaskRight implements Ormizable
     }
 
     @Override
-    public int getPrimaryKeyValue()
-    {
-	// TODO Auto-generated method stub
-	return 0;
-    }
-
-    @Override
     public String getSearchCriteria()
     {
 	// TODO Auto-generated method stub

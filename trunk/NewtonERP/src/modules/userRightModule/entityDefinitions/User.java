@@ -17,13 +17,6 @@ public class User implements Ormizable, ProfileViewable
     }
 
     @Override
-    public int getPrimaryKeyValue()
-    {
-	// TODO Auto-generated method stub
-	return 0;
-    }
-
-    @Override
     public String getSearchCriteria()
     {
 	// TODO Auto-generated method stub
