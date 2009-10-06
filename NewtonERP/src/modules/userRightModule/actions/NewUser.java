@@ -2,19 +2,30 @@ package modules.userRightModule.actions;
 
 import java.util.Hashtable;
 
-import newtonERP.module.actions.ActionableEntity;
-import newtonERP.module.actions.IAction;
-import newtonERP.viewers.Viewable;
+import newtonERP.module.AbstractAction;
+import newtonERP.module.AbstractEntity;
+import newtonERP.orm.Orm;
+import newtonERP.orm.Ormizable;
+import newtonERP.orm.exceptions.OrmException;
 
-public class NewUser implements IAction
+/**
+ * @author CloutierJo
+ * 
+ *         création d'un nouveau User
+ */
+public class NewUser extends AbstractAction
 {
-
-    @Override
-    public Viewable perform(ActionableEntity entity,
+    public AbstractEntity doAction(AbstractEntity entity,
 	    Hashtable<String, String> parameters)
     {
-	// TODO Auto-generated method stub
-	return null;
+	try
+	{
+	    Orm.insert((Ormizable) entity);
+	} catch (OrmException e)
+	{
+	    e.printStackTrace();
+	}
+	return entity;
     }
 
 }
