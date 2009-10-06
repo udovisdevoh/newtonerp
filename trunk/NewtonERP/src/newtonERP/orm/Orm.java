@@ -151,28 +151,6 @@ public class Orm
     }
 
     /**
-     * Test method not used by the program itself but only for debugging
-     * purposes
-     * 
-     * @param entitiesParam the entities that will be printed out
-     */
-    private static void printEntitiesForTest(
-	    Vector<Ormizable> entitiesToBePrinted) throws OrmException
-    {
-	// For every entity into our entities to be printed
-	for (Ormizable entity : entitiesToBePrinted)
-	{
-	    Hashtable<String, String> data = entity.getOrmizableData();
-
-	    // For each key into our keySet we print those values
-	    for (Object key : data.keySet())
-	    {
-		System.out.println(key.toString() + " : " + data.get(key));
-	    }
-	}
-    }
-
-    /**
      * Method used to build the where clause for the delete, select and update
      * methods
      * 
