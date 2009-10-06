@@ -19,27 +19,6 @@ public class Group implements Ormizable, ProfileViewable
     }
 
     @Override
-    public int getPrimaryKeyValue()
-    {
-	// TODO Auto-generated method stub
-	return 0;
-    }
-
-    @Override
-    public String getSearchCriteria()
-    {
-	// TODO Auto-generated method stub
-	return null;
-    }
-
-    @Override
-    public String getTableName()
-    {
-	// TODO Auto-generated method stub
-	return null;
-    }
-
-    @Override
     public void setOrmizableData(Hashtable<String, Object> parameters)
     {
 	// TODO Auto-generated method stub

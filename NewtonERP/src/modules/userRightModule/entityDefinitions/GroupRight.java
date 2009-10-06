@@ -19,55 +19,14 @@ public class GroupRight implements Ormizable
     int groupID;
     int rightID;
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see newtonERP.orm.Ormizable#getOrmizableData()
-     */
+    @Override
     public Hashtable<String, String> getOrmizableData() throws OrmException
     {
 	// TODO Auto-generated method stub
 	return null;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see newtonERP.orm.Ormizable#getPrimaryKeyValue()
-     */
-    public int getPrimaryKeyValue()
-    {
-	// TODO Auto-generated method stub
-	return 0;
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see newtonERP.orm.Ormizable#getSearchCriteria()
-     */
-    public String getSearchCriteria()
-    {
-	// TODO Auto-generated method stub
-	return null;
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see newtonERP.orm.Ormizable#getTableName()
-     */
-    public String getTableName()
-    {
-	// TODO Auto-generated method stub
-	return null;
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see newtonERP.orm.Ormizable#setOrmizableData(java.util.Hashtable)
-     */
+    @Override
     public void setOrmizableData(Hashtable<String, Object> parameters)
     {
 	// TODO Auto-generated method stub
