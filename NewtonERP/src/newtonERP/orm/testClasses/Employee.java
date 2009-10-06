@@ -4,20 +4,20 @@ import java.util.Hashtable;
 
 import newtonERP.orm.Ormizable;
 import newtonERP.orm.exceptions.OrmException;
+import newtonERP.viewers.Viewable;
 
 /**
  * 
- * @author r3hallejo
+ * @author r3lacasgu, r3hallejo
  * 
- *         Test entity modified
+ *         Test entity
  */
-public class TestEntityModified implements Ormizable
+public class Employee implements Ormizable, Viewable
 {
-    @SuppressWarnings("unused")
     private int index = 0;
-    private String name = "Sylvain";
-    private String age = "23";
-    private String color = "vert lime";
+    private String name = "marcel";
+    private String age = "17";
+    private String color = "bleu";
 
     @Override
     public Hashtable<String, String> getOrmizableData() throws OrmException
@@ -85,4 +85,37 @@ public class TestEntityModified implements Ormizable
     {
 	this.color = color;
     }
+
+    /**
+     * @return the index
+     */
+    public int getIndex()
+    {
+	return index;
+    }
+
+    /**
+     * @return the name
+     */
+    public String getName()
+    {
+	return name;
+    }
+
+    /**
+     * @return the age
+     */
+    public String getAge()
+    {
+	return age;
+    }
+
+    /**
+     * @return the color
+     */
+    public String getColor()
+    {
+	return color;
+    }
+
 }

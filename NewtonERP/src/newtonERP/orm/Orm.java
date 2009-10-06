@@ -36,7 +36,6 @@ public class Orm
     public static Vector<Ormizable> select(Ormizable searchEntity,
 	    Vector<String> searchCriteriasParam) throws OrmException
     {
-	Vector<Ormizable> returnedEntities = new Vector<Ormizable>();
 	String sqlQuery = "SELECT * FROM "
 		+ searchEntity.getClass().getSimpleName();
 
@@ -47,13 +46,7 @@ public class Orm
 
 	ResultSet rs = sgbd.execute(sqlQuery, OrmActions.SEARCH);
 
-	returnedEntities = EntityCreator.createEntitiesFromResultSet(rs,
-		searchEntity);
-
-	// TODO: Remove the next line when it will be properly debugged
-	printEntitiesForTest(returnedEntities);
-
-	return returnedEntities;
+	return EntityCreator.createEntitiesFromResultSet(rs, searchEntity);
     }
 
     /**
