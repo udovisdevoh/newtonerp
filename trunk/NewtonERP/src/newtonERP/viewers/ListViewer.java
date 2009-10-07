@@ -1,5 +1,6 @@
 package newtonERP.viewers;
 
+import java.util.Hashtable;
 import java.util.Vector;
 
 import newtonERP.module.AbstractAction;
@@ -24,6 +25,24 @@ public class ListViewer
 
 	html += "</table>";
 
+	html += getGlobalButtonList(entity.getGlobalActionButtonList(),
+		moduleName, entity.getCurrentUserName());
+
+	return html;
+    }
+
+    private static String getGlobalButtonList(
+	    Hashtable<String, AbstractAction> globalActionButtonList,
+	    String moduleName, String currentUserName)
+    {
+	String html = "";
+	AbstractAction action;
+	for (String buttonCaption : globalActionButtonList.keySet())
+	{
+	    action = globalActionButtonList.get(buttonCaption);
+	    html += getButton(buttonCaption, moduleName, action.getClass()
+		    .getSimpleName(), null, null, currentUserName);
+	}
 	return html;
     }
 
@@ -79,6 +98,11 @@ public class ListViewer
     private static String getButton(String buttonCaption, String moduleName,
 	    String actionName, String key, String value, String currentUserName)
     {
+	if (key == null)
+	    key = "noKeySpeficied";
+	if (value == null)
+	    value = "noValueSpecified";
+
 	String formActionUrl = "/" + moduleName + "/" + actionName + "?user="
 		+ currentUserName + "&" + key + "=" + value;
 
