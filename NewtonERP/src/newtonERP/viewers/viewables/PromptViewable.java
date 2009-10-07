@@ -17,6 +17,12 @@ public interface PromptViewable
     public Module getSubmitModule();
 
     /**
+     * @return Utilisateur actuel Cette methode sera effacée au sprint 2 car
+     *         l'autentification sera faite dans le servlet
+     */
+    public String getCurrentUserName();
+
+    /**
      * @return Action à affectuer quand on submit le prompt
      */
     public AbstractAction getSubmitAction();
