@@ -1,15 +1,13 @@
 package modules.userRightModule;
 
+import modules.userRightModule.actions.DeleteGroup;
 import modules.userRightModule.actions.DeleteUser;
-import modules.userRightModule.actions.DeleteUserType;
 import modules.userRightModule.actions.EditUser;
-import modules.userRightModule.actions.EditUserType;
 import modules.userRightModule.actions.GetUserList;
-import modules.userRightModule.actions.GetUserTypeList;
 import modules.userRightModule.actions.NewUser;
 import modules.userRightModule.actions.NewUserType;
-import modules.userRightModule.entityDefinitions.Group;
 import modules.userRightModule.entityDefinitions.GroupRight;
+import modules.userRightModule.entityDefinitions.Groups;
 import modules.userRightModule.entityDefinitions.Right;
 import modules.userRightModule.entityDefinitions.User;
 import newtonERP.module.Module;
@@ -27,7 +25,7 @@ public class UserRightModule extends Module
     {
 	// On cré les référence vers les définitions d'entités
 	addDefinitinEntity(new User());
-	addDefinitinEntity(new Group());
+	addDefinitinEntity(new Groups());
 	addDefinitinEntity(new GroupRight());
 	addDefinitinEntity(new Right());
 
@@ -36,10 +34,8 @@ public class UserRightModule extends Module
 	addAction(new EditUser());
 	addAction(new DeleteUser());
 	addAction(new NewUserType());
-	addAction(new EditUserType());
-	addAction(new DeleteUserType());
 	addAction(new GetUserList());
-	addAction(new GetUserTypeList(), true);
+	addAction(new DeleteGroup());
 
     }
 }

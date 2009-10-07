@@ -5,8 +5,14 @@ import java.util.Hashtable;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
 
-public class GetUserTypeList extends AbstractAction
+/**
+ * @author Gabriel Therrien
+ * 
+ */
+public class GetGroupRight extends AbstractAction
 {
+
+    @Override
     public AbstractEntity doAction(AbstractEntity entity,
 	    Hashtable<String, String> parameters)
     {
