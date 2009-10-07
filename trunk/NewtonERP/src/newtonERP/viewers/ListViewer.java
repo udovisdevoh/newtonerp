@@ -82,10 +82,14 @@ public class ListViewer
 	    String actionName, String key, String value, String currentUserName)
     {
 	String formActionUrl = "/" + moduleName + "/" + actionName + "?user="
-		+ currentUserName;
+		+ currentUserName + "&" + key + "=" + value;
 
 	String html = "";
 	html += "<form method=\"GET\" action=\"" + formActionUrl + "\">";
+
+	html += "<input type=\"submit\" value=\"" + buttonCaption + "\">";
+
+	html += "</form>";
 
 	return html;
     }
