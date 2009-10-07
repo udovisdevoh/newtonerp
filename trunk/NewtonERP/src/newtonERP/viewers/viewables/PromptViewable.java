@@ -9,7 +9,12 @@ import java.util.Hashtable;
 public interface PromptViewable
 {
     /**
-     * @return nom des input du prompt et leur valeur courantes
+     * @return message du prompt, exemple: quel est votre nom?
+     */
+    public String getPromptMessage();
+
+    /**
+     * @return nom des input du prompt et leur valeur actuelles
      */
     public Hashtable<String, String> getInputList();
 
