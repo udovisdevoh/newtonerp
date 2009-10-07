@@ -3,6 +3,7 @@ package newtonERP.viewers.viewables;
 import java.util.Hashtable;
 
 import newtonERP.module.AbstractAction;
+import newtonERP.module.Module;
 
 /**
  * @author r3lacasgu
@@ -10,6 +11,11 @@ import newtonERP.module.AbstractAction;
  */
 public interface PromptViewable
 {
+    /**
+     * @return Module callé par le prompt
+     */
+    public Module getSubmitModule();
+
     /**
      * @return Action à affectuer quand on submit le prompt
      */

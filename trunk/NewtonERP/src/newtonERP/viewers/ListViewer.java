@@ -1,10 +1,10 @@
 package newtonERP.viewers;
 
-import newtonERP.module.AbstractEntity;
+import newtonERP.viewers.viewables.ListViewable;
 
 public class ListViewer
 {
-    public static String getHtmlCode(AbstractEntity entity)
+    public static String getHtmlCode(ListViewable entity)
 	    throws ViewerException
     {
 	return "dummy code";
