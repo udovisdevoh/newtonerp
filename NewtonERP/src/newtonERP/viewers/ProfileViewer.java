@@ -1,10 +1,10 @@
 package newtonERP.viewers;
 
-import newtonERP.module.AbstractEntity;
+import newtonERP.viewers.viewables.ProfileViewable;
 
 public class ProfileViewer
 {
-    public static String getHtmlCode(AbstractEntity entity)
+    public static String getHtmlCode(ProfileViewable entity)
 	    throws ViewerException
     {
 	return "dummy code";

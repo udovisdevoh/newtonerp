@@ -11,11 +11,11 @@ public abstract class Viewer
 	    throws ViewerException
     {
 	if (entity instanceof PromptViewable)
-	    return PromptViewer.getHtmlCode(entity);
+	    return PromptViewer.getHtmlCode((PromptViewable) entity);
 	else if (entity instanceof ProfileViewable)
-	    return ProfileViewer.getHtmlCode(entity);
+	    return ProfileViewer.getHtmlCode((ProfileViewable) entity);
 	else if (entity instanceof ListViewable)
-	    return ListViewer.getHtmlCode(entity);
+	    return ListViewer.getHtmlCode((ListViewable) entity);
 
 	throw new ViewerException("Couldn't find proper viewer for entity");
     }
