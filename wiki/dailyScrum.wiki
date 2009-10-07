@@ -192,9 +192,9 @@ voici le model de scrum a copier en entier si vous êtes le premier
   * Fonction de update pour l'orm.
   * Clarification generale du code + entity creator
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
-  * ...à livré...
+  * Commencer l'implementation de la creation automatique des modules
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
-  * Me rappeler la structure generale des exceptions
+  * Me rappeler la structure generale des exceptions. Liste de folders / fichers. Instancié dynamiquement
 
 ==Guillaume Lacasse==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
