@@ -224,7 +224,9 @@ voici le model de scrum a copier en entier si vous êtes le premier
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
   * list module fonctionne
   * handled et listModule unitesté
+  * refactor de module (voir commit 415 et )
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
-  * ...à livré...
+  * terminé le refactor
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
   * le jar loader, feature abandonné pour le moment
+  * l'appelle de méthode par réflexion pour contré un problème d'accès au field private.....
