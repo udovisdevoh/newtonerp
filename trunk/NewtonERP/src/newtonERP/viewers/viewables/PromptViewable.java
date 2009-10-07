@@ -1,6 +1,6 @@
 package newtonERP.viewers.viewables;
 
-import java.util.Vector;
+import java.util.Hashtable;
 
 /**
  * @author r3lacasgu
@@ -9,9 +9,9 @@ import java.util.Vector;
 public interface PromptViewable
 {
     /**
-     * @return nom des input du prompt
+     * @return nom des input du prompt et leur valeur courantes
      */
-    public Vector<String> getInputNameList();
+    public Hashtable<String, String> getInputList();
 
     /**
      * @return nom du bouton "ok"
