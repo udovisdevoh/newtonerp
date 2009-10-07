@@ -33,6 +33,7 @@ public class Starter
 	{
 	    // connecte l'orm a la db
 	    Orm.connect();
+	    // Orm.createNonExistentTables();
 
 	    // Orm.insert(new Employee());
 	    // Orm.select(new Employee(), searchCriterias);

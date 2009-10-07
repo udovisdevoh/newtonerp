@@ -1,10 +1,15 @@
 package newtonERP.orm;
 
+import java.lang.reflect.Field;
 import java.sql.ResultSet;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Vector;
 
+import newtonERP.ListModule;
+import newtonERP.module.Module;
+import newtonERP.module.ModuleException;
+import newtonERP.module.ModuleNotFoundException;
 import newtonERP.orm.exceptions.OrmException;
 import newtonERP.orm.sgbd.SgbdSqlite;
 import newtonERP.orm.sgbd.Sgbdable;
@@ -18,6 +23,8 @@ import newtonERP.orm.sgbd.Sgbdable;
  *         from which the orm will perform various tasks such as generating the
  *         query and executing it obviously. Then it's gonna send the query to
  *         the SgbdSqlite class to execute it.
+ * 
+ *         Types for the database : Integer, Double (Number?), String, Boolean
  */
 public class Orm
 {
@@ -40,7 +47,8 @@ public class Orm
 	String sqlQuery = "SELECT * FROM " + tablePrefix
 		+ searchEntity.getClass().getSimpleName();
 
-	sqlQuery = buildWhereClauseForQuery(sqlQuery, searchCriteriasParam);
+	if (searchCriteriasParam != null)
+	    sqlQuery = buildWhereClauseForQuery(sqlQuery, searchCriteriasParam);
 
 	// TODO: Remove the next line when it will be properly debugged
 	System.out.println("SQL query produced : " + sqlQuery);
@@ -133,12 +141,11 @@ public class Orm
      * @param searchCriterias the criterias used by the update
      * @throws OrmException an exception that can occur into the orm
      */
-    public static void update(Ormizable searchEntity,
-	    Ormizable entityContainingChanges, Vector<String> searchCriterias)
-	    throws OrmException
+    public static void update(Ormizable entityContainingChanges,
+	    Vector<String> searchCriterias) throws OrmException
     {
 	String sqlQuery = "UPDATE " + tablePrefix
-		+ searchEntity.getClass().getSimpleName() + " SET ";
+		+ entityContainingChanges.getClass().getSimpleName() + " SET ";
 	Hashtable<String, String> data = entityContainingChanges
 		.getOrmizableData();
 
@@ -200,6 +207,85 @@ public class Orm
 	}
 
 	return sqlQuery;
+    }
+
+    /**
+     * Creates the non-existent table from the modules in the database
+     */
+    public static void createNonExistentTables()
+    {
+	Hashtable<String, String> modules = ListModule.getAllModules();
+
+	for (String key : modules.keySet())
+	{
+	    try
+	    {
+		Module module = ListModule.getModule(key);
+		Vector<Ormizable> moduleEntities = module
+			.getDefinitionEntityList();
+
+		for (Ormizable entity : moduleEntities)
+		{
+		    String sqlQuery = "CREATE TABLE IF NOT EXISTS ";
+		    Field[] fields = entity.getClass().getDeclaredFields();
+
+		    sqlQuery += tablePrefix + entity.getClass().getSimpleName()
+			    + " ( ";
+
+		    for (int i = 0; i < fields.length; i++)
+		    {
+			// It is a primary key INTEGER PRIMARY KEY AUTOINCREMENT
+			if (fields[i].getName().matches("PK.*"))
+			{
+			    if (i + 1 != fields.length)
+				sqlQuery += fields[i].getName()
+					+ " INTEGER PRIMARY KEY AUTOINCREMENT, ";
+			    else
+				sqlQuery += fields[i].getName()
+					+ " INTEGER PRIMARY KEY AUTOINCREMENT);";
+			}
+			else if (fields[i].getType().equals(Double.class))
+			{
+			    if (i + 1 != fields.length)
+				sqlQuery += fields[i].getName()
+					+ " DOUBLE PRECISION, ";
+			    else
+				sqlQuery += fields[i].getName()
+					+ " DOUBLE PRECISION );";
+			}
+			else if (fields[i].getType().equals(String.class))
+			{
+			    if (i + 1 != fields.length)
+				sqlQuery += fields[i].getName() + " STRING, ";
+			    else
+				sqlQuery += fields[i].getName() + " STRING );";
+			}
+			else if (fields[i].getType().equals(Boolean.class))
+			{
+			    if (i + 1 != fields.length)
+				sqlQuery += fields[i].getName() + " INTEGER, ";
+			    else
+				sqlQuery += fields[i].getName() + " INTEGER );";
+			}
+			else if (fields[i].getType().equals(int.class))
+			{
+			    if (i + 1 != fields.length)
+				sqlQuery += fields[i].getName() + " INTEGER, ";
+			    else
+				sqlQuery += fields[i].getName() + " INTEGER );";
+			}
+		    }
+		    System.out.println("Sql query produced : " + sqlQuery);
+		    sqlQuery = "";
+		}
+	    } catch (ModuleNotFoundException e)
+	    {
+		e.printStackTrace();
+	    } catch (ModuleException e)
+	    {
+		e.printStackTrace();
+	    }
+	}
     }
 
     /**

@@ -1,7 +1,6 @@
 package newtonERP.orm.testClasses;
 
 import newtonERP.orm.Orm;
-import newtonERP.orm.OrmActions;
 import newtonERP.orm.exceptions.OrmException;
 import newtonERP.orm.sgbd.SgbdSqlite;
 import newtonERP.orm.sgbd.Sgbdable;
@@ -30,9 +29,7 @@ public class SqLiteTesting
 	{
 	    Orm.connect();
 
-	    String sqlQuery = "CREATE TABLE Newton_Employee ( name STRING, age STRING, color STRING);";
-
-	    sgbd.execute(sqlQuery, OrmActions.CREATE);
+	    Orm.createNonExistentTables();
 
 	    Orm.disconnect();
 	} catch (OrmException e)
