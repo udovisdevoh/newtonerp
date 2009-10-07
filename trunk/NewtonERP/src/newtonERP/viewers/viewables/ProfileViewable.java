@@ -3,6 +3,7 @@ package newtonERP.viewers.viewables;
 import java.util.Hashtable;
 
 import newtonERP.module.AbstractAction;
+import newtonERP.module.Module;
 
 /**
  * @author r3lacasgu
@@ -10,6 +11,22 @@ import newtonERP.module.AbstractAction;
  */
 public interface ProfileViewable
 {
+    /**
+     * @return Module callé par le prompt
+     */
+    public Module getSubmitModule();
+
+    /**
+     * @return Action à affectuer quand on submit le prompt
+     */
+    public AbstractAction getSubmitAction();
+
+    /**
+     * @return Utilisateur actuel Cette methode sera effacée au sprint 2 car
+     *         l'autentification sera faite dans le servlet
+     */
+    public String getCurrentUserName();
+
     /**
      * @return
      */
@@ -19,11 +36,6 @@ public interface ProfileViewable
      * @return
      */
     public String getButtonCaption();
-
-    /**
-     * @return
-     */
-    public AbstractAction getSubmitAction();
 
     /**
      * @return Noms des input et leurs valeurs actuelles
