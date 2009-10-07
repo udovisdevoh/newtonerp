@@ -10,7 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import newtonERP.viewers.Viewable;
+import newtonERP.module.AbstractEntity;
 
 import org.mortbay.jetty.Request;
 import org.mortbay.jetty.handler.AbstractHandler;
@@ -46,7 +46,7 @@ public class Servlet extends AbstractHandler
      * @return le Viewable
      */
     @SuppressWarnings("unchecked")
-    public Viewable urlToAction(String target, HttpServletRequest request)
+    public AbstractEntity urlToAction(String target, HttpServletRequest request)
     {
 	String moduleName;
 	String action;

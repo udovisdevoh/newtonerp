@@ -1,7 +1,17 @@
 package modules.home.entityDefinitions;
 
-import newtonERP.module.actions.ActionableEntity;
+import java.util.Hashtable;
 
-public class TestActionableEntity implements ActionableEntity
+import newtonERP.module.AbstractAction;
+import newtonERP.module.AbstractEntity;
+
+public class TestActionableEntity extends AbstractAction
 {
+    public AbstractEntity doAction(AbstractEntity entity,
+	    Hashtable<String, String> parameters)
+    {
+	// TODO Auto-generated method stub
+	return null;
+    }
+
 }

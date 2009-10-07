@@ -2,16 +2,13 @@ package modules.home.actions;
 
 import java.util.Hashtable;
 
-import newtonERP.module.actions.ActionableEntity;
-import newtonERP.module.actions.IAction;
+import newtonERP.module.AbstractAction;
+import newtonERP.module.AbstractEntity;
 import newtonERP.viewers.TestViewable;
-import newtonERP.viewers.Viewable;
 
-public class TestAction implements IAction
+public class TestAction extends AbstractAction
 {
-
-    @Override
-    public Viewable perform(ActionableEntity entity,
+    public AbstractEntity doAction(AbstractEntity entity,
 	    Hashtable<String, String> parameters)
     {
 	System.out.println("testAction.perform()");

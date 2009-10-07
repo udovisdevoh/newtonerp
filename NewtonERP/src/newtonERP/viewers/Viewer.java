@@ -1,8 +1,10 @@
 package newtonERP.viewers;
 
+import newtonERP.module.AbstractEntity;
+
 public abstract class Viewer
 {
-    public static String getHtmlCode(Viewable entity)
+    public static String getHtmlCode(AbstractEntity entity)
     {
 	return "dummy code";
     }

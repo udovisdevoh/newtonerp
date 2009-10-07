@@ -3,8 +3,8 @@ package newtonERP.serveur;
 import java.util.Hashtable;
 
 import newtonERP.ListModule;
+import newtonERP.module.AbstractEntity;
 import newtonERP.module.Module;
-import newtonERP.viewers.Viewable;
 
 /**
  * @author Gabriel Therrien JoCloutier
@@ -21,12 +21,12 @@ public class CommandRouteur
      * @param parameter parametre a passer a l'action
      * @return une entity viewable
      */
-    public Viewable routeCommand(String moduleName, String action,
+    public AbstractEntity routeCommand(String moduleName, String action,
 	    String moduleGetter, Hashtable<String, String> parameter)
     {
 	// TODO: changer Object par viewable quand il va y en avoir
 	Module module;
-	Viewable retView = null;
+	AbstractEntity retView = null;
 	try
 	{
 	    module = ListModule.getModule(moduleName);
