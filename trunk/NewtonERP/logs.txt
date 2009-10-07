@@ -188,3 +188,57 @@ java.lang.NullPointerException
 [INFO 12:30:39 2009.10.06] Connexion has been succesfully initialized
 [INFO 12:31:06 2009.10.06] Initialisation of connection to db
 [INFO 12:31:06 2009.10.06] Connexion has been succesfully initialized
+[INFO 12:12:15 2009.10.07] Initialisation of connection to db
+[INFO 12:12:15 2009.10.07] Connexion has been succesfully initialized
+[INFO 12:12:58 2009.10.07] Initialisation of connection to db
+[INFO 12:12:58 2009.10.07] Connexion has been succesfully initialized
+[INFO 12:13:51 2009.10.07] Initialisation of connection to db
+[INFO 12:13:51 2009.10.07] Connexion has been succesfully initialized
+[INFO 12:13:51 2009.10.07] Attempting to close the connexion to db
+[INFO 12:13:51 2009.10.07] Connexion has been succesfully closed
+[INFO 12:15:35 2009.10.07] Initialisation of connection to db
+[INFO 12:15:35 2009.10.07] Connexion has been succesfully initialized
+[INFO 12:15:35 2009.10.07] Attempting to close the connexion to db
+[INFO 12:15:35 2009.10.07] Connexion has been succesfully closed
+[INFO 12:21:30 2009.10.07] Initialisation of connection to db
+[INFO 12:21:30 2009.10.07] Connexion has been succesfully initialized
+[INFO 12:21:30 2009.10.07] Attempting to close the connexion to db
+[INFO 12:21:30 2009.10.07] Connexion has been succesfully closed
+[INFO 12:22:52 2009.10.07] Initialisation of connection to db
+[INFO 12:22:52 2009.10.07] Connexion has been succesfully initialized
+[INFO 12:23:29 2009.10.07] Initialisation of connection to db
+[INFO 12:23:29 2009.10.07] Connexion has been succesfully initialized
+[INFO 12:24:53 2009.10.07] Initialisation of connection to db
+[INFO 12:24:53 2009.10.07] Connexion has been succesfully initialized
+[INFO 12:25:41 2009.10.07] Initialisation of connection to db
+[INFO 12:25:41 2009.10.07] Connexion has been succesfully initialized
+[INFO 12:25:53 2009.10.07] Initialisation of connection to db
+[INFO 12:25:53 2009.10.07] Connexion has been succesfully initialized
+[INFO 12:26:17 2009.10.07] Initialisation of connection to db
+[INFO 12:26:17 2009.10.07] Connexion has been succesfully initialized
+[INFO 12:27:31 2009.10.07] Initialisation of connection to db
+[INFO 12:27:31 2009.10.07] Connexion has been succesfully initialized
+[INFO 12:27:31 2009.10.07] Attempting to close the connexion to db
+[INFO 12:27:31 2009.10.07] Connexion has been succesfully closed
+[INFO 12:28:22 2009.10.07] Initialisation of connection to db
+[INFO 12:28:22 2009.10.07] Connexion has been succesfully initialized
+[INFO 12:30:28 2009.10.07] Initialisation of connection to db
+[INFO 12:30:28 2009.10.07] Connexion has been succesfully initialized
+[INFO 12:30:28 2009.10.07] Attempting to close the connexion to db
+[INFO 12:30:28 2009.10.07] Connexion has been succesfully closed
+[INFO 12:31:00 2009.10.07] Initialisation of connection to db
+[INFO 12:31:00 2009.10.07] Connexion has been succesfully initialized
+[INFO 12:31:00 2009.10.07] Attempting to close the connexion to db
+[INFO 12:31:00 2009.10.07] Connexion has been succesfully closed
+[INFO 12:31:44 2009.10.07] Initialisation of connection to db
+[INFO 12:31:44 2009.10.07] Connexion has been succesfully initialized
+[INFO 12:33:46 2009.10.07] Initialisation of connection to db
+[INFO 12:33:46 2009.10.07] Connexion has been succesfully initialized
+[INFO 12:34:51 2009.10.07] Initialisation of connection to db
+[INFO 12:34:51 2009.10.07] Connexion has been succesfully initialized
+[INFO 12:35:10 2009.10.07] Initialisation of connection to db
+[INFO 12:35:10 2009.10.07] Connexion has been succesfully initialized
+[INFO 12:35:10 2009.10.07] Attempting to close the connexion to db
+[INFO 12:35:10 2009.10.07] Connexion has been succesfully closed
+[INFO 12:35:37 2009.10.07] Initialisation of connection to db
+[INFO 12:35:37 2009.10.07] Connexion has been succesfully initialized
