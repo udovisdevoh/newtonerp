@@ -1,6 +1,6 @@
 package newtonERP.viewers;
 
-import java.util.HashSet;
+import java.util.Vector;
 
 import newtonERP.module.AbstractAction;
 import newtonERP.viewers.viewables.ListViewable;
@@ -11,7 +11,6 @@ public class ListViewer
 	    throws ViewerException
     {
 	String moduleName = entity.getSubmitModule().getClass().getSimpleName();
-	String actionName = entity.getSubmitAction().getClass().getSimpleName();
 
 	String html = "";
 
@@ -21,33 +20,32 @@ public class ListViewer
 
 	html += getHeaderRow(entity.getColumnTitleList());
 
-	html += getDataRowList(entity.getRowValues(), entity, moduleName,
-		actionName);
+	html += getDataRowList(entity.getRowValues(), entity, moduleName);
 
 	html += "</table>";
 
 	return html;
     }
 
-    private static String getDataRowList(Iterable<HashSet<String>> rowValues,
-	    ListViewable entity, String moduleName, String actionName)
+    private static String getDataRowList(Vector<Vector<String>> rowValues,
+	    ListViewable entity, String moduleName)
     {
 	String html = "<tr>";
-	for (HashSet<String> row : rowValues)
+	for (Vector<String> row : rowValues)
 	{
 	    for (String cell : row)
 	    {
 		html += "<td>" + cell + "</td>";
 	    }
 
-	    html += getSpecificButtonList(entity, moduleName, actionName,
-		    getKeyName(entity.getColumnTitleList()), getKeyValue(row));
+	    html += getSpecificButtonList(entity, moduleName, getKeyName(entity
+		    .getColumnTitleList()), getKeyValue(row));
 	}
 
 	return html + "</tr>";
     }
 
-    private static String getKeyValue(HashSet<String> row)
+    private static String getKeyValue(Vector<String> row)
     {
 	for (String value : row)
 	    return value;
@@ -62,7 +60,7 @@ public class ListViewer
     }
 
     private static String getSpecificButtonList(ListViewable entity,
-	    String moduleName, String actionName, String key, String value)
+	    String moduleName, String key, String value)
     {
 	String html = "";
 
@@ -71,8 +69,8 @@ public class ListViewer
 		.keySet())
 	{
 	    action = entity.getGlobalActionButtonList().get(buttonCaption);
-	    html += getButton(buttonCaption, moduleName, actionName, key,
-		    value, entity.getCurrentUserName());
+	    html += getButton(buttonCaption, moduleName, action.getClass()
+		    .getSimpleName(), key, value, entity.getCurrentUserName());
 	}
 
 	return html;

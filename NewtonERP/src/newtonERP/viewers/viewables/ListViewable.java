@@ -1,7 +1,7 @@
 package newtonERP.viewers.viewables;
 
-import java.util.HashSet;
 import java.util.Hashtable;
+import java.util.Vector;
 
 import newtonERP.module.AbstractAction;
 import newtonERP.module.Module;
@@ -21,11 +21,6 @@ public interface ListViewable
      * @return Module callé par le prompt
      */
     public Module getSubmitModule();
-
-    /**
-     * @return Action à affectuer quand on submit le prompt
-     */
-    public AbstractAction getSubmitAction();
 
     /**
      * @return Utilisateur actuel Cette methode sera effacée au sprint 2 car
@@ -48,10 +43,10 @@ public interface ListViewable
     /**
      * @return Titre des colonnes
      */
-    public Iterable<String> getColumnTitleList();
+    public Vector<String> getColumnTitleList();
 
     /**
      * @return Liste de rangées
      */
-    public Iterable<HashSet<String>> getRowValues();
+    public Vector<Vector<String>> getRowValues();
 }
