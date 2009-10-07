@@ -22,6 +22,7 @@ import newtonERP.orm.sgbd.Sgbdable;
 public class Orm
 {
     private static Sgbdable sgbd = new SgbdSqlite();
+    private static String tablePrefix = "Newton_";
 
     /**
      * Method used to do search queries done from the views to the databse. The
@@ -36,7 +37,7 @@ public class Orm
     public static Vector<Ormizable> select(Ormizable searchEntity,
 	    Vector<String> searchCriteriasParam) throws OrmException
     {
-	String sqlQuery = "SELECT * FROM "
+	String sqlQuery = "SELECT * FROM " + tablePrefix
 		+ searchEntity.getClass().getSimpleName();
 
 	sqlQuery = buildWhereClauseForQuery(sqlQuery, searchCriteriasParam);
@@ -60,8 +61,8 @@ public class Orm
     public static void insert(Ormizable newEntity) throws OrmException
     {
 	Hashtable<String, String> data = newEntity.getOrmizableData();
-	String sqlQuery = "INSERT INTO " + newEntity.getClass().getSimpleName()
-		+ " (";
+	String sqlQuery = "INSERT INTO " + tablePrefix
+		+ newEntity.getClass().getSimpleName() + " (";
 
 	// We now iterate through the key set so we can add the fields to the
 	// query
@@ -112,7 +113,7 @@ public class Orm
     public static void delete(Ormizable searchEntity,
 	    Vector<String> searchCriterias) throws OrmException
     {
-	String sqlQuery = "DELETE FROM "
+	String sqlQuery = "DELETE FROM " + tablePrefix
 		+ searchEntity.getClass().getSimpleName();
 
 	sqlQuery = buildWhereClauseForQuery(sqlQuery, searchCriterias);
@@ -136,8 +137,8 @@ public class Orm
 	    Ormizable entityContainingChanges, Vector<String> searchCriterias)
 	    throws OrmException
     {
-	String sqlQuery = "UPDATE " + searchEntity.getClass().getSimpleName()
-		+ " SET ";
+	String sqlQuery = "UPDATE " + tablePrefix
+		+ searchEntity.getClass().getSimpleName() + " SET ";
 	Hashtable<String, String> data = entityContainingChanges
 		.getOrmizableData();
 

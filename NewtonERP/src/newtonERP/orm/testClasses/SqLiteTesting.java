@@ -11,11 +11,11 @@ import newtonERP.orm.sgbd.Sgbdable;
  * 
  *         Class used for testing
  * 
- *         Create table for users :"CREATE TABLE User ( PKuserID INTEGER PRIMARY KEY AUTOINCREMENT, name STRING, password STRING, GroupID INTEGER);"
- *         Create table for right :"CREATE TABLE Right ( PKrightID INTEGER PRIMARY KEY AUTOINCREMENT, moduleName STRING, actionName STRING);"
+ *         Create table for users :"CREATE TABLE Newton_User ( PKuserID INTEGER PRIMARY KEY AUTOINCREMENT, name STRING, password STRING, GroupID INTEGER);"
+ *         Create table for right :"CREATE TABLE Newton_Right ( PKrightID INTEGER PRIMARY KEY AUTOINCREMENT, moduleName STRING, actionName STRING);"
  *         Create table for group right:
- *         "CREATE TABLE GroupRight ( groupID INTEGER, rightID INTEGER);" Create
- *         table for groups :"CREATE TABLE Groups ( PKgroupID INTEGER PRIMARY KEY AUTOINCREMENT, groupName STRING);"
+ *         "CREATE TABLE Newton_GroupRight ( groupID INTEGER, rightID INTEGER);"
+ *         Create table for groups :"CREATE TABLE Newton_Groups ( PKgroupID INTEGER PRIMARY KEY AUTOINCREMENT, groupName STRING);"
  */
 public class SqLiteTesting
 {
@@ -30,7 +30,7 @@ public class SqLiteTesting
 	{
 	    Orm.connect();
 
-	    String sqlQuery = "";
+	    String sqlQuery = "CREATE TABLE Newton_Employee ( name STRING, age STRING, color STRING);";
 
 	    sgbd.execute(sqlQuery, OrmActions.CREATE);
 
