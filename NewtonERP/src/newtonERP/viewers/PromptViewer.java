@@ -15,8 +15,6 @@ public class PromptViewer
 	String html = "";
 	html += "<h1>" + entity.getPromptMessage() + "</h1>";
 
-	// /moduleName/action?=userName=...;
-
 	html += "<form method=\"GET\" action=\"" + formActionUrl + "\">";
 
 	String inputValue;
