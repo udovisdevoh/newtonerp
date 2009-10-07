@@ -9,7 +9,8 @@ public class PromptViewer
     {
 	String moduleName = entity.getSubmitModule().getClass().getSimpleName();
 	String actionName = entity.getSubmitAction().getClass().getSimpleName();
-	String formActionUrl = "/" + moduleName + "/" + actionName + "?user=";
+	String formActionUrl = "/" + moduleName + "/" + actionName + "?user="
+		+ entity.getCurrentUserName();
 
 	String html = "";
 	html += "<h1>" + entity.getPromptMessage() + "</h1>";
