@@ -24,7 +24,7 @@ import newtonERP.orm.sgbd.Sgbdable;
  *         query and executing it obviously. Then it's gonna send the query to
  *         the SgbdSqlite class to execute it.
  * 
- *         Types for the database : Integer, Double (Number?), String, Boolean
+ *         Types for the database : Integer, Double (Number?), String, Boolean (Integer?)
  */
 public class Orm
 {
@@ -135,7 +135,6 @@ public class Orm
     /**
      * Method used to update / change an entity
      * 
-     * @param searchEntity the entity to be researched
      * @param entityContainingChanges the entity that has been changed and will
      *            be in the orm
      * @param searchCriterias the criterias used by the update
@@ -216,6 +215,7 @@ public class Orm
     {
 	Hashtable<String, String> modules = ListModule.getAllModules();
 
+	// For each module
 	for (String key : modules.keySet())
 	{
 	    try
@@ -224,17 +224,20 @@ public class Orm
 		Vector<Ormizable> moduleEntities = module
 			.getDefinitionEntityList();
 
+		// For each entity in the list of module entities
 		for (Ormizable entity : moduleEntities)
 		{
+		    // Be sure to create the table only if it doesn't already exists
 		    String sqlQuery = "CREATE TABLE IF NOT EXISTS ";
 		    Field[] fields = entity.getClass().getDeclaredFields();
 
 		    sqlQuery += tablePrefix + entity.getClass().getSimpleName()
 			    + " ( ";
 
+		    // For each field into my entity
 		    for (int i = 0; i < fields.length; i++)
 		    {
-			// It is a primary key INTEGER PRIMARY KEY AUTOINCREMENT
+			// If it is a primary because it matches PK, else we check the datatypes and match them with a datatype good for the database
 			if (fields[i].getName().matches("PK.*"))
 			{
 			    if (i + 1 != fields.length)
@@ -278,9 +281,6 @@ public class Orm
 		    System.out.println("Sql query produced : " + sqlQuery);
 		    sqlQuery = "";
 		}
-	    } catch (ModuleNotFoundException e)
-	    {
-		e.printStackTrace();
 	    } catch (ModuleException e)
 	    {
 		e.printStackTrace();

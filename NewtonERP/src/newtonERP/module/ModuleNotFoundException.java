@@ -6,7 +6,7 @@ package newtonERP.module;
  *         exception lancé lorsque le module ne peut etre trouvé
  * 
  */
-public class ModuleNotFoundException extends Exception
+public class ModuleNotFoundException extends ModuleException
 {
     /**
      * @param moduleName nom du module
