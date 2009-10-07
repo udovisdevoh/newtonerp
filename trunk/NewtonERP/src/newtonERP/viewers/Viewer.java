@@ -2,6 +2,7 @@ package newtonERP.viewers;
 
 import newtonERP.module.AbstractEntity;
 import newtonERP.viewers.viewables.ListViewable;
+import newtonERP.viewers.viewables.ProfileViewable;
 import newtonERP.viewers.viewables.PromptViewable;
 
 public abstract class Viewer
