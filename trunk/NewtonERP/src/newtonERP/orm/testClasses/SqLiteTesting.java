@@ -2,8 +2,8 @@ package newtonERP.orm.testClasses;
 
 import newtonERP.orm.Orm;
 import newtonERP.orm.exceptions.OrmException;
-import newtonERP.orm.sgbd.SgbdSqlite;
-import newtonERP.orm.sgbd.Sgbdable;
+//import newtonERP.orm.sgbd.SgbdSqlite;
+//import newtonERP.orm.sgbd.Sgbdable;
 
 /**
  * @author r3hallejo
@@ -18,7 +18,7 @@ import newtonERP.orm.sgbd.Sgbdable;
  */
 public class SqLiteTesting
 {
-    private static Sgbdable sgbd = new SgbdSqlite();
+    //private static Sgbdable sgbd = new SgbdSqlite();
 
     /**
      * @param args the arguments
