@@ -2,9 +2,9 @@ package modules.testModule.entityDefinitions;
 
 import java.util.Hashtable;
 
+import newtonERP.module.AbstractEntity;
 import newtonERP.orm.Ormizable;
 import newtonERP.orm.exceptions.OrmException;
-import newtonERP.viewers.Viewable;
 
 /**
  * 
@@ -12,13 +12,12 @@ import newtonERP.viewers.Viewable;
  * 
  *         Test entity
  */
-public class TestEntity implements Ormizable, Viewable
+public class TestEntity extends AbstractEntity implements Ormizable
 {
-    @SuppressWarnings("unused")
-    private int index = 0;
-    private String name = "marcel";
-    private String age = "17";
-    private String color = "bleu";
+    private int index;
+    private String name;
+    private int age;
+    private String color;
 
     @Override
     public Hashtable<String, String> getOrmizableData() throws OrmException
@@ -26,7 +25,7 @@ public class TestEntity implements Ormizable, Viewable
 	Hashtable<String, String> ormizableData = new Hashtable<String, String>();
 
 	ormizableData.put("name", name);
-	ormizableData.put("age", age);
+	ormizableData.put("age", age + "");
 	ormizableData.put("color", color);
 
 	return ormizableData;
@@ -44,7 +43,7 @@ public class TestEntity implements Ormizable, Viewable
 	    }
 	    else if (key.toString().equals("age"))
 	    {
-		setAge((String) parameters.get(key));
+		setAge((Integer) parameters.get(key));
 	    }
 	    else if (key.toString().equals("color"))
 	    {
@@ -52,7 +51,6 @@ public class TestEntity implements Ormizable, Viewable
 	    }
 
 	}
-
     }
 
     /**
@@ -74,7 +72,7 @@ public class TestEntity implements Ormizable, Viewable
     /**
      * @param age the age
      */
-    public void setAge(String age)
+    public void setAge(int age)
     {
 	this.age = age;
     }
@@ -106,7 +104,7 @@ public class TestEntity implements Ormizable, Viewable
     /**
      * @return the age
      */
-    public String getAge()
+    public int getAge()
     {
 	return age;
     }

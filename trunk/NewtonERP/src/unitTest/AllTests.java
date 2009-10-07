@@ -2,6 +2,7 @@ package unitTest;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
+import unitTest.module.EntityTest;
 import unitTest.serveur.ServletTest;
 
 /**
@@ -20,6 +21,9 @@ public class AllTests
 	// $JUnit-BEGIN$
 	// racine
 	suite.addTestSuite(ListModuleTest.class);
+
+	// module
+	suite.addTestSuite(EntityTest.class);
 
 	// orm
 

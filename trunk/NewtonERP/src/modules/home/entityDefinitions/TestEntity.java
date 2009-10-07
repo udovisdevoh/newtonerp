@@ -2,9 +2,9 @@ package modules.home.entityDefinitions;
 
 import java.util.Hashtable;
 
+import newtonERP.module.AbstractEntity;
 import newtonERP.orm.Ormizable;
 import newtonERP.orm.exceptions.OrmException;
-import newtonERP.viewers.Viewable;
 
 /**
  * 
@@ -12,7 +12,7 @@ import newtonERP.viewers.Viewable;
  * 
  *         Test entity
  */
-public class TestEntity implements Ormizable, Viewable
+public class TestEntity extends AbstractEntity implements Ormizable
 {
     @SuppressWarnings("unused")
     private int index = 0;

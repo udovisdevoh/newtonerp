@@ -2,15 +2,12 @@ package modules.userRightModule.actions;
 
 import java.util.Hashtable;
 
-import newtonERP.module.actions.ActionableEntity;
-import newtonERP.module.actions.IAction;
-import newtonERP.viewers.Viewable;
+import newtonERP.module.AbstractAction;
+import newtonERP.module.AbstractEntity;
 
-public class DeleteUserType implements IAction
+public class DeleteUserType extends AbstractAction
 {
-
-    @Override
-    public Viewable perform(ActionableEntity entity,
+    public AbstractEntity doAction(AbstractEntity entity,
 	    Hashtable<String, String> parameters)
     {
 	// TODO Auto-generated method stub

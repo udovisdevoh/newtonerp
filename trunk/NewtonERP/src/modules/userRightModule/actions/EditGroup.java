@@ -2,20 +2,19 @@ package modules.userRightModule.actions;
 
 import java.util.Hashtable;
 
-import newtonERP.module.actions.ActionableEntity;
-import newtonERP.module.actions.IAction;
-import newtonERP.viewers.Viewable;
+import newtonERP.module.AbstractAction;
+import newtonERP.module.AbstractEntity;
 
 /**
  * Fait Par Gabriel Therrien
  * 
  * @param args
  */
-public class EditGroup implements IAction
+public class EditGroup extends AbstractAction
 {
 
     @Override
-    public Viewable perform(ActionableEntity entity,
+    public AbstractEntity doAction(AbstractEntity entity,
 	    Hashtable<String, String> parameters)
     {
 	return null;

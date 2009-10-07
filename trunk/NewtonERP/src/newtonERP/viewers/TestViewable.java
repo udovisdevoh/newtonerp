@@ -1,6 +1,8 @@
 package newtonERP.viewers;
 
-public class TestViewable implements Viewable
+import newtonERP.module.AbstractEntity;
+
+public class TestViewable extends AbstractEntity
 {
 
 }

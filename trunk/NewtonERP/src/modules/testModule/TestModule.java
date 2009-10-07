@@ -2,7 +2,6 @@ package modules.testModule;
 
 import modules.testModule.actions.TestAction;
 import modules.testModule.entityDefinitions.TestEntity;
-import modules.testModule.moduleGetters.TestModuleGetter;
 import newtonERP.module.Module;
 
 /**
@@ -24,7 +23,7 @@ public class TestModule extends Module
 	// addDefinitinEntity(new TestActionableEntity());
 
 	addAction(new TestAction(), true);
+	// (new TestEntity()).getEntityFromHashTable(null);
 
-	addModuleGetter(new TestModuleGetter(), true);
     }
 }

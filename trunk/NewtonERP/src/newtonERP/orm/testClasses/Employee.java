@@ -2,9 +2,9 @@ package newtonERP.orm.testClasses;
 
 import java.util.Hashtable;
 
+import newtonERP.module.AbstractEntity;
 import newtonERP.orm.Ormizable;
 import newtonERP.orm.exceptions.OrmException;
-import newtonERP.viewers.Viewable;
 
 /**
  * 
@@ -12,7 +12,7 @@ import newtonERP.viewers.Viewable;
  * 
  *         Test entity
  */
-public class Employee implements Ormizable, Viewable
+public class Employee extends AbstractEntity implements Ormizable
 {
     private int index = 0;
     private String name = "marcel";

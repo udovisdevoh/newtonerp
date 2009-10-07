@@ -1,7 +1,7 @@
 package modules.testModule.entityDefinitions;
 
-import newtonERP.module.actions.ActionableEntity;
+import newtonERP.module.AbstractEntity;
 
-public class TestActionableEntity implements ActionableEntity
+public class TestActionableEntity extends AbstractEntity
 {
 }

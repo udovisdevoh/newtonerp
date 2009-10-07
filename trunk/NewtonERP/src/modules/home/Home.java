@@ -2,7 +2,6 @@ package modules.home;
 
 import modules.testModule.actions.TestAction;
 import modules.testModule.entityDefinitions.TestEntity;
-import modules.testModule.moduleGetters.TestModuleGetter;
 import newtonERP.module.Module;
 
 /**
@@ -25,6 +24,5 @@ public class Home extends Module
 
 	addAction(new TestAction(), true);
 
-	addModuleGetter(new TestModuleGetter(), true);
     }
 }

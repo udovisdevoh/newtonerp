@@ -6,12 +6,8 @@ package newtonERP.module;
 import java.util.Hashtable;
 import java.util.Vector;
 
-import newtonERP.module.actions.ActionableEntity;
-import newtonERP.module.actions.IAction;
-import newtonERP.module.moduleGetters.IModuleGetter;
 import newtonERP.orm.Orm;
 import newtonERP.orm.Ormizable;
-import newtonERP.viewers.Viewable;
 
 /**
  * @author Pascal Lemay
@@ -26,13 +22,20 @@ public abstract class Module
     protected Vector<Ormizable> definitionEntityList;
 
     // Sert a stocker les actions pouvant etre appelees
-    protected Hashtable<String, IAction> actionList;
+    protected Hashtable<String, AbstractAction> actionList;
 
-    protected Hashtable<String, IModuleGetter> moduleGetterList;
+    /**
+     * constructeur
+     */
+    public Module()
+    {
+	definitionEntityList = new Vector<Ormizable>();
+	actionList = new Hashtable<String, AbstractAction>();
+    }
 
     protected final void setDefaultAction(String actionName)
     {
-	IAction defaultAction;
+	AbstractAction defaultAction;
 	try
 	{
 	    defaultAction = getAction(actionName);
@@ -44,59 +47,21 @@ public abstract class Module
 	}
     }
 
-    protected final void setDefaultModuleGetter(String moduleGetterName)
-    {
-	IModuleGetter defaultModuleGetter;
-	try
-	{
-	    defaultModuleGetter = getModuleGetter(moduleGetterName);
-	    moduleGetterList.put("default", defaultModuleGetter);
-	} catch (ModuleException e)
-	{
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
-	}
-    }
-
-    protected final void addAction(IAction action)
+    protected final void addAction(AbstractAction action)
     {
 	actionList.put(action.getClass().getSimpleName(), action);
     }
 
-    protected final void addAction(IAction action, boolean isDefault)
+    protected final void addAction(AbstractAction action, boolean isDefault)
     {
 	addAction(action);
 	if (isDefault)
 	    setDefaultAction(action.getClass().getSimpleName());
     }
 
-    protected final void addModuleGetter(IModuleGetter moduleGetter)
-    {
-	moduleGetterList.put(moduleGetter.getClass().getSimpleName(),
-		moduleGetter);
-    }
-
-    protected final void addModuleGetter(IModuleGetter moduleGetter,
-	    boolean isDefault)
-    {
-	addModuleGetter(moduleGetter);
-	if (isDefault)
-	    setDefaultModuleGetter(moduleGetter.getClass().getSimpleName());
-    }
-
     protected final void addDefinitinEntity(Ormizable definitinEntity)
     {
 	definitionEntityList.add(definitinEntity);
-    }
-
-    /**
-     * 
-     */
-    public Module()
-    {
-	definitionEntityList = new Vector<Ormizable>();
-	actionList = new Hashtable<String, IAction>();
-	moduleGetterList = new Hashtable<String, IModuleGetter>();
     }
 
     /**
@@ -110,34 +75,9 @@ public abstract class Module
     /**
      * @return the actions HashTable
      */
-    public final Hashtable<String, IAction> getActionList()
+    public final Hashtable<String, AbstractAction> getActionList()
     {
 	return actionList;
-    }
-
-    /**
-     * @param moduleGetterName nom du moduleGetter
-     * @return moduleGetter de ce nom contenue dans le HashTable
-     * @throws ModuleException si le moduleGetter n'existe pas
-     */
-    public final IModuleGetter getModuleGetter(String moduleGetterName)
-	    throws ModuleException
-    {
-	IModuleGetter moduleGetter = null;
-	try
-	{
-	    moduleGetter = moduleGetterList.get(moduleGetterName);
-	} catch (NullPointerException e)
-	{
-	    throw new ModuleException("ModuleGetter: " + moduleGetterName
-		    + " introuvable");
-	}
-
-	if (moduleGetter == null)
-	    throw new ModuleException("ModuleGetter: " + moduleGetterName
-		    + " introuvable");
-
-	return moduleGetter;
     }
 
     /**
@@ -145,9 +85,10 @@ public abstract class Module
      * @return action de ce nom contenue dans le HashTable
      * @throws ModuleException si l'action n'Existe pas
      */
-    public final IAction getAction(String actionName) throws ModuleException
+    public final AbstractAction getAction(String actionName)
+	    throws ModuleException
     {
-	IAction action = null;
+	AbstractAction action = null;
 	try
 	{
 	    action = actionList.get(actionName);
@@ -172,23 +113,11 @@ public abstract class Module
      * @return Entité viewable pour l'output du résultat
      * @throws ModuleException voir le message...
      */
-    public final Viewable doAction(String actionName, String moduleGetterName,
-	    Hashtable<String, String> parameters) throws ModuleException
+    public final AbstractEntity doAction(String actionName,
+	    String moduleGetterName, Hashtable<String, String> parameters)
+	    throws ModuleException
     {
-	IAction action = getAction(actionName);
-
-	if (moduleGetterName == null)
-	    throw new ModuleException("Aucun moduleGetter spécifié");
-
-	IModuleGetter moduleGetter = moduleGetterList.get(moduleGetterName);
-
-	if (moduleGetter == null)
-	    throw new ModuleException("ModuleGetter " + moduleGetterName
-		    + " introuvable");
-
-	ActionableEntity entity = moduleGetter
-		.getEntityFromParameters(parameters);
-
-	return action.perform(entity, parameters);
+	AbstractAction action = getAction(actionName);
+	return action.perform(parameters);
     }
 }
