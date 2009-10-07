@@ -9,7 +9,6 @@ import java.util.Vector;
 import newtonERP.ListModule;
 import newtonERP.module.Module;
 import newtonERP.module.ModuleException;
-import newtonERP.module.ModuleNotFoundException;
 import newtonERP.orm.exceptions.OrmException;
 import newtonERP.orm.sgbd.SgbdSqlite;
 import newtonERP.orm.sgbd.Sgbdable;
