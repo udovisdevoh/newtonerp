@@ -42,6 +42,8 @@ public class ServletTest extends TestCase
      */
     public void testHandleFullAdress()
     {
+	// HttpServletRequestWrapper requ = new HttpServletRequestWrapper(null);
+
 	assertNotNull(testServlet.urlToAction("/TestModule/TestAction", null));
     }
 
