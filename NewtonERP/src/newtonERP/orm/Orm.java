@@ -71,6 +71,7 @@ public class Orm
 	Hashtable<String, String> data = newEntity.getOrmizableData();
 	String sqlQuery = "INSERT INTO " + prefix
 		+ newEntity.getClass().getSimpleName() + " (";
+	String valuesQuery = "VALUES (";
 
 	// We now iterate through the key set so we can add the fields to the
 	// query
@@ -80,30 +81,40 @@ public class Orm
 	    // Retrieve key
 	    Object key = keySetIterator.next();
 
-	    // If it's the end or not we add the key to the query with the right
-	    // string ("," or not)
-	    if (!keySetIterator.hasNext())
-		sqlQuery += "'" + prefix + key.toString() + "') ";
-	    else
-		sqlQuery += "'" + prefix + key.toString() + "', ";
+	    if (!key.toString().matches("PK.*"))
+	    {
+		// If it's the end or not we add the key to the query with the
+		// right string ("," or not)
+		if (!keySetIterator.hasNext())
+		{
+		    sqlQuery += "'" + prefix + key.toString() + "') ";
+		    valuesQuery += "'" + data.get(key).toString() + "') ";
+		}
+		else
+		{
+		    sqlQuery += "'" + prefix + key.toString() + "', ";
+		    valuesQuery += "'" + data.get(key).toString() + "', ";
+		}
+	    }
+
 	}
 
-	sqlQuery += "VALUES (";
+	sqlQuery += valuesQuery;
 
 	// Now we add the values to the query
-	Iterator valueIterator = data.values().iterator();
-	while (valueIterator.hasNext())
-	{
-	    // Retrieve value
-	    Object value = valueIterator.next();
+	// Iterator valueIterator = data.values().iterator();
+	// while (valueIterator.hasNext())
+	// {
+	// // Retrieve value
+	// Object value = valueIterator.next();
 
-	    // If it's the end or not we add the key to the query with the right
-	    // string ("," or not)
-	    if (!valueIterator.hasNext())
-		sqlQuery += "'" + value.toString() + "') ";
-	    else
-		sqlQuery += "'" + value.toString() + "', ";
-	}
+	// If it's the end or not we add the key to the query with the right
+	// string ("," or not)
+	// if (!valueIterator.hasNext())
+	// sqlQuery += "'" + value.toString() + "') ";
+	// else
+	// sqlQuery += "'" + value.toString() + "', ";
+	// }
 
 	// TODO: Remove the next line once this will be properly debugged
 	System.out.println("SQL query produced : " + sqlQuery);
