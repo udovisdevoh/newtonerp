@@ -79,8 +79,11 @@ public class UserRightModule extends Module
 		search.add("Newton_ActionName='" + action
 			+ "' AND Newton_ModuleName='"
 			+ this.getClass().getSimpleName() + "'");
-		rightID = ((Right) Orm.select(right, search).get(0))
-			.getPKrightID();
+		System.out.println("******"
+			+ Orm.select(right, search).get(0).getClass()
+				.getSimpleName());
+		right = ((Right) Orm.select(right, search).get(0));
+		rightID = right.getPKrightID();
 
 		// cree le groupRight
 		groupRight.setGroupID(groupID);

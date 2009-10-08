@@ -46,12 +46,12 @@ public class EntityCreator
 		Hashtable<String, Object> parameters = new Hashtable<String, Object>();
 
 		// We add each column to the hashtable plus it's value
-		for (int i = 1; i < fields.length; i++)
+		for (int i = 0; i < fields.length; i++)
 		{
 		    // TODO: Remove the next line when properly debugged
 		    System.out.println(fields[i].getName() + " : "
-			    + rs.getObject(i));
-		    parameters.put(fields[i].getName(), rs.getObject(i));
+			    + rs.getObject(i + 1));
+		    parameters.put(fields[i].getName(), rs.getObject(i + 1));
 		}
 
 		// We format the data into the newly created entity
@@ -62,6 +62,7 @@ public class EntityCreator
 	    }
 	} catch (Exception e)
 	{
+	    e.printStackTrace();
 	    throw new OrmEntityCreationException(e.getMessage());
 	}
 
