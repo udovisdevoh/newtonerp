@@ -21,9 +21,10 @@ public class DeleteRight extends AbstractAction
     {
 	try
 	{
-	    Vector<String> g = new Vector<String>();
-	    g.add("actionName=" + ((Right) entity).getActionName());
-	    Orm.delete((Ormizable) entity, g);
+	    Vector<String> whereParameter = new Vector<String>();
+	    whereParameter.add("Newton_ActionName="
+		    + ((Right) entity).getActionName());
+	    Orm.delete((Ormizable) entity, whereParameter);
 	} catch (OrmException e)
 	{
 	    e.printStackTrace();

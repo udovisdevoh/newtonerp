@@ -22,11 +22,12 @@ public class EditGroupRight extends AbstractAction
     public AbstractEntity doAction(AbstractEntity entity,
 	    Hashtable<String, String> parameters)
     {
-	Vector<String> g = new Vector<String>();
-	g.add("" + ((GroupRight) entity).getRightID());
+	Vector<String> whereParameter = new Vector<String>();
+	whereParameter.add("Newton_RightID="
+		+ ((GroupRight) entity).getRightID());
 	try
 	{
-	    Orm.update((Ormizable) entity, g);
+	    Orm.update((Ormizable) entity, whereParameter);
 	} catch (OrmException e)
 	{
 	    // TODO Auto-generated catch block

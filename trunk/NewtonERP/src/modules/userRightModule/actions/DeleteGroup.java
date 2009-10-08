@@ -21,9 +21,10 @@ public class DeleteGroup extends AbstractAction
     {
 	try
 	{
-	    Vector<String> g = new Vector<String>();
-	    g.add("groupName=" + ((Groups) entity).getGroupName());
-	    Orm.delete((Ormizable) entity, g);
+	    Vector<String> whereParameter = new Vector<String>();
+	    whereParameter.add("Newton_GroupName="
+		    + ((Groups) entity).getGroupName());
+	    Orm.delete((Ormizable) entity, whereParameter);
 	} catch (OrmException e)
 	{
 	    e.printStackTrace();

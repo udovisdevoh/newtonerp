@@ -13,7 +13,7 @@ import newtonERP.orm.exceptions.OrmException;
 /**
  * Fait Par Gabriel Therrien
  * 
- * @param args
+ * @param argsdd
  */
 public class EditRight extends AbstractAction
 {
@@ -22,11 +22,11 @@ public class EditRight extends AbstractAction
     public AbstractEntity doAction(AbstractEntity entity,
 	    Hashtable<String, String> parameters)
     {
-	Vector<String> g = new Vector<String>();
-	g.add("" + ((Right) entity).getPKrightID());
+	Vector<String> whereParameter = new Vector<String>();
+	whereParameter.add("Newton_PKright=" + ((Right) entity).getPKrightID());
 	try
 	{
-	    Orm.update((Ormizable) entity, g);
+	    Orm.update((Ormizable) entity, whereParameter);
 	} catch (OrmException e)
 	{
 	    // TODO Auto-generated catch block
