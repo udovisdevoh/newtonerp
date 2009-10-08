@@ -1,0 +1,349 @@
+
+[INFO 17:26:02 2009.09.24] Initialion of connection to db
+[INFO 17:26:02 2009.09.24] Connexion has been succesfully initialized
+[INFO 17:26:02 2009.09.24] Attempting to close the connexion to db
+[INFO 17:26:02 2009.09.24] Connexion has been succesfully closed
+[INFO 17:39:00 2009.09.24] Initialisation of connection to db
+[INFO 17:39:00 2009.09.24] Connexion has been succesfully initialized
+[INFO 17:39:00 2009.09.24] Attempting to close the connexion to db
+[INFO 17:39:00 2009.09.24] Connexion has been succesfully closed
+[INFO 17:44:35 2009.09.24] Initialisation of connection to db
+[INFO 17:44:35 2009.09.24] Connexion has been succesfully initialized
+[INFO 17:44:35 2009.09.24] Attempting to close the connexion to db
+[INFO 17:44:35 2009.09.24] Connexion has been succesfully closed
+[INFO 17:46:31 2009.09.24] Initialisation of connection to db
+[INFO 17:46:31 2009.09.24] Connexion has been succesfully initialized
+[INFO 17:46:31 2009.09.24] Attempting to close the connexion to db
+[INFO 17:46:31 2009.09.24] Connexion has been succesfully closed
+[INFO 12:43:39 2009.09.30] Initialisation of connection to db
+[INFO 12:43:39 2009.09.30] Connexion has been succesfully initialized
+[ERROR 12:43:39 2009.09.30] near "%": syntax error
+[INFO 12:43:39 2009.09.30] Attempting to close the connexion to db
+[INFO 12:43:39 2009.09.30] Connexion has been succesfully closed
+[INFO 12:44:09 2009.09.30] Initialisation of connection to db
+[INFO 12:44:09 2009.09.30] Connexion has been succesfully initialized
+[ERROR 12:44:09 2009.09.30] near "%": syntax error
+[INFO 12:44:09 2009.09.30] Attempting to close the connexion to db
+[INFO 12:44:09 2009.09.30] Connexion has been succesfully closed
+[INFO 12:44:43 2009.09.30] Initialisation of connection to db
+[INFO 12:44:43 2009.09.30] Connexion has been succesfully initialized
+[INFO 12:44:43 2009.09.30] Attempting to close the connexion to db
+[INFO 12:44:43 2009.09.30] Connexion has been succesfully closed
+[INFO 12:46:37 2009.09.30] Initialisation of connection to db
+[INFO 12:46:37 2009.09.30] Connexion has been succesfully initialized
+[INFO 12:46:37 2009.09.30] Attempting to close the connexion to db
+[INFO 12:46:37 2009.09.30] Connexion has been succesfully closed
+[INFO 12:47:39 2009.09.30] Initialisation of connection to db
+[INFO 12:47:39 2009.09.30] Connexion has been succesfully initialized
+[INFO 12:47:39 2009.09.30] Attempting to close the connexion to db
+[INFO 12:47:39 2009.09.30] Connexion has been succesfully closed
+[INFO 13:01:47 2009.09.30] Initialisation of connection to db
+[INFO 13:01:47 2009.09.30] Connexion has been succesfully initialized
+[INFO 13:02:26 2009.09.30] Initialisation of connection to db
+[INFO 13:02:26 2009.09.30] Connexion has been succesfully initialized
+[INFO 13:08:49 2009.09.30] Initialisation of connection to db
+[INFO 13:08:49 2009.09.30] Connexion has been succesfully initialized
+[INFO 14:16:44 2009.09.30] Initialisation of connection to db
+[INFO 14:16:44 2009.09.30] Connexion has been succesfully initialized
+[INFO 13:31:45 2009.10.01] Initialisation of connection to db
+[INFO 13:31:45 2009.10.01] Connexion has been succesfully initialized
+[INFO 13:32:44 2009.10.01] Initialisation of connection to db
+[INFO 13:32:44 2009.10.01] Connexion has been succesfully initialized
+[INFO 13:33:23 2009.10.01] Initialisation of connection to db
+[INFO 13:33:23 2009.10.01] Connexion has been succesfully initialized
+[INFO 13:34:07 2009.10.01] Initialisation of connection to db
+[INFO 13:34:07 2009.10.01] Connexion has been succesfully initialized
+[INFO 13:35:11 2009.10.01] Initialisation of connection to db
+[INFO 13:35:11 2009.10.01] Connexion has been succesfully initialized
+[INFO 13:36:05 2009.10.01] Initialisation of connection to db
+[INFO 13:36:05 2009.10.01] Connexion has been succesfully initialized
+[INFO 13:36:36 2009.10.01] Initialisation of connection to db
+[INFO 13:36:36 2009.10.01] Connexion has been succesfully initialized
+[INFO 13:37:03 2009.10.01] Initialisation of connection to db
+[INFO 13:37:03 2009.10.01] Connexion has been succesfully initialized
+[INFO 13:39:39 2009.10.01] Initialisation of connection to db
+[INFO 13:39:39 2009.10.01] Connexion has been succesfully initialized
+[INFO 13:40:44 2009.10.01] Initialisation of connection to db
+[INFO 13:40:44 2009.10.01] Connexion has been succesfully initialized
+[INFO 13:42:41 2009.10.01] Initialisation of connection to db
+[INFO 13:42:41 2009.10.01] Connexion has been succesfully initialized
+[INFO 13:43:31 2009.10.01] Initialisation of connection to db
+[INFO 13:43:31 2009.10.01] Connexion has been succesfully initialized
+[INFO 13:43:47 2009.10.01] Initialisation of connection to db
+[INFO 13:43:47 2009.10.01] Connexion has been succesfully initialized
+[INFO 13:44:16 2009.10.01] Initialisation of connection to db
+[INFO 13:44:16 2009.10.01] Connexion has been succesfully initialized
+[INFO 14:24:15 2009.10.01] Initialisation of connection to db
+[INFO 14:24:15 2009.10.01] Connexion has been succesfully initialized
+[INFO 14:28:23 2009.10.01] Initialisation of connection to db
+[INFO 14:28:23 2009.10.01] Connexion has been succesfully initialized
+[INFO 14:29:09 2009.10.01] Initialisation of connection to db
+[INFO 14:29:09 2009.10.01] Connexion has been succesfully initialized
+[INFO 14:29:27 2009.10.01] Initialisation of connection to db
+[INFO 14:29:27 2009.10.01] Connexion has been succesfully initialized
+[INFO 16:06:18 2009.10.01] Initialisation of connection to db
+[INFO 16:06:18 2009.10.01] Connexion has been succesfully initialized
+[INFO 16:06:49 2009.10.01] Initialisation of connection to db
+[INFO 16:06:49 2009.10.01] Connexion has been succesfully initialized
+[INFO 16:52:41 2009.10.01] Initialisation of connection to db
+[INFO 16:52:41 2009.10.01] Connexion has been succesfully initialized
+[INFO 16:52:52 2009.10.01] Initialisation of connection to db
+[INFO 16:52:52 2009.10.01] Connexion has been succesfully initialized
+[INFO 16:53:12 2009.10.01] Initialisation of connection to db
+[INFO 16:53:12 2009.10.01] Connexion has been succesfully initialized
+[INFO 17:38:17 2009.10.01] Initialisation of connection to db
+[INFO 17:38:17 2009.10.01] Connexion has been succesfully initialized
+[INFO 17:52:04 2009.10.01] Initialisation of connection to db
+[INFO 17:52:04 2009.10.01] Connexion has been succesfully initialized
+[INFO 17:52:04 2009.10.01] Attempting to close the connexion to db
+[INFO 17:52:04 2009.10.01] Connexion has been succesfully closed
+[INFO 19:44:52 2009.10.01] Initialisation of connection to db
+[INFO 19:44:52 2009.10.01] Connexion has been succesfully initialized
+[INFO 19:50:13 2009.10.01] Initialisation of connection to db
+[INFO 19:50:13 2009.10.01] Connexion has been succesfully initialized
+[INFO 19:52:20 2009.10.01] Initialisation of connection to db
+[INFO 19:52:20 2009.10.01] Connexion has been succesfully initialized
+[INFO 8:16:08 2009.10.02] Initialisation of connection to db
+[INFO 8:16:08 2009.10.02] Connexion has been succesfully initialized
+[INFO 8:18:20 2009.10.02] Initialisation of connection to db
+[INFO 8:18:20 2009.10.02] Connexion has been succesfully initialized
+[INFO 8:19:00 2009.10.02] Initialisation of connection to db
+[INFO 8:19:00 2009.10.02] Connexion has been succesfully initialized
+[INFO 9:05:33 2009.10.02] Attempting to close the connexion to db
+[INFO 9:05:39 2009.10.02] Attempting to close the connexion to db
+[INFO 9:06:04 2009.10.02] Initialisation of connection to db
+[INFO 9:06:04 2009.10.02] Connexion has been succesfully initialized
+[INFO 9:06:34 2009.10.02] Initialisation of connection to db
+[INFO 9:06:34 2009.10.02] Connexion has been succesfully initialized
+[INFO 9:06:50 2009.10.02] Initialisation of connection to db
+[INFO 9:06:50 2009.10.02] Connexion has been succesfully initialized
+[INFO 9:08:09 2009.10.02] Initialisation of connection to db
+[INFO 9:08:09 2009.10.02] Connexion has been succesfully initialized
+[INFO 9:08:56 2009.10.02] Initialisation of connection to db
+[INFO 9:08:56 2009.10.02] Connexion has been succesfully initialized
+[INFO 20:01:04 2009.10.02] Initialisation of connection to db
+[INFO 20:01:04 2009.10.02] Connexion has been succesfully initialized
+[INFO 20:43:27 2009.10.02] Initialisation of connection to db
+[INFO 20:43:27 2009.10.02] Connexion has been succesfully initialized
+ERROR LORS DEE LAFFICHAGE DE LE PAGE HELLO PAR KOVALEV SOUS UBUNTU 9.04: 
+
+Initialisation of connection to db
+Connexion has been succesfully initialized
+2009-10-02 20:43:28.293::INFO:  Logging to STDERR via org.mortbay.log.StdErrLog
+2009-10-02 20:43:28.294::INFO:  jetty-6.1.21
+2009-10-02 20:43:33.498::INFO:  Started SocketConnector@0.0.0.0:47098
+java.lang.NullPointerException
+   at java.lang.Class.forName(libgcj.so.90)
+   at newtonERP.ListModule.getModule(ListModule.java:77)
+   at newtonERP.serveur.CommandRouteur.routeCommand(CommandRouteur.java:32)
+   at newtonERP.serveur.Servlet.urlToAction(Servlet.java:116)
+   at newtonERP.serveur.Servlet.handle(Servlet.java:53)
+   at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+   at org.mortbay.jetty.Server.handle(Server.java:326)
+   at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:536)
+   at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:915)
+   at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:539)
+   at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+   at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:405)
+   at org.mortbay.jetty.bio.SocketConnector$Connection.run(SocketConnector.java:228)
+   at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+
+[INFO 20:44:49 2009.10.02] Initialisation of connection to db
+[INFO 20:44:49 2009.10.02] Connexion has been succesfully initialized
+[INFO 12:08:00 2009.10.06] Initialisation of connection to db
+[INFO 12:08:00 2009.10.06] Connexion has been succesfully initialized
+[ERROR 12:08:00 2009.10.06] no such table: TestEntityModified
+[INFO 12:09:31 2009.10.06] Initialisation of connection to db
+[INFO 12:09:31 2009.10.06] Connexion has been succesfully initialized
+[ERROR 12:09:31 2009.10.06] no such table: TestEntity
+[INFO 12:10:09 2009.10.06] Initialisation of connection to db
+[INFO 12:10:09 2009.10.06] Connexion has been succesfully initialized
+[ERROR 12:10:09 2009.10.06] no such table: TestEntity
+[INFO 12:12:25 2009.10.06] Initialisation of connection to db
+[INFO 12:12:25 2009.10.06] Connexion has been succesfully initialized
+[INFO 12:12:43 2009.10.06] Initialisation of connection to db
+[INFO 12:12:43 2009.10.06] Connexion has been succesfully initialized
+[INFO 12:12:58 2009.10.06] Initialisation of connection to db
+[INFO 12:12:58 2009.10.06] Connexion has been succesfully initialized
+[INFO 12:13:39 2009.10.06] Initialisation of connection to db
+[INFO 12:13:39 2009.10.06] Connexion has been succesfully initialized
+[INFO 12:14:43 2009.10.06] Initialisation of connection to db
+[INFO 12:14:43 2009.10.06] Connexion has been succesfully initialized
+[INFO 12:17:41 2009.10.06] Initialisation of connection to db
+[INFO 12:17:41 2009.10.06] Connexion has been succesfully initialized
+[INFO 12:19:47 2009.10.06] Initialisation of connection to db
+[INFO 12:19:47 2009.10.06] Connexion has been succesfully initialized
+[INFO 12:21:37 2009.10.06] Initialisation of connection to db
+[INFO 12:21:37 2009.10.06] Connexion has been succesfully initialized
+[INFO 12:26:28 2009.10.06] Initialisation of connection to db
+[INFO 12:26:28 2009.10.06] Connexion has been succesfully initialized
+[INFO 12:27:19 2009.10.06] Initialisation of connection to db
+[INFO 12:27:19 2009.10.06] Connexion has been succesfully initialized
+[ERROR 12:27:19 2009.10.06] column 0 out of bounds [1,3]
+[INFO 12:27:51 2009.10.06] Initialisation of connection to db
+[INFO 12:27:51 2009.10.06] Connexion has been succesfully initialized
+[INFO 12:28:41 2009.10.06] Initialisation of connection to db
+[INFO 12:28:41 2009.10.06] Connexion has been succesfully initialized
+[INFO 12:30:39 2009.10.06] Initialisation of connection to db
+[INFO 12:30:39 2009.10.06] Connexion has been succesfully initialized
+[INFO 12:31:06 2009.10.06] Initialisation of connection to db
+[INFO 12:31:06 2009.10.06] Connexion has been succesfully initialized
+[INFO 12:12:15 2009.10.07] Initialisation of connection to db
+[INFO 12:12:15 2009.10.07] Connexion has been succesfully initialized
+[INFO 12:12:58 2009.10.07] Initialisation of connection to db
+[INFO 12:12:58 2009.10.07] Connexion has been succesfully initialized
+[INFO 12:13:51 2009.10.07] Initialisation of connection to db
+[INFO 12:13:51 2009.10.07] Connexion has been succesfully initialized
+[INFO 12:13:51 2009.10.07] Attempting to close the connexion to db
+[INFO 12:13:51 2009.10.07] Connexion has been succesfully closed
+[INFO 12:15:35 2009.10.07] Initialisation of connection to db
+[INFO 12:15:35 2009.10.07] Connexion has been succesfully initialized
+[INFO 12:15:35 2009.10.07] Attempting to close the connexion to db
+[INFO 12:15:35 2009.10.07] Connexion has been succesfully closed
+[INFO 12:21:30 2009.10.07] Initialisation of connection to db
+[INFO 12:21:30 2009.10.07] Connexion has been succesfully initialized
+[INFO 12:21:30 2009.10.07] Attempting to close the connexion to db
+[INFO 12:21:30 2009.10.07] Connexion has been succesfully closed
+[INFO 12:22:52 2009.10.07] Initialisation of connection to db
+[INFO 12:22:52 2009.10.07] Connexion has been succesfully initialized
+[INFO 12:23:29 2009.10.07] Initialisation of connection to db
+[INFO 12:23:29 2009.10.07] Connexion has been succesfully initialized
+[INFO 12:24:53 2009.10.07] Initialisation of connection to db
+[INFO 12:24:53 2009.10.07] Connexion has been succesfully initialized
+[INFO 12:25:41 2009.10.07] Initialisation of connection to db
+[INFO 12:25:41 2009.10.07] Connexion has been succesfully initialized
+[INFO 12:25:53 2009.10.07] Initialisation of connection to db
+[INFO 12:25:53 2009.10.07] Connexion has been succesfully initialized
+[INFO 12:26:17 2009.10.07] Initialisation of connection to db
+[INFO 12:26:17 2009.10.07] Connexion has been succesfully initialized
+[INFO 12:27:31 2009.10.07] Initialisation of connection to db
+[INFO 12:27:31 2009.10.07] Connexion has been succesfully initialized
+[INFO 12:27:31 2009.10.07] Attempting to close the connexion to db
+[INFO 12:27:31 2009.10.07] Connexion has been succesfully closed
+[INFO 12:28:22 2009.10.07] Initialisation of connection to db
+[INFO 12:28:22 2009.10.07] Connexion has been succesfully initialized
+[INFO 12:30:28 2009.10.07] Initialisation of connection to db
+[INFO 12:30:28 2009.10.07] Connexion has been succesfully initialized
+[INFO 12:30:28 2009.10.07] Attempting to close the connexion to db
+[INFO 12:30:28 2009.10.07] Connexion has been succesfully closed
+[INFO 12:31:00 2009.10.07] Initialisation of connection to db
+[INFO 12:31:00 2009.10.07] Connexion has been succesfully initialized
+[INFO 12:31:00 2009.10.07] Attempting to close the connexion to db
+[INFO 12:31:00 2009.10.07] Connexion has been succesfully closed
+[INFO 12:31:44 2009.10.07] Initialisation of connection to db
+[INFO 12:31:44 2009.10.07] Connexion has been succesfully initialized
+[INFO 12:33:46 2009.10.07] Initialisation of connection to db
+[INFO 12:33:46 2009.10.07] Connexion has been succesfully initialized
+[INFO 12:34:51 2009.10.07] Initialisation of connection to db
+[INFO 12:34:51 2009.10.07] Connexion has been succesfully initialized
+[INFO 12:35:10 2009.10.07] Initialisation of connection to db
+[INFO 12:35:10 2009.10.07] Connexion has been succesfully initialized
+[INFO 12:35:10 2009.10.07] Attempting to close the connexion to db
+[INFO 12:35:10 2009.10.07] Connexion has been succesfully closed
+[INFO 12:35:37 2009.10.07] Initialisation of connection to db
+[INFO 12:35:37 2009.10.07] Connexion has been succesfully initialized
+[INFO 13:02:30 2009.10.07] Initialisation of connection to db
+[INFO 13:02:30 2009.10.07] Connexion has been succesfully initialized
+[INFO 13:02:30 2009.10.07] Attempting to close the connexion to db
+[INFO 13:02:30 2009.10.07] Connexion has been succesfully closed
+[INFO 13:03:15 2009.10.07] Initialisation of connection to db
+[INFO 13:03:15 2009.10.07] Connexion has been succesfully initialized
+[INFO 13:03:15 2009.10.07] Attempting to close the connexion to db
+[INFO 13:03:15 2009.10.07] Connexion has been succesfully closed
+[INFO 13:09:36 2009.10.07] Initialisation of connection to db
+[INFO 13:09:36 2009.10.07] Connexion has been succesfully initialized
+[INFO 13:10:53 2009.10.07] Initialisation of connection to db
+[INFO 13:10:53 2009.10.07] Connexion has been succesfully initialized
+[INFO 13:11:37 2009.10.07] Initialisation of connection to db
+[INFO 13:11:37 2009.10.07] Connexion has been succesfully initialized
+[INFO 13:12:15 2009.10.07] Initialisation of connection to db
+[INFO 13:12:15 2009.10.07] Connexion has been succesfully initialized
+[INFO 13:12:40 2009.10.07] Initialisation of connection to db
+[INFO 13:12:40 2009.10.07] Connexion has been succesfully initialized
+[INFO 13:15:24 2009.10.07] Initialisation of connection to db
+[INFO 13:15:24 2009.10.07] Connexion has been succesfully initialized
+[INFO 13:15:50 2009.10.07] Initialisation of connection to db
+[INFO 13:15:50 2009.10.07] Connexion has been succesfully initialized
+[INFO 13:16:59 2009.10.07] Initialisation of connection to db
+[INFO 13:16:59 2009.10.07] Connexion has been succesfully initialized
+[INFO 13:21:33 2009.10.07] Initialisation of connection to db
+[INFO 13:21:33 2009.10.07] Connexion has been succesfully initialized
+[INFO 13:21:57 2009.10.07] Initialisation of connection to db
+[INFO 13:21:57 2009.10.07] Connexion has been succesfully initialized
+[INFO 13:23:39 2009.10.07] Initialisation of connection to db
+[INFO 13:23:39 2009.10.07] Connexion has been succesfully initialized
+[INFO 13:24:39 2009.10.07] Initialisation of connection to db
+[INFO 13:24:39 2009.10.07] Connexion has been succesfully initialized
+[INFO 13:26:43 2009.10.07] Initialisation of connection to db
+[INFO 13:26:43 2009.10.07] Connexion has been succesfully initialized
+[INFO 13:28:23 2009.10.07] Initialisation of connection to db
+[INFO 13:28:23 2009.10.07] Connexion has been succesfully initialized
+[INFO 13:28:23 2009.10.07] Attempting to close the connexion to db
+[INFO 13:28:23 2009.10.07] Connexion has been succesfully closed
+[INFO 13:30:21 2009.10.07] Initialisation of connection to db
+[INFO 13:30:21 2009.10.07] Connexion has been succesfully initialized
+[INFO 13:30:21 2009.10.07] Attempting to close the connexion to db
+[INFO 13:30:21 2009.10.07] Connexion has been succesfully closed
+[INFO 13:31:20 2009.10.07] Initialisation of connection to db
+[INFO 13:31:20 2009.10.07] Connexion has been succesfully initialized
+[INFO 13:31:20 2009.10.07] Attempting to close the connexion to db
+[INFO 13:31:20 2009.10.07] Connexion has been succesfully closed
+[INFO 14:01:30 2009.10.07] Initialisation of connection to db
+[INFO 14:01:30 2009.10.07] Connexion has been succesfully initialized
+[INFO 14:01:30 2009.10.07] Attempting to close the connexion to db
+[INFO 14:01:30 2009.10.07] Connexion has been succesfully closed
+[INFO 14:02:26 2009.10.07] Initialisation of connection to db
+[INFO 14:02:26 2009.10.07] Connexion has been succesfully initialized
+[INFO 14:02:26 2009.10.07] Attempting to close the connexion to db
+[INFO 14:02:26 2009.10.07] Connexion has been succesfully closed
+[INFO 14:02:44 2009.10.07] Initialisation of connection to db
+[INFO 14:02:44 2009.10.07] Connexion has been succesfully initialized
+[INFO 14:03:19 2009.10.07] Initialisation of connection to db
+[INFO 14:03:19 2009.10.07] Connexion has been succesfully initialized
+[INFO 14:03:30 2009.10.07] Initialisation of connection to db
+[INFO 14:03:30 2009.10.07] Connexion has been succesfully initialized
+[INFO 14:03:30 2009.10.07] Attempting to close the connexion to db
+[INFO 14:03:30 2009.10.07] Connexion has been succesfully closed
+[INFO 14:03:56 2009.10.07] Initialisation of connection to db
+[INFO 14:03:56 2009.10.07] Connexion has been succesfully initialized
+[INFO 14:10:00 2009.10.07] Initialisation of connection to db
+[INFO 14:10:00 2009.10.07] Connexion has been succesfully initialized
+[INFO 14:10:58 2009.10.07] Initialisation of connection to db
+[INFO 14:10:58 2009.10.07] Connexion has been succesfully initialized
+[INFO 14:12:17 2009.10.07] Initialisation of connection to db
+[INFO 14:12:17 2009.10.07] Connexion has been succesfully initialized
+[INFO 14:12:45 2009.10.07] Initialisation of connection to db
+[INFO 14:12:45 2009.10.07] Connexion has been succesfully initialized
+[INFO 14:14:38 2009.10.07] Initialisation of connection to db
+[INFO 14:14:38 2009.10.07] Connexion has been succesfully initialized
+[INFO 14:15:09 2009.10.07] Initialisation of connection to db
+[INFO 14:15:09 2009.10.07] Connexion has been succesfully initialized
+[INFO 14:15:52 2009.10.07] Initialisation of connection to db
+[INFO 14:15:52 2009.10.07] Connexion has been succesfully initialized
+[INFO 14:16:21 2009.10.07] Initialisation of connection to db
+[INFO 14:16:21 2009.10.07] Connexion has been succesfully initialized
+[INFO 13:04:38 2009.10.08] Initialisation of connection to db
+[INFO 13:04:38 2009.10.08] Connexion has been succesfully initialized
+[INFO 13:09:29 2009.10.08] Initialisation of connection to db
+[INFO 13:09:29 2009.10.08] Connexion has been succesfully initialized
+[ERROR 13:09:29 2009.10.08] near "index": syntax error
+[INFO 13:11:31 2009.10.08] Initialisation of connection to db
+[INFO 13:11:31 2009.10.08] Connexion has been succesfully initialized
+[INFO 13:19:26 2009.10.08] Initialisation of connection to db
+[INFO 13:19:26 2009.10.08] Connexion has been succesfully initialized
+[INFO 13:36:10 2009.10.08] Initialisation of connection to db
+[INFO 13:36:10 2009.10.08] Connexion has been succesfully initialized
+[INFO 13:41:19 2009.10.08] Initialisation of connection to db
+[INFO 13:41:19 2009.10.08] Connexion has been succesfully initialized
+[INFO 13:42:35 2009.10.08] Initialisation of connection to db
+[INFO 13:42:35 2009.10.08] Connexion has been succesfully initialized
+[INFO 13:43:06 2009.10.08] Initialisation of connection to db
+[INFO 13:43:06 2009.10.08] Connexion has been succesfully initialized
+[INFO 13:50:14 2009.10.08] Initialisation of connection to db
+[INFO 13:50:14 2009.10.08] Connexion has been succesfully initialized
+[INFO 13:50:38 2009.10.08] Initialisation of connection to db
+[INFO 13:50:38 2009.10.08] Connexion has been succesfully initialized
+[INFO 13:51:36 2009.10.08] Initialisation of connection to db
+[INFO 13:51:36 2009.10.08] Connexion has been succesfully initialized
+[INFO 15:13:57 2009.10.08] Initialisation of connection to db
+[INFO 15:13:57 2009.10.08] Connexion has been succesfully initialized
