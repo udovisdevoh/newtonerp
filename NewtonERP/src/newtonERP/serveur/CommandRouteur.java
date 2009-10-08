@@ -29,16 +29,15 @@ public class CommandRouteur
 
 	Module module;
 	AbstractEntity retView = null;
-
 	Hashtable<String, String> rightParam = new Hashtable<String, String>();
 	// on verifi les droit d'acces a l'Action
 	try
 	{
-	    module = ListModule.getModule("userRightModule");
+	    module = ListModule.getModule("UserRightModule");
 	    rightParam.put("name", parameter.get("user"));
 	    rightParam.put("module", moduleName);
 	    rightParam.put("action", action);
-	    if (module.doAction("checkRight", rightParam) != null)
+	    if (module.doAction("RightCheck", rightParam) != null)
 	    {
 		// on fais l'Action demander par le user si les droit son
 		// trouver

@@ -22,7 +22,9 @@ public class RightCheck extends AbstractAction
 	try
 	{
 	    Vector<String> search = new Vector<String>();
-	    search.add("name=" + parameters.get("name"));
+	    search.add("Newton_name='" + parameters.get("name") + "'");
+	    System.out.println("usercheck *******"
+		    + Orm.select(new User(), search));
 	    User user = (User) Orm.select(new User(), search).get(0);
 	    for (Right right : user.getGroupsEntity().getRightList())
 	    {

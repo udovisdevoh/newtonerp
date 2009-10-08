@@ -8,6 +8,7 @@ import modules.userRightModule.actions.EditUser;
 import modules.userRightModule.actions.GetUserList;
 import modules.userRightModule.actions.NewUser;
 import modules.userRightModule.actions.NewUserType;
+import modules.userRightModule.actions.RightCheck;
 import modules.userRightModule.entityDefinitions.GroupRight;
 import modules.userRightModule.entityDefinitions.Groups;
 import modules.userRightModule.entityDefinitions.Right;
@@ -40,6 +41,7 @@ public class UserRightModule extends Module
 	addAction(new NewUserType());
 	addAction(new GetUserList());
 	addAction(new DeleteGroup());
+	addAction(new RightCheck());
 
     }
 

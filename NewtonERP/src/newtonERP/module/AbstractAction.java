@@ -38,6 +38,9 @@ public abstract class AbstractAction
 	{
 	    entity = entityUsable.getClass().newInstance();
 	    entity.setEntityFromHashTable(parameters);
+	} catch (NullPointerException e)
+	{
+	    // TODO: handle exception
 	} catch (Exception e)
 	{
 	    e.printStackTrace();
