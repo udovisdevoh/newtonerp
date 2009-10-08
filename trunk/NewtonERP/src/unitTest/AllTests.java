@@ -3,6 +3,7 @@ package unitTest;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 import unitTest.module.EntityTest;
+import unitTest.orm.OrmTest;
 import unitTest.serveur.ServletTest;
 
 /**
@@ -26,6 +27,7 @@ public class AllTests
 	suite.addTestSuite(EntityTest.class);
 
 	// orm
+	suite.addTestSuite(OrmTest.class);
 
 	// serveur
 	suite.addTestSuite(ServletTest.class);
