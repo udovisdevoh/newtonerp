@@ -22,11 +22,11 @@ public class EditUser extends AbstractAction
     public AbstractEntity doAction(AbstractEntity entity,
 	    Hashtable<String, String> parameters)
     {
-	Vector<String> g = new Vector<String>();
-	g.add(((User) entity).getName());
+	Vector<String> whereParameter = new Vector<String>();
+	whereParameter.add("Newton_Name=" + ((User) entity).getName());
 	try
 	{
-	    Orm.update((Ormizable) entity, g);
+	    Orm.update((Ormizable) entity, whereParameter);
 	} catch (OrmException e)
 	{
 	    // TODO Auto-generated catch block

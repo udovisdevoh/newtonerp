@@ -17,9 +17,9 @@ public class DeleteUser extends AbstractAction
     {
 	try
 	{
-	    Vector<String> g = new Vector<String>();
-	    g.add("name=" + ((User) entity).getName());
-	    Orm.delete((Ormizable) entity, g);
+	    Vector<String> whereParameter = new Vector<String>();
+	    whereParameter.add("Newton_Name=" + ((User) entity).getName());
+	    Orm.delete((Ormizable) entity, whereParameter);
 	} catch (OrmException e)
 	{
 	    e.printStackTrace();

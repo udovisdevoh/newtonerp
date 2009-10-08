@@ -21,9 +21,10 @@ public class DeleteGroupRight extends AbstractAction
     {
 	try
 	{
-	    Vector<String> g = new Vector<String>();
-	    g.add("rightID=" + ((GroupRight) entity).getRightID());
-	    Orm.delete((Ormizable) entity, g);
+	    Vector<String> whereParameter = new Vector<String>();
+	    whereParameter.add("Newton_RightID="
+		    + ((GroupRight) entity).getRightID());
+	    Orm.delete((Ormizable) entity, whereParameter);
 	} catch (OrmException e)
 	{
 	    e.printStackTrace();
