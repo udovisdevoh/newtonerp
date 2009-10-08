@@ -14,10 +14,10 @@ import newtonERP.orm.exceptions.OrmException;
  */
 public class TestEntity extends AbstractEntity implements Ormizable
 {
-    private int testId = 0;
-    private String name = "marcel";
-    private String age = "17";
-    private String color = "bleu";
+    private int testID;
+    private String name;
+    private int age;
+    private String color;
 
     @Override
     public Hashtable<String, String> getOrmizableData() throws OrmException
@@ -25,7 +25,7 @@ public class TestEntity extends AbstractEntity implements Ormizable
 	Hashtable<String, String> ormizableData = new Hashtable<String, String>();
 
 	ormizableData.put("name", name);
-	ormizableData.put("age", age);
+	ormizableData.put("age", age + "");
 	ormizableData.put("color", color);
 
 	return ormizableData;
@@ -43,7 +43,7 @@ public class TestEntity extends AbstractEntity implements Ormizable
 	    }
 	    else if (key.toString().equals("age"))
 	    {
-		setAge((String) parameters.get(key));
+		setAge((Integer) parameters.get(key));
 	    }
 	    else if (key.toString().equals("color"))
 	    {
@@ -51,15 +51,6 @@ public class TestEntity extends AbstractEntity implements Ormizable
 	    }
 
 	}
-
-    }
-
-    /**
-     * @param testId the index
-     */
-    public void setTestId(int testId)
-    {
-	this.testId = testId;
     }
 
     /**
@@ -73,7 +64,7 @@ public class TestEntity extends AbstractEntity implements Ormizable
     /**
      * @param age the age
      */
-    public void setAge(String age)
+    public void setAge(int age)
     {
 	this.age = age;
     }
@@ -87,14 +78,6 @@ public class TestEntity extends AbstractEntity implements Ormizable
     }
 
     /**
-     * @return the index
-     */
-    public int getTestId()
-    {
-	return testId;
-    }
-
-    /**
      * @return the name
      */
     public String getName()
@@ -105,7 +88,7 @@ public class TestEntity extends AbstractEntity implements Ormizable
     /**
      * @return the age
      */
-    public String getAge()
+    public int getAge()
     {
 	return age;
     }
@@ -116,6 +99,34 @@ public class TestEntity extends AbstractEntity implements Ormizable
     public String getColor()
     {
 	return color;
+    }
+
+    /**
+     * @return the testID
+     */
+    public int getTestID()
+    {
+	return testID;
+    }
+
+    /**
+     * @param testID the testID to set
+     */
+    public void setTestID(int testID)
+    {
+	this.testID = testID;
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.lang.Object#toString()
+     */
+    public String toString()
+    {
+	// TODO Auto-generated method stub
+	return super.toString() + "testID=" + testID + ":name=" + name
+		+ ":age=" + age + ":color=" + color;
     }
 
 }
