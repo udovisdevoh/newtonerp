@@ -4,7 +4,6 @@ import java.util.Hashtable;
 
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
-import newtonERP.viewers.TestViewable;
 
 public class TestAction extends AbstractAction
 {
@@ -13,6 +12,7 @@ public class TestAction extends AbstractAction
     {
 
 	System.out.println("testAction.perform()");
-	return new TestViewable();
+	// TODO: check that return new TestViewable();
+	return null;
     }
 }
