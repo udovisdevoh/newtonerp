@@ -3,6 +3,8 @@
  */
 package unitTest.module;
 
+import java.util.Hashtable;
+
 import junit.framework.TestCase;
 import modules.testModule.entityDefinitions.TestEntity;
 
@@ -37,43 +39,65 @@ public class EntityTest extends TestCase
 
     /**
      * Test method for
-     * {@link modules.testModule.entityDefinitions.TestEntity#getOrmizableData()}
+     * {@link newtonERP.module.AbstractEntity#setEntityFromHashTable(java.util.Hashtable)}
      * .
      */
-    public void testGetOrmizableData()
+    public void testGetEntityFromHashTableString()
     {
-	fail("Not yet implemented"); // TODO
-    }
+	Hashtable<String, String> hash = new Hashtable<String, String>();
 
-    /**
-     * Test method for
-     * {@link modules.testModule.entityDefinitions.TestEntity#setOrmizableData(java.util.Hashtable)}
-     * .
-     */
-    public void testSetOrmizableData()
-    {
-	fail("Not yet implemented"); // TODO
-    }
-
-    /**
-     * Test method for
-     * {@link newtonERP.module.AbstractEntity#getEntityFromHashTable(java.util.Hashtable)}
-     * .
-     */
-    public void testGetEntityFromHashTable()
-    {
+	hash.put("age", "20");
 	entity.setAge(20);
+	hash.put("color", "red");
 	entity.setColor("red");
-	entity.setIndex(3);
+	hash.put("testID", "3");
+	entity.setTestID(3);
+	hash.put("name", "joe blow");
 	entity.setName("joe blow");
+	TestEntity otherEntity = new TestEntity();
 	try
 	{
-	    assertNotNull(entity.getHashTableFromEntity());
+	    otherEntity.setEntityFromHashTable(hash);
+	    assertEquals(entity, otherEntity);
 	} catch (Exception e)
 	{
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();
+	    fail();
 	}
+    }
+
+    /**
+     * Test method for
+     * {@link newtonERP.module.AbstractEntity#setEntityFromHashTable(java.util.Hashtable)}
+     * .
+     */
+    public void testGetEntityFromHashTableObject()
+    {
+	System.out.println("**********");
+	Hashtable<String, Object> hash = new Hashtable<String, Object>();
+
+	hash.put("age", 20);
+	entity.setAge(20);
+	hash.put("color", "red");
+	entity.setColor("red");
+	hash.put("testID", 3);
+	entity.setTestID(3);
+	hash.put("name", "joe blow");
+	entity.setName("joe blow");
+	TestEntity otherEntity = new TestEntity();
+	try
+	{
+	    otherEntity.setEntityFromHashTable(hash);
+	    assertEquals(entity, otherEntity);
+
+	} catch (Exception e)
+	{
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	    fail();
+	}
+	System.out.println("**********");
     }
 
     /**
@@ -83,7 +107,18 @@ public class EntityTest extends TestCase
      */
     public void testGetHashTableFromEntity()
     {
-	fail("Not yet implemented"); // TODO
+	Hashtable<String, String> hash = new Hashtable<String, String>();
+
+	hash.put("age", "20");
+	entity.setAge(20);
+	hash.put("color", "red");
+	entity.setColor("red");
+	hash.put("testID", "3");
+	entity.setTestID(3);
+	hash.put("name", "joe blow");
+	entity.setName("joe blow");
+	assertEquals(hash, entity.getHashTableFromEntity());
+
     }
 
 }

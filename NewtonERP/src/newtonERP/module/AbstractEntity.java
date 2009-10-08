@@ -10,11 +10,10 @@ import java.util.Hashtable;
  */
 public class AbstractEntity
 {
-
     /**
      * @param parameters Hashtable de parametre
      */
-    public void getEntityFromHashTable(Hashtable<String, String> parameters)
+    public void setEntityFromHashTable(Hashtable<String, ?> parameters)
     {
 	String setName;
 	Method methode;
@@ -22,19 +21,32 @@ public class AbstractEntity
 	{
 	    for (String key : parameters.keySet())
 	    {
+		Object value = parameters.get(key);
 		setName = "set" + key.substring(0, 1).toUpperCase()
 			+ key.substring(1);
-		methode = getClass().getMethod(
-			setName,
-			new Class[] { getClass().getDeclaredField(key)
-				.getType() });
-
-		if (getClass().getDeclaredField(key).getType()
-			.equals(int.class))
-		    methode.invoke(this, new Object[] { Integer
-			    .parseInt(parameters.get(key)) });
+		if (value.getClass().equals(String.class)) // si c'Est un string
+		{
+		    methode = getClass().getMethod(
+			    setName,
+			    new Class[] { getClass().getDeclaredField(key)
+				    .getType() });
+		    if (getClass().getDeclaredField(key).getType().equals(
+			    int.class))
+			methode.invoke(this, new Object[] { Integer.parseInt(""
+				+ parameters.get(key)) });
+		    else
+			methode.invoke(this,
+				new Object[] { parameters.get(key) });
+		}
 		else
-		    methode.invoke(this, new Object[] { parameters.get(key) });
+		// tout les autre cas
+		{
+		    methode = getClass().getMethod(
+			    setName,
+			    new Class[] { getClass().getDeclaredField(key)
+				    .getType() });
+		    methode.invoke(this, new Object[] { value });
+		}
 	    }
 	} catch (IllegalArgumentException e)
 	{
@@ -102,8 +114,9 @@ public class AbstractEntity
 			+ fields[i].getName().substring(1);
 		value1 = getClass().getMethod(getName, null).invoke(this, null)
 			.toString();
-		value2 = getClass().getMethod(getName, null).invoke(this, null)
+		value2 = getClass().getMethod(getName, null).invoke(obj, null)
 			.toString();
+
 		if (!value1.equals(value2))
 		    return false;
 	    }
