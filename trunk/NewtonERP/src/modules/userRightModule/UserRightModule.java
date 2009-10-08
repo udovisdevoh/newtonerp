@@ -65,7 +65,7 @@ public class UserRightModule extends Module
 	    user.setName("admin");
 	    user.setPassword("aaa");
 	    user.setGroupID(groupID);
-
+	    Orm.insert(user);
 	    int rightID;
 	    GroupRight groupRight = new GroupRight();
 	    for (String action : getActionList().keySet())

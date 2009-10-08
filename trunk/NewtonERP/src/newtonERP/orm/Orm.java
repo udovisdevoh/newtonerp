@@ -71,7 +71,7 @@ public class Orm
 	Hashtable<String, String> data = newEntity.getOrmizableData();
 	String sqlQuery = "INSERT INTO " + prefix
 		+ newEntity.getClass().getSimpleName() + " (";
-	String valuesQuery = "VALUES (";
+	String valuesQuery = " VALUES (";
 
 	// We now iterate through the key set so we can add the fields to the
 	// query
@@ -81,16 +81,28 @@ public class Orm
 	    // Retrieve key
 	    Object key = keySetIterator.next();
 
-	    if (!key.toString().matches("PK.*"))
+	    // If it's the end or not we add the key to the query with the
+	    // right string ("," or not)
+	    if (!keySetIterator.hasNext())
 	    {
-		// If it's the end or not we add the key to the query with the
-		// right string ("," or not)
-		if (!keySetIterator.hasNext())
+		if (!key.toString().matches("PK.*"))
 		{
 		    sqlQuery += "'" + prefix + key.toString() + "') ";
 		    valuesQuery += "'" + data.get(key).toString() + "') ";
 		}
 		else
+		{
+		    sqlQuery = sqlQuery.substring(0, sqlQuery.length() - 2);
+		    sqlQuery += ")";
+
+		    valuesQuery = valuesQuery.substring(0,
+			    valuesQuery.length() - 2);
+		    valuesQuery += ")";
+		}
+	    }
+	    else
+	    {
+		if (!key.toString().matches("PK.*"))
 		{
 		    sqlQuery += "'" + prefix + key.toString() + "', ";
 		    valuesQuery += "'" + data.get(key).toString() + "', ";
