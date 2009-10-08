@@ -23,7 +23,8 @@ import newtonERP.orm.sgbd.Sgbdable;
  *         query and executing it obviously. Then it's gonna send the query to
  *         the SgbdSqlite class to execute it.
  * 
- *         Types for the database : Integer, Double (Number?), String, Boolean (Integer?)
+ *         Types for the database : Integer, Double (Number?), String, Boolean
+ *         (Integer?)
  */
 public class Orm
 {
@@ -209,8 +210,10 @@ public class Orm
 
     /**
      * Creates the non-existent table from the modules in the database
+     * 
+     * @throws OrmException an exception that can occur in the orm
      */
-    public static void createNonExistentTables()
+    public static void createNonExistentTables() throws OrmException
     {
 	Hashtable<String, String> modules = ListModule.getAllModules();
 
@@ -226,7 +229,8 @@ public class Orm
 		// For each entity in the list of module entities
 		for (Ormizable entity : moduleEntities)
 		{
-		    // Be sure to create the table only if it doesn't already exists
+		    // Be sure to create the table only if it doesn't already
+		    // exists
 		    String sqlQuery = "CREATE TABLE IF NOT EXISTS ";
 		    Field[] fields = entity.getClass().getDeclaredFields();
 
@@ -236,7 +240,9 @@ public class Orm
 		    // For each field into my entity
 		    for (int i = 0; i < fields.length; i++)
 		    {
-			// If it is a primary because it matches PK, else we check the datatypes and match them with a datatype good for the database
+			// If it is a primary because it matches PK, else we
+			// check the datatypes and match them with a datatype
+			// good for the database
 			if (fields[i].getName().matches("PK.*"))
 			{
 			    if (i + 1 != fields.length)
@@ -277,7 +283,12 @@ public class Orm
 				sqlQuery += fields[i].getName() + " INTEGER );";
 			}
 		    }
+
+		    // TODO: Remove the next line when properly debugged
 		    System.out.println("Sql query produced : " + sqlQuery);
+
+		    sgbd.execute(sqlQuery, OrmActions.CREATE);
+
 		    sqlQuery = "";
 		}
 	    } catch (ModuleException e)

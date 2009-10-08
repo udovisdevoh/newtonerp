@@ -14,7 +14,6 @@ import newtonERP.orm.exceptions.OrmException;
  */
 public class TestEntity extends AbstractEntity implements Ormizable
 {
-    @SuppressWarnings("unused")
     private int index = 0;
     private String name = "marcel";
     private String age = "17";
