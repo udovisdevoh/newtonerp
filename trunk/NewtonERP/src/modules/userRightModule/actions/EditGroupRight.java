@@ -15,7 +15,7 @@ import newtonERP.orm.exceptions.OrmException;
  * 
  * @param args
  */
-public class EditGroup extends AbstractAction
+public class EditGroupRight extends AbstractAction
 {
 
     @Override

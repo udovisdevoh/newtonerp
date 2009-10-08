@@ -5,9 +5,8 @@ import java.util.Hashtable;
 import newtonERP.module.AbstractEntity;
 import newtonERP.orm.Ormizable;
 import newtonERP.orm.exceptions.OrmException;
-import newtonERP.viewers.viewables.ProfileViewable;
 
-public class User extends AbstractEntity implements Ormizable, ProfileViewable
+public class User extends AbstractEntity implements Ormizable
 {
     private int PKuserID;
     private String name;
@@ -24,7 +23,7 @@ public class User extends AbstractEntity implements Ormizable, ProfileViewable
     @Override
     public void setOrmizableData(Hashtable<String, Object> parameters)
     {
-	getEntityFromHashTable(parameters);
+	setEntityFromHashTable(parameters);
     }
 
     /**

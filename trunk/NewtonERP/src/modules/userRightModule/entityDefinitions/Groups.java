@@ -5,10 +5,8 @@ import java.util.Hashtable;
 import newtonERP.module.AbstractEntity;
 import newtonERP.orm.Ormizable;
 import newtonERP.orm.exceptions.OrmException;
-import newtonERP.viewers.ProfileViewable;
 
-public class Groups extends AbstractEntity implements Ormizable,
-	ProfileViewable
+public class Groups extends AbstractEntity implements Ormizable
 {
     private int PKgroupID;
     private String groupName;
