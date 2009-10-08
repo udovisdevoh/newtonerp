@@ -7,28 +7,36 @@ public class PromptViewer
     public static String getHtmlCode(PromptViewable entity)
 	    throws ViewerException
     {
-	String moduleName = entity.getSubmitModule().getClass().getSimpleName();
-	String actionName = entity.getSubmitAction().getClass().getSimpleName();
-	String formActionUrl = "/" + moduleName + "/" + actionName + "?user="
-		+ entity.getCurrentUserName();
-
 	String html = "";
-	html += "<h1>" + entity.getPromptMessage() + "</h1>";
-
-	html += "<form method=\"GET\" action=\"" + formActionUrl + "\">";
-
-	String inputValue;
-	for (String inputName : entity.getInputList().keySet())
+	try
 	{
-	    inputValue = entity.getInputList().get(inputName);
+	    String moduleName = entity.getSubmitModule().getClass()
+		    .getSimpleName();
+	    String actionName = entity.getSubmitAction().getClass()
+		    .getSimpleName();
+	    String formActionUrl = "/" + moduleName + "/" + actionName
+		    + "?user=" + entity.getCurrentUserName();
 
-	    html += "<input type=\"text\" name=\"" + inputName + "\" value=\""
-		    + inputValue + "\"><br>";
+	    html += "<h1>" + entity.getPromptMessage() + "</h1>";
+
+	    html += "<form method=\"GET\" action=\"" + formActionUrl + "\">";
+
+	    String inputValue;
+	    for (String inputName : entity.getInputList().keySet())
+	    {
+		inputValue = entity.getInputList().get(inputName);
+
+		html += "<input type=\"text\" name=\"" + inputName
+			+ "\" value=\"" + inputValue + "\"><br>";
+	    }
+
+	    html += "<input type=\"submit\" value=\""
+		    + entity.getButtonCaption() + "\">";
+	    html += "</form>";
+	} catch (Exception e)
+	{
+	    html += e.getMessage();
 	}
-
-	html += "<input type=\"submit\" value=\"" + entity.getButtonCaption()
-		+ "\">";
-	html += "</form>";
 
 	return html;
     }
