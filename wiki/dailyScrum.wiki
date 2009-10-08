@@ -235,11 +235,11 @@ voici le model de scrum a copier en entier si vous êtes le premier
 
 ==Jonathan Hallee==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
-  * ...livré...
+  * Fini la creation automatique des modules dans la db. Corrige quelques bugs apparus lors de divers insert, et selects dans le entity creator
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
-  * ...à livré...
+  * Commencer l'implementation des unit tests pour le serveur
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
-  * ...problème, besoin d'aide, qui aidera...
+  * Demander a jo pour la liste des modules
 
 ==Guillaume Lacasse==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
