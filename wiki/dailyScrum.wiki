@@ -243,11 +243,11 @@ voici le model de scrum a copier en entier si vous êtes le premier
 
 ==Guillaume Lacasse==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
-  * ...livré...
+  * Implémentation du Viewer, ListViewer et PromptViewer ainsi que Viewable, PromptViewable et ListViewable
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
-  * ...à livré...
+  * Intégration des features du projet en pair programming avec Jonatan Cloutier
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
-  * ...problème, besoin d'aide, qui aidera...
+  * Viewers: identification des entités par la 1ère colonne, à refactorer dans sprint2
 
 ==Pascal Lemay==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
