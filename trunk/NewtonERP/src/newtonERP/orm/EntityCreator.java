@@ -18,8 +18,6 @@ import newtonERP.orm.exceptions.OrmException;
  */
 public class EntityCreator
 {
-    private static Vector<Ormizable> returnedEntities = new Vector<Ormizable>();
-
     /**
      * Default constructor used to create the entities from the result set
      * 
@@ -31,6 +29,8 @@ public class EntityCreator
     public static Vector<Ormizable> createEntitiesFromResultSet(ResultSet rs,
 	    Ormizable searchEntity) throws OrmException
     {
+	Vector<Ormizable> returnedEntities = new Vector<Ormizable>();
+
 	// Now we will iterate through the result set to create the entities
 	// Here we must handle the sql exceptions that throws the result set
 	// For each row in my result set
