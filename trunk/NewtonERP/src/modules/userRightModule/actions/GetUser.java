@@ -44,7 +44,6 @@ public class GetUser extends AbstractAction
 	    e.printStackTrace();
 	}
 
-	// TODO Auto-generated method stub
 	return retUser;
     }
 }

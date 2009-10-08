@@ -5,8 +5,9 @@ import newtonERP.viewers.viewables.PromptViewable;
 public class PromptViewer
 {
     public static String getHtmlCode(PromptViewable entity)
-	    throws ViewerException
+	    throws ViewerException, Exception // fix this
     {
+	System.out.println("getHtmlCode()");
 	String html = "";
 	try
 	{
@@ -35,7 +36,7 @@ public class PromptViewer
 	    html += "</form>";
 	} catch (Exception e)
 	{
-	    html += e.getMessage();
+	    throw e;
 	}
 
 	return html;

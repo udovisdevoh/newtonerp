@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import newtonERP.module.AbstractEntity;
+import newtonERP.viewers.PromptViewer;
+import newtonERP.viewers.viewables.PromptViewable;
 
 import org.mortbay.jetty.Request;
 import org.mortbay.jetty.handler.AbstractHandler;
@@ -30,12 +32,27 @@ public class Servlet extends AbstractHandler
 	    HttpServletResponse response, int dispatch) throws IOException,
 	    ServletException
     {
-	urlToAction(target, request);
+	AbstractEntity viewEntity = urlToAction(target, request);
 
 	// on formatte la reponse
 	response.setContentType("text/html");
 	response.setStatus(HttpServletResponse.SC_OK);
-	response.getWriter().println("<h1>Hello</h1>"); // TODO: replace by
+
+	String pageContent = "";
+	try
+	{
+	    pageContent += PromptViewer
+		    .getHtmlCode((PromptViewable) viewEntity);
+	} catch (Exception e)
+	{
+	    System.out.println("Viewer exception");
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	}
+
+	System.out.println(pageContent);
+
+	response.getWriter().println(pageContent); // TODO: replace by
 	// a call to mainViewer
 	((Request) request).setHandled(true);
     }
