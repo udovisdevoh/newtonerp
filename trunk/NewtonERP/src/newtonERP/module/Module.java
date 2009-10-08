@@ -6,7 +6,6 @@ package newtonERP.module;
 import java.util.Hashtable;
 import java.util.Vector;
 
-import newtonERP.orm.Orm;
 import newtonERP.orm.Ormizable;
 
 /**
@@ -14,9 +13,6 @@ import newtonERP.orm.Ormizable;
  */
 public abstract class Module
 {
-    // TODO: changer object par Orm des que possible
-    protected static Orm orm;// reference a l orm
-
     // Sert a conserver les definitions de tables
     // Genre d'exemple d'une table.
     protected Vector<Ormizable> definitionEntityList;
@@ -114,8 +110,7 @@ public abstract class Module
      * @throws ModuleException voir le message...
      */
     public final AbstractEntity doAction(String actionName,
-	    String moduleGetterName, Hashtable<String, String> parameters)
-	    throws ModuleException
+	    Hashtable<String, String> parameters) throws ModuleException
     {
 	AbstractAction action = getAction(actionName);
 	return action.perform(parameters);

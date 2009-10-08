@@ -16,14 +16,13 @@ public class Right extends AbstractEntity implements Ormizable
     public Hashtable<String, String> getOrmizableData() throws OrmException
     {
 	// TODO Auto-generated method stub
-	return null;
+	return getHashTableFromEntity();
     }
 
     @Override
     public void setOrmizableData(Hashtable<String, Object> parameters)
     {
-	// TODO Auto-generated method stub
-
+	setEntityFromHashTable(parameters);
     }
 
     /**

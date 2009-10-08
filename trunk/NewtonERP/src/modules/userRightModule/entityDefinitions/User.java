@@ -1,8 +1,10 @@
 package modules.userRightModule.entityDefinitions;
 
 import java.util.Hashtable;
+import java.util.Vector;
 
 import newtonERP.module.AbstractEntity;
+import newtonERP.orm.Orm;
 import newtonERP.orm.Ormizable;
 import newtonERP.orm.exceptions.OrmException;
 
@@ -11,7 +13,7 @@ public class User extends AbstractEntity implements Ormizable
     private int PKuserID;
     private String name;
     private String password;
-    private int GroupID;
+    private int groupID;
 
     @Override
     public Hashtable<String, String> getOrmizableData() throws OrmException
@@ -79,7 +81,7 @@ public class User extends AbstractEntity implements Ormizable
      */
     public int getGroupID()
     {
-	return GroupID;
+	return groupID;
     }
 
     /**
@@ -87,7 +89,29 @@ public class User extends AbstractEntity implements Ormizable
      */
     public void setGroupID(int groupID)
     {
-	GroupID = groupID;
+	this.groupID = groupID;
+    }
+
+    /**
+     * permet d'obtenir directement l'entity groups lier a cet user
+     * 
+     * @return le group lier
+     */
+    public Groups getGroupsEntity()
+    {
+	Vector<String> search = new Vector<String>();
+	search.add("PKgroupID=" + groupID);
+
+	try
+	{
+	    return (Groups) Orm.select(new Groups(), search).get(0);
+	} catch (OrmException e)
+	{
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	}
+	return null;
+
     }
 
 }

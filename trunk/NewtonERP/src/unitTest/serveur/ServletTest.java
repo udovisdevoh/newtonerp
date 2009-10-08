@@ -42,15 +42,6 @@ public class ServletTest extends TestCase
      */
     public void testHandleFullAdress()
     {
-	assertNotNull(testServlet.urlToAction(
-		"/TestModule/TestAction/TestModuleGetter", null));
-    }
-
-    /**
-     * 
-     */
-    public void testHandleNoModuleGetter()
-    {
 	assertNotNull(testServlet.urlToAction("/TestModule/TestAction", null));
     }
 
