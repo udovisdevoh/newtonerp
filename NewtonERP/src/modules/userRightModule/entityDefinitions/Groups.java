@@ -62,7 +62,7 @@ public class Groups extends AbstractEntity implements Ormizable
     {
 	Vector<Right> rightResult = new Vector<Right>();
 	Vector<String> search = new Vector<String>();
-	search.add("groupID=" + PKgroupID);
+	search.add("Newton_groupID=" + PKgroupID);
 	try
 	{
 	    Vector<Ormizable> groupRights = Orm

@@ -46,10 +46,11 @@ public class EntityCreator
 		Hashtable<String, Object> parameters = new Hashtable<String, Object>();
 
 		// We add each column to the hashtable plus it's value
+		System.out.println(fields.length);
 		for (int i = 0; i < fields.length; i++)
 		{
 		    // TODO: Remove the next line when properly debugged
-		    System.out.println(fields[i].getName() + " : "
+		    System.out.println(i + "-" + fields[i].getName() + " : "
 			    + rs.getObject(i + 1));
 		    parameters.put(fields[i].getName(), rs.getObject(i + 1));
 		}
