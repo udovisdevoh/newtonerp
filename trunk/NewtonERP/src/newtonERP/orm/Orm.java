@@ -29,7 +29,7 @@ import newtonERP.orm.sgbd.Sgbdable;
 public class Orm
 {
     private static Sgbdable sgbd = new SgbdSqlite();
-    private static String tablePrefix = "Newton_";
+    private static String prefix = "Newton_";
 
     /**
      * Method used to do search queries done from the views to the databse. The
@@ -44,7 +44,7 @@ public class Orm
     public static Vector<Ormizable> select(Ormizable searchEntity,
 	    Vector<String> searchCriteriasParam) throws OrmException
     {
-	String sqlQuery = "SELECT * FROM " + tablePrefix
+	String sqlQuery = "SELECT * FROM " + prefix
 		+ searchEntity.getClass().getSimpleName();
 
 	if (searchCriteriasParam != null)
@@ -69,7 +69,7 @@ public class Orm
     public static void insert(Ormizable newEntity) throws OrmException
     {
 	Hashtable<String, String> data = newEntity.getOrmizableData();
-	String sqlQuery = "INSERT INTO " + tablePrefix
+	String sqlQuery = "INSERT INTO " + prefix
 		+ newEntity.getClass().getSimpleName() + " (";
 
 	// We now iterate through the key set so we can add the fields to the
@@ -83,9 +83,9 @@ public class Orm
 	    // If it's the end or not we add the key to the query with the right
 	    // string ("," or not)
 	    if (!keySetIterator.hasNext())
-		sqlQuery += "'" + key.toString() + "') ";
+		sqlQuery += "'" + prefix + key.toString() + "') ";
 	    else
-		sqlQuery += "'" + key.toString() + "', ";
+		sqlQuery += "'" + prefix + key.toString() + "', ";
 	}
 
 	sqlQuery += "VALUES (";
@@ -121,7 +121,7 @@ public class Orm
     public static void delete(Ormizable searchEntity,
 	    Vector<String> searchCriterias) throws OrmException
     {
-	String sqlQuery = "DELETE FROM " + tablePrefix
+	String sqlQuery = "DELETE FROM " + prefix
 		+ searchEntity.getClass().getSimpleName();
 
 	sqlQuery = buildWhereClauseForQuery(sqlQuery, searchCriterias);
@@ -143,7 +143,7 @@ public class Orm
     public static void update(Ormizable entityContainingChanges,
 	    Vector<String> searchCriterias) throws OrmException
     {
-	String sqlQuery = "UPDATE " + tablePrefix
+	String sqlQuery = "UPDATE " + prefix
 		+ entityContainingChanges.getClass().getSimpleName() + " SET ";
 	Hashtable<String, String> data = entityContainingChanges
 		.getOrmizableData();
@@ -200,9 +200,11 @@ public class Orm
 	    // If it's the end or not we add the key to the query with the right
 	    // string ("," or not)
 	    if (keySetIterator.hasNext())
-		sqlQuery += key.toString() + "='" + data.get(key) + "', ";
+		sqlQuery += prefix + key.toString() + "='" + data.get(key)
+			+ "', ";
 	    else
-		sqlQuery += key.toString() + "='" + data.get(key) + "'";
+		sqlQuery += prefix + key.toString() + "='" + data.get(key)
+			+ "'";
 	}
 
 	return sqlQuery;
@@ -234,7 +236,7 @@ public class Orm
 		    String sqlQuery = "CREATE TABLE IF NOT EXISTS ";
 		    Field[] fields = entity.getClass().getDeclaredFields();
 
-		    sqlQuery += tablePrefix + entity.getClass().getSimpleName()
+		    sqlQuery += prefix + entity.getClass().getSimpleName()
 			    + " ( ";
 
 		    // For each field into my entity
@@ -246,41 +248,49 @@ public class Orm
 			if (fields[i].getName().matches("PK.*"))
 			{
 			    if (i + 1 != fields.length)
-				sqlQuery += fields[i].getName()
+				sqlQuery += prefix
+					+ fields[i].getName()
 					+ " INTEGER PRIMARY KEY AUTOINCREMENT, ";
 			    else
-				sqlQuery += fields[i].getName()
+				sqlQuery += prefix
+					+ fields[i].getName()
 					+ " INTEGER PRIMARY KEY AUTOINCREMENT);";
 			}
 			else if (fields[i].getType().equals(Double.class))
 			{
 			    if (i + 1 != fields.length)
-				sqlQuery += fields[i].getName()
+				sqlQuery += prefix + fields[i].getName()
 					+ " DOUBLE PRECISION, ";
 			    else
-				sqlQuery += fields[i].getName()
+				sqlQuery += prefix + fields[i].getName()
 					+ " DOUBLE PRECISION );";
 			}
 			else if (fields[i].getType().equals(String.class))
 			{
 			    if (i + 1 != fields.length)
-				sqlQuery += fields[i].getName() + " STRING, ";
+				sqlQuery += prefix + fields[i].getName()
+					+ " STRING, ";
 			    else
-				sqlQuery += fields[i].getName() + " STRING );";
+				sqlQuery += prefix + fields[i].getName()
+					+ " STRING );";
 			}
 			else if (fields[i].getType().equals(Boolean.class))
 			{
 			    if (i + 1 != fields.length)
-				sqlQuery += fields[i].getName() + " INTEGER, ";
+				sqlQuery += prefix + fields[i].getName()
+					+ " INTEGER, ";
 			    else
-				sqlQuery += fields[i].getName() + " INTEGER );";
+				sqlQuery += prefix + fields[i].getName()
+					+ " INTEGER );";
 			}
 			else if (fields[i].getType().equals(int.class))
 			{
 			    if (i + 1 != fields.length)
-				sqlQuery += fields[i].getName() + " INTEGER, ";
+				sqlQuery += prefix + fields[i].getName()
+					+ " INTEGER, ";
 			    else
-				sqlQuery += fields[i].getName() + " INTEGER );";
+				sqlQuery += prefix + fields[i].getName()
+					+ " INTEGER );";
 			}
 		    }
 
