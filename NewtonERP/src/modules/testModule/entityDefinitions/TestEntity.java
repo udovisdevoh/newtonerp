@@ -14,10 +14,10 @@ import newtonERP.orm.exceptions.OrmException;
  */
 public class TestEntity extends AbstractEntity implements Ormizable
 {
-    private int index;
-    private String name;
-    private int age;
-    private String color;
+    private int testId = 0;
+    private String name = "marcel";
+    private String age = "17";
+    private String color = "bleu";
 
     @Override
     public Hashtable<String, String> getOrmizableData() throws OrmException
@@ -25,7 +25,7 @@ public class TestEntity extends AbstractEntity implements Ormizable
 	Hashtable<String, String> ormizableData = new Hashtable<String, String>();
 
 	ormizableData.put("name", name);
-	ormizableData.put("age", age + "");
+	ormizableData.put("age", age);
 	ormizableData.put("color", color);
 
 	return ormizableData;
@@ -43,7 +43,7 @@ public class TestEntity extends AbstractEntity implements Ormizable
 	    }
 	    else if (key.toString().equals("age"))
 	    {
-		setAge((Integer) parameters.get(key));
+		setAge((String) parameters.get(key));
 	    }
 	    else if (key.toString().equals("color"))
 	    {
@@ -51,14 +51,15 @@ public class TestEntity extends AbstractEntity implements Ormizable
 	    }
 
 	}
+
     }
 
     /**
-     * @param index the index
+     * @param testId the index
      */
-    public void setIndex(int index)
+    public void setTestId(int testId)
     {
-	this.index = index;
+	this.testId = testId;
     }
 
     /**
@@ -72,7 +73,7 @@ public class TestEntity extends AbstractEntity implements Ormizable
     /**
      * @param age the age
      */
-    public void setAge(int age)
+    public void setAge(String age)
     {
 	this.age = age;
     }
@@ -88,9 +89,9 @@ public class TestEntity extends AbstractEntity implements Ormizable
     /**
      * @return the index
      */
-    public int getIndex()
+    public int getTestId()
     {
-	return index;
+	return testId;
     }
 
     /**
@@ -104,7 +105,7 @@ public class TestEntity extends AbstractEntity implements Ormizable
     /**
      * @return the age
      */
-    public int getAge()
+    public String getAge()
     {
 	return age;
     }

@@ -329,3 +329,5 @@ java.lang.NullPointerException
 [ERROR 13:09:29 2009.10.08] near "index": syntax error
 [INFO 13:11:31 2009.10.08] Initialisation of connection to db
 [INFO 13:11:31 2009.10.08] Connexion has been succesfully initialized
+[INFO 13:19:26 2009.10.08] Initialisation of connection to db
+[INFO 13:19:26 2009.10.08] Connexion has been succesfully initialized
