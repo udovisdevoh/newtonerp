@@ -20,7 +20,7 @@ public class PromptViewer
 
 	    html += "<h1>" + entity.getPromptMessage() + "</h1>";
 
-	    html += "<form method=\"GET\" action=\"" + formActionUrl + "\">";
+	    html += "<form method=\"POST\" action=\"" + formActionUrl + "\">";
 
 	    html += "<table>";
 
