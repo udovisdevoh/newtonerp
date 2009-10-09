@@ -22,17 +22,23 @@ public class PromptViewer
 
 	    html += "<form method=\"GET\" action=\"" + formActionUrl + "\">";
 
+	    html += "<table>";
+
 	    String inputValue;
 	    for (String inputName : entity.getInputList().keySet())
 	    {
 		inputValue = entity.getInputList().get(inputName);
 
-		html += "<input type=\"text\" name=\"" + inputName
-			+ "\" value=\"" + inputValue + "\"><br>";
+		html += "<tr><td>" + inputName
+			+ "</td><td><input type=\"text\" name=\"" + inputName
+			+ "\" value=\"" + inputValue + "\"></td></tr>";
 	    }
 
-	    html += "<input type=\"submit\" value=\""
-		    + entity.getButtonCaption() + "\">";
+	    html += "<tr><td colspan=\"2\" align=\"center\"><input type=\"submit\" value=\""
+		    + entity.getButtonCaption() + "\"></td></tr>";
+
+	    html += "<table>";
+
 	    html += "</form>";
 	} catch (Exception e)
 	{
