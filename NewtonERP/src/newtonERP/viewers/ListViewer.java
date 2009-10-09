@@ -107,7 +107,7 @@ public class ListViewer
 		+ currentUserName + "&" + key + "=" + value;
 
 	String html = "";
-	html += "<form method=\"GET\" action=\"" + formActionUrl + "\">";
+	html += "<form method=\"POST\" action=\"" + formActionUrl + "\">";
 
 	html += "<input type=\"submit\" value=\"" + buttonCaption + "\">";
 
