@@ -17,9 +17,10 @@ public class AbstractEntity
     {
 	String setName;
 	Method methode;
-	try
+
+	for (String key : parameters.keySet())
 	{
-	    for (String key : parameters.keySet())
+	    try
 	    {
 		Object value = parameters.get(key);
 		setName = "set" + key.substring(0, 1).toUpperCase()
@@ -50,15 +51,19 @@ public class AbstractEntity
 				    .getType() });
 		    methode.invoke(this, new Object[] { value });
 		}
+	    } catch (NoSuchFieldException e)
+	    {
+		// nothing to do in that case
+	    } catch (IllegalArgumentException e)
+	    {
+		throw new IllegalArgumentException(
+			"le type d'argument ne peut etre gere");
+	    } catch (Exception e)
+	    {
+		e.printStackTrace();
 	    }
-	} catch (IllegalArgumentException e)
-	{
-	    throw new IllegalArgumentException(
-		    "le type d'argument ne peut etre gere");
-	} catch (Exception e)
-	{
-	    e.printStackTrace();
 	}
+
     }
 
     /**

@@ -10,7 +10,14 @@ public abstract class Viewer
 	    throws ViewerException
     {
 	if (entity instanceof PromptViewable)
-	    return PromptViewer.getHtmlCode((PromptViewable) entity);
+	    try
+	    {
+		return PromptViewer.getHtmlCode((PromptViewable) entity);
+	    } catch (Exception e)
+	    {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	    }
 	else if (entity instanceof ListViewable)
 	    return ListViewer.getHtmlCode((ListViewable) entity);
 

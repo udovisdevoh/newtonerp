@@ -2,7 +2,8 @@ package unitTest;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
-import unitTest.module.EntityTest;
+import unitTest.abstractModule.EntityTest;
+import unitTest.module.UserRightModuleTest;
 import unitTest.orm.OrmTest;
 import unitTest.serveur.ServletTest;
 
@@ -23,8 +24,11 @@ public class AllTests
 	// racine
 	suite.addTestSuite(ListModuleTest.class);
 
-	// module
+	// abstractModule
 	suite.addTestSuite(EntityTest.class);
+
+	// module
+	suite.addTestSuite(UserRightModuleTest.class);
 
 	// orm
 	suite.addTestSuite(OrmTest.class);

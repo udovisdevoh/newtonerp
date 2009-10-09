@@ -17,13 +17,17 @@ import newtonERP.orm.exceptions.OrmException;
  */
 public class GetUser extends AbstractAction
 {
+    public GetUser()
+    {
+	super(new User());
+    }
 
     @Override
     public AbstractEntity doAction(AbstractEntity entity,
 	    Hashtable<String, String> parameters)
     {
 	Vector<String> search = new Vector<String>();
-	search.add("name=" + ((User) entity).getName());
+	search.add("Newton_name='" + ((User) entity).getName() + "'");
 	User retUser = new User();
 	try
 	{

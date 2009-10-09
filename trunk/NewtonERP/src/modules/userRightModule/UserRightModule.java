@@ -5,6 +5,7 @@ import java.util.Vector;
 import modules.userRightModule.actions.DeleteGroup;
 import modules.userRightModule.actions.DeleteUser;
 import modules.userRightModule.actions.EditUser;
+import modules.userRightModule.actions.GetUser;
 import modules.userRightModule.actions.GetUserList;
 import modules.userRightModule.actions.NewUser;
 import modules.userRightModule.actions.NewUserType;
@@ -42,6 +43,7 @@ public class UserRightModule extends Module
 	addAction(new GetUserList());
 	addAction(new DeleteGroup());
 	addAction(new RightCheck());
+	addAction(new GetUser());
 
     }
 
