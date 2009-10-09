@@ -1,7 +1,7 @@
 package newtonERP;
 
-import modules.userRightModule.UserRightModule;
 import java.util.Vector;
+
 import newtonERP.logging.Logger;
 import newtonERP.orm.Orm;
 import newtonERP.orm.exceptions.OrmException;
@@ -26,7 +26,7 @@ public class Starter
     public static void main(String[] args) throws Exception
     {
 	// For testing
-	 Vector<String> searchCriterias = new Vector<String>();
+	Vector<String> searchCriterias = new Vector<String>();
 	searchCriterias.add("Newton_name like '%Sylvain%'");
 
 	ListModule.initAllModule();
@@ -47,7 +47,8 @@ public class Starter
 	    Logger.log(e.getMessage(), Logger.State.ERROR);
 	}
 
-	(new UserRightModule()).firstBuild();
+	// TODO: remove when ready (new UserRightModule()).firstBuild();
+
 	// lance le serveur web
 	server = new Server(47098);
 	server.setGracefulShutdown(2000);

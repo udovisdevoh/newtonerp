@@ -1,7 +1,7 @@
 /**
  * 
  */
-package unitTest.module;
+package unitTest.abstractModule;
 
 import java.util.Hashtable;
 
