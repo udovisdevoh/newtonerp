@@ -1,0 +1,1 @@
+http://localhost:47098/UserRightModule/GetUser?user=admin&name=admin
