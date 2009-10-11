@@ -16,15 +16,14 @@ import newtonERP.orm.exceptions.OrmException;
  */
 public class RightCheck extends AbstractAction
 {
-    public AbstractEntity doAction(AbstractEntity entity,
+    @Override
+    protected AbstractEntity doAction(AbstractEntity entity,
 	    Hashtable<String, String> parameters)
     {
 	try
 	{
 	    Vector<String> search = new Vector<String>();
 	    search.add("Newton_name='" + parameters.get("name") + "'");
-	    System.out.println("usercheck *******"
-		    + Orm.select(new User(), search));
 	    User user = (User) Orm.select(new User(), search).get(0);
 	    for (Right right : user.getGroupsEntity().getRightList())
 	    {

@@ -67,8 +67,7 @@ public class ListModule
      * @throws ModuleNotFoundException si le module n'existe pas
      * @throws ModuleException le module n'est pas conforme
      */
-    public static Module getModule(String moduleName)
-	    throws ModuleNotFoundException, ModuleException
+    public static Module getModule(String moduleName) throws ModuleException
     {
 	Object mod = null;
 

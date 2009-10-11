@@ -41,19 +41,18 @@ public class Servlet extends AbstractHandler
 	String pageContent = "";
 	try
 	{
+	    // TODO: remove shortcut... devrai apellé le main viewer plutot
 	    pageContent += PromptViewer
 		    .getHtmlCode((PromptViewable) viewEntity);
-	} catch (Exception e)
+	} catch (Exception e) // todo le main viewer ne devrai pas renvoyer
+	// d'Exception stp
 	{
 	    System.out.println("Viewer exception");
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
 
-	System.out.println(pageContent);
-
-	response.getWriter().println(pageContent); // TODO: replace by
-	// a call to mainViewer
+	response.getWriter().println(pageContent);
 	((Request) request).setHandled(true);
     }
 

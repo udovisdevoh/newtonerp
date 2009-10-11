@@ -2,6 +2,7 @@ package newtonERP;
 
 import java.util.Vector;
 
+import modules.userRightModule.actions.CreateAllRight;
 import newtonERP.logging.Logger;
 import newtonERP.orm.Orm;
 import newtonERP.orm.exceptions.OrmException;
@@ -47,7 +48,7 @@ public class Starter
 	    Logger.log(e.getMessage(), Logger.State.ERROR);
 	}
 
-	// TODO: remove when ready (new UserRightModule()).firstBuild();
+	new CreateAllRight().perform(null);
 
 	// lance le serveur web
 	server = new Server(47098);

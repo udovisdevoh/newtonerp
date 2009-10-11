@@ -10,7 +10,7 @@ public abstract class AbstractAction
 {
     private AbstractEntity entityUsable;
 
-    public AbstractAction()
+    protected AbstractAction()
     {
 	entityUsable = null;
     }
@@ -18,7 +18,7 @@ public abstract class AbstractAction
     /**
      * @param entityUsable le type d'entité qui sera utiliser par la methode
      */
-    public AbstractAction(AbstractEntity entityUsable)
+    protected AbstractAction(AbstractEntity entityUsable)
     {
 	this.entityUsable = entityUsable;
     }
@@ -53,7 +53,7 @@ public abstract class AbstractAction
      * @param parameters list de parametre autre que l'entite
      * @return l'entite resultante
      */
-    public abstract AbstractEntity doAction(AbstractEntity entity,
+    protected abstract AbstractEntity doAction(AbstractEntity entity,
 	    Hashtable<String, String> parameters);
 
 }
