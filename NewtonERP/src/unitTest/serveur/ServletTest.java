@@ -56,7 +56,7 @@ public class ServletTest extends TestCase
     }
 
     /**
-     * 
+     *  
      */
     public void testHandleNoModule()
     {

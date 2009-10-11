@@ -159,20 +159,20 @@ public class User extends AbstractEntity implements Ormizable, PromptViewable
 	 * 
 	 * return submitAction;
 	 */
-	// Warning, remove dummy code
+	// TODO: remove dummy code
 	return new GetUser();
     }
 
     public void setSubmitAction(AbstractAction submitAction)
     {
 	// this.submitAction = submitAction;
-	// Warning, remove dummy code
+	// TODO: remove dummy code
     }
 
     public void setSubmitModule(Module submitModule)
     {
 	// this.submitModule = submitModule;
-	// Warning, remove dummy code
+	// TODO: remove dummy code
     }
 
     @Override

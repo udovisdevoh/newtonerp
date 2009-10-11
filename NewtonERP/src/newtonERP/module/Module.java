@@ -100,6 +100,15 @@ public abstract class Module
     }
 
     /**
+     * permet d'initialiser la base de donne lors de l'installation du module,
+     * ne prend pas en compte la creation des table
+     */
+    public void initDB()
+    {
+	// implementation non obligatoire seulement dans les sous-classe
+    }
+
+    /**
      * @param actionName Nom de l'action que l'utilisateur veut faire
      * @param moduleGetterName Nom du module getter permetant d'obtenir l'entité
      *            produite par le module (cette entité servira de paramêtre à

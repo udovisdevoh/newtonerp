@@ -42,9 +42,6 @@ public class AbstractEntity
 		else
 		// tout les autre cas
 		{
-		    System.out.println(getClass().getDeclaredField(key)
-			    .getType());
-		    System.out.println(key);
 		    methode = getClass().getMethod(
 			    setName,
 			    new Class[] { getClass().getDeclaredField(key)

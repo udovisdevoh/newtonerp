@@ -2,6 +2,7 @@ package modules.userRightModule;
 
 import java.util.Vector;
 
+import modules.userRightModule.actions.CreateAllRight;
 import modules.userRightModule.actions.DeleteGroup;
 import modules.userRightModule.actions.DeleteUser;
 import modules.userRightModule.actions.EditUser;
@@ -44,10 +45,10 @@ public class UserRightModule extends Module
 	addAction(new DeleteGroup());
 	addAction(new RightCheck());
 	addAction(new GetUser());
-
+	addAction(new CreateAllRight());
     }
 
-    public void firstBuild()
+    public void initDB()
     {
 	try
 	{
@@ -83,9 +84,6 @@ public class UserRightModule extends Module
 		search.add("Newton_ActionName='" + action
 			+ "' AND Newton_ModuleName='"
 			+ this.getClass().getSimpleName() + "'");
-		System.out.println("******"
-			+ Orm.select(right, search).get(0).getClass()
-				.getSimpleName());
 		right = ((Right) Orm.select(right, search).get(0));
 		rightID = right.getPKrightID();
 
