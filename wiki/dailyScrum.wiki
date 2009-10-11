@@ -231,7 +231,7 @@ voici le model de scrum a copier en entier si vous êtes le premier
   * le jar loader, feature abandonné pour le moment
   * l'appelle de méthode par réflexion pour contré un problème d'accès au field private.....
 
-=08/10/2009=
+=08/10/2009 (fin sprint 1)=
 
 ==Jonathan Hallee==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
@@ -263,12 +263,56 @@ voici le model de scrum a copier en entier si vous êtes le premier
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
   * des actions , get list et get one 
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
-  * getone* et getlist
+  * getone et getlist
 
 ==Jonatan Cloutier==
+ ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
+  * refactor du module terminé
+  * divers bug corrigé
+ ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
+  * intégration du viewer
+  * débuggage d'intégration presque assuré
+ ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
+  * manque de temp
+
+=21/10/2009 (début sprint 2, relance)=
+
+==Jonathan Hallee==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
   * ...livré...
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
   * ...à livré...
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
   * ...problème, besoin d'aide, qui aidera...
+
+==Guillaume Lacasse==
+ ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
+  * ...livré...
+ ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
+  * ...à livré...
+ ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
+  * ...problème, besoin d'aide, qui aidera...
+
+==Pascal Lemay==
+ ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
+  * ...livré...
+ ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
+  * ...à livré...
+ ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
+  * ...problème, besoin d'aide, qui aidera...
+
+==Gabriel Therrien==
+ ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
+  * ...livré...
+ ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
+  * ...à livré...
+ ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
+  * ...problème, besoin d'aide, qui aidera...
+
+==Jonatan Cloutier==
+ ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
+  * terminé l'intégration
+ ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
+  * ...à livré...
+ ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
+  * 
