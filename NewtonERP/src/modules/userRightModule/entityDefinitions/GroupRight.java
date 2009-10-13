@@ -1,6 +1,3 @@
-/**
- * 
- */
 package modules.userRightModule.entityDefinitions;
 
 import java.util.Hashtable;
@@ -14,18 +11,16 @@ import newtonERP.orm.exceptions.OrmException;
 /**
  * @author djo
  * 
+ * 	Entity defenition representing a group right for the users
  */
 public class GroupRight extends AbstractEntity implements Ormizable
 {
-    // TODO: est-ce que l'ORM acceptera les clé primaire multiple ou non, sinon
-    // sa ne dérange rien, si oui mettre les 2 variable en PK.
     private int groupID;
     private int rightID;
 
     @Override
     public Hashtable<String, String> getOrmizableData() throws OrmException
     {
-	// TODO Auto-generated method stub
 	return getHashTableFromEntity();
     }
 
@@ -36,7 +31,7 @@ public class GroupRight extends AbstractEntity implements Ormizable
     }
 
     /**
-     * @return the groupID
+     * @return groupID the groupID
      */
     public int getGroupID()
     {
@@ -52,7 +47,7 @@ public class GroupRight extends AbstractEntity implements Ormizable
     }
 
     /**
-     * @return the rightID
+     * @return rightID the rightID
      */
     public int getRightID()
     {
@@ -68,21 +63,20 @@ public class GroupRight extends AbstractEntity implements Ormizable
     }
 
     /**
-     * permet d'obtenir directement l'entity groups lier a cet user
+     * permet d'obtenir directement l'entity groups lie a cet user
      * 
      * @return le group lier
      */
     public Groups getGroupsEntity()
     {
 	Vector<String> search = new Vector<String>();
-	search.add("Newton_PKgroupID=" + groupID);
+	search.add("PKgroupID=" + groupID);
 
 	try
 	{
 	    return (Groups) Orm.select(new Groups(), search).get(0);
 	} catch (OrmException e)
 	{
-	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
 	return null;
@@ -97,14 +91,13 @@ public class GroupRight extends AbstractEntity implements Ormizable
     public Right getRightEntity()
     {
 	Vector<String> search = new Vector<String>();
-	search.add("Newton_PKrightID=" + rightID);
+	search.add("PKrightID=" + rightID);
 
 	try
 	{
 	    return (Right) Orm.select(new Right(), search).get(0);
 	} catch (OrmException e)
 	{
-	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
 	return null;

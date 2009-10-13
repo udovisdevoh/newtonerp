@@ -14,9 +14,14 @@ import newtonERP.orm.exceptions.OrmException;
 /**
  * @author Gabriel Therrien
  * 
+ * 	Action class used to get a user
  */
 public class GetUser extends AbstractAction
 {
+    /**
+     * TODO: Check if this comment is right
+     * Default constructor that creates a new user or that gets one? It isn't really clear...
+     */
     public GetUser()
     {
 	super(new User());
@@ -27,24 +32,23 @@ public class GetUser extends AbstractAction
 	    Hashtable<String, String> parameters)
     {
 	Vector<String> search = new Vector<String>();
-	search.add("Newton_name='" + ((User) entity).getName() + "'");
+	search.add("name='" + ((User) entity).getName() + "'");
 	User retUser = new User();
 	try
 	{
 	    retUser = (User) Orm.select(new User(), search).get(0);
 	} catch (OrmException e)
 	{
-	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
 
 	retUser.setSubmitAction(this);
+	
 	try
 	{
 	    retUser.setSubmitModule(new UserRightModule());
 	} catch (ModuleException e)
 	{
-	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
 

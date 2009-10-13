@@ -10,6 +10,12 @@ import newtonERP.orm.Orm;
 import newtonERP.orm.Ormizable;
 import newtonERP.orm.exceptions.OrmException;
 
+/**
+ * 
+ * @author Gabriel Therrien? Reviewer and committer : r3hallejo
+ *
+ *	Action class used to delete a user
+ */
 public class DeleteUser extends AbstractAction
 {
     public AbstractEntity doAction(AbstractEntity entity,
@@ -18,7 +24,7 @@ public class DeleteUser extends AbstractAction
 	try
 	{
 	    Vector<String> whereParameter = new Vector<String>();
-	    whereParameter.add("Newton_Name=" + ((User) entity).getName());
+	    whereParameter.add("Name=" + ((User) entity).getName());
 	    Orm.delete((Ormizable) entity, whereParameter);
 	} catch (OrmException e)
 	{

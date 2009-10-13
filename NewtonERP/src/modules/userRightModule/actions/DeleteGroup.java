@@ -13,6 +13,7 @@ import newtonERP.orm.exceptions.OrmException;
 /**
  * @author Gabriel Therrien
  * 
+ * 	Action class used to delete a group
  */
 public class DeleteGroup extends AbstractAction
 {
@@ -22,7 +23,7 @@ public class DeleteGroup extends AbstractAction
 	try
 	{
 	    Vector<String> whereParameter = new Vector<String>();
-	    whereParameter.add("Newton_GroupName="
+	    whereParameter.add("GroupName="
 		    + ((Groups) entity).getGroupName());
 	    Orm.delete((Ormizable) entity, whereParameter);
 	} catch (OrmException e)

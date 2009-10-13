@@ -13,6 +13,7 @@ import newtonERP.orm.exceptions.OrmException;
 /**
  * @author Gabriel Therrien
  * 
+ * 	Action class used to delete a right
  */
 public class DeleteRight extends AbstractAction
 {
@@ -22,7 +23,7 @@ public class DeleteRight extends AbstractAction
 	try
 	{
 	    Vector<String> whereParameter = new Vector<String>();
-	    whereParameter.add("Newton_ActionName="
+	    whereParameter.add("ActionName="
 		    + ((Right) entity).getActionName());
 	    Orm.delete((Ormizable) entity, whereParameter);
 	} catch (OrmException e)

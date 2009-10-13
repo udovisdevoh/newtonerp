@@ -8,6 +8,11 @@ import newtonERP.orm.Orm;
 import newtonERP.orm.Ormizable;
 import newtonERP.orm.exceptions.OrmException;
 
+/**
+ * @author r3hallejo
+ * 
+ * 	Entity defenition class representing a group for the users
+ */
 public class Groups extends AbstractEntity implements Ormizable
 {
     private int PKgroupID;
@@ -16,7 +21,6 @@ public class Groups extends AbstractEntity implements Ormizable
     @Override
     public Hashtable<String, String> getOrmizableData() throws OrmException
     {
-	// TODO Auto-generated method stub
 	return getHashTableFromEntity();
     }
 
@@ -27,7 +31,7 @@ public class Groups extends AbstractEntity implements Ormizable
     }
 
     /**
-     * @return the pKgroupID
+     * @return PKgroupID the PKgroupID
      */
     public int getPKgroupID()
     {
@@ -43,7 +47,7 @@ public class Groups extends AbstractEntity implements Ormizable
     }
 
     /**
-     * @return the groupName
+     * @return groupName the groupName
      */
     public String getGroupName()
     {
@@ -58,11 +62,16 @@ public class Groups extends AbstractEntity implements Ormizable
 	this.groupName = groupName;
     }
 
+    /**
+     * Searches the rights for this group by the groupID and then returns this list
+     * 
+     * @return rightResult the right list
+     */
     public Vector<Right> getRightList()
     {
 	Vector<Right> rightResult = new Vector<Right>();
 	Vector<String> search = new Vector<String>();
-	search.add("Newton_groupID=" + PKgroupID);
+	search.add("groupID=" + PKgroupID);
 	try
 	{
 	    Vector<Ormizable> groupRights = Orm
@@ -73,7 +82,6 @@ public class Groups extends AbstractEntity implements Ormizable
 	    }
 	} catch (OrmException e)
 	{
-	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
 

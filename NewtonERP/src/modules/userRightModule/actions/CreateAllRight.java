@@ -15,6 +15,7 @@ import newtonERP.orm.exceptions.OrmException;
 /**
  * @author cloutierJo
  * 
+ * 	Action class that creates all the rights for every module
  */
 public class CreateAllRight extends AbstractAction
 {
@@ -31,7 +32,7 @@ public class CreateAllRight extends AbstractAction
 		// sinon
 		// on appel le initdb du module
 		Vector<String> search = new Vector<String>();
-		search.add("Newton_ModuleName='" + moduleName + "'");
+		search.add("ModuleName='" + moduleName + "'");
 		int numRight = 0;
 		try
 		{
@@ -62,7 +63,6 @@ public class CreateAllRight extends AbstractAction
 		}
 	    } catch (ModuleException e)
 	    {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	    }
 	}

@@ -11,7 +11,7 @@ import newtonERP.orm.exceptions.OrmException;
 /**
  * @author CloutierJo
  * 
- *         création d'un nouveau User
+ *         Action class used to create a new user
  */
 public class NewUser extends AbstractAction
 {
