@@ -82,12 +82,12 @@ public class Orm
 	    Object key = keySetIterator.next();
 
 	    // If it's the end or not we add the key to the query with the
-	    // right string ("," or not)
+	    // right string ("," or not) and the value
 	    if (!keySetIterator.hasNext())
 	    {
 		if (!key.toString().matches("PK.*"))
 		{
-		    sqlQuery += "'" + prefix + key.toString() + "') ";
+		    sqlQuery += "'" + key.toString() + "') ";
 		    valuesQuery += "'" + data.get(key).toString() + "') ";
 		}
 		else
@@ -104,7 +104,7 @@ public class Orm
 	    {
 		if (!key.toString().matches("PK.*"))
 		{
-		    sqlQuery += "'" + prefix + key.toString() + "', ";
+		    sqlQuery += "'" + key.toString() + "', ";
 		    valuesQuery += "'" + data.get(key).toString() + "', ";
 		}
 	    }
@@ -210,13 +210,14 @@ public class Orm
 		// right
 		// string ("," or not)
 		if (keySetIterator.hasNext())
-		    sqlQuery += prefix + key.toString() + "='" + data.get(key)
+		    sqlQuery += key.toString() + "='" + data.get(key)
 			    + "', ";
 		else
-		    sqlQuery += prefix + key.toString() + "='" + data.get(key)
+		    sqlQuery += key.toString() + "='" + data.get(key)
 			    + "'";
 	    }
 	}
+	
 	return sqlQuery;
     }
 
@@ -258,48 +259,46 @@ public class Orm
 			if (fields[i].getName().matches("PK.*"))
 			{
 			    if (i + 1 != fields.length)
-				sqlQuery += prefix
-					+ fields[i].getName()
+				sqlQuery += fields[i].getName()
 					+ " INTEGER PRIMARY KEY AUTOINCREMENT, ";
 			    else
-				sqlQuery += prefix
-					+ fields[i].getName()
+				sqlQuery += fields[i].getName()
 					+ " INTEGER PRIMARY KEY AUTOINCREMENT);";
 			}
 			else if (fields[i].getType().equals(Double.class))
 			{
 			    if (i + 1 != fields.length)
-				sqlQuery += prefix + fields[i].getName()
+				sqlQuery += fields[i].getName()
 					+ " DOUBLE PRECISION, ";
 			    else
-				sqlQuery += prefix + fields[i].getName()
+				sqlQuery += fields[i].getName()
 					+ " DOUBLE PRECISION );";
 			}
 			else if (fields[i].getType().equals(String.class))
 			{
 			    if (i + 1 != fields.length)
-				sqlQuery += prefix + fields[i].getName()
+				sqlQuery += fields[i].getName()
 					+ " STRING, ";
 			    else
-				sqlQuery += prefix + fields[i].getName()
+				sqlQuery += fields[i].getName()
 					+ " STRING );";
 			}
 			else if (fields[i].getType().equals(Boolean.class))
 			{
 			    if (i + 1 != fields.length)
-				sqlQuery += prefix + fields[i].getName()
+				sqlQuery += fields[i].getName()
 					+ " INTEGER, ";
 			    else
-				sqlQuery += prefix + fields[i].getName()
+				sqlQuery += fields[i].getName()
 					+ " INTEGER );";
 			}
 			else if (fields[i].getType().equals(int.class))
 			{
 			    if (i + 1 != fields.length)
-				sqlQuery += prefix + fields[i].getName()
+				sqlQuery += fields[i].getName()
 					+ " INTEGER, ";
 			    else
-				sqlQuery += prefix + fields[i].getName()
+				sqlQuery += fields[i].getName()
 					+ " INTEGER );";
 			}
 		    }

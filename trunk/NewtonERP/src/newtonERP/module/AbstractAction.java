@@ -5,6 +5,7 @@ import java.util.Hashtable;
 /**
  * @author r3lacasgu cloutierJo
  * 
+ * 	Class representing an abstract action
  */
 public abstract class AbstractAction
 {
@@ -16,6 +17,8 @@ public abstract class AbstractAction
     }
 
     /**
+     * Default constructor for the action
+     * 
      * @param entityUsable le type d'entité qui sera utiliser par la methode
      */
     protected AbstractAction(AbstractEntity entityUsable)
@@ -24,6 +27,9 @@ public abstract class AbstractAction
     }
 
     /**
+     * Abstract method that will be used to perofrm the actions
+     * FIXME : Why is it throwing a ModuleException when it shooting this exception?
+     * 
      * @param parameters list de parametre utilisable par l'action, une partie
      *            d'entre eux sera transforme en entite
      * @return l,entite resultante de l'action
@@ -49,6 +55,8 @@ public abstract class AbstractAction
     }
 
     /**
+     * Abstract method that will be reused by all the actions
+     * 
      * @param entity entite a utiliser a l'intérieur du doAction
      * @param parameters list de parametre autre que l'entite
      * @return l'entite resultante
