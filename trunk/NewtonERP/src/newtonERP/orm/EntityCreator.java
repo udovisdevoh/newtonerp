@@ -9,7 +9,6 @@ import newtonERP.orm.exceptions.OrmEntityCreationException;
 import newtonERP.orm.exceptions.OrmException;
 
 /**
- * 
  * @author r3hallejo
  * 
  *         Class used to create the entities in the select statement of the orm
