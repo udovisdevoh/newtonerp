@@ -6,8 +6,22 @@ import java.util.Vector;
 import newtonERP.module.AbstractAction;
 import newtonERP.viewers.viewables.ListViewable;
 
+/**
+ * 
+ * @author Guillaume Lacasse, Pascal Lemay
+ * 
+ * 	Represents the list viewer for listing data
+ */
 public class ListViewer
 {
+    /**
+     * Creates the gtml code for the web page
+     * FIXME : Does not actually throws the viewer exception.... Is this ok?
+     * 
+     * @param entity
+     * @return html the html code
+     * @throws ViewerException
+     */
     public static String getHtmlCode(ListViewable entity)
 	    throws ViewerException
     {
@@ -116,6 +130,12 @@ public class ListViewer
 	return html;
     }
 
+    /**
+     * Gets the header row
+     * 
+     * @param columnList
+     * @return html
+     */
     public static String getHeaderRow(Iterable<String> columnList)
     {
 	String html = "<tr>";
