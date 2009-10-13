@@ -28,7 +28,7 @@ public class Starter
     {
 	// For testing
 	Vector<String> searchCriterias = new Vector<String>();
-	searchCriterias.add("Newton_name like '%Sylvain%'");
+	searchCriterias.add("name like '%Sylvain%'");
 
 	ListModule.initAllModule();
 

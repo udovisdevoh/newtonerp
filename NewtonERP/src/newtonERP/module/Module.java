@@ -10,6 +10,8 @@ import newtonERP.orm.Ormizable;
 
 /**
  * @author Pascal Lemay
+ * 
+ * 	Abstract class representing an abstract module
  */
 public abstract class Module
 {
@@ -21,7 +23,7 @@ public abstract class Module
     protected Hashtable<String, AbstractAction> actionList;
 
     /**
-     * constructeur
+     * constructeur par defaylt
      */
     public Module()
     {
@@ -38,7 +40,6 @@ public abstract class Module
 	    actionList.put("default", defaultAction);
 	} catch (ModuleException e)
 	{
-	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
     }
