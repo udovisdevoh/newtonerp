@@ -39,6 +39,7 @@ public class UserRightModuleTest extends TestCase
     @After
     public void tearDown() throws Exception
     {
+	// TODO : Complete me
     }
 
     /**
