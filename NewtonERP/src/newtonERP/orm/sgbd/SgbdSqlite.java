@@ -50,7 +50,9 @@ public class SgbdSqlite implements Sgbdable
 
 	} catch (SQLException e)
 	{
-	    throw new OrmSqlException(e.getMessage());
+	    throw new OrmSqlException(
+		    "Probably you have a column name matching a SqLite keyword. See Orm javadoc for list of SqLite keyword. "
+			    + e.getMessage());
 	}
     }
 

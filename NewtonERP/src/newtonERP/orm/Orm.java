@@ -14,7 +14,6 @@ import newtonERP.orm.sgbd.SgbdSqlite;
 import newtonERP.orm.sgbd.Sgbdable;
 
 /**
- * 
  * @author r3hallejo, r3lacasgu
  * 
  *         Basic class for the orm. It is used to put the objects in the databse
@@ -25,6 +24,8 @@ import newtonERP.orm.sgbd.Sgbdable;
  * 
  *         Types for the database : Integer, Double (Number?), String, Boolean
  *         (Integer?)
+ * 
+ *         http://www.sqlite.org/lang_keywords.html
  */
 public class Orm
 {
@@ -210,14 +211,12 @@ public class Orm
 		// right
 		// string ("," or not)
 		if (keySetIterator.hasNext())
-		    sqlQuery += key.toString() + "='" + data.get(key)
-			    + "', ";
+		    sqlQuery += key.toString() + "='" + data.get(key) + "', ";
 		else
-		    sqlQuery += key.toString() + "='" + data.get(key)
-			    + "'";
+		    sqlQuery += key.toString() + "='" + data.get(key) + "'";
 	    }
 	}
-	
+
 	return sqlQuery;
     }
 
@@ -277,29 +276,23 @@ public class Orm
 			else if (fields[i].getType().equals(String.class))
 			{
 			    if (i + 1 != fields.length)
-				sqlQuery += fields[i].getName()
-					+ " STRING, ";
+				sqlQuery += fields[i].getName() + " STRING, ";
 			    else
-				sqlQuery += fields[i].getName()
-					+ " STRING );";
+				sqlQuery += fields[i].getName() + " STRING );";
 			}
 			else if (fields[i].getType().equals(Boolean.class))
 			{
 			    if (i + 1 != fields.length)
-				sqlQuery += fields[i].getName()
-					+ " INTEGER, ";
+				sqlQuery += fields[i].getName() + " INTEGER, ";
 			    else
-				sqlQuery += fields[i].getName()
-					+ " INTEGER );";
+				sqlQuery += fields[i].getName() + " INTEGER );";
 			}
 			else if (fields[i].getType().equals(int.class))
 			{
 			    if (i + 1 != fields.length)
-				sqlQuery += fields[i].getName()
-					+ " INTEGER, ";
+				sqlQuery += fields[i].getName() + " INTEGER, ";
 			    else
-				sqlQuery += fields[i].getName()
-					+ " INTEGER );";
+				sqlQuery += fields[i].getName() + " INTEGER );";
 			}
 		    }
 
