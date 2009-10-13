@@ -9,9 +9,9 @@ import newtonERP.orm.Ormizable;
 import newtonERP.orm.exceptions.OrmException;
 
 /**
- * Fait Par Gabriel Therrien
+ * @author Gabriel Therrien
  * 
- * @param args
+ * 	Action class to create a new right
  */
 public class NewRight extends AbstractAction
 {

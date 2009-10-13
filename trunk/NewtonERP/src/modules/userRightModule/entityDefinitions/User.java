@@ -15,9 +15,14 @@ import newtonERP.orm.Ormizable;
 import newtonERP.orm.exceptions.OrmException;
 import newtonERP.viewers.viewables.PromptViewable;
 
+/**
+ * @author r3hallejo
+ * 
+ * 	Entity defenition class representing a user
+ */
 public class User extends AbstractEntity implements Ormizable, PromptViewable
 {
-    private int PKuserID; // Todo, change name to camelCase
+    private int PKuserID;
     private String name;
     private String password;
     private int groupID;
@@ -25,7 +30,6 @@ public class User extends AbstractEntity implements Ormizable, PromptViewable
     @Override
     public Hashtable<String, String> getOrmizableData() throws OrmException
     {
-	// TODO Auto-generated method stub
 	return getHashTableFromEntity();
     }
 
@@ -36,7 +40,7 @@ public class User extends AbstractEntity implements Ormizable, PromptViewable
     }
 
     /**
-     * @return the pKuserID
+     * @return PKuserID the pKuserID
      */
     public int getPKuserID()
     {
@@ -52,7 +56,7 @@ public class User extends AbstractEntity implements Ormizable, PromptViewable
     }
 
     /**
-     * @return the name
+     * @return name the name
      */
     public String getName()
     {
@@ -68,7 +72,7 @@ public class User extends AbstractEntity implements Ormizable, PromptViewable
     }
 
     /**
-     * @return the password
+     * @return password the password
      */
     public String getPassword()
     {
@@ -84,7 +88,7 @@ public class User extends AbstractEntity implements Ormizable, PromptViewable
     }
 
     /**
-     * @return the groupID
+     * @return groupID the groupID
      */
     public int getGroupID()
     {
@@ -100,21 +104,20 @@ public class User extends AbstractEntity implements Ormizable, PromptViewable
     }
 
     /**
-     * permet d'obtenir directement l'entity groups lier a cet user
+     * permet d'obtenir directement l'entity groups lie a cet user
      * 
-     * @return le group lier
+     * @return le group lie
      */
     public Groups getGroupsEntity()
     {
 	Vector<String> search = new Vector<String>();
-	search.add("Newton_PKgroupID=" + groupID);
+	search.add("PKgroupID=" + groupID);
 
 	try
 	{
 	    return (Groups) Orm.select(new Groups(), search).get(0);
 	} catch (OrmException e)
 	{
-	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
 	return null;
@@ -124,21 +127,18 @@ public class User extends AbstractEntity implements Ormizable, PromptViewable
     @Override
     public String getButtonCaption()
     {
-	// TODO Auto-generated method stub
 	return "Save profile";
     }
 
     @Override
     public String getCurrentUserName()
     {
-	// TODO Auto-generated method stub
 	return "admin";
     }
 
     @Override
     public Hashtable<String, String> getInputList() throws OrmException
     {
-	// TODO Auto-generated method stub
 	return getOrmizableData();
     }
 
@@ -152,7 +152,6 @@ public class User extends AbstractEntity implements Ormizable, PromptViewable
     public AbstractAction getSubmitAction() throws EntityException
     {
 	/*
-	 * // TODO Auto-generated method stub
 	 * 
 	 * if (submitAction == null) throw new EntityException(
 	 * "Missing submit action, set it with setSubmitAction()");
@@ -163,16 +162,24 @@ public class User extends AbstractEntity implements Ormizable, PromptViewable
 	return new GetUser();
     }
 
+    /**
+     * Sets the submit action
+     * 
+     * @param submitAction
+     */
     public void setSubmitAction(AbstractAction submitAction)
     {
-	// this.submitAction = submitAction;
-	// TODO: remove dummy code
+	// TODO : To be completed or changed
     }
 
+    /**
+     * Sets the submit module
+     * 
+     * @param submitModule
+     */
     public void setSubmitModule(Module submitModule)
     {
-	// this.submitModule = submitModule;
-	// TODO: remove dummy code
+	// TODO : To be completed or changed
     }
 
     @Override
@@ -191,7 +198,9 @@ public class User extends AbstractEntity implements Ormizable, PromptViewable
 	    return new UserRightModule();
 	} catch (ModuleException e)
 	{
-	    // TODO Auto-generated catch block
+	    // FIXME : cest peut etre juste moi mais ca sert pas a rien de lancer cette entity exception et de la printer en meme temps? 
+	    // Au final on va la printer 2 fois cette exception lorsque la entity exception sera catchee...
+	    // Sinon lors de la creation du user right module on throw meme pas dexception... Alors pourquoi les gerer? Bref on sen reparle....
 	    e.printStackTrace();
 	    throw new EntityException(e.getMessage());
 	}

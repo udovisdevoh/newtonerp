@@ -9,9 +9,9 @@ import newtonERP.orm.Ormizable;
 import newtonERP.orm.exceptions.OrmException;
 
 /**
- * Fait Par Gabriel Therrien
- * 
- * @param args
+ * @author Gabriel Therrien
+ * 	
+ * 	Action class used to create a new group
  */
 public class NewGroup extends AbstractAction
 {

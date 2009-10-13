@@ -6,6 +6,11 @@ import newtonERP.module.AbstractEntity;
 import newtonERP.orm.Ormizable;
 import newtonERP.orm.exceptions.OrmException;
 
+/**
+ * @author r3hallejo
+ * 
+ * 	Entity defenition class representing a right
+ */
 public class Right extends AbstractEntity implements Ormizable
 {
     private int PKrightID;
@@ -15,7 +20,6 @@ public class Right extends AbstractEntity implements Ormizable
     @Override
     public Hashtable<String, String> getOrmizableData() throws OrmException
     {
-	// TODO Auto-generated method stub
 	return getHashTableFromEntity();
     }
 
@@ -26,7 +30,7 @@ public class Right extends AbstractEntity implements Ormizable
     }
 
     /**
-     * @return the pKrightID
+     * @return PKrightID the pKrightID
      */
     public int getPKrightID()
     {
@@ -42,7 +46,7 @@ public class Right extends AbstractEntity implements Ormizable
     }
 
     /**
-     * @return the moduleName
+     * @return moduleName the moduleName
      */
     public String getModuleName()
     {
@@ -58,7 +62,7 @@ public class Right extends AbstractEntity implements Ormizable
     }
 
     /**
-     * @return the actionName
+     * @return actionName the actionName
      */
     public String getActionName()
     {

@@ -20,13 +20,17 @@ import newtonERP.module.ModuleException;
 import newtonERP.orm.Orm;
 import newtonERP.orm.exceptions.OrmException;
 
+/**
+ * @author Gabriel Therrien, Guillaume Lacasse
+ * 
+ * 	Class representing the user right module. Base module for the ERP.
+ */
 public class UserRightModule extends Module
 {
-
     /**
-     * Fait Par Gabriel Therrien et Guillaume Lacasse Le module de UserRight
+     * Default constructor for the user right module initializing himself. Adds the actions and the entity defenitions
      * 
-     * @param args
+     * FIXME : See user line 201 for my comment
      */
     public UserRightModule() throws ModuleException
     {
@@ -59,7 +63,7 @@ public class UserRightModule extends Module
 
 	    // retourve le groupID
 	    Vector<String> search = new Vector<String>();
-	    search.add("Newton_groupName=" + "'admin'");
+	    search.add("groupName=" + "'admin'");
 	    int groupID = ((Groups) Orm.select(group, search).get(0))
 		    .getPKgroupID();
 
@@ -81,8 +85,8 @@ public class UserRightModule extends Module
 
 		// retrouve le rightID
 		search.clear();
-		search.add("Newton_ActionName='" + action
-			+ "' AND Newton_ModuleName='"
+		search.add("ActionName='" + action
+			+ "' AND ModuleName='"
 			+ this.getClass().getSimpleName() + "'");
 		right = ((Right) Orm.select(right, search).get(0));
 		rightID = right.getPKrightID();
@@ -94,7 +98,6 @@ public class UserRightModule extends Module
 	    }
 	} catch (OrmException e)
 	{
-	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
     }

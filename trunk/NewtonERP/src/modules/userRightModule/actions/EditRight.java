@@ -11,9 +11,9 @@ import newtonERP.orm.Ormizable;
 import newtonERP.orm.exceptions.OrmException;
 
 /**
- * Fait Par Gabriel Therrien
+ * @author Gabriel Therrien
  * 
- * @param argsdd
+ * 	Action class used to edit a right
  */
 public class EditRight extends AbstractAction
 {
@@ -23,13 +23,12 @@ public class EditRight extends AbstractAction
 	    Hashtable<String, String> parameters)
     {
 	Vector<String> whereParameter = new Vector<String>();
-	whereParameter.add("Newton_PKright=" + ((Right) entity).getPKrightID());
+	whereParameter.add("PKrightID=" + ((Right) entity).getPKrightID());
 	try
 	{
 	    Orm.update((Ormizable) entity, whereParameter);
 	} catch (OrmException e)
 	{
-	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
 	return null;

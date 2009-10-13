@@ -11,9 +11,9 @@ import newtonERP.orm.Ormizable;
 import newtonERP.orm.exceptions.OrmException;
 
 /**
- * Fait Par Gabriel Therrien
+ * @author Gabriel Therrien
  * 
- * @param args
+ * 	Action class used to edit a user
  */
 public class EditUser extends AbstractAction
 {
@@ -23,13 +23,12 @@ public class EditUser extends AbstractAction
 	    Hashtable<String, String> parameters)
     {
 	Vector<String> whereParameter = new Vector<String>();
-	whereParameter.add("Newton_Name=" + ((User) entity).getName());
+	whereParameter.add("Name=" + ((User) entity).getName());
 	try
 	{
 	    Orm.update((Ormizable) entity, whereParameter);
 	} catch (OrmException e)
 	{
-	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
 	return null;
