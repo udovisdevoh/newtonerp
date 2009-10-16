@@ -23,7 +23,7 @@ public abstract class Viewer
      * @throws ViewerException
      */
     public static String getHtmlCode(AbstractEntity entity)
-	    throws ViewerException
+	    throws ViewerException, Exception
     {
 	if (entity instanceof PromptViewable)
 	{

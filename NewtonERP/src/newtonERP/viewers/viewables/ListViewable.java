@@ -4,6 +4,7 @@ import java.util.Hashtable;
 import java.util.Vector;
 
 import newtonERP.module.AbstractAction;
+import newtonERP.module.EntityException;
 import newtonERP.module.Module;
 
 /**
@@ -20,7 +21,7 @@ public interface ListViewable
     /**
      * @return Module callé par le prompt
      */
-    public Module getSubmitModule();
+    public Module getSubmitModule() throws EntityException;
 
     /**
      * @return Utilisateur actuel Cette methode sera effacée au sprint 2 car

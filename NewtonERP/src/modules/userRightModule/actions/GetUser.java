@@ -9,18 +9,19 @@ import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.ModuleException;
 import newtonERP.orm.Orm;
+import newtonERP.orm.Ormizable;
 import newtonERP.orm.exceptions.OrmException;
 
 /**
  * @author Gabriel Therrien
  * 
- * 	Action class used to get a user
+ *         Action class used to get a user
  */
 public class GetUser extends AbstractAction
 {
     /**
-     * TODO: Check if this comment is right
-     * Default constructor that creates a new user or that gets one? It isn't really clear...
+     * TODO: Check if this comment is right Default constructor that creates a
+     * new user or that gets one? It isn't really clear...
      */
     public GetUser()
     {
@@ -36,14 +37,16 @@ public class GetUser extends AbstractAction
 	User retUser = new User();
 	try
 	{
-	    retUser = (User) Orm.select(new User(), search).get(0);
+	    Vector<Ormizable> retUserList = Orm.select(new User(), search);
+	    retUser = (User) retUserList.get(0);
 	} catch (OrmException e)
 	{
+	    System.out.println("");
 	    e.printStackTrace();
 	}
 
 	retUser.setSubmitAction(this);
-	
+
 	try
 	{
 	    retUser.setSubmitModule(new UserRightModule());
