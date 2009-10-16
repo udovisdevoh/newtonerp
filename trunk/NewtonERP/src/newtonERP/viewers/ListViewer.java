@@ -10,20 +10,20 @@ import newtonERP.viewers.viewables.ListViewable;
  * 
  * @author Guillaume Lacasse, Pascal Lemay
  * 
- * 	Represents the list viewer for listing data
+ *         Represents the list viewer for listing data
  */
 public class ListViewer
 {
     /**
-     * Creates the gtml code for the web page
-     * FIXME : Does not actually throws the viewer exception.... Is this ok?
+     * Creates the gtml code for the web page FIXME : Does not actually throws
+     * the viewer exception.... Is this ok?
      * 
      * @param entity
      * @return html the html code
      * @throws ViewerException
      */
     public static String getHtmlCode(ListViewable entity)
-	    throws ViewerException
+	    throws ViewerException, Exception
     {
 	String moduleName = entity.getSubmitModule().getClass().getSimpleName();
 

@@ -5,13 +5,13 @@ import newtonERP.viewers.viewables.PromptViewable;
 /**
  * @author Guillaume Lacasse, Pascal Lemay
  * 
- * 	Represents the prompt viewer
+ *         Represents the prompt viewer
  */
 public class PromptViewer
 {
     /**
-     * Return the html code for the web page
-     * FIXME : Why is it throwing 2 kinds of exception?
+     * Return the html code for the web page FIXME : Why is it throwing 2 kinds
+     * of exception?
      * 
      * @param entity
      * @return html
@@ -21,7 +21,7 @@ public class PromptViewer
     public static String getHtmlCode(PromptViewable entity)
 	    throws ViewerException, Exception
     {
-	System.out.println("getHtmlCode()");
+	System.out.println("getHtmlCode() (prompt viewer)");
 	String html = "";
 	try
 	{
