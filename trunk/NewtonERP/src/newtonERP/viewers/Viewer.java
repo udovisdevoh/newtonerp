@@ -29,7 +29,9 @@ public abstract class Viewer
 	{
 	    try
 	    {
-		return PromptViewer.getHtmlCode((PromptViewable) entity);
+		return getHeader() + getLeftMenu()
+			+ PromptViewer.getHtmlCode((PromptViewable) entity)
+			+ getFooter();
 	    } catch (Exception e)
 	    {
 		// TODO Auto-generated catch block
@@ -38,7 +40,9 @@ public abstract class Viewer
 	}
 	else if (entity instanceof ListViewable)
 
-	    return ListViewer.getHtmlCode((ListViewable) entity);
+	    return getHeader() + getLeftMenu()
+		    + ListViewer.getHtmlCode((ListViewable) entity)
+		    + getFooter();
 
 	throw new ViewerException("Couldn't find proper viewer for entity");
     }
@@ -54,7 +58,7 @@ public abstract class Viewer
 	String header = "";
 	header += "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">"
 		+ "<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"fr\" >"
-		+ "<head><title>NewtonERP"
+		+ "<head><title>NewtonERP:"
 		+ "nom de module ici"
 		+ "</title>"
 		+ "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-1\" />";
@@ -102,7 +106,7 @@ public abstract class Viewer
 	    menuModule += "<li><a href=\"" + mod.get(modName) + "\">" + modName
 		    + "</a></li>";
 	}
-	menuModule += "</ul></div>";// ferme liste et menuModule
+	menuModule += "</ul></div>";// ferme liste et ce Module
 
 	return (menu + menuModule + "</div>");
     }
