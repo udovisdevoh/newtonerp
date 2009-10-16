@@ -37,11 +37,11 @@ public class GetUser extends AbstractAction
 	User retUser = new User();
 	try
 	{
+	    // Sur deux lignes pour mieux débugger
 	    Vector<Ormizable> retUserList = Orm.select(new User(), search);
 	    retUser = (User) retUserList.get(0);
 	} catch (OrmException e)
 	{
-	    System.out.println("");
 	    e.printStackTrace();
 	}
 
