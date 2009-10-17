@@ -5,9 +5,9 @@ import newtonERP.module.AbstractEntity;
 /**
  * @author r3hallejo
  * 
- * 	Represents a test entity
+ *         Represents a test entity
  */
 public class TestActionableEntity extends AbstractEntity
 {
-    // To be finished or deleted
+    // TODO: To be finished or deleted
 }

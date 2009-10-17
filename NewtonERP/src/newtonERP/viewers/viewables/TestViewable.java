@@ -3,9 +3,9 @@ package newtonERP.viewers.viewables;
 /**
  * @author r3hallejo
  * 
- * 	A test viewer
+ *         A test viewer
  */
 public interface TestViewable
 {
-    //  To be finished or deleted
+    // TODO: To be finished or deleted
 }

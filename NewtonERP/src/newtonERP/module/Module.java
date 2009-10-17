@@ -11,7 +11,7 @@ import newtonERP.orm.Ormizable;
 /**
  * @author Pascal Lemay
  * 
- * 	Abstract class representing an abstract module
+ *         Abstract class representing an abstract module
  */
 public abstract class Module
 {
@@ -23,7 +23,7 @@ public abstract class Module
     protected Hashtable<String, AbstractAction> actionList;
 
     /**
-     * constructeur par defaylt
+     * constructeur par default
      */
     public Module()
     {
