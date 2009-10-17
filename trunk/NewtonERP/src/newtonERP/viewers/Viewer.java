@@ -56,13 +56,13 @@ public abstract class Viewer
 	header += "<style type=\"text/css\">"
 		+ "body	/*mise en page pour tout le corp*/{width: 1000px;margin: auto;margin-top: 5px;margin-bottom: 5px;background-color: #ecf1f5;}"
 		+ "#header{width: 1000px;height: 75px;background-color:#d3d8e1;color:black;font-family: Arial, \"Arial Black\", \"Times New Roman\", Times, serif;border: 1px solid black;margin-bottom: 5px;}"
-		+ "#menu{float: left; /* Le menu flottant à gauche */width: 120px;}"
+		+ "#menu{float: left; /* Le menu flottant à gauche */width: 140px;}"
 		+ ".element_menu/*sous-menu*/{background-color: #d3d8e1;border: 1px solid black;margin-bottom: 10px;}"
 		+ ".element_menu h3 /* Tous les titres de sous-menus */{color: black;font-family: Arial, \"Arial Black\", \"Times New Roman\", Times, serif;text-align: center;}"
 		+ ".element_menu ul /* Listes à puces de sous-menu */{padding: 0px;padding-left: 20px;margin: 0px;margin-bottom: 5px;}"
 		+ ".element_menu a /* Tous les liens se trouvant dans un menu */{color: #0081d7;}"
 		+ ".element_menu a:hover {color: red;}"
-		+ "#body /*mise en page du corp principal à droite du menu principal*/{margin-left: 130px; /*Une marge à gauche pour pousser le corps, afin qu'il ne passe plus sous le menu*/margin-bottom: 10px;padding: 5px;color: black;background-color: #d3d8e1;border: 1px solid black;}"
+		+ "#body /*mise en page du corp principal à droite du menu principal*/{margin-left: 150px; /*Une marge à gauche pour pousser le corps, afin qu'il ne passe plus sous le menu*/margin-bottom: 10px;padding: 5px;color: black;background-color: #d3d8e1;border: 1px solid black;}"
 		+ "#footer{text-align: center;color: black;background-color: #d3d8e1;border: 1px solid black;}</style>";
 	// *********************************************************************
 
@@ -97,7 +97,11 @@ public abstract class Viewer
 	}
 	menuModule += "</ul></div>";// ferme liste et ce Module
 
-	return (menu + menuModule + "</div>");
+	return (menu + menuModule + "</div> <div id=\"body\">");// ferme menu
+	// gauche + <div
+	// id="body">=style
+	// css corp de
+	// droite
     }
 
     /**
@@ -108,7 +112,7 @@ public abstract class Viewer
      */
     public static String getFooter()
     {
-	String footer = "<div id=\"footer\"><p>Copyright \"G.Lacasse, J.Cloutier, J.Hallé, P.Lemay, G.Thérien\" 2009, tous droits réservés</p></div></body></html>";
+	String footer = "</div><div id=\"footer\"><p>Copyright \"G.Lacasse, J.Cloutier, J.Hallé, P.Lemay, G.Thérien\" 2009, tous droits réservés</p></div></body></html>";
 	return footer;
     }
 }
