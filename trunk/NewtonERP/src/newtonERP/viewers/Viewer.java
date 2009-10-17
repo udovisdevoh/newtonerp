@@ -23,28 +23,17 @@ public abstract class Viewer
      * @throws ViewerException
      */
     public static String getHtmlCode(AbstractEntity entity)
-	    throws ViewerException, Exception
+	    throws ViewerException, Exception // TODO: remove trow Exception
     {
+	String viewerHtml = "";
 	if (entity instanceof PromptViewable)
-	{
-	    try
-	    {
-		return getHeader() + getLeftMenu()
-			+ PromptViewer.getHtmlCode((PromptViewable) entity)
-			+ getFooter();
-	    } catch (Exception e)
-	    {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	    }
-	}
+	    viewerHtml = PromptViewer.getHtmlCode((PromptViewable) entity);
 	else if (entity instanceof ListViewable)
+	    viewerHtml = ListViewer.getHtmlCode((ListViewable) entity);
+	else
+	    throw new ViewerException("Couldn't find proper viewer for entity");
 
-	    return getHeader() + getLeftMenu()
-		    + ListViewer.getHtmlCode((ListViewable) entity)
-		    + getFooter();
-
-	throw new ViewerException("Couldn't find proper viewer for entity");
+	return getHeader() + getLeftMenu() + viewerHtml + getFooter();
     }
 
     /**
@@ -77,7 +66,7 @@ public abstract class Viewer
 		+ "#footer{text-align: center;color: black;background-color: #d3d8e1;border: 1px solid black;}</style>";
 	// *********************************************************************
 
-	header += "</head><body><div id=\"header\">h1>NewtonERP</h1></div>";
+	header += "</head><body><div id=\"header\"><h1>NewtonERP</h1></div>";
 
 	return header;
     }
@@ -103,7 +92,7 @@ public abstract class Viewer
 	while (keys.hasNext())
 	{
 	    modName = keys.next();
-	    menuModule += "<li><a href=\"" + mod.get(modName) + "\">" + modName
+	    menuModule += "<li><a href=\"" + modName + "\">" + modName
 		    + "</a></li>";
 	}
 	menuModule += "</ul></div>";// ferme liste et ce Module
@@ -119,7 +108,7 @@ public abstract class Viewer
      */
     public static String getFooter()
     {
-	String footer = "<div id=\"footer\"><p>Copyright \"G.Lacasse, J.Cloutier, J.Hallé, P.Lemay, G.Thérien\" 2009, tous droits réservés</p>/div></body></html>";
+	String footer = "<div id=\"footer\"><p>Copyright \"G.Lacasse, J.Cloutier, J.Hallé, P.Lemay, G.Thérien\" 2009, tous droits réservés</p></div></body></html>";
 	return footer;
     }
 }

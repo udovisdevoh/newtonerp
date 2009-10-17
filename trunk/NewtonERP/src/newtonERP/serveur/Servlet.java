@@ -11,8 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import newtonERP.module.AbstractEntity;
-import newtonERP.viewers.PromptViewer;
-import newtonERP.viewers.viewables.PromptViewable;
+import newtonERP.viewers.Viewer;
 
 import org.mortbay.jetty.Request;
 import org.mortbay.jetty.handler.AbstractHandler;
@@ -41,9 +40,7 @@ public class Servlet extends AbstractHandler
 	String pageContent = "";
 	try
 	{
-	    // TODO: remove shortcut... devrai apellé le main viewer plutot
-	    pageContent += PromptViewer
-		    .getHtmlCode((PromptViewable) viewEntity);
+	    pageContent = Viewer.getHtmlCode(viewEntity);
 	} catch (Exception e) // todo le main viewer ne devrai pas renvoyer
 	// d'Exception stp
 	{
