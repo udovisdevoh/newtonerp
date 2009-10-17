@@ -5,7 +5,7 @@ import java.util.Hashtable;
 /**
  * @author r3lacasgu cloutierJo
  * 
- * 	Class representing an abstract action
+ *         Class representing an abstract action
  */
 public abstract class AbstractAction
 {
@@ -27,8 +27,8 @@ public abstract class AbstractAction
     }
 
     /**
-     * Abstract method that will be used to perofrm the actions
-     * FIXME : Why is it throwing a ModuleException when it shooting this exception?
+     * Abstract method that will be used to perofrm the actions FIXME : Why is
+     * it throwing a ModuleException when it shooting this exception?
      * 
      * @param parameters list de parametre utilisable par l'action, une partie
      *            d'entre eux sera transforme en entite
@@ -63,5 +63,13 @@ public abstract class AbstractAction
      */
     protected abstract AbstractEntity doAction(AbstractEntity entity,
 	    Hashtable<String, String> parameters);
+
+    /**
+     * @return the entityUsable
+     */
+    public AbstractEntity getEntityUsable()
+    {
+	return entityUsable;
+    }
 
 }

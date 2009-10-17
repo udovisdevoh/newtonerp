@@ -3,6 +3,7 @@
  */
 package newtonERP.module;
 
+import java.io.File;
 import java.util.Hashtable;
 import java.util.Vector;
 
@@ -24,11 +25,14 @@ public abstract class Module
 
     /**
      * constructeur par default
+     * 
      */
     public Module()
     {
 	definitionEntityList = new Vector<Ormizable>();
 	actionList = new Hashtable<String, AbstractAction>();
+	initAction();
+	initEntityDefinition();
     }
 
     protected final void setDefaultAction(String actionName)
@@ -44,19 +48,86 @@ public abstract class Module
 	}
     }
 
-    protected final void addAction(AbstractAction action)
+    private final void addAction(AbstractAction action)
     {
 	actionList.put(action.getClass().getSimpleName(), action);
     }
 
-    protected final void addAction(AbstractAction action, boolean isDefault)
+    /**
+     * initialise la liste d'action du module
+     * 
+     * @throws ActionNotFoundException
+     */
+    protected void initAction()
+    {
+	String packageName = getClass().getPackage().getName()
+		.replace('.', '/');
+
+	File folder = new File("src/" + packageName + "/actions");
+	File[] listOfFiles = folder.listFiles();
+
+	for (int i = 0; i < listOfFiles.length; i++)
+	{
+	    if (listOfFiles[i].getName().endsWith(".java"))
+	    {
+		try
+		{
+		    String className = getClass().getPackage().getName()
+			    + ".actions."
+			    + listOfFiles[i].getName().split("\\.java")[0];
+		    AbstractAction act = (AbstractAction) Class.forName(
+			    className).newInstance();
+		    addAction(act);
+		} catch (Exception e)
+		{
+		    e.printStackTrace();
+		}
+	    }
+	}
+    }
+
+    /**
+     * initialise la liste de definition d'entite du module
+     * 
+     * @throws ActionNotFoundException
+     */
+    protected void initEntityDefinition()
+    {
+	String packageName = getClass().getPackage().getName()
+		.replace('.', '/');
+
+	File folder = new File("src/" + packageName + "/entityDefinitions");
+	File[] listOfFiles = folder.listFiles();
+
+	for (int i = 0; i < listOfFiles.length; i++)
+	{
+	    if (listOfFiles[i].getName().endsWith(".java"))
+	    {
+		try
+		{
+		    String className = getClass().getPackage().getName()
+			    + ".entityDefinitions."
+			    + listOfFiles[i].getName().split("\\.java")[0];
+		    AbstractEntity def = (AbstractEntity) Class.forName(
+			    className).newInstance();
+		    if (def instanceof Ormizable)
+			addDefinitionEntity((Ormizable) def);
+		} catch (Exception e)
+		{
+		    e.printStackTrace();
+		}
+	    }
+	}
+    }
+
+    private final void addAction(AbstractAction action, boolean isDefault)
     {
 	addAction(action);
 	if (isDefault)
 	    setDefaultAction(action.getClass().getSimpleName());
     }
 
-    protected final void addDefinitinEntity(Ormizable definitinEntity)
+    private final void addDefinitionEntity(Ormizable definitinEntity)
     {
 	definitionEntityList.add(definitinEntity);
     }
@@ -102,7 +173,7 @@ public abstract class Module
 
     /**
      * permet d'initialiser la base de donne lors de l'installation du module,
-     * ne prend pas en compte la creation des table
+     * ne doit pas prendre en compte la creation des table
      */
     public void initDB()
     {
