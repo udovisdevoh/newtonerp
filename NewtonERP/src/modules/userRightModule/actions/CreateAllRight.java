@@ -15,10 +15,18 @@ import newtonERP.orm.exceptions.OrmException;
 /**
  * @author cloutierJo
  * 
- * 	Action class that creates all the rights for every module
+ *         Action class that creates all the rights for every module
  */
 public class CreateAllRight extends AbstractAction
 {
+    /**
+     * constructeur
+     */
+    public CreateAllRight()
+    {
+	super(null); // ne travaille pas avec une entity
+    }
+
     protected AbstractEntity doAction(AbstractEntity entity,
 	    Hashtable<String, String> parameters)
     {
@@ -43,23 +51,21 @@ public class CreateAllRight extends AbstractAction
 		}
 		if (numRight == 0)
 		{
-		    module.initDB();
-		}
-
-		for (String actionName : module.getActionList().keySet())
-		{
-		    try
+		    for (String actionName : module.getActionList().keySet())
 		    {
-			// cree le right
-			Right right = new Right();
-			right.setActionName(actionName);
-			right.setModuleName(getClass().getSimpleName());
-			Orm.insert(right);
-		    } catch (OrmException e)
-		    {
-			e.printStackTrace();
+			try
+			{
+			    // cree le right
+			    Right right = new Right();
+			    right.setActionName(actionName);
+			    right.setModuleName(moduleName);
+			    Orm.insert(right);
+			} catch (OrmException e)
+			{
+			    e.printStackTrace();
+			}
 		    }
-
+		    module.initDB();
 		}
 	    } catch (ModuleException e)
 	    {

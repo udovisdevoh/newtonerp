@@ -2,15 +2,6 @@ package modules.userRightModule;
 
 import java.util.Vector;
 
-import modules.userRightModule.actions.CreateAllRight;
-import modules.userRightModule.actions.DeleteGroup;
-import modules.userRightModule.actions.DeleteUser;
-import modules.userRightModule.actions.EditUser;
-import modules.userRightModule.actions.GetUser;
-import modules.userRightModule.actions.GetUserList;
-import modules.userRightModule.actions.NewUser;
-import modules.userRightModule.actions.NewUserType;
-import modules.userRightModule.actions.RightCheck;
 import modules.userRightModule.entityDefinitions.GroupRight;
 import modules.userRightModule.entityDefinitions.Groups;
 import modules.userRightModule.entityDefinitions.Right;
@@ -23,33 +14,20 @@ import newtonERP.orm.exceptions.OrmException;
 /**
  * @author Gabriel Therrien, Guillaume Lacasse
  * 
- * 	Class representing the user right module. Base module for the ERP.
+ *         Class representing the user right module. Base module for the ERP.
  */
 public class UserRightModule extends Module
 {
     /**
-     * Default constructor for the user right module initializing himself. Adds the actions and the entity defenitions
+     * Default constructor for the user right module initializing himself. Adds
+     * the actions and the entity defenitions
      * 
      * FIXME : See user line 201 for my comment
      */
     public UserRightModule() throws ModuleException
     {
-	// On cré les référence vers les définitions d'entités
-	addDefinitinEntity(new User());
-	addDefinitinEntity(new Groups());
-	addDefinitinEntity(new GroupRight());
-	addDefinitinEntity(new Right());
-
-	// On cré les références vers les actions du module
-	addAction(new NewUser());
-	addAction(new EditUser());
-	addAction(new DeleteUser());
-	addAction(new NewUserType());
-	addAction(new GetUserList());
-	addAction(new DeleteGroup());
-	addAction(new RightCheck());
-	addAction(new GetUser());
-	addAction(new CreateAllRight());
+	super();
+	setDefaultAction("GetUser");
     }
 
     public void initDB()
@@ -77,16 +55,10 @@ public class UserRightModule extends Module
 	    GroupRight groupRight = new GroupRight();
 	    for (String action : getActionList().keySet())
 	    {
-		// cree le right
 		Right right = new Right();
-		right.setActionName(action);
-		right.setModuleName(getClass().getSimpleName());
-		Orm.insert(right);
-
 		// retrouve le rightID
 		search.clear();
-		search.add("ActionName='" + action
-			+ "' AND ModuleName='"
+		search.add("ActionName='" + action + "' AND ModuleName='"
 			+ this.getClass().getSimpleName() + "'");
 		right = ((Right) Orm.select(right, search).get(0));
 		rightID = right.getPKrightID();
