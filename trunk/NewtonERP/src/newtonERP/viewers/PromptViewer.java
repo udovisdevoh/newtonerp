@@ -51,7 +51,7 @@ public class PromptViewer
 	    html += "<tr><td colspan=\"2\" align=\"center\"><input type=\"submit\" value=\""
 		    + entity.getButtonCaption() + "\"></td></tr>";
 
-	    html += "<table>";
+	    html += "</table>";
 
 	    html += "</form>";
 	} catch (Exception e)
