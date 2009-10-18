@@ -112,7 +112,7 @@ public abstract class Viewer
      */
     public static String getFooter()
     {
-	String footer = "</div><div id=\"footer\"><p>Copyright \"G.Lacasse, J.Cloutier, J.Hallé, P.Lemay, G.Thérien\" 2009, tous droits réservés</p></div></body></html>";
+	String footer = "</div><div id=\"footer\"><p>Copyright \"G.Lacasse, J.Cloutier, J.Hallée, P.Lemay, G.Therrien\" 2009, tous droits réservés</p></div></body></html>";
 	return footer;
     }
 }
