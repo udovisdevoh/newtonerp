@@ -10,18 +10,19 @@ import java.util.GregorianCalendar;
  * @author r3hallejo
  * 
  * 
- * 	Class used to log system messages into an external log for purposes of
- * 	viewing errors, information messages, warnings and much more that has happen
- * 	on a later time.
+ *         Class used to log system messages into an external log for purposes
+ *         of viewing errors, information messages, warnings and much more that
+ *         has happen on a later time.
  * 
- * 	HOWTO : (Static class) Logger.log("MY MESSAGE GOES HERE",
- * 	Log.State.STATE_OF_MESSAGE)
+ *         HOWTO : (Static class) Logger.log("MY MESSAGE GOES HERE",
+ *         Log.State.STATE_OF_MESSAGE)
  * 
- * 	See the state enumeration for all the actual states available
+ *         See the state enumeration for all the actual states available
  * 
- * 	For better results we might have to think a better way of implementing the
- * 	logging in all the project so we wont have dozens of logger objects accessing
- * 	the log file causing multiple write lines at the same time
+ *         For better results we might have to think a better way of
+ *         implementing the logging in all the project so we wont have dozens of
+ *         logger objects accessing the log file causing multiple write lines at
+ *         the same time
  */
 public class Logger
 {
@@ -33,36 +34,34 @@ public class Logger
 	    "k:mm:ss yyyy.MM.dd");
 
     /**
-         * 
-         * @author r3hallejo
-         * 
-         * States the logger can have
-         * 
-         */
+     * @author r3hallejo
+     * 
+     *         States the logger can have
+     */
     public enum State
     {
 	/**
-         * An information message
-         */
+	 * An information message
+	 */
 	INFO,
 
 	/**
-         * A warning message
-         */
+	 * A warning message
+	 */
 	WARNING,
 
 	/**
-         * An error message
-         */
+	 * An error message
+	 */
 	ERROR;
     }
 
     /**
-         * Used to log a message, passing a message and the desired state
-         * 
-         * @param message
-         * @param state
-         */
+     * Used to log a message, passing a message and the desired state
+     * 
+     * @param message the message
+     * @param state the state
+     */
     public static void log(String message, State state)
     {
 	try
