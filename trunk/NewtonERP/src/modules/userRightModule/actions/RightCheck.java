@@ -13,7 +13,7 @@ import newtonERP.orm.exceptions.OrmException;
 /**
  * @author cloutierJo
  * 
- * 	Action class that checks the right on an entity	
+ *         Action class that checks the right on an entity
  */
 public class RightCheck extends AbstractAction
 {
@@ -26,11 +26,16 @@ public class RightCheck extends AbstractAction
 	    Vector<String> search = new Vector<String>();
 	    search.add("name='" + parameters.get("name") + "'");
 	    User user = (User) Orm.select(new User(), search).get(0);
+	    System.out.println(user);
 	    for (Right right : user.getGroupsEntity().getRightList())
 	    {
-		if (right.getModuleName().equals(parameters.get("module"))
-			&& right.getActionName().equals(
-				parameters.get("action")))
+		if (right.getData("moduleName")
+			.equals(parameters.get("module"))
+			&& right.getData("actionName").equals(
+				parameters.get("action"))
+			&& (right.getData("entityName").equals(
+				parameters.get("entity")) || !parameters
+				.containsKey("entity")))
 		    return right;
 	    }
 

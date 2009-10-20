@@ -2,13 +2,15 @@ package modules.userRightModule;
 
 import java.util.Vector;
 
+import modules.userRightModule.actions.GetUserList;
 import modules.userRightModule.entityDefinitions.GroupRight;
 import modules.userRightModule.entityDefinitions.Groups;
 import modules.userRightModule.entityDefinitions.Right;
 import modules.userRightModule.entityDefinitions.User;
 import newtonERP.module.Module;
-import newtonERP.module.ModuleException;
+import newtonERP.module.field.FieldNotCompatibleException;
 import newtonERP.orm.Orm;
+import newtonERP.orm.Ormizable;
 import newtonERP.orm.exceptions.OrmException;
 
 /**
@@ -24,10 +26,10 @@ public class UserRightModule extends Module
      * 
      * FIXME : See user line 201 for my comment
      */
-    public UserRightModule() throws ModuleException
+    public UserRightModule()
     {
 	super();
-	setDefaultAction("GetUser");
+	setDefaultAction(new GetUserList());
     }
 
     public void initDB()
@@ -36,39 +38,42 @@ public class UserRightModule extends Module
 	{
 	    // cree le groupe
 	    Groups group = new Groups();
-	    group.setGroupName("admin");
+	    group.setData("groupName", "admin");
 	    Orm.insert(group);
 
-	    // retourve le groupID
+	    // retrouve le groupID
 	    Vector<String> search = new Vector<String>();
 	    search.add("groupName=" + "'admin'");
-	    int groupID = ((Groups) Orm.select(group, search).get(0))
-		    .getPKgroupID();
+	    int groupID = (Integer) ((Groups) Orm.select(group, search).get(0))
+		    .getData("PKgroupID");
 
 	    // cree le user
 	    User user = new User();
-	    user.setName("admin");
-	    user.setPassword("aaa");
-	    user.setGroupID(groupID);
+	    user.setData("name", "admin");
+	    user.setData("password", "aaa");
+	    user.setData("groupID", groupID);
 	    Orm.insert(user);
+
 	    int rightID;
 	    GroupRight groupRight = new GroupRight();
-	    for (String action : getActionList().keySet())
+
+	    // retrouve les rightID
+	    search.clear();
+	    search.add("ModuleName='" + this.getClass().getSimpleName() + "'");
+
+	    for (Ormizable right : Orm.select(new Right(), search))
 	    {
-		Right right = new Right();
-		// retrouve le rightID
-		search.clear();
-		search.add("ActionName='" + action + "' AND ModuleName='"
-			+ this.getClass().getSimpleName() + "'");
-		right = ((Right) Orm.select(right, search).get(0));
-		rightID = right.getPKrightID();
+		rightID = (Integer) ((Right) right).getData("PKrightID");
 
 		// cree le groupRight
-		groupRight.setGroupID(groupID);
-		groupRight.setRightID(rightID);
+		groupRight.setData("groupID", groupID);
+		groupRight.setData("rightID", rightID);
 		Orm.insert(groupRight);
 	    }
 	} catch (OrmException e)
+	{
+	    e.printStackTrace();
+	} catch (FieldNotCompatibleException e)
 	{
 	    e.printStackTrace();
 	}

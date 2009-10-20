@@ -4,14 +4,10 @@ import java.util.Hashtable;
 import java.util.Vector;
 
 import modules.userRightModule.UserRightModule;
-import modules.userRightModule.actions.DeleteUser;
-import modules.userRightModule.actions.EditUser;
-import modules.userRightModule.actions.NewUser;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.EntityException;
 import newtonERP.module.Module;
-import newtonERP.module.ModuleException;
 import newtonERP.viewers.viewables.ListViewable;
 
 /**
@@ -75,9 +71,9 @@ public class UserList extends AbstractEntity implements ListViewable
 	for (User user : data)
 	{
 	    userInfo = new Vector<String>();
-	    userInfo.add(user.getPKuserID() + "");
-	    userInfo.add(user.getName());
-	    userInfo.add(user.getGroupID() + "");
+	    userInfo.add(user.getDataString("PKuserID"));
+	    userInfo.add(user.getDataString("name"));
+	    userInfo.add(user.getDataString("groupID"));
 	    userListInfo.add(userInfo);
 	}
 	return userListInfo;
@@ -112,20 +108,7 @@ public class UserList extends AbstractEntity implements ListViewable
 	 * return submitModule;
 	 */
 
-	try
-	{
-	    return new UserRightModule();
-	} catch (ModuleException e)
-	{
-	    // FIXME : cest peut etre juste moi mais ca sert pas a rien de
-	    // lancer cette entity exception et de la printer en meme temps?
-	    // Au final on va la printer 2 fois cette exception lorsque la
-	    // entity exception sera catchee...
-	    // Sinon lors de la creation du user right module on throw meme pas
-	    // dexception... Alors pourquoi les gerer? Bref on sen reparle....
-	    e.printStackTrace();
-	    throw new EntityException(e.getMessage());
-	}
+	return new UserRightModule();
     }
 
     @Override

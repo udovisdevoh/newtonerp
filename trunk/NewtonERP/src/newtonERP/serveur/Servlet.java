@@ -44,7 +44,6 @@ public class Servlet extends AbstractHandler
 	} catch (Exception e) // todo le main viewer ne devrai pas renvoyer
 	// d'Exception stp
 	{
-	    System.out.println("Viewer exception");
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
@@ -62,24 +61,26 @@ public class Servlet extends AbstractHandler
     public AbstractEntity urlToAction(String target, HttpServletRequest request)
     {
 	String moduleName;
-	String action;
+	String actionName;
+	String entityName;
 	Hashtable<String, String> parameter = new Hashtable<String, String>();
 
 	// on trouve le moduleName et l'actionName dans l'url
-	Matcher urlMatch = Pattern.compile("(/(\\w*)(/(\\w*))?)?").matcher(
-		target);
+	Matcher urlMatch = Pattern.compile("(/(\\w*)(/(\\w*)(/(\\w*))?)?)?")
+		.matcher(target);
 	urlMatch.matches();
 
 	moduleName = urlMatch.group(2);
 	if (moduleName == null)
 	    moduleName = "Home";
 
-	action = urlMatch.group(4);
-	if (action == null)
-	    action = "default";
+	actionName = urlMatch.group(4);
+	if (actionName == null)
+	    actionName = "default";
 
-	System.out.println(moduleName);
-	System.out.println(action);
+	entityName = urlMatch.group(6);
+
+	System.out.println(target);
 	try
 	{
 	    // on trouve les parametres pour les mettre dans le hashtable
@@ -95,6 +96,7 @@ public class Servlet extends AbstractHandler
 	    parameter = null;
 	}
 
-	return cmdRouter.routeCommand(moduleName, action, parameter);
+	return cmdRouter.routeCommand(moduleName, actionName, entityName,
+		parameter);
     }
 }

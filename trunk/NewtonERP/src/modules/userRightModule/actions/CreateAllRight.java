@@ -57,9 +57,30 @@ public class CreateAllRight extends AbstractAction
 			{
 			    // cree le right
 			    Right right = new Right();
-			    right.setActionName(actionName);
-			    right.setModuleName(moduleName);
+			    right.setData("actionName", actionName);
+			    right.setData("moduleName", moduleName);
 			    Orm.insert(right);
+			} catch (OrmException e)
+			{
+			    e.printStackTrace();
+			}
+		    }
+		    for (String entityName : module.getEntityDefinitionList()
+			    .keySet())
+		    {
+			try
+			{
+			    // cree le right
+			    String actionNames[] = { "Get", "New", "Edit",
+				    "Delete" };
+			    for (String actionName : actionNames)
+			    {
+				Right right = new Right();
+				right.setData("actionName", actionName);
+				right.setData("entityName", entityName);
+				right.setData("moduleName", moduleName);
+				Orm.insert(right);
+			    }
 			} catch (OrmException e)
 			{
 			    e.printStackTrace();

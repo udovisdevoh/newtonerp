@@ -1,10 +1,12 @@
 package newtonERP.orm;
 
-import java.lang.reflect.Field;
 import java.sql.ResultSet;
+import java.util.Collection;
 import java.util.Hashtable;
 import java.util.Vector;
 
+import newtonERP.module.AbstractEntity;
+import newtonERP.module.field.Field;
 import newtonERP.orm.exceptions.OrmEntityCreationException;
 import newtonERP.orm.exceptions.OrmException;
 
@@ -41,13 +43,15 @@ public class EntityCreator
 		// We initialize our instance of the ormizable entity.
 		// Our Fields array and our parameters hashtable
 		Ormizable entity = searchEntity.getClass().newInstance();
-		Field[] fields = entity.getClass().getDeclaredFields();
+		Collection<Field> fields = ((AbstractEntity) entity)
+			.getFields().getFields();
 		Hashtable<String, Object> parameters = new Hashtable<String, Object>();
 
 		// We add each column to the hashtable plus it's value
-		for (int i = 0; i < fields.length; i++)
+		for (Field field : fields)
 		{
-		    parameters.put(fields[i].getName(), rs.getObject(i + 1));
+		    parameters.put(field.getShortName(), rs.getObject(field
+			    .getShortName()));
 		}
 
 		// We format the data into the newly created entity
