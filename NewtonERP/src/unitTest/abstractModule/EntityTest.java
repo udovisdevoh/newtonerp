@@ -7,6 +7,7 @@ import java.util.Hashtable;
 
 import junit.framework.TestCase;
 import modules.testModule.entityDefinitions.TestEntity;
+import newtonERP.module.field.FieldNotFoundException;
 
 /**
  * @author djo
@@ -41,19 +42,22 @@ public class EntityTest extends TestCase
      * Test method for
      * {@link newtonERP.module.AbstractEntity#setEntityFromHashTable(java.util.Hashtable)}
      * .
+     * 
+     * @throws FieldNotFoundException
      */
     public void testGetEntityFromHashTableString()
+	    throws FieldNotFoundException
     {
 	Hashtable<String, String> hash = new Hashtable<String, String>();
 
 	hash.put("age", "20");
-	entity.setAge(20);
+	entity.getFields().setData("age", "20");
 	hash.put("color", "red");
-	entity.setColor("red");
+	entity.getFields().setData("color", "red");
 	hash.put("testID", "3");
-	entity.setTestID(3);
+	entity.getFields().setData("testID", "3");
 	hash.put("name", "joe blow");
-	entity.setName("joe blow");
+	entity.getFields().setData("name", "joe blow");
 	TestEntity otherEntity = new TestEntity();
 	try
 	{
@@ -71,20 +75,23 @@ public class EntityTest extends TestCase
      * Test method for
      * {@link newtonERP.module.AbstractEntity#setEntityFromHashTable(java.util.Hashtable)}
      * .
+     * 
+     * @throws FieldNotFoundException
      */
     public void testGetEntityFromHashTableObject()
+	    throws FieldNotFoundException
     {
 	System.out.println("**********");
 	Hashtable<String, Object> hash = new Hashtable<String, Object>();
 
-	hash.put("age", 20);
-	entity.setAge(20);
+	hash.put("age", "20");
+	entity.getFields().setData("age", "20");
 	hash.put("color", "red");
-	entity.setColor("red");
-	hash.put("testID", 3);
-	entity.setTestID(3);
+	entity.getFields().setData("color", "red");
+	hash.put("testID", "3");
+	entity.getFields().setData("testID", "3");
 	hash.put("name", "joe blow");
-	entity.setName("joe blow");
+	entity.getFields().setData("name", "joe blow");
 	TestEntity otherEntity = new TestEntity();
 	try
 	{
@@ -104,19 +111,21 @@ public class EntityTest extends TestCase
      * Test method for
      * {@link newtonERP.module.AbstractEntity#getHashTableFromEntity(newtonERP.module.AbstractEntity)}
      * .
+     * 
+     * @throws FieldNotFoundException
      */
-    public void testGetHashTableFromEntity()
+    public void testGetHashTableFromEntity() throws FieldNotFoundException
     {
 	Hashtable<String, String> hash = new Hashtable<String, String>();
 
 	hash.put("age", "20");
-	entity.setAge(20);
+	entity.getFields().setData("age", "20");
 	hash.put("color", "red");
-	entity.setColor("red");
+	entity.getFields().setData("color", "red");
 	hash.put("testID", "3");
-	entity.setTestID(3);
+	entity.getFields().setData("testID", "3");
 	hash.put("name", "joe blow");
-	entity.setName("joe blow");
+	entity.getFields().setData("name", "joe blow");
 	assertEquals(hash, entity.getHashTableFromEntity());
 
     }

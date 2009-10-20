@@ -5,7 +5,6 @@ package newtonERP.module;
 
 import java.io.File;
 import java.util.Hashtable;
-import java.util.Vector;
 
 import newtonERP.orm.Ormizable;
 
@@ -18,7 +17,7 @@ public abstract class Module
 {
     // Sert a conserver les definitions de tables
     // Genre d'exemple d'une table.
-    protected Vector<Ormizable> definitionEntityList;
+    protected Hashtable<String, Ormizable> entityDefinitionList;
 
     // Sert a stocker les actions pouvant etre appelees
     protected Hashtable<String, AbstractAction> actionList;
@@ -29,23 +28,16 @@ public abstract class Module
      */
     public Module()
     {
-	definitionEntityList = new Vector<Ormizable>();
+	entityDefinitionList = new Hashtable<String, Ormizable>();
 	actionList = new Hashtable<String, AbstractAction>();
 	initAction();
 	initEntityDefinition();
     }
 
-    protected final void setDefaultAction(String actionName)
+    protected final void setDefaultAction(AbstractAction action)
     {
-	AbstractAction defaultAction;
-	try
-	{
-	    defaultAction = getAction(actionName);
-	    actionList.put("default", defaultAction);
-	} catch (ModuleException e)
-	{
-	    e.printStackTrace();
-	}
+	if (actionList.contains(action))
+	    actionList.put("default", action);
     }
 
     private final void addAction(AbstractAction action)
@@ -124,20 +116,21 @@ public abstract class Module
     {
 	addAction(action);
 	if (isDefault)
-	    setDefaultAction(action.getClass().getSimpleName());
+	    setDefaultAction(action);
     }
 
     private final void addDefinitionEntity(Ormizable definitinEntity)
     {
-	definitionEntityList.add(definitinEntity);
+	entityDefinitionList.put(definitinEntity.getClass().getSimpleName(),
+		definitinEntity);
     }
 
     /**
      * @return the Vector entities
      */
-    public final Vector<Ormizable> getDefinitionEntityList()
+    public final Hashtable<String, Ormizable> getEntityDefinitionList()
     {
-	return definitionEntityList;
+	return entityDefinitionList;
     }
 
     /**
@@ -146,6 +139,32 @@ public abstract class Module
     public final Hashtable<String, AbstractAction> getActionList()
     {
 	return actionList;
+    }
+
+    /**
+     * @param entityDefinitionName nom de l action
+     * @return action de ce nom contenue dans le HashTable
+     * @throws ModuleException si l'action n'Existe pas
+     */
+    public final AbstractEntity getEntityDefinition(String entityDefinitionName)
+	    throws ModuleException
+    {
+	AbstractEntity entity = null;
+	try
+	{
+	    entity = (AbstractEntity) entityDefinitionList
+		    .get(entityDefinitionName);
+	} catch (NullPointerException e)
+	{
+	    throw new ModuleException("entity: " + entityDefinitionName
+		    + " introuvable");
+	}
+
+	if (entity == null)
+	    throw new ModuleException("entity: " + entityDefinitionName
+		    + " introuvable");
+
+	return entity;
     }
 
     /**
@@ -181,6 +200,8 @@ public abstract class Module
     }
 
     /**
+     * permet de faire une action
+     * 
      * @param actionName Nom de l'action que l'utilisateur veut faire
      * @param moduleGetterName Nom du module getter permetant d'obtenir l'entité
      *            produite par le module (cette entité servira de paramêtre à
@@ -195,5 +216,36 @@ public abstract class Module
     {
 	AbstractAction action = getAction(actionName);
 	return action.perform(parameters);
+    }
+
+    /**
+     * permet de faire un action standart sur une entité
+     * 
+     * @param actionName Nom de l'action que l'utilisateur veut faire
+     * @param entityName Nom de l'entity contenant l'action
+     * @param moduleGetterName Nom du module getter permetant d'obtenir l'entité
+     *            produite par le module (cette entité servira de paramêtre à
+     *            l'action
+     * @param parameters Paramètres de l'action devant être accomplie, exemple,
+     *            contenu d'un email
+     * @return Entité viewable pour l'output du résultat
+     * @throws ModuleException voir le message...
+     */
+    public final AbstractEntity doAction(String actionName, String entityName,
+	    Hashtable<String, String> parameters) throws ModuleException
+    {
+	AbstractOrmEntity entity = (AbstractOrmEntity) getEntityDefinition(entityName);
+	entity.setEntityFromHashTable(parameters);
+	if (actionName.equals("New"))
+	    return entity.newUI(parameters);
+	if (actionName.equals("Delete"))
+	    return entity.deleteUI(parameters);
+	if (actionName.equals("Edit"))
+	    return entity.editUI(parameters);
+	if (actionName.equals("Get"))
+	    return entity.getUI(parameters);
+
+	throw new ActionNotFoundException("l'action " + actionName
+		+ "de l'entity" + entityName + "n'existe pas");
     }
 }

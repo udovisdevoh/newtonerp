@@ -4,28 +4,36 @@ import java.util.Hashtable;
 import java.util.Vector;
 
 import modules.userRightModule.UserRightModule;
-import modules.userRightModule.actions.GetUser;
+import modules.userRightModule.actions.GetUserList;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
+import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.EntityException;
 import newtonERP.module.Module;
-import newtonERP.module.ModuleException;
+import newtonERP.module.field.Field;
+import newtonERP.module.field.FieldInt;
+import newtonERP.module.field.FieldString;
+import newtonERP.module.field.Fields;
 import newtonERP.orm.Orm;
-import newtonERP.orm.Ormizable;
 import newtonERP.orm.exceptions.OrmException;
 import newtonERP.viewers.viewables.PromptViewable;
 
 /**
- * @author r3hallejo
+ * @author r3hallejo cloutierJo
  * 
- * 	Entity defenition class representing a user
+ *         Entity defenition class representing a user
  */
-public class User extends AbstractEntity implements Ormizable, PromptViewable
+public class User extends AbstractOrmEntity implements PromptViewable
 {
-    private int PKuserID;
-    private String name;
-    private String password;
-    private int groupID;
+    public Fields initFields()
+    {
+	Vector<Field> fields = new Vector<Field>();
+	fields.add(new FieldInt("numéro de user", "PKuserID"));
+	fields.add(new FieldString("nom", "name"));
+	fields.add(new FieldString("mot de pass", "password"));
+	fields.add(new FieldInt("numéro de groupe", "groupID"));
+	return new Fields(fields);
+    }
 
     @Override
     public Hashtable<String, String> getOrmizableData() throws OrmException
@@ -40,70 +48,6 @@ public class User extends AbstractEntity implements Ormizable, PromptViewable
     }
 
     /**
-     * @return PKuserID the pKuserID
-     */
-    public int getPKuserID()
-    {
-	return PKuserID;
-    }
-
-    /**
-     * @param pKuserID the pKuserID to set
-     */
-    public void setPKuserID(int pKuserID)
-    {
-	PKuserID = pKuserID;
-    }
-
-    /**
-     * @return name the name
-     */
-    public String getName()
-    {
-	return name;
-    }
-
-    /**
-     * @param name the name to set
-     */
-    public void setName(String name)
-    {
-	this.name = name;
-    }
-
-    /**
-     * @return password the password
-     */
-    public String getPassword()
-    {
-	return password;
-    }
-
-    /**
-     * @param password the password to set
-     */
-    public void setPassword(String password)
-    {
-	this.password = password;
-    }
-
-    /**
-     * @return groupID the groupID
-     */
-    public int getGroupID()
-    {
-	return groupID;
-    }
-
-    /**
-     * @param groupID the groupID to set
-     */
-    public void setGroupID(int groupID)
-    {
-	this.groupID = groupID;
-    }
-
-    /**
      * permet d'obtenir directement l'entity groups lie a cet user
      * 
      * @return le group lie
@@ -111,7 +55,7 @@ public class User extends AbstractEntity implements Ormizable, PromptViewable
     public Groups getGroupsEntity()
     {
 	Vector<String> search = new Vector<String>();
-	search.add("PKgroupID=" + groupID);
+	search.add("PKgroupID=" + getFields().getField("groupID"));
 
 	try
 	{
@@ -159,7 +103,8 @@ public class User extends AbstractEntity implements Ormizable, PromptViewable
 	 * return submitAction;
 	 */
 	// TODO: remove dummy code
-	return new GetUser();
+	return new GetUserList(); // TODO : a remplacé des que possible c'Est
+				  // pour évité une null pointer...
     }
 
     /**
@@ -193,16 +138,36 @@ public class User extends AbstractEntity implements Ormizable, PromptViewable
 	 * return submitModule;
 	 */
 
-	try
-	{
-	    return new UserRightModule();
-	} catch (ModuleException e)
-	{
-	    // FIXME : cest peut etre juste moi mais ca sert pas a rien de lancer cette entity exception et de la printer en meme temps? 
-	    // Au final on va la printer 2 fois cette exception lorsque la entity exception sera catchee...
-	    // Sinon lors de la creation du user right module on throw meme pas dexception... Alors pourquoi les gerer? Bref on sen reparle....
-	    e.printStackTrace();
-	    throw new EntityException(e.getMessage());
-	}
+	return new UserRightModule();
     }
+
+    public AbstractEntity newUI(Hashtable<String, String> parameters)
+    {
+	// TODO Auto-generated method stub
+	return null;
+    }
+
+    public AbstractEntity deleteUI(Hashtable<String, String> parameters)
+    {
+	// TODO Auto-generated method stub
+	return null;
+    }
+
+    public AbstractEntity editUI(Hashtable<String, String> parameters)
+    {
+	// TODO Auto-generated method stub
+	return null;
+    }
+
+    public AbstractEntity getUI(Hashtable<String, String> parameters)
+    {
+	User retUser = (User) get("name='" + getDataString("name") + "'");
+	// retUser.setSubmitAction(new GetUser()); // todo: find a way to call
+	// baseAction
+
+	retUser.setSubmitModule(new UserRightModule());
+
+	return retUser;
+    }
+
 }

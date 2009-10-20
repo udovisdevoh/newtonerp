@@ -1,21 +1,32 @@
 package modules.userRightModule.entityDefinitions;
 
 import java.util.Hashtable;
+import java.util.Vector;
 
 import newtonERP.module.AbstractEntity;
+import newtonERP.module.field.Field;
+import newtonERP.module.field.FieldInt;
+import newtonERP.module.field.FieldString;
+import newtonERP.module.field.Fields;
 import newtonERP.orm.Ormizable;
 import newtonERP.orm.exceptions.OrmException;
 
 /**
  * @author r3hallejo
  * 
- * 	Entity defenition class representing a right
+ *         Entity defenition class representing a right
  */
 public class Right extends AbstractEntity implements Ormizable
 {
-    private int PKrightID;
-    private String moduleName;
-    private String actionName;
+    public Fields initFields()
+    {
+	Vector<Field> fields = new Vector<Field>();
+	fields.add(new FieldInt("numéro du droit", "PKrightID"));
+	fields.add(new FieldString("nom de module", "moduleName"));
+	fields.add(new FieldString("nom de l'action", "actionName"));
+	fields.add(new FieldString("nom de l'entité", "entityName"));
+	return new Fields(fields);
+    }
 
     @Override
     public Hashtable<String, String> getOrmizableData() throws OrmException
@@ -28,53 +39,4 @@ public class Right extends AbstractEntity implements Ormizable
     {
 	setEntityFromHashTable(parameters);
     }
-
-    /**
-     * @return PKrightID the pKrightID
-     */
-    public int getPKrightID()
-    {
-	return PKrightID;
-    }
-
-    /**
-     * @param pKrightID the pKrightID to set
-     */
-    public void setPKrightID(int pKrightID)
-    {
-	PKrightID = pKrightID;
-    }
-
-    /**
-     * @return moduleName the moduleName
-     */
-    public String getModuleName()
-    {
-	return moduleName;
-    }
-
-    /**
-     * @param moduleName the moduleName to set
-     */
-    public void setModuleName(String moduleName)
-    {
-	this.moduleName = moduleName;
-    }
-
-    /**
-     * @return actionName the actionName
-     */
-    public String getActionName()
-    {
-	return actionName;
-    }
-
-    /**
-     * @param actionName the actionName to set
-     */
-    public void setActionName(String actionName)
-    {
-	this.actionName = actionName;
-    }
-
 }

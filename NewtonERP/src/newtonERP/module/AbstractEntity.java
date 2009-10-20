@@ -1,8 +1,9 @@
 package newtonERP.module;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.util.Hashtable;
+
+import newtonERP.module.field.FieldNotCompatibleException;
+import newtonERP.module.field.Fields;
 
 /**
  * @author r3lemaypa, r3lacasgu, CloutierJo
@@ -10,85 +11,49 @@ import java.util.Hashtable;
  */
 public class AbstractEntity
 {
+    private Fields fields;
+
+    // todo:étant donnée la présence de ormEntity est-ce que seulement les
+    // ormEntity devrai comporté des field ou bien tout les entity peu importe??
+
+    /**
+     * construit une entity ne comportant aucun champ
+     */
+    public AbstractEntity()
+    {
+	fields = initFields();
+    }
+
+    /**
+     * initialise les champ de l'entity, doit etre overider si l'entity contient
+     * des champs, sinon initialise une liste de champ vide
+     * 
+     * @return le Fields initialiser
+     */
+    public Fields initFields()
+    {
+	return new Fields();
+    }
+
     /**
      * @param parameters Hashtable de parametre
+     * @deprecated use getFields().setFromHashTable(parameters);
      */
+    @Deprecated
     public void setEntityFromHashTable(Hashtable<String, ?> parameters)
     {
-	String setName;
-	Method methode;
-
-	for (String key : parameters.keySet())
-	{
-	    try
-	    {
-		Object value = parameters.get(key);
-		setName = "set" + key.substring(0, 1).toUpperCase()
-			+ key.substring(1);
-		if (value.getClass().equals(String.class)) // si c'Est un string
-		{
-		    methode = getClass().getMethod(
-			    setName,
-			    new Class[] { getClass().getDeclaredField(key)
-				    .getType() });
-		    if (getClass().getDeclaredField(key).getType().equals(
-			    int.class))
-			methode.invoke(this, new Object[] { Integer.parseInt(""
-				+ parameters.get(key)) });
-		    else
-			methode.invoke(this,
-				new Object[] { parameters.get(key) });
-		}
-		else
-		// tout les autre cas
-		{
-		    methode = getClass().getMethod(
-			    setName,
-			    new Class[] { getClass().getDeclaredField(key)
-				    .getType() });
-		    methode.invoke(this, new Object[] { value });
-		}
-	    } catch (NoSuchFieldException e)
-	    {
-		// nothing to do in that case
-	    } catch (IllegalArgumentException e)
-	    {
-		throw new IllegalArgumentException(
-			"le type d'argument ne peut etre gere");
-	    } catch (Exception e)
-	    {
-		e.printStackTrace();
-	    }
-	}
-
+	fields.setFromHashTable(parameters);
     }
 
     /**
      * @return Hashtable contenant chaqu'un des champ
+     * @deprecated use getFields().getHashTableFrom();
      */
+    @Deprecated
     public Hashtable<String, String> getHashTableFromEntity()
     {
-	Field[] fields = getClass().getDeclaredFields();
-	String getName;
-	String value;
-	Hashtable<String, String> hash = new Hashtable<String, String>();
-	try
-	{
-	    for (int i = 0; i < fields.length; i++)
-	    {
-		getName = "get"
-			+ fields[i].getName().substring(0, 1).toUpperCase()
-			+ fields[i].getName().substring(1);
-		value = getClass().getMethod(getName, null).invoke(this, null)
-			.toString();
-		hash.put(fields[i].getName(), value);
-	    }
-	} catch (Exception e)
-	{
-	    e.printStackTrace();
-	}
 
-	return hash;
+	return fields.getHashTableFrom();
     }
 
     /*
@@ -102,33 +67,68 @@ public class AbstractEntity
 	    return true;
 	if (obj == null)
 	    return false;
-	if (!(getClass().isInstance(obj)))
+	if (!(obj instanceof AbstractEntity))
 	    return false;
-
-	// vérification field a field
-	Field[] fields = getClass().getDeclaredFields();
-	String getName;
-	String value1;
-	String value2;
-	try
+	AbstractEntity other = (AbstractEntity) obj;
+	if (fields == null)
 	{
-	    for (int i = 0; i < fields.length; i++)
-	    {
-		getName = "get"
-			+ fields[i].getName().substring(0, 1).toUpperCase()
-			+ fields[i].getName().substring(1);
-		value1 = getClass().getMethod(getName, null).invoke(this, null)
-			.toString();
-		value2 = getClass().getMethod(getName, null).invoke(obj, null)
-			.toString();
-
-		if (!value1.equals(value2))
-		    return false;
-	    }
-	} catch (Exception e)
-	{
-	    e.printStackTrace();
+	    if (other.fields != null)
+		return false;
 	}
+	else if (!fields.equals(other.fields))
+	    return false;
 	return true;
     }
+
+    @SuppressWarnings("unused")
+    private void setFields(Fields fields)
+    {
+	// must not be implemented
+    }
+
+    /**
+     * @return the fields
+     */
+    public Fields getFields()
+    {
+	return fields;
+    }
+
+    public String toString()
+    {
+	return fields.toString();
+    }
+
+    /**
+     * methode d'Accces rapide au donnees sous forme de string
+     * 
+     * @param shortName le nom du champ voulu
+     * @return la valeur sous forme de string
+     */
+    public String getDataString(String shortName)
+    {
+	return getFields().getField(shortName).getDataString();
+    }
+
+    /**
+     * @param shortName le nom du champ voulu
+     * @return the data
+     */
+    public Object getData(String shortName)
+    {
+	return getFields().getField(shortName).getData();
+    }
+
+    /**
+     * @param shortName le nom du champ voulu
+     * @param data the data to set
+     * @throws FieldNotCompatibleException si le type ne correspond pas avec le
+     *             champ demande
+     */
+    public void setData(String shortName, Object data)
+	    throws FieldNotCompatibleException
+    {
+	getFields().getField(shortName).setData(data);
+    }
+
 }

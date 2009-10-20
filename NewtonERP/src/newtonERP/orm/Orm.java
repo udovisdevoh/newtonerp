@@ -1,14 +1,20 @@
 package newtonERP.orm;
 
-import java.lang.reflect.Field;
 import java.sql.ResultSet;
+import java.util.Collection;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Vector;
 
 import newtonERP.ListModule;
+import newtonERP.module.AbstractEntity;
 import newtonERP.module.Module;
 import newtonERP.module.ModuleException;
+import newtonERP.module.field.Field;
+import newtonERP.module.field.FieldBool;
+import newtonERP.module.field.FieldDouble;
+import newtonERP.module.field.FieldInt;
+import newtonERP.module.field.FieldString;
 import newtonERP.orm.exceptions.OrmException;
 import newtonERP.orm.sgbd.SgbdSqlite;
 import newtonERP.orm.sgbd.Sgbdable;
@@ -235,8 +241,9 @@ public class Orm
 	    try
 	    {
 		Module module = ListModule.getModule(key);
-		Vector<Ormizable> moduleEntities = module
-			.getDefinitionEntityList();
+		// todo: check if it's good for you?
+		Collection<Ormizable> moduleEntities = module
+			.getEntityDefinitionList().values();
 
 		// For each entity in the list of module entities
 		for (Ormizable entity : moduleEntities)
@@ -244,58 +251,43 @@ public class Orm
 		    // Be sure to create the table only if it doesn't already
 		    // exists
 		    String sqlQuery = "CREATE TABLE IF NOT EXISTS ";
-		    Field[] fields = entity.getClass().getDeclaredFields();
+		    Collection<Field> fields = ((AbstractEntity) entity)
+			    .getFields().getFields();
 
 		    sqlQuery += prefix + entity.getClass().getSimpleName()
 			    + " ( ";
 
 		    // For each field into my entity
-		    for (int i = 0; i < fields.length; i++)
+		    for (Field field : fields)
 		    {
 			// If it is a primary because it matches PK, else we
 			// check the datatypes and match them with a datatype
 			// good for the database
-			if (fields[i].getName().matches("PK.*"))
+			if (field.getShortName().matches("PK.*"))
 			{
-			    if (i + 1 != fields.length)
-				sqlQuery += fields[i].getName()
-					+ " INTEGER PRIMARY KEY AUTOINCREMENT, ";
-			    else
-				sqlQuery += fields[i].getName()
-					+ " INTEGER PRIMARY KEY AUTOINCREMENT);";
+			    sqlQuery += field.getShortName()
+				    + " INTEGER PRIMARY KEY AUTOINCREMENT, ";
 			}
-			else if (fields[i].getType().equals(Double.class))
+			else if (field instanceof FieldDouble)
 			{
-			    if (i + 1 != fields.length)
-				sqlQuery += fields[i].getName()
-					+ " DOUBLE PRECISION, ";
-			    else
-				sqlQuery += fields[i].getName()
-					+ " DOUBLE PRECISION );";
+			    sqlQuery += field.getShortName()
+				    + " DOUBLE PRECISION, ";
 			}
-			else if (fields[i].getType().equals(String.class))
+			else if (field instanceof FieldString)
 			{
-			    if (i + 1 != fields.length)
-				sqlQuery += fields[i].getName() + " STRING, ";
-			    else
-				sqlQuery += fields[i].getName() + " STRING );";
+			    sqlQuery += field.getShortName() + " STRING, ";
 			}
-			else if (fields[i].getType().equals(Boolean.class))
+			else if (field instanceof FieldBool)
 			{
-			    if (i + 1 != fields.length)
-				sqlQuery += fields[i].getName() + " INTEGER, ";
-			    else
-				sqlQuery += fields[i].getName() + " INTEGER );";
+			    sqlQuery += field.getShortName() + " INTEGER, ";
 			}
-			else if (fields[i].getType().equals(int.class))
+			else if (field instanceof FieldInt)
 			{
-			    if (i + 1 != fields.length)
-				sqlQuery += fields[i].getName() + " INTEGER, ";
-			    else
-				sqlQuery += fields[i].getName() + " INTEGER );";
+			    sqlQuery += field.getShortName() + " INTEGER, ";
 			}
 		    }
-
+		    sqlQuery = sqlQuery.substring(0, sqlQuery.length() - 2)
+			    + " );";
 		    // TODO: Remove the next line when properly debugged
 		    System.out.println("Sql query produced : " + sqlQuery);
 

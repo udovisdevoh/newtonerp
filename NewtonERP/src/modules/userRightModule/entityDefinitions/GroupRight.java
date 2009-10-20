@@ -4,6 +4,9 @@ import java.util.Hashtable;
 import java.util.Vector;
 
 import newtonERP.module.AbstractEntity;
+import newtonERP.module.field.Field;
+import newtonERP.module.field.FieldInt;
+import newtonERP.module.field.Fields;
 import newtonERP.orm.Orm;
 import newtonERP.orm.Ormizable;
 import newtonERP.orm.exceptions.OrmException;
@@ -11,12 +14,17 @@ import newtonERP.orm.exceptions.OrmException;
 /**
  * @author djo
  * 
- * 	Entity defenition representing a group right for the users
+ *         Entity defenition representing a group right for the users
  */
 public class GroupRight extends AbstractEntity implements Ormizable
 {
-    private int groupID;
-    private int rightID;
+    public Fields initFields()
+    {
+	Vector<Field> fields = new Vector<Field>();
+	fields.add(new FieldInt("numéro de groupe", "groupID"));
+	fields.add(new FieldInt("numéro de droit", "rightID"));
+	return new Fields(fields);
+    }
 
     @Override
     public Hashtable<String, String> getOrmizableData() throws OrmException
@@ -31,38 +39,6 @@ public class GroupRight extends AbstractEntity implements Ormizable
     }
 
     /**
-     * @return groupID the groupID
-     */
-    public int getGroupID()
-    {
-	return groupID;
-    }
-
-    /**
-     * @param groupID the groupID to set
-     */
-    public void setGroupID(int groupID)
-    {
-	this.groupID = groupID;
-    }
-
-    /**
-     * @return rightID the rightID
-     */
-    public int getRightID()
-    {
-	return rightID;
-    }
-
-    /**
-     * @param rightID the rightID to set
-     */
-    public void setRightID(int rightID)
-    {
-	this.rightID = rightID;
-    }
-
-    /**
      * permet d'obtenir directement l'entity groups lie a cet user
      * 
      * @return le group lier
@@ -70,7 +46,7 @@ public class GroupRight extends AbstractEntity implements Ormizable
     public Groups getGroupsEntity()
     {
 	Vector<String> search = new Vector<String>();
-	search.add("PKgroupID=" + groupID);
+	search.add("PKgroupID=" + getFields().getField("groupID"));
 
 	try
 	{
@@ -91,7 +67,7 @@ public class GroupRight extends AbstractEntity implements Ormizable
     public Right getRightEntity()
     {
 	Vector<String> search = new Vector<String>();
-	search.add("PKrightID=" + rightID);
+	search.add("PKrightID=" + getFields().getField("rightID"));
 
 	try
 	{
