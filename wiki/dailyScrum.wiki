@@ -282,9 +282,10 @@ voici le model de scrum a copier en entier si vous êtes le premier
   * désimplémenter les préfixes de noms de colonnes que on avait mis a la hate le dernier cours
   * ajout de commentaires multiples
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
-  * speech a gab
+  * speech a gab ( ce que je sait plus des @author ca sert pas a rien, des @param sur des classes ca existe pas)
   * Voir les dernières modifications faites à l'orm avec Jo Cloutier.
   * Début d'un module
+  * (Si jai mis mon nom en haut des classes qui étaient pas a moi cetait parce que il en avait pas donc changé le)
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
   * Pas que j'aie remarqué
 
