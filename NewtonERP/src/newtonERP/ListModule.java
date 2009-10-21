@@ -7,8 +7,8 @@ import java.io.File;
 import java.util.Hashtable;
 
 import newtonERP.module.Module;
-import newtonERP.module.ModuleException;
-import newtonERP.module.ModuleNotFoundException;
+import newtonERP.module.exception.ModuleException;
+import newtonERP.module.exception.ModuleNotFoundException;
 
 /**
  * pour créé le jar il faut, en ligne de commande, allé dans le dossier du

@@ -9,7 +9,6 @@ import java.util.Hashtable;
 import junit.framework.TestCase;
 import newtonERP.ListModule;
 import newtonERP.module.Module;
-import newtonERP.module.ModuleException;
 import newtonERP.orm.Orm;
 
 import org.junit.After;
@@ -47,10 +46,10 @@ public class UserRightModuleTest extends TestCase
      * {@link modules.userRightModule.actions.RightCheck#doAction(newtonERP.module.AbstractEntity, java.util.Hashtable)}
      * .
      * 
-     * @throws ModuleException
+     * @throws Exception
      */
     @Test
-    public void testRightCheck() throws ModuleException
+    public void testRightCheck() throws Exception
     {
 	Hashtable<String, String> rightParam = new Hashtable<String, String>();
 	Module module = ListModule.getModule("UserRightModule");

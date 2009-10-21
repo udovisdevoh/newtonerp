@@ -8,7 +8,7 @@ import newtonERP.ListModule;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.Module;
-import newtonERP.module.ModuleException;
+import newtonERP.module.exception.ModuleException;
 import newtonERP.orm.Orm;
 import newtonERP.orm.exceptions.OrmException;
 

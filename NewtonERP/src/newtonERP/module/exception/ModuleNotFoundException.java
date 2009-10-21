@@ -1,19 +1,19 @@
-package newtonERP.module;
+package newtonERP.module.exception;
 
 /**
  * @author cloutierJo
  * 
  *         exception lancé lorsque le module ne peut etre trouvé
  */
-public class ActionNotFoundException extends ModuleException
+public class ModuleNotFoundException extends ModuleException
 {
     /**
      * Constructeur par default pour cette exception
      * 
      * @param moduleName nom du module
      */
-    public ActionNotFoundException(String actionName)
+    public ModuleNotFoundException(String moduleName)
     {
-	super(actionName + " action doesn't exist");
+	super(moduleName + " module doesn't exist");
     }
 }

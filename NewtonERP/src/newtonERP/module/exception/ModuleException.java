@@ -1,4 +1,4 @@
-package newtonERP.module;
+package newtonERP.module.exception;
 
 /**
  * @author r3hallejo

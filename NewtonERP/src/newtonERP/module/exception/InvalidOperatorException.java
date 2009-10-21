@@ -1,6 +1,4 @@
-package newtonERP.module.field;
-
-import newtonERP.module.ModuleException;
+package newtonERP.module.exception;
 
 /**
  * @author r3hallejo

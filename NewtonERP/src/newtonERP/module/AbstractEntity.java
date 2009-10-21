@@ -2,7 +2,7 @@ package newtonERP.module;
 
 import java.util.Hashtable;
 
-import newtonERP.module.field.FieldNotCompatibleException;
+import newtonERP.module.exception.FieldNotCompatibleException;
 import newtonERP.module.field.Fields;
 
 /**

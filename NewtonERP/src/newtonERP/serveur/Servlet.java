@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import newtonERP.module.AbstractEntity;
-import newtonERP.module.ModuleException;
 import newtonERP.viewers.ErrorViewer;
 import newtonERP.viewers.Viewer;
 
@@ -44,7 +43,6 @@ public class Servlet extends AbstractHandler
 
 	} catch (Exception e)
 	{
-
 	    e.printStackTrace();
 
 	    StringWriter sw = new StringWriter();
@@ -66,11 +64,11 @@ public class Servlet extends AbstractHandler
      * @param target url d'apelle
      * @param request la request
      * @return le Viewable
-     * @throws ModuleException
+     * @throws Exception
      */
     @SuppressWarnings("unchecked")
     public AbstractEntity urlToAction(String target, HttpServletRequest request)
-	    throws ModuleException
+	    throws Exception
     {
 	String moduleName;
 	String actionName;

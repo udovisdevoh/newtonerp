@@ -38,9 +38,10 @@ public class ServletTest extends TestCase
     }
 
     /**
+     * @throws Exception
      * 
      */
-    public void testHandleFullAdress()
+    public void testHandleFullAdress() throws Exception
     {
 	// HttpServletRequestWrapper requ = new HttpServletRequestWrapper(null);
 
@@ -48,17 +49,19 @@ public class ServletTest extends TestCase
     }
 
     /**
+     * @throws Exception
      * 
      */
-    public void testHandleNoAction()
+    public void testHandleNoAction() throws Exception
     {
 	assertNotNull(testServlet.urlToAction("/TestModule", null));
     }
 
     /**
-     *  
+     * @throws Exception
+     * 
      */
-    public void testHandleNoModule()
+    public void testHandleNoModule() throws Exception
     {
 	assertNotNull(testServlet.urlToAction("", null));
     }

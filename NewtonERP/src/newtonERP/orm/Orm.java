@@ -10,7 +10,7 @@ import newtonERP.ListModule;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.Module;
-import newtonERP.module.ModuleException;
+import newtonERP.module.exception.ModuleException;
 import newtonERP.module.field.Field;
 import newtonERP.module.field.FieldBool;
 import newtonERP.module.field.FieldDouble;

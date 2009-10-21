@@ -6,6 +6,9 @@ package newtonERP.module;
 import java.io.File;
 import java.util.Hashtable;
 
+import newtonERP.module.exception.ActionNotFoundException;
+import newtonERP.module.exception.ModuleException;
+
 /**
  * @author Pascal Lemay
  * 
@@ -206,10 +209,10 @@ public abstract class Module
      * @param parameters Paramètres de l'action devant être accomplie, exemple,
      *            contenu d'un email
      * @return Entité viewable pour l'output du résultat
-     * @throws ModuleException voir le message...
+     * @throws Exception
      */
     public final AbstractEntity doAction(String actionName,
-	    Hashtable<String, String> parameters) throws ModuleException
+	    Hashtable<String, String> parameters) throws Exception
     {
 	AbstractAction action = getAction(actionName);
 	return action.perform(parameters);
