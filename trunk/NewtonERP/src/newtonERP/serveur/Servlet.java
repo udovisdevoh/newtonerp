@@ -1,6 +1,8 @@
 package newtonERP.serveur;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.regex.Matcher;
@@ -11,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import newtonERP.module.AbstractEntity;
+import newtonERP.module.ModuleException;
+import newtonERP.viewers.ErrorViewer;
 import newtonERP.viewers.Viewer;
 
 import org.mortbay.jetty.Request;
@@ -31,22 +35,28 @@ public class Servlet extends AbstractHandler
 	    HttpServletResponse response, int dispatch) throws IOException,
 	    ServletException
     {
-	AbstractEntity viewEntity = urlToAction(target, request);
-
-	// on formatte la reponse
-	response.setContentType("text/html");
-	response.setStatus(HttpServletResponse.SC_OK);
-
 	String pageContent = "";
 	try
 	{
+	    AbstractEntity viewEntity = urlToAction(target, request);
+
 	    pageContent = Viewer.getHtmlCode(viewEntity);
-	} catch (Exception e) // todo le main viewer ne devrai pas renvoyer
-	// d'Exception stp
+
+	} catch (Exception e)
 	{
-	    // TODO Auto-generated catch block
+
 	    e.printStackTrace();
+
+	    StringWriter sw = new StringWriter();
+	    e.printStackTrace(new PrintWriter(sw));
+	    String stacktrace = sw.toString();
+	    pageContent = ErrorViewer.getErrorPage(stacktrace);
+
 	}
+
+	// on formate la reponse
+	response.setContentType("text/html");
+	response.setStatus(HttpServletResponse.SC_OK);
 
 	response.getWriter().println(pageContent);
 	((Request) request).setHandled(true);
@@ -56,9 +66,11 @@ public class Servlet extends AbstractHandler
      * @param target url d'apelle
      * @param request la request
      * @return le Viewable
+     * @throws ModuleException
      */
     @SuppressWarnings("unchecked")
     public AbstractEntity urlToAction(String target, HttpServletRequest request)
+	    throws ModuleException
     {
 	String moduleName;
 	String actionName;
@@ -99,4 +111,5 @@ public class Servlet extends AbstractHandler
 	return cmdRouter.routeCommand(moduleName, actionName, entityName,
 		parameter);
     }
+
 }
