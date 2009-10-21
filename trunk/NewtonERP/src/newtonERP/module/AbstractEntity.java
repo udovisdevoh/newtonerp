@@ -13,10 +13,6 @@ public class AbstractEntity
 {
     private Fields fields;
 
-    // todo:étant donnée la présence de ormEntity est-ce que seulement les
-    // ormEntity devrai comporté des field ou bien tout les entity peu importe??
-    // -> r3hallejo dit : A mon avis seulement les ormEntity.... a rediscuter
-
     /**
      * construit une entity ne comportant aucun champ
      */
