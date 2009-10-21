@@ -57,7 +57,9 @@ public class UserList extends AbstractEntity implements ListViewable
 	{
 	    // TODO: remove dummy code: must not recreate actions
 	    globalActionButtonList = new Hashtable<String, AbstractAction>();
-	    globalActionButtonList.put("Nouvel utilisateur", new NewUser());
+	    // TODO Remove null actions and add action binding according to new
+	    // action architecture
+	    globalActionButtonList.put("Nouvel utilisateur", null);
 	}
 	return globalActionButtonList;
     }
@@ -91,8 +93,10 @@ public class UserList extends AbstractEntity implements ListViewable
 	{
 	    // TODO: remove dummy code: must not recreate actions
 	    specificActionButtonList = new Hashtable<String, AbstractAction>();
-	    specificActionButtonList.put("Edit", new EditUser());
-	    specificActionButtonList.put("Delete", new DeleteUser());
+	    // TODO Remove null actions and add action binding according to new
+	    // action architecture
+	    specificActionButtonList.put("Edit", null);
+	    specificActionButtonList.put("Delete", null);
 	}
 	return specificActionButtonList;
     }
