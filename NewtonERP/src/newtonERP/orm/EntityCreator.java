@@ -14,8 +14,8 @@ import newtonERP.orm.exceptions.OrmException;
  * @author r3hallejo
  * 
  *         Class used to create the entities in the select statement of the orm
- *         because it's not the orm's responsability. By doing that I am trying
- *         to respect the SRP (Single responsability principle) principle
+ *         because it's not the orm's responsibility. By doing that I am trying
+ *         to respect the SRP (Single responsibility principle) principle
  */
 public class EntityCreator
 {
