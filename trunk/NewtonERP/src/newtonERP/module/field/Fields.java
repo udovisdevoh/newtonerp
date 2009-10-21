@@ -4,6 +4,8 @@ import java.util.Collection;
 import java.util.Hashtable;
 import java.util.Vector;
 
+import newtonERP.module.exception.FieldNotFoundException;
+
 /**
  * @author djo
  * 

@@ -33,10 +33,10 @@ public abstract class AbstractAction
      * @param parameters list de parametre utilisable par l'action, une partie
      *            d'entre eux sera transforme en entite
      * @return l,entite resultante de l'action
-     * @throws ModuleException
+     * @throws Exception
      */
     public AbstractEntity perform(Hashtable<String, String> parameters)
-	    throws ModuleException
+	    throws Exception
     {
 
 	AbstractEntity entity = null;
@@ -60,9 +60,10 @@ public abstract class AbstractAction
      * @param entity entite a utiliser a l'intérieur du doAction
      * @param parameters list de parametre autre que l'entite
      * @return l'entite resultante
+     * @throws Exception
      */
     protected abstract AbstractEntity doAction(AbstractEntity entity,
-	    Hashtable<String, String> parameters);
+	    Hashtable<String, String> parameters) throws Exception;
 
     /**
      * @return the entityUsable

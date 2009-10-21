@@ -9,7 +9,7 @@ import modules.userRightModule.entityDefinitions.Right;
 import modules.userRightModule.entityDefinitions.User;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.Module;
-import newtonERP.module.field.FieldNotCompatibleException;
+import newtonERP.module.exception.FieldNotCompatibleException;
 import newtonERP.orm.Orm;
 import newtonERP.orm.exceptions.OrmException;
 

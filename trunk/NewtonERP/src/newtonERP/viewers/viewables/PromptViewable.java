@@ -3,8 +3,8 @@ package newtonERP.viewers.viewables;
 import java.util.Hashtable;
 
 import newtonERP.module.AbstractAction;
-import newtonERP.module.EntityException;
 import newtonERP.module.Module;
+import newtonERP.module.exception.EntityException;
 import newtonERP.orm.exceptions.OrmException;
 
 /**

@@ -7,7 +7,7 @@ import java.util.Hashtable;
 
 import junit.framework.TestCase;
 import modules.testModule.entityDefinitions.TestEntity;
-import newtonERP.module.field.FieldNotFoundException;
+import newtonERP.module.exception.FieldNotFoundException;
 
 /**
  * @author djo

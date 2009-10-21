@@ -4,8 +4,8 @@ import java.util.Hashtable;
 import java.util.Vector;
 
 import newtonERP.module.AbstractAction;
-import newtonERP.module.EntityException;
 import newtonERP.module.Module;
+import newtonERP.module.exception.EntityException;
 
 /**
  * @author r3lacasgu

@@ -8,8 +8,8 @@ import modules.userRightModule.actions.GetUserList;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
-import newtonERP.module.EntityException;
 import newtonERP.module.Module;
+import newtonERP.module.exception.EntityException;
 import newtonERP.module.field.Field;
 import newtonERP.module.field.FieldInt;
 import newtonERP.module.field.FieldString;
@@ -149,7 +149,8 @@ public class User extends AbstractOrmEntity implements PromptViewable
 
     public AbstractEntity getUI(Hashtable<String, String> parameters)
     {
-	User retUser = (User) get("name='" + getDataString("name") + "'");
+	User retUser = (User) get("name='" + getDataString("name") + "'")
+		.get(0); // on discarte les autre entity s'il y a lieu
 	// retUser.setSubmitAction(new GetUser()); // todo: find a way to call
 	// baseAction
 

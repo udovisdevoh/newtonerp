@@ -6,8 +6,8 @@ import java.util.Vector;
 import modules.userRightModule.UserRightModule;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
-import newtonERP.module.EntityException;
 import newtonERP.module.Module;
+import newtonERP.module.exception.EntityException;
 import newtonERP.viewers.viewables.ListViewable;
 
 /**

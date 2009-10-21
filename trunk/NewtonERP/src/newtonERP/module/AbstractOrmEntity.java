@@ -107,11 +107,11 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      * 
      * @return this
      */
-    public AbstractEntity get(String whereClause)
+    public Vector<AbstractOrmEntity> get(String whereClause)
     {
+	Vector<AbstractOrmEntity> retUserList = null;
 	Vector<String> whereParameter = new Vector<String>();
 	whereParameter.add(whereClause);
-	User retUser = new User();
 	try
 	{
 	    // todo: should we throw an exception if retUserList.size() is
@@ -119,15 +119,13 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	    // cherche des users ayant comme nom Réjean Grosjean y peut en avoir
 	    // des dizaines....
 
-	    Vector<AbstractOrmEntity> retUserList = Orm.select(new User(),
-		    whereParameter);
-	    retUser = (User) retUserList.get(0);
+	    retUserList = Orm.select(new User(), whereParameter);
 	} catch (OrmException e)
 	{
 	    e.printStackTrace();
 	}
 
-	return retUser;
+	return retUserList;
     }
 
 }
