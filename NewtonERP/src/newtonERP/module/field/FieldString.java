@@ -6,8 +6,8 @@ package newtonERP.module.field;
  */
 public class FieldString extends Field
 {
-
     String data;
+    String operator;
 
     /**
      * constructeur minimum
@@ -97,4 +97,21 @@ public class FieldString extends Field
 	return getDataString();
     }
 
+    @Override
+    public String getOperator()
+    {
+	return operator;
+    }
+
+    @Override
+    public void setOperator(String operator) throws InvalidOperatorException
+    {
+	if (operator.equals("="))
+	{
+	    this.operator = operator;
+	}
+	else
+	    throw new InvalidOperatorException("Opérateur invalide pour"
+		    + getClass().getSimpleName());
+    }
 }

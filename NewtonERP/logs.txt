@@ -633,3 +633,5 @@ java.lang.NullPointerException
 [INFO 19:12:27 2009.10.20] Connexion has been succesfully initialized
 [INFO 19:16:27 2009.10.20] Initialisation of connection to db
 [INFO 19:16:27 2009.10.20] Connexion has been succesfully initialized
+[INFO 13:49:09 2009.10.21] Initialisation of connection to db
+[INFO 13:49:09 2009.10.21] Connexion has been succesfully initialized

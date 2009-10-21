@@ -32,6 +32,10 @@ import newtonERP.orm.sgbd.Sgbdable;
  *         (Integer?)
  * 
  *         http://www.sqlite.org/lang_keywords.html
+ * 
+ *         Pour le nouveau where : String where=
+ *         "(champentité1 AND champ2entité1) OR (champ1entité2 AND champ2entité2))"
+ *         ;
  */
 public class Orm
 {
@@ -55,7 +59,8 @@ public class Orm
 		+ searchEntity.getClass().getSimpleName();
 
 	if (searchCriteriasParam != null)
-	    sqlQuery = buildWhereClauseForQuery(sqlQuery, searchCriteriasParam);
+	    sqlQuery = buildWhereClauseForQuery_0(sqlQuery,
+		    searchCriteriasParam);
 
 	// TODO: Remove the next line when it will be properly debugged
 	System.out.println("SQL query produced : " + sqlQuery);
@@ -138,7 +143,7 @@ public class Orm
 	String sqlQuery = "DELETE FROM " + prefix
 		+ searchEntity.getClass().getSimpleName();
 
-	sqlQuery = buildWhereClauseForQuery(sqlQuery, searchCriterias);
+	sqlQuery = buildWhereClauseForQuery_0(sqlQuery, searchCriterias);
 
 	// TODO: Remove the next line once this will be properly debugged
 	System.out.println("Sql query produced : " + sqlQuery);
@@ -163,7 +168,7 @@ public class Orm
 		.getOrmizableData();
 
 	sqlQuery = buildSetClauseForQuery(data, sqlQuery);
-	sqlQuery = buildWhereClauseForQuery(sqlQuery, searchCriterias);
+	sqlQuery = buildWhereClauseForQuery_0(sqlQuery, searchCriterias);
 
 	// TODO: Remove this once it will be properly debugged
 	System.out.println("Sql query produced : " + sqlQuery);
@@ -179,7 +184,7 @@ public class Orm
      * @param searchCriterias the parameters of the where clause
      * @return sqlQuery the sqlQuery with the where statement
      */
-    private static String buildWhereClauseForQuery(String sqlQuery,
+    private static String buildWhereClauseForQuery_0(String sqlQuery,
 	    Vector<String> searchCriterias)
     {
 	sqlQuery += " WHERE ";
@@ -187,6 +192,24 @@ public class Orm
 	// We add each string to the sqlQuery
 	for (String parameter : searchCriterias)
 	    sqlQuery += parameter;
+
+	return sqlQuery;
+    }
+
+    /**
+     * 
+     * @param sqlQuery
+     * @param searchEntities
+     * @return the sqlQuery
+     */
+    @SuppressWarnings("unused")
+    private static String buildWhereClauseForQuery(String sqlQuery,
+	    Vector<Ormizable> searchEntities)
+    {
+	for (Ormizable entity : searchEntities)
+	{
+	    // TODO: To be finished
+	}
 
 	return sqlQuery;
     }
