@@ -315,8 +315,12 @@ voici le model de scrum a copier en entier si vous êtes le premier
 
 ==Jonatan Cloutier==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
-  * terminé l'intégration
+  * terminé l'intégration (retrait des hack)
+  * création automatique des droits
+  * automatisé et simplifier la création de module
+  * encadré les champ dans les entity, mettre les action de base dans les entity
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
-  * ...à livré...
+  * discuté des entity viewable, des field présent dans entity ou juste dans ORMEntity, de la méthode get qui retourn 1 ou des entity?
+  * géré
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
-  * 
+  * encadré les champ pour pouvoir avoir d'autre variable dans une entity a été une torture... reste quelque petit détaille a réglé
