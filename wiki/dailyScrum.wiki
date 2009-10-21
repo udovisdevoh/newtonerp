@@ -337,11 +337,11 @@ voici le model de scrum a copier en entier si vous êtes le premier
 
 ==Guillaume Lacasse==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
-  * ...livré...
+  * ListViewer marche
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
-  * ...à livré...
+  * Rendre les boutons fonctionnels
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
-  * ...problème, besoin d'aide, qui aidera...
+  * Nouveaux types d'actions (BaseAction) je dois être sur de bien comprendre comment ça doit marcher
 
 ==Pascal Lemay==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
