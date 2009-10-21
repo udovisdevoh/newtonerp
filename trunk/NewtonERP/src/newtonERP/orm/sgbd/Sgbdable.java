@@ -6,7 +6,6 @@ import newtonERP.orm.OrmActions;
 import newtonERP.orm.exceptions.OrmException;
 
 /**
- * 
  * @author r3lacasgu, r3hallejo
  * 
  *         Interface with methods for executing the requests to be implemented

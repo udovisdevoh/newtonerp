@@ -241,7 +241,6 @@ public class Orm
 	    try
 	    {
 		Module module = ListModule.getModule(key);
-		// todo: check if it's good for you?
 		Collection<Ormizable> moduleEntities = module
 			.getEntityDefinitionList().values();
 
@@ -288,6 +287,7 @@ public class Orm
 		    }
 		    sqlQuery = sqlQuery.substring(0, sqlQuery.length() - 2)
 			    + " );";
+
 		    // TODO: Remove the next line when properly debugged
 		    System.out.println("Sql query produced : " + sqlQuery);
 

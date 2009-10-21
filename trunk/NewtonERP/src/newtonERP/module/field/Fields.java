@@ -1,6 +1,3 @@
-/**
- * 
- */
 package newtonERP.module.field;
 
 import java.util.Collection;

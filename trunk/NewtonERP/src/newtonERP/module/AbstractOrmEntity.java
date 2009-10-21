@@ -1,6 +1,3 @@
-/**
- * 
- */
 package newtonERP.module;
 
 import java.util.Hashtable;
@@ -80,7 +77,8 @@ public abstract class AbstractOrmEntity extends AbstractEntity implements
 	{
 	    e.printStackTrace();
 	}
-	return this; // todo: that a completly non-sense
+	return this; // todo: that a completly non-sense -> r3hallejo dit MDR,
+	// true
     }
 
     public abstract AbstractEntity editUI(Hashtable<String, String> parameters);
@@ -119,7 +117,10 @@ public abstract class AbstractOrmEntity extends AbstractEntity implements
 	try
 	{
 	    // todo: should we throw an exception if retUserList.size() is
-	    // bigger than 1 ??
+	    // bigger than 1 ?? -> r3hallejo dit : Pourquoi devrait-on? Si on
+	    // cherche des users ayant comme nom Réjean Grosjean y peut en avoir
+	    // des dizaines....
+
 	    Vector<Ormizable> retUserList = Orm.select(new User(),
 		    whereParameter);
 	    retUser = (User) retUserList.get(0);
