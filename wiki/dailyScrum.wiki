@@ -325,7 +325,7 @@ voici le model de scrum a copier en entier si vous êtes le premier
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
   * encadré les champ pour pouvoir avoir d'autre variable dans une entity a été une torture... reste quelque petit détaille a réglé
 
-=21/10/2009=
+=22/10/2009=
 
 ==Jonathan Hallee==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
