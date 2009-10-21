@@ -7,10 +7,10 @@ import modules.userRightModule.entityDefinitions.GroupRight;
 import modules.userRightModule.entityDefinitions.Groups;
 import modules.userRightModule.entityDefinitions.Right;
 import modules.userRightModule.entityDefinitions.User;
+import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.Module;
 import newtonERP.module.field.FieldNotCompatibleException;
 import newtonERP.orm.Orm;
-import newtonERP.orm.Ormizable;
 import newtonERP.orm.exceptions.OrmException;
 
 /**
@@ -61,7 +61,7 @@ public class UserRightModule extends Module
 	    search.clear();
 	    search.add("ModuleName='" + this.getClass().getSimpleName() + "'");
 
-	    for (Ormizable right : Orm.select(new Right(), search))
+	    for (AbstractOrmEntity right : Orm.select(new Right(), search))
 	    {
 		rightID = (Integer) ((Right) right).getData("PKrightID");
 

@@ -6,15 +6,13 @@ import java.util.Vector;
 import modules.userRightModule.entityDefinitions.User;
 import newtonERP.module.field.Fields;
 import newtonERP.orm.Orm;
-import newtonERP.orm.Ormizable;
 import newtonERP.orm.exceptions.OrmException;
 
 /**
  * @author cloutierJo
  * 
  */
-public abstract class AbstractOrmEntity extends AbstractEntity implements
-	Ormizable
+public abstract class AbstractOrmEntity extends AbstractEntity
 {
 
     // oblige le redefinition pour les sous-classe de AbstractOrmEntity
@@ -27,7 +25,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity implements
      */
     public Hashtable<String, String> getOrmizableData() throws OrmException
     {
-	return getHashTableFromEntity();
+	return getFields().getHashTableFrom();
     }
 
     /*
@@ -37,7 +35,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity implements
      */
     public void setOrmizableData(Hashtable<String, Object> parameters)
     {
-	setEntityFromHashTable(parameters);
+	getFields().setFromHashTable(parameters);
     }
 
     public abstract AbstractEntity newUI(Hashtable<String, String> parameters);
@@ -121,7 +119,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity implements
 	    // cherche des users ayant comme nom Réjean Grosjean y peut en avoir
 	    // des dizaines....
 
-	    Vector<Ormizable> retUserList = Orm.select(new User(),
+	    Vector<AbstractOrmEntity> retUserList = Orm.select(new User(),
 		    whereParameter);
 	    retUser = (User) retUserList.get(0);
 	} catch (OrmException e)

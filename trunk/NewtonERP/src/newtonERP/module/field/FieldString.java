@@ -1,8 +1,9 @@
 package newtonERP.module.field;
 
 /**
- * @author djo
+ * @author djo, r3hallejo
  * 
+ *         String field in the entities
  */
 public class FieldString extends Field
 {

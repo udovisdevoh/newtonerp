@@ -1,14 +1,14 @@
 package newtonERP.module.field;
 
 /**
- * @author djo
+ * @author djo, r3hallejo
  * 
+ *         Super class for entity fields used in the modules
  */
 public abstract class Field
 {
     private String name;
     private String shortName;
-    private String operator;
 
     /**
      * default constructor

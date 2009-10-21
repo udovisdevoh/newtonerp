@@ -4,12 +4,11 @@ import java.util.Hashtable;
 import java.util.Vector;
 
 import newtonERP.module.AbstractEntity;
+import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.field.Field;
 import newtonERP.module.field.FieldInt;
 import newtonERP.module.field.FieldString;
 import newtonERP.module.field.Fields;
-import newtonERP.orm.Ormizable;
-import newtonERP.orm.exceptions.OrmException;
 
 /**
  * 
@@ -17,7 +16,7 @@ import newtonERP.orm.exceptions.OrmException;
  * 
  *         Test entity
  */
-public class TestEntity extends AbstractEntity implements Ormizable
+public class TestEntity extends AbstractOrmEntity
 {
 
     public Fields initFields()
@@ -31,14 +30,30 @@ public class TestEntity extends AbstractEntity implements Ormizable
     }
 
     @Override
-    public Hashtable<String, String> getOrmizableData() throws OrmException
+    public AbstractEntity deleteUI(Hashtable<String, String> parameters)
     {
-	return getFields().getHashTableFrom();
+	// TODO Auto-generated method stub
+	return null;
     }
 
     @Override
-    public void setOrmizableData(Hashtable<String, Object> parameters)
+    public AbstractEntity editUI(Hashtable<String, String> parameters)
     {
-	getFields().setFromHashTable(parameters);
+	// TODO Auto-generated method stub
+	return null;
+    }
+
+    @Override
+    public AbstractEntity getUI(Hashtable<String, String> parameters)
+    {
+	// TODO Auto-generated method stub
+	return null;
+    }
+
+    @Override
+    public AbstractEntity newUI(Hashtable<String, String> parameters)
+    {
+	// TODO Auto-generated method stub
+	return null;
     }
 }

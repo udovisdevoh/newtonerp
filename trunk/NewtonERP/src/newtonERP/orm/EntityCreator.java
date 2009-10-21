@@ -6,6 +6,7 @@ import java.util.Hashtable;
 import java.util.Vector;
 
 import newtonERP.module.AbstractEntity;
+import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.field.Field;
 import newtonERP.orm.exceptions.OrmEntityCreationException;
 import newtonERP.orm.exceptions.OrmException;
@@ -27,10 +28,10 @@ public class EntityCreator
      * @return a vector of ormizable entities
      * @throws OrmException an exception that can occur in the orm
      */
-    public static Vector<Ormizable> createEntitiesFromResultSet(ResultSet rs,
-	    Ormizable searchEntity) throws OrmException
+    public static Vector<AbstractOrmEntity> createEntitiesFromResultSet(
+	    ResultSet rs, AbstractOrmEntity searchEntity) throws OrmException
     {
-	Vector<Ormizable> returnedEntities = new Vector<Ormizable>();
+	Vector<AbstractOrmEntity> returnedEntities = new Vector<AbstractOrmEntity>();
 
 	// Now we will iterate through the result set to create the entities
 	// Here we must handle the sql exceptions that throws the result set
@@ -42,7 +43,8 @@ public class EntityCreator
 	    {
 		// We initialize our instance of the ormizable entity.
 		// Our Fields array and our parameters hashtable
-		Ormizable entity = searchEntity.getClass().newInstance();
+		AbstractOrmEntity entity = searchEntity.getClass()
+			.newInstance();
 		Collection<Field> fields = ((AbstractEntity) entity)
 			.getFields().getFields();
 		Hashtable<String, Object> parameters = new Hashtable<String, Object>();
