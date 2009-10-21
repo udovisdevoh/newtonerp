@@ -6,6 +6,7 @@ import java.util.Vector;
 import modules.userRightModule.UserRightModule;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
+import newtonERP.module.BaseAction;
 import newtonERP.module.Module;
 import newtonERP.module.exception.EntityException;
 import newtonERP.viewers.viewables.ListViewable;
@@ -57,9 +58,9 @@ public class UserList extends AbstractEntity implements ListViewable
 	{
 	    // TODO: remove dummy code: must not recreate actions
 	    globalActionButtonList = new Hashtable<String, AbstractAction>();
-	    // TODO Remove null actions and add action binding according to new
-	    // action architecture
-	    globalActionButtonList.put("Nouvel utilisateur", null);
+	    // TODO Make sure new User() is the appropriated behavior we want
+	    globalActionButtonList.put("Nouvel utilisateur", new BaseAction(
+		    "new", new User()));
 	}
 	return globalActionButtonList;
     }
@@ -93,10 +94,11 @@ public class UserList extends AbstractEntity implements ListViewable
 	{
 	    // TODO: remove dummy code: must not recreate actions
 	    specificActionButtonList = new Hashtable<String, AbstractAction>();
-	    // TODO Remove null actions and add action binding according to new
-	    // action architecture
-	    specificActionButtonList.put("Edit", null);
-	    specificActionButtonList.put("Delete", null);
+	    // TODO Make sure new User() is the appropriated behavior we want
+	    specificActionButtonList.put("Edit", new BaseAction("edit",
+		    new User()));
+	    specificActionButtonList.put("Delete", new BaseAction("delete",
+		    new User()));
 	}
 	return specificActionButtonList;
     }
