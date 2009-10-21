@@ -35,18 +35,6 @@ public class User extends AbstractOrmEntity implements PromptViewable
 	return new Fields(fields);
     }
 
-    @Override
-    public Hashtable<String, String> getOrmizableData() throws OrmException
-    {
-	return getHashTableFromEntity();
-    }
-
-    @Override
-    public void setOrmizableData(Hashtable<String, Object> parameters)
-    {
-	setEntityFromHashTable(parameters);
-    }
-
     /**
      * permet d'obtenir directement l'entity groups lie a cet user
      * 
@@ -104,13 +92,13 @@ public class User extends AbstractOrmEntity implements PromptViewable
 	 */
 	// TODO: remove dummy code
 	return new GetUserList(); // TODO : a remplacé des que possible c'Est
-				  // pour évité une null pointer...
+	// pour évité une null pointer...
     }
 
     /**
      * Sets the submit action
      * 
-     * @param submitAction
+     * @param submitAction the submit action
      */
     public void setSubmitAction(AbstractAction submitAction)
     {
@@ -120,7 +108,7 @@ public class User extends AbstractOrmEntity implements PromptViewable
     /**
      * Sets the submit module
      * 
-     * @param submitModule
+     * @param submitModule the submit module
      */
     public void setSubmitModule(Module submitModule)
     {
