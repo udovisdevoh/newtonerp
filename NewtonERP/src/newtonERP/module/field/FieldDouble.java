@@ -3,6 +3,7 @@ package newtonERP.module.field;
 /**
  * @author djo
  * 
+ *         Double field in the entities
  */
 public class FieldDouble extends Field
 {

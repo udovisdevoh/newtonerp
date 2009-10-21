@@ -4,12 +4,12 @@ import java.util.Hashtable;
 import java.util.Vector;
 
 import newtonERP.module.AbstractEntity;
+import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.field.Field;
 import newtonERP.module.field.FieldInt;
 import newtonERP.module.field.FieldString;
 import newtonERP.module.field.Fields;
 import newtonERP.orm.Orm;
-import newtonERP.orm.Ormizable;
 import newtonERP.orm.exceptions.OrmException;
 
 /**
@@ -17,7 +17,7 @@ import newtonERP.orm.exceptions.OrmException;
  * 
  *         Entity defenition class representing a group for the users
  */
-public class Groups extends AbstractEntity implements Ormizable
+public class Groups extends AbstractOrmEntity
 {
     public Fields initFields()
     {
@@ -25,18 +25,6 @@ public class Groups extends AbstractEntity implements Ormizable
 	fields.add(new FieldInt("numéro du groupe", "PKgroupID"));
 	fields.add(new FieldString("nom du groupe", "groupName"));
 	return new Fields(fields);
-    }
-
-    @Override
-    public Hashtable<String, String> getOrmizableData() throws OrmException
-    {
-	return getHashTableFromEntity();
-    }
-
-    @Override
-    public void setOrmizableData(Hashtable<String, Object> parameters)
-    {
-	setEntityFromHashTable(parameters);
     }
 
     /**
@@ -52,9 +40,9 @@ public class Groups extends AbstractEntity implements Ormizable
 	search.add("groupID=" + getFields().getField("PKgroupID"));
 	try
 	{
-	    Vector<Ormizable> groupRights = Orm
-		    .select(new GroupRight(), search);
-	    for (Ormizable gr : groupRights)
+	    Vector<AbstractOrmEntity> groupRights = Orm.select(
+		    new GroupRight(), search);
+	    for (AbstractOrmEntity gr : groupRights)
 	    {
 		rightResult.add(((GroupRight) gr).getRightEntity());
 	    }
@@ -64,5 +52,33 @@ public class Groups extends AbstractEntity implements Ormizable
 	}
 
 	return rightResult;
+    }
+
+    @Override
+    public AbstractEntity deleteUI(Hashtable<String, String> parameters)
+    {
+	// TODO Auto-generated method stub
+	return null;
+    }
+
+    @Override
+    public AbstractEntity editUI(Hashtable<String, String> parameters)
+    {
+	// TODO Auto-generated method stub
+	return null;
+    }
+
+    @Override
+    public AbstractEntity getUI(Hashtable<String, String> parameters)
+    {
+	// TODO Auto-generated method stub
+	return null;
+    }
+
+    @Override
+    public AbstractEntity newUI(Hashtable<String, String> parameters)
+    {
+	// TODO Auto-generated method stub
+	return null;
     }
 }

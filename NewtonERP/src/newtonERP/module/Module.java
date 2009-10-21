@@ -6,8 +6,6 @@ package newtonERP.module;
 import java.io.File;
 import java.util.Hashtable;
 
-import newtonERP.orm.Ormizable;
-
 /**
  * @author Pascal Lemay
  * 
@@ -17,7 +15,7 @@ public abstract class Module
 {
     // Sert a conserver les definitions de tables
     // Genre d'exemple d'une table.
-    protected Hashtable<String, Ormizable> entityDefinitionList;
+    protected Hashtable<String, AbstractOrmEntity> entityDefinitionList;
 
     // Sert a stocker les actions pouvant etre appelees
     protected Hashtable<String, AbstractAction> actionList;
@@ -28,7 +26,7 @@ public abstract class Module
      */
     public Module()
     {
-	entityDefinitionList = new Hashtable<String, Ormizable>();
+	entityDefinitionList = new Hashtable<String, AbstractOrmEntity>();
 	actionList = new Hashtable<String, AbstractAction>();
 	initAction();
 	initEntityDefinition();
@@ -102,8 +100,8 @@ public abstract class Module
 			    + listOfFiles[i].getName().split("\\.java")[0];
 		    AbstractEntity def = (AbstractEntity) Class.forName(
 			    className).newInstance();
-		    if (def instanceof Ormizable)
-			addDefinitionEntity((Ormizable) def);
+		    if (def instanceof AbstractOrmEntity)
+			addDefinitionEntity((AbstractOrmEntity) def);
 		} catch (Exception e)
 		{
 		    e.printStackTrace();
@@ -119,7 +117,7 @@ public abstract class Module
 	    setDefaultAction(action);
     }
 
-    private final void addDefinitionEntity(Ormizable definitinEntity)
+    private final void addDefinitionEntity(AbstractOrmEntity definitinEntity)
     {
 	entityDefinitionList.put(definitinEntity.getClass().getSimpleName(),
 		definitinEntity);
@@ -128,7 +126,7 @@ public abstract class Module
     /**
      * @return the Vector entities
      */
-    public final Hashtable<String, Ormizable> getEntityDefinitionList()
+    public final Hashtable<String, AbstractOrmEntity> getEntityDefinitionList()
     {
 	return entityDefinitionList;
     }
@@ -152,8 +150,7 @@ public abstract class Module
 	AbstractEntity entity = null;
 	try
 	{
-	    entity = (AbstractEntity) entityDefinitionList
-		    .get(entityDefinitionName);
+	    entity = entityDefinitionList.get(entityDefinitionName);
 	} catch (NullPointerException e)
 	{
 	    throw new ModuleException("entity: " + entityDefinitionName

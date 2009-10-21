@@ -8,6 +8,7 @@ import java.util.Vector;
 
 import newtonERP.ListModule;
 import newtonERP.module.AbstractEntity;
+import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.Module;
 import newtonERP.module.ModuleException;
 import newtonERP.module.field.Field;
@@ -52,8 +53,9 @@ public class Orm
      * @return a vector of ormizable entities
      * @throws OrmException an exception that can occur in the orm
      */
-    public static Vector<Ormizable> select(Ormizable searchEntity,
-	    Vector<String> searchCriteriasParam) throws OrmException
+    public static Vector<AbstractOrmEntity> select(
+	    AbstractOrmEntity searchEntity, Vector<String> searchCriteriasParam)
+	    throws OrmException
     {
 	String sqlQuery = "SELECT * FROM " + prefix
 		+ searchEntity.getClass().getSimpleName();
@@ -78,7 +80,7 @@ public class Orm
      * @throws OrmException an exception that can occur into the orm
      */
     @SuppressWarnings("unchecked")
-    public static void insert(Ormizable newEntity) throws OrmException
+    public static void insert(AbstractOrmEntity newEntity) throws OrmException
     {
 	Hashtable<String, String> data = newEntity.getOrmizableData();
 	String sqlQuery = "INSERT INTO " + prefix
@@ -137,7 +139,7 @@ public class Orm
      * @param searchCriterias the search criterias for the where clause
      * @throws OrmException an exception that can occur into the orm
      */
-    public static void delete(Ormizable searchEntity,
+    public static void delete(AbstractOrmEntity searchEntity,
 	    Vector<String> searchCriterias) throws OrmException
     {
 	String sqlQuery = "DELETE FROM " + prefix
@@ -159,7 +161,7 @@ public class Orm
      * @param searchCriterias the criterias used by the update
      * @throws OrmException an exception that can occur into the orm
      */
-    public static void update(Ormizable entityContainingChanges,
+    public static void update(AbstractOrmEntity entityContainingChanges,
 	    Vector<String> searchCriterias) throws OrmException
     {
 	String sqlQuery = "UPDATE " + prefix
@@ -204,9 +206,9 @@ public class Orm
      */
     @SuppressWarnings("unused")
     private static String buildWhereClauseForQuery(String sqlQuery,
-	    Vector<Ormizable> searchEntities)
+	    Vector<AbstractOrmEntity> searchEntities)
     {
-	for (Ormizable entity : searchEntities)
+	for (AbstractOrmEntity entity : searchEntities)
 	{
 	    // TODO: To be finished
 	}
@@ -264,11 +266,11 @@ public class Orm
 	    try
 	    {
 		Module module = ListModule.getModule(key);
-		Collection<Ormizable> moduleEntities = module
+		Collection<AbstractOrmEntity> moduleEntities = module
 			.getEntityDefinitionList().values();
 
 		// For each entity in the list of module entities
-		for (Ormizable entity : moduleEntities)
+		for (AbstractOrmEntity entity : moduleEntities)
 		{
 		    // Be sure to create the table only if it doesn't already
 		    // exists

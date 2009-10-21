@@ -1,8 +1,9 @@
 package newtonERP.module.field;
 
 /**
- * @author djo
+ * @author djo, r3hallejo
  * 
+ *         Integer field in the entities
  */
 public class FieldInt extends Field
 {

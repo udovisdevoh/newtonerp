@@ -4,11 +4,11 @@ import java.util.Hashtable;
 import java.util.Vector;
 
 import newtonERP.module.AbstractEntity;
+import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.field.Field;
 import newtonERP.module.field.FieldInt;
 import newtonERP.module.field.Fields;
 import newtonERP.orm.Orm;
-import newtonERP.orm.Ormizable;
 import newtonERP.orm.exceptions.OrmException;
 
 /**
@@ -16,7 +16,7 @@ import newtonERP.orm.exceptions.OrmException;
  * 
  *         Entity defenition representing a group right for the users
  */
-public class GroupRight extends AbstractEntity implements Ormizable
+public class GroupRight extends AbstractOrmEntity
 {
     public Fields initFields()
     {
@@ -24,18 +24,6 @@ public class GroupRight extends AbstractEntity implements Ormizable
 	fields.add(new FieldInt("numéro de groupe", "groupID"));
 	fields.add(new FieldInt("numéro de droit", "rightID"));
 	return new Fields(fields);
-    }
-
-    @Override
-    public Hashtable<String, String> getOrmizableData() throws OrmException
-    {
-	return getHashTableFromEntity();
-    }
-
-    @Override
-    public void setOrmizableData(Hashtable<String, Object> parameters)
-    {
-	setEntityFromHashTable(parameters);
     }
 
     /**
@@ -76,6 +64,34 @@ public class GroupRight extends AbstractEntity implements Ormizable
 	{
 	    e.printStackTrace();
 	}
+	return null;
+    }
+
+    @Override
+    public AbstractEntity deleteUI(Hashtable<String, String> parameters)
+    {
+	// TODO Auto-generated method stub
+	return null;
+    }
+
+    @Override
+    public AbstractEntity editUI(Hashtable<String, String> parameters)
+    {
+	// TODO Auto-generated method stub
+	return null;
+    }
+
+    @Override
+    public AbstractEntity getUI(Hashtable<String, String> parameters)
+    {
+	// TODO Auto-generated method stub
+	return null;
+    }
+
+    @Override
+    public AbstractEntity newUI(Hashtable<String, String> parameters)
+    {
+	// TODO Auto-generated method stub
 	return null;
     }
 }

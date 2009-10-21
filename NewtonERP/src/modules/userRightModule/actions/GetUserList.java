@@ -7,8 +7,8 @@ import modules.userRightModule.entityDefinitions.User;
 import modules.userRightModule.entityDefinitions.UserList;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
+import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.Orm;
-import newtonERP.orm.Ormizable;
 import newtonERP.orm.exceptions.OrmException;
 
 /**
@@ -21,7 +21,7 @@ public class GetUserList extends AbstractAction
     public AbstractEntity doAction(AbstractEntity entity,
 	    Hashtable<String, String> parameters)
     {
-	Vector<Ormizable> userVectorFromOrm;
+	Vector<AbstractOrmEntity> userVectorFromOrm;
 
 	try
 	{
@@ -29,13 +29,13 @@ public class GetUserList extends AbstractAction
 
 	} catch (OrmException e)
 	{
-	    userVectorFromOrm = new Vector<Ormizable>();
+	    userVectorFromOrm = new Vector<AbstractOrmEntity>();
 	    e.printStackTrace();
 	}
 
 	UserList userList = new UserList();
 
-	for (Ormizable user : userVectorFromOrm)
+	for (AbstractOrmEntity user : userVectorFromOrm)
 	    userList.addUser((User) (user));
 
 	return userList;

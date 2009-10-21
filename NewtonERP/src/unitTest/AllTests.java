@@ -4,7 +4,6 @@ import junit.framework.Test;
 import junit.framework.TestSuite;
 import unitTest.abstractModule.EntityTest;
 import unitTest.module.UserRightModuleTest;
-import unitTest.orm.OrmTest;
 import unitTest.serveur.ServletTest;
 
 /**
@@ -31,7 +30,7 @@ public class AllTests
 	suite.addTestSuite(UserRightModuleTest.class);
 
 	// orm
-	suite.addTestSuite(OrmTest.class);
+	// suite.addTestSuite(OrmTest.class);
 
 	// serveur
 	suite.addTestSuite(ServletTest.class);

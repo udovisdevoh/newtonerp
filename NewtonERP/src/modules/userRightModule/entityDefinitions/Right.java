@@ -4,19 +4,18 @@ import java.util.Hashtable;
 import java.util.Vector;
 
 import newtonERP.module.AbstractEntity;
+import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.field.Field;
 import newtonERP.module.field.FieldInt;
 import newtonERP.module.field.FieldString;
 import newtonERP.module.field.Fields;
-import newtonERP.orm.Ormizable;
-import newtonERP.orm.exceptions.OrmException;
 
 /**
  * @author r3hallejo
  * 
  *         Entity defenition class representing a right
  */
-public class Right extends AbstractEntity implements Ormizable
+public class Right extends AbstractOrmEntity
 {
     public Fields initFields()
     {
@@ -29,14 +28,30 @@ public class Right extends AbstractEntity implements Ormizable
     }
 
     @Override
-    public Hashtable<String, String> getOrmizableData() throws OrmException
+    public AbstractEntity deleteUI(Hashtable<String, String> parameters)
     {
-	return getHashTableFromEntity();
+	// TODO Auto-generated method stub
+	return null;
     }
 
     @Override
-    public void setOrmizableData(Hashtable<String, Object> parameters)
+    public AbstractEntity editUI(Hashtable<String, String> parameters)
     {
-	setEntityFromHashTable(parameters);
+	// TODO Auto-generated method stub
+	return null;
+    }
+
+    @Override
+    public AbstractEntity getUI(Hashtable<String, String> parameters)
+    {
+	// TODO Auto-generated method stub
+	return null;
+    }
+
+    @Override
+    public AbstractEntity newUI(Hashtable<String, String> parameters)
+    {
+	// TODO Auto-generated method stub
+	return null;
     }
 }
