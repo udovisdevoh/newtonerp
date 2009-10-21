@@ -8,6 +8,7 @@ public abstract class Field
 {
     private String name;
     private String shortName;
+    private String operator;
 
     /**
      * default constructor
@@ -71,6 +72,21 @@ public abstract class Field
     public abstract void setData(Object data)
 	    throws FieldNotCompatibleException;
 
+    /**
+     * Validation on operators will be done in the fields types
+     * 
+     * @param operator the operator to set in the field
+     * @throws InvalidOperatorException if an operator is wrong for the data
+     *             type
+     */
+    public abstract void setOperator(String operator)
+	    throws InvalidOperatorException;
+
+    /**
+     * @return the operator
+     */
+    public abstract String getOperator();
+
     /*
      * (non-Javadoc)
      * 
@@ -101,5 +117,4 @@ public abstract class Field
 	    return false;
 	return true;
     }
-
 }
