@@ -4,6 +4,9 @@ import java.util.Hashtable;
 import java.util.Vector;
 
 import newtonERP.module.AbstractAction;
+import newtonERP.module.BaseAction;
+import newtonERP.module.exception.ActionNotFoundException;
+import newtonERP.module.exception.ModuleException;
 import newtonERP.viewers.viewables.ListViewable;
 
 /**
@@ -31,7 +34,7 @@ public class ListViewer
 
 	html += "<h1>" + entity.getTitle() + "</h1>";
 
-	html += "<table>";
+	html += "<table border=\"1\" cellpadding=\"3\" cellspacing=\"0\" style=\"background-color:#FFF\">";
 
 	html += getHeaderRow(entity.getColumnTitleList());
 
@@ -51,17 +54,24 @@ public class ListViewer
     {
 	String html = "";
 	AbstractAction action;
+	String actionName;
 	for (String buttonCaption : globalActionButtonList.keySet())
 	{
 	    action = globalActionButtonList.get(buttonCaption);
-	    html += getButton(buttonCaption, moduleName, action.getClass()
-		    .getSimpleName(), null, null, currentUserName);
+
+	    if (action instanceof BaseAction)
+		actionName = ((BaseAction) (action)).getActionName();
+	    else
+		actionName = action.getClass().getSimpleName();
+
+	    html += getButton(buttonCaption, moduleName, actionName, null,
+		    null, currentUserName);
 	}
 	return html;
     }
 
     private static String getDataRowList(Vector<Vector<String>> rowValues,
-	    ListViewable entity, String moduleName)
+	    ListViewable entity, String moduleName) throws ModuleException
     {
 	String html = "<tr>";
 	for (Vector<String> row : rowValues)
@@ -93,17 +103,27 @@ public class ListViewer
     }
 
     private static String getSpecificButtonList(ListViewable entity,
-	    String moduleName, String key, String value)
+	    String moduleName, String key, String value) throws ModuleException
     {
-	String html = "";
+	String html = "", actionName, currentUserName;
 
 	AbstractAction action;
 	for (String buttonCaption : entity.getSpecificActionButtonList()
 		.keySet())
 	{
-	    action = entity.getGlobalActionButtonList().get(buttonCaption);
-	    html += getButton(buttonCaption, moduleName, action.getClass()
-		    .getSimpleName(), key, value, entity.getCurrentUserName());
+	    html += "<td>";
+	    currentUserName = entity.getCurrentUserName();
+	    action = entity.getSpecificActionButtonList().get(buttonCaption);
+	    if (action == null)
+		throw new ActionNotFoundException("Action is null");
+	    else if (action instanceof BaseAction)
+		actionName = ((BaseAction) (action)).getActionName();
+	    else
+		actionName = action.getClass().getSimpleName();
+	    html += getButton(buttonCaption, moduleName, actionName, key,
+		    value, currentUserName);
+
+	    html += "</td>";
 	}
 
 	return html;
