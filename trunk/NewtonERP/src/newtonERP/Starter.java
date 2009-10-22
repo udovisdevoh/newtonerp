@@ -1,7 +1,5 @@
 package newtonERP;
 
-import java.util.Vector;
-
 import modules.userRightModule.actions.CreateAllRight;
 import newtonERP.logging.Logger;
 import newtonERP.orm.Orm;
@@ -13,6 +11,7 @@ import org.mortbay.jetty.Server;
 /**
  * @author JoCloutier
  * 
+ *         Program starter
  */
 public class Starter
 {
@@ -26,23 +25,12 @@ public class Starter
      */
     public static void main(String[] args) throws Exception
     {
-	// For testing
-	Vector<String> searchCriterias = new Vector<String>();
-	searchCriterias.add("name like '%Sylvain%'");
-
 	ListModule.initAllModule();
 
 	try
 	{
-	    // connecte l'orm a la db
 	    Orm.connect();
 	    Orm.createNonExistentTables();
-
-	    // Orm.insert(new Employee());
-	    // Orm.select(new Employee(), searchCriterias);
-	    // Orm.delete(new TestEntity(), searchCriterias);
-	    // Orm.update(new TestEntity(), new TestEntityModified(),
-	    // searchCriterias);
 	} catch (OrmException e)
 	{
 	    Logger.log(e.getMessage(), Logger.State.ERROR);

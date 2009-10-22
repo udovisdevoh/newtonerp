@@ -16,5 +16,4 @@ public class InvalidOperatorException extends ModuleException
     {
 	super(message);
     }
-
 }

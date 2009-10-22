@@ -10,7 +10,7 @@ public class ActionNotFoundException extends ModuleException
     /**
      * Constructeur par default pour cette exception
      * 
-     * @param moduleName nom du module
+     * @param actionName the action name
      */
     public ActionNotFoundException(String actionName)
     {
