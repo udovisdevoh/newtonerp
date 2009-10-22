@@ -5,6 +5,8 @@ import java.util.Iterator;
 
 import newtonERP.ListModule;
 import newtonERP.module.AbstractEntity;
+import newtonERP.module.exception.ModuleException;
+import newtonERP.serveur.Servlet;
 import newtonERP.viewers.viewables.ListViewable;
 import newtonERP.viewers.viewables.PromptViewable;
 
@@ -30,6 +32,8 @@ public abstract class Viewer
 	    viewerHtml = PromptViewer.getHtmlCode((PromptViewable) entity);
 	else if (entity instanceof ListViewable)
 	    viewerHtml = ListViewer.getHtmlCode((ListViewable) entity);
+	else if (entity == null) // Home
+	    viewerHtml = "<!-- rien -->";
 	else
 	    throw new ViewerException("Couldn't find proper viewer for entity");
 
@@ -75,8 +79,9 @@ public abstract class Viewer
      * Gets the html code for left menu (css pour mise en page)
      * 
      * @return html
+     * @throws ModuleException
      */
-    public static String getLeftMenu()
+    public static String getLeftMenu() throws ModuleException
     {
 	Hashtable<String, String> mod = ListModule.getAllModules();
 	Iterator<String> keys = mod.keySet().iterator();
@@ -92,16 +97,14 @@ public abstract class Viewer
 	while (keys.hasNext())
 	{
 	    modName = keys.next();
-	    menuModule += "<li><a href=\"" + modName + "\">" + modName
-		    + "</a></li>";
+	    menuModule += "<li><a href=\""
+		    + Servlet.makeLink(ListModule.getModule(modName)) + "\">"
+		    + modName + "</a></li>";
 	}
 	menuModule += "</ul></div>";// ferme liste et ce Module
 
-	return (menu + menuModule + "</div> <div id=\"body\">");// ferme menu
-	// gauche + <div
-	// id="body">=style
-	// css corp de
-	// droite
+	// ferme menu gauche + <div id="body">=style css corp de droite
+	return (menu + menuModule + "</div> <div id=\"body\">");
     }
 
     /**
