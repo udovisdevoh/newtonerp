@@ -11,23 +11,24 @@ import newtonERP.orm.exceptions.OrmException;
 /**
  * @author cloutierJo
  * 
- *         An entity that can be saved, updated, selected etc... in the db
  */
 public abstract class AbstractOrmEntity extends AbstractEntity
 {
+
+    // oblige le redefinition pour les sous-classe de AbstractOrmEntity
     public abstract Fields initFields();
 
     /**
-     * @return the ormizable data
-     * @throws OrmException an exception that can occur in the orm
+     * @return data ormizable
      */
-    public Hashtable<String, String> getOrmizableData() throws OrmException
+    public Hashtable<String, String> getOrmizableData()
     {
 	return getFields().getHashTableFrom();
     }
 
     /**
-     * @param parameters the data to set
+     * @param parameters la hashTable de parametre qui sera transphormé en
+     *            entity
      */
     public void setOrmizableData(Hashtable<String, Object> parameters)
     {
@@ -35,8 +36,10 @@ public abstract class AbstractOrmEntity extends AbstractEntity
     }
 
     /**
-     * @param parameters
-     * @return
+     * BaseAction New
+     * 
+     * @param parameters parametre suplementaire
+     * @return todo: qu'Est-ce que l'on devrai retourné en general?
      */
     public abstract AbstractEntity newUI(Hashtable<String, String> parameters);
 
@@ -58,8 +61,10 @@ public abstract class AbstractOrmEntity extends AbstractEntity
     }
 
     /**
-     * @param parameters
-     * @return
+     * BaseAction Delete
+     * 
+     * @param parameters parametre suplementaire
+     * @return todo: qu'Est-ce que l'on devrai retourné en general?
      */
     public abstract AbstractEntity deleteUI(Hashtable<String, String> parameters);
 
@@ -67,6 +72,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      * supprime l'entity en DB
      * 
      * @param whereClause the where clause for the query
+     * 
      * @return this
      */
     public AbstractEntity delete(String whereClause)
@@ -85,15 +91,17 @@ public abstract class AbstractOrmEntity extends AbstractEntity
     }
 
     /**
-     * @param parameters
-     * @return
+     * BaseAction Edit
+     * 
+     * @param parameters parametre suplementaire
+     * @return todo: qu'Est-ce que l'on devrai retourné en general?
      */
     public abstract AbstractEntity editUI(Hashtable<String, String> parameters);
 
     /**
      * met a jour l'entity en DB, l'ID doit etre présent
      * 
-     * @param whereClause the where clause
+     * @param whereClause the where clause for the query
      * @return this
      */
     public AbstractEntity edit(String whereClause)
@@ -111,15 +119,17 @@ public abstract class AbstractOrmEntity extends AbstractEntity
     }
 
     /**
-     * @param parameters
-     * @return
+     * BaseAction Get
+     * 
+     * @param parameters parametre suplementaire
+     * @return todo: qu'Est-ce que l'on devrai retourné en general?
      */
     public abstract AbstractEntity getUI(Hashtable<String, String> parameters);
 
     /**
      * trouve l'entity selon les critere disponible, retourne le premier trouve
      * 
-     * @param whereClause the where clause for query
+     * @param whereClause the where clause for the query
      * @return this
      */
     public Vector<AbstractOrmEntity> get(String whereClause)

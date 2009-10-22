@@ -113,13 +113,6 @@ public abstract class Module
 	}
     }
 
-    private final void addAction(AbstractAction action, boolean isDefault)
-    {
-	addAction(action);
-	if (isDefault)
-	    setDefaultAction(action);
-    }
-
     private final void addDefinitionEntity(AbstractOrmEntity definitinEntity)
     {
 	entityDefinitionList.put(definitinEntity.getClass().getSimpleName(),
@@ -209,7 +202,7 @@ public abstract class Module
      * @param parameters Paramètres de l'action devant être accomplie, exemple,
      *            contenu d'un email
      * @return Entité viewable pour l'output du résultat
-     * @throws Exception
+     * @throws Exception remonte
      */
     public final AbstractEntity doAction(String actionName,
 	    Hashtable<String, String> parameters) throws Exception
