@@ -246,14 +246,15 @@ public class Orm
 	for (AbstractOrmEntity entity : searchEntities)
 	{
 	    entityPosition += 1;
-	    sqlQuery += " ( ";
+	    sqlQuery += "( ";
 
 	    for (Field field : entity.getFields().getFields())
 	    {
 		if (field.getData() != null)
 		{
 		    sqlQuery += field.getShortName() + " "
-			    + field.getOperator() + " " + field.getDataString();
+			    + field.getOperator() + " '"
+			    + field.getDataString() + "'";
 
 		    sqlQuery += " AND ";
 		}
@@ -264,7 +265,7 @@ public class Orm
 	    if (entity.getFields().getFields().size() < entityPosition)
 		sqlQuery += " OR ";
 
-	    sqlQuery += " )";
+	    sqlQuery += ")";
 	}
 	return sqlQuery += ";";
     }
