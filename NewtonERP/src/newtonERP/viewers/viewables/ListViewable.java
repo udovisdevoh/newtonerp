@@ -19,9 +19,14 @@ public interface ListViewable
     public String getTitle();
 
     /**
-     * @return Module callé par le prompt
+     * @return Module à utiliser en ce moment
      */
-    public Module getSubmitModule() throws EntityException;
+    public Module getCurrentModule() throws EntityException;
+
+    /**
+     * @return Module à utiliser en ce moment
+     */
+    public void setCurrentModule(Module module) throws EntityException;
 
     /**
      * @return Utilisateur actuel Cette methode sera effacée au sprint 2 car

@@ -114,7 +114,16 @@ public class User extends AbstractOrmEntity implements PromptViewable
     @Override
     public Module getSubmitModule() throws EntityException
     {
+	if (submitModule == null)
+	    throw new EntityException(
+		    "Vous devez setter le module préalablement avec setSubmitModule()");
+
 	return submitModule;
+    }
+
+    public void setCurrentModule(Module module)
+    {
+	submitModule = module;
     }
 
     public AbstractEntity newUI(Hashtable<String, String> parameters)
