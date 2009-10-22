@@ -87,7 +87,7 @@ public class Orm
 	    Vector<AbstractOrmEntity> searchEntities) throws OrmException
     {
 	String sqlQuery = "SELECT * FROM " + prefix
-		+ searchEntities.getClass().getSimpleName();
+		+ searchEntities.get(0).getClass().getSimpleName();
 
 	if (!searchEntities.isEmpty())
 	    sqlQuery = buildWhereClauseForQuery(searchEntities, sqlQuery);
@@ -240,22 +240,33 @@ public class Orm
     private static String buildWhereClauseForQuery(
 	    Vector<AbstractOrmEntity> searchEntities, String sqlQuery)
     {
+	int entityPosition = 0;
 	sqlQuery += " WHERE ";
 
 	for (AbstractOrmEntity entity : searchEntities)
 	{
+	    entityPosition += 1;
+	    sqlQuery += " ( ";
+
 	    for (Field field : entity.getFields().getFields())
 	    {
-		if (!field.getData().equals(null))
+		if (field.getData() != null)
 		{
 		    sqlQuery += field.getShortName() + " "
-			    + field.getOperator() + " " + field.getDataString()
-			    + ", ";
+			    + field.getOperator() + " " + field.getDataString();
+
+		    sqlQuery += " AND ";
 		}
 	    }
-	}
 
-	return sqlQuery = sqlQuery.substring(0, sqlQuery.length() - 2) + ";";
+	    sqlQuery = sqlQuery.substring(0, sqlQuery.length() - 4);
+
+	    if (entity.getFields().getFields().size() < entityPosition)
+		sqlQuery += " OR ";
+
+	    sqlQuery += " )";
+	}
+	return sqlQuery += ";";
     }
 
     /**
@@ -289,7 +300,7 @@ public class Orm
 	    }
 	}
 
-	return sqlQuery;
+	return sqlQuery.substring(0, sqlQuery.length() - 2);
     }
 
     /**
