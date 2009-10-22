@@ -25,6 +25,10 @@ import newtonERP.viewers.viewables.PromptViewable;
  */
 public class User extends AbstractOrmEntity implements PromptViewable
 {
+    private String buttonCaption;
+    private AbstractAction submitAction;
+    private Module submitModule;
+
     public Fields initFields()
     {
 	Vector<Field> fields = new Vector<Field>();
@@ -59,7 +63,7 @@ public class User extends AbstractOrmEntity implements PromptViewable
     @Override
     public String getButtonCaption()
     {
-	return "Save profile";
+	return buttonCaption;
     }
 
     @Override
@@ -81,19 +85,9 @@ public class User extends AbstractOrmEntity implements PromptViewable
     }
 
     @Override
-    public AbstractAction getSubmitAction() throws EntityException
+    public AbstractAction getSubmitAction()
     {
-	/*
-	 * 
-	 * if (submitAction == null) throw new EntityException(
-	 * "Missing submit action, set it with setSubmitAction()");
-	 * 
-	 * return submitAction;
-	 */
-	// TODO: remove dummy code
-	return new BaseAction("Get", this); // TODO : a remplacé des que
-					    // possible c'Est
-	// pour évité une null pointer...
+	return submitAction;
     }
 
     /**
@@ -103,7 +97,7 @@ public class User extends AbstractOrmEntity implements PromptViewable
      */
     public void setSubmitAction(AbstractAction submitAction)
     {
-	// TODO : To be completed or changed
+	this.submitAction = submitAction;
     }
 
     /**
@@ -113,21 +107,13 @@ public class User extends AbstractOrmEntity implements PromptViewable
      */
     public void setSubmitModule(Module submitModule)
     {
-	// TODO : To be completed or changed
+	this.submitModule = submitModule;
     }
 
     @Override
     public Module getSubmitModule() throws EntityException
     {
-	// TODO Auto-generated method stub
-	/*
-	 * if (submitModule == null) throw new EntityException(
-	 * "Missing submit module, set it with setSubmitModule()");
-	 * 
-	 * return submitModule;
-	 */
-
-	return new UserRightModule();
+	return submitModule;
     }
 
     public AbstractEntity newUI(Hashtable<String, String> parameters)
@@ -144,8 +130,18 @@ public class User extends AbstractOrmEntity implements PromptViewable
 
     public AbstractEntity editUI(Hashtable<String, String> parameters)
     {
-	// TODO Auto-generated method stub
-	return null;
+	if (parameters.containsKey("submit"))
+	{
+	    edit("PKuserID='" + getDataString("PKuserID") + "'");
+	}
+
+	User retUser = (User) get("name='" + getDataString("name") + "'")
+		.get(0); // on discarte les autre entity s'il y a lieu
+
+	retUser.setSubmitAction(new BaseAction("Edit", this));
+	retUser.setSubmitModule(new UserRightModule());
+
+	return retUser;
     }
 
     public AbstractEntity getUI(Hashtable<String, String> parameters)
