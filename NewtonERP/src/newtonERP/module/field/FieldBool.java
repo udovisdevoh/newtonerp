@@ -116,7 +116,7 @@ public abstract class FieldBool extends Field
 	    this.operator = operator;
 	}
 	else
-	    throw new InvalidOperatorException("Opérateur invalide pour"
+	    throw new InvalidOperatorException("Opérateur invalide pour "
 		    + getClass().getSimpleName());
     }
 }

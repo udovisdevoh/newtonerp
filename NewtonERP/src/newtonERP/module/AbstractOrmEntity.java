@@ -11,33 +11,33 @@ import newtonERP.orm.exceptions.OrmException;
 /**
  * @author cloutierJo
  * 
+ *         An entity that can be saved, updated, selected etc... in the db
  */
 public abstract class AbstractOrmEntity extends AbstractEntity
 {
-
-    // oblige le redefinition pour les sous-classe de AbstractOrmEntity
     public abstract Fields initFields();
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see newtonERP.orm.Ormizable#getOrmizableData()
+    /**
+     * @return the ormizable data
+     * @throws OrmException an exception that can occur in the orm
      */
     public Hashtable<String, String> getOrmizableData() throws OrmException
     {
 	return getFields().getHashTableFrom();
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see newtonERP.orm.Ormizable#setOrmizableData(java.util.Hashtable)
+    /**
+     * @param parameters the data to set
      */
     public void setOrmizableData(Hashtable<String, Object> parameters)
     {
 	getFields().setFromHashTable(parameters);
     }
 
+    /**
+     * @param parameters
+     * @return
+     */
     public abstract AbstractEntity newUI(Hashtable<String, String> parameters);
 
     /**
@@ -57,11 +57,16 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	return this;
     }
 
+    /**
+     * @param parameters
+     * @return
+     */
     public abstract AbstractEntity deleteUI(Hashtable<String, String> parameters);
 
     /**
      * supprime l'entity en DB
      * 
+     * @param whereClause the where clause for the query
      * @return this
      */
     public AbstractEntity delete(String whereClause)
@@ -79,11 +84,16 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	// true
     }
 
+    /**
+     * @param parameters
+     * @return
+     */
     public abstract AbstractEntity editUI(Hashtable<String, String> parameters);
 
     /**
      * met a jour l'entity en DB, l'ID doit etre présent
      * 
+     * @param whereClause the where clause
      * @return this
      */
     public AbstractEntity edit(String whereClause)
@@ -100,11 +110,16 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	return this;
     }
 
+    /**
+     * @param parameters
+     * @return
+     */
     public abstract AbstractEntity getUI(Hashtable<String, String> parameters);
 
     /**
      * trouve l'entity selon les critere disponible, retourne le premier trouve
      * 
+     * @param whereClause the where clause for query
      * @return this
      */
     public Vector<AbstractOrmEntity> get(String whereClause)
