@@ -116,7 +116,8 @@ public class Fields
 	Hashtable<String, String> hash = new Hashtable<String, String>();
 	for (Field field : fields.values())
 	{
-	    hash.put(field.getShortName(), field.getDataString());
+	    if (field.getDataString() != null)
+		hash.put(field.getShortName(), field.getDataString());
 	}
 	return hash;
     }
