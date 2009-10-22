@@ -11,36 +11,40 @@ import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.field.Field;
 import newtonERP.module.field.FieldDouble;
 import newtonERP.module.field.FieldInt;
-import newtonERP.module.field.FieldString;
 import newtonERP.module.field.Fields;
 import newtonERP.orm.Orm;
 import newtonERP.orm.exceptions.OrmException;
 
 /**
- * @author Gabriel
- *  entité du des facture des client dans le module costumerVendor
+ * @author Gabriel entité du des facture des client dans le module
+ *         costumerVendor
  */
 public class CostumerInvoice extends AbstractOrmEntity
 {
 
-    public Fields initFields1()
+    public Fields initFields()
     {
 	Vector<Field> fields = new Vector<Field>();
 	fields.add(new FieldInt("numéro de la Facture", "pKCostumerInvoiceID"));
-	fields.add(new FieldDouble("Total de la Facture", "total"));//total de la facture
+	fields.add(new FieldDouble("Total de la Facture", "total"));// total de
+								    // la
+								    // facture
 	fields.add(new FieldInt("Numéros du client", "costumerID"));
-	fields.add(new FieldInt("Date de la facture", "date")); //ddmmyyyy a respecter 
+	fields.add(new FieldInt("Date de la facture", "date")); // ddmmyyyy a
+								// respecter
 	return new Fields(fields);
     }
 
     public CostumerInvoice getCostumerEntity()
     {
 	Vector<String> search = new Vector<String>();
-	search.add("pKCostumerInvoiceID=" + getFields().getField("pKCostumerInvoiceID"));
+	search.add("pKCostumerInvoiceID="
+		+ getFields().getField("pKCostumerInvoiceID"));
 
 	try
 	{
-	    return (CostumerInvoice) Orm.select(new CostumerInvoice(), search).get(0);
+	    return (CostumerInvoice) Orm.select(new CostumerInvoice(), search)
+		    .get(0);
 	} catch (OrmException e)
 	{
 	    e.printStackTrace();
@@ -80,18 +84,6 @@ public class CostumerInvoice extends AbstractOrmEntity
      */
     @Override
     public AbstractEntity getUI(Hashtable<String, String> parameters)
-    {
-	// TODO Auto-generated method stub
-	return null;
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see newtonERP.module.AbstractOrmEntity#initFields()
-     */
-    @Override
-    public Fields initFields()
     {
 	// TODO Auto-generated method stub
 	return null;

@@ -22,16 +22,16 @@ import newtonERP.orm.exceptions.OrmException;
 public class VendorInvoice extends AbstractOrmEntity
 {
 
-    public Fields initFields1()
+    public Fields initFields()
     {
 	Vector<Field> fields = new Vector<Field>();
 	fields.add(new FieldInt("numéro de la Facture", "pKVendorInvoiceID"));
 	fields.add(new FieldDouble("Total de la Facture", "total"));// total de
-								    // la
-								    // facture
+	// la
+	// facture
 	fields.add(new FieldInt("Numéros du client", "vendorID"));
 	fields.add(new FieldInt("Date de la facture", "date")); // ddmmyyyy a
-								// respecter
+	// respecter
 	return new Fields(fields);
     }
 
@@ -84,18 +84,6 @@ public class VendorInvoice extends AbstractOrmEntity
      */
     @Override
     public AbstractEntity getUI(Hashtable<String, String> parameters)
-    {
-	// TODO Auto-generated method stub
-	return null;
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see newtonERP.module.AbstractOrmEntity#initFields()
-     */
-    @Override
-    public Fields initFields()
     {
 	// TODO Auto-generated method stub
 	return null;

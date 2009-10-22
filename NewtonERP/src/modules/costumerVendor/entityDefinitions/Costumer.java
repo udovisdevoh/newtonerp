@@ -20,8 +20,8 @@ import newtonERP.orm.exceptions.OrmException;
  */
 public class Costumer extends AbstractOrmEntity
 {
-
-    public Fields initFields1()
+    @Override
+    public Fields initFields()
     {
 	Vector<Field> fields = new Vector<Field>();
 	fields.add(new FieldInt("numéro du client", "pKCostumerID"));
@@ -78,18 +78,6 @@ public class Costumer extends AbstractOrmEntity
      */
     @Override
     public AbstractEntity getUI(Hashtable<String, String> parameters)
-    {
-	// TODO Auto-generated method stub
-	return null;
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see newtonERP.module.AbstractOrmEntity#initFields()
-     */
-    @Override
-    public Fields initFields()
     {
 	// TODO Auto-generated method stub
 	return null;
