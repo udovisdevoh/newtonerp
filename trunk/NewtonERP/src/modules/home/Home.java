@@ -1,9 +1,10 @@
 package modules.home;
 
+import modules.home.actions.GetHome;
 import newtonERP.module.Module;
 
 /**
- * @author cloutierJo module servant a généré les information de la page
+ * @author cloutierJo LemayPa module servant a généré les information de la page
  *         d'aceuil
  */
 public class Home extends Module
@@ -14,9 +15,6 @@ public class Home extends Module
     public Home()
     {
 	super();
-	// TODO: le home module est a faire en entié, si quelqu'un se porte
-	// volontaire (au moin pour analiser se qu'il doit contenir, je n'en sui
-	// pas certain présentement), est-ce qu'elle contien les méthode de
-	// login ou pas?
+	setDefaultAction(new GetHome());
     }
 }
