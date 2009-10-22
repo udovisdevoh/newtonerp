@@ -3,7 +3,6 @@ package modules.userRightModule.entityDefinitions;
 import java.util.Hashtable;
 import java.util.Vector;
 
-import modules.userRightModule.UserRightModule;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.BaseAction;
@@ -23,6 +22,7 @@ public class UserList extends AbstractEntity implements ListViewable
     private static Vector<String> columnTitleList;
     private static Hashtable<String, AbstractAction> globalActionButtonList;
     private static Hashtable<String, AbstractAction> specificActionButtonList;
+    private Module currentModule;
     private Vector<User> data = new Vector<User>();
 
     @Override
@@ -104,17 +104,18 @@ public class UserList extends AbstractEntity implements ListViewable
     }
 
     @Override
-    public Module getSubmitModule() throws EntityException
+    public Module getCurrentModule() throws EntityException
     {
-	// TODO Auto-generated method stub
-	/*
-	 * if (submitModule == null) throw new EntityException(
-	 * "Missing submit module, set it with setSubmitModule()");
-	 * 
-	 * return submitModule;
-	 */
+	if (currentModule == null)
+	    throw new EntityException(
+		    "Vous devez setter le module courrant dans le viewer avec setCurrentModule()");
 
-	return new UserRightModule();
+	return currentModule;
+    }
+
+    public void setCurrentModule(Module module)
+    {
+	currentModule = module;
     }
 
     @Override

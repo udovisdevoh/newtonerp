@@ -1,5 +1,6 @@
 package newtonERP.viewers;
 
+import newtonERP.module.BaseAction;
 import newtonERP.serveur.Servlet;
 import newtonERP.viewers.viewables.PromptViewable;
 
@@ -26,6 +27,7 @@ public class PromptViewer
 	String html = "";
 	try
 	{
+	    String actionName;
 	    String formActionUrl = Servlet.makeLink(entity.getSubmitModule(),
 		    entity.getSubmitAction())
 		    + "?user=" + entity.getCurrentUserName();

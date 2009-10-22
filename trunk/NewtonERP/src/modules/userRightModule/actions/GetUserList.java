@@ -3,6 +3,7 @@ package modules.userRightModule.actions;
 import java.util.Hashtable;
 import java.util.Vector;
 
+import modules.userRightModule.UserRightModule;
 import modules.userRightModule.entityDefinitions.User;
 import modules.userRightModule.entityDefinitions.UserList;
 import newtonERP.module.AbstractAction;
@@ -37,6 +38,11 @@ public class GetUserList extends AbstractAction
 
 	for (AbstractOrmEntity user : userVectorFromOrm)
 	    userList.addUser((User) (user));
+
+	// TODO: Problème: c'est très bizare de devoir recréer un objet de
+	// module pour spécifier quel module sera responsable des actions -
+	// Guillaume
+	userList.setCurrentModule(new UserRightModule());
 
 	return userList;
     }
