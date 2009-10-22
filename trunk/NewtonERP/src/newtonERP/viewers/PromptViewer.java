@@ -46,9 +46,8 @@ public class PromptViewer
 			+ "\" value=\"" + inputValue + "\"></td></tr>";
 	    }
 
-	    html += "<tr><td colspan=\"2\" align=\"center\"><input type=\"submit\" value=\""
+	    html += "<tr><td colspan=\"2\" align=\"center\"><input type=\"submit\" name=\"submit\" value=\""
 		    + entity.getButtonCaption() + "\"></td></tr>";
-
 	    html += "</table>";
 
 	    html += "</form>";
