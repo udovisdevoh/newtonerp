@@ -208,13 +208,14 @@ public class Orm
     }
 
     /**
-     * Use only in complex situations. Use buildWhereClauseForQuery instead
+     * Use only for complex queries. Use buildWhereClauseForQuery instead
      * 
      * Method used to build the where clause for the delete, select and update
      * methods.
      * 
      * @param sqlQuery the non-finished sqlQuery that has been produced
-     * @param searchCriterias the parameters of the where clause
+     * @param searchCriterias the parameters of the where clause under form of
+     *            strings
      * @return sqlQuery the sqlQuery with the where statement
      */
     private static String buildWhereClauseForQuery(String sqlQuery,
@@ -226,14 +227,14 @@ public class Orm
 	for (String parameter : searchCriterias)
 	    sqlQuery += parameter;
 
-	return sqlQuery;
+	return sqlQuery + ";";
     }
 
     /**
      * Method used to build the where clause for the query
      * 
-     * @param sqlQuery
-     * @param searchEntities
+     * @param sqlQuery the non-finished sqlQuery
+     * @param searchEntities the entities used for the search
      * @return the sqlQuery
      */
     private static String buildWhereClauseForQuery(
@@ -254,23 +255,22 @@ public class Orm
 	    }
 	}
 
-	return sqlQuery = sqlQuery.substring(0, sqlQuery.length() - 2) + ");";
+	return sqlQuery = sqlQuery.substring(0, sqlQuery.length() - 2) + ";";
     }
 
     /**
      * Method used internally by the update method to build the set statement
      * 
-     * @param data
-     * @param sqlQuery
-     * @return sqlQuery the sqlQuery with the set statement
+     * @param data the data from the entities
+     * @param sqlQuery the non-finished sqlQuery
+     * @return the sqlQuery
      */
-    @SuppressWarnings("unchecked")
     private static String buildSetClauseForQuery(
 	    Hashtable<String, String> data, String sqlQuery)
     {
 	// We iterate through the entity containing changes to build the SET
 	// statement
-	Iterator keySetIterator = data.keySet().iterator();
+	Iterator<String> keySetIterator = data.keySet().iterator();
 
 	while (keySetIterator.hasNext())
 	{

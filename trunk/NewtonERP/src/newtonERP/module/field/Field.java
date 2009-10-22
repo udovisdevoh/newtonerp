@@ -10,8 +10,10 @@ import newtonERP.module.exception.InvalidOperatorException;
  */
 public abstract class Field
 {
-    private String name;
-    private String shortName;
+    private String name; // Name is the name that will be visible by the
+			 // end-user
+    private String shortName; // Short name is the name that will be used
+			      // internally
 
     /**
      * default constructor
