@@ -148,6 +148,9 @@ public class ListViewer
 	html += "<form method=\"POST\" name=\"" + actionName + "\" action=\""
 		+ formActionUrl + "\">";
 
+	html += "<input type=\"hidden\" name=\"" + key + "\" value=\"" + value
+		+ "\">";
+
 	html += "<input type=\"submit\" value=\"" + buttonCaption + "\">";
 
 	html += "</form>";
