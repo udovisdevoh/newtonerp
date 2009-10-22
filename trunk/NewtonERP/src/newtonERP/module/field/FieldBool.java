@@ -10,7 +10,7 @@ import newtonERP.module.exception.InvalidOperatorException;
  */
 public abstract class FieldBool extends Field
 {
-    boolean data;
+    Boolean data;
     String operator;
 
     /**
@@ -20,7 +20,7 @@ public abstract class FieldBool extends Field
      * @param shortName nom du champ qui sera utiliser a l'interne
      * @param data donne du champ
      */
-    public FieldBool(String name, String shortName, boolean data)
+    public FieldBool(String name, String shortName, Boolean data)
     {
 	super(name, shortName);
 	this.data = data;
@@ -32,10 +32,10 @@ public abstract class FieldBool extends Field
      */
     public FieldBool(String name, String shortName)
     {
-	this(name, shortName, false);
+	this(name, shortName, null);
     }
 
-    private void setDataB(boolean data)
+    private void setDataB(Boolean data)
     {
 	this.data = data;
     }
@@ -43,7 +43,7 @@ public abstract class FieldBool extends Field
     /**
      * @param data the data to set
      */
-    public void setData(boolean data)
+    public void setData(Boolean data)
     {
 	setDataB(data);
     }
@@ -53,7 +53,7 @@ public abstract class FieldBool extends Field
      */
     public String getDataString()
     {
-	return ((Boolean) data).toString();
+	return (data).toString();
     }
 
     /**

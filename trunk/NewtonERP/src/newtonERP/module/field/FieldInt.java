@@ -10,7 +10,7 @@ import newtonERP.module.exception.InvalidOperatorException;
  */
 public class FieldInt extends Field
 {
-    int data;
+    Integer data;
     String operator;
 
     /**
@@ -20,7 +20,7 @@ public class FieldInt extends Field
      * @param shortName nom du champ qui sera utiliser a l'interne
      * @param data donne du champ
      */
-    public FieldInt(String name, String shortName, int data)
+    public FieldInt(String name, String shortName, Integer data)
     {
 	super(name, shortName);
 	this.data = data;
@@ -32,7 +32,7 @@ public class FieldInt extends Field
      */
     public FieldInt(String name, String shortName)
     {
-	this(name, shortName, 0);
+	this(name, shortName, null);
     }
 
     /**
@@ -43,7 +43,7 @@ public class FieldInt extends Field
 	return data;
     }
 
-    private void setDataI(int data)
+    private void setDataI(Integer data)
     {
 	this.data = data;
     }
@@ -51,7 +51,7 @@ public class FieldInt extends Field
     /**
      * @param data the data to set
      */
-    public void setData(int data)
+    public void setData(Integer data)
     {
 	setDataI(data);
     }

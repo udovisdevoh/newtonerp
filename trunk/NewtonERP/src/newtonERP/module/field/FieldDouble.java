@@ -10,7 +10,7 @@ import newtonERP.module.exception.InvalidOperatorException;
  */
 public class FieldDouble extends Field
 {
-    double data;
+    Double data;
     String operator;
 
     /**
@@ -20,7 +20,7 @@ public class FieldDouble extends Field
      * @param shortName nom du champ qui sera utiliser a l'interne
      * @param data donne du champ
      */
-    public FieldDouble(String name, String shortName, double data)
+    public FieldDouble(String name, String shortName, Double data)
     {
 	super(name, shortName);
 	this.data = data;
@@ -32,7 +32,7 @@ public class FieldDouble extends Field
      */
     public FieldDouble(String name, String shortName)
     {
-	this(name, shortName, 0.);
+	this(name, shortName, null);
     }
 
     /**
@@ -43,7 +43,7 @@ public class FieldDouble extends Field
 	return data;
     }
 
-    private void setDataD(double data)
+    private void setDataD(Double data)
     {
 	this.data = data;
     }
@@ -51,7 +51,7 @@ public class FieldDouble extends Field
     /**
      * @param data the data to set
      */
-    public void setData(double data)
+    public void setData(Double data)
     {
 	setDataD(data);
     }

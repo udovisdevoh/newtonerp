@@ -10,6 +10,7 @@ import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.BaseAction;
 import newtonERP.module.Module;
 import newtonERP.module.exception.EntityException;
+import newtonERP.module.exception.InvalidOperatorException;
 import newtonERP.module.field.Field;
 import newtonERP.module.field.FieldInt;
 import newtonERP.module.field.FieldString;
@@ -25,10 +26,6 @@ import newtonERP.viewers.viewables.PromptViewable;
  */
 public class User extends AbstractOrmEntity implements PromptViewable
 {
-    private String buttonCaption;
-    private AbstractAction submitAction;
-    private Module submitModule;
-
     public Fields initFields()
     {
 	Vector<Field> fields = new Vector<Field>();
@@ -63,7 +60,7 @@ public class User extends AbstractOrmEntity implements PromptViewable
     @Override
     public String getButtonCaption()
     {
-	return buttonCaption;
+	return "Save profile";
     }
 
     @Override
@@ -85,7 +82,7 @@ public class User extends AbstractOrmEntity implements PromptViewable
     }
 
     @Override
-    public AbstractAction getSubmitAction()
+    public AbstractAction getSubmitAction() throws EntityException
     {
 	return submitAction;
     }
@@ -97,7 +94,7 @@ public class User extends AbstractOrmEntity implements PromptViewable
      */
     public void setSubmitAction(AbstractAction submitAction)
     {
-	this.submitAction = submitAction;
+	// TODO : To be completed or changed
     }
 
     /**
@@ -107,13 +104,21 @@ public class User extends AbstractOrmEntity implements PromptViewable
      */
     public void setSubmitModule(Module submitModule)
     {
-	this.submitModule = submitModule;
+	// TODO : To be completed or changed
     }
 
     @Override
     public Module getSubmitModule() throws EntityException
     {
-	return submitModule;
+	// TODO Auto-generated method stub
+	/*
+	 * if (submitModule == null) throw new EntityException(
+	 * "Missing submit module, set it with setSubmitModule()");
+	 * 
+	 * return submitModule;
+	 */
+
+	return new UserRightModule();
     }
 
     public AbstractEntity newUI(Hashtable<String, String> parameters)
@@ -130,24 +135,25 @@ public class User extends AbstractOrmEntity implements PromptViewable
 
     public AbstractEntity editUI(Hashtable<String, String> parameters)
     {
-	if (parameters.containsKey("submit"))
-	{
-	    edit("PKuserID='" + getDataString("PKuserID") + "'");
-	}
-
-	User retUser = (User) get("name='" + getDataString("name") + "'")
-		.get(0); // on discarte les autre entity s'il y a lieu
-
-	retUser.setSubmitAction(new BaseAction("Edit", this));
-	retUser.setSubmitModule(new UserRightModule());
-
-	return retUser;
+	// TODO Auto-generated method stub
+	return null;
     }
 
     public AbstractEntity getUI(Hashtable<String, String> parameters)
+	    throws InvalidOperatorException
     {
-	User retUser = (User) get("name='" + getDataString("name") + "'")
-		.get(0); // on discarte les autre entity s'il y a lieu
+	Vector<AbstractOrmEntity> entities = new Vector<AbstractOrmEntity>();
+
+	User user = new User();
+	user.getFields().getField("name").setOperator("=");
+	user.getFields().getField("name").setData(getDataString("name"));
+
+	entities.add(user);
+
+	User retUser = (User) get(entities).get(0);
+
+	// User retUser = (User) get("name='" + getDataString("name") + "'")
+	// .get(0); // on discarte les autre entity s'il y a lieu
 	retUser.setSubmitAction(new BaseAction("Get", this));
 
 	retUser.setSubmitModule(new UserRightModule());

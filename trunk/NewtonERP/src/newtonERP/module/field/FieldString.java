@@ -32,7 +32,7 @@ public class FieldString extends Field
      */
     public FieldString(String name, String shortName)
     {
-	this(name, shortName, "");
+	this(name, shortName, null);
     }
 
     /**

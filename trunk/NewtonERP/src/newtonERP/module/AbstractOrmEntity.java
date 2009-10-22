@@ -4,6 +4,7 @@ import java.util.Hashtable;
 import java.util.Vector;
 
 import modules.userRightModule.entityDefinitions.User;
+import newtonERP.module.exception.InvalidOperatorException;
 import newtonERP.module.field.Fields;
 import newtonERP.orm.Orm;
 import newtonERP.orm.exceptions.OrmException;
@@ -123,8 +124,10 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      * 
      * @param parameters parametre suplementaire
      * @return todo: qu'Est-ce que l'on devrai retourné en general?
+     * @throws InvalidOperatorException
      */
-    public abstract AbstractEntity getUI(Hashtable<String, String> parameters);
+    public abstract AbstractEntity getUI(Hashtable<String, String> parameters)
+	    throws InvalidOperatorException;
 
     /**
      * trouve l'entity selon les critere disponible, retourne le premier trouve
@@ -151,6 +154,25 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	}
 
 	return retUserList;
+    }
+
+    /**
+     * @param entities
+     * @return
+     */
+    public Vector<AbstractOrmEntity> get(Vector<AbstractOrmEntity> entities)
+    {
+	Vector<AbstractOrmEntity> retEntities = null;
+
+	try
+	{
+	    retEntities = Orm.select(entities);
+	} catch (OrmException e)
+	{
+	    e.printStackTrace();
+	}
+
+	return retEntities;
     }
 
 }
