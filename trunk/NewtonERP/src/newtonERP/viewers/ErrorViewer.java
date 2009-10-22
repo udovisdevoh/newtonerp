@@ -8,6 +8,12 @@ package newtonERP.viewers;
 
 public abstract class ErrorViewer
 {
+    /**
+     * Gets the html code for the errorPage
+     * 
+     * @param errorMessage stacktrace de l'exception provenant du servlet
+     * @return html
+     */
     public static String getErrorPage(String errorMessage)
     {
 
@@ -16,7 +22,7 @@ public abstract class ErrorViewer
 		+ "<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"fr\" >"
 		+ "<head><title>ERROR</title>"
 		+ "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-1\" /></head>"
-		+ "<h1>Error</h1><body><p><pre>"
+		+ "<body><h1>Error</h1><p><pre>"
 		+ errorMessage
 		+ "</pre></p></body></html>";
 
