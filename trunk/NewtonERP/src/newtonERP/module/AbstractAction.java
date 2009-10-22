@@ -33,7 +33,7 @@ public abstract class AbstractAction
      * @param parameters list de parametre utilisable par l'action, une partie
      *            d'entre eux sera transforme en entite
      * @return l,entite resultante de l'action
-     * @throws Exception
+     * @throws Exception remonte
      */
     public AbstractEntity perform(Hashtable<String, String> parameters)
 	    throws Exception

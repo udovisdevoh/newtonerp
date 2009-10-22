@@ -4,10 +4,10 @@ import java.util.Hashtable;
 import java.util.Vector;
 
 import modules.userRightModule.UserRightModule;
-import modules.userRightModule.actions.GetUserList;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
+import newtonERP.module.BaseAction;
 import newtonERP.module.Module;
 import newtonERP.module.exception.EntityException;
 import newtonERP.module.field.Field;
@@ -91,7 +91,8 @@ public class User extends AbstractOrmEntity implements PromptViewable
 	 * return submitAction;
 	 */
 	// TODO: remove dummy code
-	return new GetUserList(); // TODO : a remplacé des que possible c'Est
+	return new BaseAction("Get", this); // TODO : a remplacé des que
+					    // possible c'Est
 	// pour évité une null pointer...
     }
 
@@ -151,8 +152,7 @@ public class User extends AbstractOrmEntity implements PromptViewable
     {
 	User retUser = (User) get("name='" + getDataString("name") + "'")
 		.get(0); // on discarte les autre entity s'il y a lieu
-	// retUser.setSubmitAction(new GetUser()); // todo: find a way to call
-	// baseAction
+	retUser.setSubmitAction(new BaseAction("Get", this));
 
 	retUser.setSubmitModule(new UserRightModule());
 

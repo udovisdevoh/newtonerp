@@ -12,7 +12,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
+import newtonERP.module.BaseAction;
+import newtonERP.module.Module;
 import newtonERP.viewers.ErrorViewer;
 import newtonERP.viewers.Viewer;
 
@@ -64,7 +67,7 @@ public class Servlet extends AbstractHandler
      * @param target url d'apelle
      * @param request la request
      * @return le Viewable
-     * @throws Exception
+     * @throws Exception remonte
      */
     @SuppressWarnings("unchecked")
     public AbstractEntity urlToAction(String target, HttpServletRequest request)
@@ -110,4 +113,36 @@ public class Servlet extends AbstractHandler
 		parameter);
     }
 
+    /**
+     * @param module module a lier
+     * @return le lien relatif vers les ressource demander
+     */
+    static public String makeLink(Module module)
+    {
+	return "/" + module.getClass().getSimpleName();
+    }
+
+    /**
+     * @param module module a lier
+     * @param action action a lier
+     * @return le lien relatif vers les ressource demander
+     */
+    static public String makeLink(Module module, AbstractAction action)
+    {
+	String link = "";
+	link += "/" + module.getClass().getSimpleName();
+	if (action instanceof BaseAction)
+	{
+	    String actionName = ((BaseAction) action).getActionName();
+	    String entityName = ((BaseAction) action).getEntity().getClass()
+		    .getSimpleName();
+	    link += "/" + actionName + "/" + entityName;
+	}
+	else
+	{
+	    link += "/" + action.getClass().getSimpleName();
+	}
+
+	return link;
+    }
 }

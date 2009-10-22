@@ -12,26 +12,17 @@ import java.util.Hashtable;
 public class BaseAction extends AbstractAction
 {
 
-    String actionName;
-    AbstractOrmEntity entity;
+    private String actionName;
+    private AbstractOrmEntity entity;
 
     /**
-     * @param actionName
-     * @param module
+     * @param actionName nom de l'Action (Get, Edit New Delete)
+     * @param entity l'entity a utiliser
      */
     public BaseAction(String actionName, AbstractOrmEntity entity)
     {
 	this.actionName = actionName;
 	this.entity = entity;
-    }
-
-    /**
-     * @param entityUsable
-     */
-    public BaseAction(AbstractEntity entityUsable)
-    {
-	super(entityUsable);
-	// TODO Auto-generated constructor stub
     }
 
     /**
@@ -73,7 +64,8 @@ public class BaseAction extends AbstractAction
      * newtonERP.module.AbstractAction#doAction(newtonERP.module.AbstractEntity,
      * java.util.Hashtable)
      */
-    protected AbstractEntity doAction(AbstractEntity entity,
+    protected AbstractEntity doAction(
+	    @SuppressWarnings("hiding") AbstractEntity entity,
 	    Hashtable<String, String> parameters) throws Exception
     {
 	throw new Exception(
