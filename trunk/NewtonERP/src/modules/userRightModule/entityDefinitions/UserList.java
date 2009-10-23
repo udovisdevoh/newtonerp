@@ -95,9 +95,9 @@ public class UserList extends AbstractEntity implements ListViewable
 	    // TODO: remove dummy code: must not recreate actions
 	    specificActionButtonList = new Hashtable<String, AbstractAction>();
 	    // TODO Make sure new User() is the appropriated behavior we want
-	    specificActionButtonList.put("Modifier", new BaseAction("edit",
+	    specificActionButtonList.put("Modifier", new BaseAction("Edit",
 		    new User()));
-	    specificActionButtonList.put("Effacer", new BaseAction("delete",
+	    specificActionButtonList.put("Effacer", new BaseAction("Delete",
 		    new User()));
 	}
 	return specificActionButtonList;

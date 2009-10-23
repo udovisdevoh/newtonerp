@@ -145,7 +145,7 @@ public class ListViewer
 	String formActionUrl = Servlet.makeLink(module, action);
 
 	String html = "";
-	html += "<form method=\"POST\" name=\"" + actionName + "\" action=\""
+	html += "<form method=\"GET\" name=\"" + actionName + "\" action=\""
 		+ formActionUrl + "\">";
 
 	html += "<input type=\"hidden\" name=\"" + key + "\" value=\"" + value
