@@ -68,12 +68,6 @@ public class User extends AbstractOrmEntity implements PromptViewable
     }
 
     @Override
-    public String getCurrentUserName()
-    {
-	return "admin";
-    }
-
-    @Override
     public Hashtable<String, String> getInputList() throws OrmException
     {
 	return getOrmizableData();

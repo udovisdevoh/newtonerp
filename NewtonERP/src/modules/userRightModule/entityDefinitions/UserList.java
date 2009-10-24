@@ -45,13 +45,6 @@ public class UserList extends AbstractEntity implements ListViewable
     }
 
     @Override
-    public String getCurrentUserName()
-    {
-	// TODO Remove hack
-	return "admin";
-    }
-
-    @Override
     public Hashtable<String, AbstractAction> getGlobalActionButtonList()
     {
 	if (globalActionButtonList == null)

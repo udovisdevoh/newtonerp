@@ -3,6 +3,7 @@ package newtonERP.serveur;
 import java.util.Hashtable;
 
 import modules.userRightModule.actions.RightCheck;
+import newtonERP.Authentication;
 import newtonERP.ListModule;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.Module;
@@ -34,7 +35,7 @@ public class CommandRouteur
 	Hashtable<String, String> rightParam = new Hashtable<String, String>();
 	// on verifi les droit d'acces a l'Action
 
-	rightParam.put("name", parameter.get("user"));
+	rightParam.put("name", Authentication.getCurrentUserName());
 	rightParam.put("module", moduleName);
 	rightParam.put("action", actionName);
 	if (entityName != null)

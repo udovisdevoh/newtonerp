@@ -1,2 +1,2 @@
-http://localhost:47098/UserRightModule/Get/User?user=admin&name=admin
-http://localhost:47098/UserRightModule/GetUserList?user=admin
+http://localhost:47098/UserRightModule/Edit/User?PKuserID=1
+http://localhost:47098/UserRightModule/GetUserList
