@@ -25,7 +25,7 @@ public class VendorInvoice extends AbstractOrmEntity
     public Fields initFields()
     {
 	Vector<Field> fields = new Vector<Field>();
-	fields.add(new FieldInt("numéro de la Facture", "pKVendorInvoiceID"));
+	fields.add(new FieldInt("Numéro de la Facture", "PKVendorInvoiceID"));
 	fields.add(new FieldDouble("Total de la Facture", "total"));// total de
 	// la
 	// facture
@@ -38,8 +38,8 @@ public class VendorInvoice extends AbstractOrmEntity
     public VendorInvoice getCostumerEntity()
     {
 	Vector<String> search = new Vector<String>();
-	search.add("pKCostumerInvoiceID="
-		+ getFields().getField("pKCostumerInvoiceID"));
+	search.add("PKCostumerInvoiceID="
+		+ getFields().getField("PKCostumerInvoiceID"));
 
 	try
 	{

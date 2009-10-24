@@ -25,11 +25,11 @@ public class CustomerInvoice extends AbstractOrmEntity
     public Fields initFields()
     {
 	Vector<Field> fields = new Vector<Field>();
-	fields.add(new FieldInt("numéro de la Facture", "pKCostumerInvoiceID"));
+	fields.add(new FieldInt("Numéro de la Facture", "PKCustomerInvoiceID"));
 	fields.add(new FieldDouble("Total de la Facture", "total"));// total de
 	// la
 	// facture
-	fields.add(new FieldInt("Numéros du client", "costumerID"));
+	fields.add(new FieldInt("Numéros du client", "customerID"));
 	fields.add(new FieldInt("Date de la facture", "date")); // ddmmyyyy a
 	// respecter
 	return new Fields(fields);
@@ -38,8 +38,8 @@ public class CustomerInvoice extends AbstractOrmEntity
     public CustomerInvoice getCostumerEntity()
     {
 	Vector<String> search = new Vector<String>();
-	search.add("pKCostumerInvoiceID="
-		+ getFields().getField("pKCostumerInvoiceID"));
+	search.add("PKCostumerInvoiceID="
+		+ getFields().getField("PKCostumerInvoiceID"));
 
 	try
 	{
