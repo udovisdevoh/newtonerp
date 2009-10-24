@@ -13,14 +13,17 @@ import newtonERP.module.exception.FieldNotFoundException;
  */
 public class Fields implements Iterable<Field>
 {
-    Hashtable<String, Field> fields;
+    Hashtable<String, Field> fieldsData;
 
     /**
      * constructeur vide, permet de construire un Fields sans aucun champ
      */
     public Fields()
     {
-	fields = new Hashtable<String, Field>();
+	fieldsData = new Hashtable<String, Field>();// RENAMÉ pour ne pas le
+	// conforndre avec une
+	// instance de la classe
+	// Fields
     }
 
     /**
@@ -28,11 +31,11 @@ public class Fields implements Iterable<Field>
      */
     public Fields(Vector<Field> fields)
     {
-	this.fields = new Hashtable<String, Field>();
+	fieldsData = new Hashtable<String, Field>();
 	for (Field field : fields)
 	{
 	    field.getShortName();
-	    this.fields.put(field.getShortName(), field);
+	    fieldsData.put(field.getShortName(), field);
 	}
     }
 
@@ -41,7 +44,7 @@ public class Fields implements Iterable<Field>
      */
     public Collection<Field> getFields()
     {
-	return fields.values();
+	return fieldsData.values();
     }
 
     /**
@@ -50,7 +53,7 @@ public class Fields implements Iterable<Field>
      */
     public Field getField(String shortName)
     {
-	return fields.get(shortName);
+	return fieldsData.get(shortName);
     }
 
     /**
@@ -59,9 +62,9 @@ public class Fields implements Iterable<Field>
      */
     public void setField(Field field) throws FieldNotFoundException
     {
-	if (fields.containsKey(field.getShortName()))
+	if (fieldsData.containsKey(field.getShortName()))
 	{
-	    fields.put(field.getShortName(), field);
+	    fieldsData.put(field.getShortName(), field);
 	}
 	else
 	    throw new FieldNotFoundException(field.getShortName());
@@ -80,11 +83,11 @@ public class Fields implements Iterable<Field>
 	try
 	{
 	    if (data instanceof String)
-		fields.get(shortName).setData((String) data);
+		fieldsData.get(shortName).setData((String) data);
 	    else if (data instanceof Number)
-		fields.get(shortName).setData(data + "");
+		fieldsData.get(shortName).setData(data + "");
 	    else if (data instanceof Boolean)
-		fields.get(shortName).setData(((Boolean) data).toString());
+		fieldsData.get(shortName).setData(((Boolean) data).toString());
 	} catch (NullPointerException e)
 	{
 	    throw new FieldNotFoundException(shortName);
@@ -115,10 +118,21 @@ public class Fields implements Iterable<Field>
     public Hashtable<String, String> getHashTableFrom()
     {
 	Hashtable<String, String> hash = new Hashtable<String, String>();
-	for (Field field : fields.values())
+	for (Field field : fieldsData.values())
 	{
 	    if (field.getDataString() != null)
 		hash.put(field.getShortName(), field.getDataString());
+	}
+	return hash;
+    }
+
+    public Hashtable<String, String> getHashTableFromWithLongNames()
+    {
+	Hashtable<String, String> hash = new Hashtable<String, String>();
+	for (Field field : fieldsData.values())
+	{
+	    if (field.getDataString() != null)
+		hash.put(field.getName(), field.getDataString());
 	}
 	return hash;
     }
@@ -137,24 +151,43 @@ public class Fields implements Iterable<Field>
 	if (!(obj instanceof Fields))
 	    return false;
 	Fields other = (Fields) obj;
-	if (fields == null)
+	if (fieldsData == null)
 	{
-	    if (other.fields != null)
+	    if (other.fieldsData != null)
 		return false;
 	}
-	else if (!fields.equals(other.fields))
+	else if (!fieldsData.equals(other.fieldsData))
 	    return false;
 	return true;
     }
 
     public String toString()
     {
-	return fields.toString();
+	return fieldsData.toString();
     }
 
     @Override
     public Iterator<Field> iterator()
     {
-	return fields.values().iterator();
+	return fieldsData.values().iterator();
+    }
+
+    /**
+     * @return Liste des clefs des fields
+     */
+    public Vector<String> getKeyList()
+    {
+	return new Vector<String>(fieldsData.keySet());
+    }
+
+    /**
+     * @return Liste des clefs des fields
+     */
+    public Vector<String> getLongFieldNameList()
+    {
+	Vector<String> longFieldName = new Vector<String>();
+	for (Field field : this)
+	    longFieldName.add(field.getName());
+	return longFieldName;
     }
 }

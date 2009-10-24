@@ -32,7 +32,7 @@ public class ListViewer
     {
 	String html = "";
 
-	html += "<h1>" + entity.getTitle() + "</h1>";
+	html += "<h1>Liste des " + entity.getClass().getSimpleName() + "</h1>";
 
 	html += "<table border=\"1\" cellpadding=\"3\" cellspacing=\"0\" style=\"background-color:#FFF\">";
 
@@ -82,25 +82,11 @@ public class ListViewer
 		html += "<td>" + cell + "</td>";
 	    }
 
-	    html += getSpecificButtonList(entity, getKeyName(entity
-		    .getColumnTitleList()), getKeyValue(row), module);
+	    html += getSpecificButtonList(entity, entity.getKeyName(), entity
+		    .getKeyValue(), module);
 	}
 
 	return html + "</tr>";
-    }
-
-    private static String getKeyValue(Vector<String> row)
-    {
-	for (String value : row)
-	    return value;
-	return null;
-    }
-
-    private static String getKeyName(Iterable<String> columnTitleList)
-    {
-	for (String value : columnTitleList)
-	    return value;
-	return null;
     }
 
     private static String getSpecificButtonList(ListViewable entity,

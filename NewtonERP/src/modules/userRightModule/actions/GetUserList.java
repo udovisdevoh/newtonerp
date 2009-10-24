@@ -5,10 +5,10 @@ import java.util.Vector;
 
 import modules.userRightModule.UserRightModule;
 import modules.userRightModule.entityDefinitions.User;
-import modules.userRightModule.entityDefinitions.UserList;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
+import newtonERP.module.EntityList;
 import newtonERP.orm.Orm;
 import newtonERP.orm.exceptions.OrmException;
 
@@ -34,7 +34,7 @@ public class GetUserList extends AbstractAction
 	    e.printStackTrace();
 	}
 
-	UserList userList = new UserList();
+	EntityList userList = new EntityList();
 
 	for (AbstractOrmEntity user : userVectorFromOrm)
 	    userList.addUser((User) (user));

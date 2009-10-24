@@ -189,4 +189,13 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	return get(entities);
     }
 
+    public Hashtable<String, String> getInputList() throws OrmException
+    {
+	return getFields().getHashTableFromWithLongNames();
+    }
+
+    public String getPrimaryKeyName()
+    {
+	return "PK" + this.getClass().getSimpleName() + "ID";
+    }
 }

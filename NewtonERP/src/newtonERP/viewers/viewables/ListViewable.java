@@ -14,11 +14,6 @@ import newtonERP.module.exception.EntityException;
 public interface ListViewable
 {
     /**
-     * @return Titre principal de la liste
-     */
-    public String getTitle();
-
-    /**
      * @return Module à utiliser en ce moment
      */
     public Module getCurrentModule() throws EntityException;
@@ -49,4 +44,14 @@ public interface ListViewable
      * @return Liste de rangées
      */
     public Vector<Vector<String>> getRowValues();
+
+    /**
+     * @return Nom de la clef pour identifier une entité dans la liste
+     */
+    public String getKeyName();
+
+    /**
+     * @return valeur de la clef pour identifier une entité dans la liste
+     */
+    public String getKeyValue();
 }

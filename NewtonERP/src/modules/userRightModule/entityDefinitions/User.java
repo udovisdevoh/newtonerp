@@ -32,12 +32,13 @@ public class User extends AbstractOrmEntity implements PromptViewable
 
     public Fields initFields()
     {
-	Vector<Field> fields = new Vector<Field>();
-	fields.add(new FieldInt("Numéro de user", "PKuserID"));
-	fields.add(new FieldString("Nom", "name"));
-	fields.add(new FieldString("Mot de passe", "password"));
-	fields.add(new FieldInt("Numéro de groupe", "groupID"));
-	return new Fields(fields);
+	Vector<Field> fieldsData = new Vector<Field>();// Renamé en fieldsData
+	// pour enlever confusion
+	fieldsData.add(new FieldInt("Numéro de user", getPrimaryKeyName()));
+	fieldsData.add(new FieldString("Nom", "name"));
+	fieldsData.add(new FieldString("Mot de passe", "password"));
+	fieldsData.add(new FieldInt("Numéro de groupe", "groupID"));
+	return new Fields(fieldsData);
     }
 
     /**
@@ -65,12 +66,6 @@ public class User extends AbstractOrmEntity implements PromptViewable
     public String getButtonCaption()
     {
 	return buttonCaption;
-    }
-
-    @Override
-    public Hashtable<String, String> getInputList() throws OrmException
-    {
-	return getOrmizableData();
     }
 
     @Override
@@ -136,7 +131,8 @@ public class User extends AbstractOrmEntity implements PromptViewable
 	    throws InvalidOperatorException
     {
 	if (parameters.containsKey("submit"))
-	    edit("PKuserID='" + getDataString("PKuserID") + "'");
+	    edit(getPrimaryKeyName() + "='"
+		    + getDataString(getPrimaryKeyName()) + "'");
 
 	for (Field field : getFields())
 	    field.setOperator("=");
