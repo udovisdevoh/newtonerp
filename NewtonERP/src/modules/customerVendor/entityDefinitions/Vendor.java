@@ -24,7 +24,7 @@ public class Vendor extends AbstractOrmEntity
     public Fields initFields()
     {
 	Vector<Field> fields = new Vector<Field>();
-	fields.add(new FieldInt("Numéro du Fournisseur", "PKVendorID"));
+	fields.add(new FieldInt("Numéro du Fournisseur", getPrimaryKeyName()));
 	fields.add(new FieldString("Nom du Fournisseur", "vendorName"));
 	fields.add(new FieldString("Téléphone du Fournisseur", "vendorPhone"));
 	fields.add(new FieldString("Adresse du Fournisseur", "vendorAddress"));
@@ -34,7 +34,8 @@ public class Vendor extends AbstractOrmEntity
     public Vendor getCostumerEntity()
     {
 	Vector<String> search = new Vector<String>();
-	search.add("PKVendorID=" + getFields().getField("PKVendorID"));
+	search.add(getPrimaryKeyName() + "="
+		+ getFields().getField(getPrimaryKeyName()));
 
 	try
 	{

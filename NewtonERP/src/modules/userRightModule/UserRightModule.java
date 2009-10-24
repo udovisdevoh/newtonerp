@@ -41,17 +41,17 @@ public class UserRightModule extends Module
 	    group.setData("groupName", "admin");
 	    Orm.insert(group);
 
-	    // retrouve le groupID
+	    // retrouve le groupsID
 	    Vector<String> search = new Vector<String>();
 	    search.add("groupName=" + "'admin'");
-	    int groupID = (Integer) ((Groups) Orm.select(group, search).get(0))
-		    .getData("PKgroupID");
+	    int groupsID = (Integer) ((Groups) Orm.select(group, search).get(0))
+		    .getData(group.getPrimaryKeyName());
 
 	    // cree le user
 	    User user = new User();
 	    user.setData("name", "admin");
 	    user.setData("password", "aaa");
-	    user.setData("groupID", groupID);
+	    user.setData("groupsID", groupsID);
 	    Orm.insert(user);
 
 	    int rightID;
@@ -59,25 +59,26 @@ public class UserRightModule extends Module
 
 	    // retrouve les rightID
 	    search.clear();
-	    search.add("ModuleName='" + this.getClass().getSimpleName() + "'");
+	    search.add("moduleName='" + this.getClass().getSimpleName() + "'");
 
 	    for (AbstractOrmEntity right : Orm.select(new Right(), search))
 	    {
-		rightID = (Integer) ((Right) right).getData("PKrightID");
+		rightID = (Integer) ((Right) right).getData(right
+			.getPrimaryKeyName());
 
 		// cree le groupRight
-		groupRight.setData("groupID", groupID);
+		groupRight.setData("groupsID", groupsID);
 		groupRight.setData("rightID", rightID);
 		Orm.insert(groupRight);
 	    }
 	} catch (OrmException e)
 	{
 	    e.printStackTrace();// FIXME: TODO: est-ce que ça doit vraiment être
-				// catché?
+	    // catché?
 	} catch (FieldNotCompatibleException e)
 	{
 	    e.printStackTrace();// FIXME: TODO: est-ce que ça doit vraiment être
-				// catché?
+	    // catché?
 	}
     }
 }

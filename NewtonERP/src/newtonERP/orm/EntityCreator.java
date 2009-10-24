@@ -52,18 +52,26 @@ public class EntityCreator
 		// We add each column to the hashtable plus it's value
 		for (Field field : fields)
 		{
-		    parameters.put(field.getShortName(), rs.getObject(field
-			    .getShortName()));
+		    String key = field.getShortName();
+		    Object value = rs.getObject(field.getShortName());
+		    if (value == null)// Lorsqu'une table est vide
+			break;
+
+		    parameters.put(key, value);
 		}
 
 		// We format the data into the newly created entity
-		entity.setOrmizableData(parameters);
+		if (parameters.size() > 0)
+		{
+		    entity.setOrmizableData(parameters);
 
-		// We add the entities to our vector of created entities
-		returnedEntities.add(entity);
+		    // We add the entities to our vector of created entities
+		    returnedEntities.add(entity);
+		}
 	    }
 	} catch (Exception e)
 	{
+	    e.printStackTrace();
 	    throw new OrmEntityCreationException(
 		    "Erreur à la création des entitées provenant d'une requête de l'orm : "
 			    + e.getMessage());

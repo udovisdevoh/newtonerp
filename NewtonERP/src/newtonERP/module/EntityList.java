@@ -1,6 +1,7 @@
 package newtonERP.module;
 
 import java.util.Hashtable;
+import java.util.Iterator;
 import java.util.Vector;
 
 import modules.userRightModule.entityDefinitions.User;
@@ -12,7 +13,8 @@ import newtonERP.viewers.viewables.ListViewable;
  * @author Guillaume Lacasse
  * 
  */
-public class EntityList extends AbstractEntity implements ListViewable
+public class EntityList extends AbstractEntity implements ListViewable,
+	Iterable<AbstractOrmEntity>
 {
     // Je ne sais pas comment initialiser un vector avec des valeurs par défault
     // en JAVA
@@ -60,9 +62,9 @@ public class EntityList extends AbstractEntity implements ListViewable
 	return userListInfo;
     }
 
-    public void addUser(User user)
+    public void addEntity(AbstractOrmEntity entity)
     {
-	data.add(user);
+	data.add(entity);
     }
 
     @Override
@@ -104,5 +106,17 @@ public class EntityList extends AbstractEntity implements ListViewable
     public String getKeyValue()
     {
 	return data.get(0).getFields().getField(getKeyName()).getDataString();
+    }
+
+    @Override
+    public String getInternalElementName()
+    {
+	return data.get(0).getClass().getSimpleName();
+    }
+
+    @Override
+    public Iterator<AbstractOrmEntity> iterator()
+    {
+	return data.iterator();
     }
 }

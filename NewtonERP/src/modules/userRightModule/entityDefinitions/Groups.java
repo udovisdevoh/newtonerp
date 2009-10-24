@@ -22,29 +22,36 @@ public class Groups extends AbstractOrmEntity
     public Fields initFields()
     {
 	Vector<Field> fields = new Vector<Field>();
-	fields.add(new FieldInt("Numéro du groupe", "PKgroupID"));
+	fields.add(new FieldInt("Numéro du groupe", getPrimaryKeyName()));
 	fields.add(new FieldString("Nom du groupe", "groupName"));
 	return new Fields(fields);
     }
 
     /**
-     * Searches the rights for this group by the groupID and then returns this
+     * Searches the rights for this group by the groupsID and then returns this
      * list
      * 
      * @return rightResult the right list
      */
-    public Vector<Right> getRightList()
+    public Vector<Right> getRightList() throws Exception
     {
 	Vector<Right> rightResult = new Vector<Right>();
-	Vector<String> search = new Vector<String>();
-	search.add("groupID=" + getFields().getField("PKgroupID"));
+	GroupRight groupRightSearch = new GroupRight();
+	String groupsId = getFields().getField(getPrimaryKeyName())
+		.getDataString();
+
+	groupRightSearch.getFields().setData("groupsID", groupsId);
+	groupRightSearch.getFields().getField("groupsID").setOperator("=");
+
 	try
 	{
-	    Vector<AbstractOrmEntity> groupRights = Orm.select(
-		    new GroupRight(), search);
-	    for (AbstractOrmEntity gr : groupRights)
+	    Vector<AbstractOrmEntity> groupRights = Orm
+		    .select(groupRightSearch);
+	    for (AbstractOrmEntity entity : groupRights)
 	    {
-		rightResult.add(((GroupRight) gr).getRightEntity());
+		GroupRight groupRight = (GroupRight) (entity);
+
+		rightResult.add(groupRight.getRightEntity());
 	    }
 	} catch (OrmException e)
 	{

@@ -8,7 +8,6 @@ import modules.userRightModule.entityDefinitions.User;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
 import newtonERP.orm.Orm;
-import newtonERP.orm.exceptions.OrmException;
 
 /**
  * @author cloutierJo
@@ -29,20 +28,21 @@ public class RightCheck extends AbstractAction
 	    System.out.println(user);
 	    for (Right right : user.getGroupsEntity().getRightList())
 	    {
-		if (right.getData("moduleName")
-			.equals(parameters.get("module"))
-			&& right.getData("actionName").equals(
-				parameters.get("action"))
-			&& (right.getData("entityName").equals(
-				parameters.get("entity")) || !parameters
-				.containsKey("entity")))
+		Object moduleName = right.getData("moduleName");
+		Object actionName = right.getData("actionName");
+		Object entityName = right.getData("entityName");
+
+		if (moduleName.equals(parameters.get("module"))
+			&& actionName.equals(parameters.get("action"))
+			&& entityName.equals(parameters.get("entity"))
+			|| !parameters.containsKey("entity"))
 		    return right;
 	    }
 
-	} catch (OrmException e)
+	} catch (Exception e)
 	{
-	    e.printStackTrace();// FIXME: Es-tu sur que ça doit être catché?
-				// -Guillaume
+	    e.printStackTrace();// FIXME: On devrait peut-être laisser DoAction
+	    // throw des exception
 	}
 	return null;
     }
