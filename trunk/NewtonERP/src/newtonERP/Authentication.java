@@ -1,7 +1,7 @@
 package newtonERP;
 
 /**
- * @author Guillaume Lacass Cette classe sert à authentifier un user de manière
+ * @author Guillaume Lacasse Cette classe sert à authentifier un user de manière
  *         hardcodée OU par session HTTP Le but de cette classe est d'être gérée
  *         par le code qui manipulera les sessions HTTP
  */
