@@ -40,7 +40,7 @@ public class EntityList extends AbstractEntity implements ListViewable,
 	    globalActionButtonList = new Hashtable<String, AbstractAction>();
 	    // TODO Make sure new User() is the appropriated behavior we want
 	    globalActionButtonList.put("Nouvel utilisateur", new BaseAction(
-		    "new", new User()));
+		    "New", new User()));
 	}
 	return globalActionButtonList;
     }

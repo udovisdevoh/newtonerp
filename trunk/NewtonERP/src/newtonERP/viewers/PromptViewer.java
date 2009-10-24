@@ -26,7 +26,6 @@ public class PromptViewer
 	String html = "";
 	try
 	{
-	    String actionName;
 	    String formActionUrl = Servlet.makeLink(entity.getSubmitModule(),
 		    entity.getSubmitAction());
 

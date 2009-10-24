@@ -275,7 +275,7 @@ public abstract class Module
      * @throws ModuleException voir le message...
      */
     public final AbstractEntity doAction(String actionName, String entityName,
-	    Hashtable<String, String> parameters) throws ModuleException
+	    Hashtable<String, String> parameters) throws Exception
     {
 	AbstractOrmEntity entity = (AbstractOrmEntity) getEntityDefinition(entityName);
 	entity.setEntityFromHashTable(parameters);

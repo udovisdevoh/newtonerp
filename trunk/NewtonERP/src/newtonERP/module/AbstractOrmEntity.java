@@ -43,7 +43,8 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      * @param parameters parametre suplementaire
      * @return todo: qu'Est-ce que l'on devrai retourné en general?
      */
-    public abstract AbstractEntity newUI(Hashtable<String, String> parameters);
+    public abstract AbstractEntity newUI(Hashtable<String, String> parameters)
+	    throws Exception;
 
     /**
      * enregistre l'entity en DB

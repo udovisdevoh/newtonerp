@@ -129,8 +129,7 @@ public class Servlet extends AbstractHandler
      */
     static public String makeLink(Module module, AbstractAction action)
     {
-	String link = "";
-	link += "/" + module.getClass().getSimpleName();
+	String link = "/" + module.getClass().getSimpleName();
 	if (action instanceof BaseAction)
 	{
 	    String actionName = ((BaseAction) action).getActionName();

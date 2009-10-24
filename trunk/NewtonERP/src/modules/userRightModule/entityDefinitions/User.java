@@ -118,9 +118,16 @@ public class User extends AbstractOrmEntity implements PromptViewable
     }
 
     public AbstractEntity newUI(Hashtable<String, String> parameters)
+	    throws Exception
     {
-	// TODO Auto-generated method stub
-	return null;
+	User user = new User();
+	user.setData("name", "noName");
+	user.setData("groupsID", 1);
+	user.setData("password", "abc123");
+	user.setSubmitModule(new UserRightModule());
+	// user.setSubmitAction(new BaseAction("Edit", this));
+
+	return ((AbstractOrmEntity) user).newE();
     }
 
     public AbstractEntity deleteUI(Hashtable<String, String> parameters)
