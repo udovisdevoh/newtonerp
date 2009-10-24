@@ -97,7 +97,8 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      * @param parameters parametre suplementaire
      * @return todo: qu'Est-ce que l'on devrai retourné en general?
      */
-    public abstract AbstractEntity editUI(Hashtable<String, String> parameters);
+    public abstract AbstractEntity editUI(Hashtable<String, String> parameters)
+	    throws InvalidOperatorException;
 
     /**
      * met a jour l'entity en DB, l'ID doit etre présent
@@ -175,6 +176,17 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	}
 
 	return retEntities;
+    }
+
+    /**
+     * @param entity
+     * @return the selected entities
+     */
+    public Vector<AbstractOrmEntity> get(AbstractOrmEntity entity)
+    {
+	Vector<AbstractOrmEntity> entities = new Vector<AbstractOrmEntity>();
+	entities.add(entity);
+	return get(entities);
     }
 
 }

@@ -2,6 +2,7 @@ package newtonERP.module.field;
 
 import java.util.Collection;
 import java.util.Hashtable;
+import java.util.Iterator;
 import java.util.Vector;
 
 import newtonERP.module.exception.FieldNotFoundException;
@@ -10,7 +11,7 @@ import newtonERP.module.exception.FieldNotFoundException;
  * @author djo
  * 
  */
-public class Fields
+public class Fields implements Iterable<Field>
 {
     Hashtable<String, Field> fields;
 
@@ -149,5 +150,11 @@ public class Fields
     public String toString()
     {
 	return fields.toString();
+    }
+
+    @Override
+    public Iterator<Field> iterator()
+    {
+	return fields.values().iterator();
     }
 }
