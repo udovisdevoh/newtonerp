@@ -113,6 +113,8 @@ public class FieldInt extends Field
     @Override
     public void setOperator(String operator) throws InvalidOperatorException
     {
+	operator.trim();
+
 	if (operator.equals(">") || operator.equals("<")
 		|| operator.equals("="))
 	{

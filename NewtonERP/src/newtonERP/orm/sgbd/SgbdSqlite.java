@@ -50,7 +50,7 @@ public class SgbdSqlite implements Sgbdable
 	} catch (SQLException e)
 	{
 	    throw new OrmSqlException(
-		    "Probably you have a column name matching a SqLite keyword. See Orm javadoc for list of SqLite keyword. "
+		    "SqlException when executing the request. Check for entity names matching SqLite keyword could be done : "
 			    + e.getMessage());
 	}
     }
@@ -67,7 +67,9 @@ public class SgbdSqlite implements Sgbdable
 		    Logger.State.INFO);
 	} catch (SQLException e)
 	{
-	    throw new OrmSqlException(e.getMessage());
+	    throw new OrmSqlException(
+		    "Error whe disconnecting from the database : "
+			    + e.getMessage());
 	}
     }
 
@@ -83,7 +85,8 @@ public class SgbdSqlite implements Sgbdable
 		    Logger.State.INFO);
 	} catch (Exception e)
 	{
-	    throw new OrmSqlException(e.getMessage());
+	    throw new OrmSqlException("Error connecting to the database : "
+		    + e.getMessage());
 	}
     }
 }

@@ -124,7 +124,8 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      * 
      * @param parameters parametre suplementaire
      * @return todo: qu'Est-ce que l'on devrai retourné en general?
-     * @throws InvalidOperatorException
+     * @throws InvalidOperatorException if a wrong operator is set for the field
+     *             datatype
      */
     public abstract AbstractEntity getUI(Hashtable<String, String> parameters)
 	    throws InvalidOperatorException;
@@ -157,8 +158,9 @@ public abstract class AbstractOrmEntity extends AbstractEntity
     }
 
     /**
-     * @param entities
-     * @return
+     * @param entities the entities from which we are going to select our data
+     *            (where clause)
+     * @return the selected entities
      */
     public Vector<AbstractOrmEntity> get(Vector<AbstractOrmEntity> entities)
     {

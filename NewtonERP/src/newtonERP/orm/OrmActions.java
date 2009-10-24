@@ -1,7 +1,6 @@
 package newtonERP.orm;
 
 /**
- * 
  * @author r3hallejo
  * 
  *         This enum is only describing the type of actions the orm can do. It
