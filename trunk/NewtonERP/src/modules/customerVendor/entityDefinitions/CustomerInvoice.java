@@ -35,11 +35,11 @@ public class CustomerInvoice extends AbstractOrmEntity
 	return new Fields(fields);
     }
 
-    public CustomerInvoice getCostumerEntity()
+    public CustomerInvoice getCustomerEntity()
     {
 	Vector<String> search = new Vector<String>();
-	search.add("PKCostumerInvoiceID="
-		+ getFields().getField("PKCostumerInvoiceID"));
+	search.add("PKCustomerInvoiceID="
+		+ getFields().getField("PKCustomerInvoiceID"));
 
 	try
 	{

@@ -16,7 +16,7 @@ import newtonERP.orm.Orm;
 import newtonERP.orm.exceptions.OrmException;
 
 /**
- * @author Gabriel entité du client dans le module costomerVendor
+ * @author Gabriel entité du client dans le module customerVendor
  */
 public class Customer extends AbstractOrmEntity
 {
@@ -24,7 +24,7 @@ public class Customer extends AbstractOrmEntity
     public Fields initFields()
     {
 	Vector<Field> fields = new Vector<Field>();
-	fields.add(new FieldInt("Numéro du client", "pKCostumerID"));
+	fields.add(new FieldInt("Numéro du client", getPrimaryKeyName()));
 	fields.add(new FieldString("Nom du client", "customerName"));
 	fields.add(new FieldString("Téléphone du client", "customerPhone"));
 	fields.add(new FieldString("Adresse du client", "customerAddress"));
@@ -34,7 +34,7 @@ public class Customer extends AbstractOrmEntity
     public Customer getCostumerEntity()
     {
 	Vector<String> search = new Vector<String>();
-	search.add("PKCostumerID=" + getFields().getField("PKCustomerID"));
+	search.add("PKCustomerID=" + getFields().getField("PKCustomerID"));
 
 	try
 	{

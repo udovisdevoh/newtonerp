@@ -1,20 +1,18 @@
-package modules.userRightModule.entityDefinitions;
+package newtonERP.module;
 
 import java.util.Hashtable;
 import java.util.Vector;
 
-import newtonERP.module.AbstractAction;
-import newtonERP.module.AbstractEntity;
-import newtonERP.module.BaseAction;
-import newtonERP.module.Module;
+import modules.userRightModule.entityDefinitions.User;
 import newtonERP.module.exception.EntityException;
+import newtonERP.module.field.Field;
 import newtonERP.viewers.viewables.ListViewable;
 
 /**
  * @author Guillaume Lacasse
  * 
  */
-public class UserList extends AbstractEntity implements ListViewable
+public class EntityList extends AbstractEntity implements ListViewable
 {
     // Je ne sais pas comment initialiser un vector avec des valeurs par défault
     // en JAVA
@@ -23,25 +21,12 @@ public class UserList extends AbstractEntity implements ListViewable
     private static Hashtable<String, AbstractAction> globalActionButtonList;
     private static Hashtable<String, AbstractAction> specificActionButtonList;
     private Module currentModule;
-    private Vector<User> data = new Vector<User>();
+    private Vector<AbstractOrmEntity> data = new Vector<AbstractOrmEntity>();
 
     @Override
     public Vector<String> getColumnTitleList()
     {
-	if (columnTitleList == null)
-	{
-	    // Ça devrait être dans le constructeur statique s'il y en avait un
-	    // en
-	    // JAVA
-	    // La manière intelligente d'initialiser les valeurs seraient
-	    // d'initialiser le vecteur avec
-	    // des valeurs par défault mais je ne sais pas comment en JAVA
-	    columnTitleList = new Vector<String>();
-	    columnTitleList.add("PKuserID");
-	    columnTitleList.add("Nom");
-	    columnTitleList.add("Groupe");
-	}
-	return columnTitleList;
+	return data.get(0).getFields().getLongFieldNameList();
     }
 
     @Override
@@ -64,12 +49,12 @@ public class UserList extends AbstractEntity implements ListViewable
 	Vector<Vector<String>> userListInfo = new Vector<Vector<String>>();
 
 	Vector<String> userInfo;
-	for (User user : data)
+	for (AbstractOrmEntity entity : data)
 	{
 	    userInfo = new Vector<String>();
-	    userInfo.add(user.getDataString("PKuserID"));
-	    userInfo.add(user.getDataString("name"));
-	    userInfo.add(user.getDataString("groupID"));
+	    for (Field field : entity.getFields())
+		userInfo.add(field.getDataString());
+
 	    userListInfo.add(userInfo);
 	}
 	return userListInfo;
@@ -111,9 +96,13 @@ public class UserList extends AbstractEntity implements ListViewable
 	currentModule = module;
     }
 
-    @Override
-    public String getTitle()
+    public String getKeyName()
     {
-	return "Liste des utilisateurs";
+	return data.get(0).getPrimaryKeyName();
+    }
+
+    public String getKeyValue()
+    {
+	return data.get(0).getFields().getField(getKeyName()).getDataString();
     }
 }
