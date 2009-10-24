@@ -24,17 +24,17 @@ public class Customer extends AbstractOrmEntity
     public Fields initFields()
     {
 	Vector<Field> fields = new Vector<Field>();
-	fields.add(new FieldInt("numéro du client", "pKCostumerID"));
-	fields.add(new FieldString("nom du client", "costumerName"));
-	fields.add(new FieldString("téléphone du client", "costumerPhone"));
-	fields.add(new FieldString("adresse du client", "costumerAdress"));
+	fields.add(new FieldInt("Numéro du client", "pKCostumerID"));
+	fields.add(new FieldString("Nom du client", "customerName"));
+	fields.add(new FieldString("Téléphone du client", "customerPhone"));
+	fields.add(new FieldString("Adresse du client", "customerAddress"));
 	return new Fields(fields);
     }
 
     public Customer getCostumerEntity()
     {
 	Vector<String> search = new Vector<String>();
-	search.add("PKCostumerID=" + getFields().getField("PKCostumerID"));
+	search.add("PKCostumerID=" + getFields().getField("PKCustomerID"));
 
 	try
 	{
@@ -94,5 +94,4 @@ public class Customer extends AbstractOrmEntity
 	// TODO Auto-generated method stub
 	return null;
     }
-
 }
