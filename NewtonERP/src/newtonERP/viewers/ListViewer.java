@@ -72,34 +72,40 @@ public class ListViewer
     }
 
     private static String getDataRowList(Vector<Vector<String>> rowValues,
-	    ListViewable entity, Module module) throws ModuleException
+	    ListViewable listEntity, Module module) throws ModuleException
     {
-	String html = "<tr>";
+
+	String html = "";
+	int rowNumber = 0;
 	for (Vector<String> row : rowValues)
 	{
+	    html += "\n<tr>";
 	    for (String cell : row)
 	    {
 		html += "<td>" + cell + "</td>";
 	    }
 
-	    html += getSpecificButtonList(entity, entity.getKeyName(), entity
-		    .getKeyValue(), module);
-	}
+	    html += getSpecificButtonList(listEntity, listEntity.getKeyName(),
+		    listEntity.getKeyValue(rowNumber), module);
 
-	return html + "</tr>";
+	    html += "</tr>";
+	    rowNumber++;
+	}
+	return html;
     }
 
-    private static String getSpecificButtonList(ListViewable entity,
+    private static String getSpecificButtonList(ListViewable listEntity,
 	    String key, String value, Module module) throws ModuleException
     {
 	String html = "", actionName;
 
 	AbstractAction action;
-	for (String buttonCaption : entity.getSpecificActionButtonList()
+	for (String buttonCaption : listEntity.getSpecificActionButtonList()
 		.keySet())
 	{
 	    html += "<td>";
-	    action = entity.getSpecificActionButtonList().get(buttonCaption);
+	    action = listEntity.getSpecificActionButtonList()
+		    .get(buttonCaption);
 	    if (action == null)
 		throw new ActionNotFoundException("Action is null");
 	    else if (action instanceof BaseAction)

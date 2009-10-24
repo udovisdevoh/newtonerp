@@ -103,9 +103,10 @@ public class EntityList extends AbstractEntity implements ListViewable,
 	return data.get(0).getPrimaryKeyName();
     }
 
-    public String getKeyValue()
+    public String getKeyValue(int rowNumber)
     {
-	return data.get(0).getFields().getField(getKeyName()).getDataString();
+	return data.get(rowNumber).getFields().getField(getKeyName())
+		.getDataString();
     }
 
     @Override
