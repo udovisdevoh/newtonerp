@@ -1,4 +1,4 @@
-package modules.costumerVendor;
+package modules.customerVendor;
 
 import newtonERP.module.Module;
 
@@ -6,12 +6,12 @@ import newtonERP.module.Module;
  * @author r3lemaypa Guillaume cloutierJo
  * 
  */
-public class CostumerVendor extends Module
+public class CustomerVendor extends Module
 {
     /**
      * constructeur
      */
-    public CostumerVendor()
+    public CustomerVendor()
     {
 	super();
     }
