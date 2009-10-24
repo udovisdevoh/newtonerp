@@ -124,11 +124,6 @@ public class ListViewer
     private static String getButton(String buttonCaption, String actionName,
 	    String key, String value, AbstractAction action, Module module)
     {
-	if (key == null)
-	    key = "noKeySpeficied";
-	if (value == null)
-	    value = "noValueSpecified";
-
 	/*
 	 * String formActionUrl = "/" + moduleName + "/" + actionName + "?user="
 	 * + currentUserName + "&" + key + "=" + value;
@@ -140,8 +135,9 @@ public class ListViewer
 	html += "<form method=\"GET\" name=\"" + actionName + "\" action=\""
 		+ formActionUrl + "\">";
 
-	html += "<input type=\"hidden\" name=\"" + key + "\" value=\"" + value
-		+ "\">";
+	if (key != null && value != null)
+	    html += "<input type=\"hidden\" name=\"" + key + "\" value=\""
+		    + value + "\">";
 
 	html += "<input type=\"submit\" value=\"" + buttonCaption + "\">";
 
