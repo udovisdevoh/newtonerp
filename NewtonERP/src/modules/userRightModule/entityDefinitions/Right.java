@@ -20,10 +20,10 @@ public class Right extends AbstractOrmEntity
     public Fields initFields()
     {
 	Vector<Field> fields = new Vector<Field>();
-	fields.add(new FieldInt("numéro du droit", "PKrightID"));
-	fields.add(new FieldString("nom de module", "moduleName"));
-	fields.add(new FieldString("nom de l'action", "actionName"));
-	fields.add(new FieldString("nom de l'entité", "entityName"));
+	fields.add(new FieldInt("Numéro du droit", "PKrightID"));
+	fields.add(new FieldString("Nom de module", "moduleName"));
+	fields.add(new FieldString("Nom de l'action", "actionName"));
+	fields.add(new FieldString("Nom de l'entité", "entityName"));
 	return new Fields(fields);
     }
 

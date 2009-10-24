@@ -72,10 +72,12 @@ public class UserRightModule extends Module
 	    }
 	} catch (OrmException e)
 	{
-	    e.printStackTrace();
+	    e.printStackTrace();// FIXME: TODO: est-ce que ça doit vraiment être
+				// catché?
 	} catch (FieldNotCompatibleException e)
 	{
-	    e.printStackTrace();
+	    e.printStackTrace();// FIXME: TODO: est-ce que ça doit vraiment être
+				// catché?
 	}
     }
 }

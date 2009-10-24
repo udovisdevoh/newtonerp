@@ -22,10 +22,10 @@ public class TestEntity extends AbstractOrmEntity
     public Fields initFields()
     {
 	Vector<Field> fields = new Vector<Field>();
-	fields.add(new FieldInt("numéro du test", "testID"));
-	fields.add(new FieldString("nom", "name"));
-	fields.add(new FieldInt("age", "age"));
-	fields.add(new FieldString("couleur", "color"));
+	fields.add(new FieldInt("Numéro du test", "testID"));
+	fields.add(new FieldString("Nom", "name"));
+	fields.add(new FieldInt("Age", "age"));
+	fields.add(new FieldString("Couleur", "color"));
 	return new Fields(fields);
     }
 
