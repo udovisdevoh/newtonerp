@@ -22,8 +22,8 @@ public class Groups extends AbstractOrmEntity
     public Fields initFields()
     {
 	Vector<Field> fields = new Vector<Field>();
-	fields.add(new FieldInt("numéro du groupe", "PKgroupID"));
-	fields.add(new FieldString("nom du groupe", "groupName"));
+	fields.add(new FieldInt("Numéro du groupe", "PKgroupID"));
+	fields.add(new FieldString("Nom du groupe", "groupName"));
 	return new Fields(fields);
     }
 

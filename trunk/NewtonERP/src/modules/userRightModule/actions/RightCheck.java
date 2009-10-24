@@ -41,7 +41,8 @@ public class RightCheck extends AbstractAction
 
 	} catch (OrmException e)
 	{
-	    e.printStackTrace();
+	    e.printStackTrace();// FIXME: Es-tu sur que ça doit être catché?
+				// -Guillaume
 	}
 	return null;
     }

@@ -33,10 +33,10 @@ public class User extends AbstractOrmEntity implements PromptViewable
     public Fields initFields()
     {
 	Vector<Field> fields = new Vector<Field>();
-	fields.add(new FieldInt("numéro de user", "PKuserID"));
-	fields.add(new FieldString("nom", "name"));
-	fields.add(new FieldString("mot de pass", "password"));
-	fields.add(new FieldInt("numéro de groupe", "groupID"));
+	fields.add(new FieldInt("Numéro de user", "PKuserID"));
+	fields.add(new FieldString("Nom", "name"));
+	fields.add(new FieldString("Mot de passe", "password"));
+	fields.add(new FieldInt("Numéro de groupe", "groupID"));
 	return new Fields(fields);
     }
 
