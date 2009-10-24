@@ -64,9 +64,10 @@ public class EntityCreator
 	    }
 	} catch (Exception e)
 	{
-	    throw new OrmEntityCreationException(e.getMessage());
+	    throw new OrmEntityCreationException(
+		    "Erreur à la création des entitées provenant d'une requête de l'orm : "
+			    + e.getMessage());
 	}
-
 	return returnedEntities;
     }
 }

@@ -110,6 +110,8 @@ public class FieldString extends Field
     @Override
     public void setOperator(String operator) throws InvalidOperatorException
     {
+	operator.trim();
+
 	if (operator.equals("="))
 	{
 	    this.operator = operator;
