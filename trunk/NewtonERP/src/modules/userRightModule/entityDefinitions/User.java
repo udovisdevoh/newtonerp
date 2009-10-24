@@ -4,10 +4,12 @@ import java.util.Hashtable;
 import java.util.Vector;
 
 import modules.userRightModule.UserRightModule;
+import modules.userRightModule.actions.GetUserList;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.BaseAction;
+import newtonERP.module.ForwardEntity;
 import newtonERP.module.Module;
 import newtonERP.module.exception.EntityException;
 import newtonERP.module.exception.InvalidOperatorException;
@@ -17,6 +19,7 @@ import newtonERP.module.field.FieldString;
 import newtonERP.module.field.Fields;
 import newtonERP.orm.Orm;
 import newtonERP.orm.exceptions.OrmException;
+import newtonERP.serveur.Servlet;
 import newtonERP.viewers.viewables.PromptViewable;
 
 /**
@@ -127,7 +130,10 @@ public class User extends AbstractOrmEntity implements PromptViewable
 	user.setSubmitModule(new UserRightModule());
 	// user.setSubmitAction(new BaseAction("Edit", this));
 
-	return ((AbstractOrmEntity) user).newE();
+	((AbstractOrmEntity) user).newE();
+
+	return new ForwardEntity(Servlet.makeLink(new UserRightModule(),
+		new GetUserList()));
     }
 
     public AbstractEntity deleteUI(Hashtable<String, String> parameters)
