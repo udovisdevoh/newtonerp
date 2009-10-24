@@ -54,4 +54,6 @@ public interface ListViewable
      * @return valeur de la clef pour identifier une entité dans la liste
      */
     public String getKeyValue();
+
+    public String getInternalElementName();
 }

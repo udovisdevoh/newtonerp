@@ -48,7 +48,7 @@ import newtonERP.module.exception.ModuleException;
  *             public Fields initFields()
  *             {
  *	           Vector<Field> fields = new Vector<Field>();
- *	           fields.add(new FieldInt("numéro de groupe", "groupID"));
+ *	           fields.add(new FieldInt("numéro de groupe", "groupsID"));
  *	           fields.add(new FieldInt("numéro de droit", "rightID"));
  *	           return new Fields(fields);
  *             }

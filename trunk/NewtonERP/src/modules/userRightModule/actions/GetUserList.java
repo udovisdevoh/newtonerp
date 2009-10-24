@@ -37,7 +37,7 @@ public class GetUserList extends AbstractAction
 	EntityList userList = new EntityList();
 
 	for (AbstractOrmEntity user : userVectorFromOrm)
-	    userList.addUser((User) (user));
+	    userList.addEntity((User) (user));
 
 	// TODO: Problème: c'est très bizare de devoir recréer un objet de
 	// module pour spécifier quel module sera responsable des actions -

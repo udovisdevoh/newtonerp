@@ -104,6 +104,19 @@ public class Orm
     }
 
     /**
+     * @param searchEntity: entité de recherche
+     * @return résultat de recherche
+     * @throws OrmException
+     */
+    public static Vector<AbstractOrmEntity> select(
+	    AbstractOrmEntity searchEntity) throws OrmException
+    {
+	Vector<AbstractOrmEntity> searchEntities = new Vector<AbstractOrmEntity>();
+	searchEntities.add(searchEntity);
+	return select(searchEntities);
+    }
+
+    /**
      * Method used to insert an entity in the databse based into the entity
      * passed in parameter
      * 

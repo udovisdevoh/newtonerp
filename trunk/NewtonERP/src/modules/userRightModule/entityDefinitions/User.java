@@ -29,6 +29,7 @@ public class User extends AbstractOrmEntity implements PromptViewable
     private String buttonCaption;
     private AbstractAction submitAction;
     private Module submitModule;
+    private static Groups groupDefinition = new Groups();
 
     public Fields initFields()
     {
@@ -37,7 +38,7 @@ public class User extends AbstractOrmEntity implements PromptViewable
 	fieldsData.add(new FieldInt("Numéro de user", getPrimaryKeyName()));
 	fieldsData.add(new FieldString("Nom", "name"));
 	fieldsData.add(new FieldString("Mot de passe", "password"));
-	fieldsData.add(new FieldInt("Numéro de groupe", "groupID"));
+	fieldsData.add(new FieldInt("Numéro de groupe", "groupsID"));
 	return new Fields(fieldsData);
     }
 
@@ -49,7 +50,8 @@ public class User extends AbstractOrmEntity implements PromptViewable
     public Groups getGroupsEntity()
     {
 	Vector<String> search = new Vector<String>();
-	search.add("PKgroupID=" + getFields().getField("groupID"));
+	search.add(groupDefinition.getPrimaryKeyName() + "="
+		+ getFields().getField("groupsID"));
 
 	try
 	{

@@ -34,7 +34,8 @@ public class Customer extends AbstractOrmEntity
     public Customer getCostumerEntity()
     {
 	Vector<String> search = new Vector<String>();
-	search.add("PKCustomerID=" + getFields().getField("PKCustomerID"));
+	search.add(getPrimaryKeyName() + "="
+		+ getFields().getField(getPrimaryKeyName()));
 
 	try
 	{

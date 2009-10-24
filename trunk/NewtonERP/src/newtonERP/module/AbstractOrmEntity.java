@@ -5,6 +5,7 @@ import java.util.Vector;
 
 import modules.userRightModule.entityDefinitions.User;
 import newtonERP.module.exception.InvalidOperatorException;
+import newtonERP.module.field.Field;
 import newtonERP.module.field.Fields;
 import newtonERP.orm.Orm;
 import newtonERP.orm.exceptions.OrmException;
@@ -196,6 +197,23 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 
     public String getPrimaryKeyName()
     {
-	return "PK" + this.getClass().getSimpleName() + "ID";
+	String firstLetter = (getClass().getSimpleName().charAt(0) + "")
+		.toLowerCase();
+
+	return "PK" + firstLetter + getClass().getSimpleName().substring(1)
+		+ "ID";
+    }
+
+    public String getPrimaryKeyValue()
+    {
+	String primaryKeyName = getPrimaryKeyName();
+	Fields fields = getFields();
+	Field field = fields.getField(primaryKeyName);
+
+	if (field == null)
+	    return null;
+
+	String value = field.getDataString();
+	return value;
     }
 }
