@@ -33,7 +33,7 @@ public abstract class Viewer
 	else if (entity instanceof ListViewable)
 	    viewerHtml = ListViewer.getHtmlCode((ListViewable) entity);
 	else if (entity == null) // Home
-	    viewerHtml = "<!-- rien -->";
+	    viewerHtml = HomeViewer.getHomePage();
 	else
 	    throw new ViewerException("Couldn't find proper viewer for entity");
 
@@ -67,6 +67,7 @@ public abstract class Viewer
 		+ ".element_menu a /* Tous les liens se trouvant dans un menu */{color: #0081d7;}"
 		+ ".element_menu a:hover {color: red;}"
 		+ "#body /*mise en page du corp principal à droite du menu principal*/{margin-left: 150px; /*Une marge à gauche pour pousser le corps, afin qu'il ne passe plus sous le menu*/margin-bottom: 10px;padding: 5px;color: black;background-color: #d3d8e1;border: 1px solid black;}"
+		+ "#home {height: 600px;}"// tempo pour home
 		+ "#footer{text-align: center;color: black;background-color: #d3d8e1;border: 1px solid black;}</style>";
 	// *********************************************************************
 
