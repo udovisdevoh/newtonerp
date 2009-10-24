@@ -76,7 +76,7 @@ public class User extends AbstractOrmEntity implements PromptViewable
     @Override
     public String getPromptMessage()
     {
-	return "Profil des utilisateurs";
+	return "Profil de l'utilisateur";
     }
 
     @Override
@@ -136,12 +136,7 @@ public class User extends AbstractOrmEntity implements PromptViewable
 	    throws InvalidOperatorException
     {
 	if (parameters.containsKey("submit"))
-	{
 	    edit("PKuserID='" + getDataString("PKuserID") + "'");
-	}
-
-	// User retUser = (User) get("name='" + getDataString("name") + "'")
-	// .get(0); // on discarte les autre entity s'il y a lieu
 
 	for (Field field : getFields())
 	    field.setOperator("=");
@@ -160,15 +155,25 @@ public class User extends AbstractOrmEntity implements PromptViewable
     public AbstractEntity getUI(Hashtable<String, String> parameters)
 	    throws InvalidOperatorException
     {
-	Vector<AbstractOrmEntity> entities = new Vector<AbstractOrmEntity>();
+	/*
+	 * Vector<AbstractOrmEntity> entities = new Vector<AbstractOrmEntity>();
+	 * 
+	 * User user = new User();
+	 * user.getFields().getField("name").setOperator("=");
+	 * user.getFields().getField("name").setData(getDataString("name"));
+	 * 
+	 * entities.add(user);
+	 * 
+	 * User retUser = (User) get(entities).get(0);
+	 */
 
-	User user = new User();
-	user.getFields().getField("name").setOperator("=");
-	user.getFields().getField("name").setData(getDataString("name"));
+	for (Field field : getFields())
+	    field.setOperator("=");
 
-	entities.add(user);
-
-	User retUser = (User) get(entities).get(0);
+	// On utilise l'entité courrante comme entité de recherche
+	User retUser = (User) get(this).get(0); // on discarte les autre
+	// entity
+	// s'il y a lieu
 
 	// User retUser = (User) get("name='" + getDataString("name") + "'")
 	// .get(0); // on discarte les autre entity s'il y a lieu
