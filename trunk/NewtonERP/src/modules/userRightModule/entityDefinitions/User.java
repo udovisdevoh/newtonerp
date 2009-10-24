@@ -139,14 +139,23 @@ public class User extends AbstractOrmEntity implements PromptViewable
     }
 
     public AbstractEntity editUI(Hashtable<String, String> parameters)
+	    throws InvalidOperatorException
     {
 	if (parameters.containsKey("submit"))
 	{
 	    edit("PKuserID='" + getDataString("PKuserID") + "'");
 	}
 
-	User retUser = (User) get("name='" + getDataString("name") + "'")
-		.get(0); // on discarte les autre entity s'il y a lieu
+	// User retUser = (User) get("name='" + getDataString("name") + "'")
+	// .get(0); // on discarte les autre entity s'il y a lieu
+
+	for (Field field : getFields())
+	    field.setOperator("=");
+
+	// On utilise l'entité courrante comme entité de recherche
+	User retUser = (User) get(this).get(0); // on discarte les autre
+	// entity
+	// s'il y a lieu
 
 	retUser.setSubmitAction(new BaseAction("Edit", this));
 	retUser.setSubmitModule(new UserRightModule());
