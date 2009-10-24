@@ -1,7 +1,7 @@
 /**
  * 
  */
-package modules.costumerVendor.entityDefinitions;
+package modules.customerVendor.entityDefinitions;
 
 import java.util.Hashtable;
 import java.util.Vector;
@@ -17,9 +17,9 @@ import newtonERP.orm.exceptions.OrmException;
 
 /**
  * @author Gabriel entité du des facture des client dans le module
- *         costumerVendor
+ *         customerVendor
  */
-public class CostumerInvoice extends AbstractOrmEntity
+public class CustomerInvoice extends AbstractOrmEntity
 {
 
     public Fields initFields()
@@ -27,15 +27,15 @@ public class CostumerInvoice extends AbstractOrmEntity
 	Vector<Field> fields = new Vector<Field>();
 	fields.add(new FieldInt("numéro de la Facture", "pKCostumerInvoiceID"));
 	fields.add(new FieldDouble("Total de la Facture", "total"));// total de
-								    // la
-								    // facture
+	// la
+	// facture
 	fields.add(new FieldInt("Numéros du client", "costumerID"));
 	fields.add(new FieldInt("Date de la facture", "date")); // ddmmyyyy a
-								// respecter
+	// respecter
 	return new Fields(fields);
     }
 
-    public CostumerInvoice getCostumerEntity()
+    public CustomerInvoice getCostumerEntity()
     {
 	Vector<String> search = new Vector<String>();
 	search.add("pKCostumerInvoiceID="
@@ -43,7 +43,7 @@ public class CostumerInvoice extends AbstractOrmEntity
 
 	try
 	{
-	    return (CostumerInvoice) Orm.select(new CostumerInvoice(), search)
+	    return (CustomerInvoice) Orm.select(new CustomerInvoice(), search)
 		    .get(0);
 	} catch (OrmException e)
 	{

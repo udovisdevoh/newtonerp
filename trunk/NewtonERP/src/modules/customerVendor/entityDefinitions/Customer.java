@@ -1,7 +1,7 @@
 /**
  * 
  */
-package modules.costumerVendor.entityDefinitions;
+package modules.customerVendor.entityDefinitions;
 
 import java.util.Hashtable;
 import java.util.Vector;
@@ -16,9 +16,9 @@ import newtonERP.orm.Orm;
 import newtonERP.orm.exceptions.OrmException;
 
 /**
- * @author Gabriel entité du client dans le module costumerVendor
+ * @author Gabriel entité du client dans le module costomerVendor
  */
-public class Costumer extends AbstractOrmEntity
+public class Customer extends AbstractOrmEntity
 {
     @Override
     public Fields initFields()
@@ -31,14 +31,14 @@ public class Costumer extends AbstractOrmEntity
 	return new Fields(fields);
     }
 
-    public Costumer getCostumerEntity()
+    public Customer getCostumerEntity()
     {
 	Vector<String> search = new Vector<String>();
 	search.add("PKCostumerID=" + getFields().getField("PKCostumerID"));
 
 	try
 	{
-	    return (Costumer) Orm.select(new Costumer(), search).get(0);
+	    return (Customer) Orm.select(new Customer(), search).get(0);
 	} catch (OrmException e)
 	{
 	    e.printStackTrace();

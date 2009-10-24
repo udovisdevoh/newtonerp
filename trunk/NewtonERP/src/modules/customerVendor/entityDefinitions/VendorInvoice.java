@@ -1,7 +1,7 @@
 /**
  * 
  */
-package modules.costumerVendor.entityDefinitions;
+package modules.customerVendor.entityDefinitions;
 
 import java.util.Hashtable;
 import java.util.Vector;
@@ -9,36 +9,42 @@ import java.util.Vector;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.field.Field;
+import newtonERP.module.field.FieldDouble;
 import newtonERP.module.field.FieldInt;
-import newtonERP.module.field.FieldString;
 import newtonERP.module.field.Fields;
 import newtonERP.orm.Orm;
 import newtonERP.orm.exceptions.OrmException;
 
 /**
- * @author Gabriel entité du fournisseur dans le module costumerVendor
+ * @author Gabriel entité du des facture des fournisseur dans le module
+ *         customerVendor
  */
-public class Vendor extends AbstractOrmEntity
+public class VendorInvoice extends AbstractOrmEntity
 {
 
     public Fields initFields()
     {
 	Vector<Field> fields = new Vector<Field>();
-	fields.add(new FieldInt("numéro du Fournisseur", "pKVendorID"));
-	fields.add(new FieldString("nom du Fournisseur", "vendorName"));
-	fields.add(new FieldString("téléphone du Fournisseur", "vendorPhone"));
-	fields.add(new FieldString("adresse du Fournisseur", "vendorAdress"));
+	fields.add(new FieldInt("numéro de la Facture", "pKVendorInvoiceID"));
+	fields.add(new FieldDouble("Total de la Facture", "total"));// total de
+	// la
+	// facture
+	fields.add(new FieldInt("Numéros du client", "vendorID"));
+	fields.add(new FieldInt("Date de la facture", "date")); // ddmmyyyy a
+	// respecter
 	return new Fields(fields);
     }
 
-    public Vendor getCostumerEntity()
+    public VendorInvoice getCostumerEntity()
     {
 	Vector<String> search = new Vector<String>();
-	search.add("PKVendorID=" + getFields().getField("PKVendorID"));
+	search.add("pKCostumerInvoiceID="
+		+ getFields().getField("pKCostumerInvoiceID"));
 
 	try
 	{
-	    return (Vendor) Orm.select(new Vendor(), search).get(0);
+	    return (VendorInvoice) Orm.select(new VendorInvoice(), search).get(
+		    0);
 	} catch (OrmException e)
 	{
 	    e.printStackTrace();
