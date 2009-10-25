@@ -84,16 +84,16 @@ public class Servlet extends AbstractHandler
 	urlMatch.matches();
 
 	moduleName = urlMatch.group(2);
-	if (moduleName == null)
+	if (moduleName == null || moduleName.isEmpty())
 	    moduleName = "Home";
 
 	actionName = urlMatch.group(4);
-	if (actionName == null)
+	if (actionName == null || actionName.isEmpty())
 	    actionName = "default";
 
 	entityName = urlMatch.group(6);
 
-	System.out.println(target);
+	System.err.println(target);
 	try
 	{
 	    // on trouve les parametres pour les mettre dans le hashtable
