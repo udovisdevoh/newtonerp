@@ -5,13 +5,10 @@ import java.util.Vector;
 
 import modules.userRightModule.UserRightModule;
 import modules.userRightModule.actions.GetUserList;
-import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.BaseAction;
 import newtonERP.module.ForwardEntity;
-import newtonERP.module.Module;
-import newtonERP.module.exception.EntityException;
 import newtonERP.module.exception.FieldNotCompatibleException;
 import newtonERP.module.exception.FieldNotFoundException;
 import newtonERP.module.exception.InvalidOperatorException;
@@ -31,9 +28,10 @@ import newtonERP.viewers.viewables.PromptViewable;
  */
 public class User extends AbstractOrmEntity implements PromptViewable
 {
-    private AbstractAction submitAction;
-    private Module submitModule;
-    private static Groups groupDefinition = new Groups();
+    private static Groups groupDefinition = new Groups();// Sert de référence
+
+    // vers les entités
+    // groups
 
     public Fields initFields()
     {
@@ -56,7 +54,6 @@ public class User extends AbstractOrmEntity implements PromptViewable
 	Vector<String> search = new Vector<String>();
 	search.add(groupDefinition.getPrimaryKeyName() + "="
 		+ getFields().getField("groupsID"));
-
 	try
 	{
 	    return (Groups) Orm.select(new Groups(), search).get(0);
@@ -65,60 +62,6 @@ public class User extends AbstractOrmEntity implements PromptViewable
 	    e.printStackTrace();
 	}
 	return null;
-
-    }
-
-    @Override
-    public String getButtonCaption()
-    {
-	return "Enregistrer";
-    }
-
-    @Override
-    public String getPromptMessage()
-    {
-	return "Profil de l'utilisateur";
-    }
-
-    @Override
-    public AbstractAction getSubmitAction()
-    {
-	return submitAction;
-    }
-
-    /**
-     * Sets the submit action
-     * 
-     * @param submitAction the submit action
-     */
-    public void setSubmitAction(AbstractAction submitAction)
-    {
-	this.submitAction = submitAction;
-    }
-
-    /**
-     * Sets the submit module
-     * 
-     * @param submitModule the submit module
-     */
-    public void setSubmitModule(Module submitModule)
-    {
-	this.submitModule = submitModule;
-    }
-
-    @Override
-    public Module getSubmitModule() throws EntityException
-    {
-	if (submitModule == null)
-	    throw new EntityException(
-		    "Vous devez setter le module préalablement avec setSubmitModule()");
-
-	return submitModule;
-    }
-
-    public void setCurrentModule(Module module)
-    {
-	submitModule = module;
     }
 
     public AbstractEntity newUI(Hashtable<String, String> parameters)
@@ -128,7 +71,7 @@ public class User extends AbstractOrmEntity implements PromptViewable
 	user.setData("name", "sans-nom");
 	user.setData("groupsID", 1);
 	user.setData("password", "abc123");
-	user.setSubmitModule(new UserRightModule());
+	user.setCurrentModule(new UserRightModule());
 	// user.setSubmitAction(new BaseAction("Edit", this));
 
 	((AbstractOrmEntity) user).newE();
@@ -180,8 +123,8 @@ public class User extends AbstractOrmEntity implements PromptViewable
 		}
 	}
 
-	retUser.setSubmitAction(new BaseAction("Edit", this));
-	retUser.setSubmitModule(new UserRightModule());
+	retUser.setCurrentAction(new BaseAction("Edit", this));
+	retUser.setCurrentModule(new UserRightModule());
 
 	return retUser;
     }
@@ -211,11 +154,10 @@ public class User extends AbstractOrmEntity implements PromptViewable
 
 	// User retUser = (User) get("name='" + getDataString("name") + "'")
 	// .get(0); // on discarte les autre entity s'il y a lieu
-	retUser.setSubmitAction(new BaseAction("Get", this));
+	retUser.setCurrentAction(new BaseAction("Get", this));
 
-	retUser.setSubmitModule(new UserRightModule());
+	retUser.setCurrentModule(new UserRightModule());
 
 	return retUser;
     }
-
 }

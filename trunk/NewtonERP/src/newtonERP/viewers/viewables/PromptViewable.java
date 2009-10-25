@@ -4,7 +4,6 @@ import java.util.Hashtable;
 
 import newtonERP.module.AbstractAction;
 import newtonERP.module.Module;
-import newtonERP.module.exception.EntityException;
 import newtonERP.orm.exceptions.OrmException;
 
 /**
@@ -13,18 +12,6 @@ import newtonERP.orm.exceptions.OrmException;
  */
 public interface PromptViewable
 {
-    /**
-     * @return Module callé par le prompt
-     * @throws EntityException
-     */
-    public Module getSubmitModule() throws EntityException;
-
-    /**
-     * @return Action à affectuer quand on submit le prompt
-     * @throws EntityException
-     */
-    public AbstractAction getSubmitAction() throws EntityException;
-
     /**
      * @return message du prompt, exemple: quel est votre nom?
      */
@@ -50,5 +37,13 @@ public interface PromptViewable
      */
     public String getPrimaryKeyValue();
 
+    /**
+     * @param inputName nom d'un field
+     * @return nom complete d'un field
+     */
     public String getLabelName(String inputName);
+
+    public AbstractAction getCurrentAction();
+
+    public Module getCurrentModule();
 }
