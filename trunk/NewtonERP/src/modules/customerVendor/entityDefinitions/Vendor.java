@@ -58,14 +58,6 @@ public class Vendor extends AbstractOrmEntity
     }
 
     @Override
-    public AbstractEntity getUI(Hashtable<String, String> parameters)
-	    throws InvalidOperatorException
-    {
-	// TODO Auto-generated method stub
-	return null;
-    }
-
-    @Override
     public AbstractEntity newUI(Hashtable<String, String> parameters)
 	    throws Exception
     {

@@ -284,8 +284,9 @@ public abstract class Module
 	    return entity.deleteUI(parameters);
 	if (actionName.equals("Edit"))
 	    return entity.editUI(parameters);
-	if (actionName.equals("Get"))
-	    return entity.getUI(parameters);
+	/*
+	 * if (actionName.equals("Get")) return entity.getUI(parameters);
+	 */
 
 	throw new ActionNotFoundException("l'action " + actionName
 		+ "de l'entity" + entityName + "n'existe pas");

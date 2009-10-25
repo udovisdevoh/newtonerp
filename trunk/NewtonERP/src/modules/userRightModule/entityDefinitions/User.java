@@ -132,26 +132,23 @@ public class User extends AbstractOrmEntity implements PromptViewable
 	return null;
     }
 
-    @Override
-    public AbstractEntity getUI(Hashtable<String, String> parameters)
-	    throws InvalidOperatorException
-    {
-	for (Field field : getFields())
-	    field.setOperator("=");
-
-	// On utilise l'entité courrante comme entité de recherche
-	User retUser = (User) get(this).get(0); // on discarte les autre
-	// entity
-	// s'il y a lieu
-
-	// User retUser = (User) get("name='" + getDataString("name") + "'")
-	// .get(0); // on discarte les autre entity s'il y a lieu
-	retUser.setCurrentAction(new BaseAction("Get", this));
-
-	retUser.setCurrentModule(new UserRightModule());
-
-	return retUser;
-    }
+    /*
+     * @Override public AbstractEntity getUI(Hashtable<String, String>
+     * parameters) throws InvalidOperatorException { for (Field field :
+     * getFields()) field.setOperator("=");
+     * 
+     * // On utilise l'entité courrante comme entité de recherche User retUser =
+     * (User) get(this).get(0); // on discarte les autre // entity // s'il y a
+     * lieu
+     * 
+     * // User retUser = (User) get("name='" + getDataString("name") + "'") //
+     * .get(0); // on discarte les autre entity s'il y a lieu
+     * retUser.setCurrentAction(new BaseAction("Get", this));
+     * 
+     * retUser.setCurrentModule(new UserRightModule());
+     * 
+     * return retUser; }
+     */
 
     @Override
     public AbstractEntity getAfterDeleteReturnEntity()

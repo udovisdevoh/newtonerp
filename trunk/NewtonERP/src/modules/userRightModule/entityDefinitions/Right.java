@@ -43,13 +43,11 @@ public class Right extends AbstractOrmEntity implements PromptViewable
 		new GetRightList()));
     }
 
-    @Override
-    public AbstractEntity getUI(Hashtable<String, String> parameters)
-	    throws InvalidOperatorException
-    {
-	// TODO Auto-generated method stub
-	return null;
-    }
+    /*
+     * @Override public AbstractEntity getUI(Hashtable<String, String>
+     * parameters) throws InvalidOperatorException { // TODO Auto-generated
+     * method stub return null; }
+     */
 
     @Override
     public AbstractEntity newUI(Hashtable<String, String> parameters)
