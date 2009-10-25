@@ -27,7 +27,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
     /**
      * @return data ormizable
      */
-    public Hashtable<String, String> getOrmizableData()
+    public final Hashtable<String, String> getOrmizableData()
     {
 	return getFields().getHashTableFrom();
     }
@@ -36,7 +36,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      * @param parameters la hashTable de parametre qui sera transphormé en
      *            entity
      */
-    public void setOrmizableData(Hashtable<String, Object> parameters)
+    public final void setOrmizableData(Hashtable<String, Object> parameters)
     {
 	getFields().setFromHashTable(parameters);
     }
@@ -55,7 +55,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      * 
      * @return this
      */
-    public AbstractEntity newE()
+    public final AbstractEntity newE()
     {
 	try
 	{
@@ -83,7 +83,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      * 
      * @return this
      */
-    public AbstractEntity delete(String whereClause)
+    public final AbstractEntity delete(String whereClause)
     {
 	try
 	{
@@ -113,7 +113,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      * @param whereClause the where clause for the query
      * @return this
      */
-    public AbstractEntity edit(String whereClause)
+    public final AbstractEntity edit(String whereClause)
     {
 	Vector<String> whereParameter = new Vector<String>();
 	whereParameter.add(whereClause);
@@ -144,7 +144,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      * @param whereClause the where clause for the query
      * @return this
      */
-    public Vector<AbstractOrmEntity> get(String whereClause)
+    public final Vector<AbstractOrmEntity> get(String whereClause)
     {
 	Vector<AbstractOrmEntity> retUserList = null;
 	Vector<String> whereParameter = new Vector<String>();
@@ -170,7 +170,8 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      *            (where clause)
      * @return the selected entities
      */
-    public Vector<AbstractOrmEntity> get(Vector<AbstractOrmEntity> entities)
+    public final Vector<AbstractOrmEntity> get(
+	    Vector<AbstractOrmEntity> entities)
     {
 	Vector<AbstractOrmEntity> retEntities = null;
 
@@ -189,7 +190,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      * @param entity
      * @return the selected entities
      */
-    public Vector<AbstractOrmEntity> get(AbstractOrmEntity entity)
+    public final Vector<AbstractOrmEntity> get(AbstractOrmEntity entity)
     {
 	Vector<AbstractOrmEntity> entities = new Vector<AbstractOrmEntity>();
 	entities.add(entity);
@@ -200,7 +201,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      * @return liste de KeyValuePair de fields et de leur valeurs
      * @throws OrmException
      */
-    public Hashtable<String, String> getInputList() throws OrmException
+    public final Hashtable<String, String> getInputList() throws OrmException
     {
 	return getFields().getHashTableFrom();
     }
@@ -209,7 +210,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      * @param inputName nom d'un field
      * @return nom complete d'un field
      */
-    public String getLabelName(String inputName)
+    public final String getLabelName(String inputName)
     {
 	return getFields().getField(inputName).getName();
     }
@@ -217,7 +218,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
     /**
      * @return Nom de la clef primaire
      */
-    public String getPrimaryKeyName()
+    public final String getPrimaryKeyName()
     {
 	String firstLetter = (getClass().getSimpleName().charAt(0) + "")
 		.toLowerCase();
@@ -229,7 +230,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
     /**
      * @return Valeur de la clef primaire
      */
-    public String getPrimaryKeyValue()
+    public final String getPrimaryKeyValue()
     {
 	String primaryKeyName = getPrimaryKeyName();
 	Fields fields = getFields();
@@ -264,17 +265,17 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      * @param currentModule Défini le module utilisé en ce moment pour cette
      *            entité
      */
-    public void setCurrentModule(Module currentModule)
+    public final void setCurrentModule(Module currentModule)
     {
 	this.currentModule = currentModule;
     }
 
-    public AbstractAction getCurrentAction()
+    public final AbstractAction getCurrentAction()
     {
 	return currentAction;
     }
 
-    public Module getCurrentModule()
+    public final Module getCurrentModule()
     {
 	return currentModule;
     }
@@ -282,7 +283,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
     /**
      * @param currentAction Action qui sera utilisée
      */
-    public void setCurrentAction(AbstractAction currentAction)
+    public final void setCurrentAction(AbstractAction currentAction)
     {
 	this.currentAction = currentAction;
     }
