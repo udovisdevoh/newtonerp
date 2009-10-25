@@ -7,7 +7,6 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.Vector;
 
-import modules.userRightModule.entityDefinitions.User;
 import newtonERP.module.exception.EntityException;
 import newtonERP.module.field.Field;
 import newtonERP.orm.exceptions.OrmException;
@@ -110,9 +109,9 @@ public class EntityList extends AbstractEntity implements ListViewable,
 	    specificActionButtonList = new Hashtable<String, AbstractAction>();
 	    // TODO Make sure new User() is the appropriated behavior we want
 	    specificActionButtonList.put("Modifier", new BaseAction("Edit",
-		    new User()));
+		    data.get(0)));
 	    specificActionButtonList.put("Effacer", new BaseAction("Delete",
-		    new User()));
+		    data.get(0)));
 	}
 	return specificActionButtonList;
     }
