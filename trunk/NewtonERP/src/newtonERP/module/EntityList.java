@@ -64,7 +64,8 @@ public class EntityList extends AbstractEntity implements ListViewable,
 	    // TODO: remove dummy code: must not recreate actions
 	    globalActionButtonList = new Hashtable<String, AbstractAction>();
 	    // TODO Make sure new User() is the appropriated behavior we want
-	    globalActionButtonList.put("Nouvel utilisateur", new BaseAction(
+	    globalActionButtonList.put("Nouveau "
+		    + data.get(0).getClass().getSimpleName(), new BaseAction(
 		    "New", new User()));
 	}
 	return globalActionButtonList;
