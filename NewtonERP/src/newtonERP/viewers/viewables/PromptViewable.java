@@ -39,4 +39,16 @@ public interface PromptViewable
      * @return nom du bouton "ok"
      */
     public String getButtonCaption();
+
+    /**
+     * @return Can be dummy if entity is not an Orm Entity
+     */
+    public String getPrimaryKeyName();
+
+    /**
+     * @return Can be dummy if entity is not an Orm Entity
+     */
+    public String getPrimaryKeyValue();
+
+    public String getLabelName(String inputName);
 }

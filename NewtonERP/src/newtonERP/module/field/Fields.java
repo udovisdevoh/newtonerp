@@ -126,17 +126,6 @@ public class Fields implements Iterable<Field>
 	return hash;
     }
 
-    public Hashtable<String, String> getHashTableFromWithLongNames()
-    {
-	Hashtable<String, String> hash = new Hashtable<String, String>();
-	for (Field field : fieldsData.values())
-	{
-	    if (field.getDataString() != null)
-		hash.put(field.getName(), field.getDataString());
-	}
-	return hash;
-    }
-
     /*
      * (non-Javadoc)
      * 

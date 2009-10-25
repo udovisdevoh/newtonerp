@@ -31,7 +31,9 @@ public class PromptViewer
 
 	    html += "<h1>" + entity.getPromptMessage() + "</h1>";
 
-	    html += "<form method=\"POST\" action=\"" + formActionUrl + "\">";
+	    html += "<form method=\"POST\" action=\"" + formActionUrl + "?"
+		    + entity.getPrimaryKeyName() + "="
+		    + entity.getPrimaryKeyValue() + "\">";
 
 	    html += "<table>";
 
@@ -40,7 +42,7 @@ public class PromptViewer
 	    {
 		inputValue = entity.getInputList().get(inputName);
 
-		html += "<tr><td>" + inputName
+		html += "<tr><td>" + entity.getLabelName(inputName)
 			+ ": </td><td><input type=\"text\" name=\"" + inputName
 			+ "\" value=\"" + inputValue + "\"></td></tr>";
 	    }

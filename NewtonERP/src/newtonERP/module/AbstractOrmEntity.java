@@ -194,7 +194,12 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 
     public Hashtable<String, String> getInputList() throws OrmException
     {
-	return getFields().getHashTableFromWithLongNames();
+	return getFields().getHashTableFrom();
+    }
+
+    public String getLabelName(String inputName)
+    {
+	return getFields().getField(inputName).getName();
     }
 
     public String getPrimaryKeyName()

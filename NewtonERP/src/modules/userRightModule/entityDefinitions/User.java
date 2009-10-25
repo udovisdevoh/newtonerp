@@ -29,7 +29,6 @@ import newtonERP.viewers.viewables.PromptViewable;
  */
 public class User extends AbstractOrmEntity implements PromptViewable
 {
-    private String buttonCaption;
     private AbstractAction submitAction;
     private Module submitModule;
     private static Groups groupDefinition = new Groups();
@@ -70,7 +69,7 @@ public class User extends AbstractOrmEntity implements PromptViewable
     @Override
     public String getButtonCaption()
     {
-	return buttonCaption;
+	return "Enregistrer";
     }
 
     @Override
@@ -149,10 +148,6 @@ public class User extends AbstractOrmEntity implements PromptViewable
     public AbstractEntity editUI(Hashtable<String, String> parameters)
 	    throws InvalidOperatorException
     {
-	if (parameters.containsKey("submit"))
-	    edit(getPrimaryKeyName() + "='"
-		    + getDataString(getPrimaryKeyName()) + "'");
-
 	for (Field field : getFields())
 	    field.setOperator("=");
 
@@ -160,6 +155,12 @@ public class User extends AbstractOrmEntity implements PromptViewable
 	User retUser = (User) get(this).get(0); // on discarte les autre
 	// entity
 	// s'il y a lieu
+
+	if (parameters.containsKey("submit"))
+	{
+	    edit(getPrimaryKeyName() + "='"
+		    + getDataString(getPrimaryKeyName()) + "'");
+	}
 
 	retUser.setSubmitAction(new BaseAction("Edit", this));
 	retUser.setSubmitModule(new UserRightModule());
