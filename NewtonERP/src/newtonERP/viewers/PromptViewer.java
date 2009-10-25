@@ -56,8 +56,7 @@ public class PromptViewer
 		}
 		else
 		{
-		    html += "<tr><td>" + entity.getLabelName(inputName)
-			    + ": </td>";
+		    html += "<tr><td>" + listOfValue.getLabelName() + ": </td>";
 		    html += "<td><select name=\"" + inputName + "\">";
 
 		    Hashtable<String, String> elements = listOfValue

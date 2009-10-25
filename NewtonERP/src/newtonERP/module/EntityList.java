@@ -2,11 +2,15 @@ package newtonERP.module;
 
 import java.util.Hashtable;
 import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
 import java.util.Vector;
 
 import modules.userRightModule.entityDefinitions.User;
 import newtonERP.module.exception.EntityException;
 import newtonERP.module.field.Field;
+import newtonERP.orm.exceptions.OrmException;
 import newtonERP.viewers.viewables.ListViewable;
 
 /**
@@ -19,16 +23,37 @@ public class EntityList extends AbstractEntity implements ListViewable,
     // Je ne sais pas comment initialiser un vector avec des valeurs par défault
     // en JAVA
     // -Guillaume
-    private static Vector<String> columnTitleList;
     private static Hashtable<String, AbstractAction> globalActionButtonList;
     private static Hashtable<String, AbstractAction> specificActionButtonList;
     private Module currentModule;
     private Vector<AbstractOrmEntity> data = new Vector<AbstractOrmEntity>();
 
     @Override
-    public Vector<String> getColumnTitleList()
+    public Vector<String> getColumnTitleList() throws OrmException
     {
-	return data.get(0).getFields().getLongFieldNameList();
+	// return data.get(0).getFields().getLongFieldNameList();
+
+	Vector<String> columnTitleList = new Vector<String>();
+
+	Set<String> shortKeySet = getRowList().get(0).keySet();
+	String currentName;
+
+	for (String shortKey : shortKeySet)
+	{
+	    AbstractOrmEntity definition = data.get(0);
+	    try
+	    {
+		Field currentField = definition.getFields().getField(shortKey);
+		currentName = currentField.getName();
+	    } catch (Exception e)
+	    {
+		currentName = shortKey;
+	    }
+
+	    columnTitleList.add(currentName);
+	}
+
+	return columnTitleList;
     }
 
     @Override
@@ -46,18 +71,26 @@ public class EntityList extends AbstractEntity implements ListViewable,
     }
 
     @Override
-    public Vector<Vector<String>> getRowValues()
+    public Vector<Map<String, String>> getRowList() throws OrmException
     {
-	Vector<Vector<String>> userListInfo = new Vector<Vector<String>>();
+	Vector<Map<String, String>> userListInfo = new Vector<Map<String, String>>();
 
-	Vector<String> userInfo;
+	TreeMap<String, String> entityInfo;
 	for (AbstractOrmEntity entity : data)
 	{
-	    userInfo = new Vector<String>();
+	    entityInfo = new TreeMap<String, String>();
 	    for (Field field : entity.getFields())
-		userInfo.add(field.getDataString());
+	    {
+		entityInfo.put(field.getShortName(), field.getDataString());
 
-	    userListInfo.add(userInfo);
+		ListOfValue listOfValue = entity.tryMatchListOfValue(field
+			.getShortName());
+		if (listOfValue != null)
+		    entityInfo.put(listOfValue.getLabelName(), listOfValue
+			    .getForeignValue(field.getDataString()));
+	    }
+
+	    userListInfo.add(entityInfo);
 	}
 	return userListInfo;
     }
