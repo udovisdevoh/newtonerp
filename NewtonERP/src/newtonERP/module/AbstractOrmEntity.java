@@ -69,7 +69,8 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      * @param parameters parametre suplementaire
      * @return todo: qu'Est-ce que l'on devrai retourné en general?
      */
-    public abstract AbstractEntity deleteUI(Hashtable<String, String> parameters);
+    public abstract AbstractEntity deleteUI(Hashtable<String, String> parameters)
+	    throws InvalidOperatorException;
 
     /**
      * supprime l'entity en DB

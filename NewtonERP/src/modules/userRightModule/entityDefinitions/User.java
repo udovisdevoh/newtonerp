@@ -124,7 +124,7 @@ public class User extends AbstractOrmEntity implements PromptViewable
 	    throws Exception
     {
 	User user = new User();
-	user.setData("name", "noName");
+	user.setData("name", "sans-nom");
 	user.setData("groupsID", 1);
 	user.setData("password", "abc123");
 	user.setSubmitModule(new UserRightModule());
@@ -137,9 +137,13 @@ public class User extends AbstractOrmEntity implements PromptViewable
     }
 
     public AbstractEntity deleteUI(Hashtable<String, String> parameters)
+	    throws InvalidOperatorException
     {
-	// TODO Auto-generated method stub
-	return null;
+	((AbstractOrmEntity) (this)).delete(getPrimaryKeyName() + "='"
+		+ getDataString(getPrimaryKeyName()) + "'");
+
+	return new ForwardEntity(Servlet.makeLink(new UserRightModule(),
+		new GetUserList()));
     }
 
     public AbstractEntity editUI(Hashtable<String, String> parameters)
