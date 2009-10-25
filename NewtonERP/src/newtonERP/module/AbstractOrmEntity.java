@@ -146,10 +146,10 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      * @param parameters parametre suplementaire
      * @return todo: qu'Est-ce que l'on devrai retourné en general?
      * @throws InvalidOperatorException if a wrong operator is set for the field
-     *             datatype
+     *             datatype public abstract AbstractEntity
+     *             getUI(Hashtable<String, String> parameters) throws
+     *             InvalidOperatorException;
      */
-    public abstract AbstractEntity getUI(Hashtable<String, String> parameters)
-	    throws InvalidOperatorException;
 
     /**
      * trouve l'entity selon les critere disponible, retourne le premier trouve
