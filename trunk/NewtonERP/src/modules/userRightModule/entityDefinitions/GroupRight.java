@@ -5,7 +5,9 @@ import java.util.Vector;
 
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
+import newtonERP.module.exception.FieldNotCompatibleException;
 import newtonERP.module.exception.FieldNotFoundException;
+import newtonERP.module.exception.InvalidOperatorException;
 import newtonERP.module.field.Field;
 import newtonERP.module.field.FieldInt;
 import newtonERP.module.field.Fields;
@@ -94,14 +96,7 @@ public class GroupRight extends AbstractOrmEntity
     }
 
     @Override
-    public AbstractEntity deleteUI(Hashtable<String, String> parameters)
-    {
-	// TODO Auto-generated method stub
-	return null;
-    }
-
-    @Override
-    public AbstractEntity editUI(Hashtable<String, String> parameters)
+    public AbstractEntity getAfterDeleteReturnEntity()
     {
 	// TODO Auto-generated method stub
 	return null;
@@ -109,6 +104,7 @@ public class GroupRight extends AbstractOrmEntity
 
     @Override
     public AbstractEntity getUI(Hashtable<String, String> parameters)
+	    throws InvalidOperatorException
     {
 	// TODO Auto-generated method stub
 	return null;
@@ -116,6 +112,15 @@ public class GroupRight extends AbstractOrmEntity
 
     @Override
     public AbstractEntity newUI(Hashtable<String, String> parameters)
+	    throws Exception
+    {
+	// TODO Auto-generated method stub
+	return null;
+    }
+
+    @Override
+    public AbstractEntity editUI(Hashtable<String, String> parameters)
+	    throws InvalidOperatorException, FieldNotCompatibleException
     {
 	// TODO Auto-generated method stub
 	return null;

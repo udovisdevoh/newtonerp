@@ -8,6 +8,8 @@ import java.util.Vector;
 
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
+import newtonERP.module.exception.FieldNotCompatibleException;
+import newtonERP.module.exception.InvalidOperatorException;
 import newtonERP.module.field.Field;
 import newtonERP.module.field.FieldInt;
 import newtonERP.module.field.FieldString;
@@ -31,7 +33,7 @@ public class Customer extends AbstractOrmEntity
 	return new Fields(fields);
     }
 
-    public Customer getCostumerEntity()
+    public Customer getCustomerEntity()
     {
 	Vector<String> search = new Vector<String>();
 	search.add(getPrimaryKeyName() + "="
@@ -45,52 +47,34 @@ public class Customer extends AbstractOrmEntity
 	    e.printStackTrace();
 	}
 	return null;
-
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see newtonERP.module.AbstractOrmEntity#deleteUI(java.util.Hashtable)
-     */
     @Override
-    public AbstractEntity deleteUI(Hashtable<String, String> parameters)
+    public AbstractEntity getAfterDeleteReturnEntity()
     {
 	// TODO Auto-generated method stub
 	return null;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see newtonERP.module.AbstractOrmEntity#editUI(java.util.Hashtable)
-     */
-    @Override
-    public AbstractEntity editUI(Hashtable<String, String> parameters)
-    {
-	// TODO Auto-generated method stub
-	return null;
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see newtonERP.module.AbstractOrmEntity#getUI(java.util.Hashtable)
-     */
     @Override
     public AbstractEntity getUI(Hashtable<String, String> parameters)
+	    throws InvalidOperatorException
     {
 	// TODO Auto-generated method stub
 	return null;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see newtonERP.module.AbstractOrmEntity#newUI(java.util.Hashtable)
-     */
     @Override
     public AbstractEntity newUI(Hashtable<String, String> parameters)
+	    throws Exception
+    {
+	// TODO Auto-generated method stub
+	return null;
+    }
+
+    @Override
+    public AbstractEntity editUI(Hashtable<String, String> parameters)
+	    throws InvalidOperatorException, FieldNotCompatibleException
     {
 	// TODO Auto-generated method stub
 	return null;
