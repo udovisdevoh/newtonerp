@@ -34,7 +34,7 @@ public class GetUserList extends AbstractAction
 	    e.printStackTrace();
 	}
 
-	EntityList userList = new EntityList();
+	EntityList userList = new EntityList(new User());
 
 	for (AbstractOrmEntity user : userVectorFromOrm)
 	    userList.addEntity((user));

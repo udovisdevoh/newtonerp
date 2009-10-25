@@ -31,7 +31,7 @@ public class GetRightList extends AbstractAction
 	    e.printStackTrace();
 	}
 
-	EntityList rightList = new EntityList();
+	EntityList rightList = new EntityList(new Right());
 
 	for (AbstractOrmEntity right : rightVectorFromOrm)
 	    rightList.addEntity((right));
