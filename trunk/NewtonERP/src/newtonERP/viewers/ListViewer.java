@@ -1,6 +1,7 @@
 package newtonERP.viewers;
 
 import java.util.Hashtable;
+import java.util.Map;
 import java.util.Vector;
 
 import newtonERP.module.AbstractAction;
@@ -38,7 +39,7 @@ public class ListViewer
 
 	html += getHeaderRow(entity.getColumnTitleList());
 
-	html += getDataRowList(entity.getRowValues(), entity, entity
+	html += getDataRowList(entity.getRowList(), entity, entity
 		.getCurrentModule());
 
 	html += "</table>";
@@ -71,18 +72,18 @@ public class ListViewer
 	return html;
     }
 
-    private static String getDataRowList(Vector<Vector<String>> rowValues,
+    private static String getDataRowList(Vector<Map<String, String>> rowValues,
 	    ListViewable listEntity, Module module) throws ModuleException
     {
 
 	String html = "";
 	int rowNumber = 0;
-	for (Vector<String> row : rowValues)
+	for (Map<String, String> row : rowValues)
 	{
 	    html += "\n<tr>";
-	    for (String cell : row)
+	    for (String cellKey : row.keySet())
 	    {
-		html += "<td>" + cell + "</td>";
+		html += "<td>" + row.get(cellKey) + "</td>";
 	    }
 
 	    html += getSpecificButtonList(listEntity, listEntity.getKeyName(),

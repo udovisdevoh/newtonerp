@@ -40,4 +40,21 @@ public class ListOfValue
 
 	return elementList;
     }
+
+    public String getLabelName()
+    {
+	return labelName;
+    }
+
+    public String getForeignValue(String foreignPrimaryKey) throws OrmException
+    {
+	Vector<String> criterias = new Vector<String>();
+	criterias.add(foreignEntity.getPrimaryKeyName() + "="
+		+ foreignPrimaryKey);
+	Vector<AbstractOrmEntity> entityList = Orm.select(foreignEntity,
+		criterias);
+	AbstractOrmEntity resultEntity = entityList.get(0);
+
+	return resultEntity.getDataString(foreignDescription);
+    }
 }

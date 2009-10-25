@@ -1,11 +1,13 @@
 package newtonERP.viewers.viewables;
 
 import java.util.Hashtable;
+import java.util.Map;
 import java.util.Vector;
 
 import newtonERP.module.AbstractAction;
 import newtonERP.module.Module;
 import newtonERP.module.exception.EntityException;
+import newtonERP.orm.exceptions.OrmException;
 
 /**
  * @author r3lacasgu
@@ -37,13 +39,15 @@ public interface ListViewable
 
     /**
      * @return Titre des colonnes
+     * @throws OrmException
      */
-    public Vector<String> getColumnTitleList();
+    public Vector<String> getColumnTitleList() throws OrmException;
 
     /**
      * @return Liste de rangées
+     * @throws OrmException
      */
-    public Vector<Vector<String>> getRowValues();
+    public Vector<Map<String, String>> getRowList() throws OrmException;
 
     /**
      * @return Nom de la clef pour identifier une entité dans la liste
