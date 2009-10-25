@@ -71,6 +71,15 @@ public class EntityCreator
 	    }
 	} catch (Exception e)
 	{
+	    // Ce PrintStackTrace est très utile car il manque de l'information
+	    // de provenance de stack dans la nouvelle exception
+	    // TODO: faire que throw new OrmEntityCreationException garde
+	    // l'information de stack de Exception e
+	    // On a convenu qu'il faut laisser passer les exception. Le fait
+	    // d'ajouter
+	    // le PrintStackTrace de l'exception e n'a pas d'influence sur la
+	    // propagation
+	    // de la nouvelle exception OrmEntityCreationException
 	    e.printStackTrace();
 	    throw new OrmEntityCreationException(
 		    "Erreur à la création des entitées provenant d'une requête de l'orm : "
