@@ -17,6 +17,8 @@ import newtonERP.orm.exceptions.OrmException;
  */
 public abstract class AbstractOrmEntity extends AbstractEntity
 {
+    private Hashtable<String, ListOfValue> listOfValueList;
+
     private Module currentModule;
 
     private AbstractAction currentAction;
@@ -297,5 +299,35 @@ public abstract class AbstractOrmEntity extends AbstractEntity
     public final void setCurrentAction(AbstractAction currentAction)
     {
 	this.currentAction = currentAction;
+    }
+
+    /**
+     * @param labelName
+     * @param fieldKeyName
+     * @param foreignDescriptionKey
+     * @param foreignEntity
+     */
+    public final void addListOfValue(String labelName, String fieldKeyName,
+	    String foreignDescriptionKey, AbstractOrmEntity foreignEntity)
+    {
+	ListOfValue listOfValue = new ListOfValue(labelName, foreignEntity
+		.getPrimaryKeyName(), foreignDescriptionKey, foreignEntity);
+
+	if (listOfValueList == null)
+	    listOfValueList = new Hashtable<String, ListOfValue>();
+
+	listOfValueList.put(fieldKeyName, listOfValue);
+    }
+
+    /**
+     * @param fieldKeyName
+     * @return If list of value exist, return it, else, return null
+     */
+    public ListOfValue tryMatchListOfValue(String fieldKeyName)
+    {
+	if (listOfValueList == null)
+	    return null;
+
+	return listOfValueList.get(fieldKeyName);
     }
 }
