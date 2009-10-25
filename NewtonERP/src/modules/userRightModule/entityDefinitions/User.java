@@ -12,6 +12,8 @@ import newtonERP.module.BaseAction;
 import newtonERP.module.ForwardEntity;
 import newtonERP.module.Module;
 import newtonERP.module.exception.EntityException;
+import newtonERP.module.exception.FieldNotCompatibleException;
+import newtonERP.module.exception.FieldNotFoundException;
 import newtonERP.module.exception.InvalidOperatorException;
 import newtonERP.module.field.Field;
 import newtonERP.module.field.FieldInt;
@@ -146,13 +148,18 @@ public class User extends AbstractOrmEntity implements PromptViewable
     }
 
     public AbstractEntity editUI(Hashtable<String, String> parameters)
-	    throws InvalidOperatorException
+	    throws InvalidOperatorException, FieldNotCompatibleException
     {
-	for (Field field : getFields())
-	    field.setOperator("=");
+	/*
+	 * for (Field field : getFields()) field.setOperator("=");
+	 */
 
-	// On utilise l'entité courrante comme entité de recherche
-	User retUser = (User) get(this).get(0); // on discarte les autre
+	User searchEntity = new User();
+	searchEntity.setData(getPrimaryKeyName(), Integer
+		.parseInt(getPrimaryKeyValue()));
+	searchEntity.getFields().getField(getPrimaryKeyName()).setOperator("=");
+
+	User retUser = (User) get(searchEntity).get(0); // on discarte les autre
 	// entity
 	// s'il y a lieu
 
@@ -160,6 +167,17 @@ public class User extends AbstractOrmEntity implements PromptViewable
 	{
 	    edit(getPrimaryKeyName() + "='"
 		    + getDataString(getPrimaryKeyName()) + "'");
+
+	    for (String parameterKey : parameters.keySet())
+		try
+		{
+		    getFields().setData(parameterKey,
+			    parameters.get(parameterKey));
+		} catch (FieldNotFoundException e)
+		{
+		    // Ce catch est vide car seul les fields existant peuvent
+		    // être modifiés par des paramètres - Guillaume
+		}
 	}
 
 	retUser.setSubmitAction(new BaseAction("Edit", this));

@@ -4,6 +4,7 @@ import java.util.Hashtable;
 import java.util.Vector;
 
 import modules.userRightModule.entityDefinitions.User;
+import newtonERP.module.exception.FieldNotCompatibleException;
 import newtonERP.module.exception.InvalidOperatorException;
 import newtonERP.module.field.Field;
 import newtonERP.module.field.Fields;
@@ -101,7 +102,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      * @return todo: qu'Est-ce que l'on devrai retourné en general?
      */
     public abstract AbstractEntity editUI(Hashtable<String, String> parameters)
-	    throws InvalidOperatorException;
+	    throws InvalidOperatorException, FieldNotCompatibleException;
 
     /**
      * met a jour l'entity en DB, l'ID doit etre présent
