@@ -17,6 +17,9 @@ import newtonERP.orm.exceptions.OrmException;
  */
 public abstract class AbstractOrmEntity extends AbstractEntity
 {
+    private Module currentModule;
+
+    private AbstractAction currentAction;
 
     // oblige le redefinition pour les sous-classe de AbstractOrmEntity
     public abstract Fields initFields();
@@ -193,16 +196,27 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	return get(entities);
     }
 
+    /**
+     * @return liste de KeyValuePair de fields et de leur valeurs
+     * @throws OrmException
+     */
     public Hashtable<String, String> getInputList() throws OrmException
     {
 	return getFields().getHashTableFrom();
     }
 
+    /**
+     * @param inputName nom d'un field
+     * @return nom complete d'un field
+     */
     public String getLabelName(String inputName)
     {
 	return getFields().getField(inputName).getName();
     }
 
+    /**
+     * @return Nom de la clef primaire
+     */
     public String getPrimaryKeyName()
     {
 	String firstLetter = (getClass().getSimpleName().charAt(0) + "")
@@ -212,6 +226,9 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 		+ "ID";
     }
 
+    /**
+     * @return Valeur de la clef primaire
+     */
     public String getPrimaryKeyValue()
     {
 	String primaryKeyName = getPrimaryKeyName();
@@ -223,5 +240,50 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 
 	String value = field.getDataString();
 	return value;
+    }
+
+    /**
+     * Implémentation par default
+     * @return Caption par default d'un bouton de modification pour cette entité
+     */
+    public String getButtonCaption()
+    {
+	return "Enregistrer";
+    }
+
+    /**
+     * Implémentation par default pouvant être overridée dans l'entité
+     * @return Description
+     */
+    public String getPromptMessage()
+    {
+	return "Profil d'un " + getClass().getSimpleName();
+    }
+
+    /**
+     * @param currentModule Défini le module utilisé en ce moment pour cette
+     *            entité
+     */
+    public void setCurrentModule(Module currentModule)
+    {
+	this.currentModule = currentModule;
+    }
+
+    public AbstractAction getCurrentAction()
+    {
+	return currentAction;
+    }
+
+    public Module getCurrentModule()
+    {
+	return currentModule;
+    }
+
+    /**
+     * @param currentAction Action qui sera utilisée
+     */
+    public void setCurrentAction(AbstractAction currentAction)
+    {
+	this.currentAction = currentAction;
     }
 }
