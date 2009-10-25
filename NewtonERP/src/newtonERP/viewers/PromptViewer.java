@@ -1,5 +1,8 @@
 package newtonERP.viewers;
 
+import java.util.Hashtable;
+
+import newtonERP.module.ListOfValue;
 import newtonERP.serveur.Servlet;
 import newtonERP.viewers.viewables.PromptViewable;
 
@@ -42,9 +45,38 @@ public class PromptViewer
 	    {
 		inputValue = entity.getInputList().get(inputName);
 
-		html += "<tr><td>" + entity.getLabelName(inputName)
-			+ ": </td><td><input type=\"text\" name=\"" + inputName
-			+ "\" value=\"" + inputValue + "\"></td></tr>";
+		ListOfValue listOfValue = entity.tryMatchListOfValue(inputName);
+
+		if (listOfValue == null)
+		{
+		    html += "<tr><td>" + entity.getLabelName(inputName)
+			    + ": </td><td><input type=\"text\" name=\""
+			    + inputName + "\" value=\"" + inputValue
+			    + "\"></td></tr>";
+		}
+		else
+		{
+		    html += "<tr><td>" + entity.getLabelName(inputName)
+			    + ": </td>";
+		    html += "<td><select name=\"" + inputName + "\">";
+
+		    Hashtable<String, String> elements = listOfValue
+			    .getElements();
+
+		    html += "<option value=\"" + inputValue + "\">"
+			    + elements.get(inputValue) + "</option>";
+
+		    for (String elementKey : elements.keySet())
+		    {
+			if (!elementKey.equals(inputValue))
+			{
+			    html += "<option value=\"" + elementKey + "\">"
+				    + elements.get(elementKey) + "</option>";
+			}
+		    }
+
+		    html += "</select></td></tr>";
+		}
 	    }
 
 	    html += "<tr><td colspan=\"2\" align=\"center\"><input type=\"submit\" name=\"submit\" value=\""

@@ -1,0 +1,43 @@
+package newtonERP.module;
+
+import java.util.Hashtable;
+import java.util.Vector;
+
+import newtonERP.orm.Orm;
+import newtonERP.orm.exceptions.OrmException;
+
+public class ListOfValue
+{
+    private String labelName;
+    private String foreignPrimaryKey;
+    private String foreignDescription;
+    private AbstractOrmEntity foreignEntity;
+
+    /**
+     * @param labelName
+     * @param foreignPrimaryKey
+     * @param foreignDescription
+     * @param foreignEntity
+     */
+    public ListOfValue(String labelName, String foreignPrimaryKey,
+	    String foreignDescription, AbstractOrmEntity foreignEntity)
+    {
+	this.labelName = labelName;
+	this.foreignPrimaryKey = foreignPrimaryKey;
+	this.foreignDescription = foreignDescription;
+	this.foreignEntity = foreignEntity;
+    }
+
+    public Hashtable<String, String> getElements() throws OrmException
+    {
+	Vector<AbstractOrmEntity> entityList = Orm.select(foreignEntity, null);
+
+	Hashtable<String, String> elementList = new Hashtable<String, String>();
+
+	for (AbstractOrmEntity entity : entityList)
+	    elementList.put(entity.getPrimaryKeyValue(), entity
+		    .getDataString(foreignDescription));
+
+	return elementList;
+    }
+}
