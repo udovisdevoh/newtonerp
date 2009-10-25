@@ -2,6 +2,8 @@ package newtonERP.module;
 
 import java.io.File;
 import java.util.Hashtable;
+import java.util.Map;
+import java.util.TreeMap;
 
 import newtonERP.module.exception.ActionNotFoundException;
 import newtonERP.module.exception.ModuleException;
@@ -72,6 +74,8 @@ public abstract class Module
 
     // Sert a stocker les actions pouvant etre appelees
     protected Hashtable<String, AbstractAction> actionList;
+
+    private Map<String, AbstractAction> globalActionList;
 
     /**
      * constructeur par default
@@ -290,5 +294,20 @@ public abstract class Module
 
 	throw new ActionNotFoundException("l'action " + actionName
 		+ "de l'entity" + entityName + "n'existe pas");
+    }
+
+    public final Map<String, AbstractAction> getGlobalActionMenu()
+    {
+	if (globalActionList == null)
+	    globalActionList = new TreeMap<String, AbstractAction>();
+
+	return globalActionList;
+    }
+
+    public final void addGlobalActionMenuItem(String name, AbstractAction action)
+    {
+	if (globalActionList == null)
+	    globalActionList = new TreeMap<String, AbstractAction>();
+	globalActionList.put(name, action);
     }
 }

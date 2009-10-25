@@ -5,6 +5,7 @@ import java.util.Iterator;
 
 import newtonERP.ListModule;
 import newtonERP.module.AbstractEntity;
+import newtonERP.module.Module;
 import newtonERP.module.exception.ModuleException;
 import newtonERP.serveur.Servlet;
 import newtonERP.viewers.viewables.ForwardViewable;
@@ -90,10 +91,10 @@ public abstract class Viewer
 	Hashtable<String, String> mod = ListModule.getAllModules();
 	Iterator<String> keys = mod.keySet().iterator();
 
-	String menuModule = "";
+	String menuModuleHtml = "";
 
 	String menu = "<div id =\"menu\"><!-- Cadre englobant tous les sous-menus -->";
-	menuModule += "<div class=\"element_menu\"> <!-- Cadre correspondant à un sous-menu -->"
+	menuModuleHtml += "<div class=\"element_menu\"> <!-- Cadre correspondant à un sous-menu -->"
 		+ "<h3>Modules</h3> <!-- Titre du sous-menu -->" + "<ul>";
 	String modName = "";
 
@@ -101,14 +102,26 @@ public abstract class Viewer
 	while (keys.hasNext())
 	{
 	    modName = keys.next();
-	    menuModule += "<li><a href=\""
-		    + Servlet.makeLink(ListModule.getModule(modName)) + "\">"
-		    + modName + "</a></li>";
+
+	    Module module = ListModule.getModule(modName);
+	    menuModuleHtml += "<li><a href=\"" + Servlet.makeLink(module)
+		    + "\">" + modName + "</a><ul>";
+
+	    for (String globalActionName : module.getGlobalActionMenu()
+		    .keySet())
+	    {
+		menuModuleHtml += "<li><a href=\"";
+		menuModuleHtml += Servlet.makeLink(module, module
+			.getGlobalActionMenu().get(globalActionName));
+		menuModuleHtml += "\">" + globalActionName + "</li>";
+	    }
+
+	    menuModuleHtml += "</ul></li>";
 	}
-	menuModule += "</ul></div>";// ferme liste et ce Module
+	menuModuleHtml += "</ul></div>";// ferme liste et ce Module
 
 	// ferme menu gauche + <div id="body">=style css corp de droite
-	return (menu + menuModule + "</div> <div id=\"body\">");
+	return (menu + menuModuleHtml + "</div> <div id=\"body\">");
     }
 
     /**
