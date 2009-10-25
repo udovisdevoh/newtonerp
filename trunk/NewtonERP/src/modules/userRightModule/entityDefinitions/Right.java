@@ -7,21 +7,24 @@ import modules.userRightModule.UserRightModule;
 import modules.userRightModule.actions.GetRightList;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
+import newtonERP.module.BaseAction;
 import newtonERP.module.ForwardEntity;
 import newtonERP.module.exception.FieldNotCompatibleException;
+import newtonERP.module.exception.FieldNotFoundException;
 import newtonERP.module.exception.InvalidOperatorException;
 import newtonERP.module.field.Field;
 import newtonERP.module.field.FieldInt;
 import newtonERP.module.field.FieldString;
 import newtonERP.module.field.Fields;
 import newtonERP.serveur.Servlet;
+import newtonERP.viewers.viewables.PromptViewable;
 
 /**
  * @author r3hallejo
  * 
  *         Entity defenition class representing a right
  */
-public class Right extends AbstractOrmEntity
+public class Right extends AbstractOrmEntity implements PromptViewable
 {
     public Fields initFields()
     {
@@ -69,7 +72,49 @@ public class Right extends AbstractOrmEntity
     public AbstractEntity editUI(Hashtable<String, String> parameters)
 	    throws InvalidOperatorException, FieldNotCompatibleException
     {
-	return new ForwardEntity(Servlet.makeLink(new UserRightModule(),
-		new GetRightList()));
+	/*
+	 * for (Field field : getFields()) field.setOperator("=");
+	 */
+
+	Right searchEntity = new Right();
+	searchEntity.setData(getPrimaryKeyName(), Integer
+		.parseInt(getPrimaryKeyValue()));
+	searchEntity.getFields().getField(getPrimaryKeyName()).setOperator("=");
+
+	Right retRight = (Right) get(searchEntity).get(0); // on discarte les
+	// autre
+	retRight.setCurrentAction(new BaseAction("Edit", this));
+	retRight.setCurrentModule(new UserRightModule());
+	// entity
+	// s'il y a lieu
+
+	if (parameters.containsKey("submit"))
+	{
+	    for (String parameterKey : parameters.keySet())
+	    {
+		try
+		{
+		    getFields().setData(parameterKey,
+			    parameters.get(parameterKey));
+		} catch (FieldNotFoundException e)
+		{
+		    // Ce catch est vide car seul les fields existant peuvent
+		    // être modifiés par des paramètres - Guillaume
+		    continue;
+		}
+	    }
+
+	    edit(getPrimaryKeyName() + "='"
+		    + getDataString(getPrimaryKeyName()) + "'");
+
+	    return new ForwardEntity(Servlet.makeLink(new UserRightModule(),
+		    new BaseAction("Edit", searchEntity))
+		    + "?"
+		    + searchEntity.getPrimaryKeyName()
+		    + "="
+		    + searchEntity.getPrimaryKeyValue());
+	}
+
+	return retRight;
     }
 }

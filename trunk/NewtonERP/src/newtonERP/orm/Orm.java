@@ -361,10 +361,19 @@ public class Orm
 		// If it's the end or not we add the key to the query with the
 		// right
 		// string ("," or not)
-		if (keySetIterator.hasNext())
-		    sqlQuery += key.toString() + "='" + data.get(key) + "', ";
-		else
-		    sqlQuery += key.toString() + "='" + data.get(key) + "'";
+
+		/*
+		 * if (keySetIterator.hasNext()) sqlQuery += key.toString() +
+		 * "='" + data.get(key) + "', "; else sqlQuery += key.toString()
+		 * + "='" + data.get(key) + "'";
+		 */
+
+		// Commenté car les lignes précédentes faisaient traiter de
+		// manière différente la fin de la requête
+		// Et comme tu enlève 2 caractères à la fin, ça fait la
+		// modification 2 fois. -Guillaume
+
+		sqlQuery += key.toString() + "='" + data.get(key) + "', ";
 	    }
 	}
 

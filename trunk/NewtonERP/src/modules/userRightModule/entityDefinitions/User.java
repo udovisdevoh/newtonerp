@@ -83,9 +83,6 @@ public class User extends AbstractOrmEntity implements PromptViewable
 
 	if (parameters.containsKey("submit"))
 	{
-	    edit(getPrimaryKeyName() + "='"
-		    + getDataString(getPrimaryKeyName()) + "'");
-
 	    for (String parameterKey : parameters.keySet())
 	    {
 		try
@@ -96,9 +93,14 @@ public class User extends AbstractOrmEntity implements PromptViewable
 		{
 		    // Ce catch est vide car seul les fields existant peuvent
 		    // être modifiés par des paramètres - Guillaume
+		    continue;
 		}
 
 	    }
+
+	    edit(getPrimaryKeyName() + "='"
+		    + getDataString(getPrimaryKeyName()) + "'");
+
 	    return new ForwardEntity(Servlet.makeLink(new UserRightModule(),
 		    new BaseAction("Edit", searchEntity))
 		    + "?"
