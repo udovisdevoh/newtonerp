@@ -36,8 +36,8 @@ public class Right extends AbstractOrmEntity
     @Override
     public AbstractEntity getAfterDeleteReturnEntity()
     {
-	// TODO Auto-generated method stub
-	return null;
+	return new ForwardEntity(Servlet.makeLink(new UserRightModule(),
+		new GetRightList()));
     }
 
     @Override
