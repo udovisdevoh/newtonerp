@@ -43,16 +43,20 @@ public class PromptViewer
 	    String inputValue;
 	    for (String inputName : entity.getInputList().keySet())
 	    {
+		String isReadOnly = "";
 		inputValue = entity.getInputList().get(inputName);
 
 		ListOfValue listOfValue = entity.tryMatchListOfValue(inputName);
+
+		if (inputName.equals(entity.getPrimaryKeyName()))
+		    isReadOnly = "DISABLED";
 
 		if (listOfValue == null)
 		{
 		    html += "<tr><td>" + entity.getLabelName(inputName)
 			    + ": </td><td><input type=\"text\" name=\""
-			    + inputName + "\" value=\"" + inputValue
-			    + "\"></td></tr>";
+			    + inputName + "\" value=\"" + inputValue + "\"  "
+			    + isReadOnly + "></td></tr>";
 		}
 		else
 		{
