@@ -87,8 +87,7 @@ public abstract class Module
 
     protected final void setDefaultAction(AbstractAction action)
     {
-	if (actionList.contains(action))
-	    actionList.put("default", action);
+	actionList.put("default", action);
     }
 
     private final void addAction(AbstractAction action)
