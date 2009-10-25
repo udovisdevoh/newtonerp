@@ -26,12 +26,17 @@ public class EntityList extends AbstractEntity implements ListViewable,
     private Hashtable<String, AbstractAction> specificActionButtonList;
     private Module currentModule;
     private Vector<AbstractOrmEntity> data = new Vector<AbstractOrmEntity>();
+    private AbstractOrmEntity internalEntityDefinition;
+
+    public EntityList(AbstractOrmEntity internalEntityDefinition)
+    {
+	this.internalEntityDefinition = internalEntityDefinition;
+	specificActionButtonList = buildSpecificActionButtonList();
+    }
 
     @Override
     public Vector<String> getColumnTitleList() throws OrmException
     {
-	// return data.get(0).getFields().getLongFieldNameList();
-
 	Vector<String> columnTitleList = new Vector<String>();
 
 	Set<String> shortKeySet = getRowList().get(0).keySet();
@@ -39,10 +44,10 @@ public class EntityList extends AbstractEntity implements ListViewable,
 
 	for (String shortKey : shortKeySet)
 	{
-	    AbstractOrmEntity definition = data.get(0);
 	    try
 	    {
-		Field currentField = definition.getFields().getField(shortKey);
+		Field currentField = internalEntityDefinition.getFields()
+			.getField(shortKey);
 		currentName = currentField.getName();
 	    } catch (Exception e)
 	    {
@@ -64,8 +69,8 @@ public class EntityList extends AbstractEntity implements ListViewable,
 	    globalActionButtonList = new Hashtable<String, AbstractAction>();
 	    // TODO Make sure new User() is the appropriated behavior we want
 	    globalActionButtonList.put("Nouveau "
-		    + data.get(0).getClass().getSimpleName(), new BaseAction(
-		    "New", data.get(0)));
+		    + internalEntityDefinition.getClass().getSimpleName(),
+		    new BaseAction("New", internalEntityDefinition));
 	}
 	return globalActionButtonList;
     }
@@ -100,20 +105,28 @@ public class EntityList extends AbstractEntity implements ListViewable,
 	data.add(entity);
     }
 
+    private Hashtable<String, AbstractAction> buildSpecificActionButtonList()
+    {
+	// TODO: remove dummy code: must not recreate actions
+	specificActionButtonList = new Hashtable<String, AbstractAction>();
+	// TODO Make sure new User() is the appropriated behavior we want
+	specificActionButtonList.put("Modifier", new BaseAction("Edit",
+		internalEntityDefinition));
+	specificActionButtonList.put("Effacer", new BaseAction("Delete",
+		internalEntityDefinition));
+	return specificActionButtonList;
+    }
+
     @Override
     public Hashtable<String, AbstractAction> getSpecificActionButtonList()
     {
-	if (specificActionButtonList == null)
-	{
-	    // TODO: remove dummy code: must not recreate actions
-	    specificActionButtonList = new Hashtable<String, AbstractAction>();
-	    // TODO Make sure new User() is the appropriated behavior we want
-	    specificActionButtonList.put("Modifier", new BaseAction("Edit",
-		    data.get(0)));
-	    specificActionButtonList.put("Effacer", new BaseAction("Delete",
-		    data.get(0)));
-	}
 	return specificActionButtonList;
+    }
+
+    public void addSpecificActionButtonList(String caption,
+	    AbstractAction action)
+    {
+	specificActionButtonList.put(caption, action);
     }
 
     @Override
@@ -133,7 +146,7 @@ public class EntityList extends AbstractEntity implements ListViewable,
 
     public String getKeyName()
     {
-	return data.get(0).getPrimaryKeyName();
+	return internalEntityDefinition.getPrimaryKeyName();
     }
 
     public String getKeyValue(int rowNumber)
@@ -145,7 +158,7 @@ public class EntityList extends AbstractEntity implements ListViewable,
     @Override
     public String getInternalElementName()
     {
-	return data.get(0).getClass().getSimpleName();
+	return internalEntityDefinition.getClass().getSimpleName();
     }
 
     @Override
