@@ -104,9 +104,9 @@ public class Orm
     }
 
     /**
-     * @param searchEntity: entité de recherche
-     * @return résultat de recherche
-     * @throws OrmException
+     * @param searchEntity the single search entity
+     * @return the entities that have been selected in the db
+     * @throws OrmException an exception that can occurin the orm
      */
     public static Vector<AbstractOrmEntity> select(
 	    AbstractOrmEntity searchEntity) throws OrmException
