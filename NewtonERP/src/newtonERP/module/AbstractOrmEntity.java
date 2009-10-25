@@ -73,8 +73,19 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      * @param parameters parametre suplementaire
      * @return todo: qu'Est-ce que l'on devrai retourné en general?
      */
-    public abstract AbstractEntity deleteUI(Hashtable<String, String> parameters)
-	    throws InvalidOperatorException;
+    public AbstractEntity deleteUI(Hashtable<String, String> parameters)
+	    throws InvalidOperatorException
+    {
+	delete(getPrimaryKeyName() + "='" + getDataString(getPrimaryKeyName())
+		+ "'");
+
+	return getAfterDeleteReturnEntity();
+    }
+
+    /**
+     * @return Entité retournée après effacement de cette entité
+     */
+    public abstract AbstractEntity getAfterDeleteReturnEntity();
 
     /**
      * supprime l'entity en DB

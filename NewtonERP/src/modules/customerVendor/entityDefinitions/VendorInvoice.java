@@ -8,6 +8,8 @@ import java.util.Vector;
 
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
+import newtonERP.module.exception.FieldNotCompatibleException;
+import newtonERP.module.exception.InvalidOperatorException;
 import newtonERP.module.field.Field;
 import newtonERP.module.field.FieldDouble;
 import newtonERP.module.field.FieldInt;
@@ -53,52 +55,34 @@ public class VendorInvoice extends AbstractOrmEntity
 
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see newtonERP.module.AbstractOrmEntity#deleteUI(java.util.Hashtable)
-     */
     @Override
-    public AbstractEntity deleteUI(Hashtable<String, String> parameters)
+    public AbstractEntity getAfterDeleteReturnEntity()
     {
 	// TODO Auto-generated method stub
 	return null;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see newtonERP.module.AbstractOrmEntity#editUI(java.util.Hashtable)
-     */
-    @Override
-    public AbstractEntity editUI(Hashtable<String, String> parameters)
-    {
-	// TODO Auto-generated method stub
-	return null;
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see newtonERP.module.AbstractOrmEntity#getUI(java.util.Hashtable)
-     */
     @Override
     public AbstractEntity getUI(Hashtable<String, String> parameters)
+	    throws InvalidOperatorException
     {
 	// TODO Auto-generated method stub
 	return null;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see newtonERP.module.AbstractOrmEntity#newUI(java.util.Hashtable)
-     */
     @Override
     public AbstractEntity newUI(Hashtable<String, String> parameters)
+	    throws Exception
     {
 	// TODO Auto-generated method stub
 	return null;
     }
 
+    @Override
+    public AbstractEntity editUI(Hashtable<String, String> parameters)
+	    throws InvalidOperatorException, FieldNotCompatibleException
+    {
+	// TODO Auto-generated method stub
+	return null;
+    }
 }

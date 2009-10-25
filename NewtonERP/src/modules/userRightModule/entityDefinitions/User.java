@@ -44,6 +44,69 @@ public class User extends AbstractOrmEntity implements PromptViewable
 	return new Fields(fieldsData);
     }
 
+    public AbstractEntity newUI(Hashtable<String, String> parameters)
+	    throws Exception
+    {
+	User user = new User();
+	user.setData("name", "sans-nom");
+	user.setData("groupsID", 1);
+	user.setData("password", "abc123");
+	user.setCurrentModule(new UserRightModule());
+	// user.setSubmitAction(new BaseAction("Edit", this));
+
+	((AbstractOrmEntity) user).newE();
+
+	return new ForwardEntity(Servlet.makeLink(new UserRightModule(),
+		new GetUserList()));
+    }
+
+    public AbstractEntity editUI(Hashtable<String, String> parameters)
+	    throws InvalidOperatorException, FieldNotCompatibleException
+    {
+	/*
+	 * for (Field field : getFields()) field.setOperator("=");
+	 */
+
+	User searchEntity = new User();
+	searchEntity.setData(getPrimaryKeyName(), Integer
+		.parseInt(getPrimaryKeyValue()));
+	searchEntity.getFields().getField(getPrimaryKeyName()).setOperator("=");
+
+	User retUser = (User) get(searchEntity).get(0); // on discarte les autre
+	retUser.setCurrentAction(new BaseAction("Edit", this));
+	retUser.setCurrentModule(new UserRightModule());
+	// entity
+	// s'il y a lieu
+
+	if (parameters.containsKey("submit"))
+	{
+	    edit(getPrimaryKeyName() + "='"
+		    + getDataString(getPrimaryKeyName()) + "'");
+
+	    for (String parameterKey : parameters.keySet())
+	    {
+		try
+		{
+		    getFields().setData(parameterKey,
+			    parameters.get(parameterKey));
+		} catch (FieldNotFoundException e)
+		{
+		    // Ce catch est vide car seul les fields existant peuvent
+		    // être modifiés par des paramètres - Guillaume
+		}
+
+	    }
+	    return new ForwardEntity(Servlet.makeLink(new UserRightModule(),
+		    new BaseAction("Edit", searchEntity))
+		    + "?"
+		    + searchEntity.getPrimaryKeyName()
+		    + "="
+		    + searchEntity.getPrimaryKeyValue());
+	}
+
+	return retUser;
+    }
+
     /**
      * permet d'obtenir directement l'entity groups lie a cet user
      * 
@@ -64,86 +127,10 @@ public class User extends AbstractOrmEntity implements PromptViewable
 	return null;
     }
 
-    public AbstractEntity newUI(Hashtable<String, String> parameters)
-	    throws Exception
-    {
-	User user = new User();
-	user.setData("name", "sans-nom");
-	user.setData("groupsID", 1);
-	user.setData("password", "abc123");
-	user.setCurrentModule(new UserRightModule());
-	// user.setSubmitAction(new BaseAction("Edit", this));
-
-	((AbstractOrmEntity) user).newE();
-
-	return new ForwardEntity(Servlet.makeLink(new UserRightModule(),
-		new GetUserList()));
-    }
-
-    public AbstractEntity deleteUI(Hashtable<String, String> parameters)
-	    throws InvalidOperatorException
-    {
-	((AbstractOrmEntity) (this)).delete(getPrimaryKeyName() + "='"
-		+ getDataString(getPrimaryKeyName()) + "'");
-
-	return new ForwardEntity(Servlet.makeLink(new UserRightModule(),
-		new GetUserList()));
-    }
-
-    public AbstractEntity editUI(Hashtable<String, String> parameters)
-	    throws InvalidOperatorException, FieldNotCompatibleException
-    {
-	/*
-	 * for (Field field : getFields()) field.setOperator("=");
-	 */
-
-	User searchEntity = new User();
-	searchEntity.setData(getPrimaryKeyName(), Integer
-		.parseInt(getPrimaryKeyValue()));
-	searchEntity.getFields().getField(getPrimaryKeyName()).setOperator("=");
-
-	User retUser = (User) get(searchEntity).get(0); // on discarte les autre
-	// entity
-	// s'il y a lieu
-
-	if (parameters.containsKey("submit"))
-	{
-	    edit(getPrimaryKeyName() + "='"
-		    + getDataString(getPrimaryKeyName()) + "'");
-
-	    for (String parameterKey : parameters.keySet())
-		try
-		{
-		    getFields().setData(parameterKey,
-			    parameters.get(parameterKey));
-		} catch (FieldNotFoundException e)
-		{
-		    // Ce catch est vide car seul les fields existant peuvent
-		    // être modifiés par des paramètres - Guillaume
-		}
-	}
-
-	retUser.setCurrentAction(new BaseAction("Edit", this));
-	retUser.setCurrentModule(new UserRightModule());
-
-	return retUser;
-    }
-
+    @Override
     public AbstractEntity getUI(Hashtable<String, String> parameters)
 	    throws InvalidOperatorException
     {
-	/*
-	 * Vector<AbstractOrmEntity> entities = new Vector<AbstractOrmEntity>();
-	 * 
-	 * User user = new User();
-	 * user.getFields().getField("name").setOperator("=");
-	 * user.getFields().getField("name").setData(getDataString("name"));
-	 * 
-	 * entities.add(user);
-	 * 
-	 * User retUser = (User) get(entities).get(0);
-	 */
-
 	for (Field field : getFields())
 	    field.setOperator("=");
 
@@ -159,5 +146,12 @@ public class User extends AbstractOrmEntity implements PromptViewable
 	retUser.setCurrentModule(new UserRightModule());
 
 	return retUser;
+    }
+
+    @Override
+    public AbstractEntity getAfterDeleteReturnEntity()
+    {
+	return new ForwardEntity(Servlet.makeLink(new UserRightModule(),
+		new GetUserList()));
     }
 }
