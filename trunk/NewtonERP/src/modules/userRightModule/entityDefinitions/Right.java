@@ -3,14 +3,18 @@ package modules.userRightModule.entityDefinitions;
 import java.util.Hashtable;
 import java.util.Vector;
 
+import modules.userRightModule.UserRightModule;
+import modules.userRightModule.actions.GetRightList;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
+import newtonERP.module.ForwardEntity;
 import newtonERP.module.exception.FieldNotCompatibleException;
 import newtonERP.module.exception.InvalidOperatorException;
 import newtonERP.module.field.Field;
 import newtonERP.module.field.FieldInt;
 import newtonERP.module.field.FieldString;
 import newtonERP.module.field.Fields;
+import newtonERP.serveur.Servlet;
 
 /**
  * @author r3hallejo
@@ -48,15 +52,24 @@ public class Right extends AbstractOrmEntity
     public AbstractEntity newUI(Hashtable<String, String> parameters)
 	    throws Exception
     {
-	// TODO Auto-generated method stub
-	return null;
+	Right right = new Right();
+	right.setCurrentModule(new UserRightModule());
+	right.setData("moduleName", "aucun");
+	right.setData("entityName", "aucun");
+	right.setData("actionName", "aucun");
+	// user.setSubmitAction(new BaseAction("Edit", this));
+
+	((AbstractOrmEntity) right).newE();
+
+	return new ForwardEntity(Servlet.makeLink(new UserRightModule(),
+		new GetRightList()));
     }
 
     @Override
     public AbstractEntity editUI(Hashtable<String, String> parameters)
 	    throws InvalidOperatorException, FieldNotCompatibleException
     {
-	// TODO Auto-generated method stub
-	return null;
+	return new ForwardEntity(Servlet.makeLink(new UserRightModule(),
+		new GetRightList()));
     }
 }

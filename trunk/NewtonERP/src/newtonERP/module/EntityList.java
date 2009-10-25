@@ -23,8 +23,8 @@ public class EntityList extends AbstractEntity implements ListViewable,
     // Je ne sais pas comment initialiser un vector avec des valeurs par défault
     // en JAVA
     // -Guillaume
-    private static Hashtable<String, AbstractAction> globalActionButtonList;
-    private static Hashtable<String, AbstractAction> specificActionButtonList;
+    private Hashtable<String, AbstractAction> globalActionButtonList;
+    private Hashtable<String, AbstractAction> specificActionButtonList;
     private Module currentModule;
     private Vector<AbstractOrmEntity> data = new Vector<AbstractOrmEntity>();
 
@@ -66,7 +66,7 @@ public class EntityList extends AbstractEntity implements ListViewable,
 	    // TODO Make sure new User() is the appropriated behavior we want
 	    globalActionButtonList.put("Nouveau "
 		    + data.get(0).getClass().getSimpleName(), new BaseAction(
-		    "New", new User()));
+		    "New", data.get(0)));
 	}
 	return globalActionButtonList;
     }
