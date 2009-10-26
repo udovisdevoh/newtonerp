@@ -1,5 +1,6 @@
 package newtonERP.module;
 
+import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.Vector;
 
@@ -22,6 +23,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
     private Hashtable<String, FlagPool> flagPoolList;
     private Module currentModule;
     private AbstractAction currentAction;
+    private HashSet<String> hiddenFieldList;
 
     // oblige le redefinition pour les sous-classe de AbstractOrmEntity
     public abstract Fields initFields();
@@ -358,5 +360,19 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	    flagPoolList = new Hashtable<String, FlagPool>();
 
 	flagPoolList.put(visibleDescription, flagPool);
+    }
+
+    public void addHiddenField(String fieldName)
+    {
+	if (hiddenFieldList == null)
+	    hiddenFieldList = new HashSet<String>();
+	hiddenFieldList.add(fieldName);
+    }
+
+    public boolean isFieldHidden(String fieldName)
+    {
+	if (hiddenFieldList == null)
+	    return false;
+	return hiddenFieldList.contains(fieldName);
     }
 }

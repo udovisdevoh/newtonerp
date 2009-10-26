@@ -56,4 +56,6 @@ public interface PromptViewable
     public ListOfValue tryMatchListOfValue(String fieldKeyName);
 
     public Hashtable<String, FlagPool> getFlagPoolList();
+
+    public boolean isFieldHidden(String fieldName);
 }

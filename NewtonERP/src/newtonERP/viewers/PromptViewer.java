@@ -40,6 +40,7 @@ public class PromptViewer
 	    html += "<table>";
 
 	    String inputValue;
+	    String textFieldType;
 	    for (String inputName : entity.getInputList().keySet())
 	    {
 		String isReadOnly = "";
@@ -52,10 +53,15 @@ public class PromptViewer
 
 		if (listOfValue == null)
 		{
+		    if (entity.isFieldHidden(inputName))
+			textFieldType = "password";
+		    else
+			textFieldType = "text";
+
 		    html += "\n<tr><td>" + entity.getLabelName(inputName)
-			    + ": </td><td><input type=\"text\" name=\""
-			    + inputName + "\" value=\"" + inputValue + "\"  "
-			    + isReadOnly + "></td></tr>";
+			    + ": </td><td><input type=\"" + textFieldType
+			    + "\" name=\"" + inputName + "\" value=\""
+			    + inputValue + "\"  " + isReadOnly + "></td></tr>";
 		}
 		else
 		{
