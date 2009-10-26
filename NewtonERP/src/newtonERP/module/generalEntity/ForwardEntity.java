@@ -1,5 +1,6 @@
-package newtonERP.module;
+package newtonERP.module.generalEntity;
 
+import newtonERP.module.AbstractEntity;
 import newtonERP.viewers.viewables.ForwardViewable;
 
 public class ForwardEntity extends AbstractEntity implements ForwardViewable

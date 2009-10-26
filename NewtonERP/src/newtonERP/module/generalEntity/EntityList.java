@@ -1,4 +1,4 @@
-package newtonERP.module;
+package newtonERP.module.generalEntity;
 
 import java.util.Hashtable;
 import java.util.Iterator;
@@ -7,6 +7,11 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.Vector;
 
+import newtonERP.module.AbstractAction;
+import newtonERP.module.AbstractEntity;
+import newtonERP.module.AbstractOrmEntity;
+import newtonERP.module.BaseAction;
+import newtonERP.module.Module;
 import newtonERP.module.exception.EntityException;
 import newtonERP.module.field.Field;
 import newtonERP.orm.exceptions.OrmException;

@@ -8,7 +8,7 @@ import modules.userRightModule.entityDefinitions.Groups;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
-import newtonERP.module.EntityList;
+import newtonERP.module.generalEntity.EntityList;
 import newtonERP.orm.Orm;
 import newtonERP.orm.exceptions.OrmException;
 

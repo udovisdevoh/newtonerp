@@ -1,9 +1,10 @@
-package newtonERP.module;
+package newtonERP.module.generalEntity;
 
 import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.Vector;
 
+import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.Orm;
 import newtonERP.viewers.viewables.CheckListViewable;
 
