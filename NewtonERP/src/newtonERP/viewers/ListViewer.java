@@ -67,7 +67,8 @@ public class ListViewer
 		actionName = action.getClass().getSimpleName();
 
 	    html += getButton(buttonCaption, actionName, null, null, action,
-		    module, entity.getButtonConfirmList().contains(actionName));
+		    module, entity.getButtonConfirmList().contains(actionName),
+		    entity.getInternalElementName());
 	}
 	return html;
     }
@@ -87,7 +88,8 @@ public class ListViewer
 	    }
 
 	    html += getSpecificButtonList(listEntity, listEntity.getKeyName(),
-		    listEntity.getKeyValue(rowNumber), module);
+		    listEntity.getKeyValue(rowNumber), module, listEntity
+			    .getInternalElementName());
 
 	    html += "</tr>";
 	    rowNumber++;
@@ -96,7 +98,8 @@ public class ListViewer
     }
 
     private static String getSpecificButtonList(ListViewable listEntity,
-	    String key, String value, Module module) throws ModuleException
+	    String key, String value, Module module, String entityTypeName)
+	    throws ModuleException
     {
 	String html = "", actionName;
 
@@ -115,7 +118,7 @@ public class ListViewer
 		actionName = action.getClass().getSimpleName();
 	    html += getButton(buttonCaption, actionName, key, value, action,
 		    module, listEntity.getButtonConfirmList().contains(
-			    actionName));
+			    actionName), entityTypeName);
 
 	    html += "</td>";
 	}
@@ -125,7 +128,7 @@ public class ListViewer
 
     private static String getButton(String buttonCaption, String actionName,
 	    String key, String value, AbstractAction action, Module module,
-	    boolean isConfirm)
+	    boolean isConfirm, String entityTypeName)
     {
 	/*
 	 * String formActionUrl = "/" + moduleName + "/" + actionName + "?user="
@@ -135,7 +138,8 @@ public class ListViewer
 	String onClickConfirm = "";
 
 	if (isConfirm)
-	    onClickConfirm = getOnClickConfirm(actionName, value);
+	    onClickConfirm = getOnClickConfirm(actionName, entityTypeName,
+		    value);
 
 	String formActionUrl = Servlet.makeLink(module, action);
 
@@ -155,12 +159,14 @@ public class ListViewer
 	return html;
     }
 
-    private static String getOnClickConfirm(String actionName, String value)
+    private static String getOnClickConfirm(String actionName,
+	    String entityTypeName, String value)
     {
 	String html = "";
 
 	html += "onClick=\"return confirm(\'Voulez-vous vraiment ";
-	html += actionName;
+	html += actionName + " ";
+	html += entityTypeName;
 	html += " " + value;
 	html += "?\')";
 
