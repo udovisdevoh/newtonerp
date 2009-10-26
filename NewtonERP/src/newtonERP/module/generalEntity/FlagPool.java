@@ -1,7 +1,7 @@
 package newtonERP.module.generalEntity;
 
 import java.util.HashSet;
-import java.util.Hashtable;
+import java.util.TreeMap;
 import java.util.Vector;
 
 import newtonERP.module.AbstractOrmEntity;
@@ -67,17 +67,17 @@ public class FlagPool implements CheckListViewable
     }
 
     @Override
-    public Hashtable<String, String> getAvailableElementList() throws Exception
+    public TreeMap<String, String> getAvailableElementList() throws Exception
     {
 	Vector<AbstractOrmEntity> entityList = Orm.select(
 		foreignEntityDefinition, null);
 
-	Hashtable<String, String> availableElementList = new Hashtable<String, String>();
+	TreeMap<String, String> availableElementList = new TreeMap<String, String>();
 
 	for (AbstractOrmEntity entity : entityList)
 	{
-	    availableElementList.put(entity.getDataString(foreignKey),
-		    getForeignDescription(entity));
+	    availableElementList.put(getForeignDescription(entity), entity
+		    .getDataString(foreignKey));
 	}
 
 	return availableElementList;
