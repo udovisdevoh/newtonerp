@@ -83,7 +83,7 @@ public class EntityCreator
 	    e.printStackTrace();
 	    throw new OrmEntityCreationException(
 		    "Erreur à la création des entitées provenant d'une requête de l'orm : "
-			    + e.getMessage());
+			    + e.getStackTrace().toString());
 	}
 	return returnedEntities;
     }
