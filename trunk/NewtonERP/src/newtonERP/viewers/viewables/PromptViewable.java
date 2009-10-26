@@ -30,16 +30,6 @@ public interface PromptViewable
     public String getButtonCaption();
 
     /**
-     * @return Can be dummy if entity is not an Orm Entity
-     */
-    public String getPrimaryKeyName();
-
-    /**
-     * @return Can be dummy if entity is not an Orm Entity
-     */
-    public String getPrimaryKeyValue();
-
-    /**
      * @param inputName nom d'un field
      * @return nom complete d'un field
      */
