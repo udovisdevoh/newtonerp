@@ -301,7 +301,7 @@ voici le model de scrum a copier en entier si vous êtes le premier
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
   * Le viewer principal  
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
-  * Le errorViewer, et code dans le servlet pour convertir en string le stacktrace passé comme paramètre au errorViewer
+  * Le errorViewer, et ce qu'il faut pour convertir en string le stacktrace passé comme paramètre au errorViewer
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
   * rien de majeur
 
@@ -346,11 +346,11 @@ voici le model de scrum a copier en entier si vous êtes le premier
 
 ==Pascal Lemay==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
-  * ...livré...
+  * Le errorViewer, et code dans le servlet pour convertir en string le stacktrace passé comme paramètre au errorViewer 
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
-  * ...à livré...
+  * Début du module Home, action getHome,et Homeviewer 
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
-  * ...problème, besoin d'aide, qui aidera...
+  * petit problème avec AbstractEntity ...(vide)
 
 ==Gabriel Therrien==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
