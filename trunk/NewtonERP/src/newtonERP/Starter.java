@@ -1,7 +1,7 @@
 package newtonERP;
 
 import modules.userRightModule.actions.CreateAllRight;
-import newtonERP.loging.Logger;
+import newtonERP.logging.Logger;
 import newtonERP.orm.Orm;
 import newtonERP.orm.exceptions.OrmException;
 import newtonERP.serveur.Servlet;
