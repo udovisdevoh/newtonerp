@@ -85,7 +85,7 @@ public class FlagPool implements CheckListViewable
     {
 	String description = "";
 	for (String key : foreignDescriptionUiControls)
-	    description += entity.getDataString(key) + " > ";
+	    description += entity.getDataString(key) + " ";
 	return description.trim();
     }
 

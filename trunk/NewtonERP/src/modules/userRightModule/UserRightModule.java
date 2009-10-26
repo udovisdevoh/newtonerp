@@ -5,7 +5,7 @@ import java.util.Vector;
 import modules.userRightModule.actions.GetGroupsList;
 import modules.userRightModule.actions.GetRightList;
 import modules.userRightModule.actions.GetUserList;
-import modules.userRightModule.actions.Loggin;
+import modules.userRightModule.actions.Login;
 import modules.userRightModule.entityDefinitions.GroupRight;
 import modules.userRightModule.entityDefinitions.Groups;
 import modules.userRightModule.entityDefinitions.Right;
@@ -33,7 +33,7 @@ public class UserRightModule extends Module
 	addGlobalActionMenuItem("Utilisateurs", new GetUserList());
 	addGlobalActionMenuItem("Liste des droits", new GetRightList());
 	addGlobalActionMenuItem("Groupes", new GetGroupsList());
-	addGlobalActionMenuItem("Loggin", new Loggin());
+	addGlobalActionMenuItem("Login", new Login());
     }
 
     public void initDB() throws Exception
