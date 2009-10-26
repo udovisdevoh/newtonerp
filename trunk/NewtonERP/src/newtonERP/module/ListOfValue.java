@@ -5,8 +5,9 @@ import java.util.Vector;
 
 import newtonERP.orm.Orm;
 import newtonERP.orm.exceptions.OrmException;
+import newtonERP.viewers.viewables.SelectBoxViewable;
 
-public class ListOfValue
+public class ListOfValue implements SelectBoxViewable
 {
     private String labelName;
     private String foreignPrimaryKey;

@@ -1,6 +1,6 @@
 package newtonERP.module;
 
-import java.util.Vector;
+import newtonERP.viewers.viewables.CheckListViewable;
 
 /**
  * @author Guillaume Lacasse cette classe sert à faire des liste de flag qu'on
@@ -8,16 +8,18 @@ import java.util.Vector;
  *         étrangère passant par une table intermédiaire. Exemple: attribution
  *         de droits pour un groupe (ça passe par GroupRight)
  */
-public class FlagPool
+public class FlagPool implements CheckListViewable
 {
+    private String visibleDescription;
     private AbstractOrmEntity intermediateEntityDefinition;
     private AbstractOrmEntity foreignEntityDefinition;
     private String intermediateKeyIn;
     private String intermediateKeyOut;
     private String foreignKey;
-    private Vector<String> foreignDescriptionUiControls;
+    private String[] foreignDescriptionUiControls;
 
     /**
+     * @param visibleDescription Description visible
      * @param intermediateEntityDefinition Entité de table intermédiaire,
      *            exemple: GroupRight
      * @param intermediateKeyIn Colonne d'entré de table intermédiaire, exemple:
@@ -30,16 +32,24 @@ public class FlagPool
      * @param foreignDescriptionUiControls liste de colonne de description de
      *            table étrangère, exemple: Action, Module
      */
-    public FlagPool(AbstractOrmEntity intermediateEntityDefinition,
+    public FlagPool(String visibleDescription,
+	    AbstractOrmEntity intermediateEntityDefinition,
 	    String intermediateKeyIn, String intermediateKeyOut,
 	    AbstractOrmEntity foreignEntityDefinition, String foreignKey,
-	    Vector<String> foreignDescriptionUiControls)
+	    String[] foreignDescriptionUiControls)
     {
+	this.visibleDescription = visibleDescription;
 	this.intermediateEntityDefinition = intermediateEntityDefinition;
 	this.intermediateKeyIn = intermediateKeyIn;
 	this.intermediateKeyOut = intermediateKeyOut;
 	this.foreignEntityDefinition = foreignEntityDefinition;
 	this.foreignKey = foreignKey;
 	this.foreignDescriptionUiControls = foreignDescriptionUiControls;
+    }
+
+    @Override
+    public String getVisibleDescription()
+    {
+	return visibleDescription;
     }
 }

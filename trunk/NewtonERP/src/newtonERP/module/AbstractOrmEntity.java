@@ -309,18 +309,36 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 
     public Hashtable<String, FlagPool> getFlagPoolList()
     {
+	if (flagPoolList == null)
+	    flagPoolList = new Hashtable<String, FlagPool>();
+
 	return flagPoolList;
     }
 
+    /**
+     * @param visibleDescription Description visible du flag pool
+     * @param intermediateEntityDefinition Entité de table intermédiaire,
+     *            exemple: GroupRight
+     * @param intermediateKeyIn Colonne d'entré de table intermédiaire, exemple:
+     *            groupID
+     * @param intermediateKeyOut Colonne de sortie de table intermédiaire,
+     *            exemple: rightID
+     * @param foreignEntityDefinition entité de table étrangère, exemple: Right
+     * @param foreignKey clef d'identification de table étrangère, exemple:
+     *            PKrightID
+     * @param foreignDescriptionUiControls liste de colonne de description de
+     *            table étrangère, exemple: Action, Module
+     */
     public void addFlagPool(String visibleDescription,
 	    AbstractOrmEntity intermediateEntityDefinition,
 	    String intermediateKeyIn, String intermediateKeyOut,
 	    AbstractOrmEntity foreignEntityDefinition, String foreignKey,
-	    Vector<String> foreignDescriptionUiControls)
+	    String[] foreignDescriptionUiControls)
     {
-	FlagPool flagPool = new FlagPool(intermediateEntityDefinition,
-		intermediateKeyIn, intermediateKeyOut, foreignEntityDefinition,
-		foreignKey, foreignDescriptionUiControls);
+	FlagPool flagPool = new FlagPool(visibleDescription,
+		intermediateEntityDefinition, intermediateKeyIn,
+		intermediateKeyOut, foreignEntityDefinition, foreignKey,
+		foreignDescriptionUiControls);
 
 	if (flagPoolList == null)
 	    flagPoolList = new Hashtable<String, FlagPool>();
