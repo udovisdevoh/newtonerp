@@ -6,6 +6,7 @@ import modules.userRightModule.actions.GetGroupsList;
 import modules.userRightModule.actions.GetRightList;
 import modules.userRightModule.actions.GetUserList;
 import modules.userRightModule.actions.Login;
+import modules.userRightModule.actions.Logout;
 import modules.userRightModule.entityDefinitions.GroupRight;
 import modules.userRightModule.entityDefinitions.Groups;
 import modules.userRightModule.entityDefinitions.Right;
@@ -34,6 +35,7 @@ public class UserRightModule extends Module
 	addGlobalActionMenuItem("Liste des droits", new GetRightList());
 	addGlobalActionMenuItem("Groupes", new GetGroupsList());
 	addGlobalActionMenuItem("Login", new Login());
+	addGlobalActionMenuItem("Logout", new Logout());
     }
 
     public void initDB() throws Exception

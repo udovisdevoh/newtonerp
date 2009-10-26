@@ -1,5 +1,7 @@
 package newtonERP.viewers;
 
+import newtonERP.Authentication;
+
 /**
  * @author Pascal Lemay
  * 
@@ -14,7 +16,8 @@ public abstract class HomeViewer
      */
     public static String getHomePage()
     {
-	String html = "<div id=\"home\"><!-- rien --></div>";
+	String html = "<h2>Bienvenue " + Authentication.getCurrentUserName()
+		+ "</h2>";
 	return html;
     }
 
