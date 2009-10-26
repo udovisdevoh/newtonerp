@@ -16,9 +16,8 @@ import newtonERP.orm.exceptions.OrmException;
 public abstract class AbstractOrmEntity extends AbstractEntity
 {
     private Hashtable<String, ListOfValue> listOfValueList;
-
+    private Hashtable<String, FlagPool> flagPoolList;
     private Module currentModule;
-
     private AbstractAction currentAction;
 
     // oblige le redefinition pour les sous-classe de AbstractOrmEntity
@@ -306,5 +305,26 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	    return null;
 
 	return listOfValueList.get(fieldKeyName);
+    }
+
+    public Hashtable<String, FlagPool> getFlagPoolList()
+    {
+	return flagPoolList;
+    }
+
+    public void addFlagPool(String visibleDescription,
+	    AbstractOrmEntity intermediateEntityDefinition,
+	    String intermediateKeyIn, String intermediateKeyOut,
+	    AbstractOrmEntity foreignEntityDefinition, String foreignKey,
+	    Vector<String> foreignDescriptionUiControls)
+    {
+	FlagPool flagPool = new FlagPool(intermediateEntityDefinition,
+		intermediateKeyIn, intermediateKeyOut, foreignEntityDefinition,
+		foreignKey, foreignDescriptionUiControls);
+
+	if (flagPoolList == null)
+	    flagPoolList = new Hashtable<String, FlagPool>();
+
+	flagPoolList.put(visibleDescription, flagPool);
     }
 }
