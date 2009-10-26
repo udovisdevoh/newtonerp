@@ -1,7 +1,6 @@
 package newtonERP.viewers;
 
-import java.util.Hashtable;
-
+import newtonERP.module.FlagPool;
 import newtonERP.module.ListOfValue;
 import newtonERP.serveur.Servlet;
 import newtonERP.viewers.viewables.PromptViewable;
@@ -60,27 +59,15 @@ public class PromptViewer
 		}
 		else
 		{
-		    html += "<tr><td>" + listOfValue.getLabelName() + ": </td>";
-		    html += "<td><select name=\"" + inputName + "\">";
-
-		    Hashtable<String, String> elements = listOfValue
-			    .getElements();
-
-		    html += "<option value=\"" + inputValue + "\">"
-			    + elements.get(inputValue) + "</option>";
-
-		    for (String elementKey : elements.keySet())
-		    {
-			if (!elementKey.equals(inputValue))
-			{
-			    html += "<option value=\"" + elementKey + "\">"
-				    + elements.get(elementKey) + "</option>";
-			}
-		    }
-
-		    html += "</select></td></tr>";
+		    html += "<tr><td>"
+			    + SelectBoxViewer.getHtmlCode(listOfValue,
+				    inputName, inputValue) + "</td></tr>";
 		}
 	    }
+
+	    for (FlagPool flagPool : entity.getFlagPoolList().values())
+		html += "<tr><td colspan=\"2\">"
+			+ CheckListViewer.getHtmlCode(flagPool) + "</td></tr>";
 
 	    html += "<tr><td colspan=\"2\" align=\"center\"><input type=\"submit\" name=\"submit\" value=\""
 		    + entity.getButtonCaption() + "\"></td></tr>";
