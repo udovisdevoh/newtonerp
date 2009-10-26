@@ -19,12 +19,12 @@ import newtonERP.serveur.Servlet;
  * 
  * @author cloutierJo
  */
-public class Loggin extends AbstractAction
+public class Login extends AbstractAction
 {
     /**
      * constructeur
      */
-    public Loggin()
+    public Login()
     {
 	super(new User()); // ne travaille pas avec une entity
     }
