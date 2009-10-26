@@ -25,11 +25,23 @@ import newtonERP.viewers.viewables.PromptViewable;
  */
 public class Groups extends AbstractOrmEntity implements PromptViewable
 {
+    private static GroupRight groupRightDefinition = new GroupRight();
+    private static Right rightDefinition = new Right();
+
     public Fields initFields()
     {
 	Vector<Field> fields = new Vector<Field>();
 	fields.add(new FieldInt("Numéro du groupe", getPrimaryKeyName()));
 	fields.add(new FieldString("Nom du groupe", "groupName"));
+
+	// Ajout du flag pool. Sert à choisir les droits via GroupRight et Right
+	Vector<String> foreignUiControlKeys = new Vector<String>();
+	foreignUiControlKeys.add("moduleName");
+	foreignUiControlKeys.add("actionName");
+	addFlagPool("Droits", groupRightDefinition, "groupID", "rightID",
+		rightDefinition, rightDefinition.getPrimaryKeyName(),
+		foreignUiControlKeys);
+
 	return new Fields(fields);
     }
 

@@ -5,6 +5,7 @@ import java.util.Hashtable;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.ListOfValue;
 import newtonERP.module.Module;
+import newtonERP.module.FlagPool;
 import newtonERP.orm.exceptions.OrmException;
 
 /**
@@ -53,4 +54,6 @@ public interface PromptViewable
      * @return If list of value exist, return it, else, return null
      */
     public ListOfValue tryMatchListOfValue(String fieldKeyName);
+
+    public Hashtable<String, FlagPool> getFlagPoolList();
 }
