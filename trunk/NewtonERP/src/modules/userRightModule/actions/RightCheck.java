@@ -18,32 +18,25 @@ public class RightCheck extends AbstractAction
 {
     @Override
     protected AbstractEntity doAction(AbstractEntity entity,
-	    Hashtable<String, String> parameters)
+	    Hashtable<String, String> parameters) throws Exception
     {
-	try
-	{
-	    Vector<String> search = new Vector<String>();
-	    search.add("name='" + parameters.get("name") + "'");
-	    User user = (User) Orm.select(new User(), search).get(0);
-	    System.out.println(user);
-	    for (Right right : user.getGroupsEntity().getRightList())
-	    {
-		Object moduleName = right.getData("moduleName");
-		Object actionName = right.getData("actionName");
-		Object entityName = right.getData("entityName");
+	Vector<String> search = new Vector<String>();
+	search.add("name='" + parameters.get("name") + "'");
+	User user = (User) Orm.select(new User(), search).get(0);
 
-		if (moduleName.equals(parameters.get("module"))
-			&& actionName.equals(parameters.get("action"))
-			&& entityName.equals(parameters.get("entity"))
-			|| !parameters.containsKey("entity"))
-		    return right;
-	    }
-
-	} catch (Exception e)
+	for (Right right : user.getGroupsEntity().getRightList())
 	{
-	    e.printStackTrace();// FIXME: On devrait peut-être laisser DoAction
-	    // throw des exception
+	    String moduleName = right.getDataString("moduleName");
+	    String actionName = right.getDataString("actionName");
+	    String entityName = right.getDataString("entityName");
+
+	    if (moduleName.equals(parameters.get("module"))
+		    && actionName.equals(parameters.get("action"))
+		    && (entityName == null || entityName.equals(parameters
+			    .get("entity"))))
+		return right;
 	}
 	return null;
+
     }
 }

@@ -7,6 +7,7 @@ import newtonERP.orm.exceptions.OrmException;
 import newtonERP.serveur.Servlet;
 
 import org.mortbay.jetty.Server;
+import org.mortbay.jetty.servlet.Context;
 
 /**
  * @author JoCloutier
@@ -42,7 +43,11 @@ public class Starter
 	server = new Server(47098);
 	server.setGracefulShutdown(2000);
 	server.setStopAtShutdown(true);
-	server.setHandler(new Servlet());
+	Context context = new Context(server, "/", Context.SESSIONS);
+	context.setServletHandler(new Servlet());
+	// server.addHandler(new SessionHandler());
+	// server.addHandler(new Servlet());
+
 	server.start();
 
 	doWeExit();
