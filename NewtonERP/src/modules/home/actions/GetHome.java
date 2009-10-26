@@ -5,6 +5,11 @@ import java.util.Hashtable;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
 
+/**
+ * action permettant d'obtenir la page d'Aceuille
+ * @author Pascal
+ * 
+ */
 public class GetHome extends AbstractAction
 {
 

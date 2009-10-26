@@ -11,8 +11,9 @@ public class Home extends Module
 {
     /**
      * constructeur
+     * @throws Exception remonte
      */
-    public Home()
+    public Home() throws Exception
     {
 	super();
 	setDefaultAction(new GetHome());

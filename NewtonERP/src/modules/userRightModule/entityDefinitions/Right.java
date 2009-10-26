@@ -9,9 +9,7 @@ import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.BaseAction;
 import newtonERP.module.ForwardEntity;
-import newtonERP.module.exception.FieldNotCompatibleException;
 import newtonERP.module.exception.FieldNotFoundException;
-import newtonERP.module.exception.InvalidOperatorException;
 import newtonERP.module.field.Field;
 import newtonERP.module.field.FieldInt;
 import newtonERP.module.field.FieldString;
@@ -37,7 +35,7 @@ public class Right extends AbstractOrmEntity implements PromptViewable
     }
 
     @Override
-    public AbstractEntity getAfterDeleteReturnEntity()
+    public AbstractEntity getAfterDeleteReturnEntity() throws Exception
     {
 	return new ForwardEntity(Servlet.makeLink(new UserRightModule(),
 		new GetRightList()));
@@ -68,7 +66,7 @@ public class Right extends AbstractOrmEntity implements PromptViewable
 
     @Override
     public AbstractEntity editUI(Hashtable<String, String> parameters)
-	    throws InvalidOperatorException, FieldNotCompatibleException
+	    throws Exception
     {
 	/*
 	 * for (Field field : getFields()) field.setOperator("=");

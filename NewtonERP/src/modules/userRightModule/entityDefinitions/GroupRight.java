@@ -23,10 +23,19 @@ public class GroupRight extends AbstractOrmEntity
 {
     private static Right rightDefinition = new Right();
 
+    /**
+     * contructeur vide
+     */
     public GroupRight()
     {
+	// rien a faire
     }
 
+    /**
+     * @param groups ID du groupe
+     * @param right ID du droit
+     * @throws FieldNotFoundException remonte
+     */
     public GroupRight(Groups groups, Right right) throws FieldNotFoundException
     {
 	String groupsIdValue = groups.getPrimaryKeyValue();
@@ -48,8 +57,9 @@ public class GroupRight extends AbstractOrmEntity
      * permet d'obtenir directement l'entity groups lie a cet user
      * 
      * @return le group lier
+     * @throws OrmException remonte
      */
-    public Groups getGroupsEntity()
+    public Groups getGroupsEntity() throws OrmException
     {
 	Groups groupsDefinition = new Groups();
 
@@ -57,22 +67,14 @@ public class GroupRight extends AbstractOrmEntity
 	search.add(groupsDefinition.getPrimaryKeyName()
 		+ getFields().getField(groupsDefinition.getPrimaryKeyName()));
 
-	try
-	{
-	    return (Groups) Orm.select(new Groups(), search).get(0);
-	} catch (OrmException e)
-	{
-	    e.printStackTrace();
-	}
-	return null;
-
+	return (Groups) Orm.select(new Groups(), search).get(0);
     }
 
     /**
      * permet d'obtenir directement l'entity Right lier a cet user
      * 
      * @return le Right lier
-     * @throws FieldNotFoundException
+     * @throws Exception remonte
      */
     public Right getRightEntity() throws Exception
     {
@@ -85,14 +87,7 @@ public class GroupRight extends AbstractOrmEntity
 	rightSearchEntity.getFields().setData(
 		rightDefinition.getPrimaryKeyName(), rightIDValue);
 
-	try
-	{
-	    return (Right) Orm.select(rightSearchEntity).get(0);
-	} catch (OrmException e)
-	{
-	    e.printStackTrace();
-	}
-	return null;
+	return (Right) Orm.select(rightSearchEntity).get(0);
     }
 
     @Override

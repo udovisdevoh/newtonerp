@@ -4,8 +4,6 @@ import java.util.Hashtable;
 import java.util.Vector;
 
 import modules.userRightModule.entityDefinitions.User;
-import newtonERP.module.exception.FieldNotCompatibleException;
-import newtonERP.module.exception.InvalidOperatorException;
 import newtonERP.module.field.Field;
 import newtonERP.module.field.Fields;
 import newtonERP.orm.Orm;
@@ -48,6 +46,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      * 
      * @param parameters parametre suplementaire
      * @return todo: qu'Est-ce que l'on devrai retourné en general?
+     * @throws Exception remonte
      */
     public abstract AbstractEntity newUI(Hashtable<String, String> parameters)
 	    throws Exception;
@@ -56,16 +55,11 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      * enregistre l'entity en DB
      * 
      * @return this
+     * @throws OrmException remonte
      */
-    public final AbstractEntity newE()
+    public final AbstractEntity newE() throws OrmException
     {
-	try
-	{
-	    Orm.insert(this);
-	} catch (OrmException e)
-	{
-	    e.printStackTrace();
-	}
+	Orm.insert(this);
 	return this;
     }
 
@@ -74,9 +68,10 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      * 
      * @param parameters parametre suplementaire
      * @return todo: qu'Est-ce que l'on devrai retourné en general?
+     * @throws Exception remonte
      */
     public AbstractEntity deleteUI(Hashtable<String, String> parameters)
-	    throws InvalidOperatorException
+	    throws Exception
     {
 	delete(getPrimaryKeyName() + "='" + getDataString(getPrimaryKeyName())
 		+ "'");
@@ -86,8 +81,10 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 
     /**
      * @return Entité retournée après effacement de cette entité
+     * @throws Exception remonte
      */
-    public abstract AbstractEntity getAfterDeleteReturnEntity();
+    public abstract AbstractEntity getAfterDeleteReturnEntity()
+	    throws Exception;
 
     /**
      * supprime l'entity en DB
@@ -95,18 +92,14 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      * @param whereClause the where clause for the query
      * 
      * @return this
+     * @throws OrmException remonte
      */
-    public final AbstractEntity delete(String whereClause)
+    public final AbstractEntity delete(String whereClause) throws OrmException
     {
-	try
-	{
-	    Vector<String> whereParameter = new Vector<String>();
-	    whereParameter.add(whereClause);
-	    Orm.delete(this, whereParameter);
-	} catch (OrmException e)
-	{
-	    e.printStackTrace();
-	}
+	Vector<String> whereParameter = new Vector<String>();
+	whereParameter.add(whereClause);
+	Orm.delete(this, whereParameter);
+
 	return this; // todo: that a completly non-sense -> r3hallejo dit MDR,
 	// true
     }
@@ -116,27 +109,24 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      * 
      * @param parameters parametre suplementaire
      * @return todo: qu'Est-ce que l'on devrai retourné en general?
+     * @throws Exception remonte
      */
     public abstract AbstractEntity editUI(Hashtable<String, String> parameters)
-	    throws InvalidOperatorException, FieldNotCompatibleException;
+	    throws Exception;
 
     /**
      * met a jour l'entity en DB, l'ID doit etre présent
      * 
      * @param whereClause the where clause for the query
      * @return this
+     * @throws OrmException remonte
      */
-    public final AbstractEntity edit(String whereClause)
+    public final AbstractEntity edit(String whereClause) throws OrmException
     {
 	Vector<String> whereParameter = new Vector<String>();
 	whereParameter.add(whereClause);
-	try
-	{
-	    Orm.update(this, whereParameter);
-	} catch (OrmException e)
-	{
-	    e.printStackTrace();
-	}
+	Orm.update(this, whereParameter);
+
 	return this;
     }
 
@@ -156,24 +146,15 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      * 
      * @param whereClause the where clause for the query
      * @return this
+     * @throws OrmException remonte
      */
     public final Vector<AbstractOrmEntity> get(String whereClause)
+	    throws OrmException
     {
 	Vector<AbstractOrmEntity> retUserList = null;
 	Vector<String> whereParameter = new Vector<String>();
 	whereParameter.add(whereClause);
-	try
-	{
-	    // todo: should we throw an exception if retUserList.size() is
-	    // bigger than 1 ?? -> r3hallejo dit : Pourquoi devrait-on? Si on
-	    // cherche des users ayant comme nom Réjean Grosjean y peut en avoir
-	    // des dizaines....
-
-	    retUserList = Orm.select(new User(), whereParameter);
-	} catch (OrmException e)
-	{
-	    e.printStackTrace();
-	}
+	retUserList = Orm.select(new User(), whereParameter);
 
 	return retUserList;
     }
@@ -182,19 +163,13 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      * @param entities the entities from which we are going to select our data
      *            (where clause)
      * @return the selected entities
+     * @throws OrmException remonte
      */
     public final Vector<AbstractOrmEntity> get(
-	    Vector<AbstractOrmEntity> entities)
+	    Vector<AbstractOrmEntity> entities) throws OrmException
     {
 	Vector<AbstractOrmEntity> retEntities = null;
-
-	try
-	{
-	    retEntities = Orm.select(entities);
-	} catch (OrmException e)
-	{
-	    e.printStackTrace();
-	}
+	retEntities = Orm.select(entities);
 
 	return retEntities;
     }
@@ -202,8 +177,10 @@ public abstract class AbstractOrmEntity extends AbstractEntity
     /**
      * @param entity
      * @return the selected entities
+     * @throws OrmException remonte
      */
     public final Vector<AbstractOrmEntity> get(AbstractOrmEntity entity)
+	    throws OrmException
     {
 	Vector<AbstractOrmEntity> entities = new Vector<AbstractOrmEntity>();
 	entities.add(entity);
@@ -212,7 +189,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 
     /**
      * @return liste de KeyValuePair de fields et de leur valeurs
-     * @throws OrmException
+     * @throws OrmException remonte
      */
     public final Hashtable<String, String> getInputList() throws OrmException
     {

@@ -11,8 +11,9 @@ public class CustomerVendor extends Module
 {
     /**
      * constructeur
+     * @throws Exception remonte
      */
-    public CustomerVendor()
+    public CustomerVendor() throws Exception
     {
 	super();
     }

@@ -12,6 +12,11 @@ import newtonERP.module.EntityList;
 import newtonERP.orm.Orm;
 import newtonERP.orm.exceptions.OrmException;
 
+/**
+ * 
+ * @author GLacasse
+ * 
+ */
 public class GetRightList extends AbstractAction
 {
 
@@ -24,11 +29,9 @@ public class GetRightList extends AbstractAction
 	try
 	{
 	    rightVectorFromOrm = Orm.select(new Right(), null);
-
 	} catch (OrmException e)
 	{
 	    rightVectorFromOrm = new Vector<AbstractOrmEntity>();
-	    e.printStackTrace();
 	}
 
 	EntityList rightList = new EntityList(new Right());
