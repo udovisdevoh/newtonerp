@@ -101,15 +101,15 @@ public class EntityList extends AbstractEntity implements ListViewable,
 	    {
 		if (internalEntityDefinition
 			.isFieldHidden(field.getShortName()))
-		    entityInfo.put(field.getShortName(), "****");
-		else
-		    entityInfo.put(field.getShortName(), field.getDataString());
+		    continue;
 
 		ListOfValue listOfValue = entity.tryMatchListOfValue(field
 			.getShortName());
 		if (listOfValue != null)
 		    entityInfo.put(listOfValue.getLabelName(), listOfValue
 			    .getForeignValue(field.getDataString()));
+		else
+		    entityInfo.put(field.getShortName(), field.getDataString());
 	    }
 
 	    userListInfo.add(entityInfo);
