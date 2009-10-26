@@ -7,14 +7,28 @@ package newtonERP;
  */
 public class Authentication
 {
-    private static String currentUserName = "admin";
+    private static String currentUserName;
 
     /**
-     * @return Utilisateur présentement loggé par session HTTP ou par valeur
-     *         hard-codée (si code de session HTTP pas fait)
+     * @return Utilisateur présentement loggé par session HTTP
      */
     public static String getCurrentUserName()
     {
 	return currentUserName;
+    }
+
+    /**
+     * @param currentUserName Utilisateur présentement loggé par session HTTP
+     */
+    public static void setCurrentUserName(String currentUserName)
+    {
+	if (currentUserName == null)
+	{
+	    Authentication.currentUserName = "unLogedUser";
+	}
+	else
+	{
+	    Authentication.currentUserName = currentUserName;
+	}
     }
 }
