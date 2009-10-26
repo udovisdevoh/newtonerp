@@ -188,7 +188,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
     }
 
     /**
-     * @param entity
+     * @param entity the search entity
      * @return the selected entities
      * @throws OrmException remonte
      */
@@ -273,11 +273,17 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	this.currentModule = currentModule;
     }
 
+    /**
+     * @return the current action
+     */
     public final AbstractAction getCurrentAction()
     {
 	return currentAction;
     }
 
+    /**
+     * @return the current module
+     */
     public final Module getCurrentModule()
     {
 	return currentModule;
@@ -292,10 +298,10 @@ public abstract class AbstractOrmEntity extends AbstractEntity
     }
 
     /**
-     * @param labelName
-     * @param fieldKeyName
-     * @param foreignDescriptionKey
-     * @param foreignEntity
+     * @param labelName the label of the lov
+     * @param fieldKeyName the field name
+     * @param foreignDescriptionKey the foreign fescrption key
+     * @param foreignEntity the foreign entity
      */
     public final void addListOfValue(String labelName, String fieldKeyName,
 	    String foreignDescriptionKey, AbstractOrmEntity foreignEntity)
@@ -310,7 +316,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
     }
 
     /**
-     * @param fieldKeyName
+     * @param fieldKeyName the field name
      * @return If list of value exist, return it, else, return null
      */
     public ListOfValue tryMatchListOfValue(String fieldKeyName)
@@ -321,6 +327,9 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	return listOfValueList.get(fieldKeyName);
     }
 
+    /**
+     * @return the flag pool list
+     */
     public Hashtable<String, FlagPool> getFlagPoolList()
     {
 	if (flagPoolList == null)
@@ -363,6 +372,9 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	flagPoolList.put(visibleDescription, flagPool);
     }
 
+    /**
+     * @param fieldName the field name to hide
+     */
     public void addHiddenField(String fieldName)
     {
 	if (hiddenFieldList == null)
@@ -370,6 +382,10 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	hiddenFieldList.add(fieldName);
     }
 
+    /**
+     * @param fieldName the field to check
+     * @return true if it's hidden and false if it's not
+     */
     public boolean isFieldHidden(String fieldName)
     {
 	if (hiddenFieldList == null)

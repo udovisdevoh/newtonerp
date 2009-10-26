@@ -287,6 +287,9 @@ public abstract class Module
 		+ "de l'entity" + entityName + "n'existe pas");
     }
 
+    /**
+     * @return the global action list
+     */
     public final Map<String, AbstractAction> getGlobalActionMenu()
     {
 	if (globalActionList == null)
@@ -295,6 +298,10 @@ public abstract class Module
 	return globalActionList;
     }
 
+    /**
+     * @param name the action name
+     * @param action the action
+     */
     public final void addGlobalActionMenuItem(String name, AbstractAction action)
     {
 	if (globalActionList == null)

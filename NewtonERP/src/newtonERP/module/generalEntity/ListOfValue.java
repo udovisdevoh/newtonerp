@@ -8,6 +8,11 @@ import newtonERP.orm.Orm;
 import newtonERP.orm.exceptions.OrmException;
 import newtonERP.viewers.viewables.SelectBoxViewable;
 
+/**
+ * @author Guillaume Lacasse
+ * 
+ *         List of value for the viewers
+ */
 public class ListOfValue implements SelectBoxViewable
 {
     private String labelName;
@@ -16,10 +21,10 @@ public class ListOfValue implements SelectBoxViewable
     private AbstractOrmEntity foreignEntity;
 
     /**
-     * @param labelName
-     * @param foreignPrimaryKey
-     * @param foreignDescription
-     * @param foreignEntity
+     * @param labelName the label name
+     * @param foreignPrimaryKey the foreign primary key
+     * @param foreignDescription the foreign description
+     * @param foreignEntity the foreign entity
      */
     public ListOfValue(String labelName, String foreignPrimaryKey,
 	    String foreignDescription, AbstractOrmEntity foreignEntity)
@@ -48,6 +53,11 @@ public class ListOfValue implements SelectBoxViewable
 	return labelName;
     }
 
+    /**
+     * @param foreignPrimaryKey the primary key
+     * @return the foreign value of the primary key
+     * @throws OrmException an exception that can occur in the orm
+     */
     public String getForeignValue(String foreignPrimaryKey) throws OrmException
     {
 	try

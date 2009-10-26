@@ -10,12 +10,21 @@ import newtonERP.module.Module;
 import newtonERP.orm.exceptions.OrmException;
 import newtonERP.viewers.viewables.PromptViewable;
 
+/**
+ * @author Guillaume Lacasse
+ * 
+ *         A loging form
+ */
 public class LoginForm extends AbstractEntity implements PromptViewable
 {
     private Module defaultModule;
     private Hashtable<String, String> inputList = new Hashtable<String, String>();
     private String currentSelectedUser;
 
+    /**
+     * @param currentSelectedUser the currecntly selected user
+     * @throws Exception an exception that can occur
+     */
     public LoginForm(String currentSelectedUser) throws Exception
     {
 	this.currentSelectedUser = currentSelectedUser;
