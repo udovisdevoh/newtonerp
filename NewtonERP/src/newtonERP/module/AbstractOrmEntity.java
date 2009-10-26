@@ -4,6 +4,7 @@ import java.util.Hashtable;
 import java.util.Vector;
 
 import modules.userRightModule.entityDefinitions.User;
+import newtonERP.module.exception.InvalidOperatorException;
 import newtonERP.module.field.Field;
 import newtonERP.module.field.Fields;
 import newtonERP.module.generalEntity.FlagPool;
@@ -128,6 +129,9 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	whereParameter.add(whereClause);
 	Orm.update(this, whereParameter);
 
+	for (FlagPool flagPool : flagPoolList.values())
+	    updateForeignFlagPoolData(flagPool);
+
 	return this;
     }
 
@@ -141,6 +145,11 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      *             getUI(Hashtable<String, String> parameters) throws
      *             InvalidOperatorException;
      */
+
+    private void updateForeignFlagPoolData(FlagPool flagPool)
+    {
+	// TODO Auto-generated method stub
+    }
 
     /**
      * trouve l'entity selon les critere disponible, retourne le premier trouve

@@ -1,5 +1,6 @@
 package newtonERP.module.generalEntity;
 
+import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Map;
@@ -32,11 +33,18 @@ public class EntityList extends AbstractEntity implements ListViewable,
     private Module currentModule;
     private Vector<AbstractOrmEntity> data = new Vector<AbstractOrmEntity>();
     private AbstractOrmEntity internalEntityDefinition;
+    private HashSet<String> buttonConfirmList = new HashSet<String>();
 
     public EntityList(AbstractOrmEntity internalEntityDefinition)
     {
 	this.internalEntityDefinition = internalEntityDefinition;
 	specificActionButtonList = buildSpecificActionButtonList();
+	addButtonConfirm("Delete");
+    }
+
+    private void addButtonConfirm(String string)
+    {
+	buttonConfirmList.add(string);
     }
 
     @Override
@@ -170,5 +178,11 @@ public class EntityList extends AbstractEntity implements ListViewable,
     public Iterator<AbstractOrmEntity> iterator()
     {
 	return data.iterator();
+    }
+
+    @Override
+    public Set<String> getButtonConfirmList()
+    {
+	return buttonConfirmList;
     }
 }

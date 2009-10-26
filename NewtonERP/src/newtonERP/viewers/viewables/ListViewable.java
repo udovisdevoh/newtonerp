@@ -2,6 +2,7 @@ package newtonERP.viewers.viewables;
 
 import java.util.Hashtable;
 import java.util.Map;
+import java.util.Set;
 import java.util.Vector;
 
 import newtonERP.module.AbstractAction;
@@ -60,4 +61,10 @@ public interface ListViewable
     public String getKeyValue(int rowNumber);
 
     public String getInternalElementName();
+
+    /**
+     * @return Liste de noms d'actions de boutons pour lequels l'utilisateur
+     *         doit confirmer son choix
+     */
+    public Set<String> getButtonConfirmList();
 }
