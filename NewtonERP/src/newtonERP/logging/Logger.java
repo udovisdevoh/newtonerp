@@ -1,4 +1,4 @@
-package newtonERP.loging;
+package newtonERP.logging;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
