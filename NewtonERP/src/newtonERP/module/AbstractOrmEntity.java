@@ -131,7 +131,8 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	whereParameter.add(whereClause);
 	Orm.update(this, whereParameter);
 
-	for (FlagPool flagPool : flagPoolList.values())
+	for (FlagPool flagPool : getFlagPoolList().values())
+	    // Laissez le getter car c'est du lazy initialization
 	    updateForeignFlagPoolData(flagPool);
 
 	return this;
