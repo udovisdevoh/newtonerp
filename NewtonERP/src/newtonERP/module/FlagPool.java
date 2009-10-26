@@ -1,5 +1,10 @@
 package newtonERP.module;
 
+import java.util.HashSet;
+import java.util.Hashtable;
+import java.util.Vector;
+
+import newtonERP.orm.Orm;
 import newtonERP.viewers.viewables.CheckListViewable;
 
 /**
@@ -10,6 +15,9 @@ import newtonERP.viewers.viewables.CheckListViewable;
  */
 public class FlagPool implements CheckListViewable
 {
+    private AbstractOrmEntity sourceEntityDefinition;
+    private String sourceKeyName;
+    private String sourceKeyValue;
     private String visibleDescription;
     private AbstractOrmEntity intermediateEntityDefinition;
     private AbstractOrmEntity foreignEntityDefinition;
@@ -19,6 +27,8 @@ public class FlagPool implements CheckListViewable
     private String[] foreignDescriptionUiControls;
 
     /**
+     * @param sourceEntityDefinition Definition de l'entité de source, exemple:
+     *            groupe
      * @param visibleDescription Description visible
      * @param intermediateEntityDefinition Entité de table intermédiaire,
      *            exemple: GroupRight
@@ -32,7 +42,8 @@ public class FlagPool implements CheckListViewable
      * @param foreignDescriptionUiControls liste de colonne de description de
      *            table étrangère, exemple: Action, Module
      */
-    public FlagPool(String visibleDescription,
+    public FlagPool(AbstractOrmEntity sourceEntityDefinition,
+	    String visibleDescription,
 	    AbstractOrmEntity intermediateEntityDefinition,
 	    String intermediateKeyIn, String intermediateKeyOut,
 	    AbstractOrmEntity foreignEntityDefinition, String foreignKey,
@@ -51,5 +62,48 @@ public class FlagPool implements CheckListViewable
     public String getVisibleDescription()
     {
 	return visibleDescription;
+    }
+
+    @Override
+    public Hashtable<String, String> getAvailableElementList() throws Exception
+    {
+	Vector<AbstractOrmEntity> entityList = Orm.select(
+		foreignEntityDefinition, null);
+
+	Hashtable<String, String> availableElementList = new Hashtable<String, String>();
+
+	for (AbstractOrmEntity entity : entityList)
+	{
+	    availableElementList.put(entity.getDataString(foreignKey),
+		    getForeignDescription(entity));
+	}
+
+	return availableElementList;
+    }
+
+    private String getForeignDescription(AbstractOrmEntity entity)
+    {
+	String description = "";
+	for (String key : foreignDescriptionUiControls)
+	    description += entity.getDataString(key) + " > ";
+	return description.trim();
+    }
+
+    @Override
+    public HashSet<String> getCheckedElementList() throws Exception
+
+    {
+	if (sourceKeyName == null || sourceKeyValue == null)
+	    throw new Exception(
+		    "Vous devez préablablement faire une query(clef, valeur) avant d'intéroger les éléments du flag pool");
+
+	// TODO Auto-generated method stub
+	return new HashSet<String>();
+    }
+
+    public void query(String sourceKeyName, String sourceKeyValue)
+    {
+	this.sourceKeyName = sourceKeyName;
+	this.sourceKeyValue = sourceKeyValue;
     }
 }

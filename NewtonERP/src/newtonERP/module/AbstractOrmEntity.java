@@ -316,6 +316,8 @@ public abstract class AbstractOrmEntity extends AbstractEntity
     }
 
     /**
+     * @param sourceEntityDefinition Definition de l'entité de source, exemple:
+     *            groupe
      * @param visibleDescription Description visible du flag pool
      * @param intermediateEntityDefinition Entité de table intermédiaire,
      *            exemple: GroupRight
@@ -329,16 +331,17 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      * @param foreignDescriptionUiControls liste de colonne de description de
      *            table étrangère, exemple: Action, Module
      */
-    public void addFlagPool(String visibleDescription,
+    public void addFlagPool(AbstractOrmEntity sourceEntityDefinition,
+	    String visibleDescription,
 	    AbstractOrmEntity intermediateEntityDefinition,
 	    String intermediateKeyIn, String intermediateKeyOut,
 	    AbstractOrmEntity foreignEntityDefinition, String foreignKey,
 	    String[] foreignDescriptionUiControls)
     {
-	FlagPool flagPool = new FlagPool(visibleDescription,
-		intermediateEntityDefinition, intermediateKeyIn,
-		intermediateKeyOut, foreignEntityDefinition, foreignKey,
-		foreignDescriptionUiControls);
+	FlagPool flagPool = new FlagPool(sourceEntityDefinition,
+		visibleDescription, intermediateEntityDefinition,
+		intermediateKeyIn, intermediateKeyOut, foreignEntityDefinition,
+		foreignKey, foreignDescriptionUiControls);
 
 	if (flagPoolList == null)
 	    flagPoolList = new Hashtable<String, FlagPool>();
