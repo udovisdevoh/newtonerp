@@ -32,7 +32,7 @@ public class PromptViewer
 	    String formActionUrl = Servlet.makeLink(entity.getCurrentModule(),
 		    entity.getCurrentAction());
 
-	    html += "<h1>" + entity.getPromptMessage() + "</h1>";
+	    html += "<h2>" + entity.getPromptMessage() + "</h2>";
 
 	    html += "<form method=\"POST\" action=\"" + formActionUrl + "?"
 		    + entity.getPrimaryKeyName() + "="
