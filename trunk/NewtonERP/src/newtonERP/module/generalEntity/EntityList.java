@@ -99,7 +99,11 @@ public class EntityList extends AbstractEntity implements ListViewable,
 	    entityInfo = new TreeMap<String, String>();
 	    for (Field field : entity.getFields())
 	    {
-		entityInfo.put(field.getShortName(), field.getDataString());
+		if (internalEntityDefinition
+			.isFieldHidden(field.getShortName()))
+		    entityInfo.put(field.getShortName(), "****");
+		else
+		    entityInfo.put(field.getShortName(), field.getDataString());
 
 		ListOfValue listOfValue = entity.tryMatchListOfValue(field
 			.getShortName());
