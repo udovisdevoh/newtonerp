@@ -2,6 +2,7 @@ package modules.userRightModule;
 
 import java.util.Vector;
 
+import modules.userRightModule.actions.GetGroupsList;
 import modules.userRightModule.actions.GetRightList;
 import modules.userRightModule.actions.GetUserList;
 import modules.userRightModule.entityDefinitions.GroupRight;
@@ -31,8 +32,9 @@ public class UserRightModule extends Module
     {
 	super();
 	setDefaultAction(new GetUserList());
-	addGlobalActionMenuItem("Liste des utilisateurs", new GetUserList());
+	addGlobalActionMenuItem("Utilisateurs", new GetUserList());
 	addGlobalActionMenuItem("Liste des droits", new GetRightList());
+	addGlobalActionMenuItem("Groupes", new GetGroupsList());
     }
 
     public void initDB()
