@@ -66,8 +66,12 @@ public class PromptViewer
 	    }
 
 	    for (FlagPool flagPool : entity.getFlagPoolList().values())
+	    {
+		flagPool.query(entity.getPrimaryKeyName(), entity
+			.getPrimaryKeyValue());
 		html += "<tr><td colspan=\"2\">"
 			+ CheckListViewer.getHtmlCode(flagPool) + "</td></tr>";
+	    }
 
 	    html += "<tr><td colspan=\"2\" align=\"center\"><input type=\"submit\" name=\"submit\" value=\""
 		    + entity.getButtonCaption() + "\"></td></tr>";
