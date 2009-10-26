@@ -35,6 +35,9 @@ public class EntityList extends AbstractEntity implements ListViewable,
     private AbstractOrmEntity internalEntityDefinition;
     private HashSet<String> buttonConfirmList = new HashSet<String>();
 
+    /**
+     * @param internalEntityDefinition the internal entity defenition
+     */
     public EntityList(AbstractOrmEntity internalEntityDefinition)
     {
 	this.internalEntityDefinition = internalEntityDefinition;
@@ -117,6 +120,9 @@ public class EntityList extends AbstractEntity implements ListViewable,
 	return userListInfo;
     }
 
+    /**
+     * @param entity the entity to add
+     */
     public void addEntity(AbstractOrmEntity entity)
     {
 	data.add(entity);
@@ -140,6 +146,10 @@ public class EntityList extends AbstractEntity implements ListViewable,
 	return specificActionButtonList;
     }
 
+    /**
+     * @param caption
+     * @param action
+     */
     public void addSpecificActionButtonList(String caption,
 	    AbstractAction action)
     {
