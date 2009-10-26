@@ -52,7 +52,7 @@ public class PromptViewer
 
 		if (listOfValue == null)
 		{
-		    html += "<tr><td>" + entity.getLabelName(inputName)
+		    html += "\n<tr><td>" + entity.getLabelName(inputName)
 			    + ": </td><td><input type=\"text\" name=\""
 			    + inputName + "\" value=\"" + inputValue + "\"  "
 			    + isReadOnly + "></td></tr>";
