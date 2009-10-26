@@ -3,9 +3,9 @@ package newtonERP.viewers.viewables;
 import java.util.Hashtable;
 
 import newtonERP.module.AbstractAction;
-import newtonERP.module.ListOfValue;
 import newtonERP.module.Module;
-import newtonERP.module.FlagPool;
+import newtonERP.module.generalEntity.FlagPool;
+import newtonERP.module.generalEntity.ListOfValue;
 import newtonERP.orm.exceptions.OrmException;
 
 /**

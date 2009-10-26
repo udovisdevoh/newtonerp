@@ -6,6 +6,8 @@ import java.util.Vector;
 import modules.userRightModule.entityDefinitions.User;
 import newtonERP.module.field.Field;
 import newtonERP.module.field.Fields;
+import newtonERP.module.generalEntity.FlagPool;
+import newtonERP.module.generalEntity.ListOfValue;
 import newtonERP.orm.Orm;
 import newtonERP.orm.exceptions.OrmException;
 

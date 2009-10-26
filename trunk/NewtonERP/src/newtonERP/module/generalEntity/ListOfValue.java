@@ -1,8 +1,9 @@
-package newtonERP.module;
+package newtonERP.module.generalEntity;
 
 import java.util.Hashtable;
 import java.util.Vector;
 
+import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.Orm;
 import newtonERP.orm.exceptions.OrmException;
 import newtonERP.viewers.viewables.SelectBoxViewable;

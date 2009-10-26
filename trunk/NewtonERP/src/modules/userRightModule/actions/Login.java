@@ -10,8 +10,8 @@ import newtonERP.Authentication;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
-import newtonERP.module.ForwardEntity;
 import newtonERP.module.field.Field;
+import newtonERP.module.generalEntity.ForwardEntity;
 import newtonERP.serveur.Servlet;
 
 /**

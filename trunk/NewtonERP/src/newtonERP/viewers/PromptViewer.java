@@ -1,7 +1,7 @@
 package newtonERP.viewers;
 
-import newtonERP.module.FlagPool;
-import newtonERP.module.ListOfValue;
+import newtonERP.module.generalEntity.FlagPool;
+import newtonERP.module.generalEntity.ListOfValue;
 import newtonERP.serveur.Servlet;
 import newtonERP.viewers.viewables.PromptViewable;
 
