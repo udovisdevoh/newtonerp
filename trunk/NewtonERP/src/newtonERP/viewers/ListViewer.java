@@ -35,7 +35,7 @@ public class ListViewer
 
 	html += "<h1>Liste des " + entity.getInternalElementName() + "</h1>";
 
-	html += "<table border=\"1\" cellpadding=\"3\" cellspacing=\"0\" style=\"background-color:#FFF\">";
+	html += "<table class=\"ListViewerTable\" border=\"0\" cellpadding=\"3\" cellspacing=\"0\">";
 
 	html += getHeaderRow(entity.getColumnTitleList());
 
@@ -157,7 +157,7 @@ public class ListViewer
     {
 	String html = "<tr>";
 	for (String column : columnList)
-	    html += "<td>" + column + "</td>";
+	    html += "<td class=\"ListViewerTableHeader\">" + column + "</td>";
 	return html + "</tr>";
     }
 }
