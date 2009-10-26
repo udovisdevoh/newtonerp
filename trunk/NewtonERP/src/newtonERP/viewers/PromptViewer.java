@@ -1,5 +1,6 @@
 package newtonERP.viewers;
 
+import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.generalEntity.FlagPool;
 import newtonERP.module.generalEntity.ListOfValue;
 import newtonERP.serveur.Servlet;
@@ -24,70 +25,73 @@ public class PromptViewer
     public static String getHtmlCode(PromptViewable entity)
 	    throws ViewerException, Exception
     {
+	AbstractOrmEntity ormEntity = null;
 	System.out.println("getHtmlCode() (prompt viewer)");
 	String html = "";
-	try
+
+	String formActionUrl = Servlet.makeLink(entity.getCurrentModule(),
+		entity.getCurrentAction());
+
+	html += "<h2>" + entity.getPromptMessage() + "</h2>";
+
+	if (entity instanceof AbstractOrmEntity)
 	{
-	    String formActionUrl = Servlet.makeLink(entity.getCurrentModule(),
-		    entity.getCurrentAction());
+	    ormEntity = (AbstractOrmEntity) (entity);
+	    formActionUrl += "?" + ormEntity.getPrimaryKeyName() + "="
+		    + ormEntity.getPrimaryKeyValue();
+	}
 
-	    html += "<h2>" + entity.getPromptMessage() + "</h2>";
+	html += "<form method=\"POST\" action=\"" + formActionUrl + "\">";
 
-	    html += "<form method=\"POST\" action=\"" + formActionUrl + "?"
-		    + entity.getPrimaryKeyName() + "="
-		    + entity.getPrimaryKeyValue() + "\">";
+	html += "<table>";
 
-	    html += "<table>";
+	String inputValue;
+	String textFieldType;
+	for (String inputName : entity.getInputList().keySet())
+	{
+	    String isReadOnly = "";
+	    inputValue = entity.getInputList().get(inputName);
 
-	    String inputValue;
-	    String textFieldType;
-	    for (String inputName : entity.getInputList().keySet())
+	    ListOfValue listOfValue = entity.tryMatchListOfValue(inputName);
+
+	    if (entity instanceof AbstractOrmEntity
+		    && inputName.equals(ormEntity.getPrimaryKeyName()))
+		isReadOnly = "DISABLED";
+
+	    if (listOfValue == null)
 	    {
-		String isReadOnly = "";
-		inputValue = entity.getInputList().get(inputName);
-
-		ListOfValue listOfValue = entity.tryMatchListOfValue(inputName);
-
-		if (inputName.equals(entity.getPrimaryKeyName()))
-		    isReadOnly = "DISABLED";
-
-		if (listOfValue == null)
-		{
-		    if (entity.isFieldHidden(inputName))
-			textFieldType = "password";
-		    else
-			textFieldType = "text";
-
-		    html += "\n<tr><td>" + entity.getLabelName(inputName)
-			    + ": </td><td><input type=\"" + textFieldType
-			    + "\" name=\"" + inputName + "\" value=\""
-			    + inputValue + "\"  " + isReadOnly + "></td></tr>";
-		}
+		if (entity.isFieldHidden(inputName))
+		    textFieldType = "password";
 		else
-		{
-		    html += "<tr><td>"
-			    + SelectBoxViewer.getHtmlCode(listOfValue,
-				    inputName, inputValue) + "</td></tr>";
-		}
-	    }
+		    textFieldType = "text";
 
+		html += "\n<tr><td>" + entity.getLabelName(inputName)
+			+ ": </td><td><input type=\"" + textFieldType
+			+ "\" name=\"" + inputName + "\" value=\"" + inputValue
+			+ "\"  " + isReadOnly + "></td></tr>";
+	    }
+	    else
+	    {
+		html += "<tr><td>"
+			+ SelectBoxViewer.getHtmlCode(listOfValue, inputName,
+				inputValue) + "</td></tr>";
+	    }
+	}
+
+	if (entity instanceof AbstractOrmEntity)
 	    for (FlagPool flagPool : entity.getFlagPoolList().values())
 	    {
-		flagPool.query(entity.getPrimaryKeyName(), entity
+		flagPool.query(ormEntity.getPrimaryKeyName(), ormEntity
 			.getPrimaryKeyValue());
 		html += "<tr><td colspan=\"2\">"
 			+ CheckListViewer.getHtmlCode(flagPool) + "</td></tr>";
 	    }
 
-	    html += "<tr><td colspan=\"2\" align=\"center\"><input type=\"submit\" name=\"submit\" value=\""
-		    + entity.getButtonCaption() + "\"></td></tr>";
-	    html += "</table>";
+	html += "<tr><td colspan=\"2\" align=\"center\"><input type=\"submit\" name=\"submit\" value=\""
+		+ entity.getButtonCaption() + "\"></td></tr>";
+	html += "</table>";
 
-	    html += "</form>";
-	} catch (Exception e)
-	{
-	    throw e;
-	}
+	html += "</form>";
 
 	return html;
     }
