@@ -45,14 +45,14 @@ public class ListViewer
 	html += "</table>";
 
 	html += getGlobalButtonList(entity.getGlobalActionButtonList(), entity
-		.getCurrentModule());
+		.getCurrentModule(), entity);
 
 	return html;
     }
 
     private static String getGlobalButtonList(
 	    Hashtable<String, AbstractAction> globalActionButtonList,
-	    Module module)
+	    Module module, ListViewable entity)
     {
 	String html = "";
 	AbstractAction action;
@@ -67,7 +67,7 @@ public class ListViewer
 		actionName = action.getClass().getSimpleName();
 
 	    html += getButton(buttonCaption, actionName, null, null, action,
-		    module);
+		    module, entity.getButtonConfirmList().contains(actionName));
 	}
 	return html;
     }
@@ -114,7 +114,8 @@ public class ListViewer
 	    else
 		actionName = action.getClass().getSimpleName();
 	    html += getButton(buttonCaption, actionName, key, value, action,
-		    module);
+		    module, listEntity.getButtonConfirmList().contains(
+			    actionName));
 
 	    html += "</td>";
 	}
@@ -123,12 +124,18 @@ public class ListViewer
     }
 
     private static String getButton(String buttonCaption, String actionName,
-	    String key, String value, AbstractAction action, Module module)
+	    String key, String value, AbstractAction action, Module module,
+	    boolean isConfirm)
     {
 	/*
 	 * String formActionUrl = "/" + moduleName + "/" + actionName + "?user="
 	 * + currentUserName + "&" + key + "=" + value;
 	 */
+
+	String onClickConfirm = "";
+
+	if (isConfirm)
+	    onClickConfirm = getOnClickConfirm(actionName, value);
 
 	String formActionUrl = Servlet.makeLink(module, action);
 
@@ -140,9 +147,24 @@ public class ListViewer
 	    html += "<input type=\"hidden\" name=\"" + key + "\" value=\""
 		    + value + "\">";
 
-	html += "<input type=\"submit\" value=\"" + buttonCaption + "\">";
+	html += "<input type=\"submit\" " + onClickConfirm + " value=\""
+		+ buttonCaption + "\">";
 
 	html += "</form>";
+
+	return html;
+    }
+
+    private static String getOnClickConfirm(String actionName, String value)
+    {
+	String html = "";
+
+	html += "onClick=\"return confirm(\'Voulez-vous vraiment ";
+	html += actionName;
+	html += " " + value;
+	html += "?\')";
+
+	html += "\"";
 
 	return html;
     }
