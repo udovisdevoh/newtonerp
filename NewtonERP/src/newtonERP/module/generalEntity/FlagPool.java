@@ -5,6 +5,7 @@ import java.util.Hashtable;
 import java.util.Vector;
 
 import newtonERP.module.AbstractOrmEntity;
+import newtonERP.module.exception.FieldNotCompatibleException;
 import newtonERP.orm.Orm;
 import newtonERP.viewers.viewables.CheckListViewable;
 
@@ -98,8 +99,30 @@ public class FlagPool implements CheckListViewable
 	    throw new Exception(
 		    "Vous devez préablablement faire une query(clef, valeur) avant d'intéroger les éléments du flag pool");
 
+	HashSet<String> checkedElementList = new HashSet<String>();
+
 	// TODO Auto-generated method stub
-	return new HashSet<String>();
+
+	try
+	{
+	    intermediateEntityDefinition.setData(intermediateKeyIn,
+		    sourceKeyValue);
+	} catch (FieldNotCompatibleException e)
+	{
+	    int sourceKeyValueNumber = Integer.parseInt(sourceKeyValue);
+	    intermediateEntityDefinition.setData(intermediateKeyIn,
+		    sourceKeyValueNumber);
+	}
+	intermediateEntityDefinition.getFields().getField(intermediateKeyIn)
+		.setOperator("=");
+
+	Vector<AbstractOrmEntity> checkedEntityList = Orm
+		.select(intermediateEntityDefinition);
+
+	for (AbstractOrmEntity entity : checkedEntityList)
+	    checkedElementList.add(entity.getDataString(intermediateKeyOut));
+
+	return checkedElementList;
     }
 
     public void query(String sourceKeyName, String sourceKeyValue)
