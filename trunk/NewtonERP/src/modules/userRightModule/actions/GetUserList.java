@@ -20,7 +20,7 @@ import newtonERP.orm.exceptions.OrmException;
 public class GetUserList extends AbstractAction
 {
     public AbstractEntity doAction(AbstractEntity entity,
-	    Hashtable<String, String> parameters)
+	    Hashtable<String, String> parameters) throws Exception
     {
 	Vector<AbstractOrmEntity> userVectorFromOrm;
 
@@ -31,7 +31,6 @@ public class GetUserList extends AbstractAction
 	} catch (OrmException e)
 	{
 	    userVectorFromOrm = new Vector<AbstractOrmEntity>();
-	    e.printStackTrace();
 	}
 
 	EntityList userList = new EntityList(new User());

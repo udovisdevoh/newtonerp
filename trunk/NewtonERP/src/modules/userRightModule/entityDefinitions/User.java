@@ -9,9 +9,7 @@ import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.BaseAction;
 import newtonERP.module.ForwardEntity;
-import newtonERP.module.exception.FieldNotCompatibleException;
 import newtonERP.module.exception.FieldNotFoundException;
-import newtonERP.module.exception.InvalidOperatorException;
 import newtonERP.module.field.Field;
 import newtonERP.module.field.FieldInt;
 import newtonERP.module.field.FieldString;
@@ -64,7 +62,7 @@ public class User extends AbstractOrmEntity implements PromptViewable
     }
 
     public AbstractEntity editUI(Hashtable<String, String> parameters)
-	    throws InvalidOperatorException, FieldNotCompatibleException
+	    throws Exception
     {
 	/*
 	 * for (Field field : getFields()) field.setOperator("=");
@@ -116,20 +114,16 @@ public class User extends AbstractOrmEntity implements PromptViewable
      * permet d'obtenir directement l'entity groups lie a cet user
      * 
      * @return le group lie
+     * @throws OrmException remonte
      */
-    public Groups getGroupsEntity()
+    public Groups getGroupsEntity() throws OrmException
     {
 	Vector<String> search = new Vector<String>();
 	search.add(groupDefinition.getPrimaryKeyName() + "="
 		+ getFields().getField("groupsID"));
-	try
-	{
-	    return (Groups) Orm.select(new Groups(), search).get(0);
-	} catch (OrmException e)
-	{
-	    e.printStackTrace();
-	}
-	return null;
+
+	return (Groups) Orm.select(new Groups(), search).get(0);
+
     }
 
     /*
@@ -151,7 +145,7 @@ public class User extends AbstractOrmEntity implements PromptViewable
      */
 
     @Override
-    public AbstractEntity getAfterDeleteReturnEntity()
+    public AbstractEntity getAfterDeleteReturnEntity() throws Exception
     {
 	return new ForwardEntity(Servlet.makeLink(new UserRightModule(),
 		new GetUserList()));

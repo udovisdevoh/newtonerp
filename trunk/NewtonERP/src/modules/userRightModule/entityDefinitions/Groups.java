@@ -9,15 +9,12 @@ import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.BaseAction;
 import newtonERP.module.ForwardEntity;
-import newtonERP.module.exception.FieldNotCompatibleException;
 import newtonERP.module.exception.FieldNotFoundException;
-import newtonERP.module.exception.InvalidOperatorException;
 import newtonERP.module.field.Field;
 import newtonERP.module.field.FieldInt;
 import newtonERP.module.field.FieldString;
 import newtonERP.module.field.Fields;
 import newtonERP.orm.Orm;
-import newtonERP.orm.exceptions.OrmException;
 import newtonERP.serveur.Servlet;
 import newtonERP.viewers.viewables.PromptViewable;
 
@@ -41,6 +38,7 @@ public class Groups extends AbstractOrmEntity implements PromptViewable
      * list
      * 
      * @return rightResult the right list
+     * @throws Exception remonte
      */
     public Vector<Right> getRightList() throws Exception
     {
@@ -52,26 +50,19 @@ public class Groups extends AbstractOrmEntity implements PromptViewable
 	groupRightSearch.getFields().setData("groupsID", groupsId);
 	groupRightSearch.getFields().getField("groupsID").setOperator("=");
 
-	try
+	Vector<AbstractOrmEntity> groupRights = Orm.select(groupRightSearch);
+	for (AbstractOrmEntity entity : groupRights)
 	{
-	    Vector<AbstractOrmEntity> groupRights = Orm
-		    .select(groupRightSearch);
-	    for (AbstractOrmEntity entity : groupRights)
-	    {
-		GroupRight groupRight = (GroupRight) (entity);
+	    GroupRight groupRight = (GroupRight) (entity);
 
-		rightResult.add(groupRight.getRightEntity());
-	    }
-	} catch (OrmException e)
-	{
-	    e.printStackTrace();
+	    rightResult.add(groupRight.getRightEntity());
 	}
 
 	return rightResult;
     }
 
     @Override
-    public AbstractEntity getAfterDeleteReturnEntity()
+    public AbstractEntity getAfterDeleteReturnEntity() throws Exception
     {
 	return new ForwardEntity(Servlet.makeLink(new UserRightModule(),
 		new GetGroupsList()));
@@ -94,7 +85,7 @@ public class Groups extends AbstractOrmEntity implements PromptViewable
 
     @Override
     public AbstractEntity editUI(Hashtable<String, String> parameters)
-	    throws InvalidOperatorException, FieldNotCompatibleException
+	    throws Exception
     {
 	Groups searchEntity = new Groups();
 	searchEntity.setData(getPrimaryKeyName(), Integer

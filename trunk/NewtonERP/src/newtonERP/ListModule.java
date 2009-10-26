@@ -80,15 +80,15 @@ public class ListModule
 	    }
 	} catch (InstantiationException e)
 	{
-	    e.printStackTrace();
+	    e.printStackTrace(); // TODO add stackTrace to new exception
 	    throw new ModuleException(moduleName);
 	} catch (IllegalAccessException e)
 	{
-	    e.printStackTrace();
+	    e.printStackTrace(); // TODO add stackTrace to new exception
 	    throw new ModuleException(moduleName);
 	} catch (ClassNotFoundException e)
 	{
-	    e.printStackTrace();
+	    e.printStackTrace(); // TODO add stackTrace to new exception
 	    throw new ModuleNotFoundException(moduleName);
 	}
 

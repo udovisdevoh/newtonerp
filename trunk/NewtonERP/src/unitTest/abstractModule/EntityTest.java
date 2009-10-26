@@ -43,7 +43,7 @@ public class EntityTest extends TestCase
      * {@link newtonERP.module.AbstractEntity#setEntityFromHashTable(java.util.Hashtable)}
      * .
      * 
-     * @throws FieldNotFoundException
+     * @throws FieldNotFoundException remonte
      */
     public void testGetEntityFromHashTableString()
 	    throws FieldNotFoundException
@@ -59,16 +59,10 @@ public class EntityTest extends TestCase
 	hash.put("name", "joe blow");
 	entity.getFields().setData("name", "joe blow");
 	TestEntity otherEntity = new TestEntity();
-	try
-	{
-	    otherEntity.setEntityFromHashTable(hash);
-	    assertEquals(entity, otherEntity);
-	} catch (Exception e)
-	{
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
-	    fail();
-	}
+
+	otherEntity.getFields().setFromHashTable(hash);
+	assertEquals(entity, otherEntity);
+
     }
 
     /**
@@ -76,7 +70,7 @@ public class EntityTest extends TestCase
      * {@link newtonERP.module.AbstractEntity#setEntityFromHashTable(java.util.Hashtable)}
      * .
      * 
-     * @throws FieldNotFoundException
+     * @throws FieldNotFoundException remonte
      */
     public void testGetEntityFromHashTableObject()
 	    throws FieldNotFoundException
@@ -93,18 +87,10 @@ public class EntityTest extends TestCase
 	hash.put("name", "joe blow");
 	entity.getFields().setData("name", "joe blow");
 	TestEntity otherEntity = new TestEntity();
-	try
-	{
-	    otherEntity.setEntityFromHashTable(hash);
-	    assertEquals(entity, otherEntity);
 
-	} catch (Exception e)
-	{
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
-	    fail();
-	}
-	System.out.println("**********");
+	otherEntity.getFields().setFromHashTable(hash);
+	assertEquals(entity, otherEntity);
+
     }
 
     /**
@@ -112,7 +98,7 @@ public class EntityTest extends TestCase
      * {@link newtonERP.module.AbstractEntity#getHashTableFromEntity(newtonERP.module.AbstractEntity)}
      * .
      * 
-     * @throws FieldNotFoundException
+     * @throws FieldNotFoundException remonte
      */
     public void testGetHashTableFromEntity() throws FieldNotFoundException
     {
@@ -126,7 +112,7 @@ public class EntityTest extends TestCase
 	entity.getFields().setData("testID", "3");
 	hash.put("name", "joe blow");
 	entity.getFields().setData("name", "joe blow");
-	assertEquals(hash, entity.getHashTableFromEntity());
+	assertEquals(hash, entity.getFields().getHashTableFrom());
 
     }
 

@@ -10,8 +10,9 @@ public class TestModule extends Module
 {
     /**
      * constructeur
+     * @throws Exception remonte
      */
-    public TestModule()
+    public TestModule() throws Exception
     {
 	super();
 

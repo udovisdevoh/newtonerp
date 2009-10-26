@@ -32,14 +32,15 @@ public class OrmTest extends TestCase
 
     /**
      * Tests if the select doesn't return null
+     * @throws OrmException
      */
     /*
-     * public void testSelectNotNull() { Vector<String> searchCriterias = new
-     * Vector<String>(); searchCriterias.add("Newton_name like %marcel%");
+     * public void testSelectNotNull() throws OrmException { Vector<String>
+     * searchCriterias = new Vector<String>();
+     * searchCriterias.add("Newton_name like %marcel%");
      * 
-     * try { Orm.insert(new TestEntity()); assertNotNull(Orm.select(new
-     * TestEntity(), searchCriterias)); } catch (OrmException e) {
-     * e.printStackTrace(); }
+     * Orm.insert(new TestEntity()); assertNotNull(Orm.select(new TestEntity(),
+     * searchCriterias));
      * 
      * }
      */

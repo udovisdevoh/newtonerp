@@ -43,13 +43,11 @@ public abstract class AbstractAction
 	try
 	{
 	    entity = entityUsable.getClass().newInstance();
-	    entity.setEntityFromHashTable(parameters);
+	    entity.getFields().setFromHashTable(parameters);
 	} catch (NullPointerException e)
 	{
-	    // TODO: handle exception
-	} catch (Exception e)
-	{
-	    e.printStackTrace();
+	    // ne rien faire si cette exception est lancé, laissé le bloc
+	    // présent
 	}
 	return doAction(entity, parameters);
     }

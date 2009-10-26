@@ -79,9 +79,10 @@ public abstract class Module
 
     /**
      * constructeur par default
+     * @throws Exception remonte
      * 
      */
-    public Module()
+    public Module() throws Exception
     {
 	entityDefinitionList = new Hashtable<String, AbstractOrmEntity>();
 	actionList = new Hashtable<String, AbstractAction>();
@@ -101,10 +102,11 @@ public abstract class Module
 
     /**
      * initialise la liste d'action du module
+     * @throws Exception remonte
      * 
      * @throws ActionNotFoundException
      */
-    protected void initAction()
+    protected void initAction() throws Exception
     {
 	String packageName = getClass().getPackage().getName()
 		.replace('.', '/');
@@ -116,28 +118,21 @@ public abstract class Module
 	{
 	    if (listOfFiles[i].getName().endsWith(".java"))
 	    {
-		try
-		{
-		    String className = getClass().getPackage().getName()
-			    + ".actions."
-			    + listOfFiles[i].getName().split("\\.java")[0];
-		    AbstractAction act = (AbstractAction) Class.forName(
-			    className).newInstance();
-		    addAction(act);
-		} catch (Exception e)
-		{
-		    e.printStackTrace();
-		}
+		String className = getClass().getPackage().getName()
+			+ ".actions."
+			+ listOfFiles[i].getName().split("\\.java")[0];
+		AbstractAction act = (AbstractAction) Class.forName(className)
+			.newInstance();
+		addAction(act);
 	    }
 	}
     }
 
     /**
      * initialise la liste de definition d'entite du module
-     * 
-     * @throws ActionNotFoundException
+     * @throws Exception remonte
      */
-    protected void initEntityDefinition()
+    protected void initEntityDefinition() throws Exception
     {
 	String packageName = getClass().getPackage().getName()
 		.replace('.', '/');
@@ -149,19 +144,13 @@ public abstract class Module
 	{
 	    if (listOfFiles[i].getName().endsWith(".java"))
 	    {
-		try
-		{
-		    String className = getClass().getPackage().getName()
-			    + ".entityDefinitions."
-			    + listOfFiles[i].getName().split("\\.java")[0];
-		    AbstractEntity def = (AbstractEntity) Class.forName(
-			    className).newInstance();
-		    if (def instanceof AbstractOrmEntity)
-			addDefinitionEntity((AbstractOrmEntity) def);
-		} catch (Exception e)
-		{
-		    e.printStackTrace();
-		}
+		String className = getClass().getPackage().getName()
+			+ ".entityDefinitions."
+			+ listOfFiles[i].getName().split("\\.java")[0];
+		AbstractEntity def = (AbstractEntity) Class.forName(className)
+			.newInstance();
+		if (def instanceof AbstractOrmEntity)
+		    addDefinitionEntity((AbstractOrmEntity) def);
 	    }
 	}
     }
@@ -239,8 +228,9 @@ public abstract class Module
     /**
      * permet d'initialiser la base de donne lors de l'installation du module,
      * ne doit pas prendre en compte la creation des table
+     * @throws Exception remonte
      */
-    public void initDB()
+    public void initDB() throws Exception
     {
 	// implementation non obligatoire seulement dans les sous-classe
     }
@@ -275,13 +265,14 @@ public abstract class Module
      * @param parameters Paramètres de l'action devant être accomplie, exemple,
      *            contenu d'un email
      * @return Entité viewable pour l'output du résultat
+     * @throws Exception remonte
      * @throws ModuleException voir le message...
      */
     public final AbstractEntity doAction(String actionName, String entityName,
 	    Hashtable<String, String> parameters) throws Exception
     {
 	AbstractOrmEntity entity = (AbstractOrmEntity) getEntityDefinition(entityName);
-	entity.setEntityFromHashTable(parameters);
+	entity.getFields().setFromHashTable(parameters);
 	if (actionName.equals("New"))
 	    return entity.newUI(parameters);
 	if (actionName.equals("Delete"))

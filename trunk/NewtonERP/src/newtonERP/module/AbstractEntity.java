@@ -1,7 +1,5 @@
 package newtonERP.module;
 
-import java.util.Hashtable;
-
 import newtonERP.module.exception.FieldNotCompatibleException;
 import newtonERP.module.field.Fields;
 
@@ -30,27 +28,6 @@ public class AbstractEntity
     public Fields initFields()
     {
 	return new Fields();
-    }
-
-    /**
-     * @param parameters Hashtable de parametre
-     * @deprecated use getFields().setFromHashTable(parameters);
-     */
-    @Deprecated
-    public void setEntityFromHashTable(Hashtable<String, ?> parameters)
-    {
-	fields.setFromHashTable(parameters);
-    }
-
-    /**
-     * @return Hashtable contenant chaqu'un des champ
-     * @deprecated use getFields().getHashTableFrom();
-     */
-    @Deprecated
-    public Hashtable<String, String> getHashTableFromEntity()
-    {
-
-	return fields.getHashTableFrom();
     }
 
     /*
