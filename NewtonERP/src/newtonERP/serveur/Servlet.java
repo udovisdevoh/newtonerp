@@ -32,8 +32,9 @@ import org.mortbay.jetty.servlet.ServletHandler;
  */
 public class Servlet extends ServletHandler
 {
-
-    CommandRouteur cmdRouter = new CommandRouteur();
+    private Pattern urlPattern = Pattern
+	    .compile("(/(\\w*)(/(\\w*)(/(\\w*))?)?)?");
+    private CommandRouteur cmdRouter = new CommandRouteur();
 
     public void handle(String target, HttpServletRequest request,
 	    HttpServletResponse response, int dispatch) throws IOException,
@@ -53,7 +54,8 @@ public class Servlet extends ServletHandler
 	{
 	    AbstractEntity viewEntity = urlToAction(target, request);
 
-	    pageContent = Viewer.getHtmlCode(viewEntity);
+	    pageContent += Viewer.getHtmlCode(viewEntity,
+		    buildModuleName(target), buildActionName(target));
 
 	} catch (Exception e)
 	{
@@ -92,20 +94,15 @@ public class Servlet extends ServletHandler
 	String entityName;
 	Hashtable<String, String> parameter = new Hashtable<String, String>();
 
-	// on trouve le moduleName et l'actionName dans l'url
-	Matcher urlMatch = Pattern.compile("(/(\\w*)(/(\\w*)(/(\\w*))?)?)?")
-		.matcher(target);
-	urlMatch.matches();
-
-	moduleName = urlMatch.group(2);
+	moduleName = buildModuleName(target);
 	if (moduleName == null || moduleName.isEmpty())
 	    moduleName = "Home";
 
-	actionName = urlMatch.group(4);
+	actionName = buildActionName(target);
 	if (actionName == null || actionName.isEmpty())
 	    actionName = "default";
 
-	entityName = urlMatch.group(6);
+	entityName = buildEntityName(target);
 
 	System.err.println(target);
 
@@ -120,6 +117,40 @@ public class Servlet extends ServletHandler
 
 	return cmdRouter.routeCommand(moduleName, actionName, entityName,
 		parameter);
+    }
+
+    private String buildEntityName(String target)
+    {
+	// Légèrement moins optimisé ici, mais comme le pattern regex est déjà
+	// compilé, ça change à peu près rien. Améliore la clarté et permet de
+	// partager l'information sur les noms de module, action et entité
+	// présentement utilisés
+	// Lazy initialisation
+	Matcher urlMatch = urlPattern.matcher(target);
+	urlMatch.matches();
+	return urlMatch.group(6);
+    }
+
+    private String buildActionName(String target)
+    {
+	// Légèrement moins optimisé ici, mais comme le pattern regex est déjà
+	// compilé, ça change à peu près rien. Améliore la clarté et permet de
+	// partager l'information sur les noms de module, action et entité
+	// présentement utilisés
+	Matcher urlMatch = urlPattern.matcher(target);
+	urlMatch.matches();
+	return urlMatch.group(4);
+    }
+
+    private String buildModuleName(String target)
+    {
+	// Légèrement moins optimisé ici, mais comme le pattern regex est déjà
+	// compilé, ça change à peu près rien. Améliore la clarté et permet de
+	// partager l'information sur les noms de module, action et entité
+	// présentement utilisés
+	Matcher urlMatch = urlPattern.matcher(target);
+	urlMatch.matches();
+	return urlMatch.group(2);
     }
 
     /**
