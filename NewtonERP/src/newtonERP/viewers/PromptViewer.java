@@ -1,5 +1,8 @@
 package newtonERP.viewers;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.generalEntity.FlagPool;
 import newtonERP.module.generalEntity.ListOfValue;
@@ -47,7 +50,13 @@ public class PromptViewer
 
 	String inputValue;
 	String textFieldType;
-	for (String inputName : entity.getInputList().keySet())
+
+	// Sort the field name list
+	ArrayList<String> fieldNameList = new ArrayList<String>(entity
+		.getInputList().keySet());
+	Collections.sort(fieldNameList);
+
+	for (String inputName : fieldNameList)
 	{
 	    String isReadOnly = "";
 	    inputValue = entity.getInputList().get(inputName);
