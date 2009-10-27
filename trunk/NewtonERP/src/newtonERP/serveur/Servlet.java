@@ -95,11 +95,11 @@ public class Servlet extends ServletHandler
 	Hashtable<String, String> parameter = new Hashtable<String, String>();
 
 	moduleName = buildModuleName(target);
-	if (moduleName == null || moduleName.isEmpty())
+	if (moduleName == null || moduleName.length() == 0)
 	    moduleName = "Home";
 
 	actionName = buildActionName(target);
-	if (actionName == null || actionName.isEmpty())
+	if (actionName == null || actionName.length() == 0)
 	    actionName = "default";
 
 	entityName = buildEntityName(target);
