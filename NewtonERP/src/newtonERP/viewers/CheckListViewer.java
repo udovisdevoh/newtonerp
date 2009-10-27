@@ -14,6 +14,8 @@ public class CheckListViewer
 	String currentDescription;
 	String previousFirstWord = null;
 	String currentFirstWord = null;
+	String currentSecondWord = null;
+	String previousSecondWord = null;
 	TreeMap<String, String> availableElementList = entity
 		.getAvailableElementList();
 
@@ -30,8 +32,12 @@ public class CheckListViewer
 	    if (wordCount(currentDescription) > 1)
 	    {
 		currentFirstWord = getFirstWord(currentDescription);
+		currentDescription = removeFirstWord(currentDescription);
+		currentSecondWord = getFirstWord(currentDescription);
+
 		if (!currentFirstWord.equals(previousFirstWord))
 		{
+		    previousSecondWord = null;
 		    if (previousFirstWord != null)
 			html += "</ul>";
 
@@ -40,7 +46,19 @@ public class CheckListViewer
 		currentDescription = removeFirstWord(currentDescription);
 	    }
 
-	    html += "\n<li>";
+	    if (!currentSecondWord.equals(previousSecondWord)
+		    && currentSecondWord != null)
+	    {
+		if (previousSecondWord != null)
+		    html += "\n</li>";
+
+		html += "\n<li>" + currentSecondWord + ": <br />";
+	    }
+
+	    // Unpeu bâtard comme manière de faire mais le layout de DIV
+	    // table-cell
+	    // ne semble pas bien marcher sur IE 6
+	    html += "<table class=\"checkBoxAtomicElement\" style=\"display:inline\"><tr><td>";
 
 	    if (checkedElementList.contains(id))
 		isChecked = " checked";
@@ -49,9 +67,16 @@ public class CheckListViewer
 
 	    html += "<input type=\"checkbox\" name=\"" + id + "\"" + isChecked
 		    + "></input> " + currentDescription;
-	    html += "</li>";
+
+	    /*
+	     * if (currentSecondWord != previousSecondWord && currentSecondWord
+	     * != null) html += "</li>";
+	     */
+
+	    html += "</td></tr></table>";
 
 	    previousFirstWord = currentFirstWord;
+	    previousSecondWord = currentSecondWord;
 	}
 	html += "</ul>";
 
@@ -60,12 +85,13 @@ public class CheckListViewer
 
     private static String removeFirstWord(String currentDescription)
     {
-	return currentDescription.substring(currentDescription.indexOf(' '));
+	return currentDescription.substring(currentDescription.indexOf(' '))
+		.trim();
     }
 
     private static String getFirstWord(String currentDescription)
     {
-	return currentDescription.split(" ")[0];
+	return currentDescription.split(" ")[0].trim();
     }
 
     private static int wordCount(String currentDescription)
