@@ -95,15 +95,15 @@ public class Servlet extends ServletHandler
 	Hashtable<String, String> parameter = new Hashtable<String, String>();
 
 	actionName = buildActionName(target);
-	if (actionName == null || actionName.isEmpty())
+	if (actionName == null || actionName.trim().length() == 0)
 	    actionName = "default";
 
 	moduleName = buildModuleName(target);
-	if (moduleName == null || moduleName.isEmpty())
+	if (moduleName == null || moduleName.trim().length() == 0)
 	{
 	    moduleName = "UserRightModule";
 	    actionName = "Login";// override default car login peut être ou ne
-				 // pas être default
+	    // pas être default
 	}
 
 	entityName = buildEntityName(target);
