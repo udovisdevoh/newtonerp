@@ -3,17 +3,14 @@ package modules.userRightModule.actions;
 import java.util.Hashtable;
 import java.util.Vector;
 
-import modules.home.Home;
-import modules.home.actions.GetHome;
 import modules.userRightModule.entityDefinitions.User;
 import newtonERP.Authentication;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.field.Field;
-import newtonERP.module.generalEntity.ForwardEntity;
 import newtonERP.module.generalEntity.LoginForm;
-import newtonERP.serveur.Servlet;
+import newtonERP.module.generalEntity.StaticTextEntity;
 
 /**
  * Action class that creates all the rights for every module
@@ -47,8 +44,8 @@ public class Login extends AbstractAction
 	    if (userList.size() > 0 && userList.get(0).getData("name") != null)
 	    {
 		Authentication.setCurrentUserName(entity.getDataString("name"));
-		return new ForwardEntity(Servlet.makeLink(new Home(),
-			new GetHome()));
+		return new StaticTextEntity("Bienvenue "
+			+ userList.get(0).getData("name"));
 	    }
 	}
 

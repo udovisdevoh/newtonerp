@@ -30,7 +30,7 @@ public class UserRightModule extends Module
     public UserRightModule() throws Exception
     {
 	super();
-	setDefaultAction(new GetUserList());
+	setDefaultAction(new Login());
 	addGlobalActionMenuItem("Utilisateurs", new GetUserList());
 	addGlobalActionMenuItem("Liste des droits", new GetRightList());
 	addGlobalActionMenuItem("Groupes", new GetGroupsList());
