@@ -27,7 +27,7 @@ public abstract class AbstractAction
     }
 
     /**
-     * Abstract method that will be used to perofrm the actions FIXME : Why is
+     * Abstract method that will be used to perform the actions FIXME : Why is
      * it throwing a ModuleException when it shooting this exception?
      * 
      * @param parameters list de parametre utilisable par l'action, une partie
