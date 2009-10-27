@@ -22,6 +22,7 @@ import newtonERP.viewers.ErrorViewer;
 import newtonERP.viewers.Viewer;
 
 import org.mortbay.jetty.Request;
+import org.mortbay.jetty.handler.ResourceHandler;
 import org.mortbay.jetty.servlet.ServletHandler;
 
 /**
@@ -35,48 +36,62 @@ public class Servlet extends ServletHandler
     private Pattern urlPattern = Pattern
 	    .compile("(/(\\w*)(/(\\w*)(/(\\w*))?)?)?");
     private CommandRouteur cmdRouter = new CommandRouteur();
+    ResourceHandler resourceHandler = new ResourceHandler();
+
+    /**
+     * constructeur
+     */
+    public Servlet()
+    {
+	resourceHandler.setResourceBase(".");
+    }
 
     public void handle(String target, HttpServletRequest request,
 	    HttpServletResponse response, int dispatch) throws IOException,
 	    ServletException
     {
-	HttpSession session = request.getSession(true);
-	/*
-	 * session.setAttribute("SESSION_UserName", "admin"); // TODO: remove //
-	 * when // loggin existe
-	 */
-
-	Authentication.setCurrentUserName((String) session
-		.getAttribute("SESSION_UserName"));
-	System.out.println(Authentication.getCurrentUserName());
-	String pageContent = "";
-	try
+	System.err.println(target);
+	
+	if (target.matches("/file/.*")) // si on veut un fichier
 	{
-	    AbstractEntity viewEntity = urlToAction(target, request);
-
-	    pageContent += Viewer.getHtmlCode(viewEntity,
-		    buildModuleName(target), buildActionName(target));
-
-	} catch (Exception e)
+	    resourceHandler.handle(target, request, response, dispatch);
+	}// ou une page normale de l'aplication
+	else
 	{
-	    e.printStackTrace();
+	    HttpSession session = request.getSession(true);
 
-	    StringWriter sw = new StringWriter();
-	    e.printStackTrace(new PrintWriter(sw));
-	    String stacktrace = sw.toString();
-	    pageContent = ErrorViewer.getErrorPage(stacktrace);
+	    Authentication.setCurrentUserName((String) session
+		    .getAttribute("SESSION_UserName"));
+	    String pageContent = "";
+	    try
+	    {
 
+		AbstractEntity viewEntity = urlToAction(target, request);
+
+		pageContent += Viewer.getHtmlCode(viewEntity,
+			buildModuleName(target), buildActionName(target));
+
+	    } catch (Exception e)
+	    {
+		e.printStackTrace();
+
+		StringWriter sw = new StringWriter();
+		e.printStackTrace(new PrintWriter(sw));
+		String stacktrace = sw.toString();
+		pageContent = ErrorViewer.getErrorPage(stacktrace);
+
+	    }
+
+	    // on formate la reponse
+	    response.setContentType("text/html");
+	    response.setStatus(HttpServletResponse.SC_OK);
+
+	    response.getWriter().println(pageContent);
+	    ((Request) request).setHandled(true);
+
+	    session.setAttribute("SESSION_UserName", Authentication
+		    .getCurrentUserName());
 	}
-
-	// on formate la reponse
-	response.setContentType("text/html");
-	response.setStatus(HttpServletResponse.SC_OK);
-
-	response.getWriter().println(pageContent);
-	((Request) request).setHandled(true);
-
-	session.setAttribute("SESSION_UserName", Authentication
-		.getCurrentUserName());
     }
 
     /**
@@ -107,8 +122,6 @@ public class Servlet extends ServletHandler
 	}
 
 	entityName = buildEntityName(target);
-
-	System.err.println(target);
 
 	// on trouve les parametres pour les mettre dans le hashtable
 

@@ -79,27 +79,7 @@ public abstract class Viewer
 		+ "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-1\" />";
 
 	// css******************************************************************
-	header += "<style type=\"text/css\">"
-		+ "body	/*mise en page pour tout le corp*/{width: 1000px;margin: auto;margin-top: 5px;margin-bottom: 5px;background-color: #ecf1f5;}"
-		+ "#header{width: 1000px;height: 75px;background-color:#d3d8e1;color:black;font-family: Arial, \"Arial Black\", \"Times New Roman\", Times, serif;border: 1px solid black;margin-bottom: 5px;}"
-		+ "h1 /* Gros titres */{color: black;font-family: Arial, \"Arial Black\", \"Times New Roman\", Times, serif;}"
-		+ "h2 /* sous-titres */{color: black;font-family: Arial, \"Arial Black\", \"Times New Roman\", Times, serif;}"
-		+ "#menu{float: left; /* Le menu flottant à gauche */width: 140px;}"
-		+ ".element_menu/*sous-menu*/{background-color: #d3d8e1;border: 1px solid black;margin-bottom: 10px;}"
-		+ ".element_menu h3 /* Tous les titres de sous-menus */{color: black;font-family: Arial, \"Arial Black\", \"Times New Roman\", Times, serif;text-align: center;}"
-		+ ".element_menu ul /* Listes à puces de sous-menu */{padding: 0px;padding-left: 20px;margin: 0px;margin-bottom: 5px;}"
-		+ ".element_menu a /* Tous les liens se trouvant dans un menu */{color: #0081d7;}"
-		+ ".element_menu a:hover {color: red;}"
-		// + "li {list-style-type:square;color:#000;}"
-		// + "li li {list-style-type:square;color:#FFF;}"
-		+ ".checkBoxAtomicElement td {border-style:solid;border-width:2px;border-color:#fbfcfd #a3aebf #a3aebf #fbfcfd;margin-right:10px;margin-bottom:10px;padding:3px;padding-right:6px;}"
-		+ "#body /*mise en page du corp principal à droite du menu principal*/{margin-left: 150px; /*Une marge à gauche pour pousser le corps, afin qu'il ne passe plus sous le menu*/margin-bottom: 10px;padding: 5px;color: black;background-color: #d3d8e1;border: 1px solid black}"
-		+ "#home {height: 600px;}"// tempo pour home
-		+ ".ListViewerTable td {background-color:#FFF; border-style:solid;border-width:2px; border-color:#DDD #DDD #AAA #AAA;}"
-		+ ".ListViewerTable td.ListViewerTableHeader {background-color:#BBF; border-style:solid;border-width:2px; border-color:#AAD #AAD #77A #77A;}"
-		+ "#footer{text-align: center;color: black;background-color: #d3d8e1;border: 1px solid black;}</style>";
-	// *********************************************************************
-
+	header += "<link rel=\"stylesheet\" media=\"screen\" type=\"text/css\" title=\"base\" href=\"/file/style.css\" />";
 	header += "</head><body><div id=\"header\"><h1>" + pageTitle
 		+ "</h1></div>";
 

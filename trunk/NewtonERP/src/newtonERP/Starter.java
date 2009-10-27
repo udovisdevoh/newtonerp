@@ -45,10 +45,11 @@ public class Starter
 	server.setStopAtShutdown(true);
 	Context context = new Context(server, "/", Context.SESSIONS);
 	context.setServletHandler(new Servlet());
-	// server.addHandler(new SessionHandler());
-	// server.addHandler(new Servlet());
-
-	server.start();
+	/*
+	 * ResourceHandler resourceHandler = new ResourceHandler();
+	 * resourceHandler.setResourceBase(".");
+	 * context.addHandler(resourceHandler);
+	 */server.start();
 
 	doWeExit();
     }
