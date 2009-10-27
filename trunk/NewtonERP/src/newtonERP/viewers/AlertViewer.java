@@ -2,8 +2,17 @@ package newtonERP.viewers;
 
 import newtonERP.viewers.viewables.AlertViewable;
 
+/**
+ * @author Guillaume Lacasse
+ * 
+ *         Alert viewer
+ */
 public class AlertViewer
 {
+    /**
+     * @param entity the alert entity
+     * @return the html code (Javascript) of this alert
+     */
     public static String getHtmlCode(AlertViewable entity)
     {
 	String html = "";

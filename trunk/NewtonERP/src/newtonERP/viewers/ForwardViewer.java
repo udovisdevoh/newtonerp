@@ -2,9 +2,18 @@ package newtonERP.viewers;
 
 import newtonERP.viewers.viewables.ForwardViewable;
 
+/**
+ * @author Guillaume Lacasse
+ * 
+ *         Used to forward to a new page
+ */
 public class ForwardViewer
 {
 
+    /**
+     * @param entity the entity we want to go to
+     * @return the entity
+     */
     public static String getHtmlCode(ForwardViewable entity)
     {
 	String html = "";

@@ -24,9 +24,12 @@ public abstract class Viewer
     /**
      * Gets the html code by calling the same method in the right viewer
      * 
-     * @param entity
+     * @param entity the entity to view
+     * @param moduleName the module of entity
+     * @param actionName the action to perform
      * @return the viewer
-     * @throws ViewerException
+     * @throws ViewerException an exception that can occur in viewers
+     * @throws Exception general exception
      */
     public static String getHtmlCode(AbstractEntity entity, String moduleName,
 	    String actionName) throws ViewerException, Exception // TODO: remove
@@ -57,6 +60,9 @@ public abstract class Viewer
     /**
      * Gets the html code for the header ***(id="header" -> dans css pour mise
      * en page)
+     * 
+     * @param moduleName the module name
+     * @param actionName the action name
      * 
      * @return html
      */
@@ -115,8 +121,9 @@ public abstract class Viewer
     /**
      * Gets the html code for left menu (css pour mise en page)
      * 
+     * @param moduleName the module name
      * @return html
-     * @throws ModuleException
+     * @throws ModuleException an exception that can occur in the module
      */
     public static String getLeftMenu(String moduleName) throws ModuleException
     {

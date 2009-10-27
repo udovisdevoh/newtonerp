@@ -5,8 +5,19 @@ import java.util.TreeMap;
 
 import newtonERP.viewers.viewables.CheckListViewable;
 
+/**
+ * @author Guillaume Lacasse
+ * 
+ *         A checkList viewer
+ */
 public class CheckListViewer
 {
+    /**
+     * @param entity the checklist viewable entity
+     * @return the html code
+     * @throws Exception general exception
+     */
+    @SuppressWarnings("null")
     public static String getHtmlCode(CheckListViewable entity) throws Exception
     {
 	String html = "";
