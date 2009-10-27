@@ -27,6 +27,10 @@ public class CheckListViewer
 	for (String currentDescriptionI : availableElementList.keySet())
 	{
 	    currentDescription = currentDescriptionI;
+
+	    while (wordCount(currentDescription) < 3)
+		currentDescription += " -";
+
 	    String id = availableElementList.get(currentDescription);
 
 	    if (wordCount(currentDescription) > 1)
@@ -43,7 +47,9 @@ public class CheckListViewer
 
 		    html += "\n<li>" + currentFirstWord + "</li><ul>";
 		}
-		currentDescription = removeFirstWord(currentDescription);
+
+		if (wordCount(currentDescription) > 1)
+		    currentDescription = removeFirstWord(currentDescription);
 	    }
 
 	    if (!currentSecondWord.equals(previousSecondWord)

@@ -74,9 +74,15 @@ public class FlagPool implements CheckListViewable
 
 	TreeMap<String, String> availableElementList = new TreeMap<String, String>();
 
+	String description;
 	for (AbstractOrmEntity entity : entityList)
 	{
-	    availableElementList.put(getForeignDescription(entity), entity
+	    description = getForeignDescription(entity);
+
+	    while (availableElementList.containsKey(description))
+		description += "_bis";
+
+	    availableElementList.put(description, entity
 		    .getDataString(foreignKey));
 	}
 
