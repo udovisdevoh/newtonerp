@@ -6,7 +6,7 @@ import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
 
 /**
- * action permettant d'obtenir la page d'Aceuille
+ * action permettant d'obtenir la page d'accueil
  * @author Pascal
  * 
  */
