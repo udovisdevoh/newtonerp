@@ -1,6 +1,3 @@
-/**
- * 
- */
 package modules.customerVendor.entityDefinitions;
 
 import java.util.Hashtable;
@@ -18,8 +15,9 @@ import newtonERP.orm.Orm;
 import newtonERP.orm.exceptions.OrmException;
 
 /**
- * @author Gabriel entité du des facture des fournisseur dans le module
- *         customerVendor
+ * @author Gabriel
+ * 
+ *         Entité du des facture des fournisseur dans le module customerVendor
  */
 public class VendorInvoice extends AbstractOrmEntity
 {
@@ -28,18 +26,17 @@ public class VendorInvoice extends AbstractOrmEntity
     {
 	Vector<Field> fields = new Vector<Field>();
 	fields.add(new FieldInt("Numéro de la Facture", getPrimaryKeyName()));
-	fields.add(new FieldDouble("Total de la Facture", "total"));// total de
-	// la
-	// facture
+	fields.add(new FieldDouble("Total de la Facture", "total"));
 	fields.add(new FieldInt("Numéros du client", "vendorID"));
 
 	// FIXME : Tu store une date dans un field int???? et pourquoi cette
 	// restriction de format?
-	fields.add(new FieldInt("Date de la facture", "date")); // ddmmyyyy a
-	// respecter
+	fields.add(new FieldInt("Date de la facture", "date"));
 	return new Fields(fields);
     }
 
+    // FIXME : C'est une action, a mettre dans les actions. Arrete le copier
+    // coller getCustomerEntity dans une classe VendorInvoice c louche un peu
     public VendorInvoice getCostumerEntity()
     {
 	Vector<String> search = new Vector<String>();

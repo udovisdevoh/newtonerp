@@ -1,6 +1,3 @@
-/**
- * 
- */
 package modules.customerVendor.entityDefinitions;
 
 import java.util.Hashtable;
@@ -18,7 +15,9 @@ import newtonERP.orm.Orm;
 import newtonERP.orm.exceptions.OrmException;
 
 /**
- * @author Gabriel entité du fournisseur dans le module customerVendor
+ * @author Gabriel
+ * 
+ *         Entité du fournisseur dans le module customerVendor
  */
 public class Vendor extends AbstractOrmEntity
 {
@@ -33,6 +32,8 @@ public class Vendor extends AbstractOrmEntity
 	return new Fields(fields);
     }
 
+    // FIXME : C'est une action, a mettre dans les actions, arrete le copier
+    // coller parce que getCustomerEntity dans une classe Vendor c louche
     public Vendor getCostumerEntity()
     {
 	Vector<String> search = new Vector<String>();

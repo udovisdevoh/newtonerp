@@ -1,6 +1,3 @@
-/**
- * 
- */
 package modules.customerVendor.entityDefinitions;
 
 import java.util.Hashtable;
@@ -18,7 +15,9 @@ import newtonERP.orm.Orm;
 import newtonERP.orm.exceptions.OrmException;
 
 /**
- * @author Gabriel entité du client dans le module customerVendor
+ * @author Gabriel
+ * 
+ *         Entité du client dans le module customerVendor
  */
 public class Customer extends AbstractOrmEntity
 {
@@ -33,6 +32,7 @@ public class Customer extends AbstractOrmEntity
 	return new Fields(fields);
     }
 
+    // FIXME : C'est une action, a mettre dans les actions
     public Customer getCustomerEntity()
     {
 	Vector<String> search = new Vector<String>();
