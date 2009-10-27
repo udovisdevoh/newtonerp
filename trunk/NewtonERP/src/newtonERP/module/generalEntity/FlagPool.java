@@ -86,8 +86,18 @@ public class FlagPool implements CheckListViewable
     private String getForeignDescription(AbstractOrmEntity entity)
     {
 	String description = "";
+	String currentValue;
 	for (String key : foreignDescriptionUiControls)
-	    description += entity.getDataString(key) + " ";
+	{
+	    currentValue = entity.getDataString(key);
+	    if (currentValue == null)
+		currentValue = "null";
+
+	    if (!currentValue.equals("null") || description.equals(""))
+	    {
+		description += currentValue + " ";
+	    }
+	}
 	return description.trim();
     }
 

@@ -26,8 +26,10 @@ public abstract class Viewer
      * @return the viewer
      * @throws ViewerException
      */
-    public static String getHtmlCode(AbstractEntity entity)
-	    throws ViewerException, Exception // TODO: remove trow Exception
+    public static String getHtmlCode(AbstractEntity entity, String moduleName,
+	    String actionName) throws ViewerException, Exception // TODO: remove
+    // trow
+    // Exception
     {
 	String viewerHtml = "";
 	if (entity instanceof PromptViewable)
@@ -41,7 +43,8 @@ public abstract class Viewer
 	else
 	    throw new ViewerException("Couldn't find proper viewer for entity");
 
-	return getHeader() + getLeftMenu() + viewerHtml + getFooter();
+	return getHeader(moduleName, actionName) + getLeftMenu(moduleName)
+		+ viewerHtml + getFooter();
     }
 
     /**
@@ -50,13 +53,15 @@ public abstract class Viewer
      * 
      * @return html
      */
-    public static String getHeader()
+    public static String getHeader(String moduleName, String actionName)
     {
+	String pageTitle = buildPageTitle(moduleName, actionName);
+
 	String header = "";
 	header += "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">"
 		+ "<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"fr\" >"
-		+ "<head><title>NewtonERP:"
-		+ "nom de module ici"
+		+ "<head><title>"
+		+ pageTitle
 		+ "</title>"
 		+ "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-1\" />";
 
@@ -72,6 +77,8 @@ public abstract class Viewer
 		+ ".element_menu ul /* Listes à puces de sous-menu */{padding: 0px;padding-left: 20px;margin: 0px;margin-bottom: 5px;}"
 		+ ".element_menu a /* Tous les liens se trouvant dans un menu */{color: #0081d7;}"
 		+ ".element_menu a:hover {color: red;}"
+		// + "li {list-style-type:square;color:#000;}"
+		// + "li li {list-style-type:square;color:#FFF;}"
 		+ "#body /*mise en page du corp principal à droite du menu principal*/{margin-left: 150px; /*Une marge à gauche pour pousser le corps, afin qu'il ne passe plus sous le menu*/margin-bottom: 10px;padding: 5px;color: black;background-color: #d3d8e1;border: 1px solid black}"
 		+ "#home {height: 600px;}"// tempo pour home
 		+ ".ListViewerTable td {background-color:#FFF; border-style:solid;border-width:2px; border-color:#DDD #DDD #AAA #AAA;}"
@@ -79,9 +86,22 @@ public abstract class Viewer
 		+ "#footer{text-align: center;color: black;background-color: #d3d8e1;border: 1px solid black;}</style>";
 	// *********************************************************************
 
-	header += "</head><body><div id=\"header\"><h1>NewtonERP</h1></div>";
+	header += "</head><body><div id=\"header\"><h1>" + pageTitle
+		+ "</h1></div>";
 
 	return header;
+    }
+
+    private static String buildPageTitle(String moduleName, String actionName)
+    {
+	String title = "NewtonERP";
+
+	if (moduleName != null && !moduleName.equals("null"))
+	    title += " - " + moduleName;
+	if (actionName != null && !actionName.equals("null"))
+	    title += " : " + actionName;
+
+	return title;
     }
 
     /**
@@ -90,7 +110,7 @@ public abstract class Viewer
      * @return html
      * @throws ModuleException
      */
-    public static String getLeftMenu() throws ModuleException
+    public static String getLeftMenu(String moduleName) throws ModuleException
     {
 	Hashtable<String, String> mod = ListModule.getAllModules();
 	Iterator<String> keys = mod.keySet().iterator();
@@ -100,24 +120,27 @@ public abstract class Viewer
 	String menu = "<div id =\"menu\"><!-- Cadre englobant tous les sous-menus -->";
 	menuModuleHtml += "<div class=\"element_menu\"> <!-- Cadre correspondant à un sous-menu -->"
 		+ "<h3>Modules</h3> <!-- Titre du sous-menu -->" + "<ul>";
-	String modName = "";
+	String modNameFromIterator = "";
 
 	// pour l'instant un seul sous-menu, autres sous-menus à déterminer
 	while (keys.hasNext())
 	{
-	    modName = keys.next();
+	    modNameFromIterator = keys.next();
 
-	    Module module = ListModule.getModule(modName);
+	    Module module = ListModule.getModule(modNameFromIterator);
 	    menuModuleHtml += "<li><a href=\"" + Servlet.makeLink(module)
-		    + "\">" + modName + "</a><ul>";
+		    + "\">" + modNameFromIterator + "</a><ul>";
 
-	    for (String globalActionName : module.getGlobalActionMenu()
-		    .keySet())
+	    if (modNameFromIterator.equals(moduleName))
 	    {
-		menuModuleHtml += "<li><a href=\"";
-		menuModuleHtml += Servlet.makeLink(module, module
-			.getGlobalActionMenu().get(globalActionName));
-		menuModuleHtml += "\">" + globalActionName + "</li>";
+		for (String globalActionName : module.getGlobalActionMenu()
+			.keySet())
+		{
+		    menuModuleHtml += "<li><a href=\"";
+		    menuModuleHtml += Servlet.makeLink(module, module
+			    .getGlobalActionMenu().get(globalActionName));
+		    menuModuleHtml += "\">" + globalActionName + "</li>";
+		}
 	    }
 
 	    menuModuleHtml += "</ul></li>";
