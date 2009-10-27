@@ -32,6 +32,9 @@ public class CustomerInvoice extends AbstractOrmEntity
 	// la
 	// facture
 	fields.add(new FieldInt("Numéros du client", "customerID"));
+
+	// FIXME : Tu store une date dans un field int???? et pourquoi cette
+	// restriction de format?
 	fields.add(new FieldInt("Date de la facture", "date")); // ddmmyyyy a
 	// respecter
 	return new Fields(fields);
