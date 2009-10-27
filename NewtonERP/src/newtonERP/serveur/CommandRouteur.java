@@ -7,6 +7,7 @@ import newtonERP.Authentication;
 import newtonERP.ListModule;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.Module;
+import newtonERP.module.generalEntity.AlertEntity;
 
 /**
  * @author Gabriel Therrien JoCloutier
@@ -48,6 +49,11 @@ public class CommandRouteur
 		module = ListModule.getModule(moduleName);
 		retView = module.doAction(actionName, entityName, parameter);
 	    }
+	    else
+	    {
+		return new AlertEntity(
+			"Vous n'avez pas les droits pour faire cette action.");
+	    }
 	}
 	else
 	{
@@ -57,6 +63,11 @@ public class CommandRouteur
 		// trouver
 		module = ListModule.getModule(moduleName);
 		retView = module.doAction(actionName, parameter);
+	    }
+	    else
+	    {
+		return new AlertEntity(
+			"Vous n'avez pas les droits pour faire cette action.");
 	    }
 	}
 

@@ -8,6 +8,7 @@ import newtonERP.module.AbstractEntity;
 import newtonERP.module.Module;
 import newtonERP.module.exception.ModuleException;
 import newtonERP.serveur.Servlet;
+import newtonERP.viewers.viewables.AlertViewable;
 import newtonERP.viewers.viewables.ForwardViewable;
 import newtonERP.viewers.viewables.ListViewable;
 import newtonERP.viewers.viewables.PromptViewable;
@@ -40,6 +41,8 @@ public abstract class Viewer
 	    viewerHtml = HomeViewer.getHomePage();
 	else if (entity instanceof ForwardViewable)
 	    viewerHtml = ForwardViewer.getHtmlCode((ForwardViewable) entity);
+	else if (entity instanceof AlertViewable)
+	    viewerHtml = AlertViewer.getHtmlCode((AlertViewable) entity);
 	else
 	    throw new ViewerException("Couldn't find proper viewer for entity");
 
