@@ -94,9 +94,9 @@ public class FlagPool implements CheckListViewable
 		currentValue = "null";
 
 	    if (!currentValue.equals("null") || description.equals(""))
-	    {
 		description += currentValue + " ";
-	    }
+	    else
+		description += " - ";
 	}
 	return description.trim();
     }

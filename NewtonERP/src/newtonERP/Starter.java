@@ -73,10 +73,11 @@ public class Starter
 	boolean exit = false;
 	while (!exit)
 	{
-	    System.out.println("voulez vous quitté (o)");
+	    System.out.println("http://localhost:47098");
+	    System.out.println("Voulez-vous quitter? (o)");
 	    if (System.in.read() == 'o')
 	    {
-		System.out.println("fermeture en cour");
+		System.out.println("Fermeture en cours");
 		exit = true;
 		shutdown();
 	    }

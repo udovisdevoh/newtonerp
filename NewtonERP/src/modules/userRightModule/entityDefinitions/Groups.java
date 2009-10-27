@@ -35,8 +35,8 @@ public class Groups extends AbstractOrmEntity implements PromptViewable
 	fields.add(new FieldString("Nom du groupe", "groupName"));
 
 	// Ajout du flag pool. Sert à choisir les droits via GroupRight et Right
-	String[] foreignUiControlKeys = { "moduleName", "actionName",
-		"entityName" };
+	String[] foreignUiControlKeys = { "moduleName", "entityName",
+		"actionName" };
 	addFlagPool(this, "Droits", groupRightDefinition, "groupsID",
 		"rightID", rightDefinition,
 		rightDefinition.getPrimaryKeyName(), foreignUiControlKeys);
