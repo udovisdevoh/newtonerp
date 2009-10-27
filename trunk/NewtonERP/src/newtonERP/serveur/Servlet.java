@@ -40,9 +40,10 @@ public class Servlet extends ServletHandler
 	    ServletException
     {
 	HttpSession session = request.getSession(true);
-	session.setAttribute("SESSION_UserName", "admin"); // TODO: remove
-	// when
-	// loggin existe
+	/*
+	 * session.setAttribute("SESSION_UserName", "admin"); // TODO: remove //
+	 * when // loggin existe
+	 */
 
 	Authentication.setCurrentUserName((String) session
 		.getAttribute("SESSION_UserName"));
