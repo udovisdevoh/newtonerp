@@ -21,12 +21,12 @@ import newtonERP.viewers.viewables.ListViewable;
 public class ListViewer
 {
     /**
-     * Creates the gtml code for the web page FIXME : Does not actually throws
-     * the viewer exception.... Is this ok?
+     * Creates the gtml code for the web page
      * 
-     * @param entity
+     * @param entity the entity to view in list
      * @return html the html code
-     * @throws ViewerException
+     * @throws ViewerException an exception that can occur in the viewer
+     * @throws Exception general exception
      */
     public static String getHtmlCode(ListViewable entity)
 	    throws ViewerException, Exception
@@ -178,7 +178,7 @@ public class ListViewer
     /**
      * Gets the header row
      * 
-     * @param columnList
+     * @param columnList the coloumn list
      * @return html
      */
     public static String getHeaderRow(Iterable<String> columnList)

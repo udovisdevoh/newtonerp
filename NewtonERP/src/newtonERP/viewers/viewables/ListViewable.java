@@ -18,11 +18,13 @@ public interface ListViewable
 {
     /**
      * @return Module à utiliser en ce moment
+     * @throws EntityException a general entity exception
      */
     public Module getCurrentModule() throws EntityException;
 
     /**
-     * @return Module à utiliser en ce moment
+     * @param module the module to set
+     * @throws EntityException a general entity exception
      */
     public void setCurrentModule(Module module) throws EntityException;
 
@@ -40,13 +42,13 @@ public interface ListViewable
 
     /**
      * @return Titre des colonnes
-     * @throws OrmException
+     * @throws OrmException an exception that can occur in the orm
      */
     public Vector<String> getColumnTitleList() throws OrmException;
 
     /**
      * @return Liste de rangées
-     * @throws OrmException
+     * @throws OrmException an exception that can occur in the orm
      */
     public Vector<Map<String, String>> getRowList() throws OrmException;
 
@@ -56,10 +58,14 @@ public interface ListViewable
     public String getKeyName();
 
     /**
+     * @param rowNumber the row number to search in
      * @return valeur de la clef pour identifier une entité dans la liste
      */
     public String getKeyValue(int rowNumber);
 
+    /**
+     * @return the internal element name
+     */
     public String getInternalElementName();
 
     /**

@@ -20,11 +20,12 @@ public class PromptViewer
      * Return the html code for the web page FIXME : Why is it throwing 2 kinds
      * of exception?
      * 
-     * @param entity
+     * @param entity the entity to view
      * @return html
-     * @throws ViewerException
-     * @throws Exception
+     * @throws ViewerException an exception that can occur in viewers
+     * @throws Exception general exception
      */
+    @SuppressWarnings("null")
     public static String getHtmlCode(PromptViewable entity)
 	    throws ViewerException, Exception
     {
