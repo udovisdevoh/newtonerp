@@ -86,6 +86,7 @@ public abstract class Viewer
 		+ ".element_menu a:hover {color: red;}"
 		// + "li {list-style-type:square;color:#000;}"
 		// + "li li {list-style-type:square;color:#FFF;}"
+		+ ".checkBoxAtomicElement td {border-style:solid;border-width:2px;border-color:#fbfcfd #a3aebf #a3aebf #fbfcfd;margin-right:10px;margin-bottom:10px;padding:3px;padding-right:6px;}"
 		+ "#body /*mise en page du corp principal à droite du menu principal*/{margin-left: 150px; /*Une marge à gauche pour pousser le corps, afin qu'il ne passe plus sous le menu*/margin-bottom: 10px;padding: 5px;color: black;background-color: #d3d8e1;border: 1px solid black}"
 		+ "#home {height: 600px;}"// tempo pour home
 		+ ".ListViewerTable td {background-color:#FFF; border-style:solid;border-width:2px; border-color:#DDD #DDD #AAA #AAA;}"
