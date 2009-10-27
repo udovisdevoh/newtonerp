@@ -101,7 +101,7 @@ public class UserRightModule extends Module
 	right.getFields().getField("moduleName").setData(
 		this.getClass().getSimpleName());
 	right.getFields().getField("moduleName").setOperator("=");
-	right.getFields().getField("actionName").setData("Loggin");
+	right.getFields().getField("actionName").setData("Login");
 	right.getFields().getField("actionName").setOperator("=");
 	right = (Right) right.get(right).get(0);
 	rightID = (Integer) right.getData(right.getPrimaryKeyName());
