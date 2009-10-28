@@ -14,6 +14,7 @@ import newtonERP.module.Module;
 import newtonERP.module.exception.ModuleException;
 import newtonERP.module.field.Field;
 import newtonERP.module.field.FieldBool;
+import newtonERP.module.field.FieldDate;
 import newtonERP.module.field.FieldDouble;
 import newtonERP.module.field.FieldInt;
 import newtonERP.module.field.FieldString;
@@ -423,15 +424,13 @@ public class Orm
 			    sqlQuery += field.getShortName()
 				    + " DOUBLE PRECISION, ";
 			}
-			else if (field instanceof FieldString)
+			else if (field instanceof FieldString
+				|| field instanceof FieldDate)
 			{
 			    sqlQuery += field.getShortName() + " STRING, ";
 			}
-			else if (field instanceof FieldBool)
-			{
-			    sqlQuery += field.getShortName() + " INTEGER, ";
-			}
-			else if (field instanceof FieldInt)
+			else if (field instanceof FieldBool
+				|| field instanceof FieldInt)
 			{
 			    sqlQuery += field.getShortName() + " INTEGER, ";
 			}

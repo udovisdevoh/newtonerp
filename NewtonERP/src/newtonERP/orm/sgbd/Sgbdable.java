@@ -19,7 +19,7 @@ public interface Sgbdable
      * 
      * @param request l'action a effectue
      * @param action the OrmActions that will be done
-     * @return le resultat sous forme de strings
+     * @return le resultat sous forme d'un result set
      * @throws OrmException an exception that can occur in the orm
      */
     public ResultSet execute(String request, OrmActions action)
