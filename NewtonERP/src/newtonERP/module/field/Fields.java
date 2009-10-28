@@ -6,6 +6,7 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Vector;
 
+import newtonERP.module.exception.FieldNotCompatibleException;
 import newtonERP.module.exception.FieldNotFoundException;
 
 /**
@@ -183,6 +184,17 @@ public class Fields implements Iterable<Field>
 	for (Field field : this)
 	    longFieldName.add(field.getName());
 	return longFieldName;
+    }
+
+    /**
+     * @throws FieldNotCompatibleException remonte
+     */
+    public void setDefaultValue() throws FieldNotCompatibleException
+    {
+	for (Field field : getFields())
+	{
+	    field.setDefaultValue();
+	}
     }
 
     /**

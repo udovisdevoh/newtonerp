@@ -121,4 +121,9 @@ public class FieldString extends Field
 	    throw new InvalidOperatorException("Opérateur invalide pour "
 		    + getClass().getSimpleName());
     }
+
+    public void setDefaultValue()
+    {
+	setData("");
+    }
 }

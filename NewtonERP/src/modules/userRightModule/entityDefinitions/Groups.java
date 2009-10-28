@@ -1,21 +1,13 @@
 package modules.userRightModule.entityDefinitions;
 
-import java.util.Hashtable;
 import java.util.Vector;
 
-import modules.userRightModule.UserRightModule;
-import modules.userRightModule.actions.GetGroupsList;
-import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
-import newtonERP.module.BaseAction;
-import newtonERP.module.exception.FieldNotFoundException;
 import newtonERP.module.field.Field;
 import newtonERP.module.field.FieldInt;
 import newtonERP.module.field.FieldString;
 import newtonERP.module.field.Fields;
-import newtonERP.module.generalEntity.ForwardEntity;
 import newtonERP.orm.Orm;
-import newtonERP.serveur.Servlet;
 import newtonERP.viewers.viewables.PromptViewable;
 
 /**
@@ -75,75 +67,5 @@ public class Groups extends AbstractOrmEntity implements PromptViewable
 	}
 
 	return rightResult;
-    }
-
-    @Override
-    public AbstractEntity getAfterDeleteReturnEntity() throws Exception
-    {
-	return new ForwardEntity(Servlet.makeLink(new UserRightModule(),
-		new GetGroupsList()));
-    }
-
-    @Override
-    public AbstractEntity newUI(Hashtable<String, String> parameters)
-	    throws Exception
-    {
-	Groups groups = new Groups();
-	groups.setCurrentModule(new UserRightModule());
-	groups.setData("groupName", "sans-nom");
-	// user.setSubmitAction(new BaseAction("Edit", this));
-
-	((AbstractOrmEntity) groups).newE();
-
-	return new ForwardEntity(Servlet.makeLink(new UserRightModule(),
-		new GetGroupsList()));
-    }
-
-    @Override
-    public AbstractEntity editUI(Hashtable<String, String> parameters)
-	    throws Exception
-    {
-	Groups searchEntity = new Groups();
-	searchEntity.setData(getPrimaryKeyName(), Integer
-		.parseInt(getPrimaryKeyValue()));
-	searchEntity.getFields().getField(getPrimaryKeyName()).setOperator("=");
-
-	Groups retGroups = (Groups) get(searchEntity).get(0); // on discarte les
-	// autre
-	retGroups.setCurrentAction(new BaseAction("Edit", this));
-	retGroups.setCurrentModule(new UserRightModule());
-	// entity
-	// s'il y a lieu
-
-	if (parameters.containsKey("submit"))
-	{
-	    for (String parameterKey : parameters.keySet())
-	    {
-		try
-		{
-		    getFields().setData(parameterKey,
-			    parameters.get(parameterKey));
-		} catch (FieldNotFoundException e)
-		{
-		    // Ce catch est vide car seul les fields existant peuvent
-		    // être modifiés par des paramètres - Guillaume
-		    continue;
-		}
-	    }
-
-	    applyFlagPoolChanges(parameters);
-
-	    edit(getPrimaryKeyName() + "='"
-		    + getDataString(getPrimaryKeyName()) + "'");
-
-	    return new ForwardEntity(Servlet.makeLink(new UserRightModule(),
-		    new BaseAction("Edit", searchEntity))
-		    + "?"
-		    + searchEntity.getPrimaryKeyName()
-		    + "="
-		    + searchEntity.getPrimaryKeyValue());
-	}
-
-	return retGroups;
     }
 }

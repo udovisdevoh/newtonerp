@@ -148,7 +148,7 @@ public abstract class Module
 			+ ".entityDefinitions."
 			+ listOfFiles[i].getName().split("\\.java")[0];
 
-		Class entityClass = Class.forName(className);
+		Class<?> entityClass = Class.forName(className);
 
 		AbstractEntity def = (AbstractEntity) entityClass.newInstance();
 		if (def instanceof AbstractOrmEntity)
@@ -281,9 +281,9 @@ public abstract class Module
 	    return entity.deleteUI(parameters);
 	if (actionName.equals("Edit"))
 	    return entity.editUI(parameters);
-	/*
-	 * if (actionName.equals("Get")) return entity.getUI(parameters);
-	 */
+
+	if (actionName.equals("Get"))
+	    return entity.getUI(parameters);
 
 	throw new ActionNotFoundException("l'action " + actionName
 		+ "de l'entity" + entityName + "n'existe pas");

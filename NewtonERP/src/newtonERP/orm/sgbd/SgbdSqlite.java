@@ -45,8 +45,7 @@ public class SgbdSqlite implements Sgbdable
 	    // TODO: Remove the next line when properly debugged
 	    System.out.println("Executed the statement");
 
-	    return null;
-
+	    return stat.getGeneratedKeys();
 	} catch (SQLException e)
 	{
 	    throw new OrmSqlException(

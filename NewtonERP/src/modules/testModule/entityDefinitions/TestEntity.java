@@ -1,12 +1,8 @@
 package modules.testModule.entityDefinitions;
 
-import java.util.Hashtable;
 import java.util.Vector;
 
-import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
-import newtonERP.module.exception.FieldNotCompatibleException;
-import newtonERP.module.exception.InvalidOperatorException;
 import newtonERP.module.field.Field;
 import newtonERP.module.field.FieldInt;
 import newtonERP.module.field.FieldString;
@@ -29,34 +25,5 @@ public class TestEntity extends AbstractOrmEntity
 	fields.add(new FieldInt("Age", "age"));
 	fields.add(new FieldString("Couleur", "color"));
 	return new Fields(fields);
-    }
-
-    @Override
-    public AbstractEntity getAfterDeleteReturnEntity()
-    {
-	// TODO Auto-generated method stub
-	return null;
-    }
-
-    /*
-     * @Override public AbstractEntity getUI(Hashtable<String, String>
-     * parameters) throws InvalidOperatorException { // TODO Auto-generated
-     * method stub return null; }
-     */
-
-    @Override
-    public AbstractEntity newUI(Hashtable<String, String> parameters)
-	    throws Exception
-    {
-	// TODO Auto-generated method stub
-	return null;
-    }
-
-    @Override
-    public AbstractEntity editUI(Hashtable<String, String> parameters)
-	    throws InvalidOperatorException, FieldNotCompatibleException
-    {
-	// TODO Auto-generated method stub
-	return null;
     }
 }

@@ -126,4 +126,11 @@ public abstract class Field
 	    return false;
 	return true;
     }
+
+    /**
+     * definie la valeur par defaut (devrais etre une valeur null)
+     * @throws FieldNotCompatibleException remonte
+     */
+    public abstract void setDefaultValue() throws FieldNotCompatibleException;
+
 }

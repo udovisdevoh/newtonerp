@@ -4,8 +4,8 @@ import java.text.ParseException;
 import java.util.Hashtable;
 import java.util.Vector;
 
+import modules.userRightModule.UserRightModule;
 import modules.userRightModule.entityDefinitions.User;
-import newtonERP.module.exception.InvalidOperatorException;
 import newtonERP.module.field.Field;
 import newtonERP.module.field.Fields;
 import newtonERP.module.generalEntity.FlagPool;
@@ -46,21 +46,34 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      * BaseAction New
      * 
      * @param parameters parametre suplementaire
-     * @return todo: qu'Est-ce que l'on devrai retourné en general?
+     * @return l'entity qui a été entré en DB (incluant la primaryKey)
      * @throws Exception remonte
      */
-    public abstract AbstractEntity newUI(Hashtable<String, String> parameters)
-	    throws Exception;
+    public AbstractEntity newUI(Hashtable<String, String> parameters)
+	    throws Exception
+    {
+	AbstractOrmEntity entity = this.getClass().newInstance();
+	// user.setCurrentModule(new UserRightModule());
+	// user.setSubmitAction(new BaseAction("Edit", this));
+
+	// ((AbstractOrmEntity) user).newE();
+
+	entity.getFields().setDefaultValue();
+	return entity.editUI(parameters);
+    }
 
     /**
      * enregistre l'entity en DB
      * 
      * @return this
-     * @throws OrmException remonte
+     * @throws Exception remonte
      */
-    public final AbstractEntity newE() throws OrmException
+    public final AbstractOrmEntity newE() throws Exception
     {
-	Orm.insert(this);
+	if (getFields().getKeyList().contains(getPrimaryKeyName()))
+	    setData(getPrimaryKeyName(), Orm.insert(this));
+	else
+	    Orm.insert(this);
 	return this;
     }
 
@@ -77,32 +90,22 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	delete(getPrimaryKeyName() + "='" + getDataString(getPrimaryKeyName())
 		+ "'");
 
-	return getAfterDeleteReturnEntity();
+	return null; // todo: return getList
+	// when possible
     }
-
-    /**
-     * @return Entité retournée après effacement de cette entité
-     * @throws Exception remonte
-     */
-    public abstract AbstractEntity getAfterDeleteReturnEntity()
-	    throws Exception;
 
     /**
      * supprime l'entity en DB
      * 
      * @param whereClause the where clause for the query
      * 
-     * @return this
      * @throws OrmException remonte
      */
-    public final AbstractEntity delete(String whereClause) throws OrmException
+    public final void delete(String whereClause) throws OrmException
     {
 	Vector<String> whereParameter = new Vector<String>();
 	whereParameter.add(whereClause);
 	Orm.delete(this, whereParameter);
-
-	return this; // todo: that a completly non-sense -> r3hallejo dit MDR,
-	// true
     }
 
     /**
@@ -112,8 +115,46 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      * @return todo: qu'Est-ce que l'on devrai retourné en general?
      * @throws Exception remonte
      */
-    public abstract AbstractEntity editUI(Hashtable<String, String> parameters)
-	    throws Exception;
+    public AbstractEntity editUI(Hashtable<String, String> parameters)
+	    throws Exception
+    {
+	AbstractOrmEntity retEntity;
+	AbstractOrmEntity searchEntity = this.getClass().newInstance();
+	if (getPrimaryKeyValue() != 0)
+	{
+	    searchEntity.setData(getPrimaryKeyName(), getPrimaryKeyValue());
+	    searchEntity.getFields().getField(getPrimaryKeyName()).setOperator(
+		    "=");
+
+	    // il ne peu y avoir plus d'une entity (search par primaryKey)
+	    retEntity = get(searchEntity).get(0);
+	}
+	else
+	{
+	    retEntity = this;
+	}
+	retEntity.setCurrentAction(new BaseAction("Edit", this));
+	retEntity.setCurrentModule(new UserRightModule()); // TODO: that wont
+	// work for long
+
+	if (parameters != null && parameters.containsKey("submit"))
+	{
+	    if (getPrimaryKeyValue() == 0)
+	    {
+		searchEntity.setData(getPrimaryKeyName(), newE()
+			.getPrimaryKeyValue());
+	    }
+	    else
+	    {// todo: faire un edit sans param
+		edit(getPrimaryKeyName() + "='" + getPrimaryKeyValue() + "'");
+	    }
+	    applyFlagPoolChanges(parameters);
+
+	    return searchEntity.editUI(null);
+
+	}
+	return retEntity;
+    }
 
     /**
      * met a jour l'entity en DB, l'ID doit etre présent
@@ -139,12 +180,15 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      * BaseAction Get
      * 
      * @param parameters parametre suplementaire
-     * @return todo: qu'Est-ce que l'on devrai retourné en general?
-     * @throws InvalidOperatorException if a wrong operator is set for the field
-     *             datatype public abstract AbstractEntity
-     *             getUI(Hashtable<String, String> parameters) throws
-     *             InvalidOperatorException;
+     * @return entity qui doit etre read only
+     * @throws Exception remonte
      */
+    public AbstractEntity getUI(Hashtable<String, String> parameters)
+	    throws Exception
+    {
+	return editUI(parameters); // TODO: rendre readOnly, néscéssaire pour
+	// une gestion de droit sufisante
+    }
 
     private void updateForeignFlagPoolData(FlagPool flagPool)
     {
@@ -212,16 +256,17 @@ public abstract class AbstractOrmEntity extends AbstractEntity
     /**
      * @return Valeur de la clef primaire
      */
-    public final String getPrimaryKeyValue()
+    public final Integer getPrimaryKeyValue()
     {
 	String primaryKeyName = getPrimaryKeyName();
 	Fields fields = getFields();
 	Field field = fields.getField(primaryKeyName);
 
-	if (field == null)
+	if (field == null || field.getData() == null)
 	    return null;
 
-	String value = field.getDataString();
+	int value = (Integer) field.getData();
+
 	return value;
     }
 
