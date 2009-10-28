@@ -147,8 +147,10 @@ public abstract class Module
 		String className = getClass().getPackage().getName()
 			+ ".entityDefinitions."
 			+ listOfFiles[i].getName().split("\\.java")[0];
-		AbstractEntity def = (AbstractEntity) Class.forName(className)
-			.newInstance();
+
+		Class entityClass = Class.forName(className);
+
+		AbstractEntity def = (AbstractEntity) entityClass.newInstance();
 		if (def instanceof AbstractOrmEntity)
 		    addDefinitionEntity((AbstractOrmEntity) def);
 	    }

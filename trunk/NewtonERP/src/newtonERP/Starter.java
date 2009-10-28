@@ -74,7 +74,6 @@ public class Starter
 	boolean exit = false;
 	while (!exit)
 	{
-	    System.out.println("http://localhost:47098");
 	    System.out.println("Voulez-vous quitter? (o)");
 	    if (System.in.read() == 'o')
 	    {

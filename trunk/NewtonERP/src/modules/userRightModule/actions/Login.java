@@ -3,13 +3,14 @@ package modules.userRightModule.actions;
 import java.util.Hashtable;
 import java.util.Vector;
 
+import modules.userRightModule.UserRightModule;
 import modules.userRightModule.entityDefinitions.User;
 import newtonERP.Authentication;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.field.Field;
-import newtonERP.module.generalEntity.LoginForm;
+import newtonERP.module.generalEntity.Form;
 import newtonERP.module.generalEntity.StaticTextEntity;
 
 /**
@@ -34,7 +35,12 @@ public class Login extends AbstractAction
 	if (currentLoginName == null)
 	    currentLoginName = "";
 
-	LoginForm loginForm = new LoginForm(currentLoginName);
+	Form loginForm = new Form(new UserRightModule(), new Login());
+	loginForm.addNewField("Utilisateur", "name", currentLoginName);
+	loginForm.addNewField("Mot de passe", "password");
+	loginForm.setPromptMessage("Identification");
+	loginForm.setButtonCaption("Entrer");
+	loginForm.addHiddenField("password");
 
 	if (parameters.containsKey("submit"))
 	{
@@ -56,11 +62,8 @@ public class Login extends AbstractAction
 		    return new StaticTextEntity("Bienvenue "
 			    + userList.get(0).getData("name"));
 		}
-		else
-		{
-		    loginForm.addAlertMessage("Groupe invalide ou corrompu");
-		    return loginForm;
-		}
+
+		loginForm.addAlertMessage("Groupe invalide ou corrompu");
 	    }
 	    loginForm.addAlertMessage("Nom ou mot de passe invalide");
 	}

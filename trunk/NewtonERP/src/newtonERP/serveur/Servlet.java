@@ -51,7 +51,7 @@ public class Servlet extends ServletHandler
 	    ServletException
     {
 	System.err.println(target);
-	
+
 	if (target.matches("/file/.*")) // si on veut un fichier
 	{
 	    resourceHandler.handle(target, request, response, dispatch);
@@ -142,7 +142,6 @@ public class Servlet extends ServletHandler
 	// compilé, ça change à peu près rien. Améliore la clarté et permet de
 	// partager l'information sur les noms de module, action et entité
 	// présentement utilisés
-	// Lazy initialisation
 	Matcher urlMatch = urlPattern.matcher(target);
 	urlMatch.matches();
 	return urlMatch.group(6);

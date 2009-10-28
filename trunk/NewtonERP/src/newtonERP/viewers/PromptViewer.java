@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import newtonERP.module.AbstractOrmEntity;
-import newtonERP.module.generalEntity.AlertEntity;
 import newtonERP.module.generalEntity.FlagPool;
 import newtonERP.module.generalEntity.ListOfValue;
 import newtonERP.serveur.Servlet;
@@ -106,7 +105,7 @@ public class PromptViewer
 
 	if (entity.getAlertMessageList() != null)
 	    for (String message : entity.getAlertMessageList())
-		html += AlertViewer.getHtmlCode(new AlertEntity(message));
+		html += "<p class=\"errorMessage\">" + message + "</p>";
 
 	return html;
     }
