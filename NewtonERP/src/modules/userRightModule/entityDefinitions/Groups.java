@@ -131,6 +131,8 @@ public class Groups extends AbstractOrmEntity implements PromptViewable
 		}
 	    }
 
+	    applyFlagPoolChanges(parameters);
+
 	    edit(getPrimaryKeyName() + "='"
 		    + getDataString(getPrimaryKeyName()) + "'");
 
@@ -141,8 +143,6 @@ public class Groups extends AbstractOrmEntity implements PromptViewable
 		    + "="
 		    + searchEntity.getPrimaryKeyValue());
 	}
-
-	applyFlagPoolChanges(parameters);
 
 	return retGroups;
     }
