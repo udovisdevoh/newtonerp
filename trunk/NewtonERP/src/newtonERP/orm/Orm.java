@@ -21,22 +21,23 @@ import newtonERP.orm.sgbd.SgbdSqlite;
 import newtonERP.orm.sgbd.Sgbdable;
 
 /**
+ * Basic class for the orm. It is used to put the objects in the databse using
+ * SqLite3 and its java binding. The orm will receive an entity from which the
+ * orm will perform various tasks such as generating the query and executing it
+ * obviously. Then it's gonna send the query to the SgbdSqlite class to execute
+ * it.
+ * 
+ * Types for the database : Integer, Double (Number?), String, Boolean
+ * (Integer?)
+ * 
+ * http://www.sqlite.org/lang_keywords.html
+ * 
+ * Pour le nouveau where exemple : String where=
+ * "(champentité1 AND champ2entité1) OR (champ1entité2 AND champ2entité2))" ;
+ * 
+ * TODO: Drop a module (maybe a an array of the entities to drop?)
+ * 
  * @author r3hallejo, r3lacasgu
- * 
- *         Basic class for the orm. It is used to put the objects in the databse
- *         using SqLite3 and its java binding. The orm will receive an entity
- *         from which the orm will perform various tasks such as generating the
- *         query and executing it obviously. Then it's gonna send the query to
- *         the SgbdSqlite class to execute it.
- * 
- *         Types for the database : Integer, Double (Number?), String, Boolean
- *         (Integer?)
- * 
- *         http://www.sqlite.org/lang_keywords.html
- * 
- *         Pour le nouveau where exemple : String where=
- *         "(champentité1 AND champ2entité1) OR (champ1entité2 AND champ2entité2))"
- *         ;
  */
 public class Orm
 {

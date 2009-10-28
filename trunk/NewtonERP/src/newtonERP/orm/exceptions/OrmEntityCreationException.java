@@ -1,9 +1,9 @@
 package newtonERP.orm.exceptions;
 
 /**
- * @author r3hallejo
+ * Class used in the entity creator
  * 
- *         Class used in the entity creator
+ * @author r3hallejo
  */
 public class OrmEntityCreationException extends OrmException
 {

@@ -3,6 +3,7 @@
  */
 package unitTest.abstractModule;
 
+import java.text.ParseException;
 import java.util.Hashtable;
 
 import junit.framework.TestCase;
@@ -44,9 +45,10 @@ public class EntityTest extends TestCase
      * .
      * 
      * @throws FieldNotFoundException remonte
+     * @throws ParseException an exception that can occur parsing dates
      */
     public void testGetEntityFromHashTableString()
-	    throws FieldNotFoundException
+	    throws FieldNotFoundException, ParseException
     {
 	Hashtable<String, String> hash = new Hashtable<String, String>();
 
@@ -71,9 +73,10 @@ public class EntityTest extends TestCase
      * .
      * 
      * @throws FieldNotFoundException remonte
+     * @throws ParseException an exception that can occur parsing dates
      */
     public void testGetEntityFromHashTableObject()
-	    throws FieldNotFoundException
+	    throws FieldNotFoundException, ParseException
     {
 	System.out.println("**********");
 	Hashtable<String, Object> hash = new Hashtable<String, Object>();
@@ -99,8 +102,10 @@ public class EntityTest extends TestCase
      * .
      * 
      * @throws FieldNotFoundException remonte
+     * @throws ParseException an exception that can occur parsing dates
      */
-    public void testGetHashTableFromEntity() throws FieldNotFoundException
+    public void testGetHashTableFromEntity() throws FieldNotFoundException,
+	    ParseException
     {
 	Hashtable<String, String> hash = new Hashtable<String, String>();
 

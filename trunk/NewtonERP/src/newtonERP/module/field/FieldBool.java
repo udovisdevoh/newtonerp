@@ -4,9 +4,9 @@ import newtonERP.module.exception.FieldNotCompatibleException;
 import newtonERP.module.exception.InvalidOperatorException;
 
 /**
- * @author djo, r3hallejo
+ * Boolean field in the entities
  * 
- *         Boolean field in the entities
+ * @author djo, r3hallejo
  */
 public abstract class FieldBool extends Field
 {
@@ -24,6 +24,7 @@ public abstract class FieldBool extends Field
     {
 	super(name, shortName);
 	this.data = data;
+	operator = "=";
     }
 
     /**

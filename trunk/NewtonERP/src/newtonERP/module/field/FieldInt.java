@@ -4,9 +4,9 @@ import newtonERP.module.exception.FieldNotCompatibleException;
 import newtonERP.module.exception.InvalidOperatorException;
 
 /**
- * @author djo, r3hallejo
+ * Integer field in the entities
  * 
- *         Integer field in the entities
+ * @author djo, r3hallejo
  */
 public class FieldInt extends Field
 {
@@ -24,6 +24,7 @@ public class FieldInt extends Field
     {
 	super(name, shortName);
 	this.data = data;
+	operator = "=";
     }
 
     /**

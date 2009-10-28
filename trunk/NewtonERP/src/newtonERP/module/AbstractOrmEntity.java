@@ -1,5 +1,6 @@
 package newtonERP.module;
 
+import java.text.ParseException;
 import java.util.Hashtable;
 import java.util.Vector;
 
@@ -33,8 +34,10 @@ public abstract class AbstractOrmEntity extends AbstractEntity
     /**
      * @param parameters la hashTable de parametre qui sera transphormé en
      *            entity
+     * @throws ParseException an exception that can occur when parsing dates
      */
     public final void setOrmizableData(Hashtable<String, Object> parameters)
+	    throws ParseException
     {
 	getFields().setFromHashTable(parameters);
     }
