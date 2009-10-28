@@ -108,3 +108,12 @@ h2 /* sous-titres */ {
 	background-color: #d3d8e1;
 	border: 1px solid black;
 }
+.topMenu{
+text-align:right;
+}
+.topMenu a{
+	color: #0081d7;
+}
+.topMenu a:hover{
+	color: red;
+}
