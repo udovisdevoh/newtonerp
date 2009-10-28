@@ -19,9 +19,8 @@ import newtonERP.serveur.Servlet;
 import newtonERP.viewers.viewables.PromptViewable;
 
 /**
+ * Entity defenition class representing a group for the users
  * @author r3hallejo
- * 
- *         Entity defenition class representing a group for the users
  */
 public class Groups extends AbstractOrmEntity implements PromptViewable
 {
@@ -37,9 +36,15 @@ public class Groups extends AbstractOrmEntity implements PromptViewable
 	// Ajout du flag pool. Sert à choisir les droits via GroupRight et Right
 	String[] foreignUiControlKeys = { "moduleName", "entityName",
 		"actionName" };
+
 	addFlagPool(this, "Droits", groupRightDefinition, "groupsID",
 		"rightID", rightDefinition,
 		rightDefinition.getPrimaryKeyName(), foreignUiControlKeys);
+
+	/*
+	 * Sera simplifié tel que: addFlagPool(this, "Droits", rightDefinition,
+	 * rightDefinition.getPrimaryKeyName(), foreignUiControlKeys);
+	 */
 
 	return new Fields(fields);
     }

@@ -25,7 +25,7 @@ public class Login extends AbstractAction
      */
     public Login()
     {
-	super(new User()); // ne travaille pas avec une entity
+	super(new User()); // Travaille avec des users
     }
 
     protected AbstractEntity doAction(AbstractEntity entity,
