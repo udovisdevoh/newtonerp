@@ -142,6 +142,8 @@ public class Groups extends AbstractOrmEntity implements PromptViewable
 		    + searchEntity.getPrimaryKeyValue());
 	}
 
+	applyFlagPoolChanges(parameters);
+
 	return retGroups;
     }
 }

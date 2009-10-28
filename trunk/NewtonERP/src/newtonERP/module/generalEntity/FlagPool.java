@@ -146,4 +146,14 @@ public class FlagPool implements CheckListViewable
 	this.sourceKeyName = sourceKeyName;
 	this.sourceKeyValue = sourceKeyValue;
     }
+
+    public AbstractOrmEntity getIntermediateEntityDefinition()
+    {
+	return intermediateEntityDefinition;
+    }
+
+    public AbstractOrmEntity getForeignEntityDefinition()
+    {
+	return foreignEntityDefinition;
+    }
 }

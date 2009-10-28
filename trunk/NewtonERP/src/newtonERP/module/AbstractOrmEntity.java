@@ -290,4 +290,13 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 
 	flagPoolList.put(visibleDescription, flagPool);
     }
+
+    protected void applyFlagPoolChanges(Hashtable<String, String> parameters)
+    {
+	AbstractOrmEntity intermediateEntity;
+	for (FlagPool flagPool : getFlagPoolList().values())
+	{
+	    intermediateEntity = flagPool.getIntermediateEntityDefinition();
+	}
+    }
 }
