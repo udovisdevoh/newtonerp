@@ -30,6 +30,12 @@ public class Login extends AbstractAction
     protected AbstractEntity doAction(AbstractEntity entity,
 	    Hashtable<String, String> parameters) throws Exception
     {
+	String currentLoginName = parameters.get("name");
+	if (currentLoginName == null)
+	    currentLoginName = "";
+
+	LoginForm loginForm = new LoginForm(currentLoginName);
+
 	if (parameters.containsKey("submit"))
 	{
 	    for (Field field : entity.getFields().getFields())
@@ -43,23 +49,37 @@ public class Login extends AbstractAction
 
 	    if (userList.size() > 0 && userList.get(0).getData("name") != null)
 	    {
-		Authentication.setCurrentUserName(entity.getDataString("name"));
-		return new StaticTextEntity("Bienvenue "
-			+ userList.get(0).getData("name"));
+		if (IsGroupValid((User) (userList.get(0))))
+		{
+		    Authentication.setCurrentUserName(entity
+			    .getDataString("name"));
+		    return new StaticTextEntity("Bienvenue "
+			    + userList.get(0).getData("name"));
+		}
+		else
+		{
+		    loginForm.addAlertMessage("Groupe invalide ou corrompu");
+		    return loginForm;
+		}
 	    }
+	    loginForm.addAlertMessage("Nom ou mot de passe invalide");
 	}
 
-	/*
-	 * User retEntity = new User(); retEntity.setCurrentAction(this);
-	 * retEntity.setCurrentModule(new UserRightModule());
-	 * 
-	 * return retEntity;
-	 */
+	return loginForm;
+    }
 
-	String currentLoginName = parameters.get("name");
-	if (currentLoginName == null)
-	    currentLoginName = "";
-
-	return new LoginForm(currentLoginName);
+    private boolean IsGroupValid(User user)
+    {
+	AbstractOrmEntity groups;
+	try
+	{
+	    groups = user.getGroupsEntity();
+	} catch (Exception e)
+	{
+	    return false;
+	}
+	if (groups == null)
+	    return false;
+	return true;
     }
 }

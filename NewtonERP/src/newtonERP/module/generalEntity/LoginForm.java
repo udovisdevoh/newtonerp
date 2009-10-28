@@ -1,6 +1,7 @@
 package newtonERP.module.generalEntity;
 
 import java.util.Hashtable;
+import java.util.Vector;
 
 import modules.userRightModule.UserRightModule;
 import modules.userRightModule.actions.Login;
@@ -20,6 +21,7 @@ public class LoginForm extends AbstractEntity implements PromptViewable
     private Module defaultModule;
     private Hashtable<String, String> inputList = new Hashtable<String, String>();
     private String currentSelectedUser;
+    private Vector<String> alertMessageList;
 
     /**
      * @param currentSelectedUser the currecntly selected user
@@ -29,6 +31,7 @@ public class LoginForm extends AbstractEntity implements PromptViewable
     {
 	this.currentSelectedUser = currentSelectedUser;
 	defaultModule = new UserRightModule();
+	alertMessageList = new Vector<String>();
     }
 
     @Override
@@ -93,6 +96,17 @@ public class LoginForm extends AbstractEntity implements PromptViewable
     public ListOfValue tryMatchListOfValue(String fieldKeyName)
     {
 	return null;
+    }
+
+    public void addAlertMessage(String string)
+    {
+	alertMessageList.add(string);
+    }
+
+    @Override
+    public Vector<String> getAlertMessageList()
+    {
+	return alertMessageList;
     }
 
 }
