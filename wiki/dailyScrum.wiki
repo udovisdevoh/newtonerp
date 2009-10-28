@@ -399,11 +399,12 @@ truc pour champs uniques (par exemple, pour user)
 
 ==Pascal Lemay==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
-  * ...livré...
- ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
-  * ...à livré...
+  * Module Home, action getHome,et Homeviewer
+ ===2- qu'est-ce que je ferai (livré) aujourd'hui?===
+  * Cours sur entités, viewers, modules
+  * menu de login sur page principal(en haut à droite) et début de module...
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
-  * ...problème, besoin d'aide, qui aidera...
+  * pas pour l'instant
 
 ==Gabriel Therrien==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
