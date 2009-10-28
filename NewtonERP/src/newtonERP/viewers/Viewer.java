@@ -3,6 +3,7 @@ package newtonERP.viewers;
 import java.util.Hashtable;
 import java.util.Iterator;
 
+import newtonERP.Authentication;
 import newtonERP.ListModule;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.Module;
@@ -83,7 +84,26 @@ public abstract class Viewer
 	header += "</head><body><div id=\"header\"><h1>" + pageTitle
 		+ "</h1></div>";
 
+	header += buildTopMenu();
+
 	return header;
+    }
+
+    private static String buildTopMenu()
+    {
+	String html = "";
+
+	html += "<div class=\"topMenu\">";
+
+	if (Authentication.getCurrentUserName().equals("unLogedUser"))
+	    html += "<a href=\"/\">Login</a>";
+	else
+	    html += Authentication.getCurrentUserName();
+
+	html += " | <a href=\"/UserRightModule/Logout\">Logout</a>";
+	html += "</div>";
+
+	return html;
     }
 
     private static String buildPageTitle(String moduleName, String actionName)
