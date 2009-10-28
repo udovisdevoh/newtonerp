@@ -45,6 +45,9 @@ public class ListOfValue implements SelectBoxViewable
 	    elementList.put(entity.getPrimaryKeyValue(), entity
 		    .getDataString(foreignDescription));
 
+	if (elementList.size() < 1)
+	    elementList.put("", "");
+
 	return elementList;
     }
 
