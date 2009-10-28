@@ -382,11 +382,18 @@ voici le model de scrum a copier en entier si vous êtes le premier
 
 ==Guillaume Lacasse==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
-  * ...livré...
+  * Multiples viewers foncitonnels, login, logout, gestion des users, groupes (lecture et écriture) et des droits (en lecture pour l'instant), déplacement de responsabilité des entités vers AbstractEntity et AbstractOrmEntity, création de user, modification de user, validation coté client.
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
-  * ...à livré...
+  * FlagPool doit être fonctionnel en mode écriture
+modification de droit: si case invisible, aucun changement
+modification de droit: si user name admin, UserRightModule: aucune désaffectation possible
+validation de nom de colonne (éviter colonnes interdites par sqLite)
+flagPool: selectAll/none
+PromptViewable/AbstractOrmEntity/EntityList: textarea
+ListViewer (page multiples)
+truc pour champs uniques (par exemple, pour user)
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
-  * ...problème, besoin d'aide, qui aidera...
+  * Je devrais mettre plus de commentaires JavaDoc
 
 ==Pascal Lemay==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
