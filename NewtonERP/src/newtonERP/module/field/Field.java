@@ -1,19 +1,22 @@
 package newtonERP.module.field;
 
+import java.text.ParseException;
+
 import newtonERP.module.exception.FieldNotCompatibleException;
 import newtonERP.module.exception.InvalidOperatorException;
 
 /**
- * @author djo, r3hallejo
+ * Super class for entity fields used in the modules
  * 
- *         Super class for entity fields used in the modules
+ * @author djo, r3hallejo
  */
 public abstract class Field
 {
     private String name; // Name is the name that will be visible by the
-			 // end-user
+    // end-user
     private String shortName; // Short name is the name that will be used
-			      // internally
+
+    // internally
 
     /**
      * default constructor
@@ -66,8 +69,9 @@ public abstract class Field
 
     /**
      * @param data the data to set
+     * @throws ParseException an exception that can occur during parsing dates
      */
-    public abstract void setData(String data);
+    public abstract void setData(String data) throws ParseException;
 
     /**
      * @param data the data to set

@@ -1,5 +1,6 @@
 package newtonERP.module.generalEntity;
 
+import java.text.ParseException;
 import java.util.Hashtable;
 
 import newtonERP.module.AbstractAction;
@@ -38,9 +39,10 @@ public class Form extends AbstractEntity implements PromptViewable
      * @param fieldName
      * @param currentValue
      * @throws FieldNotFoundException
+     * @throws ParseException an exception that can occur during parsing dates
      */
     public void addNewField(String label, String fieldName, String currentValue)
-	    throws FieldNotFoundException
+	    throws FieldNotFoundException, ParseException
     {
 	Field field = new FieldString(label, fieldName);
 	field.setData(currentValue);
@@ -51,9 +53,10 @@ public class Form extends AbstractEntity implements PromptViewable
      * @param label
      * @param fieldName
      * @throws FieldNotFoundException
+     * @throws ParseException an exception that can occur during parsong dates
      */
     public void addNewField(String label, String fieldName)
-	    throws FieldNotFoundException
+	    throws FieldNotFoundException, ParseException
     {
 	addNewField(label, fieldName, "");
     }

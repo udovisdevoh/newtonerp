@@ -1,5 +1,6 @@
 package newtonERP.module.field;
 
+import java.text.ParseException;
 import java.util.Collection;
 import java.util.Hashtable;
 import java.util.Iterator;
@@ -8,8 +9,9 @@ import java.util.Vector;
 import newtonERP.module.exception.FieldNotFoundException;
 
 /**
- * @author djo
+ * All the fields of an entity
  * 
+ * @author djo
  */
 public class Fields implements Iterable<Field>
 {
@@ -76,9 +78,10 @@ public class Fields implements Iterable<Field>
      * @param shortName nom du champ
      * @param data valeur modifie
      * @throws FieldNotFoundException si le champ demandé n'existe pas
+     * @throws ParseException an exception that can occur when parsing dates
      */
     public void setData(String shortName, Object data)
-	    throws FieldNotFoundException
+	    throws FieldNotFoundException, ParseException
     {
 	try
 	{
@@ -96,8 +99,10 @@ public class Fields implements Iterable<Field>
 
     /**
      * @param parameters Hashtable de parametre
+     * @throws ParseException an exception that can occur during date parsing
      */
     public void setFromHashTable(Hashtable<String, ?> parameters)
+	    throws ParseException
     {
 	for (String key : parameters.keySet())
 	{

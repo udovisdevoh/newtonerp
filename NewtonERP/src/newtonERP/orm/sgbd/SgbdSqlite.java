@@ -12,10 +12,10 @@ import newtonERP.orm.exceptions.OrmException;
 import newtonERP.orm.exceptions.OrmSqlException;
 
 /**
- * @author r3lacasgu, r3hallejo
+ * Class who's role is only for executing the statements that has been sent from
+ * the orm
  * 
- *         Class who's role is only for executing the statements that has been
- *         sent from the orm
+ * @author r3lacasgu, r3hallejo
  */
 public class SgbdSqlite implements Sgbdable
 {

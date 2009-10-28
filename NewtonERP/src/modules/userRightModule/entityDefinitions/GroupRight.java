@@ -1,5 +1,6 @@
 package modules.userRightModule.entityDefinitions;
 
+import java.text.ParseException;
 import java.util.Hashtable;
 import java.util.Vector;
 
@@ -35,8 +36,10 @@ public class GroupRight extends AbstractOrmEntity
      * @param groups ID du groupe
      * @param right ID du droit
      * @throws FieldNotFoundException remonte
+     * @throws ParseException an exception that can occur during parsing dates
      */
-    public GroupRight(Groups groups, Right right) throws FieldNotFoundException
+    public GroupRight(Groups groups, Right right)
+	    throws FieldNotFoundException, ParseException
     {
 	String groupsIdValue = groups.getPrimaryKeyValue();
 	String rightIdValue = right.getPrimaryKeyValue();

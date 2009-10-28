@@ -6,11 +6,10 @@ import newtonERP.orm.OrmActions;
 import newtonERP.orm.exceptions.OrmException;
 
 /**
- * @author r3lacasgu, r3hallejo
+ * Interface with methods for executing the requests to be implemented in the
+ * sgdb. Useful if for something we change lets say from Sqlite to Oracle
  * 
- *         Interface with methods for executing the requests to be implemented
- *         in the sgdb. Useful if for something we change lets say from Sqlite
- *         to Oracle
+ * @author r3lacasgu, r3hallejo
  */
 public interface Sgbdable
 {

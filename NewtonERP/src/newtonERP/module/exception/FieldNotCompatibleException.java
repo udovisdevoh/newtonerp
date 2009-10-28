@@ -1,6 +1,5 @@
 package newtonERP.module.exception;
 
-
 /**
  * @author cloutierJo
  * 
@@ -18,5 +17,13 @@ public class FieldNotCompatibleException extends ModuleException
     {
 	super(fieldName + " field is not compatible with "
 		+ data.getClass().getSimpleName());
+    }
+
+    /**
+     * @param message the message
+     */
+    public FieldNotCompatibleException(String message)
+    {
+	super(message);
     }
 }
