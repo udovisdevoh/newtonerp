@@ -84,8 +84,6 @@ public abstract class Viewer
 	header += "</head><body><div id=\"header\"><h1>" + pageTitle
 		+ "</h1></div>";
 
-	header += buildTopMenu();
-
 	return header;
     }
 
@@ -163,7 +161,7 @@ public abstract class Viewer
 	menuModuleHtml += "</ul></div>";// ferme liste et ce Module
 
 	// ferme menu gauche + <div id="body">=style css corp de droite
-	return (menu + menuModuleHtml + "</div> <div id=\"body\">");
+	return (menu + menuModuleHtml + "</div> <div id=\"body\">" + buildTopMenu());
     }
 
     /**
