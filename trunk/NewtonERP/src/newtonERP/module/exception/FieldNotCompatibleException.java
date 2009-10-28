@@ -1,9 +1,9 @@
 package newtonERP.module.exception;
 
 /**
- * @author cloutierJo
+ * exception lancé lorsque le type du champ ne correspond pas
  * 
- *         exception lancé lorsque le type du champ ne correspond pas
+ * @author cloutierJo
  */
 public class FieldNotCompatibleException extends ModuleException
 {
@@ -15,8 +15,10 @@ public class FieldNotCompatibleException extends ModuleException
      */
     public FieldNotCompatibleException(String fieldName, Object data)
     {
-	super(fieldName + " field is not compatible with "
-		+ data.getClass().getSimpleName());
+	super(
+		fieldName + " field is not compatible with " + data != null ? data
+			.getClass().getSimpleName()
+			: "null");
     }
 
     /**

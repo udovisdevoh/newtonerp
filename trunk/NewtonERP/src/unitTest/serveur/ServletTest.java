@@ -38,7 +38,7 @@ public class ServletTest extends TestCase
     }
 
     /**
-     * @throws Exception
+     * @throws Exception remonte
      * 
      */
     public void testHandleFullAdress() throws Exception
@@ -49,7 +49,7 @@ public class ServletTest extends TestCase
     }
 
     /**
-     * @throws Exception
+     * @throws Exception remonte
      * 
      */
     public void testHandleNoAction() throws Exception
@@ -58,7 +58,7 @@ public class ServletTest extends TestCase
     }
 
     /**
-     * @throws Exception
+     * @throws Exception remonte
      * 
      */
     public void testHandleNoModule() throws Exception

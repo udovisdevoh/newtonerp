@@ -1,6 +1,7 @@
 package newtonERP.orm;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Collection;
 import java.util.Hashtable;
 import java.util.Iterator;
@@ -122,10 +123,11 @@ public class Orm
      * passed in parameter
      * 
      * @param newEntity the entity to be inserted
+     * @return valeur de a cle primaire
      * @throws OrmException an exception that can occur into the orm
      */
     @SuppressWarnings("unchecked")
-    public static void insert(AbstractOrmEntity newEntity) throws OrmException
+    public static int insert(AbstractOrmEntity newEntity) throws OrmException
     {
 	Hashtable<String, String> data = newEntity.getOrmizableData();
 	String sqlQuery = "INSERT INTO " + prefix
@@ -156,7 +158,7 @@ public class Orm
 
 		    valuesQuery = valuesQuery.substring(0,
 			    valuesQuery.length() - 2);
-		    valuesQuery += ")";
+		    valuesQuery += ");";
 		}
 	    }
 	    else
@@ -174,7 +176,16 @@ public class Orm
 	// TODO: Remove the next line once this will be properly debugged
 	System.out.println("SQL query produced : " + sqlQuery);
 
-	sgbd.execute(sqlQuery, OrmActions.INSERT);
+	ResultSet rs = sgbd.execute(sqlQuery, OrmActions.INSERT);
+	try
+	{
+	    return rs.getInt(1);
+	} catch (SQLException e)
+	{
+	    // s'il n'y a pas de cle primaire dans cette table, on ne throw donc
+	    // pas cette exception
+	    return 0;
+	}
     }
 
     /**

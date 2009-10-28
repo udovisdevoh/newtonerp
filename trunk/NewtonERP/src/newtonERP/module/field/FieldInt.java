@@ -125,4 +125,9 @@ public class FieldInt extends Field
 	    throw new InvalidOperatorException("Opérateur invalide pour "
 		    + getClass().getSimpleName());
     }
+
+    public void setDefaultValue()
+    {
+	setData(0);
+    }
 }

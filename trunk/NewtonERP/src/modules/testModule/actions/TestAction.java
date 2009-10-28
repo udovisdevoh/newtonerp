@@ -8,7 +8,7 @@ import newtonERP.module.AbstractEntity;
 /**
  * @author r3hallejo
  * 
- * 	Action class representing a test action
+ *         Action class representing a test action
  */
 public class TestAction extends AbstractAction
 {

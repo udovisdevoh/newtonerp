@@ -41,6 +41,7 @@ public class PromptViewer
 	if (entity instanceof AbstractOrmEntity)
 	{
 	    ormEntity = (AbstractOrmEntity) (entity);
+	    // if (ormEntity.getPrimaryKeyValue() != 0)
 	    formActionUrl += "?" + ormEntity.getPrimaryKeyName() + "="
 		    + ormEntity.getPrimaryKeyValue();
 	}
@@ -92,7 +93,8 @@ public class PromptViewer
 	    for (FlagPool flagPool : entity.getFlagPoolList().values())
 	    {
 		flagPool.query(ormEntity.getPrimaryKeyName(), ormEntity
-			.getPrimaryKeyValue());
+			.getPrimaryKeyValue()
+			+ "");
 		html += "<tr><td colspan=\"2\">"
 			+ CheckListViewer.getHtmlCode(flagPool) + "</td></tr>";
 	    }

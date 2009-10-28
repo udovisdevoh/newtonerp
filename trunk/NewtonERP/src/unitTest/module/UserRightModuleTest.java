@@ -23,7 +23,7 @@ public class UserRightModuleTest extends TestCase
 {
 
     /**
-     * @throws java.lang.Exception
+     * @throws Exception remonte
      */
     @Before
     public void setUp() throws Exception
@@ -33,7 +33,7 @@ public class UserRightModuleTest extends TestCase
     }
 
     /**
-     * @throws java.lang.Exception
+     * @throws Exception remonte
      */
     @After
     public void tearDown() throws Exception
@@ -46,7 +46,7 @@ public class UserRightModuleTest extends TestCase
      * {@link modules.userRightModule.actions.RightCheck#doAction(newtonERP.module.AbstractEntity, java.util.Hashtable)}
      * .
      * 
-     * @throws Exception
+     * @throws Exception remonte
      */
     @Test
     public void testRightCheck() throws Exception

@@ -179,11 +179,18 @@ public class AbstractEntity
 	listOfValueList.put(fieldKeyName, listOfValue);
     }
 
+    /**
+     * @return
+     */
     public AbstractAction getCurrentAction()
     {
 	return currentAction;
     }
 
+    /**
+     * @return
+     * @throws EntityException
+     */
     public Module getCurrentModule() throws EntityException
     {
 	if (currentModule == null)
@@ -210,11 +217,17 @@ public class AbstractEntity
 	this.currentAction = currentAction;
     }
 
+    /**
+     * @param message
+     */
     public final void addAlertMessage(String message)
     {
 	alertMessageList.add(message);
     }
 
+    /**
+     * @return
+     */
     public String getPromptMessage()
     {
 	if (promptMessage == null)
@@ -222,6 +235,9 @@ public class AbstractEntity
 	return promptMessage;
     }
 
+    /**
+     * @param promptMessage
+     */
     public void setPromptMessage(String promptMessage)
     {
 	this.promptMessage = promptMessage;

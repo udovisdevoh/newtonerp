@@ -1,14 +1,10 @@
 package modules.userRightModule.entityDefinitions;
 
 import java.text.ParseException;
-import java.util.Hashtable;
 import java.util.Vector;
 
-import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
-import newtonERP.module.exception.FieldNotCompatibleException;
 import newtonERP.module.exception.FieldNotFoundException;
-import newtonERP.module.exception.InvalidOperatorException;
 import newtonERP.module.field.Field;
 import newtonERP.module.field.FieldInt;
 import newtonERP.module.field.Fields;
@@ -41,8 +37,8 @@ public class GroupRight extends AbstractOrmEntity
     public GroupRight(Groups groups, Right right)
 	    throws FieldNotFoundException, ParseException
     {
-	String groupsIdValue = groups.getPrimaryKeyValue();
-	String rightIdValue = right.getPrimaryKeyValue();
+	int groupsIdValue = groups.getPrimaryKeyValue();
+	int rightIdValue = right.getPrimaryKeyValue();
 
 	getFields().setData("groupsID", groupsIdValue);
 	getFields().setData("rightID", rightIdValue);
@@ -91,34 +87,5 @@ public class GroupRight extends AbstractOrmEntity
 		rightDefinition.getPrimaryKeyName(), rightIDValue);
 
 	return (Right) Orm.select(rightSearchEntity).get(0);
-    }
-
-    @Override
-    public AbstractEntity getAfterDeleteReturnEntity()
-    {
-	// TODO Auto-generated method stub
-	return null;
-    }
-
-    /*
-     * @Override public AbstractEntity getUI(Hashtable<String, String>
-     * parameters) throws InvalidOperatorException { // TODO Auto-generated
-     * method stub return null; }
-     */
-
-    @Override
-    public AbstractEntity newUI(Hashtable<String, String> parameters)
-	    throws Exception
-    {
-	// TODO Auto-generated method stub
-	return null;
-    }
-
-    @Override
-    public AbstractEntity editUI(Hashtable<String, String> parameters)
-	    throws InvalidOperatorException, FieldNotCompatibleException
-    {
-	// TODO Auto-generated method stub
-	return null;
     }
 }

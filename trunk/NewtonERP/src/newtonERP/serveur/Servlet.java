@@ -26,10 +26,8 @@ import org.mortbay.jetty.handler.ResourceHandler;
 import org.mortbay.jetty.servlet.ServletHandler;
 
 /**
+ * la gestion du serveur, request manager
  * @author JoCloutier
- * 
- *         la gestion du serveur, request manager
- * 
  */
 public class Servlet extends ServletHandler
 {

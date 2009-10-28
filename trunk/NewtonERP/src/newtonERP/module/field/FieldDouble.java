@@ -126,4 +126,9 @@ public class FieldDouble extends Field
 	    throw new InvalidOperatorException("Opérateur invalide pour "
 		    + getClass().getSimpleName());
     }
+
+    public void setDefaultValue() throws FieldNotCompatibleException
+    {
+	setData(0);
+    }
 }

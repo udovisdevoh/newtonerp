@@ -69,7 +69,7 @@ public class BaseAction extends AbstractAction
 	    Hashtable<String, String> parameters) throws Exception
     {
 	throw new Exception(
-		"doAction ne doit pas etre appelez su un baseAction");
+		"doAction ne doit pas etre appelez sur un baseAction");
 
     }
 

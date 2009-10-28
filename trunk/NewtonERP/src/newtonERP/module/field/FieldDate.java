@@ -79,4 +79,9 @@ public class FieldDate extends Field
 	    throw new InvalidOperatorException("Opérateur invalide pour "
 		    + getClass().getSimpleName());
     }
+
+    public void setDefaultValue() throws FieldNotCompatibleException
+    {
+	setData(new GregorianCalendar());
+    }
 }

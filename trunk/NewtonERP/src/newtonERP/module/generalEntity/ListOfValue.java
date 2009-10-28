@@ -42,7 +42,7 @@ public class ListOfValue implements SelectBoxViewable
 	Hashtable<String, String> elementList = new Hashtable<String, String>();
 
 	for (AbstractOrmEntity entity : entityList)
-	    elementList.put(entity.getPrimaryKeyValue(), entity
+	    elementList.put(entity.getPrimaryKeyValue() + "", entity
 		    .getDataString(foreignDescription));
 
 	if (elementList.size() < 1)

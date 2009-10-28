@@ -1,6 +1,5 @@
 package newtonERP.module.exception;
 
-
 /**
  * @author cloutierJo
  * 
