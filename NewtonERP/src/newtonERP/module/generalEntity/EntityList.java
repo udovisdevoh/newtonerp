@@ -13,7 +13,6 @@ import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.BaseAction;
 import newtonERP.module.Module;
-import newtonERP.module.exception.EntityException;
 import newtonERP.module.field.Field;
 import newtonERP.orm.exceptions.OrmException;
 import newtonERP.viewers.viewables.ListViewable;
@@ -154,21 +153,6 @@ public class EntityList extends AbstractEntity implements ListViewable,
 	    AbstractAction action)
     {
 	specificActionButtonList.put(caption, action);
-    }
-
-    @Override
-    public Module getCurrentModule() throws EntityException
-    {
-	if (currentModule == null)
-	    throw new EntityException(
-		    "Vous devez setter le module courrant dans le viewer avec setCurrentModule()");
-
-	return currentModule;
-    }
-
-    public void setCurrentModule(Module module)
-    {
-	currentModule = module;
     }
 
     public String getKeyName()

@@ -5,6 +5,7 @@ import java.util.Hashtable;
 import newtonERP.Authentication;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
+import newtonERP.module.generalEntity.StaticTextEntity;
 
 public class Logout extends AbstractAction
 {
@@ -15,7 +16,7 @@ public class Logout extends AbstractAction
     {
 	Authentication.setCurrentUserName(null);
 
-	return null;
+	return new StaticTextEntity("Au revoir!");
     }
 
 }

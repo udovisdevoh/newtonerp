@@ -436,8 +436,12 @@ public class Orm
 		}
 	    } catch (ModuleException e)
 	    {
+		// PrintStackTrace nécéssaire pour afficher l'information de
+		// l'exception précédente. Il faudrait mettre l'ancien
+		// stackTrace dans le nouveau
+		e.printStackTrace();
 		throw new ModuleException(
-			"Erreur à la construction de la requête pour crée les tables : "
+			"Erreur à la construction de la requête pour créer les tables : "
 				+ e.getMessage());
 	    }
 	}

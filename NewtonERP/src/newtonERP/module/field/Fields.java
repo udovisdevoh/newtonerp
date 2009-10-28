@@ -179,4 +179,12 @@ public class Fields implements Iterable<Field>
 	    longFieldName.add(field.getName());
 	return longFieldName;
     }
+
+    /**
+     * @param field field à ajouter ou remplacer s'il existe
+     */
+    public void add(Field field)
+    {
+	fieldsData.put(field.getShortName(), field);
+    }
 }

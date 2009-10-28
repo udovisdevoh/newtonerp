@@ -5,6 +5,7 @@ import java.util.Vector;
 
 import newtonERP.module.AbstractAction;
 import newtonERP.module.Module;
+import newtonERP.module.exception.EntityException;
 import newtonERP.module.generalEntity.FlagPool;
 import newtonERP.module.generalEntity.ListOfValue;
 import newtonERP.orm.exceptions.OrmException;
@@ -46,7 +47,7 @@ public interface PromptViewable
     /**
      * @return the current module
      */
-    public Module getCurrentModule();
+    public Module getCurrentModule() throws EntityException;
 
     /**
      * @param fieldKeyName the field key name

@@ -1,6 +1,5 @@
 package newtonERP.module;
 
-import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.Vector;
 
@@ -9,7 +8,6 @@ import newtonERP.module.exception.InvalidOperatorException;
 import newtonERP.module.field.Field;
 import newtonERP.module.field.Fields;
 import newtonERP.module.generalEntity.FlagPool;
-import newtonERP.module.generalEntity.ListOfValue;
 import newtonERP.orm.Orm;
 import newtonERP.orm.exceptions.OrmException;
 
@@ -19,12 +17,7 @@ import newtonERP.orm.exceptions.OrmException;
  */
 public abstract class AbstractOrmEntity extends AbstractEntity
 {
-    private Hashtable<String, ListOfValue> listOfValueList;
     private Hashtable<String, FlagPool> flagPoolList;
-    private Module currentModule;
-    private AbstractAction currentAction;
-    private HashSet<String> hiddenFieldList;
-    private Vector<String> alertMessageList;
 
     // oblige le redefinition pour les sous-classe de AbstractOrmEntity
     public abstract Fields initFields();
@@ -202,24 +195,6 @@ public abstract class AbstractOrmEntity extends AbstractEntity
     }
 
     /**
-     * @return liste de KeyValuePair de fields et de leur valeurs
-     * @throws OrmException remonte
-     */
-    public final Hashtable<String, String> getInputList() throws OrmException
-    {
-	return getFields().getHashTableFrom();
-    }
-
-    /**
-     * @param inputName nom d'un field
-     * @return nom complete d'un field
-     */
-    public final String getLabelName(String inputName)
-    {
-	return getFields().getField(inputName).getName();
-    }
-
-    /**
      * @return Nom de la clef primaire
      */
     public final String getPrimaryKeyName()
@@ -260,72 +235,12 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      * Implémentation par default pouvant être overridée dans l'entité
      * @return Description
      */
+    @Override
     public String getPromptMessage()
     {
-	return "Profil d'un " + getClass().getSimpleName();
-    }
-
-    /**
-     * @param currentModule Défini le module utilisé en ce moment pour cette
-     *            entité
-     */
-    public final void setCurrentModule(Module currentModule)
-    {
-	this.currentModule = currentModule;
-    }
-
-    /**
-     * @return the current action
-     */
-    public final AbstractAction getCurrentAction()
-    {
-	return currentAction;
-    }
-
-    /**
-     * @return the current module
-     */
-    public final Module getCurrentModule()
-    {
-	return currentModule;
-    }
-
-    /**
-     * @param currentAction Action qui sera utilisée
-     */
-    public final void setCurrentAction(AbstractAction currentAction)
-    {
-	this.currentAction = currentAction;
-    }
-
-    /**
-     * @param labelName the label of the lov
-     * @param fieldKeyName the field name
-     * @param foreignDescriptionKey the foreign fescrption key
-     * @param foreignEntity the foreign entity
-     */
-    public final void addListOfValue(String labelName, String fieldKeyName,
-	    String foreignDescriptionKey, AbstractOrmEntity foreignEntity)
-    {
-	ListOfValue listOfValue = new ListOfValue(labelName, foreignEntity
-		.getPrimaryKeyName(), foreignDescriptionKey, foreignEntity);
-
-	if (listOfValueList == null)
-	    listOfValueList = new Hashtable<String, ListOfValue>();
-
-	listOfValueList.put(fieldKeyName, listOfValue);
-    }
-
-    /**
-     * @param fieldKeyName the field name
-     * @return If list of value exist, return it, else, return null
-     */
-    public ListOfValue tryMatchListOfValue(String fieldKeyName)
-    {
-	if (listOfValueList == null)
-	    return null;
-
-	return listOfValueList.get(fieldKeyName);
+	if (promptMessage == null)
+	    promptMessage = "Profil d'un " + getClass().getSimpleName();
+	return promptMessage;
     }
 
     /**
@@ -371,36 +286,5 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	    flagPoolList = new Hashtable<String, FlagPool>();
 
 	flagPoolList.put(visibleDescription, flagPool);
-    }
-
-    /**
-     * @param fieldName the field name to hide
-     */
-    public void addHiddenField(String fieldName)
-    {
-	if (hiddenFieldList == null)
-	    hiddenFieldList = new HashSet<String>();
-	hiddenFieldList.add(fieldName);
-    }
-
-    /**
-     * @param fieldName the field to check
-     * @return true if it's hidden and false if it's not
-     */
-    public boolean isFieldHidden(String fieldName)
-    {
-	if (hiddenFieldList == null)
-	    return false;
-	return hiddenFieldList.contains(fieldName);
-    }
-
-    /**
-     * @return Liste des warning pouvant être affichés
-     */
-    public Vector<String> getAlertMessageList()
-    {
-	if (alertMessageList == null)
-	    alertMessageList = new Vector<String>();
-	return alertMessageList;
     }
 }
