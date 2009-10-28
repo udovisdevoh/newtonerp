@@ -382,7 +382,7 @@ voici le model de scrum a copier en entier si vous êtes le premier
 
 ==Guillaume Lacasse==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
-  * Multiples viewers foncitonnels, login, logout, gestion des users, groupes (lecture et écriture) et des droits (en lecture pour l'instant), déplacement de responsabilité des entités vers AbstractEntity et AbstractOrmEntity, création de user, modification de user, validation coté client. Menus et sous-menus.
+  * Multiples viewers foncitonnels, login, logout, gestion des users, groupes (lecture et écriture) et des droits (en lecture pour l'instant), déplacement de responsabilité des entités vers AbstractEntity et AbstractOrmEntity, création de user, modification de user, validation coté client. Menus et sous-menus. List of value. Champs cachés, champs readOnly
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
   * FlagPool doit être fonctionnel en mode écriture
 modification de droit: si case invisible, aucun changement
