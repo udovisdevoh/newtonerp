@@ -24,6 +24,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
     private Module currentModule;
     private AbstractAction currentAction;
     private HashSet<String> hiddenFieldList;
+    private Vector<String> alertMessageList;
 
     // oblige le redefinition pour les sous-classe de AbstractOrmEntity
     public abstract Fields initFields();
@@ -391,5 +392,15 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	if (hiddenFieldList == null)
 	    return false;
 	return hiddenFieldList.contains(fieldName);
+    }
+
+    /**
+     * @return Liste des warning pouvant être affichés
+     */
+    public Vector<String> getAlertMessageList()
+    {
+	if (alertMessageList == null)
+	    alertMessageList = new Vector<String>();
+	return alertMessageList;
     }
 }

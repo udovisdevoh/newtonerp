@@ -1,6 +1,7 @@
 package newtonERP.viewers.viewables;
 
 import java.util.Hashtable;
+import java.util.Vector;
 
 import newtonERP.module.AbstractAction;
 import newtonERP.module.Module;
@@ -63,4 +64,6 @@ public interface PromptViewable
      * @return true or false if the field is hidden or not
      */
     public boolean isFieldHidden(String fieldName);
+
+    public Vector<String> getAlertMessageList();
 }
