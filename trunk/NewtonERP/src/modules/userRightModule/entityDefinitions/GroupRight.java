@@ -80,9 +80,6 @@ public class GroupRight extends AbstractOrmEntity
 	String rightIDValue = getFields().getField("rightID").getDataString();
 
 	Right rightSearchEntity = new Right();
-	rightSearchEntity.getFields().getField(
-		rightDefinition.getPrimaryKeyName()).setOperator("=");
-
 	rightSearchEntity.getFields().setData(
 		rightDefinition.getPrimaryKeyName(), rightIDValue);
 

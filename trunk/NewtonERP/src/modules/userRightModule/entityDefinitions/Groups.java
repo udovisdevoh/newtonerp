@@ -56,7 +56,6 @@ public class Groups extends AbstractOrmEntity implements PromptViewable
 		.getDataString();
 
 	groupRightSearch.getFields().setData("groupsID", groupsId);
-	groupRightSearch.getFields().getField("groupsID").setOperator("=");
 
 	Vector<AbstractOrmEntity> groupRights = Orm.select(groupRightSearch);
 	for (AbstractOrmEntity entity : groupRights)

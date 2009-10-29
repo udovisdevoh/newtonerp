@@ -9,7 +9,6 @@ import newtonERP.Authentication;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
-import newtonERP.module.field.Field;
 import newtonERP.module.generalEntity.Form;
 import newtonERP.module.generalEntity.StaticTextEntity;
 
@@ -44,12 +43,6 @@ public class Login extends AbstractAction
 
 	if (parameters.containsKey("submit"))
 	{
-	    for (Field field : entity.getFields().getFields())
-	    {
-		field.setOperator("="); // TODO: on peu tu mettre l'operateur
-		// par defaut a = ???
-	    }
-
 	    Vector<AbstractOrmEntity> userList = ((AbstractOrmEntity) (entity))
 		    .get((AbstractOrmEntity) (entity));
 
