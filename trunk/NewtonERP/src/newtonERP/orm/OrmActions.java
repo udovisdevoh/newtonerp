@@ -33,5 +33,10 @@ public enum OrmActions
     /**
      * Represents a create table statement in the orm
      */
-    CREATE;
+    CREATE,
+
+    /**
+     * Anything else
+     */
+    OTHER
 }

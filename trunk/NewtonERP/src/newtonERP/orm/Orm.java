@@ -506,4 +506,15 @@ public class Orm
     {
 	sgbd.disconnect();
     }
+
+    /**
+     * To execute a custom query
+     * 
+     * @param sqlQuery the executed
+     * @throws OrmException an exception that can occur in the orm
+     */
+    public static void executeCustomQuery(String sqlQuery) throws OrmException
+    {
+	sgbd.execute(sqlQuery, OrmActions.OTHER);
+    }
 }
