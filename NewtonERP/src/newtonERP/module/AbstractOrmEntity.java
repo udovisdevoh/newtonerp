@@ -355,7 +355,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      *            groupe
      * @param visibleDescription Description visible du flag pool
      * @param intermediateEntityDefinition Entité de table intermédiaire,
-     *            exemple: GroupRight
+     *            exemple: GroupsRight
      * @param intermediateKeyIn Colonne d'entré de table intermédiaire, exemple:
      *            groupID
      * @param intermediateKeyOut Colonne de sortie de table intermédiaire,

@@ -3,7 +3,7 @@ package modules.userRightModule;
 import java.util.Vector;
 
 import modules.userRightModule.actions.Login;
-import modules.userRightModule.entityDefinitions.GroupRight;
+import modules.userRightModule.entityDefinitions.GroupsRight;
 import modules.userRightModule.entityDefinitions.Groups;
 import modules.userRightModule.entityDefinitions.Right;
 import modules.userRightModule.entityDefinitions.User;
@@ -57,7 +57,7 @@ public class UserRightModule extends Module
 	Orm.insert(user);
 
 	int rightID;
-	GroupRight groupRight = new GroupRight();
+	GroupsRight GroupsRight = new GroupsRight();
 
 	// retrouve les rightID
 	search.clear();
@@ -68,10 +68,10 @@ public class UserRightModule extends Module
 	    rightID = (Integer) ((Right) right).getData(right
 		    .getPrimaryKeyName());
 
-	    // cree le groupRight
-	    groupRight.setData("groupsID", groupsID);
-	    groupRight.setData("rightID", rightID);
-	    Orm.insert(groupRight);
+	    // cree le GroupsRight
+	    GroupsRight.setData("groupsID", groupsID);
+	    GroupsRight.setData("rightID", rightID);
+	    Orm.insert(GroupsRight);
 	}
 
 	// ***************** unlogged User ****************
@@ -102,9 +102,9 @@ public class UserRightModule extends Module
 	right = (Right) right.get(right).get(0);
 	rightID = (Integer) right.getData(right.getPrimaryKeyName());
 
-	// cree le groupRight
-	groupRight.setData("groupsID", groupsID);
-	groupRight.setData("rightID", rightID);
-	Orm.insert(groupRight);
+	// cree le GroupsRight
+	GroupsRight.setData("groupsID", groupsID);
+	GroupsRight.setData("rightID", rightID);
+	Orm.insert(GroupsRight);
     }
 }

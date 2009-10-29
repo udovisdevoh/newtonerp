@@ -13,7 +13,7 @@ import newtonERP.viewers.viewables.CheckListViewable;
  * @author Guillaume Lacasse cette classe sert à faire des liste de flag qu'on
  *         peut attribuer à une entité lorsque ces flags sont dans une table
  *         étrangère passant par une table intermédiaire. Exemple: attribution
- *         de droits pour un groupe (ça passe par GroupRight)
+ *         de droits pour un groupe (ça passe par GroupsRight)
  */
 public class FlagPool implements CheckListViewable
 {
@@ -33,7 +33,7 @@ public class FlagPool implements CheckListViewable
      *            groupe
      * @param visibleDescription Description visible
      * @param intermediateEntityDefinition Entité de table intermédiaire,
-     *            exemple: GroupRight
+     *            exemple: GroupsRight
      * @param intermediateKeyIn Colonne d'entré de table intermédiaire, exemple:
      *            groupID
      * @param intermediateKeyOut Colonne de sortie de table intermédiaire,

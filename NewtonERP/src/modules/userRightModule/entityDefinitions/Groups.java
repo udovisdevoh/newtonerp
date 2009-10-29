@@ -16,7 +16,7 @@ import newtonERP.viewers.viewables.PromptViewable;
  */
 public class Groups extends AbstractOrmEntity implements PromptViewable
 {
-    private static GroupRight groupRightDefinition = new GroupRight();
+    private static GroupsRight GroupsRightDefinition = new GroupsRight();
     private static Right rightDefinition = new Right();
 
     public Fields initFields()
@@ -25,11 +25,11 @@ public class Groups extends AbstractOrmEntity implements PromptViewable
 	fieldsInit.add(new FieldInt("Numéro du groupe", getPrimaryKeyName()));
 	fieldsInit.add(new FieldString("Nom du groupe", "groupName"));
 
-	// Ajout du flag pool. Sert à choisir les droits via GroupRight et Right
+	// Ajout du flag pool. Sert à choisir les droits via GroupsRight et Right
 	String[] foreignUiControlKeys = { "moduleName", "entityName",
 		"actionName" };
 
-	addFlagPool(this, "Droits", groupRightDefinition, "groupsID",
+	addFlagPool(this, "Droits", GroupsRightDefinition, "groupsID",
 		"rightID", rightDefinition,
 		rightDefinition.getPrimaryKeyName(), foreignUiControlKeys);
 
@@ -51,18 +51,18 @@ public class Groups extends AbstractOrmEntity implements PromptViewable
     public Vector<Right> getRightList() throws Exception
     {
 	Vector<Right> rightResult = new Vector<Right>();
-	GroupRight groupRightSearch = new GroupRight();
+	GroupsRight GroupsRightSearch = new GroupsRight();
 	String groupsId = getFields().getField(getPrimaryKeyName())
 		.getDataString();
 
-	groupRightSearch.getFields().setData("groupsID", groupsId);
+	GroupsRightSearch.getFields().setData("groupsID", groupsId);
 
-	Vector<AbstractOrmEntity> groupRights = Orm.select(groupRightSearch);
-	for (AbstractOrmEntity entity : groupRights)
+	Vector<AbstractOrmEntity> GroupsRights = Orm.select(GroupsRightSearch);
+	for (AbstractOrmEntity entity : GroupsRights)
 	{
-	    GroupRight groupRight = (GroupRight) (entity);
+	    GroupsRight GroupsRight = (GroupsRight) (entity);
 
-	    rightResult.add(groupRight.getRightEntity());
+	    rightResult.add(GroupsRight.getRightEntity());
 	}
 
 	return rightResult;
