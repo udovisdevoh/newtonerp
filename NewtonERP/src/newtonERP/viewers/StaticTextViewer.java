@@ -3,9 +3,8 @@ package newtonERP.viewers;
 import newtonERP.viewers.viewables.StaticTextViewable;
 
 /**
+ * Static text viewer
  * @author Guillaume Lacasse
- * 
- *         Static text viewer
  */
 public class StaticTextViewer
 {

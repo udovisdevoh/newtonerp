@@ -1,10 +1,8 @@
 package newtonERP.viewers;
 
 /**
- * 
+ * Represents the general viewer exception
  * @author Guillaume Lacasse, Pascal Lemay
- * 
- *         Represents the general viewer exception
  */
 public class ViewerException extends Exception
 {

@@ -6,9 +6,8 @@ import newtonERP.orm.exceptions.OrmException;
 import newtonERP.viewers.viewables.SelectBoxViewable;
 
 /**
+ * The select box viewer
  * @author Guillaume Lacasse
- * 
- *         The select box viewer
  */
 public class SelectBoxViewer
 {

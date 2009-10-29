@@ -3,9 +3,8 @@ package newtonERP.viewers;
 import newtonERP.viewers.viewables.ForwardViewable;
 
 /**
+ * Used to forward to a new page
  * @author Guillaume Lacasse
- * 
- *         Used to forward to a new page
  */
 public class ForwardViewer
 {
