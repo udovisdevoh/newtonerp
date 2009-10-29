@@ -440,7 +440,8 @@ truc pour champs uniques (par exemple, pour user)
 ==Guillaume Lacasse==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
   * GetList est maintenant une BaseAction
-  * Écriture des flagPool donc gestion des droits 100% fonctionnel
+  * Écriture des flagPool donc gestion des droits 100% fonctionnel et module de gestion des droits utilisable à 100%
+  * Ajout d'image de background par fichier CSS
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
   * linkage de table qui  doit permetre (entre autre) l'effacement en cascade
 par exemple, si on delete un Group, alors les GroupRight WHERE GroupID = ce groupe doivent disparaître, rendre flagPool et ListOfValue automatique par linkage de table. Rendre automatique l'access aux accessors
