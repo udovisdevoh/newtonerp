@@ -14,7 +14,7 @@ public class ForwardEntity extends AbstractEntity implements ForwardViewable
     /**
      * @param forwardingUrl the url to go to
      */
-    public ForwardEntity(String forwardingUrl)
+    public ForwardEntity(String forwardingUrl) throws Exception
     {
 	this.forwardingUrl = forwardingUrl;
     }

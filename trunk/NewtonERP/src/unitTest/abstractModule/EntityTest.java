@@ -47,8 +47,7 @@ public class EntityTest extends TestCase
      * @throws FieldNotFoundException remonte
      * @throws ParseException an exception that can occur parsing dates
      */
-    public void testGetEntityFromHashTableString()
-	    throws FieldNotFoundException, ParseException
+    public void testGetEntityFromHashTableString() throws Exception
     {
 	Hashtable<String, String> hash = new Hashtable<String, String>();
 
@@ -75,8 +74,7 @@ public class EntityTest extends TestCase
      * @throws FieldNotFoundException remonte
      * @throws ParseException an exception that can occur parsing dates
      */
-    public void testGetEntityFromHashTableObject()
-	    throws FieldNotFoundException, ParseException
+    public void testGetEntityFromHashTableObject() throws Exception
     {
 	System.out.println("**********");
 	Hashtable<String, Object> hash = new Hashtable<String, Object>();

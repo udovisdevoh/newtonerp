@@ -20,8 +20,9 @@ public class GetCustumerEntity extends AbstractAction
 
     /**
      * constructeur par default
+     * @throws Exception
      */
-    public GetCustumerEntity()
+    public GetCustumerEntity() throws Exception
     {
 	super(new Customer());
     }

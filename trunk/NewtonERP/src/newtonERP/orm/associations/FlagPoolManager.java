@@ -82,6 +82,52 @@ public class FlagPoolManager
 	return searchEntity;
     }
 
+    public static void addFlagPool(AbstractOrmEntity sourceEntity,
+	    String visibleDescription,
+	    AbstractOrmEntity foreignEntityDefinition,
+	    String[] foreignDescriptionUiControls) throws Exception
+    {
+
+	AbstractOrmEntity intermediateEntityDefinition = buildIntermediateEntityDefinition(
+		sourceEntity, foreignEntityDefinition);
+
+	String intermediateKeyIn = sourceEntity.getForeignKeyName();
+	String intermediateKeyOut = foreignEntityDefinition.getForeignKeyName();
+
+	addFlagPool(sourceEntity, visibleDescription,
+		intermediateEntityDefinition, intermediateKeyIn,
+		intermediateKeyOut, foreignEntityDefinition,
+		foreignEntityDefinition.getPrimaryKeyName(),
+		foreignDescriptionUiControls);
+    }
+
+    private static AbstractOrmEntity buildIntermediateEntityDefinition(
+	    AbstractOrmEntity entity1, AbstractOrmEntity entity2)
+	    throws Exception
+    {
+	String entityName1, entityName2, intermediateEntityName;
+
+	entityName1 = entity1.getClass().getSimpleName();
+	entityName2 = entity2.getClass().getSimpleName();
+
+	if (entityName1.compareTo(entityName2) < 0)
+	    intermediateEntityName = entityName1 + entityName2;
+	else
+	    intermediateEntityName = entityName2 + entityName1;
+
+	String classPath = entity1.getClass().getName();
+	classPath = classPath.substring(0, classPath.lastIndexOf('.'));
+
+	intermediateEntityName = classPath + "." + intermediateEntityName;
+
+	AbstractOrmEntity intermediateEntityDefinition = (AbstractOrmEntity) Class
+		.forName(intermediateEntityName).newInstance();
+
+	intermediateEntityDefinition.initFields();
+
+	return intermediateEntityDefinition;
+    }
+
     /**
      * @param sourceEntityDefinition Definition de l'entité de source, exemple:
      *            groupe
@@ -98,7 +144,7 @@ public class FlagPoolManager
      * @param foreignDescriptionUiControls liste de colonne de description de
      *            table étrangère, exemple: Action, Module
      */
-    public static void addFlagPool(AbstractOrmEntity sourceEntity,
+    private static void addFlagPool(AbstractOrmEntity sourceEntity,
 	    String visibleDescription,
 	    AbstractOrmEntity intermediateEntityDefinition,
 	    String intermediateKeyIn, String intermediateKeyOut,

@@ -15,6 +15,12 @@ import newtonERP.module.field.Fields;
 public class Marketing extends AbstractOrmEntity
 {
 
+    public Marketing() throws Exception
+    {
+	super();
+	// TODO Auto-generated constructor stub
+    }
+
     public Fields initFields()
     {
 	Vector<Field> fields = new Vector<Field>();

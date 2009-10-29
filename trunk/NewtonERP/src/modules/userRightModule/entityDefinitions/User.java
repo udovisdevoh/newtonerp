@@ -8,7 +8,6 @@ import newtonERP.module.field.FieldInt;
 import newtonERP.module.field.FieldString;
 import newtonERP.module.field.Fields;
 import newtonERP.orm.Orm;
-import newtonERP.orm.exceptions.OrmException;
 import newtonERP.viewers.viewables.PromptViewable;
 
 /**
@@ -18,13 +17,18 @@ import newtonERP.viewers.viewables.PromptViewable;
  */
 public class User extends AbstractOrmEntity implements PromptViewable
 {
-    private static Groups groupDefinition = new Groups();// Sert de référence
-
     // vers les entités
     // groups
 
-    public Fields initFields()
+    public User() throws Exception
     {
+	super();
+	// TODO Auto-generated constructor stub
+    }
+
+    public Fields initFields() throws Exception
+    {
+	AbstractOrmEntity groupDefinition = new Groups();// Sert de référence
 	Vector<Field> fieldsData = new Vector<Field>();// Renamé en fieldsData
 	// pour enlever confusion
 	fieldsData.add(new FieldInt("Numéro de user", getPrimaryKeyName()));
@@ -42,10 +46,11 @@ public class User extends AbstractOrmEntity implements PromptViewable
      * permet d'obtenir directement l'entity groups lie a cet user
      * 
      * @return le group lie
-     * @throws OrmException remonte
+     * @throws Exception
      */
-    public Groups getGroupsEntity() throws OrmException
+    public Groups getGroupsEntity() throws Exception
     {
+	AbstractOrmEntity groupDefinition = new Groups();// Sert de référence
 	Vector<String> search = new Vector<String>();
 	search.add(groupDefinition.getPrimaryKeyName() + "="
 		+ getFields().getField("groupsID"));

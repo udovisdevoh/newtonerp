@@ -16,13 +16,21 @@ import newtonERP.module.field.Fields;
 public class Vendor extends AbstractOrmEntity
 {
 
+    public Vendor() throws Exception
+    {
+	super();
+    }
+
     public Fields initFields()
     {
 	Vector<Field> fieldsInit = new Vector<Field>();
-	fieldsInit.add(new FieldInt("Numéro du Fournisseur", getPrimaryKeyName()));
+	fieldsInit.add(new FieldInt("Numéro du Fournisseur",
+		getPrimaryKeyName()));
 	fieldsInit.add(new FieldString("Nom du Fournisseur", "vendorName"));
-	fieldsInit.add(new FieldString("Téléphone du Fournisseur", "vendorPhone"));
-	fieldsInit.add(new FieldString("Adresse du Fournisseur", "vendorAddress"));
+	fieldsInit.add(new FieldString("Téléphone du Fournisseur",
+		"vendorPhone"));
+	fieldsInit.add(new FieldString("Adresse du Fournisseur",
+		"vendorAddress"));
 	return new Fields(fieldsInit);
     }
 }

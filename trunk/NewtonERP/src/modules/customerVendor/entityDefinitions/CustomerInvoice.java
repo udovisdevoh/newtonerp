@@ -16,6 +16,11 @@ import newtonERP.module.field.Fields;
 public class CustomerInvoice extends AbstractOrmEntity
 {
 
+    public CustomerInvoice() throws Exception
+    {
+	super();
+    }
+
     public Fields initFields()
     {
 	Vector<Field> fieldsInit = new Vector<Field>();
