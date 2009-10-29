@@ -133,8 +133,6 @@ public class FlagPool implements CheckListViewable
 	    intermediateEntityDefinition.setData(intermediateKeyIn,
 		    sourceKeyValueNumber);
 	}
-	intermediateEntityDefinition.getFields().getField(intermediateKeyIn)
-		.setOperator("=");
 
 	Vector<AbstractOrmEntity> checkedEntityList = Orm
 		.select(intermediateEntityDefinition);

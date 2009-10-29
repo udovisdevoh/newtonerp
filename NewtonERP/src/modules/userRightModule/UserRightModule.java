@@ -3,7 +3,6 @@ package modules.userRightModule;
 import java.util.Vector;
 
 import modules.userRightModule.actions.Login;
-import modules.userRightModule.actions.Logout;
 import modules.userRightModule.entityDefinitions.GroupRight;
 import modules.userRightModule.entityDefinitions.Groups;
 import modules.userRightModule.entityDefinitions.Right;
@@ -35,8 +34,6 @@ public class UserRightModule extends Module
 		new Right()));
 	addGlobalActionMenuItem("Groupes", new BaseAction("GetList",
 		new Groups()));
-	addGlobalActionMenuItem("Login", new Login());
-	addGlobalActionMenuItem("Logout", new Logout());
     }
 
     public void initDB() throws Exception
@@ -101,9 +98,7 @@ public class UserRightModule extends Module
 	Right right = new Right();
 	right.getFields().getField("moduleName").setData(
 		this.getClass().getSimpleName());
-	right.getFields().getField("moduleName").setOperator("=");
 	right.getFields().getField("actionName").setData("Login");
-	right.getFields().getField("actionName").setOperator("=");
 	right = (Right) right.get(right).get(0);
 	rightID = (Integer) right.getData(right.getPrimaryKeyName());
 

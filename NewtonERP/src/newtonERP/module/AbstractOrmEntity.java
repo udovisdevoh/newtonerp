@@ -5,8 +5,6 @@ import java.util.Hashtable;
 import java.util.Vector;
 
 import newtonERP.ListModule;
-import newtonERP.module.exception.EntityException;
-import newtonERP.module.exception.ModuleException;
 import newtonERP.module.field.Field;
 import newtonERP.module.field.Fields;
 import newtonERP.module.generalEntity.EntityList;
@@ -58,9 +56,6 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	AbstractOrmEntity entity = this.getClass().newInstance();
 	entity.getFields().setDefaultValue();
 
-	// return entity.editUI(parameters); d'après moi ce serait plus
-	// ergonomique
-	// de retourner GetList, finalement -Guillaume
 	return entity.editUI(parameters);
     }
 
@@ -124,8 +119,6 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	if (getPrimaryKeyValue() != 0)
 	{
 	    searchEntity.setData(getPrimaryKeyName(), getPrimaryKeyValue());
-	    searchEntity.getFields().getField(getPrimaryKeyName()).setOperator(
-		    "=");
 
 	    // il ne peu y avoir plus d'une entity (search par primaryKey)
 	    retEntity = get(searchEntity).get(0);
@@ -140,11 +133,11 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	{
 	    if (getPrimaryKeyValue() == 0)
 	    {
-		searchEntity.setData(getPrimaryKeyName(), newE()
-			.getPrimaryKeyValue());
+		newE();
 	    }
 	    else
-	    {// todo: faire un edit sans param
+	    {// todo: faire un edit sans param qui ne se base que sur la cle
+		// Primaire
 		edit(getPrimaryKeyName() + "='" + getPrimaryKeyValue() + "'");
 	    }
 
@@ -221,8 +214,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 
     /**
      * @return Module par default
-     * @throws EntityException
-     * @throws ModuleException
+     * @throws Exception remonte
      */
     @Override
     public Module getCurrentModule() throws Exception
@@ -255,9 +247,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      * 
      * @param whereClause the where clause for the query
      * @return this
-     * @throws OrmException remonte
-     * @throws IllegalAccessException
-     * @throws InstantiationException
+     * @throws Exception remonte
      */
     public final Vector<AbstractOrmEntity> get(String whereClause)
 	    throws Exception
