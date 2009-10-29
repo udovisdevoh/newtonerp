@@ -190,6 +190,19 @@ public class Orm
     }
 
     /**
+     * Insert an entity if no entity matches current field
+     * 
+     * @param newUniqueEntity New unique entity to insert
+     * @throws OrmException an exception that can occur into the orm
+     */
+    public static void insertUnique(AbstractOrmEntity newUniqueEntity)
+	    throws OrmException
+    {
+	if (select(newUniqueEntity).size() < 1)
+	    insert(newUniqueEntity);
+    }
+
+    /**
      * Method used to delete an entity from the database
      * 
      * @param searchEntity the entity to be researched
@@ -231,6 +244,22 @@ public class Orm
 	System.out.println("Sql query produced : " + sqlQuery);
 
 	sgbd.execute(sqlQuery, OrmActions.DELETE);
+    }
+
+    /**
+     * Using new where builder
+     * 
+     * Method used to delete an entity from the database
+     * 
+     * @param searchEntity the entity from which we will build our where
+     * @throws OrmException an exception that can occur in the orm
+     */
+    public static void delete(AbstractOrmEntity searchEntity)
+	    throws OrmException
+    {
+	Vector<AbstractOrmEntity> searchEntities = new Vector<AbstractOrmEntity>();
+	searchEntities.add(searchEntity);
+	delete(searchEntities);
     }
 
     /**

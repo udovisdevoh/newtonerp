@@ -84,7 +84,10 @@ public class FlagPool implements CheckListViewable
 
 	    availableElementList.put(description, intermediateEntityDefinition
 		    .getClass().getSimpleName()
-		    + "_" + entity.getDataString(foreignKey));
+		    + "."
+		    + intermediateKeyOut
+		    + "."
+		    + entity.getDataString(foreignKey));
 	}
 
 	return availableElementList;
@@ -139,15 +142,18 @@ public class FlagPool implements CheckListViewable
 	for (AbstractOrmEntity entity : checkedEntityList)
 	    checkedElementList.add(intermediateEntityDefinition.getClass()
 		    .getSimpleName()
-		    + "_" + entity.getDataString(intermediateKeyOut));
+		    + "."
+		    + intermediateKeyOut
+		    + "."
+		    + entity.getDataString(intermediateKeyOut));
 
 	return checkedElementList;
     }
 
-    public void query(String sourceKeyName, String sourceKeyValue)
+    public void query(String sourceKeyName, Integer sourceKeyValue)
     {
 	this.sourceKeyName = sourceKeyName;
-	this.sourceKeyValue = sourceKeyValue;
+	this.sourceKeyValue = sourceKeyValue.toString();
     }
 
     public AbstractOrmEntity getIntermediateEntityDefinition()
@@ -158,5 +164,25 @@ public class FlagPool implements CheckListViewable
     public AbstractOrmEntity getForeignEntityDefinition()
     {
 	return foreignEntityDefinition;
+    }
+
+    public String getIntermediateKeyIn()
+    {
+	return intermediateKeyIn;
+    }
+
+    public String getIntermediateKeyOut()
+    {
+	return intermediateKeyOut;
+    }
+
+    public String getSourceKeyValue()
+    {
+	return sourceKeyValue;
+    }
+
+    public AbstractOrmEntity getSourceEntityDefinition()
+    {
+	return sourceEntityDefinition;
     }
 }

@@ -10,6 +10,7 @@ import newtonERP.module.field.Field;
 import newtonERP.module.field.Fields;
 import newtonERP.module.generalEntity.FlagPool;
 import newtonERP.orm.Orm;
+import newtonERP.orm.associations.FlagPoolManager;
 import newtonERP.orm.exceptions.OrmException;
 
 /**
@@ -59,6 +60,10 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	// ((AbstractOrmEntity) user).newE();
 
 	entity.getFields().setDefaultValue();
+
+	// return entity.editUI(parameters); d'après moi ce serait plus
+	// ergonomique
+	// de retourner GetList, finalement -Guillaume
 	return entity.editUI(parameters);
     }
 
@@ -148,7 +153,9 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	    {// todo: faire un edit sans param
 		edit(getPrimaryKeyName() + "='" + getPrimaryKeyValue() + "'");
 	    }
-	    applyFlagPoolChanges(parameters);
+
+	    FlagPoolManager.applyFlagPoolChanges(this, getFlagPoolList()
+		    .values(), parameters);
 
 	    return searchEntity.editUI(null);
 
@@ -334,14 +341,5 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	    flagPoolList = new Hashtable<String, FlagPool>();
 
 	flagPoolList.put(visibleDescription, flagPool);
-    }
-
-    protected void applyFlagPoolChanges(Hashtable<String, String> parameters)
-    {
-	AbstractOrmEntity intermediateEntity;
-	for (FlagPool flagPool : getFlagPoolList().values())
-	{
-	    intermediateEntity = flagPool.getIntermediateEntityDefinition();
-	}
     }
 }
