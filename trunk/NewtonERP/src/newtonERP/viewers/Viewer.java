@@ -96,9 +96,12 @@ public abstract class Viewer
 	if (Authentication.getCurrentUserName().equals("unLogedUser"))
 	    html += "<a href=\"/\">Login</a>";
 	else
+	{
 	    html += Authentication.getCurrentUserName();
 
-	html += " | <a href=\"/UserRightModule/Logout\">Logout</a>";
+	    html += " | <a href=\"/UserRightModule/Logout\">Logout</a>";
+	}
+
 	html += "</div>";
 
 	return html;
