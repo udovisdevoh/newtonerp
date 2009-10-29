@@ -196,12 +196,4 @@ public class Fields implements Iterable<Field>
 	    field.setDefaultValue();
 	}
     }
-
-    /**
-     * @param field field à ajouter ou remplacer s'il existe
-     */
-    public void add(Field field)
-    {
-	fieldsData.put(field.getShortName(), field);
-    }
 }
