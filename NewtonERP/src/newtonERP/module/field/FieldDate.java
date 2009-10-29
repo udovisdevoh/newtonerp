@@ -15,7 +15,7 @@ import newtonERP.module.exception.InvalidOperatorException;
  */
 public class FieldDate extends Field
 {
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
     GregorianCalendar data;
     String operator;
 
@@ -40,7 +40,17 @@ public class FieldDate extends Field
     @Override
     public String getDataString()
     {
-	return sdf.format(data);
+	return dateFormatter.format(data);
+    }
+
+    /**
+     * Use this method to store the dates in the database
+     * 
+     * @return the data that is stored like a date in the orm
+     */
+    public String getDataForOrm()
+    {
+	return dateFormatter.format(data) + " 12:00:00";
     }
 
     @Override
@@ -52,7 +62,7 @@ public class FieldDate extends Field
     @Override
     public void setData(String date) throws ParseException
     {
-	Date tempDate = sdf.parse(date);
+	Date tempDate = dateFormatter.parse(date);
 	data.setTime(tempDate);
     }
 
