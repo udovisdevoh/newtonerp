@@ -6,9 +6,8 @@ import java.util.TreeMap;
 import newtonERP.viewers.viewables.CheckListViewable;
 
 /**
+ * A checkList viewer
  * @author Guillaume Lacasse
- * 
- *         A checkList viewer
  */
 public class CheckListViewer
 {

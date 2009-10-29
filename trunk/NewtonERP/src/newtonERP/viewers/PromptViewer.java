@@ -10,9 +10,8 @@ import newtonERP.serveur.Servlet;
 import newtonERP.viewers.viewables.PromptViewable;
 
 /**
+ * Represents the prompt viewer
  * @author Guillaume Lacasse, Pascal Lemay
- * 
- *         Represents the prompt viewer
  */
 public class PromptViewer
 {

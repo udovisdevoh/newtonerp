@@ -3,9 +3,8 @@ package newtonERP.viewers;
 import newtonERP.viewers.viewables.AlertViewable;
 
 /**
+ * Alert viewer
  * @author Guillaume Lacasse
- * 
- *         Alert viewer
  */
 public class AlertViewer
 {

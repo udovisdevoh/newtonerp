@@ -13,10 +13,8 @@ import newtonERP.serveur.Servlet;
 import newtonERP.viewers.viewables.ListViewable;
 
 /**
- * 
+ * Represents the list viewer for listing data
  * @author Guillaume Lacasse, Pascal Lemay
- * 
- *         Represents the list viewer for listing data
  */
 public class ListViewer
 {

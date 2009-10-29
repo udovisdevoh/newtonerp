@@ -1,9 +1,8 @@
 package newtonERP.viewers;
 
 /**
+ * Represents a errorPage for our ERP
  * @author Pascal Lemay
- * 
- *         Represents a errorPage for our ERP
  */
 
 public abstract class ErrorViewer
