@@ -77,7 +77,6 @@ public class Starter
 	    System.out.println("Voulez-vous quitter? (o)");
 	    if (System.in.read() == 'o')
 	    {
-		System.out.println("Fermeture en cours");
 		exit = true;
 		shutdown();
 	    }
