@@ -78,7 +78,8 @@ public class PromptViewer
 		html += "\n<tr><td>" + entity.getLabelName(inputName)
 			+ ": </td><td><input type=\"" + textFieldType
 			+ "\" name=\"" + inputName + "\" value=\"" + inputValue
-			+ "\"  " + isReadOnly + "></td></tr>";
+			+ "\" class=\"textField\" " + isReadOnly
+			+ "></td></tr>";
 	    }
 	    else
 	    {
