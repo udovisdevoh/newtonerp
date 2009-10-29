@@ -366,21 +366,9 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      * @param foreignDescriptionUiControls liste de colonne de description de
      *            table étrangère, exemple: Action, Module
      */
-    public void addFlagPool(AbstractOrmEntity sourceEntityDefinition,
-	    String visibleDescription,
-	    AbstractOrmEntity intermediateEntityDefinition,
-	    String intermediateKeyIn, String intermediateKeyOut,
-	    AbstractOrmEntity foreignEntityDefinition, String foreignKey,
-	    String[] foreignDescriptionUiControls)
+
+    public void setFlagPoolList(Hashtable<String, FlagPool> flagPoolList)
     {
-	FlagPool flagPool = new FlagPool(sourceEntityDefinition,
-		visibleDescription, intermediateEntityDefinition,
-		intermediateKeyIn, intermediateKeyOut, foreignEntityDefinition,
-		foreignKey, foreignDescriptionUiControls);
-
-	if (flagPoolList == null)
-	    flagPoolList = new Hashtable<String, FlagPool>();
-
-	flagPoolList.put(visibleDescription, flagPool);
+	this.flagPoolList = flagPoolList;
     }
 }

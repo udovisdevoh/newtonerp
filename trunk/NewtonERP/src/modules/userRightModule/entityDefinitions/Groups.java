@@ -8,6 +8,7 @@ import newtonERP.module.field.FieldInt;
 import newtonERP.module.field.FieldString;
 import newtonERP.module.field.Fields;
 import newtonERP.orm.Orm;
+import newtonERP.orm.associations.FlagPoolManager;
 import newtonERP.viewers.viewables.PromptViewable;
 
 /**
@@ -25,13 +26,14 @@ public class Groups extends AbstractOrmEntity implements PromptViewable
 	fieldsInit.add(new FieldInt("Numéro du groupe", getPrimaryKeyName()));
 	fieldsInit.add(new FieldString("Nom du groupe", "groupName"));
 
-	// Ajout du flag pool. Sert à choisir les droits via GroupsRight et Right
+	// Ajout du flag pool. Sert à choisir les droits via GroupsRight et
+	// Right
 	String[] foreignUiControlKeys = { "moduleName", "entityName",
 		"actionName" };
 
-	addFlagPool(this, "Droits", GroupsRightDefinition, "groupsID",
-		"rightID", rightDefinition,
-		rightDefinition.getPrimaryKeyName(), foreignUiControlKeys);
+	FlagPoolManager.addFlagPool(this, "Droits", GroupsRightDefinition,
+		"groupsID", "rightID", rightDefinition, rightDefinition
+			.getPrimaryKeyName(), foreignUiControlKeys);
 
 	/*
 	 * Sera simplifié tel que: addFlagPool(this, "Droits", rightDefinition,
