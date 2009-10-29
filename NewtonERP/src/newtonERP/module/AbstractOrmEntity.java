@@ -318,8 +318,8 @@ public abstract class AbstractOrmEntity extends AbstractEntity
     public final Integer getPrimaryKeyValue()
     {
 	String primaryKeyName = getPrimaryKeyName();
-	Fields fields = getFields();
-	Field field = fields.getField(primaryKeyName);
+	Fields fieldsList = getFields();
+	Field field = fieldsList.getField(primaryKeyName);
 
 	if (field == null || field.getData() == null)
 	    return null;

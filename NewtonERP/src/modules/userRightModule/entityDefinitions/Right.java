@@ -18,11 +18,11 @@ public class Right extends AbstractOrmEntity implements PromptViewable
 {
     public Fields initFields()
     {
-	Vector<Field> fields = new Vector<Field>();
-	fields.add(new FieldInt("Numéro du droit", getPrimaryKeyName()));
-	fields.add(new FieldString("Nom de module", "moduleName"));
-	fields.add(new FieldString("Nom de l'action", "actionName"));
-	fields.add(new FieldString("Nom de l'entité", "entityName"));
-	return new Fields(fields);
+	Vector<Field> fieldsInit = new Vector<Field>();
+	fieldsInit.add(new FieldInt("Numéro du droit", getPrimaryKeyName()));
+	fieldsInit.add(new FieldString("Nom de module", "moduleName"));
+	fieldsInit.add(new FieldString("Nom de l'action", "actionName"));
+	fieldsInit.add(new FieldString("Nom de l'entité", "entityName"));
+	return new Fields(fieldsInit);
     }
 }

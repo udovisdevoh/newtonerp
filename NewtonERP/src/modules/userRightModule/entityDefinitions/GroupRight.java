@@ -46,10 +46,10 @@ public class GroupRight extends AbstractOrmEntity
 
     public Fields initFields()
     {
-	Vector<Field> fields = new Vector<Field>();
-	fields.add(new FieldInt("Numéro de groupe", "groupsID"));
-	fields.add(new FieldInt("Numéro de droit", "rightID"));
-	return new Fields(fields);
+	Vector<Field> fieldsInit = new Vector<Field>();
+	fieldsInit.add(new FieldInt("Numéro de groupe", "groupsID"));
+	fieldsInit.add(new FieldInt("Numéro de droit", "rightID"));
+	return new Fields(fieldsInit);
     }
 
     /**
