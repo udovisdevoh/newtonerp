@@ -16,7 +16,7 @@ public class StaticTextEntity extends AbstractEntity implements
     /**
      * @param text the text of the entity
      */
-    public StaticTextEntity(String text)
+    public StaticTextEntity(String text) throws Exception
     {
 	this.text = text;
     }

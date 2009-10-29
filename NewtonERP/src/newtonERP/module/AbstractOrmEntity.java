@@ -19,10 +19,15 @@ import newtonERP.orm.exceptions.OrmException;
  */
 public abstract class AbstractOrmEntity extends AbstractEntity
 {
+    public AbstractOrmEntity() throws Exception
+    {
+	super();
+    }
+
     private Hashtable<String, FlagPool> flagPoolList;
 
     // oblige le redefinition pour les sous-classe de AbstractOrmEntity
-    public abstract Fields initFields();
+    public abstract Fields initFields() throws Exception;
 
     /**
      * @return data ormizable
@@ -299,6 +304,13 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 
 	return "PK" + firstLetter + getClass().getSimpleName().substring(1)
 		+ "ID";
+    }
+
+    public String getForeignKeyName()
+    {
+	String firstLetter = (getClass().getSimpleName().charAt(0) + "")
+		.toLowerCase();
+	return firstLetter + getClass().getSimpleName().substring(1) + "ID";
     }
 
     /**

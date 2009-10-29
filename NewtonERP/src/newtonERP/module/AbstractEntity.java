@@ -26,8 +26,9 @@ public class AbstractEntity
 
     /**
      * construit une entity ne comportant aucun champ
+     * @throws Exception
      */
-    public AbstractEntity()
+    public AbstractEntity() throws Exception
     {
 	fields = initFields();
     }
@@ -38,7 +39,7 @@ public class AbstractEntity
      * 
      * @return le Fields initialiser
      */
-    public Fields initFields()
+    public Fields initFields() throws Exception
     {
 	return new Fields();
     }

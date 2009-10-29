@@ -16,6 +16,10 @@ import newtonERP.module.field.Fields;
  */
 public class TestEntity extends AbstractOrmEntity
 {
+    public TestEntity() throws Exception
+    {
+	super();
+    }
 
     public Fields initFields()
     {

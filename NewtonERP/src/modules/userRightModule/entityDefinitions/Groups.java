@@ -17,11 +17,15 @@ import newtonERP.viewers.viewables.PromptViewable;
  */
 public class Groups extends AbstractOrmEntity implements PromptViewable
 {
-    private static GroupsRight GroupsRightDefinition = new GroupsRight();
-    private static Right rightDefinition = new Right();
-
-    public Fields initFields()
+    public Groups() throws Exception
     {
+	super();
+    }
+
+    public Fields initFields() throws Exception
+    {
+	AbstractOrmEntity rightDefinition = new Right();
+
 	Vector<Field> fieldsInit = new Vector<Field>();
 	fieldsInit.add(new FieldInt("Numéro du groupe", getPrimaryKeyName()));
 	fieldsInit.add(new FieldString("Nom du groupe", "groupName"));
@@ -31,9 +35,14 @@ public class Groups extends AbstractOrmEntity implements PromptViewable
 	String[] foreignUiControlKeys = { "moduleName", "entityName",
 		"actionName" };
 
-	FlagPoolManager.addFlagPool(this, "Droits", GroupsRightDefinition,
-		"groupsID", "rightID", rightDefinition, rightDefinition
-			.getPrimaryKeyName(), foreignUiControlKeys);
+	/*
+	 * FlagPoolManager.addFlagPool(this, "Droits", GroupsRightDefinition,
+	 * "groupsID", "rightID", rightDefinition, rightDefinition
+	 * .getPrimaryKeyName(), foreignUiControlKeys);
+	 */
+
+	FlagPoolManager.addFlagPool(this, "Droits", rightDefinition,
+		foreignUiControlKeys);
 
 	/*
 	 * Sera simplifié tel que: addFlagPool(this, "Droits", rightDefinition,

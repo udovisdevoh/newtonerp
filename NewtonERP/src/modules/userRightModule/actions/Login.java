@@ -21,8 +21,9 @@ public class Login extends AbstractAction
 {
     /**
      * constructeur
+     * @throws Exception
      */
-    public Login()
+    public Login() throws Exception
     {
 	super(new User()); // Travaille avec des users
     }

@@ -16,6 +16,11 @@ import newtonERP.viewers.viewables.PromptViewable;
  */
 public class Right extends AbstractOrmEntity implements PromptViewable
 {
+    public Right() throws Exception
+    {
+	super();
+    }
+
     public Fields initFields()
     {
 	Vector<Field> fieldsInit = new Vector<Field>();

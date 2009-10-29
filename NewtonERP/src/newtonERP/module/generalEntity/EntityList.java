@@ -38,6 +38,7 @@ public class EntityList extends AbstractEntity implements ListViewable,
      * @param internalEntityDefinition the internal entity defenition
      */
     public EntityList(AbstractOrmEntity internalEntityDefinition)
+	    throws Exception
     {
 	this.internalEntityDefinition = internalEntityDefinition;
 	specificActionButtonList = buildSpecificActionButtonList();

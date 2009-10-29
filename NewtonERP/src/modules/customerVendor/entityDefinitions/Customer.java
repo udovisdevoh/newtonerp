@@ -15,6 +15,11 @@ import newtonERP.module.field.Fields;
  */
 public class Customer extends AbstractOrmEntity
 {
+    public Customer() throws Exception
+    {
+	super();
+    }
+
     @Override
     public Fields initFields()
     {

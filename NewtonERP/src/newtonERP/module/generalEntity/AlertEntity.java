@@ -15,7 +15,7 @@ public class AlertEntity extends AbstractEntity implements AlertViewable
     /**
      * @param message the message of the alert
      */
-    public AlertEntity(String message)
+    public AlertEntity(String message) throws Exception
     {
 	this.message = message;
     }
