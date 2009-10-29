@@ -77,6 +77,8 @@ public abstract class Module
 
     private Map<String, AbstractAction> globalActionList;
 
+    private String defaultAction;
+
     /**
      * constructeur par default
      * @throws Exception remonte
@@ -92,7 +94,15 @@ public abstract class Module
 
     protected final void setDefaultAction(AbstractAction action)
     {
-	actionList.put("default", action);
+	defaultAction = action.getClass().getSimpleName();
+    }
+
+    /**
+     * @return the defaultAction
+     */
+    public String getDefaultAction()
+    {
+	return defaultAction;
     }
 
     private final void addAction(AbstractAction action)

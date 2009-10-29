@@ -31,14 +31,17 @@ public class CommandRouteur
 	    throws Exception
     {
 
-	Module module;
+	Module module = ListModule.getModule(moduleName);
 	AbstractEntity retView = null;
 	Hashtable<String, String> rightParam = new Hashtable<String, String>();
 	// on verifi les droit d'acces a l'Action
 
 	rightParam.put("name", Authentication.getCurrentUserName());
 	rightParam.put("module", moduleName);
-	rightParam.put("action", actionName);
+	if (actionName.equals("default"))
+	    rightParam.put("action", module.getDefaultAction());
+	else
+	    rightParam.put("action", actionName);
 	if (entityName != null)
 	{
 	    rightParam.put("entity", entityName);
@@ -46,7 +49,6 @@ public class CommandRouteur
 	    {
 		// on fais l'Action demander par le user si les droit son
 		// trouver
-		module = ListModule.getModule(moduleName);
 		retView = module.doAction(actionName, entityName, parameter);
 	    }
 	    else
@@ -61,7 +63,6 @@ public class CommandRouteur
 	    {
 		// on fais l'Action demander par le user si les droit son
 		// trouver
-		module = ListModule.getModule(moduleName);
 		retView = module.doAction(actionName, parameter);
 	    }
 	    else
