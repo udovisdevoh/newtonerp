@@ -3,17 +3,21 @@ body /*mise en page pour tout le corp*/ {
 	margin: auto;
 	margin-top: 5px;
 	margin-bottom: 5px;
-	background-color: #ecf1f5;
+	/*background-color: #ecf1f5;*/
+	background-image: url('/file/images/bodyBackGround.png');
+	background-repeat:repeat-x;
+	background-color: #FFF;
 }
 
 #header {
-	width: 1000px;
+	width: 990px;
 	height: 75px;
 	background-color: #d3d8e1;
 	color: black;
 	font-family: Arial, "Arial Black", "Times New Roman", Times, serif;
 	border: 1px solid black;
 	margin-bottom: 5px;
+	padding-left:10px;
 }
 
 h1 /* Gros titres */ {
@@ -81,7 +85,8 @@ h2 /* sous-titres */ {
 	padding: 5px;
 	color: black;
 	background-color: #d3d8e1;
-	border: 1px solid black
+	border: 1px solid black;
+	background-image: url('/file/images/windowBackground.png');
 }
 
 #home {
