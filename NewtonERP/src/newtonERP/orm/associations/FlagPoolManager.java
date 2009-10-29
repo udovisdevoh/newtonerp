@@ -81,4 +81,38 @@ public class FlagPoolManager
 	searchEntity.setData(intermediateKeyOutName, keyOut);
 	return searchEntity;
     }
+
+    /**
+     * @param sourceEntityDefinition Definition de l'entité de source, exemple:
+     *            groupe
+     * @param visibleDescription Description visible du flag pool
+     * @param intermediateEntityDefinition Entité de table intermédiaire,
+     *            exemple: GroupsRight
+     * @param intermediateKeyIn Colonne d'entré de table intermédiaire, exemple:
+     *            groupID
+     * @param intermediateKeyOut Colonne de sortie de table intermédiaire,
+     *            exemple: rightID
+     * @param foreignEntityDefinition entité de table étrangère, exemple: Right
+     * @param foreignKey clef d'identification de table étrangère, exemple:
+     *            PKrightID
+     * @param foreignDescriptionUiControls liste de colonne de description de
+     *            table étrangère, exemple: Action, Module
+     */
+    public static void addFlagPool(AbstractOrmEntity sourceEntity,
+	    String visibleDescription,
+	    AbstractOrmEntity intermediateEntityDefinition,
+	    String intermediateKeyIn, String intermediateKeyOut,
+	    AbstractOrmEntity foreignEntityDefinition, String foreignKey,
+	    String[] foreignDescriptionUiControls)
+    {
+	FlagPool flagPool = new FlagPool(sourceEntity, visibleDescription,
+		intermediateEntityDefinition, intermediateKeyIn,
+		intermediateKeyOut, foreignEntityDefinition, foreignKey,
+		foreignDescriptionUiControls);
+
+	if (sourceEntity.getFlagPoolList() == null)
+	    sourceEntity.setFlagPoolList(new Hashtable<String, FlagPool>());
+
+	sourceEntity.getFlagPoolList().put(visibleDescription, flagPool);
+    }
 }
