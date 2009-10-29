@@ -77,7 +77,7 @@ public abstract class Module
 
     private Map<String, AbstractAction> globalActionList;
 
-    private String defaultAction;
+    private static String defaultAction;
 
     /**
      * constructeur par default
@@ -223,6 +223,10 @@ public abstract class Module
 	    throws ModuleException
     {
 	AbstractAction action = null;
+
+	if (actionName.equals("default"))
+	    actionName = getDefaultAction();
+
 	try
 	{
 	    action = actionList.get(actionName);
