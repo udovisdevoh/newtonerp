@@ -16,14 +16,14 @@ import newtonERP.orm.exceptions.OrmException;
  * 
  *         Entity defenition representing a group right for the users
  */
-public class GroupRight extends AbstractOrmEntity
+public class GroupsRight extends AbstractOrmEntity
 {
     private static Right rightDefinition = new Right();
 
     /**
      * contructeur vide
      */
-    public GroupRight()
+    public GroupsRight()
     {
 	// rien a faire
     }
@@ -34,7 +34,7 @@ public class GroupRight extends AbstractOrmEntity
      * @throws FieldNotFoundException remonte
      * @throws ParseException an exception that can occur during parsing dates
      */
-    public GroupRight(Groups groups, Right right)
+    public GroupsRight(Groups groups, Right right)
 	    throws FieldNotFoundException, ParseException
     {
 	int groupsIdValue = groups.getPrimaryKeyValue();

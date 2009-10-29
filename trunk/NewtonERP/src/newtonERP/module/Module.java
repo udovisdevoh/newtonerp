@@ -5,7 +5,7 @@ import java.util.Hashtable;
 import java.util.Map;
 import java.util.TreeMap;
 
-import modules.userRightModule.entityDefinitions.GroupRight;
+import modules.userRightModule.entityDefinitions.GroupsRight;
 import modules.userRightModule.entityDefinitions.Groups;
 import modules.userRightModule.entityDefinitions.Right;
 import newtonERP.module.exception.ActionNotFoundException;
@@ -48,7 +48,7 @@ import newtonERP.orm.Orm;
  *         Here is what it should like from the beginning (Only an example):
  * 
  * <pre>
- *         public class GroupRight extends AbstractOrmEntity
+ *         public class GroupsRight extends AbstractOrmEntity
  *         {
  *             @Override
  *             public Fields initFields()
@@ -258,7 +258,7 @@ public abstract class Module
 	int adminGroupsID = (Integer) ((Groups) Orm.select(group).get(0))
 		.getData(group.getPrimaryKeyName());
 	int rightID;
-	GroupRight groupRight = new GroupRight();
+	GroupsRight GroupsRight = new GroupsRight();
 
 	// on donne au group admin le droit
 	// todo: a changé si l'on gère les dépendance de module
@@ -270,10 +270,10 @@ public abstract class Module
 	    rightID = (Integer) ((Right) right).getData(right
 		    .getPrimaryKeyName());
 
-	    // cree le groupRight
-	    groupRight.setData("groupsID", adminGroupsID);
-	    groupRight.setData("rightID", rightID);
-	    Orm.insert(groupRight);
+	    // cree le GroupsRight
+	    GroupsRight.setData("groupsID", adminGroupsID);
+	    GroupsRight.setData("rightID", rightID);
+	    Orm.insert(GroupsRight);
 	}
     }
 
