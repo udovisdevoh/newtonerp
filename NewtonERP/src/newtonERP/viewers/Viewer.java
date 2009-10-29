@@ -16,9 +16,8 @@ import newtonERP.viewers.viewables.PromptViewable;
 import newtonERP.viewers.viewables.StaticTextViewable;
 
 /**
+ * Represents the main viewer for our ERP
  * @author Guillaume Lacasse, Pascal Lemay
- * 
- *         Represents the main viewer for our ERP
  */
 public abstract class Viewer
 {
@@ -161,7 +160,7 @@ public abstract class Viewer
 
 	    menuModuleHtml += "</ul></li>";
 	}
-	menuModuleHtml += "</ul></div>";// ferme liste et ce Module
+	menuModuleHtml += "</ul></div>";// ferme liste et ce sous-menu
 
 	// ferme menu gauche + <div id="body">=style css corp de droite
 	return (menu + menuModuleHtml + "</div> <div id=\"body\">" + buildTopMenu());
