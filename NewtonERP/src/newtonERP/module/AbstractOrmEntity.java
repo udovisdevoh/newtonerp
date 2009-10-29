@@ -4,10 +4,12 @@ import java.text.ParseException;
 import java.util.Hashtable;
 import java.util.Vector;
 
-import modules.userRightModule.UserRightModule;
-import modules.userRightModule.entityDefinitions.User;
+import newtonERP.ListModule;
+import newtonERP.module.exception.EntityException;
+import newtonERP.module.exception.ModuleException;
 import newtonERP.module.field.Field;
 import newtonERP.module.field.Fields;
+import newtonERP.module.generalEntity.EntityList;
 import newtonERP.module.generalEntity.FlagPool;
 import newtonERP.orm.Orm;
 import newtonERP.orm.associations.FlagPoolManager;
@@ -54,11 +56,6 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	    throws Exception
     {
 	AbstractOrmEntity entity = this.getClass().newInstance();
-	// user.setCurrentModule(new UserRightModule());
-	// user.setSubmitAction(new BaseAction("Edit", this));
-
-	// ((AbstractOrmEntity) user).newE();
-
 	entity.getFields().setDefaultValue();
 
 	// return entity.editUI(parameters); d'après moi ce serait plus
@@ -95,8 +92,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	delete(getPrimaryKeyName() + "='" + getDataString(getPrimaryKeyName())
 		+ "'");
 
-	return null; // todo: return getList
-	// when possible
+	return getList();
     }
 
     /**
@@ -139,8 +135,6 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	    retEntity = this;
 	}
 	retEntity.setCurrentAction(new BaseAction("Edit", this));
-	retEntity.setCurrentModule(new UserRightModule()); // TODO: that wont
-	// work for long
 
 	if (parameters != null && parameters.containsKey("submit"))
 	{
@@ -175,11 +169,6 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	Vector<String> whereParameter = new Vector<String>();
 	whereParameter.add(whereClause);
 	Orm.update(this, whereParameter);
-
-	for (FlagPool flagPool : getFlagPoolList().values())
-	    // Laissez le getter car c'est du lazy initialization
-	    updateForeignFlagPoolData(flagPool);
-
 	return this;
     }
 
@@ -197,6 +186,66 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	// une gestion de droit sufisante
     }
 
+    public final AbstractEntity getList() throws Exception
+    {
+	return getList(new Hashtable<String, String>());
+    }
+
+    public final AbstractEntity getList(Hashtable<String, String> parameters)
+	    throws Exception
+    {
+	Vector<AbstractOrmEntity> resultSet;
+
+	AbstractOrmEntity searchEntity = this.getClass().newInstance();
+
+	try
+	{
+	    resultSet = Orm.select(searchEntity, null);
+
+	} catch (OrmException e)
+	{
+	    resultSet = new Vector<AbstractOrmEntity>();
+	}
+
+	EntityList entityList = new EntityList(searchEntity);
+
+	for (AbstractOrmEntity entity : resultSet)
+	    entityList.addEntity(entity);
+
+	// TODO: Problème: c'est très bizare de devoir recréer un objet de
+	// module pour spécifier quel module sera responsable des actions -
+	// Guillaume
+	entityList.setCurrentModule(getCurrentModule());
+
+	return entityList;
+    }
+
+    /**
+     * @return Module par default
+     * @throws EntityException
+     * @throws ModuleException
+     */
+    @Override
+    public Module getCurrentModule() throws Exception
+    {
+	if (currentModule == null)
+	{
+	    String fullClassName = getClass().getName();
+
+	    String[] wordList = fullClassName.split("\\.");
+
+	    String modulePackageName = wordList[wordList.length - 3];
+
+	    String moduleName = ("" + modulePackageName.charAt(0))
+		    .toUpperCase()
+		    + modulePackageName.substring(1);
+
+	    return ListModule.getModule(moduleName);
+	}
+
+	return currentModule;
+    }
+
     private void updateForeignFlagPoolData(FlagPool flagPool)
     {
 	// TODO Auto-generated method stub
@@ -208,16 +257,19 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      * @param whereClause the where clause for the query
      * @return this
      * @throws OrmException remonte
+     * @throws IllegalAccessException
+     * @throws InstantiationException
      */
     public final Vector<AbstractOrmEntity> get(String whereClause)
-	    throws OrmException
+	    throws Exception
     {
-	Vector<AbstractOrmEntity> retUserList = null;
+	Vector<AbstractOrmEntity> retEntityList = null;
 	Vector<String> whereParameter = new Vector<String>();
 	whereParameter.add(whereClause);
-	retUserList = Orm.select(new User(), whereParameter);
+	retEntityList = Orm.select(this.getClass().newInstance(),
+		whereParameter);
 
-	return retUserList;
+	return retEntityList;
     }
 
     /**

@@ -56,7 +56,8 @@ public class CreateAllRight extends AbstractAction
 			.keySet())
 		{
 		    // cree le right
-		    String actionNames[] = { "Get", "New", "Edit", "Delete" };
+		    String actionNames[] = { "Get", "New", "Edit", "Delete",
+			    "GetList" };
 		    for (String actionName : actionNames)
 		    {
 			Right right = new Right();

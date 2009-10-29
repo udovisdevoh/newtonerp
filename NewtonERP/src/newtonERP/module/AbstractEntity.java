@@ -20,7 +20,7 @@ public class AbstractEntity
     private HashSet<String> hiddenFieldList;
     private Vector<String> alertMessageList = new Vector<String>();
     private Hashtable<String, ListOfValue> listOfValueList;
-    private Module currentModule;
+    protected Module currentModule;
     private AbstractAction currentAction;
     protected String promptMessage;
 
@@ -191,7 +191,7 @@ public class AbstractEntity
      * @return
      * @throws EntityException
      */
-    public Module getCurrentModule() throws EntityException
+    public Module getCurrentModule() throws Exception
     {
 	if (currentModule == null)
 	    throw new EntityException(

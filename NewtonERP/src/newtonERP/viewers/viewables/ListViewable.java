@@ -18,9 +18,9 @@ public interface ListViewable
 {
     /**
      * @return Module à utiliser en ce moment
-     * @throws EntityException a general entity exception
+     * @throws EntityException a general exception
      */
-    public Module getCurrentModule() throws EntityException;
+    public Module getCurrentModule() throws Exception;
 
     /**
      * @param module the module to set

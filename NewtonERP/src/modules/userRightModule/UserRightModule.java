@@ -2,9 +2,6 @@ package modules.userRightModule;
 
 import java.util.Vector;
 
-import modules.userRightModule.actions.GetGroupsList;
-import modules.userRightModule.actions.GetRightList;
-import modules.userRightModule.actions.GetUserList;
 import modules.userRightModule.actions.Login;
 import modules.userRightModule.actions.Logout;
 import modules.userRightModule.entityDefinitions.GroupRight;
@@ -12,6 +9,7 @@ import modules.userRightModule.entityDefinitions.Groups;
 import modules.userRightModule.entityDefinitions.Right;
 import modules.userRightModule.entityDefinitions.User;
 import newtonERP.module.AbstractOrmEntity;
+import newtonERP.module.BaseAction;
 import newtonERP.module.Module;
 import newtonERP.orm.Orm;
 
@@ -31,9 +29,12 @@ public class UserRightModule extends Module
     {
 	super();
 	setDefaultAction(new Login());
-	addGlobalActionMenuItem("Utilisateurs", new GetUserList());
-	addGlobalActionMenuItem("Liste des droits", new GetRightList());
-	addGlobalActionMenuItem("Groupes", new GetGroupsList());
+	addGlobalActionMenuItem("Utilisateurs", new BaseAction("GetList",
+		new User()));
+	addGlobalActionMenuItem("Liste des droits", new BaseAction("GetList",
+		new Right()));
+	addGlobalActionMenuItem("Groupes", new BaseAction("GetList",
+		new Groups()));
 	addGlobalActionMenuItem("Login", new Login());
 	addGlobalActionMenuItem("Logout", new Logout());
     }
