@@ -8,7 +8,7 @@ import newtonERP.module.generalEntity.FlagPool;
 import newtonERP.orm.Orm;
 
 /**
- * Cette classe gère les comportement d'association d'entités fates par le
+ * Cette classe gère les comportement d'association d'entités faites par le
  * FlagPool
  * @author Guillaume
  */
