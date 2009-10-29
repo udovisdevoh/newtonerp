@@ -19,11 +19,11 @@ public class TestEntity extends AbstractOrmEntity
 
     public Fields initFields()
     {
-	Vector<Field> fields = new Vector<Field>();
-	fields.add(new FieldInt("Numéro du test", "testID"));
-	fields.add(new FieldString("Nom", "name"));
-	fields.add(new FieldInt("Age", "age"));
-	fields.add(new FieldString("Couleur", "color"));
-	return new Fields(fields);
+	Vector<Field> fieldsInit = new Vector<Field>();
+	fieldsInit.add(new FieldInt("Numéro du test", "testID"));
+	fieldsInit.add(new FieldString("Nom", "name"));
+	fieldsInit.add(new FieldInt("Age", "age"));
+	fieldsInit.add(new FieldString("Couleur", "color"));
+	return new Fields(fieldsInit);
     }
 }

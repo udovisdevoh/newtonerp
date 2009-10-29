@@ -18,11 +18,11 @@ public class Vendor extends AbstractOrmEntity
 
     public Fields initFields()
     {
-	Vector<Field> fields = new Vector<Field>();
-	fields.add(new FieldInt("Numéro du Fournisseur", getPrimaryKeyName()));
-	fields.add(new FieldString("Nom du Fournisseur", "vendorName"));
-	fields.add(new FieldString("Téléphone du Fournisseur", "vendorPhone"));
-	fields.add(new FieldString("Adresse du Fournisseur", "vendorAddress"));
-	return new Fields(fields);
+	Vector<Field> fieldsInit = new Vector<Field>();
+	fieldsInit.add(new FieldInt("Numéro du Fournisseur", getPrimaryKeyName()));
+	fieldsInit.add(new FieldString("Nom du Fournisseur", "vendorName"));
+	fieldsInit.add(new FieldString("Téléphone du Fournisseur", "vendorPhone"));
+	fieldsInit.add(new FieldString("Adresse du Fournisseur", "vendorAddress"));
+	return new Fields(fieldsInit);
     }
 }

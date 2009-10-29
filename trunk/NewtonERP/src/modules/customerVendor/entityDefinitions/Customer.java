@@ -18,11 +18,11 @@ public class Customer extends AbstractOrmEntity
     @Override
     public Fields initFields()
     {
-	Vector<Field> fields = new Vector<Field>();
-	fields.add(new FieldInt("Numéro du client", getPrimaryKeyName()));
-	fields.add(new FieldString("Nom du client", "customerName"));
-	fields.add(new FieldString("Téléphone du client", "customerPhone"));
-	fields.add(new FieldString("Adresse du client", "customerAddress"));
-	return new Fields(fields);
+	Vector<Field> fieldsInit = new Vector<Field>();
+	fieldsInit.add(new FieldInt("Numéro du client", getPrimaryKeyName()));
+	fieldsInit.add(new FieldString("Nom du client", "customerName"));
+	fieldsInit.add(new FieldString("Téléphone du client", "customerPhone"));
+	fieldsInit.add(new FieldString("Adresse du client", "customerAddress"));
+	return new Fields(fieldsInit);
     }
 }

@@ -29,12 +29,15 @@ public class CreateAllRight extends AbstractAction
 	    Hashtable<String, String> parameters) throws Exception
     {
 	Module module = null;
-	for (String moduleName : ListModule.getAllModules().keySet())
+	Vector<String> allModule;
+	allModule = new Vector<String>(ListModule.getAllModules().keySet());
+	// on s'assure d'avoir créé le userRightModule en premier
+	allModule.add(0, "UserRightModule");
+	for (String moduleName : allModule)
 	{
 	    module = ListModule.getModule(moduleName);
 	    // on verifie si des droits du module on deja ete cree en DB
-	    // sinon
-	    // on appel le initdb du module
+	    // sinon on appel le initdb du module
 	    Vector<String> search = new Vector<String>();
 	    search.add("ModuleName='" + moduleName + "'");
 	    int numRight = 0;
@@ -43,6 +46,7 @@ public class CreateAllRight extends AbstractAction
 
 	    if (numRight == 0)
 	    {
+		// pour le action réguliere
 		for (String actionName : module.getActionList().keySet())
 		{
 		    // cree le right
@@ -50,8 +54,9 @@ public class CreateAllRight extends AbstractAction
 		    right.setData("actionName", actionName);
 		    right.setData("moduleName", moduleName);
 		    Orm.insert(right);
-
 		}
+
+		// pour les BaseAction
 		for (String entityName : module.getEntityDefinitionList()
 			.keySet())
 		{
@@ -60,6 +65,7 @@ public class CreateAllRight extends AbstractAction
 			    "GetList" };
 		    for (String actionName : actionNames)
 		    {
+			// cree le right
 			Right right = new Right();
 			right.setData("actionName", actionName);
 			right.setData("entityName", entityName);

@@ -21,9 +21,9 @@ public class Groups extends AbstractOrmEntity implements PromptViewable
 
     public Fields initFields()
     {
-	Vector<Field> fields = new Vector<Field>();
-	fields.add(new FieldInt("Numéro du groupe", getPrimaryKeyName()));
-	fields.add(new FieldString("Nom du groupe", "groupName"));
+	Vector<Field> fieldsInit = new Vector<Field>();
+	fieldsInit.add(new FieldInt("Numéro du groupe", getPrimaryKeyName()));
+	fieldsInit.add(new FieldString("Nom du groupe", "groupName"));
 
 	// Ajout du flag pool. Sert à choisir les droits via GroupRight et Right
 	String[] foreignUiControlKeys = { "moduleName", "entityName",
@@ -38,7 +38,7 @@ public class Groups extends AbstractOrmEntity implements PromptViewable
 	 * rightDefinition.getPrimaryKeyName(), foreignUiControlKeys);
 	 */
 
-	return new Fields(fields);
+	return new Fields(fieldsInit);
     }
 
     /**

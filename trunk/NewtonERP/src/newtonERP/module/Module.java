@@ -5,8 +5,12 @@ import java.util.Hashtable;
 import java.util.Map;
 import java.util.TreeMap;
 
+import modules.userRightModule.entityDefinitions.GroupRight;
+import modules.userRightModule.entityDefinitions.Groups;
+import modules.userRightModule.entityDefinitions.Right;
 import newtonERP.module.exception.ActionNotFoundException;
 import newtonERP.module.exception.ModuleException;
+import newtonERP.orm.Orm;
 
 /**
  * @author Pascal Lemay
@@ -248,7 +252,29 @@ public abstract class Module
      */
     public void initDB() throws Exception
     {
-	// implementation non obligatoire seulement dans les sous-classe
+	// on trouve l'ID du groupe admin
+	Groups group = new Groups();
+	group.setData("groupName", "admin");
+	int adminGroupsID = (Integer) ((Groups) Orm.select(group).get(0))
+		.getData(group.getPrimaryKeyName());
+	int rightID;
+	GroupRight groupRight = new GroupRight();
+
+	// on donne au group admin le droit
+	// todo: a changé si l'on gère les dépendance de module
+	Right searchRight = new Right();
+	searchRight.setData("moduleName", this.getClass().getSimpleName());
+
+	for (AbstractOrmEntity right : Orm.select(searchRight))
+	{
+	    rightID = (Integer) ((Right) right).getData(right
+		    .getPrimaryKeyName());
+
+	    // cree le groupRight
+	    groupRight.setData("groupsID", adminGroupsID);
+	    groupRight.setData("rightID", rightID);
+	    Orm.insert(groupRight);
+	}
     }
 
     /**
