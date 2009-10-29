@@ -436,11 +436,14 @@ voici le model de scrum a copier en entier si vous êtes le premier
 
 ==Jonathan Hallee==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
-  * ...livré...
+  * ajout du date field
+  * participation au cours formatif
+  * fix de commentaires
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
-  * ...à livré...
+  * finir le date field
+  * débuter le schéma de db ***de base*** pour le module de gestion de ressources
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
-  * ...problème, besoin d'aide, qui aidera...
+  * trouver comment les dates sont gérées dans sqlite 3
 
 ==Guillaume Lacasse==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
