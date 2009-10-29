@@ -19,13 +19,14 @@ public class VendorInvoice extends AbstractOrmEntity
     public Fields initFields()
     {
 	Vector<Field> fieldsInit = new Vector<Field>();
-	fieldsInit.add(new FieldInt("Numéro de la Facture", getPrimaryKeyName()));
+	fieldsInit
+		.add(new FieldInt("Numéro de la Facture", getPrimaryKeyName()));
 	fieldsInit.add(new FieldDouble("Total de la Facture", "total"));
 	fieldsInit.add(new FieldInt("Numéros du client", "vendorID"));
 
 	// FIXME : Tu store une date dans un field int???? et pourquoi cette
 	// restriction de format?
-	fieldsInit.add(new FieldInt("Date de la facture", "date"));
+	fieldsInit.add(new FieldInt("Date de la facture", "date")); // ddmmyyyy
 	return new Fields(fieldsInit);
     }
 }
