@@ -29,8 +29,9 @@ public class SelectBoxViewer
 
 	Hashtable<String, String> elements = entity.getElements();
 
-	html += "<option value=\"" + inputValue + "\">"
-		+ elements.get(inputValue) + "</option>";
+	if (elements.get(inputValue) != null)
+	    html += "<option value=\"" + inputValue + "\">"
+		    + elements.get(inputValue) + "</option>";
 
 	for (String elementKey : elements.keySet())
 	{
