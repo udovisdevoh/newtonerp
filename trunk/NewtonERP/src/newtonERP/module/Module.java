@@ -291,7 +291,8 @@ public abstract class Module
 	    return entity.deleteUI(parameters);
 	if (actionName.equals("Edit"))
 	    return entity.editUI(parameters);
-
+	if (actionName.equals("GetList"))
+	    return entity.getList(parameters);
 	if (actionName.equals("Get"))
 	    return entity.getUI(parameters);
 

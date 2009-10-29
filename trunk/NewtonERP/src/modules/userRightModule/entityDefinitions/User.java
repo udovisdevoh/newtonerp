@@ -51,7 +51,5 @@ public class User extends AbstractOrmEntity implements PromptViewable
 		+ getFields().getField("groupsID"));
 
 	return (Groups) Orm.select(new Groups(), search).get(0);
-
     }
-
 }
