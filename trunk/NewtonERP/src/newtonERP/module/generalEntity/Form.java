@@ -9,6 +9,7 @@ import newtonERP.module.Module;
 import newtonERP.module.exception.FieldNotFoundException;
 import newtonERP.module.field.Field;
 import newtonERP.module.field.FieldString;
+import newtonERP.module.field.VolatileFields;
 import newtonERP.viewers.viewables.PromptViewable;
 
 /**
@@ -30,6 +31,7 @@ public class Form extends AbstractEntity implements PromptViewable
 	    throws Exception
     {
 	super();
+	fields = new VolatileFields();
 	setCurrentModule(currentModule);
 	setCurrentAction(currentAction);
     }
@@ -46,7 +48,7 @@ public class Form extends AbstractEntity implements PromptViewable
     {
 	Field field = new FieldString(label, fieldName);
 	field.setData(currentValue);
-	getFields().add(field);
+	((VolatileFields) (getFields())).add(field);
     }
 
     /**

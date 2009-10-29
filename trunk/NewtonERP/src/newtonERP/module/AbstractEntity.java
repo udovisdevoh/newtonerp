@@ -16,7 +16,7 @@ import newtonERP.orm.exceptions.OrmException;
  */
 public class AbstractEntity
 {
-    private Fields fields;
+    protected Fields fields;
     private HashSet<String> hiddenFieldList;
     private Vector<String> alertMessageList = new Vector<String>();
     private Hashtable<String, ListOfValue> listOfValueList;
