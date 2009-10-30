@@ -1,4 +1,5 @@
-body /*mise en page pour tout le corp*/ {
+body /*mise en page pour tout le corp*/
+{
 	width: 1000px;
 	margin: auto;
 	margin-top: 5px;
@@ -7,9 +8,12 @@ body /*mise en page pour tout le corp*/ {
 	background-image: url('/file/images/bodyBackGround.png');
 	background-repeat:repeat-x;
 	background-color: #FFF;
+	font-family: Arial;
+	font-size: 14px;
 }
 
-#header {
+#header
+{
 	width: 988px;
 	height: 75px;
 	background-color: #d3d8e1;
@@ -22,45 +26,50 @@ body /*mise en page pour tout le corp*/ {
 
 }
 
-h1 /* Gros titres */ {
+h1 /* Gros titres */
+{
 	color: black;
 	font-family: Arial, "Arial Black", "Times New Roman", Times, serif;
 }
 
-h2 /* sous-titres */ {
+h2 /* sous-titres */
+{
 	color: black;
 	font-family: Arial, "Arial Black", "Times New Roman", Times, serif;
 }
 
-#menu {
+.element_menu
+{
 	float: left; /* Le menu flottant à gauche */
-	width: 140px;
-}
-
-.element_menu /*sous-menu*/ {
+	width: 170px;
 	background-color: #d3d8e1;
 	border: 1px solid black;
-	margin-bottom: 10px;
+	padding: 10px;
+	background-image: url('/file/images/windowBackground.png');
 }
 
-.element_menu h3 /* Tous les titres de sous-menus */ {
+.element_menu h3 /* Tous les titres de sous-menus */ 
+{
 	color: black;
 	font-family: Arial, "Arial Black", "Times New Roman", Times, serif;
 	text-align: center;
 }
 
-.element_menu ul /* Listes à puces de sous-menu */ {
+.element_menu ul /* Listes à puces de sous-menu */
+{
 	padding: 0px;
 	padding-left: 20px;
 	margin: 0px;
 	margin-bottom: 5px;
 }
 
-.element_menu a /* Tous les liens se trouvant dans un menu */ {
+.element_menu a /* Tous les liens se trouvant dans un menu */
+{
 	color: #0081d7;
 }
 
-.element_menu a:hover {
+.element_menu a:hover
+{
 	color: red;
 }
 
@@ -70,7 +79,8 @@ h2 /* sous-titres */ {
 	font-weight:bold;
 }
 
-.checkBoxAtomicElement td {
+.checkBoxAtomicElement td 
+{
 	border-style: solid;
 	border-width: 2px;
 	border-color: #fbfcfd #a3aebf #a3aebf #fbfcfd;
@@ -80,8 +90,9 @@ h2 /* sous-titres */ {
 	padding-right: 6px;
 }
 
-#body /*mise en page du corp principal à droite du menu principal*/ {
-	margin-left: 150px;
+#body /*mise en page du corp principal à droite du menu principal*/
+{
+	margin-left: 200px;
 	/*Une marge à gauche pour pousser le corps, afin qu'il ne passe plus sous le menu*/
 	padding: 10px;
 	margin-bottom:10px;
@@ -98,6 +109,7 @@ h2 /* sous-titres */ {
 	border-width: 2px;
 	border-color: #DDD #AAA #AAA #DDD;
 	background-attachment: fixed;
+	height:32px;
 }
 
 .ListViewerTable td.ListViewerTableHeader
@@ -110,10 +122,11 @@ h2 /* sous-titres */ {
 	background-attachment: scroll;
 	background-image: url('/file/images/tableHeaderBackground.gif');
 	color: #FFF;
-	
+	height:32px;
 }
 
-#footer {
+#footer
+{
 	text-align: center;
 	color: black;
 	background-color: #d3d8e1;
