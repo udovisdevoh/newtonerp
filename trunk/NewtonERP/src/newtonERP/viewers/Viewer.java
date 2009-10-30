@@ -132,9 +132,9 @@ public abstract class Viewer
 
 	String menuModuleHtml = "";
 
-	String menu = "<div id =\"menu\"><!-- Cadre englobant tous les sous-menus -->";
-	menuModuleHtml += "<div class=\"element_menu\"> <!-- Cadre correspondant à un sous-menu -->"
-		+ "<h3>Modules</h3> <!-- Titre du sous-menu -->" + "<ul>";
+	String menu = "<div class=\"element_menu\"><!-- Cadre englobant tous les sous-menus -->";
+	menuModuleHtml += "<h3>Modules</h3> <!-- Titre du sous-menu -->"
+		+ "<ul>";
 	String modNameFromIterator = "";
 
 	// pour l'instant un seul sous-menu, autres sous-menus à déterminer
@@ -160,7 +160,7 @@ public abstract class Viewer
 
 	    menuModuleHtml += "</ul></li>";
 	}
-	menuModuleHtml += "</ul></div>";// ferme liste et ce sous-menu
+	menuModuleHtml += "</ul>";
 
 	// ferme menu gauche + <div id="body">=style css corp de droite
 	return (menu + menuModuleHtml + "</div> <div id=\"body\">" + buildTopMenu());
