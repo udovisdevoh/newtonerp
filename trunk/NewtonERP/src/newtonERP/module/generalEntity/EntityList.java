@@ -184,4 +184,9 @@ public class EntityList extends AbstractEntity implements ListViewable,
     {
 	return buttonConfirmList;
     }
+
+    public void removeSpecificActionButton(String string)
+    {
+	specificActionButtonList.remove(string);
+    }
 }
