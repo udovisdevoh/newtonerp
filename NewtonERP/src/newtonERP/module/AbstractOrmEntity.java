@@ -188,7 +188,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	return getList(new Hashtable<String, String>());
     }
 
-    public final AbstractEntity getList(Hashtable<String, String> parameters)
+    public AbstractEntity getList(Hashtable<String, String> parameters)
 	    throws Exception
     {
 	Vector<AbstractOrmEntity> resultSet;
