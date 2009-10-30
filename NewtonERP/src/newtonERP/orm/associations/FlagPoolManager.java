@@ -15,9 +15,10 @@ import newtonERP.orm.Orm;
 public class FlagPoolManager
 {
     /**
+     * @param sourceEntity the source entity
      * @param flagPoolList liste de FlagPool
      * @param parameters paramêtres (mêmes type que dans doAction
-     * @throws Exception
+     * @throws Exception a general exception
      */
     public static void applyFlagPoolChanges(AbstractOrmEntity sourceEntity,
 	    Iterable<FlagPool> flagPoolList,
@@ -82,6 +83,13 @@ public class FlagPoolManager
 	return searchEntity;
     }
 
+    /**
+     * @param sourceEntity the source entity
+     * @param visibleDescription the visible description
+     * @param foreignEntityDefinition entity of the foreign entity
+     * @param foreignDescriptionUiControls column list of the foreign entity
+     * @throws Exception a general exception
+     */
     public static void addFlagPool(AbstractOrmEntity sourceEntity,
 	    String visibleDescription,
 	    AbstractOrmEntity foreignEntityDefinition,
