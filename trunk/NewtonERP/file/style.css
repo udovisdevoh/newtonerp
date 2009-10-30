@@ -105,9 +105,12 @@ h2 /* sous-titres */ {
 	background-color: #BBF;
 	border-style: solid;
 	border-width: 2px;
-	border-color: #AAD #77A #77A #AAD;
+	border-color: #39405d #61989f #61989f #39405d;
 	background-image: none;
 	background-attachment: scroll;
+	background-image: url('/file/images/tableHeaderBackground.gif');
+	color: #FFF;
+	
 }
 
 #footer {
