@@ -91,18 +91,23 @@ h2 /* sous-titres */ {
 	background-image: url('/file/images/windowBackground.png');
 }
 
-.ListViewerTable td {
+.ListViewerTable td 
+{
 	background-color: #FFF;
 	border-style: solid;
 	border-width: 2px;
-	border-color: #DDD #DDD #AAA #AAA;
+	border-color: #DDD #AAA #AAA #DDD;
+	background-attachment: fixed;
 }
 
-.ListViewerTable td.ListViewerTableHeader {
+.ListViewerTable td.ListViewerTableHeader
+{
 	background-color: #BBF;
 	border-style: solid;
 	border-width: 2px;
-	border-color: #AAD #AAD #77A #77A;
+	border-color: #AAD #77A #77A #AAD;
+	background-image: none;
+	background-attachment: scroll;
 }
 
 #footer {
