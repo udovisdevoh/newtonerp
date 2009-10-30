@@ -15,14 +15,14 @@ import newtonERP.orm.Orm;
  * @author Gabriel
  * 
  */
-public class GetCustumerEntity extends AbstractAction
+public class GetCustomerEntity extends AbstractAction
 {
 
     /**
      * constructeur par default
      * @throws Exception
      */
-    public GetCustumerEntity() throws Exception
+    public GetCustomerEntity() throws Exception
     {
 	super(new Customer());
     }
