@@ -71,6 +71,7 @@ public class ListViewer
 	return html;
     }
 
+    @SuppressWarnings("null")
     private static String getDataRowList(Vector<Map<String, String>> rowValues,
 	    ListViewable listEntity, Module module) throws ModuleException
     {

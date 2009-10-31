@@ -35,4 +35,10 @@ public class CustomerVendor extends Module
 	addGlobalActionMenuItem("Facture de fournisseur", new BaseAction(
 		"GetList", new VendorInvoice()));
     }
+
+    @Override
+    public String getVisibleName()
+    {
+	return "Clients / Fournisseurs";
+    }
 }

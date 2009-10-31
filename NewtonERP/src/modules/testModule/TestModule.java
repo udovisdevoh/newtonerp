@@ -17,4 +17,10 @@ public class TestModule extends Module
 	super();
 
     }
+
+    @Override
+    public String getVisibleName()
+    {
+	return "Module test";
+    }
 }

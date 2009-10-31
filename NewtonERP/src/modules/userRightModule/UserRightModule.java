@@ -3,8 +3,8 @@ package modules.userRightModule;
 import java.util.Vector;
 
 import modules.userRightModule.actions.Login;
-import modules.userRightModule.entityDefinitions.GroupsRight;
 import modules.userRightModule.entityDefinitions.Groups;
+import modules.userRightModule.entityDefinitions.GroupsRight;
 import modules.userRightModule.entityDefinitions.Right;
 import modules.userRightModule.entityDefinitions.User;
 import newtonERP.module.AbstractOrmEntity;
@@ -106,5 +106,11 @@ public class UserRightModule extends Module
 	GroupsRight.setData("groupsID", groupsID);
 	GroupsRight.setData("rightID", rightID);
 	Orm.insert(GroupsRight);
+    }
+
+    @Override
+    public String getVisibleName()
+    {
+	return "Gestion de droits";
     }
 }

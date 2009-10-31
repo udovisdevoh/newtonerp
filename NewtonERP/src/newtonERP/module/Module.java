@@ -371,4 +371,9 @@ public abstract class Module
     {
 	return defaultEntity;
     }
+
+    /**
+     * @return Nom visible d'un module
+     */
+    public abstract String getVisibleName();
 }
