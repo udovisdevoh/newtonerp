@@ -8,6 +8,7 @@ import newtonERP.module.field.FieldDate;
 import newtonERP.module.field.FieldDouble;
 import newtonERP.module.field.FieldInt;
 import newtonERP.module.field.Fields;
+import newtonERP.orm.associations.AccessorManager;
 import newtonERP.viewers.viewables.PromptViewable;
 
 /**
@@ -21,6 +22,7 @@ public class VendorInvoice extends AbstractOrmEntity implements PromptViewable
     public VendorInvoice() throws Exception
     {
 	super();
+	AccessorManager.addAccessor(this, new Vendor());
     }
 
     public Fields initFields()
