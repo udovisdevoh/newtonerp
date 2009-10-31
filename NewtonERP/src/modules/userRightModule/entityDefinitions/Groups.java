@@ -8,7 +8,7 @@ import newtonERP.module.field.FieldInt;
 import newtonERP.module.field.FieldString;
 import newtonERP.module.field.Fields;
 import newtonERP.orm.Orm;
-import newtonERP.orm.associations.FlagPoolManager;
+import newtonERP.orm.associations.AccessorManager;
 import newtonERP.viewers.viewables.PromptViewable;
 
 /**
@@ -20,20 +20,15 @@ public class Groups extends AbstractOrmEntity implements PromptViewable
     public Groups() throws Exception
     {
 	super();
+	addNaturalKey("groupName");
+	AccessorManager.addAccessor(this, new Right());
     }
 
     public Fields initFields() throws Exception
     {
-	AbstractOrmEntity rightDefinition = new Right();
-
 	Vector<Field> fieldsInit = new Vector<Field>();
 	fieldsInit.add(new FieldInt("Numéro du groupe", getPrimaryKeyName()));
 	fieldsInit.add(new FieldString("Nom du groupe", "groupName"));
-
-	addNaturalKey("groupName");
-
-	FlagPoolManager.addFlagPool(this, rightDefinition);
-
 	return new Fields(fieldsInit);
     }
 

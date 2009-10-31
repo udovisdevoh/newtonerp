@@ -8,7 +8,7 @@ import newtonERP.module.field.FieldInt;
 import newtonERP.module.field.FieldString;
 import newtonERP.module.field.Fields;
 import newtonERP.orm.Orm;
-import newtonERP.orm.associations.ListOfValueManager;
+import newtonERP.orm.associations.AccessorManager;
 import newtonERP.viewers.viewables.PromptViewable;
 
 /**
@@ -24,23 +24,18 @@ public class User extends AbstractOrmEntity implements PromptViewable
     public User() throws Exception
     {
 	super();
-	// TODO Auto-generated constructor stub
+	addHiddenField("password");
+	AccessorManager.addAccessor(this, new Groups());
     }
 
     public Fields initFields() throws Exception
     {
-	AbstractOrmEntity groupDefinition = new Groups();// Sert de référence
 	Vector<Field> fieldsData = new Vector<Field>();// Renamé en fieldsData
 	// pour enlever confusion
 	fieldsData.add(new FieldInt("Numéro de user", getPrimaryKeyName()));
 	fieldsData.add(new FieldString("Nom", "name"));
 	fieldsData.add(new FieldString("Mot de passe", "password"));
 	fieldsData.add(new FieldInt("Numéro de groupe", "groupsID"));
-
-	ListOfValueManager.addListOfValue(this, groupDefinition);
-
-	addHiddenField("password");
-
 	return new Fields(fieldsData);
     }
 
