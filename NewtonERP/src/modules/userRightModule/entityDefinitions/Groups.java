@@ -32,7 +32,7 @@ public class Groups extends AbstractOrmEntity implements PromptViewable
 
 	addNaturalKey("groupName");
 
-	FlagPoolManager.addFlagPool(this, "Droits", rightDefinition);
+	FlagPoolManager.addFlagPool(this, rightDefinition);
 
 	return new Fields(fieldsInit);
     }

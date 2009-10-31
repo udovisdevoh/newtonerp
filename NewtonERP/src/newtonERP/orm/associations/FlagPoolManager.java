@@ -86,13 +86,11 @@ public class FlagPoolManager
 
     /**
      * @param sourceEntity the source entity
-     * @param visibleDescription the visible description
      * @param foreignEntityDefinition entity of the foreign entity
      * @throws Exception a general exception
      */
     public static final void addFlagPool(AbstractOrmEntity sourceEntity,
-	    String visibleDescription, AbstractOrmEntity foreignEntityDefinition)
-	    throws Exception
+	    AbstractOrmEntity foreignEntityDefinition) throws Exception
     {
 
 	AbstractOrmEntity intermediateEntityDefinition = buildIntermediateEntityDefinition(
@@ -101,7 +99,7 @@ public class FlagPoolManager
 	String intermediateKeyIn = sourceEntity.getForeignKeyName();
 	String intermediateKeyOut = foreignEntityDefinition.getForeignKeyName();
 
-	addFlagPool(sourceEntity, visibleDescription,
+	addFlagPool(sourceEntity, foreignEntityDefinition.getNaturalKeyName(),
 		intermediateEntityDefinition, intermediateKeyIn,
 		intermediateKeyOut, foreignEntityDefinition,
 		foreignEntityDefinition.getPrimaryKeyName(),
