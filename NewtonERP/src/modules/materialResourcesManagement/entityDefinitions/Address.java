@@ -9,9 +9,19 @@ import newtonERP.module.field.FieldString;
 import newtonERP.module.field.Fields;
 import newtonERP.viewers.viewables.PromptViewable;
 
+/**
+ * A warehouse address
+ * 
+ * @author r3hallejo
+ */
 public class Address extends AbstractOrmEntity implements PromptViewable
 {
 
+    /**
+     * Default constructor
+     * 
+     * @throws Exception a general exception
+     */
     public Address() throws Exception
     {
 	super();
