@@ -1,10 +1,8 @@
 package newtonERP.viewers.viewables;
 
 /**
+ * Static text viewable interface
  * @author Guillaume Lacasse
- * 
- * 
- *         Static text viewable interface
  */
 public interface StaticTextViewable
 {

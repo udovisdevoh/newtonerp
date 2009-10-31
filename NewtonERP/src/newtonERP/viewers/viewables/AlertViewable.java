@@ -1,9 +1,8 @@
 package newtonERP.viewers.viewables;
 
 /**
+ * Alert view interface
  * @author Guillaume Lacasse
- * 
- *         Alert view interface
  */
 public interface AlertViewable
 {

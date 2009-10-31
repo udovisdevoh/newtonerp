@@ -4,9 +4,8 @@ import java.util.HashSet;
 import java.util.TreeMap;
 
 /**
+ * The check list view interface
  * @author Guillaume Lacasse
- * 
- *         The check list view interface
  */
 public interface CheckListViewable
 {
