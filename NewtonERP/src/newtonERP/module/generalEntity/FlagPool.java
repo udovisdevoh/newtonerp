@@ -26,7 +26,7 @@ public class FlagPool implements CheckListViewable
     private String intermediateKeyIn;
     private String intermediateKeyOut;
     private String foreignKey;
-    private String[] foreignDescriptionUiControls;
+    private Vector<String> foreignDescriptionUiControls;
 
     /**
      * @param sourceEntityDefinition Definition de l'entité de source, exemple:
@@ -49,7 +49,7 @@ public class FlagPool implements CheckListViewable
 	    AbstractOrmEntity intermediateEntityDefinition,
 	    String intermediateKeyIn, String intermediateKeyOut,
 	    AbstractOrmEntity foreignEntityDefinition, String foreignKey,
-	    String[] foreignDescriptionUiControls)
+	    Vector<String> foreignDescriptionUiControls)
     {
 	this.visibleDescription = visibleDescription;
 	this.intermediateEntityDefinition = intermediateEntityDefinition;

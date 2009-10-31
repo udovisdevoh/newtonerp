@@ -31,6 +31,11 @@ public class Right extends AbstractOrmEntity implements PromptViewable
 	fieldsInit.add(new FieldString("Nom de module", "moduleName"));
 	fieldsInit.add(new FieldString("Nom de l'action", "actionName"));
 	fieldsInit.add(new FieldString("Nom de l'entité", "entityName"));
+
+	addNaturalKey("moduleName");
+	addNaturalKey("entityName");
+	addNaturalKey("actionName");
+
 	return new Fields(fieldsInit);
     }
 

@@ -19,6 +19,8 @@ import newtonERP.orm.exceptions.OrmException;
  */
 public abstract class AbstractOrmEntity extends AbstractEntity
 {
+    private Vector<String> naturalKeyNameList;
+
     public AbstractOrmEntity() throws Exception
     {
 	super();
@@ -382,5 +384,58 @@ public abstract class AbstractOrmEntity extends AbstractEntity
     public void setFlagPoolList(Hashtable<String, FlagPool> flagPoolList)
     {
 	this.flagPoolList = flagPoolList;
+    }
+
+    /**
+     * @return Liste des noms de champs correspondant à la clef naturelle de
+     *         l'entité
+     */
+    public Vector<String> getNaturalKeyNameList()
+
+    {
+	if (naturalKeyNameList == null)
+	    naturalKeyNameList = new Vector<String>();
+
+	if (naturalKeyNameList.size() < 1) // 1er Comportement par default si
+	    // clef
+	    // naturelle vide
+	    for (Field field : getFields())
+		if (field.getShortName().toLowerCase().contains("name"))
+		    naturalKeyNameList.add(field.getShortName());
+
+	if (naturalKeyNameList.size() < 1) // 2e Comportement par default si
+	    // clef
+	    // naturelle vide
+	    for (Field field : getFields())
+		if (!field.getShortName().equals(getPrimaryKeyName()))
+		    naturalKeyNameList.add(field.getShortName());
+
+	if (naturalKeyNameList.size() < 1)// 3e Comportement par default si clef
+	    // naturelle vide
+	    naturalKeyNameList.add(getPrimaryKeyName());
+
+	return naturalKeyNameList;
+    }
+
+    /**
+     * @return Description d'une entité par sa clef naturelle
+     */
+    public String getNaturalKeyDescription()
+    {
+	String description = "";
+	for (String naturalKeyName : getNaturalKeyNameList())
+	    description += " " + getDataString(naturalKeyName);
+
+	return description.trim();
+    }
+
+    /**
+     * @param keyName Ajoute une clef naturelle à l'entité
+     */
+    public final void addNaturalKey(String keyName)
+    {
+	if (naturalKeyNameList == null)
+	    naturalKeyNameList = new Vector<String>();
+	naturalKeyNameList.add(keyName);
     }
 }
