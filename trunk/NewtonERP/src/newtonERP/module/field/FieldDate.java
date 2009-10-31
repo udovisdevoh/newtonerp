@@ -27,6 +27,7 @@ public class FieldDate extends Field
     public FieldDate(String name, String shortName)
     {
 	super(name, shortName);
+	data = new GregorianCalendar();
 	operator = "=";
     }
 
@@ -39,7 +40,10 @@ public class FieldDate extends Field
     @Override
     public String getDataString()
     {
-	return dateFormatter.format(data);
+	if (data instanceof GregorianCalendar)
+	    return dateFormatter.format(data.getTime());
+	else
+	    return "";
     }
 
     /**
