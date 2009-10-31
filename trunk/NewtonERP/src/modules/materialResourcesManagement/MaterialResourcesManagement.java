@@ -12,6 +12,8 @@ public class MaterialResourcesManagement extends Module
     public MaterialResourcesManagement() throws Exception
     {
 	super();
+	setDefaultAction(new BaseAction("GetList", new Warehouse()));
+
 	addGlobalActionMenuItem("Entrepôts", new BaseAction("GetList",
 		new Warehouse()));
 	addGlobalActionMenuItem("Adresses", new BaseAction("GetList",
