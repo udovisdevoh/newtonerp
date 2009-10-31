@@ -14,7 +14,6 @@ import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.BaseAction;
 import newtonERP.module.Module;
 import newtonERP.module.field.Field;
-import newtonERP.orm.exceptions.OrmException;
 import newtonERP.viewers.viewables.ListViewable;
 
 /**
@@ -51,7 +50,7 @@ public class EntityList extends AbstractEntity implements ListViewable,
     }
 
     @Override
-    public Vector<String> getColumnTitleList() throws OrmException
+    public Vector<String> getColumnTitleList() throws Exception
     {
 	Vector<String> columnTitleList = new Vector<String>();
 
@@ -92,11 +91,17 @@ public class EntityList extends AbstractEntity implements ListViewable,
     }
 
     @Override
-    public Vector<Map<String, String>> getRowList() throws OrmException
+    public Vector<Map<String, String>> getRowList() throws Exception
     {
 	Vector<Map<String, String>> userListInfo = new Vector<Map<String, String>>();
 
 	TreeMap<String, String> entityInfo;
+
+	internalEntityDefinition.initFields();
+
+	if (data.size() < 1)
+	    data.add(internalEntityDefinition);
+
 	for (AbstractOrmEntity entity : data)
 	{
 	    entityInfo = new TreeMap<String, String>();

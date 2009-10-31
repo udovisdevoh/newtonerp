@@ -38,10 +38,19 @@ public class CommandRouteur
 
 	rightParam.put("name", Authentication.getCurrentUserName());
 	rightParam.put("module", moduleName);
+
 	if (actionName.equals("default"))
+	{
+	    actionName = module.getDefaultAction();
 	    rightParam.put("action", module.getDefaultAction());
+	    if (entityName == null)
+		entityName = module.getDefaultEntity();
+	}
 	else
+	{
 	    rightParam.put("action", actionName);
+	}
+
 	if (entityName != null)
 	{
 	    rightParam.put("entity", entityName);
