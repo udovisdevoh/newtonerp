@@ -81,9 +81,9 @@ public abstract class Module
 
     private Map<String, AbstractAction> globalActionList;
 
-    private static String defaultAction;
+    private String defaultAction;
 
-    private static String defaultEntity;
+    private String defaultEntity;
 
     /**
      * constructeur par default
