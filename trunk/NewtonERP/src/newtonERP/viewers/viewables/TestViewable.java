@@ -1,9 +1,8 @@
 package newtonERP.viewers.viewables;
 
 /**
+ * A test viewer
  * @author r3hallejo
- * 
- *         A test viewer
  */
 public interface TestViewable
 {

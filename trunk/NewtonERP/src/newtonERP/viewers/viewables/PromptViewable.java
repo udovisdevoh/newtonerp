@@ -10,9 +10,8 @@ import newtonERP.module.generalEntity.ListOfValue;
 import newtonERP.orm.exceptions.OrmException;
 
 /**
+ * Prompt view interface
  * @author r3lacasgu
- * 
- *         Prompt view interface
  */
 public interface PromptViewable
 {

@@ -5,9 +5,8 @@ import java.util.Hashtable;
 import newtonERP.orm.exceptions.OrmException;
 
 /**
+ * The select box view interface
  * @author Guillaume Lacasse
- * 
- *         The select box view interface
  */
 public interface SelectBoxViewable
 {

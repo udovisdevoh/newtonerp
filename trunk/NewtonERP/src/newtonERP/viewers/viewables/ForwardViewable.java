@@ -1,9 +1,8 @@
 package newtonERP.viewers.viewables;
 
 /**
+ * Forward viewable interface
  * @author Guillaume Lacasse
- * 
- *         Forward viewable interface
  */
 public interface ForwardViewable
 {
