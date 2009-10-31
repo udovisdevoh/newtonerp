@@ -17,21 +17,23 @@ public class ListOfValue implements SelectBoxViewable
 {
     private String labelName;
     private String foreignPrimaryKey;
-    private String foreignDescription;
+    private Vector<String> foreignNaturalKeyNameList;
     private AbstractOrmEntity foreignEntity;
 
     /**
      * @param labelName the label name
      * @param foreignPrimaryKey the foreign primary key
-     * @param foreignDescription the foreign description
+     * @param foreignNaturalKeyNameList Liste des champs correspondant à la clef
+     *            naturelle de l'entité étrangere
      * @param foreignEntity the foreign entity
      */
     public ListOfValue(String labelName, String foreignPrimaryKey,
-	    String foreignDescription, AbstractOrmEntity foreignEntity)
+	    Vector<String> foreignNaturalKeyNameList,
+	    AbstractOrmEntity foreignEntity)
     {
 	this.labelName = labelName;
 	this.foreignPrimaryKey = foreignPrimaryKey;
-	this.foreignDescription = foreignDescription;
+	this.foreignNaturalKeyNameList = foreignNaturalKeyNameList;
 	this.foreignEntity = foreignEntity;
     }
 
@@ -42,8 +44,10 @@ public class ListOfValue implements SelectBoxViewable
 	Hashtable<String, String> elementList = new Hashtable<String, String>();
 
 	for (AbstractOrmEntity entity : entityList)
+	{
 	    elementList.put(entity.getPrimaryKeyValue() + "", entity
-		    .getDataString(foreignDescription));
+		    .getNaturalKeyDescription());
+	}
 
 	return elementList;
     }
@@ -69,7 +73,7 @@ public class ListOfValue implements SelectBoxViewable
 		    criterias);
 	    AbstractOrmEntity resultEntity = entityList.get(0);
 
-	    return resultEntity.getDataString(foreignDescription);
+	    return resultEntity.getNaturalKeyDescription();
 	} catch (Exception e)
 	{
 	    return "- " + foreignEntity.getClass().getSimpleName()

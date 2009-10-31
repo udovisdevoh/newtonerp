@@ -2,6 +2,7 @@ package newtonERP.orm.associations;
 
 import java.util.Collection;
 import java.util.Hashtable;
+import java.util.Vector;
 
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.generalEntity.FlagPool;
@@ -87,13 +88,11 @@ public class FlagPoolManager
      * @param sourceEntity the source entity
      * @param visibleDescription the visible description
      * @param foreignEntityDefinition entity of the foreign entity
-     * @param foreignDescriptionUiControls column list of the foreign entity
      * @throws Exception a general exception
      */
     public static final void addFlagPool(AbstractOrmEntity sourceEntity,
-	    String visibleDescription,
-	    AbstractOrmEntity foreignEntityDefinition,
-	    String[] foreignDescriptionUiControls) throws Exception
+	    String visibleDescription, AbstractOrmEntity foreignEntityDefinition)
+	    throws Exception
     {
 
 	AbstractOrmEntity intermediateEntityDefinition = buildIntermediateEntityDefinition(
@@ -106,7 +105,7 @@ public class FlagPoolManager
 		intermediateEntityDefinition, intermediateKeyIn,
 		intermediateKeyOut, foreignEntityDefinition,
 		foreignEntityDefinition.getPrimaryKeyName(),
-		foreignDescriptionUiControls);
+		foreignEntityDefinition.getNaturalKeyNameList());
     }
 
     private static AbstractOrmEntity buildIntermediateEntityDefinition(
@@ -157,7 +156,7 @@ public class FlagPoolManager
 	    AbstractOrmEntity intermediateEntityDefinition,
 	    String intermediateKeyIn, String intermediateKeyOut,
 	    AbstractOrmEntity foreignEntityDefinition, String foreignKey,
-	    String[] foreignDescriptionUiControls)
+	    Vector<String> foreignDescriptionUiControls)
     {
 	FlagPool flagPool = new FlagPool(sourceEntity, visibleDescription,
 		intermediateEntityDefinition, intermediateKeyIn,

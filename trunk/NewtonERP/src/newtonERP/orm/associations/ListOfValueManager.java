@@ -16,7 +16,7 @@ public class ListOfValueManager
      */
     public static final void addListOfValue(AbstractEntity entity,
 	    String labelName, String fieldKeyName,
-	    String foreignDescriptionKey, AbstractOrmEntity foreignEntity)
+	    AbstractOrmEntity foreignEntity)
     {
 	Hashtable<String, ListOfValue> listOfValueList = entity
 		.getListOfValueList();
@@ -25,7 +25,8 @@ public class ListOfValueManager
 	    listOfValueList = new Hashtable<String, ListOfValue>();
 
 	ListOfValue listOfValue = new ListOfValue(labelName, foreignEntity
-		.getPrimaryKeyName(), foreignDescriptionKey, foreignEntity);
+		.getPrimaryKeyName(), foreignEntity.getNaturalKeyNameList(),
+		foreignEntity);
 
 	listOfValueList.put(fieldKeyName, listOfValue);
 
