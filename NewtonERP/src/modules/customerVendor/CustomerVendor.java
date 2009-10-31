@@ -3,6 +3,7 @@ package modules.customerVendor;
 import modules.customerVendor.entityDefinitions.Customer;
 import modules.customerVendor.entityDefinitions.CustomerInvoice;
 import modules.customerVendor.entityDefinitions.Vendor;
+import modules.customerVendor.entityDefinitions.VendorInvoice;
 import newtonERP.module.BaseAction;
 import newtonERP.module.Module;
 
@@ -32,6 +33,6 @@ public class CustomerVendor extends Module
 		new Vendor()));
 
 	addGlobalActionMenuItem("Facture de fournisseur", new BaseAction(
-		"GetList", new CustomerInvoice()));
+		"GetList", new VendorInvoice()));
     }
 }

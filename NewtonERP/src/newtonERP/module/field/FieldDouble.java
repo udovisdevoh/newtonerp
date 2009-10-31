@@ -97,6 +97,8 @@ public class FieldDouble extends Field
     {
 	if (data instanceof Double)
 	    setDataD((Double) data);
+	else if (data instanceof Integer)
+	    setDataD((double) ((Integer) (data)));
 	else
 	    throw new FieldNotCompatibleException(getShortName(), data);
     }
