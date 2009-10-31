@@ -9,13 +9,11 @@ import newtonERP.module.generalEntity.ListOfValue;
 public class ListOfValueManager
 {
     /**
-     * @param labelName the label of the lov
-     * @param fieldKeyName the field name
-     * @param foreignDescriptionKey the foreign fescrption key
-     * @param foreignEntity the foreign entity
+     * @param entity Entité source
+     * @param foreignEntity Entité cible
      */
     public static final void addListOfValue(AbstractEntity entity,
-	    String labelName, AbstractOrmEntity foreignEntity)
+	    AbstractOrmEntity foreignEntity)
     {
 	Hashtable<String, ListOfValue> listOfValueList = entity
 		.getListOfValueList();
@@ -23,9 +21,9 @@ public class ListOfValueManager
 	if (listOfValueList == null)
 	    listOfValueList = new Hashtable<String, ListOfValue>();
 
-	ListOfValue listOfValue = new ListOfValue(labelName, foreignEntity
-		.getPrimaryKeyName(), foreignEntity.getNaturalKeyNameList(),
-		foreignEntity);
+	ListOfValue listOfValue = new ListOfValue(foreignEntity
+		.getNaturalKeyName(), foreignEntity.getPrimaryKeyName(),
+		foreignEntity.getNaturalKeyNameList(), foreignEntity);
 
 	listOfValueList.put(foreignEntity.getForeignKeyName(), listOfValue);
 

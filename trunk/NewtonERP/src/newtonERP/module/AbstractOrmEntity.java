@@ -418,7 +418,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
     }
 
     /**
-     * @return Description d'une entité par sa clef naturelle
+     * @return Description d'une entité par la valeur de sa clef naturelle
      */
     public String getNaturalKeyDescription()
     {
@@ -437,5 +437,17 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	if (naturalKeyNameList == null)
 	    naturalKeyNameList = new Vector<String>();
 	naturalKeyNameList.add(keyName);
+    }
+
+    /**
+     * @return Nom de la clef naturelle
+     */
+    public String getNaturalKeyName()
+    {
+	String name = "";
+	for (String naturalKeyName : getNaturalKeyNameList())
+	    name += " " + getFields().getField(naturalKeyName).getName();
+
+	return name.trim();
     }
 }
