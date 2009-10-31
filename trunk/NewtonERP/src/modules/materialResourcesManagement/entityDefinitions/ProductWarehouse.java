@@ -7,15 +7,33 @@ import newtonERP.module.field.Field;
 import newtonERP.module.field.FieldInt;
 import newtonERP.module.field.Fields;
 
+/**
+ * A warehouse product entity
+ * 
+ * @author r3hallejo
+ */
 public class ProductWarehouse extends AbstractOrmEntity
 {
+    @SuppressWarnings("unused")
     private static Product productDefinition;
 
+    /**
+     * Default constructor
+     * 
+     * @throws Exception a general exception
+     */
     public ProductWarehouse() throws Exception
     {
 	productDefinition = new Product();
     }
 
+    /**
+     * Constructor
+     * 
+     * @param warehouse the warehouse entity
+     * @param product the product entity
+     * @throws Exception a general exception
+     */
     public ProductWarehouse(Warehouse warehouse, Product product)
 	    throws Exception
     {

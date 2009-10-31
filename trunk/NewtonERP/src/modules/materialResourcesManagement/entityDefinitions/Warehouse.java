@@ -10,9 +10,19 @@ import newtonERP.module.field.Fields;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.viewers.viewables.PromptViewable;
 
+/**
+ * A warehouse
+ * 
+ * @author r3hallejo
+ */
 public class Warehouse extends AbstractOrmEntity implements PromptViewable
 {
 
+    /**
+     * Default constructor
+     * 
+     * @throws Exception a general exception
+     */
     public Warehouse() throws Exception
     {
 	super();
