@@ -46,6 +46,7 @@ h2 /* sous-titres */
 	border: 1px solid black;
 	padding: 10px;
 	background-image: url('/file/images/windowBackground.png');
+	line-height:18px;
 }
 
 .element_menu h3 /* Tous les titres de sous-menus */ 
