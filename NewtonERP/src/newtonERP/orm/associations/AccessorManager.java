@@ -16,6 +16,7 @@ public class AccessorManager
      * 
      * @param sourceEntity the source entity
      * @param foreignEntityDefinition entity of the foreign entity
+     * @throws Exception a general exception
      */
     public static void addAccessor(AbstractOrmEntity sourceEntity,
 	    AbstractOrmEntity foreignEntityDefinition) throws Exception
@@ -54,6 +55,7 @@ public class AccessorManager
     /**
      * @param entity Entité source
      * @param foreignEntity Entité cible
+     * @throws Exception a general exception
      */
     public static final void addListOfValue(AbstractEntity entity,
 	    AbstractOrmEntity foreignEntity) throws Exception

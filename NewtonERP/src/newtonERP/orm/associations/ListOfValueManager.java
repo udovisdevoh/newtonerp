@@ -7,12 +7,17 @@ import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.exception.TableAssociationException;
 import newtonERP.module.generalEntity.ListOfValue;
 
+/**
+ * List of value manager
+ * 
+ * @author Guillaume Lacasse
+ */
 public class ListOfValueManager
 {
     /**
      * @param entity Entité source
      * @param foreignEntity Entité cible
-     * @throws Exception
+     * @throws Exception a general exception
      */
     public static final void addListOfValue(AbstractEntity entity,
 	    AbstractOrmEntity foreignEntity) throws Exception
