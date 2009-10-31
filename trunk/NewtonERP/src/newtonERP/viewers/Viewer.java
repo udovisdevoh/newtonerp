@@ -144,7 +144,7 @@ public abstract class Viewer
 
 	    Module module = ListModule.getModule(modNameFromIterator);
 	    menuModuleHtml += "<li><a href=\"" + Servlet.makeLink(module)
-		    + "\">" + modNameFromIterator + "</a><ul>";
+		    + "\">" + module.getVisibleName() + "</a><ul>";
 
 	    if (modNameFromIterator.equals(moduleName))
 	    {

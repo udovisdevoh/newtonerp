@@ -32,4 +32,10 @@ public class MaterialResourcesManagement extends Module
 		new Product()));
     }
 
+    @Override
+    public String getVisibleName()
+    {
+	return "Ressources matérielles";
+    }
+
 }
