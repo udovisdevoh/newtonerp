@@ -37,8 +37,7 @@ public class User extends AbstractOrmEntity implements PromptViewable
 	fieldsData.add(new FieldString("Mot de passe", "password"));
 	fieldsData.add(new FieldInt("Numéro de groupe", "groupsID"));
 
-	ListOfValueManager.addListOfValue(this, "Groupe", "groupsID",
-		groupDefinition);
+	ListOfValueManager.addListOfValue(this, "Groupe", groupDefinition);
 
 	addHiddenField("password");
 
