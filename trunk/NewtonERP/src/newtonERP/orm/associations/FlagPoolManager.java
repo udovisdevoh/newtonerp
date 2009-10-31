@@ -90,7 +90,7 @@ public class FlagPoolManager
      * @param foreignDescriptionUiControls column list of the foreign entity
      * @throws Exception a general exception
      */
-    public static void addFlagPool(AbstractOrmEntity sourceEntity,
+    public static final void addFlagPool(AbstractOrmEntity sourceEntity,
 	    String visibleDescription,
 	    AbstractOrmEntity foreignEntityDefinition,
 	    String[] foreignDescriptionUiControls) throws Exception

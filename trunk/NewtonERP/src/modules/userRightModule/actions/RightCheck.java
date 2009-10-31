@@ -7,6 +7,7 @@ import modules.userRightModule.entityDefinitions.Right;
 import modules.userRightModule.entityDefinitions.User;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
+import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.Orm;
 
 /**
@@ -22,7 +23,13 @@ public class RightCheck extends AbstractAction
     {
 	Vector<String> search = new Vector<String>();
 	search.add("name='" + parameters.get("name") + "'");
-	User user = (User) Orm.select(new User(), search).get(0);
+
+	Vector<AbstractOrmEntity> userList = Orm.select(new User(), search);
+
+	if (userList.size() < 1)// Utilisateur introuvable
+	    return null;
+
+	User user = (User) userList.get(0);
 
 	for (Right right : user.getGroupsEntity().getRightList())
 	{

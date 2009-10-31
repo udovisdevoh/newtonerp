@@ -163,24 +163,6 @@ public class AbstractEntity
     }
 
     /**
-     * @param labelName the label of the lov
-     * @param fieldKeyName the field name
-     * @param foreignDescriptionKey the foreign fescrption key
-     * @param foreignEntity the foreign entity
-     */
-    public final void addListOfValue(String labelName, String fieldKeyName,
-	    String foreignDescriptionKey, AbstractOrmEntity foreignEntity)
-    {
-	ListOfValue listOfValue = new ListOfValue(labelName, foreignEntity
-		.getPrimaryKeyName(), foreignDescriptionKey, foreignEntity);
-
-	if (listOfValueList == null)
-	    listOfValueList = new Hashtable<String, ListOfValue>();
-
-	listOfValueList.put(fieldKeyName, listOfValue);
-    }
-
-    /**
      * @return
      */
     public AbstractAction getCurrentAction()
@@ -260,5 +242,22 @@ public class AbstractEntity
     public final Hashtable<String, String> getInputList() throws OrmException
     {
 	return getFields().getHashTableFrom();
+    }
+
+    /**
+     * @param listOfValueList Set la liste de listes of values de l'entité
+     */
+    public void setListOfValueList(
+	    final Hashtable<String, ListOfValue> listOfValueList)
+    {
+	this.listOfValueList = listOfValueList;
+    }
+
+    /**
+     * @return liste des listOfValue
+     */
+    public Hashtable<String, ListOfValue> getListOfValueList()
+    {
+	return listOfValueList;
     }
 }

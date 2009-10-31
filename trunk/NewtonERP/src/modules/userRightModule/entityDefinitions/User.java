@@ -8,6 +8,7 @@ import newtonERP.module.field.FieldInt;
 import newtonERP.module.field.FieldString;
 import newtonERP.module.field.Fields;
 import newtonERP.orm.Orm;
+import newtonERP.orm.associations.ListOfValueManager;
 import newtonERP.viewers.viewables.PromptViewable;
 
 /**
@@ -36,7 +37,8 @@ public class User extends AbstractOrmEntity implements PromptViewable
 	fieldsData.add(new FieldString("Mot de passe", "password"));
 	fieldsData.add(new FieldInt("Numéro de groupe", "groupsID"));
 
-	addListOfValue("Groupe", "groupsID", "groupName", groupDefinition);
+	ListOfValueManager.addListOfValue(this, "Groupe", "groupsID",
+		"groupName", groupDefinition);
 	addHiddenField("password");
 
 	return new Fields(fieldsData);
