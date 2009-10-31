@@ -40,10 +40,7 @@ public class FieldDate extends Field
     @Override
     public String getDataString()
     {
-	if (data instanceof GregorianCalendar)
-	    return dateFormatter.format(data.getTime());
-	else
-	    return "";
+	return dateFormatter.format(data.getTime());
     }
 
     /**

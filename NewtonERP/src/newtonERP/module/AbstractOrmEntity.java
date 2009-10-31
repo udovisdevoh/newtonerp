@@ -443,7 +443,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      */
     public String getNaturalKeyName()
     {
-	String name = "";
+	String name = getClass().getSimpleName();
 	for (String naturalKeyName : getNaturalKeyNameList())
 	    name += " " + getFields().getField(naturalKeyName).getName();
 
