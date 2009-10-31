@@ -8,6 +8,7 @@ import newtonERP.module.field.FieldDate;
 import newtonERP.module.field.FieldDouble;
 import newtonERP.module.field.FieldInt;
 import newtonERP.module.field.Fields;
+import newtonERP.orm.associations.AccessorManager;
 import newtonERP.viewers.viewables.PromptViewable;
 
 /**
@@ -22,6 +23,7 @@ public class CustomerInvoice extends AbstractOrmEntity implements
     public CustomerInvoice() throws Exception
     {
 	super();
+	AccessorManager.addAccessor(this, new Customer());
     }
 
     public Fields initFields()
