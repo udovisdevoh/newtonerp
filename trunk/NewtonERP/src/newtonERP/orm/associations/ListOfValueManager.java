@@ -15,8 +15,7 @@ public class ListOfValueManager
      * @param foreignEntity the foreign entity
      */
     public static final void addListOfValue(AbstractEntity entity,
-	    String labelName, String fieldKeyName,
-	    AbstractOrmEntity foreignEntity)
+	    String labelName, AbstractOrmEntity foreignEntity)
     {
 	Hashtable<String, ListOfValue> listOfValueList = entity
 		.getListOfValueList();
@@ -28,7 +27,7 @@ public class ListOfValueManager
 		.getPrimaryKeyName(), foreignEntity.getNaturalKeyNameList(),
 		foreignEntity);
 
-	listOfValueList.put(fieldKeyName, listOfValue);
+	listOfValueList.put(foreignEntity.getForeignKeyName(), listOfValue);
 
 	entity.setListOfValueList(listOfValueList);
     }
