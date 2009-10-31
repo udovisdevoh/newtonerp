@@ -40,6 +40,8 @@ public class FieldDate extends Field
     @Override
     public String getDataString()
     {
+	if (data == null)
+	    data = new GregorianCalendar();
 	return dateFormatter.format(data.getTime());
     }
 
