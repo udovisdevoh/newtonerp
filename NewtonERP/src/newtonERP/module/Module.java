@@ -5,8 +5,8 @@ import java.util.Hashtable;
 import java.util.Map;
 import java.util.TreeMap;
 
-import modules.userRightModule.entityDefinitions.GroupsRight;
 import modules.userRightModule.entityDefinitions.Groups;
+import modules.userRightModule.entityDefinitions.GroupsRight;
 import modules.userRightModule.entityDefinitions.Right;
 import newtonERP.module.exception.ActionNotFoundException;
 import newtonERP.module.exception.ModuleException;
@@ -83,6 +83,8 @@ public abstract class Module
 
     private static String defaultAction;
 
+    private static String defaultEntity;
+
     /**
      * constructeur par default
      * @throws Exception remonte
@@ -98,7 +100,16 @@ public abstract class Module
 
     protected final void setDefaultAction(AbstractAction action)
     {
-	defaultAction = action.getClass().getSimpleName();
+	if (action instanceof BaseAction)
+	{
+	    defaultAction = ((BaseAction) (action)).getActionName();
+	    defaultEntity = ((BaseAction) (action)).getEntity().getClass()
+		    .getSimpleName();
+	}
+	else
+	{
+	    defaultAction = action.getClass().getSimpleName();
+	}
     }
 
     /**
@@ -350,5 +361,14 @@ public abstract class Module
 	if (globalActionList == null)
 	    globalActionList = new TreeMap<String, AbstractAction>();
 	globalActionList.put(name, action);
+    }
+
+    /**
+     * @return Entité par default (dans le cas d'action par default qui est une
+     *         baseAction)
+     */
+    public String getDefaultEntity()
+    {
+	return defaultEntity;
     }
 }

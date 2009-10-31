@@ -24,10 +24,9 @@ public class FieldDate extends Field
      * @param shortName the internal name
      * @param data the date
      */
-    public FieldDate(String name, String shortName, GregorianCalendar data)
+    public FieldDate(String name, String shortName)
     {
 	super(name, shortName);
-	this.data = data;
 	operator = "=";
     }
 

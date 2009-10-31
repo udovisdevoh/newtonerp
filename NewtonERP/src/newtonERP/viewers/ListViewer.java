@@ -77,17 +77,24 @@ public class ListViewer
 
 	String html = "";
 	int rowNumber = 0;
+	String cellValue = null;
 	for (Map<String, String> row : rowValues)
 	{
 	    html += "\n<tr>";
 	    for (String cellKey : row.keySet())
 	    {
-		html += "<td>" + row.get(cellKey) + "</td>";
+		cellValue = row.get(cellKey);
+
+		if (cellValue == null || cellValue.equals("null"))
+		    cellValue = "";
+
+		html += "<td>" + cellValue + "</td>";
 	    }
 
-	    html += getSpecificButtonList(listEntity, listEntity.getKeyName(),
-		    listEntity.getKeyValue(rowNumber), module, listEntity
-			    .getInternalElementName());
+	    if (!cellValue.equals("") || cellValue.equals("null"))
+		html += getSpecificButtonList(listEntity, listEntity
+			.getKeyName(), listEntity.getKeyValue(rowNumber),
+			module, listEntity.getInternalElementName());
 
 	    html += "</tr>";
 	    rowNumber++;

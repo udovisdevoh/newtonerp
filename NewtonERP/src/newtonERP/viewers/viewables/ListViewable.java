@@ -44,13 +44,13 @@ public interface ListViewable
      * @return Titre des colonnes
      * @throws OrmException an exception that can occur in the orm
      */
-    public Vector<String> getColumnTitleList() throws OrmException;
+    public Vector<String> getColumnTitleList() throws Exception;
 
     /**
      * @return Liste de rangées
      * @throws OrmException an exception that can occur in the orm
      */
-    public Vector<Map<String, String>> getRowList() throws OrmException;
+    public Vector<Map<String, String>> getRowList() throws Exception;
 
     /**
      * @return Nom de la clef pour identifier une entité dans la liste
