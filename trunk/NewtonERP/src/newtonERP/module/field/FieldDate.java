@@ -15,9 +15,10 @@ import newtonERP.module.exception.InvalidOperatorException;
  */
 public class FieldDate extends Field
 {
-    SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
-    GregorianCalendar data;
-    String operator;
+    private static SimpleDateFormat dateFormatter = new SimpleDateFormat(
+	    "yyyy-MM-dd");
+    private GregorianCalendar data;
+    private String operator;
 
     /**
      * @param name the viewable name
@@ -27,7 +28,6 @@ public class FieldDate extends Field
     public FieldDate(String name, String shortName)
     {
 	super(name, shortName);
-	data = new GregorianCalendar();
 	operator = "=";
     }
 
@@ -96,5 +96,20 @@ public class FieldDate extends Field
     public void setDefaultValue() throws FieldNotCompatibleException
     {
 	setData(new GregorianCalendar());
+    }
+
+    /**
+     * Convertie une date de string vers GregorianCalendar
+     * @param dateInString
+     * @return
+     * @throws Exception
+     */
+    public static GregorianCalendar getFormatedDate(String dateInString)
+	    throws Exception
+    {
+	GregorianCalendar gregorianCalendar = new GregorianCalendar();
+	Date tempDate = dateFormatter.parse(dateInString);
+	gregorianCalendar.setTime(tempDate);
+	return gregorianCalendar;
     }
 }

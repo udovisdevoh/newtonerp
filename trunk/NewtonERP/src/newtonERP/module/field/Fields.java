@@ -2,6 +2,7 @@ package newtonERP.module.field;
 
 import java.text.ParseException;
 import java.util.Collection;
+import java.util.GregorianCalendar;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Vector;
@@ -78,16 +79,26 @@ public class Fields implements Iterable<Field>
      * 
      * @param shortName nom du champ
      * @param data valeur modifie
-     * @throws FieldNotFoundException si le champ demandé n'existe pas
-     * @throws ParseException an exception that can occur when parsing dates
+     * @throws Exception
      */
-    public void setData(String shortName, Object data)
-	    throws FieldNotFoundException, ParseException
+    public void setData(String shortName, Object data) throws Exception
     {
 	try
 	{
 	    if (data instanceof String)
-		fieldsData.get(shortName).setData((String) data);
+	    {
+		if (fieldsData.get(shortName) instanceof FieldDate) // date
+		{
+		    GregorianCalendar gregorianCalendar = FieldDate
+			    .getFormatedDate((String) data);
+		    fieldsData.get(shortName).setData(gregorianCalendar);
+		}
+		else
+		// regular string
+		{
+		    fieldsData.get(shortName).setData((String) data);
+		}
+	    }
 	    else if (data instanceof Number)
 		fieldsData.get(shortName).setData(data + "");
 	    else if (data instanceof Boolean)
@@ -101,9 +112,10 @@ public class Fields implements Iterable<Field>
     /**
      * @param parameters Hashtable de parametre
      * @throws ParseException an exception that can occur during date parsing
+     * @throws FieldNotCompatibleException
      */
     public void setFromHashTable(Hashtable<String, ?> parameters)
-	    throws ParseException
+	    throws Exception
     {
 	for (String key : parameters.keySet())
 	{

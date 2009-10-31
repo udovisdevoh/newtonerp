@@ -101,9 +101,9 @@ public class EntityTest extends TestCase
      * 
      * @throws FieldNotFoundException remonte
      * @throws ParseException an exception that can occur parsing dates
+     * @throws Exception
      */
-    public void testGetHashTableFromEntity() throws FieldNotFoundException,
-	    ParseException
+    public void testGetHashTableFromEntity() throws Exception
     {
 	Hashtable<String, String> hash = new Hashtable<String, String>();
 
