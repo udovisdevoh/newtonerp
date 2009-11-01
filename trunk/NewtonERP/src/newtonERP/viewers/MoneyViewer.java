@@ -18,6 +18,9 @@ public class MoneyViewer
      */
     public static String getHtmlCode(String inputValue)
     {
+	if (inputValue.equals(""))
+	    inputValue = "0.0";
+
 	double doubleNumber = Double.parseDouble(inputValue);
 	return getHtmlCode(doubleNumber);
     }

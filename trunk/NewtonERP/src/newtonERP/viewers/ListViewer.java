@@ -86,7 +86,8 @@ public class ListViewer
 	    {
 		cellValue = row.get(cellKey);
 
-		if (cellValue == null || cellValue.equals("null"))
+		if (cellValue == null || cellValue.equals("null")
+			|| cellValue.equals("0.0") || cellValue.equals("0"))
 		    cellValue = "";
 
 		if (listEntity.isListElementColumnMatchCurrencyFormat(cellKey))
