@@ -44,6 +44,7 @@ public interface PromptViewable
 
     /**
      * @return the current module
+     * @throws Exception lorsque l'obtention du module courant échoue
      */
     public Module getCurrentModule() throws Exception;
 
@@ -64,5 +65,8 @@ public interface PromptViewable
      */
     public boolean isFieldHidden(String fieldName);
 
+    /**
+     * @return liste des messages d'alerte
+     */
     public Vector<String> getAlertMessageList();
 }

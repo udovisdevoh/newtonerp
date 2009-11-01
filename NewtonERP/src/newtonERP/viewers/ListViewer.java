@@ -89,6 +89,9 @@ public class ListViewer
 		if (cellValue == null || cellValue.equals("null"))
 		    cellValue = "";
 
+		if (listEntity.isListElementColumnMatchCurrencyFormat(cellKey))
+		    cellValue = MoneyViewer.getHtmlCode(cellValue);
+
 		html += "<td>" + cellValue + "</td>";
 	    }
 

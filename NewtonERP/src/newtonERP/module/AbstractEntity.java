@@ -23,6 +23,7 @@ public class AbstractEntity
     protected Module currentModule;
     private AbstractAction currentAction;
     protected String promptMessage;
+    private HashSet<String> currencyFormattedFieldList;
 
     /**
      * construit une entity ne comportant aucun champ
@@ -259,5 +260,27 @@ public class AbstractEntity
     public Hashtable<String, ListOfValue> getListOfValueList()
     {
 	return listOfValueList;
+    }
+
+    /**
+     * @param inputName nom du field
+     * @return retounre true si le field doit être formatté en argent
+     */
+    public boolean isMatchCurrencyFormat(String inputName)
+    {
+	if (currencyFormattedFieldList == null)
+	    return false;
+
+	return currencyFormattedFieldList.contains(inputName);
+    }
+
+    /**
+     * @param fieldName défini un nom de champ qui sera formaté en argent
+     */
+    public final void addCurrencyFormat(String fieldName)
+    {
+	if (currencyFormattedFieldList == null)
+	    currencyFormattedFieldList = new HashSet<String>();
+	currencyFormattedFieldList.add(fieldName);
     }
 }

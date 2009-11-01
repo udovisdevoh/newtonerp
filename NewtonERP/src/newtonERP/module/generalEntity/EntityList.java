@@ -33,6 +33,7 @@ public class EntityList extends AbstractEntity implements ListViewable,
 
     /**
      * @param internalEntityDefinition the internal entity defenition
+     * @throws Exception exception lancée si création fail
      */
     public EntityList(AbstractOrmEntity internalEntityDefinition)
 	    throws Exception
@@ -78,9 +79,7 @@ public class EntityList extends AbstractEntity implements ListViewable,
     {
 	if (globalActionButtonList == null)
 	{
-	    // TODO: remove dummy code: must not recreate actions
 	    globalActionButtonList = new Hashtable<String, AbstractAction>();
-	    // TODO Make sure new User() is the appropriated behavior we want
 	    globalActionButtonList.put("Nouveau "
 		    + internalEntityDefinition.getClass().getSimpleName(),
 		    new BaseAction("New", internalEntityDefinition));
@@ -148,8 +147,8 @@ public class EntityList extends AbstractEntity implements ListViewable,
     }
 
     /**
-     * @param caption
-     * @param action
+     * @param caption nom visible du bouton
+     * @param action action du bouton
      */
     public void addSpecificActionButtonList(String caption,
 	    AbstractAction action)
@@ -192,5 +191,11 @@ public class EntityList extends AbstractEntity implements ListViewable,
     public void removeSpecificActionButton(String string)
     {
 	specificActionButtonList.remove(string);
+    }
+
+    @Override
+    public boolean isListElementColumnMatchCurrencyFormat(String fieldName)
+    {
+	return internalEntityDefinition.isMatchCurrencyFormat(fieldName);
     }
 }
