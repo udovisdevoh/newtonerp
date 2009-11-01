@@ -13,7 +13,7 @@ public class HumanResources extends Module
 {
 
     /**
-     * @throws Exception
+     * @throws Exception si création fail
      */
     public HumanResources() throws Exception
     {

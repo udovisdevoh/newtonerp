@@ -18,7 +18,9 @@ import newtonERP.viewers.viewables.PromptViewable;
  */
 public class VendorInvoice extends AbstractOrmEntity implements PromptViewable
 {
-
+    /**
+     * @throws Exception si création fail
+     */
     public VendorInvoice() throws Exception
     {
 	super();

@@ -20,6 +20,9 @@ public class CustomerInvoice extends AbstractOrmEntity implements
 	PromptViewable
 {
 
+    /**
+     * @throws Exception si création fail
+     */
     public CustomerInvoice() throws Exception
     {
 	super();
