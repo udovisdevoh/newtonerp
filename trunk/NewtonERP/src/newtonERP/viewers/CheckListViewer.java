@@ -38,10 +38,10 @@ public class CheckListViewer
 	{
 	    currentDescription = currentDescriptionI;
 
+	    String id = availableElementList.get(currentDescription);
+
 	    while (wordCount(currentDescription) < 3)
 		currentDescription += " -";
-
-	    String id = availableElementList.get(currentDescription);
 
 	    if (wordCount(currentDescription) > 1)
 	    {
