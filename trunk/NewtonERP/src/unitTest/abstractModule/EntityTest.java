@@ -43,6 +43,7 @@ public class EntityTest extends TestCase
      * Test method for
      * {@link newtonERP.module.AbstractEntity#setEntityFromHashTable(java.util.Hashtable)}
      * .
+     * @throws Exception Maudites exceptions de java
      * 
      * @throws FieldNotFoundException remonte
      * @throws ParseException an exception that can occur parsing dates
@@ -70,6 +71,7 @@ public class EntityTest extends TestCase
      * Test method for
      * {@link newtonERP.module.AbstractEntity#setEntityFromHashTable(java.util.Hashtable)}
      * .
+     * @throws Exception maudites exceptions de Java
      * 
      * @throws FieldNotFoundException remonte
      * @throws ParseException an exception that can occur parsing dates
@@ -101,7 +103,7 @@ public class EntityTest extends TestCase
      * 
      * @throws FieldNotFoundException remonte
      * @throws ParseException an exception that can occur parsing dates
-     * @throws Exception
+     * @throws Exception maudites exceptions de Java
      */
     public void testGetHashTableFromEntity() throws Exception
     {

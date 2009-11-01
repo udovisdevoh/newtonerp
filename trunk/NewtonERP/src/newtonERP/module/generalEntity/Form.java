@@ -19,7 +19,6 @@ import newtonERP.viewers.viewables.PromptViewable;
  */
 public class Form extends AbstractEntity implements PromptViewable
 {
-    private Hashtable<String, String> inputList = new Hashtable<String, String>();
     private String buttonCaption;
 
     /**
