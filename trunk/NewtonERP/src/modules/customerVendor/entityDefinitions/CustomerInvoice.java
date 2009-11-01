@@ -24,16 +24,16 @@ public class CustomerInvoice extends AbstractOrmEntity implements
     {
 	super();
 	AccessorManager.addAccessor(this, new Customer());
+	addCurrencyFormat("total");
     }
 
     public Fields initFields()
     {
 	Vector<Field> fieldList = new Vector<Field>();
-	fieldList
-		.add(new FieldInt("Numéro de la Facture", getPrimaryKeyName()));
-	fieldList.add(new FieldDouble("Total de la Facture", "total"));
-	fieldList.add(new FieldInt("Numéros du client", "customerID"));
-	fieldList.add(new FieldDate("Date de la facture", "date")); // ddmmyyyy
+	fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
+	fieldList.add(new FieldDouble("Total", "total"));
+	fieldList.add(new FieldInt("Numéro du client", "customerID"));
+	fieldList.add(new FieldDate("Date", "date")); // ddmmyyyy
 	return new Fields(fieldList);
     }
 }

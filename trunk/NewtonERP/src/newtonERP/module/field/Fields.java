@@ -79,7 +79,7 @@ public class Fields implements Iterable<Field>
      * 
      * @param shortName nom du champ
      * @param data valeur modifie
-     * @throws Exception
+     * @throws Exception maudites exceptions non-gérées de Java
      */
     public void setData(String shortName, Object data) throws Exception
     {
@@ -111,8 +111,10 @@ public class Fields implements Iterable<Field>
 
     /**
      * @param parameters Hashtable de parametre
+     * @throws Exception si fail quelque part, maudite exceptions non-gérées de
+     *             Java
      * @throws ParseException an exception that can occur during date parsing
-     * @throws FieldNotCompatibleException
+     * @throws FieldNotCompatibleException si champ pas compatible
      */
     public void setFromHashTable(Hashtable<String, ?> parameters)
 	    throws Exception

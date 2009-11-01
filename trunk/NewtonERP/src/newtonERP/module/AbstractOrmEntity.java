@@ -1,6 +1,5 @@
 package newtonERP.module;
 
-import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.Vector;
 
@@ -20,8 +19,6 @@ import newtonERP.orm.exceptions.OrmException;
 public abstract class AbstractOrmEntity extends AbstractEntity
 {
     private Vector<String> naturalKeyNameList;
-
-    private HashSet<String> currencyFormattedFieldList;
 
     /**
      * @throws Exception lorsque la création de l'entité échoue
@@ -463,15 +460,5 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	    name += " " + getFields().getField(naturalKeyName).getName();
 
 	return name.trim();
-    }
-
-    /**
-     * @param fieldName défini un nom de champ qui sera formaté en argent
-     */
-    public final void addCurrencyFormat(String fieldName)
-    {
-	if (currencyFormattedFieldList == null)
-	    currencyFormattedFieldList = new HashSet<String>();
-	currencyFormattedFieldList.add(fieldName);
     }
 }

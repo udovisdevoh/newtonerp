@@ -23,16 +23,16 @@ public class VendorInvoice extends AbstractOrmEntity implements PromptViewable
     {
 	super();
 	AccessorManager.addAccessor(this, new Vendor());
+	addCurrencyFormat("total");
     }
 
     public Fields initFields()
     {
 	Vector<Field> fieldList = new Vector<Field>();
-	fieldList
-		.add(new FieldInt("Numéro de la Facture", getPrimaryKeyName()));
-	fieldList.add(new FieldDouble("Total de la Facture", "total"));
-	fieldList.add(new FieldInt("Numéros du client", "vendorID"));
-	fieldList.add(new FieldDate("Date de la facture", "date")); // ddmmyyyy
+	fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
+	fieldList.add(new FieldDouble("Total", "total"));
+	fieldList.add(new FieldInt("Numéro du fournisseur", "vendorID"));
+	fieldList.add(new FieldDate("Date", "date")); // ddmmyyyy
 	return new Fields(fieldList);
     }
 }

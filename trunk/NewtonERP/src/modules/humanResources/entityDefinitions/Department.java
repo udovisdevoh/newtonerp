@@ -9,9 +9,16 @@ import newtonERP.module.field.FieldString;
 import newtonERP.module.field.Fields;
 import newtonERP.viewers.viewables.PromptViewable;
 
+/**
+ * Représente un département dans une compagnie
+ * @author Guillaume
+ */
 public class Department extends AbstractOrmEntity implements PromptViewable
 {
 
+    /**
+     * @throws Exception si création fails
+     */
     public Department() throws Exception
     {
 	super();

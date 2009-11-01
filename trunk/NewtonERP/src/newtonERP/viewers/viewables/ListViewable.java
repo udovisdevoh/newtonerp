@@ -73,4 +73,11 @@ public interface ListViewable
      *         doit confirmer son choix
      */
     public Set<String> getButtonConfirmList();
+
+    /**
+     * @param fieldName nom du field
+     * @return true si nom du champ doit être formatté en argent dans element de
+     *         liste
+     */
+    public boolean isListElementColumnMatchCurrencyFormat(String fieldName);
 }
