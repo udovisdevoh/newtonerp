@@ -121,8 +121,6 @@ public class FlagPool implements CheckListViewable
 
 	HashSet<String> checkedElementList = new HashSet<String>();
 
-	// TODO Auto-generated method stub
-
 	try
 	{
 	    intermediateEntityDefinition.setData(intermediateKeyIn,
@@ -148,37 +146,60 @@ public class FlagPool implements CheckListViewable
 	return checkedElementList;
     }
 
-    public void query(String sourceKeyName, Integer sourceKeyValue)
+    /**
+     * @param currentSourceKeyName nom de clef
+     * @param currentSourceKeyValue valeur de clef
+     */
+    public void query(String currentSourceKeyName, Integer currentSourceKeyValue)
     {
-	this.sourceKeyName = sourceKeyName;
-	this.sourceKeyValue = sourceKeyValue.toString();
+	sourceKeyName = currentSourceKeyName;
+	sourceKeyValue = currentSourceKeyValue.toString();
     }
 
+    /**
+     * @return définition d'entité de table intermédiaire
+     */
     public AbstractOrmEntity getIntermediateEntityDefinition()
     {
 	return intermediateEntityDefinition;
     }
 
+    /**
+     * @return définition d'entité de table étrangère
+     */
     public AbstractOrmEntity getForeignEntityDefinition()
     {
 	return foreignEntityDefinition;
     }
 
+    /**
+     * @return clef d'entré dans table étrangère
+     */
     public String getIntermediateKeyIn()
     {
 	return intermediateKeyIn;
     }
 
+    /**
+     * @return clef de sortie dans table étrangère (cible)
+     */
     public String getIntermediateKeyOut()
     {
 	return intermediateKeyOut;
     }
 
+    /**
+     * @return valeur de clef primaire de table d'entité de table source
+     */
     public String getSourceKeyValue()
     {
 	return sourceKeyValue;
     }
 
+    /**
+     * @return définition d'entité source (entité de départ dans laquelle on met
+     *         un flagPool)
+     */
     public AbstractOrmEntity getSourceEntityDefinition()
     {
 	return sourceEntityDefinition;

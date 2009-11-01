@@ -99,9 +99,9 @@ public class FieldDate extends Field
 
     /**
      * Convertie une date de string vers GregorianCalendar
-     * @param dateInString
-     * @return
-     * @throws Exception
+     * @param dateInString date en string
+     * @return date un gregorian calendar
+     * @throws Exception si formattage fail
      */
     public static GregorianCalendar getFormatedDate(String dateInString)
 	    throws Exception
