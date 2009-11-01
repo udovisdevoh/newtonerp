@@ -114,9 +114,13 @@ public abstract class Module
 
     /**
      * @return the defaultAction
+     * @throws ActionNotFoundException
      */
-    public String getDefaultAction()
+    public String getDefaultAction() throws ActionNotFoundException
     {
+	if (defaultAction == null)
+	    throw new ActionNotFoundException(
+		    "Vous devez spécifier l'action par default de ce module.");
 	return defaultAction;
     }
 
