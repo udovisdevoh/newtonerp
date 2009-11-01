@@ -25,6 +25,8 @@ public class Address extends AbstractOrmEntity implements PromptViewable
     public Address() throws Exception
     {
 	super();
+	addNaturalKey("streetNumber");
+	addNaturalKey("streetName");
     }
 
     @Override
@@ -34,7 +36,7 @@ public class Address extends AbstractOrmEntity implements PromptViewable
 	fieldsInit
 		.add(new FieldInt("Numero de l'adresse", getPrimaryKeyName()));
 	fieldsInit.add(new FieldString("Ville", "city"));
-	fieldsInit.add(new FieldString("Nom de rue", "streetName"));
+	fieldsInit.add(new FieldString("Rue", "streetName"));
 	fieldsInit.add(new FieldInt("Numero de rue", "streetNumber"));
 	fieldsInit.add(new FieldString("Code postal", "postalCode"));
 	fieldsInit

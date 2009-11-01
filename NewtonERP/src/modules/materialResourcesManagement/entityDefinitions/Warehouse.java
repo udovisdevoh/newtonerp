@@ -29,6 +29,7 @@ public class Warehouse extends AbstractOrmEntity implements PromptViewable
 	// TODO : Comment on fait une relation de 1 a 1???
 	// AccessorManager.addAccessor(this, new Address());
 	AccessorManager.addAccessor(this, new Product());
+	AccessorManager.addAccessor(this, new Address());
     }
 
     @Override
@@ -38,6 +39,7 @@ public class Warehouse extends AbstractOrmEntity implements PromptViewable
 	fieldsInit
 		.add(new FieldInt("Numero de warehouse", getPrimaryKeyName()));
 	fieldsInit.add(new FieldString("Nom de l'entrpôt", "warehouseName"));
+	fieldsInit.add(new FieldString("Adresse", "addressID"));
 	return new Fields(fieldsInit);
     }
 }
