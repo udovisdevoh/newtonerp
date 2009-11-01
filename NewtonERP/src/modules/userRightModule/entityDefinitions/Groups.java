@@ -27,8 +27,8 @@ public class Groups extends AbstractOrmEntity implements PromptViewable
     public Fields initFields() throws Exception
     {
 	Vector<Field> fieldsInit = new Vector<Field>();
-	fieldsInit.add(new FieldInt("Numéro du groupe", getPrimaryKeyName()));
-	fieldsInit.add(new FieldString("Nom du groupe", "groupName"));
+	fieldsInit.add(new FieldInt("Numéro", getPrimaryKeyName()));
+	fieldsInit.add(new FieldString("Nom", "groupName"));
 	return new Fields(fieldsInit);
     }
 

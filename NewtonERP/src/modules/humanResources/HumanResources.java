@@ -18,7 +18,7 @@ public class HumanResources extends Module
     public HumanResources() throws Exception
     {
 	super();
-	setDefaultAction(new BaseAction("GetList", new Employee()));
+	setDefaultAction(new BaseAction("GetList", new Department()));
 	addGlobalActionMenuItem("Employés ", new BaseAction("GetList",
 		new Employee()));
 	addGlobalActionMenuItem("Départements", new BaseAction("GetList",

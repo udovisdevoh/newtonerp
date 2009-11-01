@@ -18,6 +18,7 @@ public interface ListViewable
 {
     /**
      * @return Module à utiliser en ce moment
+     * @throws Exception si obtention du module fail
      * @throws EntityException a general exception
      */
     public Module getCurrentModule() throws Exception;
@@ -42,12 +43,14 @@ public interface ListViewable
 
     /**
      * @return Titre des colonnes
+     * @throws Exception maudites exceptions de Java
      * @throws OrmException an exception that can occur in the orm
      */
     public Vector<String> getColumnTitleList() throws Exception;
 
     /**
      * @return Liste de rangées
+     * @throws Exception maudies exceptions de Java
      * @throws OrmException an exception that can occur in the orm
      */
     public Vector<Map<String, String>> getRowList() throws Exception;
