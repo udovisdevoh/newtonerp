@@ -21,6 +21,7 @@ public class Employee extends AbstractOrmEntity implements PromptViewable
     {
 	super();
 	AccessorManager.addAccessor(this, new Department());
+	addCurrencyFormat("salary");
     }
 
     @Override
