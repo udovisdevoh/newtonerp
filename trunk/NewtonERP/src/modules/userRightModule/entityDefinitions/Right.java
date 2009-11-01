@@ -27,10 +27,10 @@ public class Right extends AbstractOrmEntity implements PromptViewable
     public Fields initFields()
     {
 	Vector<Field> fieldsInit = new Vector<Field>();
-	fieldsInit.add(new FieldInt("Numéro du droit", getPrimaryKeyName()));
-	fieldsInit.add(new FieldString("Nom de module", "moduleName"));
-	fieldsInit.add(new FieldString("Nom de l'action", "actionName"));
-	fieldsInit.add(new FieldString("Nom de l'entité", "entityName"));
+	fieldsInit.add(new FieldInt("Numéro", getPrimaryKeyName()));
+	fieldsInit.add(new FieldString("Nom", "moduleName"));
+	fieldsInit.add(new FieldString("Action", "actionName"));
+	fieldsInit.add(new FieldString("Entité", "entityName"));
 
 	addNaturalKey("moduleName");
 	addNaturalKey("entityName");
@@ -52,13 +52,27 @@ public class Right extends AbstractOrmEntity implements PromptViewable
     }
 
     @Override
+    public AbstractEntity editUI(Hashtable<String, String> parameters)
+	    throws Exception
+    {
+	/*
+	 * On ne veut pas permettre la modification de droit alors on redirige
+	 * vers GetList
+	 */
+	EntityList entityList = (EntityList) super.getList();
+	return entityList;
+    }
+
+    @Override
     public final AbstractEntity getList(Hashtable<String, String> parameters)
 	    throws Exception
     {
-	// On ne veut pas permettre l'effacement de droit alors on enlève le
-	// bouton Delete en passant son nom de caption en argument
+	// On ne veut pas permettre l'effacement ni la modification de droit
+	// alors on enlève les
+	// bouton Delete et Modifier en passant son nom de caption en argument
 	EntityList entityList = (EntityList) super.getList(parameters);
 	entityList.removeSpecificActionButton("Effacer");
+	entityList.removeSpecificActionButton("Modifier");
 	return entityList;
     }
 }
