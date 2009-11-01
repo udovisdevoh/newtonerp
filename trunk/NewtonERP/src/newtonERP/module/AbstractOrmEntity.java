@@ -1,5 +1,6 @@
 package newtonERP.module;
 
+import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.Vector;
 
@@ -20,6 +21,11 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 {
     private Vector<String> naturalKeyNameList;
 
+    private HashSet<String> currencyFormattedFieldList;
+
+    /**
+     * @throws Exception lorsque la création de l'entité échoue
+     */
     public AbstractOrmEntity() throws Exception
     {
 	super();
@@ -41,7 +47,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
     /**
      * @param parameters la hashTable de parametre qui sera transphormé en
      *            entity
-     * @throws Exception
+     * @throws Exception lorsque l'insertion de données échoue
      */
     public final void setOrmizableData(Hashtable<String, Object> parameters)
 	    throws Exception
@@ -184,11 +190,20 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	// une gestion de droit sufisante
     }
 
+    /**
+     * @return ne liste d'entité de ce type
+     * @throws Exception lorsque la requête d'obtention de liste échoue
+     */
     public final AbstractEntity getList() throws Exception
     {
 	return getList(new Hashtable<String, String>());
     }
 
+    /**
+     * @param parameters parametres de sélection (à venir)
+     * @return une liste d'entité de ce type
+     * @throws Exception lorsque la requête d'obtention de liste échoue
+     */
     public AbstractEntity getList(Hashtable<String, String> parameters)
 	    throws Exception
     {
@@ -241,11 +256,6 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	}
 
 	return currentModule;
-    }
-
-    private void updateForeignFlagPoolData(FlagPool flagPool)
-    {
-	// TODO Auto-generated method stub
     }
 
     /**
@@ -307,6 +317,10 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 		+ "ID";
     }
 
+    /**
+     * @return nom de la clef étrangère pour cette entité lorsque les autres
+     *         entités l'utilisent
+     */
     public String getForeignKeyName()
     {
 	String firstLetter = (getClass().getSimpleName().charAt(0) + "")
@@ -364,6 +378,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
     }
 
     /**
+     * @param flagPoolList Liste de flagPool de cette entité
      * @param sourceEntityDefinition Definition de l'entité de source, exemple:
      *            groupe
      * @param visibleDescription Description visible du flag pool
@@ -448,5 +463,15 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	    name += " " + getFields().getField(naturalKeyName).getName();
 
 	return name.trim();
+    }
+
+    /**
+     * @param fieldName défini un nom de champ qui sera formaté en argent
+     */
+    public final void addCurrencyFormat(String fieldName)
+    {
+	if (currencyFormattedFieldList == null)
+	    currencyFormattedFieldList = new HashSet<String>();
+	currencyFormattedFieldList.add(fieldName);
     }
 }
