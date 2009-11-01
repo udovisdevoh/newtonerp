@@ -16,13 +16,16 @@ body /*mise en page pour tout le corp*/
 {
 	width: 988px;
 	height: 75px;
-	background-color: #d3d8e1;
+	/*background-color: #d3d8e1;*/
 	color: black;
 	font-family: Arial, "Arial Black", "Times New Roman", Times, serif;
 	border: 1px solid black;
 	margin-bottom: 5px;
 	padding-left:10px;
-	background-image: url('/file/images/windowBackground.png');
+	/*background-image: url('/file/images/windowBackground.png');*/
+	background-image: url('/file/images/headerBackground.gif');
+	background-color: #FFF;
+	border-style:dashed;
 
 }
 
@@ -42,11 +45,12 @@ h2 /* sous-titres */
 {
 	float: left; /* Le menu flottant à gauche */
 	width: 170px;
-	background-color: #d3d8e1;
-	border: 1px solid black;
+	/*background-color: #d3d8e1;*/
+	border-width: 1px;
 	padding: 10px;
-	background-image: url('/file/images/windowBackground.png');
+	background-image: url('/file/images/menuBackground.png');
 	line-height:18px;
+	border-style:dashed;
 }
 
 .element_menu h3 /* Tous les titres de sous-menus */ 
@@ -101,6 +105,7 @@ h2 /* sous-titres */
 	background-color: #d3d8e1;
 	border: 1px solid black;
 	background-image: url('/file/images/windowBackground.png');
+	border-style:dashed;
 }
 
 .ListViewerTable td 
@@ -115,14 +120,14 @@ h2 /* sous-titres */
 
 .ListViewerTable td.ListViewerTableHeader
 {
-	background-color: #BBF;
+	text-align: center;
 	border-style: solid;
 	border-width: 2px;
 	border-color: #39405d #61989f #61989f #39405d;
-	background-image: none;
-	background-attachment: scroll;
+	font-weight:bold;
+	background-color: #86a0b6;
 	background-image: url('/file/images/tableHeaderBackground.gif');
-	color: #FFF;
+	color: #efefef;
 	height:32px;
 }
 
@@ -130,9 +135,11 @@ h2 /* sous-titres */
 {
 	text-align: center;
 	color: black;
-	background-color: #d3d8e1;
-	border: 1px solid black;
-	background-image: url('/file/images/windowBackground.png');
+	border-width: 1px;
+	background-image: url('/file/images/headerBackground.gif');
+	background-color: #FFF;
+	border-style:dashed;
+	margin-left:200px;
 }
 
 .topMenu
