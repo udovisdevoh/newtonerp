@@ -4,6 +4,7 @@ import java.util.Vector;
 
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.field.Field;
+import newtonERP.module.field.FieldDouble;
 import newtonERP.module.field.FieldInt;
 import newtonERP.module.field.FieldString;
 import newtonERP.module.field.Fields;
@@ -30,6 +31,7 @@ public class Employee extends AbstractOrmEntity implements PromptViewable
 	fieldsData.add(new FieldString("Prénom", "firstName"));
 	fieldsData.add(new FieldString("Nom de famille", "lastName"));
 	fieldsData.add(new FieldInt("Numéro department", "departmentID"));
+	fieldsData.add(new FieldDouble("Salaire", "salary"));
 	return new Fields(fieldsData);
     }
 }
