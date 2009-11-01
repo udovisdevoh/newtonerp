@@ -194,4 +194,9 @@ public class EntityList extends AbstractEntity implements ListViewable,
     {
 	specificActionButtonList.remove(string);
     }
+
+    public AbstractOrmEntity getInternalEntityDefinition()
+    {
+	return internalEntityDefinition;
+    }
 }
