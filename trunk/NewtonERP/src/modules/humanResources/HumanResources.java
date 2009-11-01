@@ -5,6 +5,10 @@ import modules.humanResources.entityDefinitions.Employee;
 import newtonERP.module.BaseAction;
 import newtonERP.module.Module;
 
+/**
+ * Module de gestion des resources humaines
+ * @author Guillaume Lacasse
+ */
 public class HumanResources extends Module
 {
 
@@ -14,7 +18,7 @@ public class HumanResources extends Module
     public HumanResources() throws Exception
     {
 	super();
-	// setDefaultAction(new BaseAction("GetList", new Employee()));
+	setDefaultAction(new BaseAction("GetList", new Employee()));
 	addGlobalActionMenuItem("Employés ", new BaseAction("GetList",
 		new Employee()));
 	addGlobalActionMenuItem("Départements", new BaseAction("GetList",

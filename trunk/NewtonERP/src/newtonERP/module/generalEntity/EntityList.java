@@ -12,7 +12,6 @@ import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.BaseAction;
-import newtonERP.module.Module;
 import newtonERP.module.field.Field;
 import newtonERP.viewers.viewables.ListViewable;
 
@@ -28,7 +27,6 @@ public class EntityList extends AbstractEntity implements ListViewable,
     // -Guillaume
     private Hashtable<String, AbstractAction> globalActionButtonList;
     private Hashtable<String, AbstractAction> specificActionButtonList;
-    private Module currentModule;
     private Vector<AbstractOrmEntity> data = new Vector<AbstractOrmEntity>();
     private AbstractOrmEntity internalEntityDefinition;
     private HashSet<String> buttonConfirmList = new HashSet<String>();
@@ -135,9 +133,7 @@ public class EntityList extends AbstractEntity implements ListViewable,
 
     private Hashtable<String, AbstractAction> buildSpecificActionButtonList()
     {
-	// TODO: remove dummy code: must not recreate actions
 	specificActionButtonList = new Hashtable<String, AbstractAction>();
-	// TODO Make sure new User() is the appropriated behavior we want
 	specificActionButtonList.put("Modifier", new BaseAction("Edit",
 		internalEntityDefinition));
 	specificActionButtonList.put("Effacer", new BaseAction("Delete",
@@ -190,13 +186,11 @@ public class EntityList extends AbstractEntity implements ListViewable,
 	return buttonConfirmList;
     }
 
+    /**
+     * @param string caption du bouton à enlever
+     */
     public void removeSpecificActionButton(String string)
     {
 	specificActionButtonList.remove(string);
-    }
-
-    public AbstractOrmEntity getInternalEntityDefinition()
-    {
-	return internalEntityDefinition;
     }
 }
