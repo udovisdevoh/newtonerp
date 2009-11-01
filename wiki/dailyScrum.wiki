@@ -498,7 +498,7 @@ par exemple, si on delete un Group, alors les GroupRight WHERE GroupID = ce grou
 
 ==Guillaume Lacasse==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
-  * Implémentation d'une gestion simplfiée des accessors (relation entre les tables)
+  * Implémentation d'une gestion simplifiée des accessors (relation entre les tables)
   * Implémentation et Intégration du module de clients / fournisseur: fonctionnel
   * Ajout d'un module de ressource humaines
   * Formatage de champ d'argent
