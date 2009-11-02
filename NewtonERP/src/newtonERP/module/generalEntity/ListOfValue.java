@@ -70,8 +70,7 @@ public class ListOfValue implements SelectBoxViewable
 	    return resultEntity.getNaturalKeyDescription();
 	} catch (Exception e)
 	{
-	    return "- " + foreignEntity.getClass().getSimpleName()
-		    + " invalide - ";
+	    return "- " + foreignEntity.getVisibleName() + " invalide - ";
 	}
     }
 }
