@@ -27,6 +27,7 @@ public class Address extends AbstractOrmEntity implements PromptViewable
 	super();
 	addNaturalKey("streetNumber");
 	addNaturalKey("streetName");
+	setVisibleName("Adresse");
     }
 
     @Override

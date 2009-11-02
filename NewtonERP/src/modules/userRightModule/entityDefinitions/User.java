@@ -21,11 +21,15 @@ public class User extends AbstractOrmEntity implements PromptViewable
     // vers les entités
     // groups
 
+    /**
+     * @throws Exception si création fail
+     */
     public User() throws Exception
     {
 	super();
 	addHiddenField("password");
 	AccessorManager.addAccessor(this, new Groups());
+	setVisibleName("Utilisateur");
     }
 
     public Fields initFields() throws Exception
@@ -43,7 +47,7 @@ public class User extends AbstractOrmEntity implements PromptViewable
      * permet d'obtenir directement l'entity groups lie a cet user
      * 
      * @return le group lie
-     * @throws Exception
+     * @throws Exception si obtention fail
      */
     public Groups getGroupsEntity() throws Exception
     {

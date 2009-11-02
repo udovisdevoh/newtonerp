@@ -25,6 +25,7 @@ public class Product extends AbstractOrmEntity implements PromptViewable
     public Product() throws Exception
     {
 	super();
+	setVisibleName("Produit");
     }
 
     @Override

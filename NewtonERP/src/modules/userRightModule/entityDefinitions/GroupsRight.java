@@ -25,11 +25,13 @@ public class GroupsRight extends AbstractOrmEntity
     public GroupsRight() throws Exception
     {
 	rightDefinition = new Right();
+	setVisibleName("Droit de groupe");
     }
 
     /**
      * @param groups ID du groupe
      * @param right ID du droit
+     * @throws Exception si création fail
      * @throws FieldNotFoundException remonte
      * @throws ParseException an exception that can occur during parsing dates
      */
@@ -54,6 +56,7 @@ public class GroupsRight extends AbstractOrmEntity
      * permet d'obtenir directement l'entity groups lie a cet user
      * 
      * @return le group lier
+     * @throws Exception si get groups entity fail
      * @throws OrmException remonte
      */
     public Groups getGroupsEntity() throws Exception

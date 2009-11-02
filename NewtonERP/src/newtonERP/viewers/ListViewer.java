@@ -31,8 +31,8 @@ public class ListViewer
     {
 	String html = "";
 
-	html += "<h2>Liste des " + listEntity.getInternalElementName()
-		+ "</h2>";
+	html += "<h2>Liste des " + listEntity.getVisibleInternalElementName()
+		+ "(s)" + "</h2>";
 
 	html += "<table class=\"ListViewerTable\" border=\"0\" cellpadding=\"3\" cellspacing=\"0\">";
 
@@ -65,7 +65,7 @@ public class ListViewer
 
 	    html += getButton(buttonCaption, actionName, null, null, action,
 		    module, entity.getButtonConfirmList().contains(actionName),
-		    entity.getInternalElementName());
+		    entity.getVisibleInternalElementName());
 	}
 	return html;
     }
@@ -104,7 +104,7 @@ public class ListViewer
 
 	    html += getSpecificButtonList(listEntity, listEntity.getKeyName(),
 		    listEntity.getKeyValue(rowNumber), module, listEntity
-			    .getInternalElementName());
+			    .getVisibleInternalElementName());
 
 	    html += "</tr>";
 	    rowNumber++;

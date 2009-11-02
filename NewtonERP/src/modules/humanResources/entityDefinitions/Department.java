@@ -22,6 +22,7 @@ public class Department extends AbstractOrmEntity implements PromptViewable
     public Department() throws Exception
     {
 	super();
+	setVisibleName("Département");
     }
 
     @Override

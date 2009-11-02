@@ -34,6 +34,7 @@ public class UserRightModule extends Module
 		new Right()));
 	addGlobalActionMenuItem("Groupes", new BaseAction("GetList",
 		new Groups()));
+	setVisibleName("Gestion de droits");
     }
 
     public void initDB() throws Exception
@@ -106,11 +107,5 @@ public class UserRightModule extends Module
 	GroupsRight.setData("groupsID", groupsID);
 	GroupsRight.setData("rightID", rightID);
 	Orm.insert(GroupsRight);
-    }
-
-    @Override
-    public String getVisibleName()
-    {
-	return "Gestion de droits";
     }
 }

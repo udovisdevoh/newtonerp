@@ -28,6 +28,7 @@ public class CustomerInvoice extends AbstractOrmEntity implements
 	super();
 	AccessorManager.addAccessor(this, new Customer());
 	addCurrencyFormat("total");
+	setVisibleName("Facture de client");
     }
 
     public Fields initFields()

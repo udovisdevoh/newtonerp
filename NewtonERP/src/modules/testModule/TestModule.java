@@ -15,12 +15,6 @@ public class TestModule extends Module
     public TestModule() throws Exception
     {
 	super();
-
-    }
-
-    @Override
-    public String getVisibleName()
-    {
-	return "Module test";
+	setVisibleName("Module test");
     }
 }

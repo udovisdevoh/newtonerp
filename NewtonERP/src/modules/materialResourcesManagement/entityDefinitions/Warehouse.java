@@ -28,6 +28,7 @@ public class Warehouse extends AbstractOrmEntity implements PromptViewable
 	super();
 	AccessorManager.addAccessor(this, new Product());
 	AccessorManager.addAccessor(this, new Address());
+	setVisibleName("Entrepôt");
     }
 
     @Override

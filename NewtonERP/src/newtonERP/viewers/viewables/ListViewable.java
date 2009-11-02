@@ -69,7 +69,7 @@ public interface ListViewable
     /**
      * @return the internal element name
      */
-    public String getInternalElementName();
+    public String getVisibleInternalElementName();
 
     /**
      * @return Liste de noms d'actions de boutons pour lequels l'utilisateur
