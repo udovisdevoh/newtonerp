@@ -15,7 +15,7 @@ body /*mise en page pour tout le corp*/
 #header
 {
 	width: 988px;
-	height: 75px;
+	/*height: 75px;*/
 	/*background-color: #d3d8e1;*/
 	color: black;
 	font-family: Arial, "Arial Black", "Times New Roman", Times, serif;
@@ -25,6 +25,7 @@ body /*mise en page pour tout le corp*/
 	/*background-image: url('/file/images/windowBackground.png');*/
 	background-image: url('/file/images/headerBackground.gif');
 	background-color: #FFF;
+	background-repeat: repeat-x;
 	border-style:dashed;
 
 }
