@@ -504,6 +504,7 @@ par exemple, si on delete un Group, alors les GroupRight WHERE GroupID = ce grou
   * Ajout d'un module de ressource humaines
   * Formatage de champ d'argent
   * Gestion automatique et manuelle des clefs naturelles
+  * Ajouté possibilité de donner nom visible à une entité de définition
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
   * Débugger la classe FlagPool pour qu'elle marche avec le module de ressources matérielles
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
