@@ -163,15 +163,14 @@ public class ListViewer
 	String formActionUrl = Servlet.makeLink(module, action);
 
 	String html = "";
-	html += "<form method=\"GET\" name=\"" + actionName + "\" action=\""
-		+ formActionUrl + "\">";
+	html += "<form method=\"get\" action=\"" + formActionUrl + "\">";
 
 	if (key != null && value != null)
 	    html += "<input type=\"hidden\" name=\"" + key + "\" value=\""
-		    + value + "\">";
+		    + value + "\" />";
 
 	html += "<input type=\"submit\" " + onClickConfirm + " value=\""
-		+ buttonCaption + "\">";
+		+ buttonCaption + "\" />";
 
 	html += "</form>";
 
@@ -183,7 +182,7 @@ public class ListViewer
     {
 	String html = "";
 
-	html += "onClick=\"return confirm(\'Voulez-vous vraiment ";
+	html += "onclick=\"return confirm(\'Voulez-vous vraiment ";
 	html += actionName + " ";
 	html += entityTypeName;
 	html += " " + value;

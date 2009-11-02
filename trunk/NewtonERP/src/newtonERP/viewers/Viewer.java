@@ -155,7 +155,7 @@ public abstract class Viewer
 		    menuModuleHtml += "<li><a href=\"";
 		    menuModuleHtml += Servlet.makeLink(module, module
 			    .getGlobalActionMenu().get(globalActionName));
-		    menuModuleHtml += "\">" + globalActionName + "</li>";
+		    menuModuleHtml += "\">" + globalActionName + "</a></li>";
 		}
 	    }
 	    else
@@ -167,6 +167,8 @@ public abstract class Viewer
 	    menuModuleHtml += "</ul></li>";
 	}
 	menuModuleHtml += "</ul>";
+
+	menuModuleHtml = menuModuleHtml.replace("<ul></ul>", "");
 
 	// ferme menu gauche + <div id="body">=style css corp de droite
 	return (menu + menuModuleHtml + "</div> <div id=\"body\">" + buildTopMenu());
