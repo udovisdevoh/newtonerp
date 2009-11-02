@@ -465,7 +465,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      */
     public String getNaturalKeyName()
     {
-	String name = getClass().getSimpleName();
+	String name = getVisibleName();
 	for (String naturalKeyName : getNaturalKeyNameList())
 	    name += " " + getFields().getField(naturalKeyName).getName();
 

@@ -16,7 +16,6 @@ import newtonERP.viewers.viewables.SelectBoxViewable;
 public class ListOfValue implements SelectBoxViewable
 {
     private String labelName;
-    private String foreignPrimaryKey;
     private AbstractOrmEntity foreignEntity;
 
     /**
@@ -25,11 +24,9 @@ public class ListOfValue implements SelectBoxViewable
      *            étrangere
      * @param foreignEntity the foreign entity
      */
-    public ListOfValue(String labelName, String foreignPrimaryKey,
-	    AbstractOrmEntity foreignEntity)
+    public ListOfValue(String labelName, AbstractOrmEntity foreignEntity)
     {
 	this.labelName = labelName;
-	this.foreignPrimaryKey = foreignPrimaryKey;
 	this.foreignEntity = foreignEntity;
     }
 
