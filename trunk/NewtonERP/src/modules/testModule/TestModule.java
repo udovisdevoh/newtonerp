@@ -1,5 +1,6 @@
 package modules.testModule;
 
+import modules.testModule.actions.TestAction;
 import newtonERP.module.Module;
 
 /**
@@ -15,6 +16,7 @@ public class TestModule extends Module
     public TestModule() throws Exception
     {
 	super();
+	setDefaultAction(new TestAction());
 	setVisibleName("Module test");
     }
 }
