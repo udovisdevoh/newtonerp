@@ -70,6 +70,8 @@ public class FieldInt extends Field
      */
     public void setData(String data)
     {
+	if (data == null || data.equals("null"))
+	    data = "0";
 	this.data = Integer.parseInt(data);
     }
 

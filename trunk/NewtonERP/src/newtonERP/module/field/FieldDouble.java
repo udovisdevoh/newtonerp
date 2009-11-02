@@ -70,6 +70,8 @@ public class FieldDouble extends Field
      */
     public void setData(String data)
     {
+	if (data == null || data.equals("null"))
+	    data = "0.0";
 	this.data = Double.parseDouble(data);
     }
 
