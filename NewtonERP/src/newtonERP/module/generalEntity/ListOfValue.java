@@ -58,17 +58,18 @@ public class ListOfValue implements SelectBoxViewable
     }
 
     /**
-     * @param foreignPrimaryKey the primary key
+     * @param currentForeignPrimaryKey the primary key
      * @return the foreign value of the primary key
      * @throws OrmException an exception that can occur in the orm
      */
-    public String getForeignValue(String foreignPrimaryKey) throws OrmException
+    public String getForeignValue(String currentForeignPrimaryKey)
+	    throws OrmException
     {
 	try
 	{
 	    Vector<String> criterias = new Vector<String>();
 	    criterias.add(foreignEntity.getPrimaryKeyName() + "="
-		    + foreignPrimaryKey);
+		    + currentForeignPrimaryKey);
 	    Vector<AbstractOrmEntity> entityList = Orm.select(foreignEntity,
 		    criterias);
 	    AbstractOrmEntity resultEntity = entityList.get(0);

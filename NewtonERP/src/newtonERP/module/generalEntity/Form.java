@@ -22,6 +22,8 @@ public class Form extends AbstractEntity implements PromptViewable
     private String buttonCaption;
 
     /**
+     * @param currentModule module courant
+     * @param currentAction action courante
      * @param currentSelectedUser the currecntly selected user
      * @throws Exception an exception that can occur
      */
@@ -35,10 +37,10 @@ public class Form extends AbstractEntity implements PromptViewable
     }
 
     /**
-     * @param label
-     * @param fieldName
-     * @param currentValue
-     * @throws FieldNotFoundException
+     * @param label étiquette du champ
+     * @param fieldName nom du champ
+     * @param currentValue valeur courante
+     * @throws FieldNotFoundException si field introuvable
      * @throws ParseException an exception that can occur during parsing dates
      */
     public void addNewField(String label, String fieldName, String currentValue)
@@ -50,9 +52,9 @@ public class Form extends AbstractEntity implements PromptViewable
     }
 
     /**
-     * @param label
-     * @param fieldName
-     * @throws FieldNotFoundException
+     * @param label étiquette du champ
+     * @param fieldName nom du champ
+     * @throws FieldNotFoundException si field introuvable
      * @throws ParseException an exception that can occur during parsong dates
      */
     public void addNewField(String label, String fieldName)
@@ -69,6 +71,9 @@ public class Form extends AbstractEntity implements PromptViewable
 	return buttonCaption;
     }
 
+    /**
+     * @param buttonCaption nom visible du bouton
+     */
     public void setButtonCaption(String buttonCaption)
     {
 	this.buttonCaption = buttonCaption;
