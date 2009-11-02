@@ -45,7 +45,7 @@ public class PromptViewer
 		    + ormEntity.getPrimaryKeyValue();
 	}
 
-	html += "<form method=\"POST\" action=\"" + formActionUrl + "\">";
+	html += "<form method=\"post\" action=\"" + formActionUrl + "\">";
 
 	html += "<table>";
 
