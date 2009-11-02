@@ -116,7 +116,7 @@ public abstract class Module
 
     /**
      * @return the defaultAction
-     * @throws ActionNotFoundException
+     * @throws ActionNotFoundException si action introuvable
      */
     public String getDefaultAction() throws ActionNotFoundException
     {

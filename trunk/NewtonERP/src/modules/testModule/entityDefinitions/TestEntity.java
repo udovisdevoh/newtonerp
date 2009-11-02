@@ -16,6 +16,9 @@ import newtonERP.module.field.Fields;
  */
 public class TestEntity extends AbstractOrmEntity
 {
+    /**
+     * @throws Exception si création fail
+     */
     public TestEntity() throws Exception
     {
 	super();

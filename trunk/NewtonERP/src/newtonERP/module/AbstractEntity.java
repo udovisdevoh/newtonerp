@@ -165,7 +165,7 @@ public class AbstractEntity
     }
 
     /**
-     * @return
+     * @return action courante
      */
     public AbstractAction getCurrentAction()
     {
@@ -173,8 +173,8 @@ public class AbstractEntity
     }
 
     /**
-     * @return
-     * @throws EntityException
+     * @return module courant
+     * @throws Exception si obtiention fail
      */
     public Module getCurrentModule() throws Exception
     {
@@ -203,7 +203,7 @@ public class AbstractEntity
     }
 
     /**
-     * @param message
+     * @param message message à ajouter
      */
     public final void addAlertMessage(String message)
     {
@@ -211,7 +211,7 @@ public class AbstractEntity
     }
 
     /**
-     * @return
+     * @return message d'invite
      */
     public String getPromptMessage()
     {
@@ -221,7 +221,7 @@ public class AbstractEntity
     }
 
     /**
-     * @param promptMessage
+     * @param promptMessage message d'invite
      */
     public void setPromptMessage(String promptMessage)
     {
