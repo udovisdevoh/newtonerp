@@ -35,8 +35,7 @@ public class ListOfValueManager
 	    listOfValueList = new Hashtable<String, ListOfValue>();
 
 	ListOfValue listOfValue = new ListOfValue(foreignEntity
-		.getNaturalKeyName(), foreignEntity.getPrimaryKeyName(),
-		foreignEntity);
+		.getNaturalKeyName(), foreignEntity);
 
 	listOfValueList.put(foreignKeyName, listOfValue);
 
