@@ -14,6 +14,7 @@ import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.BaseAction;
 import newtonERP.module.field.Field;
 import newtonERP.viewers.viewables.ListViewable;
+import newtonERP.viewers.viewables.PromptViewable;
 
 /**
  * @author Guillaume Lacasse
@@ -96,9 +97,9 @@ public class EntityList extends AbstractEntity implements ListViewable,
 
 	internalEntityDefinition.initFields();
 
-	if (data.size() < 1)
-	    data.add(internalEntityDefinition);
+	data.insertElementAt(internalEntityDefinition, 0);
 
+	int counter = 0;
 	for (AbstractOrmEntity entity : data)
 	{
 	    entityInfo = new TreeMap<String, String>();
@@ -110,14 +111,28 @@ public class EntityList extends AbstractEntity implements ListViewable,
 
 		ListOfValue listOfValue = entity.tryMatchListOfValue(field
 			.getShortName());
-		if (listOfValue != null)
-		    entityInfo.put(listOfValue.getLabelName(), listOfValue
-			    .getForeignValue(field.getDataString()));
-		else
-		    entityInfo.put(field.getShortName(), field.getDataString());
-	    }
 
+		if (counter == 0)
+		{
+		    if (listOfValue != null)
+			entityInfo.put(listOfValue.getLabelName(), listOfValue
+				.getLabelName());
+		    else
+			entityInfo.put(field.getShortName(), field.getName());
+		}
+		else
+		{
+
+		    if (listOfValue != null)
+			entityInfo.put(listOfValue.getLabelName(), listOfValue
+				.getForeignValue(field.getDataString()));
+		    else
+			entityInfo.put(field.getShortName(), field
+				.getDataString());
+		}
+	    }
 	    userListInfo.add(entityInfo);
+	    counter++;
 	}
 	return userListInfo;
     }
@@ -197,5 +212,12 @@ public class EntityList extends AbstractEntity implements ListViewable,
     public boolean isListElementColumnMatchCurrencyFormat(String fieldName)
     {
 	return internalEntityDefinition.isMatchCurrencyFormat(fieldName);
+    }
+
+    @Override
+    public Vector<PromptViewable> getViewableRowList()
+    {
+	// TODO Auto-generated method stub
+	return null;
     }
 }

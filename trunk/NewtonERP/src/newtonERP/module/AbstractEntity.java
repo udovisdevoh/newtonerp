@@ -27,7 +27,7 @@ public class AbstractEntity
 
     /**
      * construit une entity ne comportant aucun champ
-     * @throws Exception
+     * @throws Exception exceptions si création fail
      */
     public AbstractEntity() throws Exception
     {
@@ -39,6 +39,7 @@ public class AbstractEntity
      * des champs, sinon initialise une liste de champ vide
      * 
      * @return le Fields initialiser
+     * @throws Exception si initFields fail
      */
     public Fields initFields() throws Exception
     {

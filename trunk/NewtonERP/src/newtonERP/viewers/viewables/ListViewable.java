@@ -83,4 +83,9 @@ public interface ListViewable
      *         liste
      */
     public boolean isListElementColumnMatchCurrencyFormat(String fieldName);
+
+    /**
+     * @return liste des entité promptViewable
+     */
+    public Vector<PromptViewable> getViewableRowList();
 }

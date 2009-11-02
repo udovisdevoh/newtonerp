@@ -21,29 +21,28 @@ public class ListViewer
     /**
      * Creates the gtml code for the web page
      * 
-     * @param entity the entity to view in list
+     * @param listEntity the entity to view in list
      * @return html the html code
      * @throws ViewerException an exception that can occur in the viewer
      * @throws Exception general exception
      */
-    public static String getHtmlCode(ListViewable entity)
+    public static String getHtmlCode(ListViewable listEntity)
 	    throws ViewerException, Exception
     {
 	String html = "";
 
-	html += "<h2>Liste des " + entity.getInternalElementName() + "</h2>";
+	html += "<h2>Liste des " + listEntity.getInternalElementName()
+		+ "</h2>";
 
 	html += "<table class=\"ListViewerTable\" border=\"0\" cellpadding=\"3\" cellspacing=\"0\">";
 
-	html += getHeaderRow(entity.getColumnTitleList());
-
-	html += getDataRowList(entity.getRowList(), entity, entity
+	html += getDataRowList(listEntity.getRowList(), listEntity, listEntity
 		.getCurrentModule());
 
 	html += "</table>";
 
-	html += getGlobalButtonList(entity.getGlobalActionButtonList(), entity
-		.getCurrentModule(), entity);
+	html += getGlobalButtonList(listEntity.getGlobalActionButtonList(),
+		listEntity.getCurrentModule(), listEntity);
 
 	return html;
     }
@@ -71,7 +70,6 @@ public class ListViewer
 	return html;
     }
 
-    @SuppressWarnings("null")
     private static String getDataRowList(Vector<Map<String, String>> rowValues,
 	    ListViewable listEntity, Module module) throws ModuleException
     {
@@ -79,6 +77,8 @@ public class ListViewer
 	String html = "";
 	int rowNumber = 0;
 	String cellValue = null;
+	String isHeader;
+
 	for (Map<String, String> row : rowValues)
 	{
 	    html += "\n<tr>";
@@ -86,20 +86,25 @@ public class ListViewer
 	    {
 		cellValue = row.get(cellKey);
 
-		if (cellValue == null || cellValue.equals("null")
-			|| cellValue.equals("0.0") || cellValue.equals("0"))
+		if (cellValue == null || cellValue.equals("null"))
 		    cellValue = "";
 
-		if (listEntity.isListElementColumnMatchCurrencyFormat(cellKey))
+		if (rowNumber > 0
+			&& listEntity
+				.isListElementColumnMatchCurrencyFormat(cellKey))
 		    cellValue = MoneyViewer.getHtmlCode(cellValue);
 
-		html += "<td>" + cellValue + "</td>";
+		if (rowNumber == 0)
+		    isHeader = " class=\"ListViewerTableHeader\"";
+		else
+		    isHeader = "";
+
+		html += "<td" + isHeader + ">" + cellValue + "</td>";
 	    }
 
-	    if (!cellValue.equals("") || cellValue.equals("null"))
-		html += getSpecificButtonList(listEntity, listEntity
-			.getKeyName(), listEntity.getKeyValue(rowNumber),
-			module, listEntity.getInternalElementName());
+	    html += getSpecificButtonList(listEntity, listEntity.getKeyName(),
+		    listEntity.getKeyValue(rowNumber), module, listEntity
+			    .getInternalElementName());
 
 	    html += "</tr>";
 	    rowNumber++;
@@ -112,6 +117,9 @@ public class ListViewer
 	    throws ModuleException
     {
 	String html = "", actionName;
+
+	if (value == null || value.equals("null"))
+	    return html;
 
 	AbstractAction action;
 	for (String buttonCaption : listEntity.getSpecificActionButtonList()
@@ -126,6 +134,7 @@ public class ListViewer
 		actionName = ((BaseAction) (action)).getActionName();
 	    else
 		actionName = action.getClass().getSimpleName();
+
 	    html += getButton(buttonCaption, actionName, key, value, action,
 		    module, listEntity.getButtonConfirmList().contains(
 			    actionName), entityTypeName);
@@ -183,19 +192,5 @@ public class ListViewer
 	html += "\"";
 
 	return html;
-    }
-
-    /**
-     * Gets the header row
-     * 
-     * @param columnList the coloumn list
-     * @return html
-     */
-    public static String getHeaderRow(Iterable<String> columnList)
-    {
-	String html = "<tr>";
-	for (String column : columnList)
-	    html += "<td class=\"ListViewerTableHeader\">" + column + "</td>";
-	return html + "</tr>";
     }
 }
