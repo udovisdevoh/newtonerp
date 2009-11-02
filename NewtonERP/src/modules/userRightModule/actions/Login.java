@@ -21,7 +21,7 @@ public class Login extends AbstractAction
 {
     /**
      * constructeur
-     * @throws Exception
+     * @throws Exception si création fail
      */
     public Login() throws Exception
     {
