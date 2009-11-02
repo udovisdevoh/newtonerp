@@ -143,11 +143,12 @@ public abstract class Viewer
 	    modNameFromIterator = keys.next();
 
 	    Module module = ListModule.getModule(modNameFromIterator);
-	    menuModuleHtml += "<li><a href=\"" + Servlet.makeLink(module)
-		    + "\">" + module.getVisibleName() + "</a><ul>";
 
 	    if (modNameFromIterator.equals(moduleName))
 	    {
+		menuModuleHtml += "<li><span class=\"selectedLink\">"
+			+ module.getVisibleName() + "</span><ul>";
+
 		for (String globalActionName : module.getGlobalActionMenu()
 			.keySet())
 		{
@@ -156,6 +157,11 @@ public abstract class Viewer
 			    .getGlobalActionMenu().get(globalActionName));
 		    menuModuleHtml += "\">" + globalActionName + "</li>";
 		}
+	    }
+	    else
+	    {
+		menuModuleHtml += "<li><a href=\"" + Servlet.makeLink(module)
+			+ "\">" + module.getVisibleName() + "</a><ul>";
 	    }
 
 	    menuModuleHtml += "</ul></li>";

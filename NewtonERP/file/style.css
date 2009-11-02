@@ -73,6 +73,11 @@ h2 /* sous-titres */
 	color: #0081d7;
 }
 
+.element_menu .selectedLink /* Tous les liens se trouvant dans un menu */
+{
+	color: #080;
+}
+
 .element_menu a:hover
 {
 	color: red;
