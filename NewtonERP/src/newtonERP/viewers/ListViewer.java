@@ -157,7 +157,7 @@ public class ListViewer
 	String onClickConfirm = "";
 
 	if (isConfirm)
-	    onClickConfirm = getOnClickConfirm(actionName, entityTypeName,
+	    onClickConfirm = getOnClickConfirm(buttonCaption, entityTypeName,
 		    value);
 
 	String formActionUrl = Servlet.makeLink(module, action);
