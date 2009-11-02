@@ -20,6 +20,8 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 {
     private Vector<String> naturalKeyNameList;
 
+    private String visibleName;
+
     /**
      * @throws Exception lorsque la création de l'entité échoue
      */
@@ -222,9 +224,6 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	for (AbstractOrmEntity entity : resultSet)
 	    entityList.addEntity(entity);
 
-	// TODO: Problème: c'est très bizare de devoir recréer un objet de
-	// module pour spécifier quel module sera responsable des actions -
-	// Guillaume
 	entityList.setCurrentModule(getCurrentModule());
 
 	return entityList;
@@ -356,17 +355,28 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      * @return Description
      */
     @Override
-    public String getPromptMessage()
+    public final String getPromptMessage()
     {
 	if (promptMessage == null)
-	    promptMessage = getClass().getSimpleName();
+	    promptMessage = getVisibleName();
 	return promptMessage;
+    }
+
+    /**
+     * @return Nom visible de l'entités
+     */
+    public final String getVisibleName()
+    {
+	if (visibleName == null)
+	    visibleName = this.getClass().getSimpleName();
+
+	return visibleName;
     }
 
     /**
      * @return the flag pool list
      */
-    public Hashtable<String, FlagPool> getFlagPoolList()
+    public final Hashtable<String, FlagPool> getFlagPoolList()
     {
 	if (flagPoolList == null)
 	    flagPoolList = new Hashtable<String, FlagPool>();
@@ -460,5 +470,13 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	    name += " " + getFields().getField(naturalKeyName).getName();
 
 	return name.trim();
+    }
+
+    /**
+     * @param visibleName nom visible de l'entité
+     */
+    public final void setVisibleName(String visibleName)
+    {
+	this.visibleName = visibleName;
     }
 }

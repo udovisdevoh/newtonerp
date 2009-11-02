@@ -22,6 +22,7 @@ public class Vendor extends AbstractOrmEntity implements PromptViewable
     public Vendor() throws Exception
     {
 	super();
+	setVisibleName("Fournisseur");
     }
 
     public Fields initFields()

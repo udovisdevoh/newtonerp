@@ -23,12 +23,6 @@ public class HumanResources extends Module
 		new Employee()));
 	addGlobalActionMenuItem("Départements", new BaseAction("GetList",
 		new Department()));
+	setVisibleName("Ressources humaines");
     }
-
-    @Override
-    public String getVisibleName()
-    {
-	return "Ressources humaines";
-    }
-
 }

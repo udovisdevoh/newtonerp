@@ -25,6 +25,7 @@ public class ProductWarehouse extends AbstractOrmEntity
     public ProductWarehouse() throws Exception
     {
 	productDefinition = new Product();
+	setVisibleName("Produit d'entrepôt");
     }
 
     /**

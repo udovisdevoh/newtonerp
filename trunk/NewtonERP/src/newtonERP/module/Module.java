@@ -85,6 +85,8 @@ public abstract class Module
 
     private String defaultEntity;
 
+    private String visibleName;
+
     /**
      * constructeur par default
      * @throws Exception remonte
@@ -379,5 +381,19 @@ public abstract class Module
     /**
      * @return Nom visible d'un module
      */
-    public abstract String getVisibleName();
+    public final String getVisibleName()
+    {
+	if (visibleName == null)
+	    visibleName = this.getClass().getSimpleName();
+
+	return visibleName;
+    }
+
+    /**
+     * @param visibleName nom visible d'un module
+     */
+    public final void setVisibleName(String visibleName)
+    {
+	this.visibleName = visibleName;
+    }
 }

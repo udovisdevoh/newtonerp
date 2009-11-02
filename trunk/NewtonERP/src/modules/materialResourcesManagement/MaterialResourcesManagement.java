@@ -29,12 +29,7 @@ public class MaterialResourcesManagement extends Module
 		new Address()));
 	addGlobalActionMenuItem("Produits", new BaseAction("GetList",
 		new Product()));
-    }
-
-    @Override
-    public String getVisibleName()
-    {
-	return "Ressources matérielles";
+	setVisibleName("Ressources matérielles");
     }
 
     /*

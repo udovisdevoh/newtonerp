@@ -22,6 +22,7 @@ public class Customer extends AbstractOrmEntity implements PromptViewable
     public Customer() throws Exception
     {
 	super();
+	setVisibleName("Client");
     }
 
     @Override

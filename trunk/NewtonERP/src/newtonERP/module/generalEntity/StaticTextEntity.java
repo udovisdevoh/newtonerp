@@ -15,6 +15,7 @@ public class StaticTextEntity extends AbstractEntity implements
 
     /**
      * @param text the text of the entity
+     * @throws Exception si ça fail d'entrer le texte
      */
     public StaticTextEntity(String text) throws Exception
     {

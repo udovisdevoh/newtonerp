@@ -17,11 +17,15 @@ import newtonERP.viewers.viewables.PromptViewable;
  */
 public class Groups extends AbstractOrmEntity implements PromptViewable
 {
+    /**
+     * @throws Exception Cré un Groups
+     */
     public Groups() throws Exception
     {
 	super();
 	addNaturalKey("groupName");
 	AccessorManager.addAccessor(this, new Right());
+	setVisibleName("Groupe");
     }
 
     public Fields initFields() throws Exception

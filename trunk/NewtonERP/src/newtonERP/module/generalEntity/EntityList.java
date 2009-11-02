@@ -82,7 +82,7 @@ public class EntityList extends AbstractEntity implements ListViewable,
 	{
 	    globalActionButtonList = new Hashtable<String, AbstractAction>();
 	    globalActionButtonList.put("Nouveau "
-		    + internalEntityDefinition.getClass().getSimpleName(),
+		    + internalEntityDefinition.getVisibleName(),
 		    new BaseAction("New", internalEntityDefinition));
 	}
 	return globalActionButtonList;
@@ -183,9 +183,9 @@ public class EntityList extends AbstractEntity implements ListViewable,
     }
 
     @Override
-    public String getInternalElementName()
+    public String getVisibleInternalElementName()
     {
-	return internalEntityDefinition.getClass().getSimpleName();
+	return internalEntityDefinition.getVisibleName();
     }
 
     @Override
