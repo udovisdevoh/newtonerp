@@ -36,7 +36,7 @@ public class Warehouse extends AbstractOrmEntity implements PromptViewable
     {
 	Vector<Field> fieldsInit = new Vector<Field>();
 	fieldsInit
-		.add(new FieldInt("Numero de warehouse", getPrimaryKeyName()));
+		.add(new FieldInt("Numero de l'entrepot", getPrimaryKeyName()));
 	fieldsInit.add(new FieldString("Nom de l'entrpôt", "warehouseName"));
 	fieldsInit.add(new FieldInt("Adresse", "addressID"));
 	return new Fields(fieldsInit);
