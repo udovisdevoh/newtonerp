@@ -17,23 +17,19 @@ public class ListOfValue implements SelectBoxViewable
 {
     private String labelName;
     private String foreignPrimaryKey;
-    private Vector<String> foreignNaturalKeyNameList;
     private AbstractOrmEntity foreignEntity;
 
     /**
      * @param labelName the label name
-     * @param foreignPrimaryKey the foreign primary key
-     * @param foreignNaturalKeyNameList Liste des champs correspondant à la clef
-     *            naturelle de l'entité étrangere
+     * @param foreignPrimaryKey the foreign primary key naturelle de l'entité
+     *            étrangere
      * @param foreignEntity the foreign entity
      */
     public ListOfValue(String labelName, String foreignPrimaryKey,
-	    Vector<String> foreignNaturalKeyNameList,
 	    AbstractOrmEntity foreignEntity)
     {
 	this.labelName = labelName;
 	this.foreignPrimaryKey = foreignPrimaryKey;
-	this.foreignNaturalKeyNameList = foreignNaturalKeyNameList;
 	this.foreignEntity = foreignEntity;
     }
 
