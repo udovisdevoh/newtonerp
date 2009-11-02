@@ -36,7 +36,7 @@ public class ListOfValueManager
 
 	ListOfValue listOfValue = new ListOfValue(foreignEntity
 		.getNaturalKeyName(), foreignEntity.getPrimaryKeyName(),
-		foreignEntity.getNaturalKeyNameList(), foreignEntity);
+		foreignEntity);
 
 	listOfValueList.put(foreignKeyName, listOfValue);
 
