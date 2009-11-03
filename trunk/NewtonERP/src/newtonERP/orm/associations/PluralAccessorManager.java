@@ -41,6 +41,7 @@ public class PluralAccessorManager
 	    AbstractOrmEntity entity, FlagPool flagPool) throws Exception
     {
 	flagPool.query(entity.getPrimaryKeyName(), entity.getPrimaryKeyValue());
-	return flagPool.getPluralAccessor();
+
+	return flagPool.getPluralForeignAccessor();
     }
 }

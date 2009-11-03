@@ -2,6 +2,7 @@ package newtonERP.viewers;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Vector;
 
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.BaseAction;
@@ -99,18 +100,64 @@ public class PromptViewer
 			+ CheckListViewer.getHtmlCode(flagPool) + "</td></tr>";
 	    }
 
+	if (entity.getAlertMessageList() != null)
+	    for (String message : entity.getAlertMessageList())
+		html += "<p class=\"errorMessage\">" + message + "</p>";
+
+	if (entity instanceof AbstractOrmEntity)
+	{
+	    html += getSingleAccessorLinkList((AbstractOrmEntity) entity);
+	    html += getMultipleAccessorLinkList((AbstractOrmEntity) entity);
+	}
+
 	html += "<tr><td colspan=\"2\" align=\"center\"><input type=\"submit\" name=\"submit\" value=\""
 		+ entity.getButtonCaption() + "\"></td></tr>";
 	html += "</table>";
 
 	html += "</form>";
 
-	if (entity.getAlertMessageList() != null)
-	    for (String message : entity.getAlertMessageList())
-		html += "<p class=\"errorMessage\">" + message + "</p>";
+	return html;
+    }
 
-	if (entity instanceof AbstractOrmEntity)
-	    html += getSingleAccessorLinkList((AbstractOrmEntity) entity);
+    private static String getMultipleAccessorLinkList(AbstractOrmEntity entity)
+	    throws Exception
+    {
+	String html = "";
+
+	html += "<tr><td colspan=\"100%\">";
+
+	Vector<AbstractOrmEntity> pluralAccessor;
+
+	for (String accessorName : entity.getPluralAccessorList().keySet())
+	{
+	    pluralAccessor = entity.getPluralAccessorList().get(accessorName);
+
+	    if (pluralAccessor.size() > 0)
+	    {
+		html += "<div style=\"border-style:solid;border-color:#88A;border-width:1px;height:100px;width:400px;overflow-y:scroll;\"><div>";
+
+		html += "<h3 style=\"margin-top:3px\">"
+			+ pluralAccessor.get(0).getVisibleName() + "</h3>";
+		html += "<ul>";
+
+		for (AbstractOrmEntity currentForeignEntity : pluralAccessor)
+		{
+		    html += "<li><a href=\""
+			    + Servlet.makeLink(currentForeignEntity
+				    .getCurrentModule(), new BaseAction("Edit",
+				    currentForeignEntity)) + "?"
+			    + currentForeignEntity.getPrimaryKeyName() + "="
+			    + currentForeignEntity.getPrimaryKeyValue() + "\">"
+			    + currentForeignEntity.getNaturalKeyDescription()
+
+			    + "</a></li>";
+		}
+		html += "</ul>";
+		html += "</div></div>";
+	    }
+	}
+
+	html += "</td></tr>";
 
 	return html;
     }
@@ -120,12 +167,14 @@ public class PromptViewer
     {
 	String html = "";
 
+	html += "<tr><td colspan=\"100%\">";
+
 	html += "<ul>";
 
 	AbstractOrmEntity foreignEntity;
-	for (String accessorName : entity.getSingleAccesorList().keySet())
+	for (String accessorName : entity.getSingleAccessorList().keySet())
 	{
-	    foreignEntity = entity.getSingleAccesorList().get(accessorName);
+	    foreignEntity = entity.getSingleAccessorList().get(accessorName);
 	    html += "<li>"
 		    + foreignEntity.getVisibleName()
 		    + ": <a href=\""
@@ -137,6 +186,8 @@ public class PromptViewer
 	}
 
 	html += "</ul>";
+
+	html += "</td></tr>";
 
 	return html;
     }

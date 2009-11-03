@@ -489,7 +489,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      * @return la liste des accessors plusieurs à plusieurs pour cette entité
      * @throws Exception si obtention de liste d'accessor fail
      */
-    public final TreeMap<String, Vector<AbstractOrmEntity>> getPluralAccesorList()
+    public final TreeMap<String, Vector<AbstractOrmEntity>> getPluralAccessorList()
 	    throws Exception
     {
 	if (pluralAccessorList == null)
@@ -502,7 +502,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      * @return la liste des accessors 1 à 1 ou plusieurs à 1 pour cette entité
      * @throws Exception si obtention fail
      */
-    public final TreeMap<String, AbstractOrmEntity> getSingleAccesorList()
+    public final TreeMap<String, AbstractOrmEntity> getSingleAccessorList()
 	    throws Exception
     {
 	if (singleAccessorList == null)
