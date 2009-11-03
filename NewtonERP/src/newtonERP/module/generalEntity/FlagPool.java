@@ -115,27 +115,9 @@ public class FlagPool implements CheckListViewable
     public HashSet<String> getCheckedElementList() throws Exception
 
     {
-	if (sourceKeyName == null || sourceKeyValue == null)
-	    throw new Exception(
-		    "Vous devez préablablement faire une query(clef, valeur) avant d'intéroger les éléments du flag pool");
-
 	HashSet<String> checkedElementList = new HashSet<String>();
 
-	try
-	{
-	    intermediateEntityDefinition.setData(intermediateKeyIn,
-		    sourceKeyValue);
-	} catch (FieldNotCompatibleException e)
-	{
-	    int sourceKeyValueNumber = Integer.parseInt(sourceKeyValue);
-	    intermediateEntityDefinition.setData(intermediateKeyIn,
-		    sourceKeyValueNumber);
-	}
-
-	Vector<AbstractOrmEntity> checkedEntityList = Orm
-		.select(intermediateEntityDefinition);
-
-	for (AbstractOrmEntity entity : checkedEntityList)
+	for (AbstractOrmEntity entity : getPluralAccessor())
 	    checkedElementList.add(intermediateEntityDefinition.getClass()
 		    .getSimpleName()
 		    + "."
@@ -203,5 +185,32 @@ public class FlagPool implements CheckListViewable
     public AbstractOrmEntity getSourceEntityDefinition()
     {
 	return sourceEntityDefinition;
+    }
+
+    /**
+     * @return retourne un accessor multiple
+     * @throws Exception si obtention d'accessor multiple fail
+     */
+    public Vector<AbstractOrmEntity> getPluralAccessor() throws Exception
+    {
+	if (sourceKeyName == null || sourceKeyValue == null)
+	    throw new Exception(
+		    "Vous devez préablablement faire une query(clef, valeur) avant d'intéroger les éléments du flag pool");
+
+	try
+	{
+	    intermediateEntityDefinition.setData(intermediateKeyIn,
+		    sourceKeyValue);
+	} catch (FieldNotCompatibleException e)
+	{
+	    int sourceKeyValueNumber = Integer.parseInt(sourceKeyValue);
+	    intermediateEntityDefinition.setData(intermediateKeyIn,
+		    sourceKeyValueNumber);
+	}
+
+	Vector<AbstractOrmEntity> pluralAccessor = Orm
+		.select(intermediateEntityDefinition);
+
+	return pluralAccessor;
     }
 }

@@ -21,7 +21,6 @@ public class SingleAccessorManager
     public static final TreeMap<String, AbstractOrmEntity> getSingleAccessorList(
 	    AbstractOrmEntity entity) throws Exception
     {
-
 	TreeMap<String, AbstractOrmEntity> singleAccessorList = new TreeMap<String, AbstractOrmEntity>();
 
 	AbstractOrmEntity foreignEntityDefinition, realForeignEntity;
