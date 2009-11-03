@@ -1,5 +1,8 @@
 package newtonERP.orm.associations;
 
+import java.util.TreeMap;
+import java.util.Vector;
+
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.exception.TableAssociationException;
@@ -61,5 +64,26 @@ public class AccessorManager
 	    AbstractOrmEntity foreignEntity) throws Exception
     {
 	ListOfValueManager.addListOfValue(entity, foreignEntity);
+    }
+
+    /**
+     * @param abstractOrmEntity entité source
+     * @return liste des accessors plusieurs à plusieurs pour l'entité source
+     */
+    public static final TreeMap<String, Vector<AbstractOrmEntity>> getPluralAccessorList(
+	    AbstractOrmEntity abstractOrmEntity)
+    {
+	return PluralAccessorManager.getPluralAccessorList(abstractOrmEntity);
+    }
+
+    /**
+     * @param abstractOrmEntity entité source
+     * @return liste des accessors 1 à 1 et plusieurs à 1 pour l'entité source
+     * @throws Exception si obtention fail
+     */
+    public static final TreeMap<String, AbstractOrmEntity> getSingleAccessorList(
+	    AbstractOrmEntity abstractOrmEntity) throws Exception
+    {
+	return SingleAccessorManager.getSingleAccessorList(abstractOrmEntity);
     }
 }

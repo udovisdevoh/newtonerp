@@ -260,6 +260,9 @@ public class AbstractEntity
      */
     public Hashtable<String, ListOfValue> getListOfValueList()
     {
+	if (listOfValueList == null)
+	    listOfValueList = new Hashtable<String, ListOfValue>();
+
 	return listOfValueList;
     }
 

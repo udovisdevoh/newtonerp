@@ -1,6 +1,7 @@
 package newtonERP.module;
 
 import java.util.Hashtable;
+import java.util.TreeMap;
 import java.util.Vector;
 
 import newtonERP.ListModule;
@@ -9,6 +10,7 @@ import newtonERP.module.field.Fields;
 import newtonERP.module.generalEntity.EntityList;
 import newtonERP.module.generalEntity.FlagPool;
 import newtonERP.orm.Orm;
+import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.associations.FlagPoolManager;
 import newtonERP.orm.exceptions.OrmException;
 
@@ -21,6 +23,10 @@ public abstract class AbstractOrmEntity extends AbstractEntity
     private Vector<String> naturalKeyNameList;
 
     private String visibleName;
+
+    private TreeMap<String, Vector<AbstractOrmEntity>> pluralAccessorList;
+
+    private TreeMap<String, AbstractOrmEntity> singleAccessorList;
 
     /**
      * @throws Exception lorsque la création de l'entité échoue
@@ -401,7 +407,6 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      * @param foreignDescriptionUiControls liste de colonne de description de
      *            table étrangère, exemple: Action, Module
      */
-
     public void setFlagPoolList(Hashtable<String, FlagPool> flagPoolList)
     {
 	this.flagPoolList = flagPoolList;
@@ -478,5 +483,29 @@ public abstract class AbstractOrmEntity extends AbstractEntity
     public final void setVisibleName(String visibleName)
     {
 	this.visibleName = visibleName;
+    }
+
+    /**
+     * @return la liste des accessors plusieurs à plusieurs pour cette entité
+     */
+    public final TreeMap<String, Vector<AbstractOrmEntity>> getPluralAccesorList()
+    {
+	if (pluralAccessorList == null)
+	    pluralAccessorList = AccessorManager.getPluralAccessorList(this);
+
+	return pluralAccessorList;
+    }
+
+    /**
+     * @return la liste des accessors 1 à 1 ou plusieurs à 1 pour cette entité
+     * @throws Exception si obtention fail
+     */
+    public final TreeMap<String, AbstractOrmEntity> getSingleAccesorList()
+	    throws Exception
+    {
+	if (singleAccessorList == null)
+	    singleAccessorList = AccessorManager.getSingleAccessorList(this);
+
+	return singleAccessorList;
     }
 }

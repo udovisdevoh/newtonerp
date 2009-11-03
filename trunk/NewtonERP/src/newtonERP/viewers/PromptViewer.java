@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import newtonERP.module.AbstractOrmEntity;
+import newtonERP.module.BaseAction;
 import newtonERP.module.generalEntity.FlagPool;
 import newtonERP.module.generalEntity.ListOfValue;
 import newtonERP.serveur.Servlet;
@@ -107,6 +108,35 @@ public class PromptViewer
 	if (entity.getAlertMessageList() != null)
 	    for (String message : entity.getAlertMessageList())
 		html += "<p class=\"errorMessage\">" + message + "</p>";
+
+	if (entity instanceof AbstractOrmEntity)
+	    html += getSingleAccessorLinkList((AbstractOrmEntity) entity);
+
+	return html;
+    }
+
+    private static String getSingleAccessorLinkList(AbstractOrmEntity entity)
+	    throws Exception
+    {
+	String html = "";
+
+	html += "<ul>";
+
+	AbstractOrmEntity foreignEntity;
+	for (String accessorName : entity.getSingleAccesorList().keySet())
+	{
+	    foreignEntity = entity.getSingleAccesorList().get(accessorName);
+	    html += "<li>"
+		    + foreignEntity.getVisibleName()
+		    + ": <a href=\""
+		    + Servlet.makeLink(foreignEntity.getCurrentModule(),
+			    new BaseAction("Edit", foreignEntity)) + "?"
+		    + foreignEntity.getPrimaryKeyName() + "="
+		    + foreignEntity.getPrimaryKeyValue() + "\">"
+		    + foreignEntity.getNaturalKeyDescription() + "</a></li>";
+	}
+
+	html += "</ul>";
 
 	return html;
     }
