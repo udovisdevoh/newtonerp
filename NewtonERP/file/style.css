@@ -13,6 +13,11 @@ body /*mise en page pour tout le corp*/
 	margin:0px;
 }
 
+a /* Tous les liens */
+{
+	color: #0081d7;
+}
+
 #header
 {
 	width: 100%
