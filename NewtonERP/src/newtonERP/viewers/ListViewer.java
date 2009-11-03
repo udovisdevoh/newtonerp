@@ -63,9 +63,9 @@ public class ListViewer
 	    else
 		actionName = action.getClass().getSimpleName();
 
-	    html += getButton(buttonCaption, actionName, null, null, action,
-		    module, entity.getButtonConfirmList().contains(actionName),
-		    entity.getVisibleInternalElementName());
+	    html += getButton(buttonCaption, null, null, action, module, entity
+		    .getButtonConfirmList().contains(actionName), entity
+		    .getVisibleInternalElementName());
 	}
 	return html;
     }
@@ -135,9 +135,9 @@ public class ListViewer
 	    else
 		actionName = action.getClass().getSimpleName();
 
-	    html += getButton(buttonCaption, actionName, key, value, action,
-		    module, listEntity.getButtonConfirmList().contains(
-			    actionName), entityTypeName);
+	    html += getButton(buttonCaption, key, value, action, module,
+		    listEntity.getButtonConfirmList().contains(actionName),
+		    entityTypeName);
 
 	    html += "</td>";
 	}
@@ -145,8 +145,8 @@ public class ListViewer
 	return html;
     }
 
-    private static String getButton(String buttonCaption, String actionName,
-	    String key, String value, AbstractAction action, Module module,
+    private static String getButton(String buttonCaption, String key,
+	    String value, AbstractAction action, Module module,
 	    boolean isConfirm, String entityTypeName)
     {
 	/*
