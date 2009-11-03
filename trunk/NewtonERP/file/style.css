@@ -1,6 +1,6 @@
 body /*mise en page pour tout le corp*/
 {
-	width: 1000px;
+	width: 100%;
 	margin: auto;
 	margin-top: 5px;
 	margin-bottom: 5px;
@@ -10,11 +10,13 @@ body /*mise en page pour tout le corp*/
 	background-color: #FFF;
 	font-family: Arial;
 	font-size: 14px;
+	margin:0px;
 }
 
 #header
 {
-	width: 988px;
+	width: 100%
+	margin-left:-10px;
 	/*height: 75px;*/
 	/*background-color: #d3d8e1;*/
 	color: black;
