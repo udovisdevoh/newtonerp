@@ -137,7 +137,7 @@ public class PromptViewer
 		html += "<div style=\"border-style:solid;border-color:#88A;border-width:1px;height:100px;width:400px;overflow-y:scroll;\"><div>";
 
 		html += "<h3 style=\"margin-top:3px\">"
-			+ pluralAccessor.get(0).getVisibleName() + "</h3>";
+			+ pluralAccessor.get(0).getVisibleName() + "(s)</h3>";
 		html += "<ul>";
 
 		for (AbstractOrmEntity currentForeignEntity : pluralAccessor)
