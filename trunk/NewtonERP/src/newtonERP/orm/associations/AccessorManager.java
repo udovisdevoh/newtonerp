@@ -69,9 +69,10 @@ public class AccessorManager
     /**
      * @param abstractOrmEntity entité source
      * @return liste des accessors plusieurs à plusieurs pour l'entité source
+     * @throws Exception si obtention de la liste d'accessor fail
      */
     public static final TreeMap<String, Vector<AbstractOrmEntity>> getPluralAccessorList(
-	    AbstractOrmEntity abstractOrmEntity)
+	    AbstractOrmEntity abstractOrmEntity) throws Exception
     {
 	return PluralAccessorManager.getPluralAccessorList(abstractOrmEntity);
     }
