@@ -35,6 +35,9 @@ public class Product extends AbstractOrmEntity implements PromptViewable
 	fieldsInit.add(new FieldInt("Numero de produit", getPrimaryKeyName()));
 	fieldsInit.add(new FieldString("Code de produit", "code"));
 	fieldsInit.add(new FieldString("Nom de produit", "name"));
+	fieldsInit.add(new FieldInt("Quantité en stock", "quantityInStock"));
+	fieldsInit.add(new FieldInt("Point de commande", "reorderPoint"));
+	fieldsInit.add(new FieldInt("Quantité réservé", "reservedStock"));
 	return new Fields(fieldsInit);
     }
 
