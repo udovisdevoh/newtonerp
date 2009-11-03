@@ -73,4 +73,12 @@ public class ListOfValue implements SelectBoxViewable
 	    return "- " + foreignEntity.getVisibleName() + " invalide - ";
 	}
     }
+
+    /**
+     * @return définition pour entité étrangère
+     */
+    public AbstractOrmEntity getForeignEntityDefinition()
+    {
+	return foreignEntity;
+    }
 }
