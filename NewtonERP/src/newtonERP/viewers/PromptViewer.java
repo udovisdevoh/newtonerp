@@ -136,13 +136,12 @@ public class PromptViewer
 	    {
 		html += "<div style=\"border-style:solid;border-color:#88A;border-width:1px;height:100px;width:400px;overflow-y:scroll;\"><div>";
 
-		html += "<h3 style=\"margin-top:3px\">"
-			+ pluralAccessor.get(0).getVisibleName() + "(s)</h3>";
-		html += "<ul>";
+		html += "<h4 style=\"margin-top:3px;margin-bottom:3px\">"
+			+ pluralAccessor.get(0).getVisibleName() + "(s)</h4>";
 
 		for (AbstractOrmEntity currentForeignEntity : pluralAccessor)
 		{
-		    html += "<li><a href=\""
+		    html += "<a href=\""
 			    + Servlet.makeLink(currentForeignEntity
 				    .getCurrentModule(), new BaseAction("Edit",
 				    currentForeignEntity)) + "?"
@@ -150,9 +149,8 @@ public class PromptViewer
 			    + currentForeignEntity.getPrimaryKeyValue() + "\">"
 			    + currentForeignEntity.getNaturalKeyDescription()
 
-			    + "</a></li>";
+			    + "</a><br />";
 		}
-		html += "</ul>";
 		html += "</div></div>";
 	    }
 	}
