@@ -1,6 +1,7 @@
 package newtonERP.module.field;
 
 import java.text.SimpleDateFormat;
+import java.util.GregorianCalendar;
 
 /**
  * Date field for entities
@@ -13,9 +14,20 @@ public class FieldTime extends FieldDateTime
 	    "HH:mm");
 
     /**
-     * @param name the viewable name
-     * @param shortName the internal name
-     * @param data the date
+     * constructeur minimum
+     * 
+     * @param name nom du champ qui sera visible par l'utilisateur
+     * @param shortName nom du champ qui sera utiliser a l'interne
+     * @param data donne du champ
+     */
+    public FieldTime(String name, String shortName, GregorianCalendar data)
+    {
+	super(name, shortName, data);
+    }
+
+    /**
+     * @param name nom du champ qui sera visible par l'utilisateur
+     * @param shortName nom du champ qui sera utiliser a l'interne
      */
     public FieldTime(String name, String shortName)
     {
@@ -30,6 +42,8 @@ public class FieldTime extends FieldDateTime
 	// data = new GregorianCalendar();
 	if (forOrm)
 	    return super.getDataString(forOrm);
+	if (data == null)
+	    return null;
 	return dateFormatter.format(data.getTime());
     }
 }

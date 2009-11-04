@@ -20,15 +20,26 @@ public class FieldDateTime extends Field
     protected GregorianCalendar data;
 
     /**
-     * @param name the viewable name
-     * @param shortName the internal name
-     * @param data the date
+     * constructeur minimum
+     * 
+     * @param name nom du champ qui sera visible par l'utilisateur
+     * @param shortName nom du champ qui sera utiliser a l'interne
+     * @param data donne du champ
+     */
+    public FieldDateTime(String name, String shortName, GregorianCalendar data)
+    {
+	super(name, shortName);
+	this.data = data;
+	operator = "=";
+    }
+
+    /**
+     * @param name nom du champ qui sera visible par l'utilisateur
+     * @param shortName nom du champ qui sera utiliser a l'interne
      */
     public FieldDateTime(String name, String shortName)
     {
-	super(name, shortName);
-	data = new GregorianCalendar();
-	operator = "=";
+	this(name, shortName, null);
     }
 
     @Override
@@ -43,6 +54,9 @@ public class FieldDateTime extends Field
 	// TODO : Remove this code if no bug is reported with this class
 	// if (data == null)
 	// data = new GregorianCalendar();
+	if (data == null)
+	    return null;
+
 	return dateFormatter.format(data.getTime());
     }
 
