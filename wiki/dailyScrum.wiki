@@ -3,7 +3,7 @@
 <wiki:comment>
 voici le model de scrum a copier en entier si vous êtes le premier 
 
-.=jj/10/2009=
+.=jj/11/2009=
 
 ==Jonathan Hallee==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
@@ -528,6 +528,48 @@ par exemple, si on delete un Group, alors les GroupRight WHERE GroupID = ce grou
   * travailler sur un autre module ou travailler sur les links
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
   * links
+
+==Jonatan Cloutier==
+ ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
+  * ...livré...
+ ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
+  * ...à livrer...
+ ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
+  * ...problème, besoin d'aide, qui aidera...
+
+=5/11/2009=
+
+==Jonathan Hallee==
+ ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
+  * ...livré...
+ ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
+  * ...à livrer...
+ ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
+  * ...problème, besoin d'aide, qui aidera...
+
+==Guillaume Lacasse==
+ ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
+  * Viewers: affichage des champs par ordre de création
+ ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
+  * ...à livrer...
+ ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
+  * ...problème, besoin d'aide, qui aidera...
+
+==Pascal Lemay==
+ ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
+  * ...livré...
+ ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
+  * ...à livrer...
+ ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
+  * ...problème, besoin d'aide, qui aidera...
+
+==Gabriel Therrien==
+ ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
+  * ...livré...
+ ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
+  * ...à livrer...
+ ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
+  * ...problème, besoin d'aide, qui aidera...
 
 ==Jonatan Cloutier==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
