@@ -18,6 +18,7 @@ import newtonERP.module.field.FieldDate;
 import newtonERP.module.field.FieldDouble;
 import newtonERP.module.field.FieldInt;
 import newtonERP.module.field.FieldString;
+import newtonERP.module.field.Fields;
 import newtonERP.orm.exceptions.OrmException;
 import newtonERP.orm.sgbd.SgbdSqlite;
 import newtonERP.orm.sgbd.Sgbdable;
@@ -130,27 +131,26 @@ public class Orm
     @SuppressWarnings("unchecked")
     public static int insert(AbstractOrmEntity newEntity) throws OrmException
     {
-	Hashtable<String, String> data = newEntity.getOrmizableData();
 	String sqlQuery = "INSERT INTO " + prefix
 		+ newEntity.getClass().getSimpleName() + " (";
 	String valuesQuery = " VALUES (";
 
-	// We now iterate through the key set so we can add the fields to the
-	// query
-	Iterator keySetIterator = data.keySet().iterator();
-	while (keySetIterator.hasNext())
+	// We now iterate through the data so we can add the fields to the query
+	Iterator dataIterator = newEntity.getFields().iterator();
+	while (dataIterator.hasNext())
 	{
 	    // Retrieve key
-	    Object key = keySetIterator.next();
+	    Field field = (Field) dataIterator.next();
 
 	    // If it's the end or not we add the key to the query with the
 	    // right string ("," or not) and the value
-	    if (!keySetIterator.hasNext())
+	    if (!dataIterator.hasNext())
 	    {
-		if (!key.toString().matches("PK.*"))
+		if (!field.getShortName().matches("PK.*")
+			&& field.getData() != null)
 		{
-		    sqlQuery += "'" + key.toString() + "') ";
-		    valuesQuery += "'" + data.get(key).toString() + "') ";
+		    sqlQuery += "'" + field.getShortName() + "') ";
+		    valuesQuery += "'" + field.getDataString(true) + "') ";
 		}
 		else
 		{
@@ -164,10 +164,11 @@ public class Orm
 	    }
 	    else
 	    {
-		if (!key.toString().matches("PK.*"))
+		if (!field.getShortName().matches("PK.*")
+			&& field.getData() != null)
 		{
-		    sqlQuery += "'" + key.toString() + "', ";
-		    valuesQuery += "'" + data.get(key).toString() + "', ";
+		    sqlQuery += "'" + field.getShortName() + "', ";
+		    valuesQuery += "'" + field.getDataString(true) + "', ";
 		}
 	    }
 	}
@@ -275,10 +276,9 @@ public class Orm
     {
 	String sqlQuery = "UPDATE " + prefix
 		+ entityContainingChanges.getClass().getSimpleName() + " SET ";
-	Hashtable<String, String> data = entityContainingChanges
-		.getOrmizableData();
 
-	sqlQuery = buildSetClauseForQuery(data, sqlQuery);
+	sqlQuery = buildSetClauseForQuery(entityContainingChanges.getFields(),
+		sqlQuery);
 	sqlQuery = buildWhereClauseForQuery(sqlQuery, searchCriterias);
 
 	// TODO: Remove this once it will be properly debugged
@@ -302,10 +302,9 @@ public class Orm
     {
 	String sqlQuery = "UPDATE " + prefix
 		+ entityContainingChanges.getClass().getSimpleName() + " SET ";
-	Hashtable<String, String> data = entityContainingChanges
-		.getOrmizableData();
 
-	sqlQuery = buildSetClauseForQuery(data, sqlQuery);
+	sqlQuery = buildSetClauseForQuery(entityContainingChanges.getFields(),
+		sqlQuery);
 	sqlQuery = buildWhereClauseForQuery(searchEntities, sqlQuery);
 
 	// TODO: Remove this once it will be properly debugged
@@ -363,7 +362,7 @@ public class Orm
 		{
 		    sqlQuery += field.getShortName() + " "
 			    + field.getOperator() + " '"
-			    + field.getDataString() + "'";
+			    + field.getDataString(true) + "'";
 
 		    sqlQuery += " AND ";
 		}
@@ -382,23 +381,22 @@ public class Orm
     /**
      * Method used internally by the update method to build the set statement
      * 
-     * @param data the data from the entities
+     * @param fields the data from the entities
      * @param sqlQuery the non-finished sqlQuery
      * @return the sqlQuery
      */
-    private static String buildSetClauseForQuery(
-	    Hashtable<String, String> data, String sqlQuery)
+    private static String buildSetClauseForQuery(Fields fields, String sqlQuery)
     {
-	Iterator<String> keySetIterator = data.keySet().iterator();
+	Iterator<Field> dataIterator = fields.iterator();
 
-	while (keySetIterator.hasNext())
+	while (dataIterator.hasNext())
 	{
 	    // Retrieve key
-	    Object key = keySetIterator.next();
-
-	    if (!key.toString().matches("PK.*"))
+	    Field data = dataIterator.next();
+	    if (!data.getShortName().matches("PK.*") && data.getData() != null)
 	    {
-		sqlQuery += key.toString() + "='" + data.get(key) + "', ";
+		sqlQuery += data.getShortName() + "='"
+			+ data.getDataString(true) + "', ";
 	    }
 	}
 
