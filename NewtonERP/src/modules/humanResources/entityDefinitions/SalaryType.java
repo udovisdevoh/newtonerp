@@ -22,6 +22,7 @@ public class SalaryType extends AbstractOrmEntity implements PromptViewable
     public SalaryType() throws Exception
     {
 	super();
+	setVisibleName("Type de salaire");
     }
 
     @Override

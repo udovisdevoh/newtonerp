@@ -41,15 +41,15 @@ public class Employee extends AbstractOrmEntity implements PromptViewable
 	fieldsData.add(new FieldString("Prénom", "firstName"));
 	fieldsData.add(new FieldString("Nom de famille", "lastName"));
 	fieldsData.add(new FieldInt("Numéro d'assurance social", "NAS"));
-	fieldsData.add(new FieldInt("type d'employer", new EmployeeType()
+	fieldsData.add(new FieldInt("Type d'employé", new EmployeeType()
 		.getForeignKeyName()));
-	fieldsData.add(new FieldString("poste", "poste"));
-	fieldsData.add(new FieldInt("department", new Department()
+	fieldsData.add(new FieldString("Poste", "poste"));
+	fieldsData.add(new FieldInt("Department", new Department()
 		.getForeignKeyName()));
 	fieldsData.add(new FieldInt("Type de salaire", new SalaryType()
 		.getForeignKeyName()));
-	fieldsData.add(new FieldDouble("Salaire annuel", "salary"));
-	fieldsData.add(new FieldInt("Nombre de jour de vaccance possible",
+	fieldsData.add(new FieldDouble("Salaire", "salary"));
+	fieldsData.add(new FieldInt("Nombre de jour de vacance possible",
 		"nbVacancyDays"));
 	fieldsData.add(new FieldInt("Nombre de jour de maladie possible",
 		"nbSicknessDays"));
