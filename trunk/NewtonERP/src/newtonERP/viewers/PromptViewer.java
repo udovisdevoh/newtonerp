@@ -19,17 +19,13 @@ import newtonERP.viewers.viewables.PromptViewable;
 public class PromptViewer
 {
     /**
-     * Return the html code for the web page FIXME : Why is it throwing 2 kinds
-     * of exception?
-     * 
+     * Return the html code for the web page
      * @param entity the entity to view
      * @return html
-     * @throws ViewerException an exception that can occur in viewers
      * @throws Exception general exception
      */
     @SuppressWarnings("null")
-    public static String getHtmlCode(PromptViewable entity)
-	    throws ViewerException, Exception
+    public static String getHtmlCode(PromptViewable entity) throws Exception
     {
 	AbstractOrmEntity ormEntity = null;
 	System.out.println("getHtmlCode() (prompt viewer)");
@@ -163,27 +159,25 @@ public class PromptViewer
     {
 	String html = "";
 
-	html += "<tr><td colspan=\"100%\">";
-
-	html += "<ul>";
+	ScrollList scrollList = new ScrollList("Est associé à");
 
 	AbstractOrmEntity foreignEntity;
 	for (String accessorName : entity.getSingleAccessorList().keySet())
 	{
 	    foreignEntity = entity.getSingleAccessorList().get(accessorName);
-	    html += "<li>"
-		    + foreignEntity.getVisibleName()
-		    + ": <a href=\""
-		    + Servlet.makeLink(foreignEntity.getCurrentModule(),
-			    new BaseAction("Edit", foreignEntity)) + "?"
-		    + foreignEntity.getPrimaryKeyName() + "="
-		    + foreignEntity.getPrimaryKeyValue() + "\">"
-		    + foreignEntity.getNaturalKeyDescription() + "</a></li>";
+	    scrollList.addLink(foreignEntity.getVisibleName() + ": "
+		    + foreignEntity.getNaturalKeyDescription(), Servlet
+		    .makeLink(foreignEntity.getCurrentModule(), new BaseAction(
+			    "Edit", foreignEntity))
+		    + "?"
+		    + foreignEntity.getPrimaryKeyName()
+		    + "="
+		    + foreignEntity.getPrimaryKeyValue());
 	}
 
-	html += "</ul>";
-
-	html += "</td></tr>";
+	if (entity.getSingleAccessorList().size() > 0)
+	    html += "<tr><td>" + ScrollListViewer.getHtmlContent(scrollList)
+		    + "</td></tr>";
 
 	return html;
     }

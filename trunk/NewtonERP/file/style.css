@@ -185,6 +185,8 @@ div.scrollableDivPair
 	border-color:#88A;
 	border-width:1px;
 	height:100px;
+	padding:4px;
+	background-image: url('images/motionBackground.gif');
 	overflow-y:scroll;
 }
 
