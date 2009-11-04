@@ -6,7 +6,7 @@ package newtonERP.module.field;
  * l'Orm
  * @author Guillaume Lacasse
  */
-public class VolatileFields extends Fields
+public class VolatileFields extends Fields implements Iterable<Field>
 {
     /**
      * @param field field à ajouter ou remplacer s'il existe
@@ -14,5 +14,6 @@ public class VolatileFields extends Fields
     public void add(Field field)
     {
 	fieldsDataMap.put(field.getShortName(), field);
+	fieldsDataVector.add(field);
     }
 }
