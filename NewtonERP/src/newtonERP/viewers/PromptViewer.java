@@ -8,6 +8,7 @@ import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.BaseAction;
 import newtonERP.module.generalEntity.FlagPool;
 import newtonERP.module.generalEntity.ListOfValue;
+import newtonERP.module.generalEntity.ScrollList;
 import newtonERP.serveur.Servlet;
 import newtonERP.viewers.viewables.PromptViewable;
 
@@ -124,9 +125,9 @@ public class PromptViewer
     {
 	String html = "";
 
-	html += "<tr><td colspan=\"100%\">";
-
 	Vector<AbstractOrmEntity> pluralAccessor;
+
+	ScrollList scrollList;
 
 	for (String accessorName : entity.getPluralAccessorList().keySet())
 	{
@@ -134,28 +135,24 @@ public class PromptViewer
 
 	    if (pluralAccessor.size() > 0)
 	    {
-		html += "<div style=\"border-style:solid;border-color:#88A;border-width:1px;height:100px;width:400px;overflow-y:scroll;\"><div>";
-
-		html += "<h4 style=\"margin-top:3px;margin-bottom:3px\">"
-			+ pluralAccessor.get(0).getVisibleName() + "(s)</h4>";
+		scrollList = new ScrollList(pluralAccessor.get(0)
+			.getVisibleName());
 
 		for (AbstractOrmEntity currentForeignEntity : pluralAccessor)
 		{
-		    html += "<a href=\""
-			    + Servlet.makeLink(currentForeignEntity
-				    .getCurrentModule(), new BaseAction("Edit",
-				    currentForeignEntity)) + "?"
-			    + currentForeignEntity.getPrimaryKeyName() + "="
-			    + currentForeignEntity.getPrimaryKeyValue() + "\">"
-			    + currentForeignEntity.getNaturalKeyDescription()
-
-			    + "</a><br />";
+		    scrollList.addLink(currentForeignEntity
+			    .getNaturalKeyDescription(), Servlet.makeLink(
+			    currentForeignEntity.getCurrentModule(),
+			    new BaseAction("Edit", currentForeignEntity))
+			    + "?"
+			    + currentForeignEntity.getPrimaryKeyName()
+			    + "=" + currentForeignEntity.getPrimaryKeyValue());
 		}
-		html += "</div></div>";
+		html += "<tr><td>"
+			+ ScrollListViewer.getHtmlContent(scrollList)
+			+ "</td></tr>";
 	    }
 	}
-
-	html += "</td></tr>";
 
 	return html;
     }
