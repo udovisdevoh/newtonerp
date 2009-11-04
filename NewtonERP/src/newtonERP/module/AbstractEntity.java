@@ -19,7 +19,8 @@ public class AbstractEntity
     protected Fields fields;
     private HashSet<String> hiddenFieldList;
     private Vector<String> alertMessageList = new Vector<String>();
-    private Hashtable<String, ListOfValue> listOfValueList;
+    private Hashtable<String, ListOfValue> positiveListOfValueList;
+    private static Hashtable<String, ListOfValue> negativeListOfValueList;
     protected Module currentModule;
     private AbstractAction currentAction;
     protected String promptMessage;
@@ -158,10 +159,10 @@ public class AbstractEntity
      */
     public ListOfValue tryMatchListOfValue(String fieldKeyName)
     {
-	if (listOfValueList == null)
+	if (positiveListOfValueList == null)
 	    return null;
 
-	return listOfValueList.get(fieldKeyName);
+	return positiveListOfValueList.get(fieldKeyName);
     }
 
     /**
@@ -247,23 +248,25 @@ public class AbstractEntity
     }
 
     /**
-     * @param listOfValueList Set la liste de listes of values de l'entité
+     * @return liste des listOfValue
      */
-    public void setListOfValueList(
-	    final Hashtable<String, ListOfValue> listOfValueList)
+    public Hashtable<String, ListOfValue> getPositiveListOfValueList()
     {
-	this.listOfValueList = listOfValueList;
+	if (positiveListOfValueList == null)
+	    positiveListOfValueList = new Hashtable<String, ListOfValue>();
+
+	return positiveListOfValueList;
     }
 
     /**
      * @return liste des listOfValue
      */
-    public Hashtable<String, ListOfValue> getListOfValueList()
+    public Hashtable<String, ListOfValue> getNegativeListOfValueList()
     {
-	if (listOfValueList == null)
-	    listOfValueList = new Hashtable<String, ListOfValue>();
+	if (negativeListOfValueList == null)
+	    negativeListOfValueList = new Hashtable<String, ListOfValue>();
 
-	return listOfValueList;
+	return negativeListOfValueList;
     }
 
     /**
@@ -286,5 +289,27 @@ public class AbstractEntity
 	if (currencyFormattedFieldList == null)
 	    currencyFormattedFieldList = new HashSet<String>();
 	currencyFormattedFieldList.add(fieldName);
+    }
+
+    /**
+     * @param foreignKeyName nom de la clef etrangère de la listOfValue
+     * @param listOfValue listOfValue à ajouter
+     */
+    public void addPositiveListOfValue(String foreignKeyName,
+	    ListOfValue listOfValue)
+    {
+	// laissez le get car c'est de la lazy initialization -Guillaume
+	getPositiveListOfValueList().put(foreignKeyName, listOfValue);
+    }
+
+    /**
+     * @param foreignKeyName nom de la clef etrangère de la listOfValue
+     * @param listOfValue listOfValue à ajouter
+     */
+    public void addNegativeListOfValue(String foreignKeyName,
+	    ListOfValue listOfValue)
+    {
+	// laissez le get car c'est de la lazy initialization -Guillaume
+	getNegativeListOfValueList().put(foreignKeyName, listOfValue);
     }
 }

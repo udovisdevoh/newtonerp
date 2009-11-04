@@ -27,16 +27,19 @@ public class SingleAccessorManager
 
 	ListOfValue listOfValue;
 
-	for (String listOfValueName : entity.getListOfValueList().keySet())
+	for (String listOfValueName : entity.getPositiveListOfValueList()
+		.keySet())
 	{
-	    listOfValue = entity.getListOfValueList().get(listOfValueName);
+	    listOfValue = entity.getPositiveListOfValueList().get(
+		    listOfValueName);
 	    foreignEntityDefinition = listOfValue.getForeignEntityDefinition();
 
 	    realForeignEntity = getForeignEntity(entity,
 		    foreignEntityDefinition);
 
 	    if (realForeignEntity != null)
-		singleAccessorList.put(listOfValueName, realForeignEntity);
+		singleAccessorList.put(realForeignEntity.getClass()
+			.getSimpleName(), realForeignEntity);
 	}
 
 	return singleAccessorList;

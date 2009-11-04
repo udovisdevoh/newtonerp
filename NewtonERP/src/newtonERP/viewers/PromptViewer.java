@@ -136,7 +136,8 @@ public class PromptViewer
 	    if (pluralAccessor.size() > 0)
 	    {
 		scrollList = new ScrollList(pluralAccessor.get(0)
-			.getVisibleName());
+			.getVisibleName()
+			+ "(s)");
 
 		for (AbstractOrmEntity currentForeignEntity : pluralAccessor)
 		{
