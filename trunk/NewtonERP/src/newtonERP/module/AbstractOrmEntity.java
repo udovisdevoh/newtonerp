@@ -510,4 +510,9 @@ public abstract class AbstractOrmEntity extends AbstractEntity
     {
 	return fields.getOrderedFieldNameList();
     }
+
+    public String getInputValue(String inputName)
+    {
+	return fields.getField(inputName).getDataString();
+    }
 }
