@@ -242,9 +242,29 @@ public class AbstractEntity
      * @return liste de KeyValuePair de fields et de leur valeurs
      * @throws OrmException remonte
      */
+    @Deprecated
     public final Hashtable<String, String> getInputList() throws OrmException
     {
 	return getFields().getHashTableFrom();
+	// TODO: est-ce qu'on peu retiré cette méthode ? elle n'Est pas utilisé
+	// ou que se soit et elle utilise getHashTableFrom qui doit disparaitre
+	// si on veut assuré l'ordre de nos champs
+
+	// j'ai trouvé une référence a cette méthode (qu'éclipse n'Est pas
+	// capable de voir) dans promptViewer, il y en a peut-etre d'autre,
+	// c'est toi (guillaum) qui le sais...
+
+	// j'ai 2 solution a te proposé:
+	// 1- ici ne fais que "return getFields().getFields();" et travaille
+	// avec sa ailleur
+	// 2- détruit cette méthode et fais des
+	// "entity.getFields().getFields();" partout ou tu l'utilise
+
+	// par contre peu importe la méthode que tu utilise ne modifie JAMAIS
+	// l'ordre des élément, il sont classé par ordre d'ajout dans le
+	// constructeur de l'entity, c'Est le mieu que j'ai pu avoir
+	// (veut/peut-ont mieu anyway) il faut donc gardé cette ordre pour etre
+	// consistent
     }
 
     /**
