@@ -14,7 +14,7 @@ import newtonERP.orm.associations.AccessorManager;
 import newtonERP.viewers.viewables.PromptViewable;
 
 /**
- * Entité compteFournisseur du module finances, représente les comptes payables
+ * Entité supplierAccount du module finances, représente les comptes payables
  * aux fournisseurs et leurs dates d'échéance
  * 
  * @author Pascal Lemay
