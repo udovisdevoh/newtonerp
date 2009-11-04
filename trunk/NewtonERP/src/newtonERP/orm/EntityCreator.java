@@ -54,10 +54,8 @@ public class EntityCreator
 		{
 		    String key = field.getShortName();
 		    Object value = rs.getObject(field.getShortName());
-		    if (value == null)// Lorsqu'une table est vide
-			break;
-
-		    parameters.put(key, value);
+		    if (value != null)// Lorsqu'un champ est null
+			parameters.put(key, value);
 		}
 
 		// We format the data into the newly created entity
