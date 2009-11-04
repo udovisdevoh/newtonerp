@@ -92,4 +92,10 @@ public class Form extends AbstractEntity implements PromptViewable
     {
 	return fields.getOrderedFieldNameList();
     }
+
+    @Override
+    public String getInputValue(String inputName)
+    {
+	return fields.getField(inputName).getDataString();
+    }
 }

@@ -7,7 +7,6 @@ import newtonERP.module.AbstractAction;
 import newtonERP.module.Module;
 import newtonERP.module.generalEntity.FlagPool;
 import newtonERP.module.generalEntity.ListOfValue;
-import newtonERP.orm.exceptions.OrmException;
 
 /**
  * Prompt view interface
@@ -19,12 +18,6 @@ public interface PromptViewable
      * @return message du prompt, exemple: quel est votre nom?
      */
     public String getPromptMessage();
-
-    /**
-     * @return nom des input du prompt et leur valeur actuelles
-     * @throws OrmException an exception that can occur in the orm
-     */
-    public Hashtable<String, String> getInputList() throws OrmException;
 
     /**
      * @return nom du bouton "ok"
@@ -75,4 +68,11 @@ public interface PromptViewable
      *         hahaha la clef des champs... LOL
      */
     public Vector<String> getOrderedFieldNameList();
+
+    /**
+     * Retourne la valeur actuelle d'un champ
+     * @param inputName nom du champ
+     * @return
+     */
+    public String getInputValue(String inputName);
 }

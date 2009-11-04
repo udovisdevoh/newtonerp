@@ -52,7 +52,7 @@ public class PromptViewer
 	for (String inputName : entity.getOrderedFieldNameList())
 	{
 	    String isReadOnly = "";
-	    inputValue = entity.getInputList().get(inputName);
+	    inputValue = entity.getInputValue(inputName);
 
 	    ListOfValue listOfValue = entity.tryMatchListOfValue(inputName);
 

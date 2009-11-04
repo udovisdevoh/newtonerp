@@ -103,21 +103,6 @@ public class Fields implements Iterable<Field>
 	}
     }
 
-    /**
-     * @return Hashtable contenant chaqu'un des champ
-     */
-    @Deprecated
-    public Hashtable<String, String> getHashTableFrom()
-    {
-	Hashtable<String, String> hash = new Hashtable<String, String>();
-	for (Field field : fieldsDataMap.values())
-	{
-	    if (field.getDataString() != null)
-		hash.put(field.getShortName(), field.getDataString());
-	}
-	return hash;
-    }
-
     /*
      * (non-Javadoc)
      * 
