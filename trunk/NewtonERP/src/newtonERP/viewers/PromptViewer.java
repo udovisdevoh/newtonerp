@@ -158,14 +158,23 @@ public class PromptViewer
 	for (String accessorName : entity.getSingleAccessorList().keySet())
 	{
 	    foreignEntity = entity.getSingleAccessorList().get(accessorName);
-	    scrollList.addLink(foreignEntity.getVisibleName() + ": "
-		    + foreignEntity.getNaturalKeyDescription(), Servlet
-		    .makeLink(foreignEntity.getCurrentModule(), new BaseAction(
-			    "Edit", foreignEntity))
+
+	    String listLinkName = foreignEntity.getVisibleName();
+
+	    String entityLinkName = foreignEntity.getNaturalKeyDescription();
+
+	    String entityUrl = Servlet.makeLink(foreignEntity
+		    .getCurrentModule(), new BaseAction("Edit", foreignEntity))
 		    + "?"
 		    + foreignEntity.getPrimaryKeyName()
 		    + "="
-		    + foreignEntity.getPrimaryKeyValue());
+		    + foreignEntity.getPrimaryKeyValue();
+
+	    String listUrl = Servlet.makeLink(foreignEntity.getCurrentModule(),
+		    new BaseAction("GetList", foreignEntity));
+
+	    scrollList.addLinkGroup(listLinkName, listUrl, entityLinkName,
+		    entityUrl);
 	}
 
 	if (entity.getSingleAccessorList().size() > 0)
