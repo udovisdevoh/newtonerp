@@ -86,6 +86,9 @@ public class ListOfValue implements SelectBoxViewable
 	return foreignEntity;
     }
 
+    /**
+     * @return entité qui a une listOfValue
+     */
     public AbstractOrmEntity getSourceEntityDefinition()
     {
 	return sourceEntity;

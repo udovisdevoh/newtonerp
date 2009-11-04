@@ -72,7 +72,7 @@ public interface PromptViewable
     /**
      * Retourne la valeur actuelle d'un champ
      * @param inputName nom du champ
-     * @return
+     * @return valeur contenue dans le champ
      */
     public String getInputValue(String inputName);
 }

@@ -20,5 +20,8 @@ public interface ScrollListViewable
      */
     public TreeMap<String, String> getLinkList();
 
+    /**
+     * @return liste de groupe de liens
+     */
     public Vector<TreeMap<String, String>> getLinkGroupList();
 }

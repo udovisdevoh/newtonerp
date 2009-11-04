@@ -63,6 +63,12 @@ public class ScrollList extends AbstractEntity implements ScrollListViewable
 	return title;
     }
 
+    /**
+     * @param link1Name Premier nom de lien
+     * @param link1Url Premier url
+     * @param link2Name 2e nom de lien
+     * @param link2Url 2e url
+     */
     public void addLinkGroup(String link1Name, String link1Url,
 	    String link2Name, String link2Url)
     {
