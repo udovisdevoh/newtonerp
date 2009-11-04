@@ -3,7 +3,6 @@ package newtonERP.orm.associations;
 import java.util.TreeMap;
 import java.util.Vector;
 
-import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.exception.TableAssociationException;
 
@@ -60,7 +59,7 @@ public class AccessorManager
      * @param foreignEntity Entité cible
      * @throws Exception a general exception
      */
-    public static final void addListOfValue(AbstractEntity entity,
+    public static final void addListOfValue(AbstractOrmEntity entity,
 	    AbstractOrmEntity foreignEntity) throws Exception
     {
 	ListOfValueManager.addListOfValue(entity, foreignEntity);

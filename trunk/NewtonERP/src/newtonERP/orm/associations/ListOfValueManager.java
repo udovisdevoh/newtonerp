@@ -1,8 +1,5 @@
 package newtonERP.orm.associations;
 
-import java.util.Hashtable;
-
-import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.exception.TableAssociationException;
 import newtonERP.module.generalEntity.ListOfValue;
@@ -19,7 +16,7 @@ public class ListOfValueManager
      * @param foreignEntity Entité cible
      * @throws Exception a general exception
      */
-    public static final void addListOfValue(AbstractEntity entity,
+    public static final void addListOfValue(AbstractOrmEntity entity,
 	    AbstractOrmEntity foreignEntity) throws Exception
     {
 	String foreignKeyName = foreignEntity.getForeignKeyName();
@@ -28,17 +25,12 @@ public class ListOfValueManager
 	    throw new TableAssociationException(foreignKeyName
 		    + " introuvable dans " + entity.getClass().getSimpleName());
 
-	Hashtable<String, ListOfValue> listOfValueList = entity
-		.getListOfValueList();
-
-	if (listOfValueList == null)
-	    listOfValueList = new Hashtable<String, ListOfValue>();
-
-	ListOfValue listOfValue = new ListOfValue(foreignEntity
+	ListOfValue listOfValue = new ListOfValue(entity, foreignEntity
 		.getNaturalKeyName(), foreignEntity);
 
-	listOfValueList.put(foreignKeyName, listOfValue);
+	entity.addPositiveListOfValue(foreignKeyName, listOfValue);
 
-	entity.setListOfValueList(listOfValueList);
+	String localForeignKeyName = ((entity)).getForeignKeyName();
+	foreignEntity.addNegativeListOfValue(localForeignKeyName, listOfValue);
     }
 }
