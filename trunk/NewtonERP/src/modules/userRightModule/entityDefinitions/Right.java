@@ -13,9 +13,8 @@ import newtonERP.module.generalEntity.EntityList;
 import newtonERP.viewers.viewables.PromptViewable;
 
 /**
- * @author r3hallejo
- * 
- *         Entity defenition class representing a right
+ * Entity defenition class representing a right
+ * @author CloutierJo, r3hallejo
  */
 public class Right extends AbstractOrmEntity implements PromptViewable
 {
