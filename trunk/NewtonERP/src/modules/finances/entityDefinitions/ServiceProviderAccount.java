@@ -2,7 +2,6 @@ package modules.finances.entityDefinitions;
 
 import java.util.Vector;
 
-import modules.customerVendor.entityDefinitions.Vendor;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.field.Field;
 import newtonERP.module.field.FieldDate;
@@ -14,25 +13,25 @@ import newtonERP.orm.associations.AccessorManager;
 import newtonERP.viewers.viewables.PromptViewable;
 
 /**
- * Entité supplierAccount du module finances: représente les montant payables
- * aux fournisseurs et leurs dates d'échéance
+ * Entité ServiceProviderAccount du module finances: représente les montant
+ * payables aux fournisseurs de services (internet, électricité...)
  * 
  * @author Pascal Lemay
  */
-public class SupplierAccount extends AbstractOrmEntity implements
-	PromptViewable
 
+public class ServiceProviderAccount extends AbstractOrmEntity implements
+	PromptViewable
 {
     /**
      * @throws Exception if creation fails
      */
-    public SupplierAccount() throws Exception
+    public ServiceProviderAccount() throws Exception
     {
 	super();
 
-	AccessorManager.addAccessor(this, new Vendor());
+	AccessorManager.addAccessor(this, new ServiceProvider());
 	addCurrencyFormat("balance");
-	setVisibleName("Compte Fournisseur");
+	setVisibleName("Comptes Fournisseurs de services");
     }
 
     @Override
@@ -40,11 +39,12 @@ public class SupplierAccount extends AbstractOrmEntity implements
     {
 	Vector<Field> fieldsInit = new Vector<Field>();
 	fieldsInit.add(new FieldInt("Numéro", getPrimaryKeyName()));
+	fieldsInit.add(new FieldString("Service", "service"));
 	fieldsInit.add(new FieldDate("Échéance", "deadline"));
 	fieldsInit.add(new FieldDouble("Solde", "balance"));
 	fieldsInit.add(new FieldString("État", "state"));
-	fieldsInit.add(new FieldInt("Numéro de fournisseur", new Vendor()
-		.getForeignKeyName()));
+	fieldsInit.add(new FieldInt("Numéro de Fournisseur",
+		new ServiceProvider().getForeignKeyName()));
 
 	return new Fields(fieldsInit);
     }
