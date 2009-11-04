@@ -92,6 +92,8 @@ public class FieldString extends Field
     {
 	if (data instanceof String)
 	    setDataS((String) data);
+	else if (data instanceof Number)
+	    setDataS(data + "");
 	else
 	    throw new FieldNotCompatibleException(getShortName(), data);
     }
