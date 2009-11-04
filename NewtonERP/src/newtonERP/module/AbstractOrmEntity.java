@@ -42,14 +42,6 @@ public abstract class AbstractOrmEntity extends AbstractEntity
     public abstract Fields initFields() throws Exception;
 
     /**
-     * @return data ormizable
-     */
-    public final Hashtable<String, String> getOrmizableData()
-    {
-	return getFields().getHashTableFrom();
-    }
-
-    /**
      * @param parameters la hashTable de parametre qui sera transphormé en
      *            entity
      * @throws Exception lorsque l'insertion de données échoue

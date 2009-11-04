@@ -12,9 +12,8 @@ import newtonERP.orm.associations.AccessorManager;
 import newtonERP.viewers.viewables.PromptViewable;
 
 /**
+ * Entity defenition class representing a user
  * @author r3hallejo cloutierJo
- * 
- *         Entity defenition class representing a user
  */
 public class User extends AbstractOrmEntity implements PromptViewable
 {
@@ -34,8 +33,7 @@ public class User extends AbstractOrmEntity implements PromptViewable
 
     public Fields initFields() throws Exception
     {
-	Vector<Field> fieldsData = new Vector<Field>();// Renamé en fieldsData
-	// pour enlever confusion
+	Vector<Field> fieldsData = new Vector<Field>();
 	fieldsData.add(new FieldInt("Numéro de user", getPrimaryKeyName()));
 	fieldsData.add(new FieldString("Nom", "name"));
 	fieldsData.add(new FieldString("Mot de passe", "password"));
@@ -54,7 +52,7 @@ public class User extends AbstractOrmEntity implements PromptViewable
 	AbstractOrmEntity groupDefinition = new Groups();// Sert de référence
 	Vector<String> search = new Vector<String>();
 	search.add(groupDefinition.getPrimaryKeyName() + "="
-		+ getFields().getField("groupsID"));
+		+ getFields().getField("groupsID").getDataString(true));
 
 	return (Groups) Orm.select(new Groups(), search).get(0);
     }
