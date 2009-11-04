@@ -22,6 +22,7 @@ public class PeriodeType extends AbstractOrmEntity implements PromptViewable
     public PeriodeType() throws Exception
     {
 	super();
+	setVisibleName("Type de période");
     }
 
     @Override

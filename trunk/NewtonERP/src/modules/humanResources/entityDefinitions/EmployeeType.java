@@ -22,6 +22,7 @@ public class EmployeeType extends AbstractOrmEntity implements PromptViewable
     public EmployeeType() throws Exception
     {
 	super();
+	setVisibleName("Type d'employé");
     }
 
     @Override

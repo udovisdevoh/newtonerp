@@ -14,16 +14,16 @@ import newtonERP.viewers.viewables.PromptViewable;
  * Représente un département dans une compagnie
  * @author Guillaume
  */
-public class schedule extends AbstractOrmEntity implements PromptViewable
+public class Schedule extends AbstractOrmEntity implements PromptViewable
 {
 
     /**
      * @throws Exception si création fails
      */
-    public schedule() throws Exception
+    public Schedule() throws Exception
     {
 	super();
-
+	setVisibleName("Horaire");
 	AccessorManager.addAccessor(this, new Employee());
 	AccessorManager.addAccessor(this, new PeriodeType());
     }
@@ -33,14 +33,14 @@ public class schedule extends AbstractOrmEntity implements PromptViewable
     {
 	Vector<Field> fieldsData = new Vector<Field>();
 
-	fieldsData.add(new FieldInt("Numéro d'horair", getPrimaryKeyName()));
+	fieldsData.add(new FieldInt("Numéro d'horaire", getPrimaryKeyName()));
 
-	fieldsData.add(new FieldInt("Numéro d'employer", new Employee()
+	fieldsData.add(new FieldInt("Numéro d'employé", new Employee()
 		.getForeignKeyName()));
-	fieldsData.add(new FieldDate("début de la période", "timeStart"));
+	fieldsData.add(new FieldDate("Début de la période", "timeStart"));
 	// todo: j'ai besoins des heures
-	fieldsData.add(new FieldDate("fin de la période", "timeStop"));
-	fieldsData.add(new FieldInt("type de la période", new PeriodeType()
+	fieldsData.add(new FieldDate("Fin de la période", "timeStop"));
+	fieldsData.add(new FieldInt("Type de la période", new PeriodeType()
 		.getForeignKeyName()));
 
 	return new Fields(fieldsData);
