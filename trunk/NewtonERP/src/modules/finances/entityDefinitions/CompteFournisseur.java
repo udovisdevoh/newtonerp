@@ -9,6 +9,7 @@ import newtonERP.module.field.FieldDate;
 import newtonERP.module.field.FieldDouble;
 import newtonERP.module.field.FieldInt;
 import newtonERP.module.field.Fields;
+import newtonERP.orm.associations.AccessorManager;
 import newtonERP.viewers.viewables.PromptViewable;
 
 /**
@@ -19,10 +20,17 @@ import newtonERP.viewers.viewables.PromptViewable;
  */
 public class CompteFournisseur extends AbstractOrmEntity implements
 	PromptViewable
+
 {
+    /**
+     * @throws Exception if creation fails
+     */
     public CompteFournisseur() throws Exception
     {
 	super();
+
+	AccessorManager.addAccessor(this, new Vendor());
+
 	setVisibleName("Comptes Fournisseurs");
     }
 
