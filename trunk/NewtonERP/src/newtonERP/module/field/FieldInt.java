@@ -11,7 +11,6 @@ import newtonERP.module.exception.InvalidOperatorException;
 public class FieldInt extends Field
 {
     Integer data;
-    String operator;
 
     /**
      * constructeur minimum
@@ -60,7 +59,7 @@ public class FieldInt extends Field
     /**
      * @return the data
      */
-    public String getDataString()
+    public String getDataString(Boolean forOrm)
     {
 	return data + "";
     }
@@ -102,17 +101,6 @@ public class FieldInt extends Field
 	    throw new FieldNotCompatibleException(getShortName(), data);
     }
 
-    public String toString()
-    {
-	return getDataString();
-    }
-
-    @Override
-    public String getOperator()
-    {
-	return operator;
-    }
-
     @Override
     public void setOperator(String operator) throws InvalidOperatorException
     {
@@ -121,7 +109,7 @@ public class FieldInt extends Field
 	if (operator.equals(">") || operator.equals("<")
 		|| operator.equals("="))
 	{
-	    this.operator = operator;
+	    super.operator = operator;
 	}
 	else
 	    throw new InvalidOperatorException("Opérateur invalide pour "

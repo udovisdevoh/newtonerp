@@ -7,17 +7,17 @@ import java.text.SimpleDateFormat;
  * 
  * @author r3hallejo
  */
-public class FieldDate extends FieldDateTime
+public class FieldTime extends FieldDateTime
 {
     private static SimpleDateFormat dateFormatter = new SimpleDateFormat(
-	    "yyyy-MM-dd");
+	    "HH:mm");
 
     /**
      * @param name the viewable name
      * @param shortName the internal name
      * @param data the date
      */
-    public FieldDate(String name, String shortName)
+    public FieldTime(String name, String shortName)
     {
 	super(name, shortName);
     }

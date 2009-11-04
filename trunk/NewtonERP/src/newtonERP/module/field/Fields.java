@@ -2,7 +2,6 @@ package newtonERP.module.field;
 
 import java.text.ParseException;
 import java.util.Collection;
-import java.util.GregorianCalendar;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Vector;
@@ -17,17 +16,17 @@ import newtonERP.module.exception.FieldNotFoundException;
  */
 public class Fields implements Iterable<Field>
 {
-    Hashtable<String, Field> fieldsData;
+
+    Hashtable<String, Field> fieldsDataMap;
+    Vector<Field> fieldsDataVector;
 
     /**
      * constructeur vide, permet de construire un Fields sans aucun champ
      */
     public Fields()
     {
-	fieldsData = new Hashtable<String, Field>();// RENAMÉ pour ne pas le
-	// conforndre avec une
-	// instance de la classe
-	// Fields
+	fieldsDataMap = new Hashtable<String, Field>();
+	fieldsDataVector = new Vector<Field>();
     }
 
     /**
@@ -35,11 +34,12 @@ public class Fields implements Iterable<Field>
      */
     public Fields(Vector<Field> fields)
     {
-	fieldsData = new Hashtable<String, Field>();
+	fieldsDataVector = fields;
+	fieldsDataMap = new Hashtable<String, Field>();
 	for (Field field : fields)
 	{
 	    field.getShortName();
-	    fieldsData.put(field.getShortName(), field);
+	    fieldsDataMap.put(field.getShortName(), field);
 	}
     }
 
@@ -48,7 +48,7 @@ public class Fields implements Iterable<Field>
      */
     public Collection<Field> getFields()
     {
-	return fieldsData.values();
+	return fieldsDataVector;
     }
 
     /**
@@ -57,25 +57,11 @@ public class Fields implements Iterable<Field>
      */
     public Field getField(String shortName)
     {
-	return fieldsData.get(shortName);
+	return fieldsDataMap.get(shortName);
     }
 
     /**
-     * @param field the fields to set
-     * @throws FieldNotFoundException si le champ donne n'existe pas
-     */
-    public void setField(Field field) throws FieldNotFoundException
-    {
-	if (fieldsData.containsKey(field.getShortName()))
-	{
-	    fieldsData.put(field.getShortName(), field);
-	}
-	else
-	    throw new FieldNotFoundException(field.getShortName());
-    }
-
-    /**
-     * methode rapide pour change la valeur d'un champ
+     * methode pour changer la valeur d'un champ
      * 
      * @param shortName nom du champ
      * @param data valeur modifie
@@ -86,23 +72,9 @@ public class Fields implements Iterable<Field>
 	try
 	{
 	    if (data instanceof String)
-	    {
-		if (fieldsData.get(shortName) instanceof FieldDate) // date
-		{
-		    GregorianCalendar gregorianCalendar = FieldDate
-			    .getFormatedDate((String) data);
-		    fieldsData.get(shortName).setData(gregorianCalendar);
-		}
-		else
-		// regular string
-		{
-		    fieldsData.get(shortName).setData((String) data);
-		}
-	    }
-	    else if (data instanceof Number)
-		fieldsData.get(shortName).setData(data + "");
-	    else if (data instanceof Boolean)
-		fieldsData.get(shortName).setData(((Boolean) data).toString());
+		fieldsDataMap.get(shortName).setData((String) data);
+	    else
+		fieldsDataMap.get(shortName).setData(data);
 	} catch (NullPointerException e)
 	{
 	    throw new FieldNotFoundException(shortName);
@@ -128,17 +100,17 @@ public class Fields implements Iterable<Field>
 	    {
 		// nothing to do
 	    }
-
 	}
     }
 
     /**
      * @return Hashtable contenant chaqu'un des champ
      */
+    @Deprecated
     public Hashtable<String, String> getHashTableFrom()
     {
 	Hashtable<String, String> hash = new Hashtable<String, String>();
-	for (Field field : fieldsData.values())
+	for (Field field : fieldsDataMap.values())
 	{
 	    if (field.getDataString() != null)
 		hash.put(field.getShortName(), field.getDataString());
@@ -160,39 +132,49 @@ public class Fields implements Iterable<Field>
 	if (!(obj instanceof Fields))
 	    return false;
 	Fields other = (Fields) obj;
-	if (fieldsData == null)
+	if (fieldsDataMap == null)
 	{
-	    if (other.fieldsData != null)
+	    if (other.fieldsDataMap != null)
 		return false;
 	}
-	else if (!fieldsData.equals(other.fieldsData))
+	else if (!fieldsDataMap.equals(other.fieldsDataMap))
+	    return false;
+	if (fieldsDataVector == null)
+	{
+	    if (other.fieldsDataVector != null)
+		return false;
+	}
+	else if (!fieldsDataVector.equals(other.fieldsDataVector))
 	    return false;
 	return true;
     }
 
     public String toString()
     {
-	return fieldsData.toString();
+	return fieldsDataMap.toString();
     }
 
+    /**
+     * iterate over the fields (not the keys)
+     */
     @Override
     public Iterator<Field> iterator()
     {
-	return fieldsData.values().iterator();
+	return fieldsDataVector.iterator();
     }
 
     /**
      * @return Liste des clefs des fields
      */
-    public Vector<String> getKeyList()
+    public Collection<String> getKeyList()
     {
-	return new Vector<String>(fieldsData.keySet());
+	return new Vector<String>(fieldsDataMap.keySet());
     }
 
     /**
-     * @return Liste des clefs des fields
+     * @return Liste des nom utilisateur des fields
      */
-    public Vector<String> getLongFieldNameList()
+    public Collection<String> getLongFieldNameList()
     {
 	Vector<String> longFieldName = new Vector<String>();
 	for (Field field : this)
@@ -201,6 +183,11 @@ public class Fields implements Iterable<Field>
     }
 
     /**
+     * met les valeur par defaut dans les field pour ne pas avoir de valeur null
+     * 
+     * *ATTENTION* NE PAS UTILISE UNE ENTITY COMME SEARCHCRITERIA APRES AVOIR
+     * UTILISER CETTE FONCTION
+     * 
      * @throws FieldNotCompatibleException remonte
      */
     public void setDefaultValue() throws FieldNotCompatibleException

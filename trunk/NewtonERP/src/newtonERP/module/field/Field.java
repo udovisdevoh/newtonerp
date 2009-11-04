@@ -12,11 +12,9 @@ import newtonERP.module.exception.InvalidOperatorException;
  */
 public abstract class Field
 {
-    private String name; // Name is the name that will be visible by the
-    // end-user
-    private String shortName; // Short name is the name that will be used
-
-    // internally
+    private String name; // Name is the name that is visible by the end-user
+    private String shortName; // Short name is the name that is used internally
+    protected String operator;
 
     /**
      * default constructor
@@ -58,9 +56,20 @@ public abstract class Field
     }
 
     /**
+     * @return the data sous forme de string visible par l'utilisateur
+     */
+    public String getDataString()
+    {
+	return getDataString(false);
+    }
+
+    /**
+     * @param forOrm si true, la méthode retourne une string formatté pour l'ORM
+     *            si faux retourne un string visible pour l'utilisateur, valeur
+     *            par défaut false
      * @return the data
      */
-    public abstract String getDataString();
+    public abstract String getDataString(Boolean forOrm);
 
     /**
      * @return the data
@@ -94,7 +103,10 @@ public abstract class Field
     /**
      * @return the operator
      */
-    public abstract String getOperator();
+    public String getOperator()
+    {
+	return operator;
+    }
 
     /*
      * (non-Javadoc)
@@ -133,4 +145,8 @@ public abstract class Field
      */
     public abstract void setDefaultValue() throws FieldNotCompatibleException;
 
+    public String toString()
+    {
+	return "{" + getClass().getSimpleName() + ":" + getDataString() + "}";
+    }
 }

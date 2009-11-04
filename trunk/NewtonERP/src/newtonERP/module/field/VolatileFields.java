@@ -13,6 +13,6 @@ public class VolatileFields extends Fields
      */
     public void add(Field field)
     {
-	fieldsData.put(field.getShortName(), field);
+	fieldsDataMap.put(field.getShortName(), field);
     }
 }
