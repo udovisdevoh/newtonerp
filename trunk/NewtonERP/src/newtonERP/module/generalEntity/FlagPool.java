@@ -215,6 +215,10 @@ public class FlagPool implements CheckListViewable
 	return pluralAccessor;
     }
 
+    /**
+     * @return accessor multiple vers entité étrangère
+     * @throws Exception si obtention fail
+     */
     public Vector<AbstractOrmEntity> getPluralForeignAccessor()
 	    throws Exception
     {

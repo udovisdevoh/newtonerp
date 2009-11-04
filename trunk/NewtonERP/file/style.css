@@ -178,3 +178,19 @@ Input.textField
 	border-width:1px;
 	padding:2px;
 }
+
+div.scrollableDivPair
+{
+	border-style:solid;
+	border-color:#88A;
+	border-width:1px;
+	height:100px;
+	width:400px;
+	overflow-y:scroll;
+}
+
+div.scrollableDivPair h4
+{
+	margin-top:3px;
+	margin-bottom:3px;
+}
