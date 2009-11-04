@@ -13,25 +13,25 @@ import newtonERP.viewers.viewables.PromptViewable;
  * Représente un département dans une compagnie
  * @author Guillaume
  */
-public class Department extends AbstractOrmEntity implements PromptViewable
+public class EmployeeType extends AbstractOrmEntity implements PromptViewable
 {
 
     /**
      * @throws Exception si création fails
      */
-    public Department() throws Exception
+    public EmployeeType() throws Exception
     {
 	super();
-	setVisibleName("Département");
     }
 
     @Override
     public Fields initFields() throws Exception
     {
 	Vector<Field> fieldsData = new Vector<Field>();
-	fieldsData.add(new FieldInt("Numéro de département",
-		getPrimaryKeyName()));
-	fieldsData.add(new FieldString("Nom", "departmentName"));
+	fieldsData.add(new FieldInt("Numéro de type", getPrimaryKeyName()));
+	fieldsData.add(new FieldString("type", "EmployeeType"));
+
+	addNaturalKey("EmployeeType");
 	return new Fields(fieldsData);
     }
 

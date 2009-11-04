@@ -24,20 +24,36 @@ public class Employee extends AbstractOrmEntity implements PromptViewable
     public Employee() throws Exception
     {
 	super();
+
 	AccessorManager.addAccessor(this, new Department());
+	AccessorManager.addAccessor(this, new EmployeeType());
+	AccessorManager.addAccessor(this, new SalaryType());
 	addCurrencyFormat("salary");
+
 	setVisibleName("Employé");
     }
 
     @Override
     public Fields initFields() throws Exception
     {
-	Vector<Field> fieldsData = new Vector<Field>();// Renamé en fieldsData
+	Vector<Field> fieldsData = new Vector<Field>();
 	fieldsData.add(new FieldInt("Numéro d'employé", getPrimaryKeyName()));
 	fieldsData.add(new FieldString("Prénom", "firstName"));
 	fieldsData.add(new FieldString("Nom de famille", "lastName"));
-	fieldsData.add(new FieldInt("Numéro department", "departmentID"));
+	fieldsData.add(new FieldInt("Numéro d'assurance social", "NAS"));
+	fieldsData.add(new FieldInt("type d'employer", new EmployeeType()
+		.getForeignKeyName()));
+	fieldsData.add(new FieldString("poste", "poste"));
+	fieldsData.add(new FieldInt("department", new Department()
+		.getForeignKeyName()));
+	fieldsData.add(new FieldInt("Type de salaire", new SalaryType()
+		.getForeignKeyName()));
 	fieldsData.add(new FieldDouble("Salaire annuel", "salary"));
+	fieldsData.add(new FieldInt("Nombre de jour de vaccance possible",
+		"nbVacancyDays"));
+	fieldsData.add(new FieldInt("Nombre de jour de maladie possible",
+		"nbSicknessDays"));
+
 	return new Fields(fieldsData);
     }
 }
