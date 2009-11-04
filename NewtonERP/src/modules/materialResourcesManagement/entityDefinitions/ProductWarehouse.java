@@ -8,7 +8,7 @@ import newtonERP.module.field.FieldInt;
 import newtonERP.module.field.Fields;
 
 /**
- * A warehouse product entity
+ * A warehouse product entity for * to * relations between products dba
  * 
  * @author r3hallejo
  */

@@ -4,31 +4,29 @@ import java.util.Vector;
 
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.field.Field;
+import newtonERP.module.field.FieldDate;
 import newtonERP.module.field.FieldInt;
-import newtonERP.module.field.FieldString;
 import newtonERP.module.field.Fields;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.viewers.viewables.PromptViewable;
 
 /**
- * A warehouse
+ * A delivery when a new Invoice (Customer or Vendor) has been generated
  * 
  * @author r3hallejo
  */
-public class Warehouse extends AbstractOrmEntity implements PromptViewable
+public class Shipping extends AbstractOrmEntity implements PromptViewable
 {
-
     /**
      * Default constructor
      * 
      * @throws Exception a general exception
      */
-    public Warehouse() throws Exception
+    public Shipping() throws Exception
     {
 	super();
-	AccessorManager.addAccessor(this, new Product());
-	AccessorManager.addAccessor(this, new Address());
-	setVisibleName("Entrepôts");
+	setVisibleName("Livraison");
+	AccessorManager.addAccessor(this, new ShippingType());
     }
 
     @Override
@@ -36,9 +34,11 @@ public class Warehouse extends AbstractOrmEntity implements PromptViewable
     {
 	Vector<Field> fieldsInit = new Vector<Field>();
 	fieldsInit
-		.add(new FieldInt("Numero de l'entrepot", getPrimaryKeyName()));
-	fieldsInit.add(new FieldString("Nom de l'entrepôt", "warehouseName"));
-	fieldsInit.add(new FieldInt("Adresse", "addressID"));
+		.add(new FieldInt("Numero de livraison", getPrimaryKeyName()));
+	fieldsInit.add(new FieldInt("Type de livraison", "shippingTypeID"));
+	fieldsInit.add(new FieldDate("Date estimée de livraison",
+		"estimatedShippingDate"));
 	return new Fields(fieldsInit);
     }
+
 }
