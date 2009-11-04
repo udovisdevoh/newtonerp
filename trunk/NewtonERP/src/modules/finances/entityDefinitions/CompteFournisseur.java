@@ -30,7 +30,7 @@ public class CompteFournisseur extends AbstractOrmEntity implements
 	super();
 
 	AccessorManager.addAccessor(this, new Vendor());
-
+	addCurrencyFormat("balance");
 	setVisibleName("Comptes Fournisseurs");
     }
 
