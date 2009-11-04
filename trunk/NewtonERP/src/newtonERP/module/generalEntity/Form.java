@@ -2,6 +2,7 @@ package newtonERP.module.generalEntity;
 
 import java.text.ParseException;
 import java.util.Hashtable;
+import java.util.Vector;
 
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
@@ -84,5 +85,11 @@ public class Form extends AbstractEntity implements PromptViewable
     {
 	// Aucun flag pool dans un formulaire, null: OK
 	return null;
+    }
+
+    @Override
+    public Vector<String> getOrderedFieldNameList()
+    {
+	return fields.getOrderedFieldNameList();
     }
 }

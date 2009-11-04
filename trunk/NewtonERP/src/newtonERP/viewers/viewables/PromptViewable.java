@@ -69,4 +69,10 @@ public interface PromptViewable
      * @return liste des messages d'alerte
      */
     public Vector<String> getAlertMessageList();
+
+    /**
+     * @return liste ordonnée (par ordre d'insertion) des clefs des champs
+     *         hahaha la clef des champs... LOL
+     */
+    public Vector<String> getOrderedFieldNameList();
 }

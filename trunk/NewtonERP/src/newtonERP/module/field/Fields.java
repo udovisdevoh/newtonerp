@@ -197,4 +197,16 @@ public class Fields implements Iterable<Field>
 	    field.setDefaultValue();
 	}
     }
+
+    /**
+     * @return noms des clefs des champs par ordre d'insertion
+     */
+    public Vector<String> getOrderedFieldNameList()
+    {
+	Vector<String> orderedFieldNameList = new Vector<String>();
+	for (Field field : fieldsDataVector)
+	    orderedFieldNameList.add(field.getShortName());
+
+	return orderedFieldNameList;
+    }
 }

@@ -502,4 +502,12 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 
 	return singleAccessorList;
     }
+
+    /**
+     * @return liste des clefs des champs par ordre d'insertion
+     */
+    public Vector<String> getOrderedFieldNameList()
+    {
+	return fields.getOrderedFieldNameList();
+    }
 }
