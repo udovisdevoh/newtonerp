@@ -2,7 +2,6 @@ package modules.userRightModule;
 
 import java.util.Vector;
 
-import modules.userRightModule.actions.Login;
 import modules.userRightModule.entityDefinitions.Groups;
 import modules.userRightModule.entityDefinitions.GroupsRight;
 import modules.userRightModule.entityDefinitions.Right;
@@ -13,7 +12,7 @@ import newtonERP.module.Module;
 import newtonERP.orm.Orm;
 
 /**
- * @author Gabriel Therrien, Guillaume Lacasse
+ * @author Gabriel Therrien, Guillaume Lacasse, CloutierJo
  * 
  *         Class representing the user right module. Base module for the ERP.
  */
@@ -27,7 +26,7 @@ public class UserRightModule extends Module
     public UserRightModule() throws Exception
     {
 	super();
-	setDefaultAction(new Login());
+	setDefaultAction(new BaseAction("GetList", new User()));
 	addGlobalActionMenuItem("Utilisateurs", new BaseAction("GetList",
 		new User()));
 	addGlobalActionMenuItem("Liste des droits", new BaseAction("GetList",

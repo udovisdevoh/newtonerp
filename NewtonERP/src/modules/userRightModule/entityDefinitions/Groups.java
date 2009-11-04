@@ -13,7 +13,7 @@ import newtonERP.viewers.viewables.PromptViewable;
 
 /**
  * Entity defenition class representing a group for the users
- * @author r3hallejo
+ * @author CloutierJo, r3hallejo
  */
 public class Groups extends AbstractOrmEntity implements PromptViewable
 {
@@ -55,7 +55,7 @@ public class Groups extends AbstractOrmEntity implements PromptViewable
 	Vector<AbstractOrmEntity> GroupsRights = Orm.select(GroupsRightSearch);
 	for (AbstractOrmEntity entity : GroupsRights)
 	{
-	    GroupsRight GroupsRight = (GroupsRight) (entity);
+	    GroupsRight GroupsRight = (GroupsRight) entity;
 
 	    rightResult.add(GroupsRight.getRightEntity());
 	}

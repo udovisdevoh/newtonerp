@@ -11,9 +11,8 @@ import newtonERP.module.Module;
 import newtonERP.orm.Orm;
 
 /**
+ * Action class that creates all the rights for every module
  * @author cloutierJo
- * 
- *         Action class that creates all the rights for every module
  */
 public class CreateAllRight extends AbstractAction
 {

@@ -11,9 +11,8 @@ import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.Orm;
 
 /**
+ * Action class that checks the right on an entity
  * @author cloutierJo
- * 
- *         Action class that checks the right on an entity
  */
 public class RightCheck extends AbstractAction
 {

@@ -10,7 +10,6 @@ import newtonERP.module.generalEntity.StaticTextEntity;
 /**
  * action permettant de ce delogguer
  * @author GLacasse
- * 
  */
 public class Logout extends AbstractAction
 {

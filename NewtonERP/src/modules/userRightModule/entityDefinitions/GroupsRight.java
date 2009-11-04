@@ -13,7 +13,7 @@ import newtonERP.orm.exceptions.OrmException;
 
 /**
  * Entity defenition representing a group right for the users
- * @author djo
+ * @author CloutierJo
  */
 public class GroupsRight extends AbstractOrmEntity
 {
