@@ -413,11 +413,11 @@ voici le model de scrum a copier en entier si vous êtes le premier
 
 ==Gabriel Therrien==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
-  * ...livré...
+  * 
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
-  * ...à livré...
+  * finir costumer/vendor
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
-  * ...problème, besoin d'aide, qui aidera...
+  * les link entre les modules
 
 ==Jonatan Cloutier==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
@@ -522,11 +522,11 @@ par exemple, si on delete un Group, alors les GroupRight WHERE GroupID = ce grou
 
 ==Gabriel Therrien==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
-  * ...livré...
+  * le module costumer/vendor
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
-  * ...à livrer...
+  * travailler sur un autre module ou travailler sur les links
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
-  * ...problème, besoin d'aide, qui aidera...
+  * links
 
 ==Jonatan Cloutier==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
