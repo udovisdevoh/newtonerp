@@ -603,12 +603,16 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	getPositiveFlagPoolList().put(visibleDescription, flagPool);
     }
 
+    /**
+     * @param visibleDescription description du flag pool
+     * @param flagPool flag pool
+     */
     public void addNegativeFlagPool(String visibleDescription, FlagPool flagPool)
     {
 	getNegativeFlagPoolList().put(visibleDescription, flagPool);
     }
 
-    private static Hashtable<String, FlagPool> getNegativeFlagPoolList()
+    public Hashtable<String, FlagPool> getNegativeFlagPoolList()
     {
 	if (negativeFlagPoolList == null)
 	    negativeFlagPoolList = new Hashtable<String, FlagPool>();

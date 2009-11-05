@@ -194,4 +194,13 @@ public class Fields implements Iterable<Field>
 
 	return orderedFieldNameList;
     }
+
+    /**
+     * @param fieldName nom du champ
+     * @return true si nom du champ existe dans les fields
+     */
+    public boolean containsFieldName(String fieldName)
+    {
+	return fieldsDataMap.containsKey(fieldName);
+    }
 }

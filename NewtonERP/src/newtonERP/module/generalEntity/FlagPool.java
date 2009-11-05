@@ -117,7 +117,7 @@ public class FlagPool implements CheckListViewable
     {
 	HashSet<String> checkedElementList = new HashSet<String>();
 
-	for (AbstractOrmEntity entity : getPluralIntermediateAccessor())
+	for (AbstractOrmEntity entity : getPositivePluralIntermediateAccessor())
 	    checkedElementList.add(intermediateEntityDefinition.getClass()
 		    .getSimpleName()
 		    + "."
@@ -191,7 +191,7 @@ public class FlagPool implements CheckListViewable
      * @return retourne un accessor multiple
      * @throws Exception si obtention d'accessor multiple fail
      */
-    public Vector<AbstractOrmEntity> getPluralIntermediateAccessor()
+    public Vector<AbstractOrmEntity> getPositivePluralIntermediateAccessor()
 	    throws Exception
     {
 	if (sourceKeyName == null || sourceKeyValue == null)
@@ -219,10 +219,10 @@ public class FlagPool implements CheckListViewable
      * @return accessor multiple vers entité étrangère
      * @throws Exception si obtention fail
      */
-    public Vector<AbstractOrmEntity> getPluralForeignAccessor()
+    public Vector<AbstractOrmEntity> getPositivePluralForeignAccessor()
 	    throws Exception
     {
-	Vector<AbstractOrmEntity> pluralIntermediateAccessor = getPluralIntermediateAccessor();
+	Vector<AbstractOrmEntity> pluralIntermediateAccessor = getPositivePluralIntermediateAccessor();
 
 	Vector<AbstractOrmEntity> pluralForeignAccessor = new Vector<AbstractOrmEntity>();
 
