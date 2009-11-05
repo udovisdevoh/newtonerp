@@ -19,6 +19,8 @@ public class ScrollList extends AbstractEntity implements ScrollListViewable
 
     private Vector<TreeMap<String, String>> linkPairList;
 
+    private String titleUrl;
+
     /**
      * @param title titre
      * @throws Exception si création fail
@@ -77,5 +79,16 @@ public class ScrollList extends AbstractEntity implements ScrollListViewable
 	linkGroup.put(link2Name, link2Url);
 
 	getLinkGroupList().add(linkGroup);
+    }
+
+    public void setTitleUrl(String titleUrl)
+    {
+	this.titleUrl = titleUrl;
+    }
+
+    @Override
+    public String getTitleUrl()
+    {
+	return titleUrl;
     }
 }

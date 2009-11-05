@@ -130,6 +130,10 @@ public class PromptViewer
 
 		for (AbstractOrmEntity currentForeignEntity : pluralAccessor)
 		{
+		    scrollList.setTitleUrl(Servlet.makeLink(
+			    currentForeignEntity.getCurrentModule(),
+			    new BaseAction("GetList", currentForeignEntity)));
+
 		    scrollList.addLink(currentForeignEntity
 			    .getNaturalKeyDescription(), Servlet.makeLink(
 			    currentForeignEntity.getCurrentModule(),
