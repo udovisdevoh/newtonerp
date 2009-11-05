@@ -27,8 +27,9 @@ public class ServiceProvider extends AbstractOrmEntity implements
     public ServiceProvider() throws Exception
     {
 	super();
-
 	setVisibleName("Fournisseurs de services");
+	addNaturalKey("name");
+	addNaturalKey("phone");
     }
 
     @Override
