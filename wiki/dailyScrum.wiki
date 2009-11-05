@@ -556,7 +556,8 @@ par exemple, si on delete un Group, alors les GroupRight WHERE GroupID = ce grou
   * Ajout d'une entité country et state
   * Ajout d'un commentaire de shipping
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
-  * ...à livrer...
+  * linker les factures avec les produits (et éventuellement gerer et faire les validations sur les quantitées)
+  * linker les livraisons avec les shippers
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
   * pas que je me sache
 
