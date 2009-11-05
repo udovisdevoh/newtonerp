@@ -162,5 +162,7 @@ public class FlagPoolManager
 		foreignDescriptionUiControls);
 
 	sourceEntity.addPositiveFlagPool(visibleDescription, flagPool);
+	foreignEntityDefinition.addNegativeFlagPool(visibleDescription,
+		flagPool);
     }
 }
