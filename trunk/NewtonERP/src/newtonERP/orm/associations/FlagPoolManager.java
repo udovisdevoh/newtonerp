@@ -161,9 +161,6 @@ public class FlagPoolManager
 		intermediateKeyOut, foreignEntityDefinition, foreignKey,
 		foreignDescriptionUiControls);
 
-	if (sourceEntity.getFlagPoolList() == null)
-	    sourceEntity.setFlagPoolList(new Hashtable<String, FlagPool>());
-
-	sourceEntity.getFlagPoolList().put(visibleDescription, flagPool);
+	sourceEntity.addPositiveFlagPool(visibleDescription, flagPool);
     }
 }

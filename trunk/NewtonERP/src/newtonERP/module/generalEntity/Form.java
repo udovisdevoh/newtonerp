@@ -81,7 +81,7 @@ public class Form extends AbstractEntity implements PromptViewable
     }
 
     @Override
-    public Hashtable<String, FlagPool> getFlagPoolList()
+    public Hashtable<String, FlagPool> getPositiveFlagPoolList()
     {
 	// Aucun flag pool dans un formulaire, null: OK
 	return null;

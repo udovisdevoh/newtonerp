@@ -72,9 +72,9 @@ public class PluralAccessorManager
 	Vector<AbstractOrmEntity> pluralAccessor;
 	FlagPool flagPool;
 
-	for (String flagPoolName : entity.getFlagPoolList().keySet())
+	for (String flagPoolName : entity.getPositiveFlagPoolList().keySet())
 	{
-	    flagPool = entity.getFlagPoolList().get(flagPoolName);
+	    flagPool = entity.getPositiveFlagPoolList().get(flagPoolName);
 	    pluralAccessor = getPluralAccessor(entity, flagPool);
 
 	    if (pluralAccessor != null)

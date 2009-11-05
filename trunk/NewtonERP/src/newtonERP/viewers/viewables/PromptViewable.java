@@ -50,7 +50,7 @@ public interface PromptViewable
     /**
      * @return the flag pool list
      */
-    public Hashtable<String, FlagPool> getFlagPoolList();
+    public Hashtable<String, FlagPool> getPositiveFlagPoolList();
 
     /**
      * @param fieldName the field

@@ -82,7 +82,7 @@ public class PromptViewer
 	}
 
 	if (entity instanceof AbstractOrmEntity)
-	    for (FlagPool flagPool : entity.getFlagPoolList().values())
+	    for (FlagPool flagPool : entity.getPositiveFlagPoolList().values())
 	    {
 		flagPool.query(ormEntity.getPrimaryKeyName(), ormEntity
 			.getPrimaryKeyValue());
