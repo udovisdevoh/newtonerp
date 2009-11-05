@@ -39,6 +39,8 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 
     private Hashtable<String, FlagPool> positiveFlagPoolList;
 
+    private static Hashtable<String, FlagPool> negativeFlagPoolList;
+
     // oblige le redefinition pour les sous-classe de AbstractOrmEntity
     public abstract Fields initFields() throws Exception;
 
@@ -599,5 +601,17 @@ public abstract class AbstractOrmEntity extends AbstractEntity
     public void addPositiveFlagPool(String visibleDescription, FlagPool flagPool)
     {
 	getPositiveFlagPoolList().put(visibleDescription, flagPool);
+    }
+
+    public void addNegativeFlagPool(String visibleDescription, FlagPool flagPool)
+    {
+	getNegativeFlagPoolList().put(visibleDescription, flagPool);
+    }
+
+    private static Hashtable<String, FlagPool> getNegativeFlagPoolList()
+    {
+	if (negativeFlagPoolList == null)
+	    negativeFlagPoolList = new Hashtable<String, FlagPool>();
+	return negativeFlagPoolList;
     }
 }
