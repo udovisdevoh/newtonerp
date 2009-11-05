@@ -31,6 +31,6 @@ public class MoneyViewer
      */
     public static String getHtmlCode(double inputValue)
     {
-	return numberFormat.format(inputValue);
+	return numberFormat.format(inputValue).replace(" $", "$");
     }
 }
