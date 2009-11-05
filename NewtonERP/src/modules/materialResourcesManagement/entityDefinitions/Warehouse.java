@@ -38,9 +38,8 @@ public class Warehouse extends AbstractOrmEntity implements PromptViewable
 	fieldsInit
 		.add(new FieldInt("Numero de l'entrepot", getPrimaryKeyName()));
 	fieldsInit.add(new FieldString("Nom de l'entrepôt", "warehouseName"));
-
-	// TODO : changer le nom pour le foreign key name de address
-	fieldsInit.add(new FieldInt("Adresse", "addressID"));
+	fieldsInit.add(new FieldInt("Adresse", new Address()
+		.getForeignKeyName()));
 	return new Fields(fieldsInit);
     }
 }
