@@ -1,5 +1,6 @@
 package modules.finances;
 
+import modules.finances.entityDefinitions.BankAccount;
 import modules.finances.entityDefinitions.ServiceProvider;
 import modules.finances.entityDefinitions.ServiceProviderAccount;
 import modules.finances.entityDefinitions.StateType;
@@ -23,6 +24,9 @@ public class Finances extends Module
 	super();
 
 	setDefaultAction(new BaseAction("GetList", new SupplierAccount()));
+
+	addGlobalActionMenuItem("Compte Banque", new BaseAction("GetList",
+		new BankAccount()));
 
 	addGlobalActionMenuItem("Comptes Fournisseurs", new BaseAction(
 		"GetList", new SupplierAccount()));
