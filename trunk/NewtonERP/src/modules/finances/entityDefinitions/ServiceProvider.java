@@ -37,6 +37,7 @@ public class ServiceProvider extends AbstractOrmEntity implements
 	Vector<Field> fieldsInit = new Vector<Field>();
 	fieldsInit.add(new FieldInt("Numéro", getPrimaryKeyName()));
 	fieldsInit.add(new FieldString("Nom", "name"));
+	fieldsInit.add(new FieldString("Téléphone", "phone"));
 	fieldsInit.add(new FieldInt("Numéro civique", "civicNumber"));
 	fieldsInit.add(new FieldString("Rue", "streetName"));
 	fieldsInit.add(new FieldString("Ville", "city"));
