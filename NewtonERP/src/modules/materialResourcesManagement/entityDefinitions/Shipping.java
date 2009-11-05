@@ -40,6 +40,8 @@ public class Shipping extends AbstractOrmEntity implements PromptViewable
 	fieldsInit.add(new FieldInt("Type de livraison", "shippingTypeID"));
 	fieldsInit.add(new FieldDate("Date estimée de livraison",
 		"estimatedShippingDate"));
+
+	// TODO: Changer le nom pour le foreign key name dune invoice
 	fieldsInit.add(new FieldInt("Facture associée", "customerInvoiceID"));
 	return new Fields(fieldsInit);
     }
