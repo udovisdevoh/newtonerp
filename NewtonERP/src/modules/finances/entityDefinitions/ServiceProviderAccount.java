@@ -28,8 +28,11 @@ public class ServiceProviderAccount extends AbstractOrmEntity implements
     public ServiceProviderAccount() throws Exception
     {
 	super();
-
+	addNaturalKey("service");
+	addNaturalKey("phone");
+	addNaturalKey(getPrimaryKeyName());
 	AccessorManager.addAccessor(this, new ServiceProvider());
+	AccessorManager.addAccessor(this, new StateType());
 	addCurrencyFormat("balance");
 	setVisibleName("Comptes Fournisseurs de services");
     }
@@ -42,7 +45,8 @@ public class ServiceProviderAccount extends AbstractOrmEntity implements
 	fieldsInit.add(new FieldString("Service", "service"));
 	fieldsInit.add(new FieldDate("Échéance", "deadline"));
 	fieldsInit.add(new FieldDouble("Solde", "balance"));
-	fieldsInit.add(new FieldString("État", "state"));
+	fieldsInit
+		.add(new FieldInt("État", new StateType().getForeignKeyName()));
 	fieldsInit.add(new FieldInt("Numéro de Fournisseur",
 		new ServiceProvider().getForeignKeyName()));
 

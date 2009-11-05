@@ -510,12 +510,22 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	String currentFieldValue;
 	for (String naturalKeyName : getNaturalKeyNameList())
 	{
-	    currentFieldValue = getDataString(naturalKeyName);
 
-	    if (isMatchCurrencyFormat(naturalKeyName))
-		currentFieldValue = MoneyViewer.getHtmlCode(currentFieldValue);
+	    if (getFields().containsFieldName(naturalKeyName))
+	    {
+		currentFieldValue = getDataString(naturalKeyName);
 
-	    description += " " + currentFieldValue;
+		if (isMatchCurrencyFormat(naturalKeyName))
+		    currentFieldValue = MoneyViewer
+			    .getHtmlCode(currentFieldValue);
+
+		description += " " + currentFieldValue;
+	    }
+	    else
+	    {
+		description += " -";
+	    }
+
 	}
 
 	return description.trim();

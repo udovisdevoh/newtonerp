@@ -9,7 +9,6 @@ import newtonERP.module.field.Field;
 import newtonERP.module.field.FieldDate;
 import newtonERP.module.field.FieldDouble;
 import newtonERP.module.field.FieldInt;
-import newtonERP.module.field.FieldString;
 import newtonERP.module.field.Fields;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.viewers.viewables.PromptViewable;
@@ -30,9 +29,10 @@ public class SupplierAccount extends AbstractOrmEntity implements
     public SupplierAccount() throws Exception
     {
 	super();
-
+	addNaturalKey(getPrimaryKeyName());
 	AccessorManager.addAccessor(this, new Vendor());
 	AccessorManager.addAccessor(this, new Invoice());
+	AccessorManager.addAccessor(this, new StateType());
 	addCurrencyFormat("balance");
 	setVisibleName("Compte Fournisseur");
     }
@@ -46,7 +46,8 @@ public class SupplierAccount extends AbstractOrmEntity implements
 		.getForeignKeyName()));
 	fieldsInit.add(new FieldDate("Échéance", "deadline"));
 	fieldsInit.add(new FieldDouble("Solde", "balance"));
-	fieldsInit.add(new FieldString("État", "state"));
+	fieldsInit
+		.add(new FieldInt("État", new StateType().getForeignKeyName()));
 	fieldsInit.add(new FieldInt("Numéro de fournisseur", new Vendor()
 		.getForeignKeyName()));
 

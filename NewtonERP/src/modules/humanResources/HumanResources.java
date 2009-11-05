@@ -27,13 +27,13 @@ public class HumanResources extends Module
 		new Employee()));
 	addGlobalActionMenuItem("Départements", new BaseAction("GetList",
 		new Department()));
-	addGlobalActionMenuItem("horaire", new BaseAction("GetList",
+	addGlobalActionMenuItem("Horaire", new BaseAction("GetList",
 		new Schedule()));
-	addGlobalActionMenuItem("type d'employer", new BaseAction("GetList",
+	addGlobalActionMenuItem("Type d'employé", new BaseAction("GetList",
 		new EmployeeType()));
-	addGlobalActionMenuItem("type de salaire", new BaseAction("GetList",
+	addGlobalActionMenuItem("Type de salaire", new BaseAction("GetList",
 		new SalaryType()));
-	addGlobalActionMenuItem("type de période", new BaseAction("GetList",
+	addGlobalActionMenuItem("Type de période", new BaseAction("GetList",
 		new PeriodeType()));
 
 	setVisibleName("Ressources humaines");
