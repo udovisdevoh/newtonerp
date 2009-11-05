@@ -1,9 +1,7 @@
 package modules.customerVendor;
 
 import modules.customerVendor.entityDefinitions.Customer;
-import modules.customerVendor.entityDefinitions.Firm;
 import modules.customerVendor.entityDefinitions.Invoice;
-import modules.customerVendor.entityDefinitions.Vendor;
 import newtonERP.module.BaseAction;
 import newtonERP.module.Module;
 
@@ -28,12 +26,6 @@ public class CustomerVendor extends Module
 
 	addGlobalActionMenuItem("Factures", new BaseAction("GetList",
 		new Invoice()));
-
-	addGlobalActionMenuItem("Fournisseurs", new BaseAction("GetList",
-		new Vendor()));
-
-	addGlobalActionMenuItem("Firme de publicité", new BaseAction("GetList",
-		new Firm()));
 
 	setVisibleName("Clients / Fournisseurs");
     }
@@ -66,28 +58,5 @@ public class CustomerVendor extends Module
 	customer2.setData("address", "24 Dollard, Lasalle");
 	customer2.newE();
 
-	Vendor vendor3 = new Vendor();
-	vendor3.setData("name", "Aucun");
-	vendor3.setData("phone", "Aucun");
-	vendor3.setData("address", "Aucun");
-	vendor3.newE();
-
-	Vendor vendor = new Vendor();
-	vendor.setData("name", "Wilsonart");
-	vendor.setData("phone", "514-848-4796");
-	vendor.setData("address", "1 Notre-Dame, Washington");
-	vendor.newE();
-
-	Vendor vendor1 = new Vendor();
-	vendor1.setData("name", "Ciment Saint-Laurent");
-	vendor1.setData("phone", "514-999-4796");
-	vendor1.setData("address", "45 Mansfield, Montreal");
-	vendor1.newE();
-
-	Vendor vendor2 = new Vendor();
-	vendor2.setData("name", "Volvo");
-	vendor2.setData("phone", "514-848-4678");
-	vendor2.setData("address", "9087 HillSide, New York");
-	vendor2.newE();
     }
 }

@@ -2,7 +2,6 @@ package modules.customerVendor.actions;
 
 import java.util.Hashtable;
 
-import modules.customerVendor.entityDefinitions.Invoice;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
 
@@ -21,7 +20,7 @@ public class GetNamePrice extends AbstractAction
     {
 	// TODO: faire qu'il return un row ittérator d'un facture pis le donne a
 	// l'action qui compte le total
-	((Invoice) entity).getPluralAccessorList().get("item");
+	// ((Invoice) entity).getPluralAccessorList().get("item");
 	return null;
     }
 
