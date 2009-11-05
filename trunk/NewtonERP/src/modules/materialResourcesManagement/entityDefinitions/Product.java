@@ -4,6 +4,7 @@ import java.util.Vector;
 
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.field.Field;
+import newtonERP.module.field.FieldDouble;
 import newtonERP.module.field.FieldInt;
 import newtonERP.module.field.FieldString;
 import newtonERP.module.field.Fields;
@@ -38,6 +39,8 @@ public class Product extends AbstractOrmEntity implements PromptViewable
 	fieldsInit.add(new FieldInt("Quantité en stock", "quantityInStock"));
 	fieldsInit.add(new FieldInt("Point de commande", "reorderPoint"));
 	fieldsInit.add(new FieldInt("Quantité réservé", "reservedStock"));
+	fieldsInit.add(new FieldDouble("Prix d'achat", "purchasingPrice"));
+	fieldsInit.add(new FieldDouble("Prix de vente", "sellingPrice"));
 	return new Fields(fieldsInit);
     }
 

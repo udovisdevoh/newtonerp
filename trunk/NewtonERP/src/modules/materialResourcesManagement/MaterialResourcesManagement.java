@@ -76,6 +76,8 @@ public class MaterialResourcesManagement extends Module
 	product.setData("quantityInStock", 1000);
 	product.setData("reorderPoint", 500);
 	product.setData("reservedStock", 200);
+	product.setData("purchasingPrice", 12.99);
+	product.setData("sellingPrice", 24.69);
 	product.newE();
 
 	Product product1 = new Product();
@@ -84,6 +86,8 @@ public class MaterialResourcesManagement extends Module
 	product1.setData("quantityInStock", 10000);
 	product1.setData("reorderPoint", 8000);
 	product1.setData("reservedStock", 59);
+	product1.setData("purchasingPrice", 2.99);
+	product1.setData("sellingPrice", 3.99);
 	product1.newE();
 
 	Product product2 = new Product();
@@ -92,6 +96,8 @@ public class MaterialResourcesManagement extends Module
 	product2.setData("quantityInStock", 3);
 	product2.setData("reorderPoint", 0);
 	product2.setData("reservedStock", 0);
+	product2.setData("purchasingPrice", 10.99);
+	product2.setData("sellingPrice", 12.99);
 	product2.newE();
 
 	Product product3 = new Product();
@@ -100,6 +106,8 @@ public class MaterialResourcesManagement extends Module
 	product3.setData("quantityInStock", 50);
 	product3.setData("reorderPoint", 20);
 	product3.setData("reservedStock", 2);
+	product3.setData("purchasingPrice", 109.99);
+	product3.setData("sellingPrice", 129.99);
 	product3.newE();
 
 	Warehouse warehouse = new Warehouse();
