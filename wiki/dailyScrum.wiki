@@ -518,7 +518,7 @@ par exemple, si on delete un Group, alors les GroupRight WHERE GroupID = ce grou
   * Élaboration d'un modéle pour module Finances et comptabilité
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
   * Poursuite de l'analyse du modèle (cerner tous ce dont j'ai besoin)...
-  * Débuter l'implentation
+  * Débuter l'implantation
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
   * Complexe la comptabilité; de plus aucune référence analogue dans nos cours
   * contrairement à customerVendor et humanResource... 
@@ -565,9 +565,11 @@ par exemple, si on delete un Group, alors les GroupRight WHERE GroupID = ce grou
 
 ==Pascal Lemay==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
-  * ...livré...
+  * Analyse pour modèle de finances...
+  * Débuter l'implantation
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
-  * ...à livrer...
+  * Poursuivre l'implantation de module finances.
+  * Bien linker mes entités avec les autres entités dont j'ai besoin.
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
   * ...problème, besoin d'aide, qui aidera...
 
