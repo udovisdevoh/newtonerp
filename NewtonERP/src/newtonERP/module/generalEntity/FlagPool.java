@@ -43,7 +43,7 @@ public class FlagPool implements CheckListViewable
      *            PKrightID
      * @param foreignDescriptionUiControls liste de colonne de description de
      *            table étrangère, exemple: Action, Module
-     * @throws Exception
+     * @throws Exception si création fail
      */
     public FlagPool(AbstractOrmEntity sourceEntityDefinition,
 	    String visibleDescription,

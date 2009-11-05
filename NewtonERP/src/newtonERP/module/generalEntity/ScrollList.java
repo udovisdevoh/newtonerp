@@ -81,6 +81,9 @@ public class ScrollList extends AbstractEntity implements ScrollListViewable
 	getLinkGroupList().add(linkGroup);
     }
 
+    /**
+     * @param titleUrl url du titre (facultatif)
+     */
     public void setTitleUrl(String titleUrl)
     {
 	this.titleUrl = titleUrl;
