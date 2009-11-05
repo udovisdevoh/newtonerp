@@ -2,7 +2,7 @@ package modules.materialResourcesManagement.entityDefinitions;
 
 import java.util.Vector;
 
-import modules.customerVendor.entityDefinitions.CustomerInvoice;
+import modules.customerVendor.entityDefinitions.Invoice;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.field.Field;
 import newtonERP.module.field.FieldDate;
@@ -28,7 +28,7 @@ public class Shipping extends AbstractOrmEntity implements PromptViewable
 	super();
 	setVisibleName("Livraison");
 	AccessorManager.addAccessor(this, new ShippingType());
-	AccessorManager.addAccessor(this, new CustomerInvoice());
+	AccessorManager.addAccessor(this, new Invoice());
     }
 
     @Override
@@ -40,9 +40,8 @@ public class Shipping extends AbstractOrmEntity implements PromptViewable
 	fieldsInit.add(new FieldInt("Type de livraison", "shippingTypeID"));
 	fieldsInit.add(new FieldDate("Date estimée de livraison",
 		"estimatedShippingDate"));
-
-	// TODO: Changer le nom pour le foreign key name dune invoice
-	fieldsInit.add(new FieldInt("Facture associée", "customerInvoiceID"));
+	fieldsInit.add(new FieldInt("Facture associée", new Invoice()
+		.getForeignKeyName()));
 	return new Fields(fieldsInit);
     }
 

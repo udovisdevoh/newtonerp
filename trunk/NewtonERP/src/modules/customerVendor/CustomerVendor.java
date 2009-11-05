@@ -1,9 +1,8 @@
 package modules.customerVendor;
 
 import modules.customerVendor.entityDefinitions.Customer;
-import modules.customerVendor.entityDefinitions.CustomerInvoice;
+import modules.customerVendor.entityDefinitions.Invoice;
 import modules.customerVendor.entityDefinitions.Vendor;
-import modules.customerVendor.entityDefinitions.VendorInvoice;
 import newtonERP.module.BaseAction;
 import newtonERP.module.Module;
 
@@ -26,14 +25,11 @@ public class CustomerVendor extends Module
 	addGlobalActionMenuItem("Clients", new BaseAction("GetList",
 		new Customer()));
 
-	addGlobalActionMenuItem("Facture de clients", new BaseAction("GetList",
-		new CustomerInvoice()));
+	addGlobalActionMenuItem("Factures", new BaseAction("GetList",
+		new Invoice()));
 
 	addGlobalActionMenuItem("Fournisseurs", new BaseAction("GetList",
 		new Vendor()));
-
-	addGlobalActionMenuItem("Facture de fournisseur", new BaseAction(
-		"GetList", new VendorInvoice()));
 
 	setVisibleName("Clients / Fournisseurs");
     }
@@ -41,6 +37,12 @@ public class CustomerVendor extends Module
     public void initDB() throws Exception
     {
 	super.initDB();
+
+	Customer customer3 = new Customer();
+	customer3.setData("name", "Aucun");
+	customer3.setData("phone", "Aucun");
+	customer3.setData("address", "Aucun");
+	customer3.newE();
 
 	Customer customer = new Customer();
 	customer.setData("name", "Bombardier");
@@ -59,6 +61,12 @@ public class CustomerVendor extends Module
 	customer2.setData("phone", "514-266-2710");
 	customer2.setData("address", "24 Dollard, Lasalle");
 	customer2.newE();
+
+	Vendor vendor3 = new Vendor();
+	vendor3.setData("name", "Aucun");
+	vendor3.setData("phone", "Aucun");
+	vendor3.setData("address", "Aucun");
+	vendor3.newE();
 
 	Vendor vendor = new Vendor();
 	vendor.setData("name", "Wilsonart");
