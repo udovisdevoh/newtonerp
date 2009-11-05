@@ -2,6 +2,7 @@ package modules.materialResourcesManagement.entityDefinitions;
 
 import java.util.Vector;
 
+import modules.common.entityDefinitions.Address;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.field.Field;
 import newtonERP.module.field.FieldInt;

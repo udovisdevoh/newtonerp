@@ -1,4 +1,4 @@
-package modules.materialResourcesManagement.entityDefinitions;
+package modules.common.entityDefinitions;
 
 import java.util.Vector;
 
@@ -7,6 +7,7 @@ import newtonERP.module.field.Field;
 import newtonERP.module.field.FieldInt;
 import newtonERP.module.field.FieldString;
 import newtonERP.module.field.Fields;
+import newtonERP.orm.associations.AccessorManager;
 import newtonERP.viewers.viewables.PromptViewable;
 
 /**
@@ -25,6 +26,8 @@ public class Address extends AbstractOrmEntity implements PromptViewable
     public Address() throws Exception
     {
 	super();
+	AccessorManager.addAccessor(this, new Country());
+	AccessorManager.addAccessor(this, new State());
 	addNaturalKey("streetNumber");
 	addNaturalKey("streetName");
 	addNaturalKey("city");
@@ -43,6 +46,9 @@ public class Address extends AbstractOrmEntity implements PromptViewable
 	fieldsInit.add(new FieldString("Code postal", "postalCode"));
 	fieldsInit
 		.add(new FieldString("Numero de telephone", "telephoneNumber"));
+	fieldsInit.add(new FieldInt("Pays", new Country().getForeignKeyName()));
+	fieldsInit.add(new FieldInt("Province / État", new State()
+		.getForeignKeyName()));
 	return new Fields(fieldsInit);
     }
 

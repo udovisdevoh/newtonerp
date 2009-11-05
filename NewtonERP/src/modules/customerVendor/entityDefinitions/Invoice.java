@@ -12,9 +12,9 @@ import newtonERP.orm.associations.AccessorManager;
 import newtonERP.viewers.viewables.PromptViewable;
 
 /**
- * @author Gabriel
+ * Invoice working for customers dans vendors
  * 
- *         Entité du des facture des client dans le module customerVendor
+ * @author r3hallejo
  */
 public class Invoice extends AbstractOrmEntity implements PromptViewable
 {
@@ -29,6 +29,10 @@ public class Invoice extends AbstractOrmEntity implements PromptViewable
 	AccessorManager.addAccessor(this, new Vendor());
 	addCurrencyFormat("total");
 	setVisibleName("Facture");
+
+	addNaturalKey(getPrimaryKeyName());
+	addNaturalKey(new Customer().getForeignKeyName());
+	addNaturalKey("date");
     }
 
     public Fields initFields() throws Exception
