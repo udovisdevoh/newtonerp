@@ -115,6 +115,46 @@ public abstract class AbstractOrmEntity extends AbstractEntity
     }
 
     /**
+     * supprime l'entity en DB, la clause where est definie par this
+     * 
+     * @throws OrmException remonte
+     */
+
+    public final void delete() throws OrmException
+    {
+	delete(this);
+    }
+
+    /**
+     * supprime l'entity en DB corespondant au whereClause
+     * 
+     * @param whereClause the where clause for the query
+     * 
+     * @throws OrmException remonte
+     */
+    public final void delete(AbstractOrmEntity whereClause) throws OrmException
+    {
+	Vector<AbstractOrmEntity> whereParameter = new Vector<AbstractOrmEntity>();
+	whereParameter.add(whereClause);
+	delete(whereParameter);
+    }
+
+    /**
+     * supprime l'entity en DB corespondant aux whereClauses en utilisant le
+     * whereBuilder
+     * 
+     * @param whereClause the where clause for the query
+     * 
+     * @throws OrmException remonte
+     * @see
+     */
+    public final void delete(Vector<AbstractOrmEntity> whereClause)
+	    throws OrmException
+    {
+	Orm.delete(whereClause);
+    }
+
+    /**
      * BaseAction Edit
      * 
      * @param parameters parametre suplementaire
@@ -163,15 +203,57 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      * met a jour l'entity en DB, l'ID doit etre présent
      * 
      * @param whereClause the where clause for the query
-     * @return this
      * @throws OrmException remonte
      */
-    public final AbstractEntity edit(String whereClause) throws OrmException
+    public final void edit(String whereClause) throws OrmException
     {
 	Vector<String> whereParameter = new Vector<String>();
 	whereParameter.add(whereClause);
 	Orm.update(this, whereParameter);
-	return this;
+    }
+
+    /**
+     * met a jour l'entity en DB, l'ID doit etre présent, le whereclause
+     * correspond a this
+     * 
+     * @param whereClause the where clause for the query
+     * @param changeToApply the chang to apply to entity matching the where
+     *            clause
+     * @throws OrmException remonte
+     */
+    public final void edit(AbstractOrmEntity changeToApply) throws OrmException
+    {
+	edit(this, changeToApply);
+    }
+
+    /**
+     * met a jour l'entity en DB, l'ID doit etre présent
+     * 
+     * @param whereClause the where clause for the query
+     * @param changeToApply the chang to apply to entity matching the where
+     *            clause
+     * @throws OrmException remonte
+     */
+    public final void edit(AbstractOrmEntity whereClause,
+	    AbstractOrmEntity changeToApply) throws OrmException
+    {
+	Vector<AbstractOrmEntity> whereParameter = new Vector<AbstractOrmEntity>();
+	whereParameter.add(whereClause);
+	edit(whereParameter, changeToApply);
+    }
+
+    /**
+     * met a jour l'entity en DB, l'ID doit etre présent
+     * 
+     * @param whereClause the where clause for the query
+     * @param changeToApply the chang to apply to entity matching the where
+     *            clause
+     * @throws OrmException remonte
+     */
+    public final void edit(Vector<AbstractOrmEntity> whereClause,
+	    AbstractOrmEntity changeToApply) throws OrmException
+    {
+	Orm.update(whereClause, changeToApply);
     }
 
     /**
@@ -209,14 +291,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 
 	AbstractOrmEntity searchEntity = this.getClass().newInstance();
 
-	try
-	{
-	    resultSet = Orm.select(searchEntity, null);
-
-	} catch (OrmException e)
-	{
-	    resultSet = new Vector<AbstractOrmEntity>();
-	}
+	resultSet = Orm.select(searchEntity, null);
 
 	EntityList entityList = new EntityList(searchEntity);
 
@@ -273,18 +348,13 @@ public abstract class AbstractOrmEntity extends AbstractEntity
     }
 
     /**
-     * @param entities the entities from which we are going to select our data
-     *            (where clause)
+     * fais un get sur un criter simple exprimé par l'entity this
      * @return the selected entities
      * @throws OrmException remonte
      */
-    public final Vector<AbstractOrmEntity> get(
-	    Vector<AbstractOrmEntity> entities) throws OrmException
+    public final Vector<AbstractOrmEntity> get() throws OrmException
     {
-	Vector<AbstractOrmEntity> retEntities = null;
-	retEntities = Orm.select(entities);
-
-	return retEntities;
+	return get(this);
     }
 
     /**
@@ -298,6 +368,21 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	Vector<AbstractOrmEntity> entities = new Vector<AbstractOrmEntity>();
 	entities.add(entity);
 	return get(entities);
+    }
+
+    /**
+     * @param entities the entities from which we are going to select our data
+     *            (where clause)
+     * @return the selected entities
+     * @throws OrmException remonte
+     */
+    public final Vector<AbstractOrmEntity> get(
+	    Vector<AbstractOrmEntity> entities) throws OrmException
+    {
+	Vector<AbstractOrmEntity> retEntities = null;
+	retEntities = Orm.select(entities);
+
+	return retEntities;
     }
 
     /**
