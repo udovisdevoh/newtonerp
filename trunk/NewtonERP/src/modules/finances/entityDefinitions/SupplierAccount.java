@@ -2,8 +2,8 @@ package modules.finances.entityDefinitions;
 
 import java.util.Vector;
 
+import modules.customerVendor.entityDefinitions.Customer;
 import modules.customerVendor.entityDefinitions.Invoice;
-import modules.customerVendor.entityDefinitions.Vendor;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.field.Field;
 import newtonERP.module.field.FieldDate;
@@ -30,7 +30,7 @@ public class SupplierAccount extends AbstractOrmEntity implements
     {
 	super();
 	addNaturalKey(getPrimaryKeyName());
-	AccessorManager.addAccessor(this, new Vendor());
+	AccessorManager.addAccessor(this, new Customer());
 	AccessorManager.addAccessor(this, new Invoice());
 	AccessorManager.addAccessor(this, new StateType());
 	addCurrencyFormat("balance");
@@ -48,7 +48,7 @@ public class SupplierAccount extends AbstractOrmEntity implements
 	fieldsInit.add(new FieldDouble("Solde", "balance"));
 	fieldsInit
 		.add(new FieldInt("État", new StateType().getForeignKeyName()));
-	fieldsInit.add(new FieldInt("Numéro de fournisseur", new Vendor()
+	fieldsInit.add(new FieldInt("Numéro de fournisseur", new Customer()
 		.getForeignKeyName()));
 
 	return new Fields(fieldsInit);
