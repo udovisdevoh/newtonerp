@@ -24,4 +24,6 @@ public interface ScrollListViewable
      * @return liste de groupe de liens
      */
     public Vector<TreeMap<String, String>> getLinkGroupList();
+
+    public String getTitleUrl();
 }

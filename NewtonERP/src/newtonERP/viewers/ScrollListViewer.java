@@ -20,8 +20,14 @@ public class ScrollListViewer
 
 	html += "<div class=\"scrollableDivPair\"><div>";
 
+	if (entity.getTitleUrl() != null)
+	    html += "<a href=\"" + entity.getTitleUrl() + "\">";
+
 	if (entity.getTitle() != null)
 	    html += "<h4>" + entity.getTitle() + "</h4>";
+
+	if (entity.getTitleUrl() != null)
+	    html += "</a>";
 
 	for (String linkName : entity.getLinkList().keySet())
 	    html += "<a href=\"" + entity.getLinkList().get(linkName) + "\">"
