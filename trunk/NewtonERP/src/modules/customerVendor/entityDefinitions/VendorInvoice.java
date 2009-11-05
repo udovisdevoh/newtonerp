@@ -35,7 +35,7 @@ public class VendorInvoice extends AbstractOrmEntity implements PromptViewable
 	fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
 	fieldList.add(new FieldDouble("Total", "total"));
 	fieldList.add(new FieldInt("Numéro du fournisseur", "vendorID"));
-	fieldList.add(new FieldDate("Date", "date")); // ddmmyyyy
+	fieldList.add(new FieldDate("Date", "date"));
 	return new Fields(fieldList);
     }
 }
