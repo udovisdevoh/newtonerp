@@ -2,7 +2,6 @@ package newtonERP.viewers;
 
 import java.util.Hashtable;
 
-import newtonERP.orm.exceptions.OrmException;
 import newtonERP.viewers.viewables.SelectBoxViewable;
 
 /**
@@ -16,7 +15,7 @@ public class SelectBoxViewer
      * @param inputName the input name
      * @param inputValue the input value
      * @return the html code of this view
-     * @throws OrmException an exception that can occur in the orm
+     * @throws Exception si obtention de code fail
      */
     public static String getHtmlCode(SelectBoxViewable entity,
 	    String inputName, String inputValue) throws Exception
