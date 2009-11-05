@@ -37,7 +37,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	super();
     }
 
-    private Hashtable<String, FlagPool> flagPoolList;
+    private Hashtable<String, FlagPool> positiveFlagPoolList;
 
     // oblige le redefinition pour les sous-classe de AbstractOrmEntity
     public abstract Fields initFields() throws Exception;
@@ -191,8 +191,8 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 		edit(getPrimaryKeyName() + "='" + getPrimaryKeyValue() + "'");
 	    }
 
-	    FlagPoolManager.applyFlagPoolChanges(this, getFlagPoolList()
-		    .values(), parameters);
+	    FlagPoolManager.applyFlagPoolChanges(this,
+		    getPositiveFlagPoolList().values(), parameters);
 
 	    return getList();
 	}
@@ -460,34 +460,12 @@ public abstract class AbstractOrmEntity extends AbstractEntity
     /**
      * @return the flag pool list
      */
-    public final Hashtable<String, FlagPool> getFlagPoolList()
+    public final Hashtable<String, FlagPool> getPositiveFlagPoolList()
     {
-	if (flagPoolList == null)
-	    flagPoolList = new Hashtable<String, FlagPool>();
+	if (positiveFlagPoolList == null)
+	    positiveFlagPoolList = new Hashtable<String, FlagPool>();
 
-	return flagPoolList;
-    }
-
-    /**
-     * @param flagPoolList Liste de flagPool de cette entité
-     * @param sourceEntityDefinition Definition de l'entité de source, exemple:
-     *            groupe
-     * @param visibleDescription Description visible du flag pool
-     * @param intermediateEntityDefinition Entité de table intermédiaire,
-     *            exemple: GroupsRight
-     * @param intermediateKeyIn Colonne d'entré de table intermédiaire, exemple:
-     *            groupID
-     * @param intermediateKeyOut Colonne de sortie de table intermédiaire,
-     *            exemple: rightID
-     * @param foreignEntityDefinition entité de table étrangère, exemple: Right
-     * @param foreignKey clef d'identification de table étrangère, exemple:
-     *            PKrightID
-     * @param foreignDescriptionUiControls liste de colonne de description de
-     *            table étrangère, exemple: Action, Module
-     */
-    public void setFlagPoolList(Hashtable<String, FlagPool> flagPoolList)
-    {
-	this.flagPoolList = flagPoolList;
+	return positiveFlagPoolList;
     }
 
     /**
@@ -612,5 +590,14 @@ public abstract class AbstractOrmEntity extends AbstractEntity
     public String getInputValue(String inputName)
     {
 	return fields.getField(inputName).getDataString();
+    }
+
+    /**
+     * @param visibleDescription description visible du flagPool
+     * @param flagPool le flag pool
+     */
+    public void addPositiveFlagPool(String visibleDescription, FlagPool flagPool)
+    {
+	getPositiveFlagPoolList().put(visibleDescription, flagPool);
     }
 }
