@@ -7,7 +7,6 @@ import newtonERP.module.field.Field;
 import newtonERP.module.field.FieldInt;
 import newtonERP.module.field.FieldString;
 import newtonERP.module.field.Fields;
-import newtonERP.orm.Orm;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.viewers.viewables.PromptViewable;
 
@@ -49,11 +48,6 @@ public class User extends AbstractOrmEntity implements PromptViewable
      */
     public Groups getGroupsEntity() throws Exception
     {
-	AbstractOrmEntity groupDefinition = new Groups();// Sert de référence
-	Vector<String> search = new Vector<String>();
-	search.add(groupDefinition.getPrimaryKeyName() + "="
-		+ getFields().getField("groupsID").getDataString(true));
-
-	return (Groups) Orm.select(new Groups(), search).get(0);
+	return (Groups) getSingleAccessor("groupsID");
     }
 }

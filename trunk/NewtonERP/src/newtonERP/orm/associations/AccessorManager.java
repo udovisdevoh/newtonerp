@@ -37,7 +37,7 @@ public class AccessorManager
 	    } catch (Exception exception2)
 	    {
 		exception2.printStackTrace();// Pour connaitre la source de la
-					     // 1ère exception
+		// 1ère exception
 		throw new TableAssociationException(
 			exception2.getMessage()
 				+ "\nL'accessor n'a pas pu créer de listOfValue ni de flagPool.\nSi vous tentez de créer un accessor de plusieur à plusieur,\nsoyez-sur qu'une table intermédiaire existe ayant pour nom\nla concaténation des noms en ordre alphabetique\ndes deux tables nécéssitant une relation de plusieurs à plusieurs.\nIl faut également que cette table intermédiaire ait\npour colonnes chaque clef etrangère de chaque tables pour lesquelles\nvous voulez la relation de plusieurs à plusieurs.\nVeuillez utiliser la methode getForeignKeyName() pour ces tables.");
@@ -87,5 +87,13 @@ public class AccessorManager
 	    AbstractOrmEntity abstractOrmEntity) throws Exception
     {
 	return SingleAccessorManager.getSingleAccessorList(abstractOrmEntity);
+    }
+
+    public static AbstractOrmEntity getSingleAccessor(
+	    AbstractOrmEntity abstractOrmEntity, String accessorName)
+	    throws Exception
+    {
+	return SingleAccessorManager.getSingleAccessor(abstractOrmEntity,
+		accessorName);
     }
 }

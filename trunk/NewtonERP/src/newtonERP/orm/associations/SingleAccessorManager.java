@@ -61,4 +61,27 @@ public class SingleAccessorManager
 
 	return null;
     }
+
+    public static AbstractOrmEntity getSingleAccessor(
+	    AbstractOrmEntity abstractOrmEntity, String listOfValueName)
+	    throws Exception
+    {
+	AbstractOrmEntity foreignEntityDefinition, realForeignEntity;
+
+	ListOfValue listOfValue = abstractOrmEntity
+		.tryMatchListOfValue(listOfValueName);
+
+	if (listOfValue != null)
+	{
+	    listOfValue = abstractOrmEntity.getPositiveListOfValueList().get(
+		    listOfValueName);
+	    foreignEntityDefinition = listOfValue.getForeignEntityDefinition();
+
+	    realForeignEntity = getForeignEntity(abstractOrmEntity,
+		    foreignEntityDefinition);
+
+	    return realForeignEntity;
+	}
+	return null;
+    }
 }

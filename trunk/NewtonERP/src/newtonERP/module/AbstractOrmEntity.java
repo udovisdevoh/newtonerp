@@ -598,6 +598,12 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	return singleAccessorList;
     }
 
+    public final AbstractOrmEntity getSingleAccessor(String accessorName)
+	    throws Exception
+    {
+	return AccessorManager.getSingleAccessor(this, accessorName);
+    }
+
     /**
      * @return liste des clefs des champs par ordre d'insertion
      */
