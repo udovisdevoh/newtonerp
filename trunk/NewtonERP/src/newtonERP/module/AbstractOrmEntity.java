@@ -612,6 +612,9 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	getNegativeFlagPoolList().put(visibleDescription, flagPool);
     }
 
+    /**
+     * @return liste des référence de flag pool inversées
+     */
     public Hashtable<String, FlagPool> getNegativeFlagPoolList()
     {
 	if (negativeFlagPoolList == null)
