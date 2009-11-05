@@ -27,6 +27,8 @@ public class VendorInvoice extends AbstractOrmEntity implements PromptViewable
 	AccessorManager.addAccessor(this, new Vendor());
 	addCurrencyFormat("total");
 	setVisibleName("Facture de fournisseur");
+	addNaturalKey("total");
+	addNaturalKey("date");
     }
 
     public Fields initFields()
