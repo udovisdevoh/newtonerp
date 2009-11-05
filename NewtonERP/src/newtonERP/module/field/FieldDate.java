@@ -2,7 +2,6 @@ package newtonERP.module.field;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.GregorianCalendar;
 
 /**
@@ -39,8 +38,9 @@ public class FieldDate extends FieldDateTime
     @Override
     public void setData(String date) throws ParseException
     {
-	Date tempDate = dateFormatter.parse(date);
-	data.setTime(tempDate);
+	GregorianCalendar tempDate = new GregorianCalendar();
+	tempDate.setTime(dateFormatter.parse(date));
+	data = tempDate;
     }
 
     @Override
