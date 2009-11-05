@@ -1,6 +1,5 @@
 package modules.materialResourcesManagement;
 
-import modules.materialResourcesManagement.entityDefinitions.Address;
 import modules.materialResourcesManagement.entityDefinitions.Product;
 import modules.materialResourcesManagement.entityDefinitions.Shipper;
 import modules.materialResourcesManagement.entityDefinitions.Shipping;
@@ -28,8 +27,6 @@ public class MaterialResourcesManagement extends Module
 	setDefaultAction(new BaseAction("GetList", new Warehouse()));
 	addGlobalActionMenuItem("Entrepôts", new BaseAction("GetList",
 		new Warehouse()));
-	addGlobalActionMenuItem("Adresses", new BaseAction("GetList",
-		new Address()));
 	addGlobalActionMenuItem("Produits", new BaseAction("GetList",
 		new Product()));
 	addGlobalActionMenuItem("Livraison", new BaseAction("GetList",
@@ -104,30 +101,6 @@ public class MaterialResourcesManagement extends Module
 	product3.setData("reorderPoint", 20);
 	product3.setData("reservedStock", 2);
 	product3.newE();
-
-	Address address = new Address();
-	address.setData("streetName", "Ontario");
-	address.setData("streetNumber", 255);
-	address.setData("city", "Montreal");
-	address.setData("postalCode", "HOH OHO");
-	address.setData("telephoneNumber", "514-348-0936");
-	address.newE();
-
-	Address address1 = new Address();
-	address1.setData("streetName", "Saint-Denis");
-	address1.setData("streetNumber", 1064);
-	address1.setData("city", "Quebec");
-	address1.setData("postalCode", "ROU X23");
-	address1.setData("telephoneNumber", "418-338-0936");
-	address1.newE();
-
-	Address address2 = new Address();
-	address2.setData("streetName", "Cote");
-	address2.setData("streetNumber", 1089);
-	address2.setData("city", "Sherbrooke");
-	address2.setData("postalCode", "BlE U14");
-	address2.setData("telephoneNumber", "450-697-7080");
-	address2.newE();
 
 	Warehouse warehouse = new Warehouse();
 	warehouse.setData("warehouseName", "Arb_Mtl");

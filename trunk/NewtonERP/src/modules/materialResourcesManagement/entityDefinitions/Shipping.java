@@ -7,6 +7,7 @@ import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.field.Field;
 import newtonERP.module.field.FieldDate;
 import newtonERP.module.field.FieldInt;
+import newtonERP.module.field.FieldString;
 import newtonERP.module.field.Fields;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.viewers.viewables.PromptViewable;
@@ -42,6 +43,7 @@ public class Shipping extends AbstractOrmEntity implements PromptViewable
 		"estimatedShippingDate"));
 	fieldsInit.add(new FieldInt("Facture associée", new Invoice()
 		.getForeignKeyName()));
+	fieldsInit.add(new FieldString("Commentaire", "shippingComment"));
 	return new Fields(fieldsInit);
     }
 
