@@ -34,7 +34,7 @@ public class ListOfValue implements SelectBoxViewable
 	this.foreignEntity = foreignEntity;
     }
 
-    public Hashtable<String, String> getElements() throws OrmException
+    public Hashtable<String, String> getElements() throws Exception
     {
 	Vector<AbstractOrmEntity> entityList = Orm.select(foreignEntity, null);
 

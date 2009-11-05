@@ -9,6 +9,7 @@ import newtonERP.module.field.Field;
 import newtonERP.module.field.Fields;
 import newtonERP.module.generalEntity.EntityList;
 import newtonERP.module.generalEntity.FlagPool;
+import newtonERP.module.generalEntity.ListOfValue;
 import newtonERP.orm.Orm;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.associations.FlagPoolManager;
@@ -503,8 +504,9 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 
     /**
      * @return Description d'une entité par la valeur de sa clef naturelle
+     * @throws Exception si obtention de description fail
      */
-    public String getNaturalKeyDescription()
+    public String getNaturalKeyDescription() throws Exception
     {
 	String description = "";
 	String currentFieldValue;
@@ -519,7 +521,16 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 		    currentFieldValue = MoneyViewer
 			    .getHtmlCode(currentFieldValue);
 
-		description += " " + currentFieldValue;
+		ListOfValue listOfValue = tryMatchListOfValue(naturalKeyName);
+		if (listOfValue == null)
+		{
+		    description += " " + currentFieldValue;
+		}
+		else
+		{
+		    description += " "
+			    + listOfValue.getForeignValue(currentFieldValue);
+		}
 	    }
 	    else
 	    {
