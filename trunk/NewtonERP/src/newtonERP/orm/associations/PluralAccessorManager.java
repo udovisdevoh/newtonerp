@@ -25,10 +25,42 @@ public class PluralAccessorManager
     {
 	TreeMap<String, Vector<AbstractOrmEntity>> pluralAccessorList = new TreeMap<String, Vector<AbstractOrmEntity>>();
 
-	addFromFlagPoolList(pluralAccessorList, entity);
+	addFromPositiveFlagPoolList(pluralAccessorList, entity);
 	addFromNegativeListOfValueList(pluralAccessorList, entity);
+	addFromNegativeFlagPoolList(pluralAccessorList, entity);
 
 	return pluralAccessorList;
+    }
+
+    private static void addFromNegativeFlagPoolList(
+	    TreeMap<String, Vector<AbstractOrmEntity>> pluralAccessorList,
+	    AbstractOrmEntity entity) throws Exception
+    {
+	Vector<AbstractOrmEntity> intermediatePluralAccessor;
+	Vector<AbstractOrmEntity> pluralAccessor;
+	AbstractOrmEntity intermediateEntityDefinition;
+	FlagPool flagPool;
+
+	for (String flagPoolName : entity.getNegativeFlagPoolList().keySet())
+	{
+	    flagPool = entity.getNegativeFlagPoolList().get(flagPoolName);
+
+	    intermediateEntityDefinition = flagPool
+		    .getIntermediateEntityDefinition().getClass().newInstance();
+	    intermediateEntityDefinition.initFields();
+
+	    if (!intermediateEntityDefinition.getFields().containsFieldName(
+		    entity.getForeignKeyName()))
+		continue;
+
+	    intermediateEntityDefinition.setData(entity.getForeignKeyName(),
+		    entity.getPrimaryKeyValue());
+
+	    intermediatePluralAccessor = Orm
+		    .select(intermediateEntityDefinition);
+
+	    System.out.println("dfg");
+	}
     }
 
     private static void addFromNegativeListOfValueList(
@@ -46,26 +78,23 @@ public class PluralAccessorManager
 	    foreignEntityDefinition = listOfValue.getSourceEntityDefinition();
 	    foreignEntityDefinition.initFields();
 
-	    try
-	    {
-		foreignEntityDefinition.setData(entity.getForeignKeyName(),
-			entity.getPrimaryKeyValue());
+	    if (!foreignEntityDefinition.getFields().containsFieldName(
+		    entity.getForeignKeyName()))
+		continue;
 
-		Vector<AbstractOrmEntity> resultSet = Orm
-			.select(foreignEntityDefinition);
+	    foreignEntityDefinition.setData(entity.getForeignKeyName(), entity
+		    .getPrimaryKeyValue());
 
-		if (resultSet.size() > 0)
-		    pluralAccessorList.put(foreignEntityDefinition.getClass()
-			    .getSimpleName(), resultSet);
-	    } catch (Exception e)
-	    {
-		// Catch vide car il faut que ça skip les list of values pas
-		// concernées
-	    }
+	    Vector<AbstractOrmEntity> resultSet = Orm
+		    .select(foreignEntityDefinition);
+
+	    if (resultSet.size() > 0)
+		pluralAccessorList.put(foreignEntityDefinition.getClass()
+			.getSimpleName(), resultSet);
 	}
     }
 
-    private static void addFromFlagPoolList(
+    private static void addFromPositiveFlagPoolList(
 	    TreeMap<String, Vector<AbstractOrmEntity>> pluralAccessorList,
 	    AbstractOrmEntity entity) throws Exception
     {
@@ -75,7 +104,7 @@ public class PluralAccessorManager
 	for (String flagPoolName : entity.getPositiveFlagPoolList().keySet())
 	{
 	    flagPool = entity.getPositiveFlagPoolList().get(flagPoolName);
-	    pluralAccessor = getPluralAccessor(entity, flagPool);
+	    pluralAccessor = getPositivePluralAccessor(entity, flagPool);
 
 	    if (pluralAccessor != null)
 		pluralAccessorList.put(flagPool.getForeignEntityDefinition()
@@ -83,11 +112,11 @@ public class PluralAccessorManager
 	}
     }
 
-    private static Vector<AbstractOrmEntity> getPluralAccessor(
+    private static Vector<AbstractOrmEntity> getPositivePluralAccessor(
 	    AbstractOrmEntity entity, FlagPool flagPool) throws Exception
     {
 	flagPool.query(entity.getPrimaryKeyName(), entity.getPrimaryKeyValue());
 
-	return flagPool.getPluralForeignAccessor();
+	return flagPool.getPositivePluralForeignAccessor();
     }
 }
