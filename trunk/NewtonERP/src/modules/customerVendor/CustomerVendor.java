@@ -1,6 +1,7 @@
 package modules.customerVendor;
 
 import modules.customerVendor.entityDefinitions.Customer;
+import modules.customerVendor.entityDefinitions.Firm;
 import modules.customerVendor.entityDefinitions.Invoice;
 import modules.customerVendor.entityDefinitions.Vendor;
 import newtonERP.module.BaseAction;
@@ -30,6 +31,9 @@ public class CustomerVendor extends Module
 
 	addGlobalActionMenuItem("Fournisseurs", new BaseAction("GetList",
 		new Vendor()));
+
+	addGlobalActionMenuItem("Firme de publicité", new BaseAction("GetList",
+		new Firm()));
 
 	setVisibleName("Clients / Fournisseurs");
     }
