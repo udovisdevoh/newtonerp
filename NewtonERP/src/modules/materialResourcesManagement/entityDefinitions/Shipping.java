@@ -2,6 +2,7 @@ package modules.materialResourcesManagement.entityDefinitions;
 
 import java.util.Vector;
 
+import modules.customerVendor.entityDefinitions.CustomerInvoice;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.field.Field;
 import newtonERP.module.field.FieldDate;
@@ -27,6 +28,7 @@ public class Shipping extends AbstractOrmEntity implements PromptViewable
 	super();
 	setVisibleName("Livraison");
 	AccessorManager.addAccessor(this, new ShippingType());
+	AccessorManager.addAccessor(this, new CustomerInvoice());
     }
 
     @Override
@@ -38,6 +40,7 @@ public class Shipping extends AbstractOrmEntity implements PromptViewable
 	fieldsInit.add(new FieldInt("Type de livraison", "shippingTypeID"));
 	fieldsInit.add(new FieldDate("Date estimée de livraison",
 		"estimatedShippingDate"));
+	fieldsInit.add(new FieldInt("Facture associée", "customerInvoiceID"));
 	return new Fields(fieldsInit);
     }
 
