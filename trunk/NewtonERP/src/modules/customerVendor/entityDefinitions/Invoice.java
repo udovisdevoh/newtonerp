@@ -26,7 +26,6 @@ public class Invoice extends AbstractOrmEntity implements PromptViewable
     {
 	super();
 	AccessorManager.addAccessor(this, new Customer());
-	AccessorManager.addAccessor(this, new Vendor());
 	addCurrencyFormat("total");
 	setVisibleName("Facture");
 
@@ -41,8 +40,6 @@ public class Invoice extends AbstractOrmEntity implements PromptViewable
 	fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
 	fieldList.add(new FieldDouble("Total", "total"));
 	fieldList.add(new FieldInt("Nom du client", new Customer()
-		.getForeignKeyName()));
-	fieldList.add(new FieldInt("Nom du fournisseur", new Vendor()
 		.getForeignKeyName()));
 	fieldList.add(new FieldDate("Date", "date"));
 	return new Fields(fieldList);
