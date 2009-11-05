@@ -13,6 +13,7 @@ import newtonERP.orm.Orm;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.associations.FlagPoolManager;
 import newtonERP.orm.exceptions.OrmException;
+import newtonERP.viewers.MoneyViewer;
 
 /**
  * @author cloutierJo
@@ -441,8 +442,16 @@ public abstract class AbstractOrmEntity extends AbstractEntity
     public String getNaturalKeyDescription()
     {
 	String description = "";
+	String currentFieldValue;
 	for (String naturalKeyName : getNaturalKeyNameList())
-	    description += " " + getDataString(naturalKeyName);
+	{
+	    currentFieldValue = getDataString(naturalKeyName);
+
+	    if (isMatchCurrencyFormat(naturalKeyName))
+		currentFieldValue = MoneyViewer.getHtmlCode(currentFieldValue);
+
+	    description += " " + currentFieldValue;
+	}
 
 	return description.trim();
     }
