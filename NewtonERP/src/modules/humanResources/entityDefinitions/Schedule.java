@@ -4,7 +4,7 @@ import java.util.Vector;
 
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.field.Field;
-import newtonERP.module.field.FieldDate;
+import newtonERP.module.field.FieldDateTime;
 import newtonERP.module.field.FieldInt;
 import newtonERP.module.field.Fields;
 import newtonERP.orm.associations.AccessorManager;
@@ -23,6 +23,7 @@ public class Schedule extends AbstractOrmEntity implements PromptViewable
     public Schedule() throws Exception
     {
 	super();
+
 	setVisibleName("Horaire");
 	AccessorManager.addAccessor(this, new Employee());
 	AccessorManager.addAccessor(this, new PeriodeType());
@@ -37,9 +38,8 @@ public class Schedule extends AbstractOrmEntity implements PromptViewable
 
 	fieldsData.add(new FieldInt("Numéro d'employé", new Employee()
 		.getForeignKeyName()));
-	fieldsData.add(new FieldDate("Début de la période", "timeStart"));
-	// todo: j'ai besoins des heures
-	fieldsData.add(new FieldDate("Fin de la période", "timeStop"));
+	fieldsData.add(new FieldDateTime("Début de la période", "timeStart"));
+	fieldsData.add(new FieldDateTime("Fin de la période", "timeStop"));
 	fieldsData.add(new FieldInt("Type de la période", new PeriodeType()
 		.getForeignKeyName()));
 
