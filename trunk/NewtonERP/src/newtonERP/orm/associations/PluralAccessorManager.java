@@ -37,6 +37,7 @@ public class PluralAccessorManager
 	    AbstractOrmEntity entity) throws Exception
     {
 	Vector<AbstractOrmEntity> intermediatePluralAccessor;
+	Vector<AbstractOrmEntity> resultSet;
 	Vector<AbstractOrmEntity> pluralAccessor;
 	AbstractOrmEntity intermediateEntityDefinition;
 	FlagPool flagPool;
@@ -45,13 +46,14 @@ public class PluralAccessorManager
 	{
 	    flagPool = entity.getNegativeFlagPoolList().get(flagPoolName);
 
+	    // On skip la gestion des flag pool pas concernés
+	    if (!flagPool.getIntermediateEntityDefinition().getFields()
+		    .containsFieldName(entity.getForeignKeyName()))
+		continue;
+
 	    intermediateEntityDefinition = flagPool
 		    .getIntermediateEntityDefinition().getClass().newInstance();
 	    intermediateEntityDefinition.initFields();
-
-	    if (!intermediateEntityDefinition.getFields().containsFieldName(
-		    entity.getForeignKeyName()))
-		continue;
 
 	    intermediateEntityDefinition.setData(entity.getForeignKeyName(),
 		    entity.getPrimaryKeyValue());
@@ -59,7 +61,26 @@ public class PluralAccessorManager
 	    intermediatePluralAccessor = Orm
 		    .select(intermediateEntityDefinition);
 
-	    System.out.println("dfg");
+	    pluralAccessor = new Vector<AbstractOrmEntity>();
+	    for (AbstractOrmEntity intermediateEntity : intermediatePluralAccessor)
+	    {
+		String keyOut = flagPool.getIntermediateKeyIn();
+		AbstractOrmEntity foreignEntity = flagPool
+			.getSourceEntityDefinition();
+		foreignEntity = foreignEntity.getClass().newInstance();
+		foreignEntity.initFields();
+		foreignEntity.setData(foreignEntity.getPrimaryKeyName(),
+			intermediateEntity.getData(keyOut));
+
+		resultSet = Orm.select(foreignEntity);
+
+		if (resultSet.size() > 0)
+		    pluralAccessor.addAll(resultSet);
+
+		if (foreignEntity.getClass() != entity.getClass())
+		    pluralAccessorList.put(foreignEntity.getNaturalKeyName(),
+			    pluralAccessor);
+	    }
 	}
     }
 
@@ -88,9 +109,8 @@ public class PluralAccessorManager
 	    Vector<AbstractOrmEntity> resultSet = Orm
 		    .select(foreignEntityDefinition);
 
-	    if (resultSet.size() > 0)
-		pluralAccessorList.put(foreignEntityDefinition.getClass()
-			.getSimpleName(), resultSet);
+	    pluralAccessorList.put(foreignEntityDefinition.getClass()
+		    .getSimpleName(), resultSet);
 	}
     }
 

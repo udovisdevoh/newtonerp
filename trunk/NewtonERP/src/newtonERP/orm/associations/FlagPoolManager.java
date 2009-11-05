@@ -148,13 +148,14 @@ public class FlagPoolManager
      *            PKrightID
      * @param foreignDescriptionUiControls liste de colonne de description de
      *            table étrangère, exemple: Action, Module
+     * @throws Exception si ajout de flagpool fail
      */
     private static void addFlagPool(AbstractOrmEntity sourceEntity,
 	    String visibleDescription,
 	    AbstractOrmEntity intermediateEntityDefinition,
 	    String intermediateKeyIn, String intermediateKeyOut,
 	    AbstractOrmEntity foreignEntityDefinition, String foreignKey,
-	    Vector<String> foreignDescriptionUiControls)
+	    Vector<String> foreignDescriptionUiControls) throws Exception
     {
 	FlagPool flagPool = new FlagPool(sourceEntity, visibleDescription,
 		intermediateEntityDefinition, intermediateKeyIn,

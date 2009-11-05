@@ -43,14 +43,19 @@ public class FlagPool implements CheckListViewable
      *            PKrightID
      * @param foreignDescriptionUiControls liste de colonne de description de
      *            table étrangère, exemple: Action, Module
+     * @throws Exception
      */
     public FlagPool(AbstractOrmEntity sourceEntityDefinition,
 	    String visibleDescription,
 	    AbstractOrmEntity intermediateEntityDefinition,
 	    String intermediateKeyIn, String intermediateKeyOut,
 	    AbstractOrmEntity foreignEntityDefinition, String foreignKey,
-	    Vector<String> foreignDescriptionUiControls)
+	    Vector<String> foreignDescriptionUiControls) throws Exception
     {
+	if (sourceEntityDefinition == null || foreignEntityDefinition == null)
+	    throw new Exception("Source entity and target entity can't be null");
+
+	this.sourceEntityDefinition = sourceEntityDefinition;
 	this.visibleDescription = visibleDescription;
 	this.intermediateEntityDefinition = intermediateEntityDefinition;
 	this.intermediateKeyIn = intermediateKeyIn;
