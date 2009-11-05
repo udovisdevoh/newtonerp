@@ -598,6 +598,11 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	return singleAccessorList;
     }
 
+    /**
+     * @param accessorName nom de l'accessor
+     * @return accesseur singulier
+     * @throws Exception si obtention fail
+     */
     public final AbstractOrmEntity getSingleAccessor(String accessorName)
 	    throws Exception
     {

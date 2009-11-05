@@ -62,6 +62,12 @@ public class SingleAccessorManager
 	return null;
     }
 
+    /**
+     * @param abstractOrmEntity entité
+     * @param listOfValueName nom de l'accessor
+     * @return accessor singulier
+     * @throws Exception si obtention fail
+     */
     public static AbstractOrmEntity getSingleAccessor(
 	    AbstractOrmEntity abstractOrmEntity, String listOfValueName)
 	    throws Exception
