@@ -19,7 +19,7 @@ public class SelectBoxViewer
      * @throws OrmException an exception that can occur in the orm
      */
     public static String getHtmlCode(SelectBoxViewable entity,
-	    String inputName, String inputValue) throws OrmException
+	    String inputName, String inputValue) throws Exception
     {
 	String html = "";
 
