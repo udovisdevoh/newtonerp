@@ -9,7 +9,7 @@ import newtonERP.module.Module;
 /**
  * Représente le module finances
  * 
- * @author r3lemaypa
+ * @author Pascal Lemay
  */
 public class Finances extends Module
 {
@@ -29,8 +29,8 @@ public class Finances extends Module
 	addGlobalActionMenuItem("Comptes Fournisseurs de services",
 		new BaseAction("GetList", new ServiceProviderAccount()));
 
-	addGlobalActionMenuItem("Comptes Fournisseurs de services",
-		new BaseAction("GetList", new ServiceProvider()));
+	addGlobalActionMenuItem("Fournisseurs de services", new BaseAction(
+		"GetList", new ServiceProvider()));
 
 	setVisibleName("Finances");
 
