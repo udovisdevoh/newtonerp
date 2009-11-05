@@ -40,6 +40,8 @@ public class CustomerVendor extends Module
 
     public void initDB() throws Exception
     {
+	super.initDB();
+
 	Customer customer = new Customer();
 	customer.setData("name", "Bombardier");
 	customer.setData("phone", "514-345-6575");
