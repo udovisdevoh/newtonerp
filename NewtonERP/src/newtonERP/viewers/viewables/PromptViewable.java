@@ -75,4 +75,14 @@ public interface PromptViewable
      * @return valeur contenue dans le champ
      */
     public String getInputValue(String inputName);
+
+    /**
+     * @return url facultatif de retour vers autre page
+     */
+    public String getBackLinkUrl() throws Exception;
+
+    /**
+     * @return nom du url facultatif de retour
+     */
+    public String getBackLinkName();
 }

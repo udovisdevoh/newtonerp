@@ -14,6 +14,7 @@ import newtonERP.orm.Orm;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.associations.FlagPoolManager;
 import newtonERP.orm.exceptions.OrmException;
+import newtonERP.serveur.Servlet;
 import newtonERP.viewers.MoneyViewer;
 
 /**
@@ -651,5 +652,23 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	if (negativeFlagPoolList == null)
 	    negativeFlagPoolList = new Hashtable<String, FlagPool>();
 	return negativeFlagPoolList;
+    }
+
+    /**
+     * @return url facultatif du lien de retour
+     * @throws Exception si obtention fail
+     */
+    public String getBackLinkUrl() throws Exception
+    {
+	return Servlet.makeLink(getCurrentModule(), new BaseAction("GetList",
+		this));
+    }
+
+    /**
+     * @return nom du lien de retour facultatif
+     */
+    public String getBackLinkName()
+    {
+	return "retour";
     }
 }
