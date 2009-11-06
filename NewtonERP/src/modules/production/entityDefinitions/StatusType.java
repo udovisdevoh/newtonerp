@@ -16,7 +16,6 @@ import newtonERP.viewers.viewables.PromptViewable;
  */
 public class StatusType extends AbstractOrmEntity implements PromptViewable
 {
-
     /**
      * Default constructor
      * 

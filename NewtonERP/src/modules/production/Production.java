@@ -30,6 +30,7 @@ public class Production extends Module
 		new StatusType()));
     }
 
+    @SuppressWarnings("static-access")
     public void initDB() throws Exception
     {
 	GregorianCalendar cd = new GregorianCalendar();
