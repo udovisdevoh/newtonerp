@@ -1,10 +1,10 @@
 package newtonERP.viewers.viewables;
 
 import java.util.Hashtable;
-import java.util.Map;
 import java.util.Set;
 import java.util.Vector;
 
+import newtonERP.common.NaturalMap;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.Module;
 import newtonERP.module.exception.EntityException;
@@ -53,7 +53,7 @@ public interface ListViewable
      * @throws Exception maudies exceptions de Java
      * @throws OrmException an exception that can occur in the orm
      */
-    public Vector<Map<String, String>> getRowList() throws Exception;
+    public Vector<NaturalMap<String, String>> getRowList() throws Exception;
 
     /**
      * @return Nom de la clef pour identifier une entité dans la liste
