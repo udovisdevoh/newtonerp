@@ -199,7 +199,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 
 	    // return editUI(new Hashtable<String, String>());
 
-	    retEntity.addMessage("Changements accomplis.");
+	    retEntity.addNormalMessage("Changements accomplis.");
 	}
 	return retEntity;
     }

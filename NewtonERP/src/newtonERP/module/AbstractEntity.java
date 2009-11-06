@@ -18,7 +18,7 @@ public class AbstractEntity
     protected Fields fields;
     private HashSet<String> hiddenFieldList;
     private Vector<String> alertMessageList;
-    private Vector<String> messageList;
+    private Vector<String> normalMessageList;
     private Hashtable<String, ListOfValue> positiveListOfValueList;
     private static Hashtable<String, ListOfValue> negativeListOfValueList;
     protected Module currentModule;
@@ -304,15 +304,21 @@ public class AbstractEntity
 	getNegativeListOfValueList().put(foreignKeyName, listOfValue);
     }
 
-    public Vector<String> getMessageList()
+    /**
+     * @return Liste des messages normaux
+     */
+    public Vector<String> getNormalMessageList()
     {
-	if (messageList == null)
-	    messageList = new Vector<String>();
-	return messageList;
+	if (normalMessageList == null)
+	    normalMessageList = new Vector<String>();
+	return normalMessageList;
     }
 
-    public void addMessage(String message)
+    /**
+     * @param message nouveau message normal
+     */
+    public void addNormalMessage(String message)
     {
-	getMessageList().add(message);
+	getNormalMessageList().add(message);
     }
 }

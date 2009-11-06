@@ -98,9 +98,9 @@ public class PromptViewer
 	    for (String message : entity.getAlertMessageList())
 		html += "<p class=\"errorMessage\">" + message + "</p>";
 
-	if (entity.getMessageList() != null)
-	    for (String message : entity.getMessageList())
-		html += "<p class=\"regularMessage\">" + message + "</p>";
+	if (entity.getNormalMessageList() != null)
+	    for (String message : entity.getNormalMessageList())
+		html += "<p class=\"normalMessage\">" + message + "</p>";
 
 	if (entity instanceof AbstractOrmEntity)
 	{
