@@ -78,6 +78,7 @@ public interface PromptViewable
 
     /**
      * @return url facultatif de retour vers autre page
+     * @throws Exception si obtention fail
      */
     public String getBackLinkUrl() throws Exception;
 
