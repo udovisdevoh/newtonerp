@@ -46,6 +46,10 @@ public class PluralAccessorManager
 	{
 	    flagPool = entity.getNegativeFlagPoolList().get(flagPoolName);
 
+	    if (entity.getClass() != flagPool.getForeignEntityDefinition()
+		    .getClass())
+		continue;
+
 	    // On skip la gestion des flag pool pas concernés
 	    if (!flagPool.getIntermediateEntityDefinition().getFields()
 		    .containsFieldName(entity.getForeignKeyName()))
@@ -95,6 +99,10 @@ public class PluralAccessorManager
 	{
 	    listOfValue = entity.getNegativeListOfValueList().get(
 		    listOfValueName);
+
+	    if (entity.getClass() != listOfValue.getForeignEntityDefinition()
+		    .getClass())
+		continue;
 
 	    foreignEntityDefinition = listOfValue.getSourceEntityDefinition();
 	    foreignEntityDefinition.initFields();
