@@ -31,6 +31,7 @@ public class Shipping extends AbstractOrmEntity implements PromptViewable
 	AccessorManager.addAccessor(this, new ShippingType());
 	AccessorManager.addAccessor(this, new Invoice());
 	AccessorManager.addAccessor(this, new Shipper());
+	AccessorManager.addAccessor(this, new Location());
     }
 
     @Override
@@ -48,6 +49,8 @@ public class Shipping extends AbstractOrmEntity implements PromptViewable
 	fieldsInit.add(new FieldInt("Expéditeur", new Shipper()
 		.getForeignKeyName()));
 	fieldsInit.add(new FieldString("Commentaire", "shippingComment"));
+	fieldsInit.add(new FieldInt("Location", new Location()
+		.getForeignKeyName()));
 	return new Fields(fieldsInit);
     }
 }

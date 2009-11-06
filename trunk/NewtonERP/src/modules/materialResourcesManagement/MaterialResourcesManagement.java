@@ -1,5 +1,7 @@
 package modules.materialResourcesManagement;
 
+import modules.materialResourcesManagement.entityDefinitions.Location;
+import modules.materialResourcesManagement.entityDefinitions.LocationStatus;
 import modules.materialResourcesManagement.entityDefinitions.Product;
 import modules.materialResourcesManagement.entityDefinitions.Shipper;
 import modules.materialResourcesManagement.entityDefinitions.Shipping;
@@ -35,6 +37,10 @@ public class MaterialResourcesManagement extends Module
 		new ShippingType()));
 	addGlobalActionMenuItem("Expéditeurs", new BaseAction("GetList",
 		new Shipper()));
+	addGlobalActionMenuItem("Locations", new BaseAction("GetList",
+		new Location()));
+	addGlobalActionMenuItem("Type de locations", new BaseAction("GetList",
+		new LocationStatus()));
 	setVisibleName("Ressources matérielles");
     }
 

@@ -32,20 +32,13 @@ public class SgbdSqlite implements Sgbdable
 	    if (action.equals(OrmActions.SEARCH))
 	    {
 		ResultSet rs = stat.executeQuery(request);
-
-		// TODO: Remove the next line when properly debugged
-		System.out.println("Executed the select statement");
-
 		return rs;
 	    }
 
 	    // Sinon peut importe l'action on retourne a rien!
 	    stat.execute(request);
-
-	    // TODO: Remove the next line when properly debugged
-	    System.out.println("Executed the statement");
-
 	    return stat.getGeneratedKeys();
+
 	} catch (SQLException e)
 	{
 	    throw new OrmSqlException(
