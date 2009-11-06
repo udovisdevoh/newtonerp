@@ -20,7 +20,6 @@ import newtonERP.viewers.viewables.PromptViewable;
 public class MaintenanceTicket extends AbstractOrmEntity implements
 	PromptViewable
 {
-
     /**
      * Default constructor
      * 
@@ -32,6 +31,9 @@ public class MaintenanceTicket extends AbstractOrmEntity implements
 	setVisibleName("Ticket de maintenance");
 	AccessorManager.addAccessor(this, new Employee());
 	AccessorManager.addAccessor(this, new StatusType());
+	addNaturalKey(getPrimaryKeyName());
+	addNaturalKey("problemType");
+	addNaturalKey(new StatusType().getForeignKeyName());
     }
 
     @Override
