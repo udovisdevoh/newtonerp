@@ -32,6 +32,10 @@ public class PromptViewer
 	String formActionUrl = Servlet.makeLink(entity.getCurrentModule(),
 		entity.getCurrentAction());
 
+	if (entity.getBackLinkUrl() != null)
+	    html += "<p><a href=\"" + entity.getBackLinkUrl() + "\"> < "
+		    + entity.getBackLinkName() + "</a></p>";
+
 	html += "<h2>" + entity.getPromptMessage() + "</h2>";
 
 	if (entity instanceof AbstractOrmEntity)

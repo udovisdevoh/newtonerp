@@ -21,6 +21,8 @@ import newtonERP.viewers.viewables.PromptViewable;
 public class Form extends AbstractEntity implements PromptViewable
 {
     private String buttonCaption;
+    private String backLinkUrl;
+    private String backLinkName;
 
     /**
      * @param currentModule module courant
@@ -97,5 +99,17 @@ public class Form extends AbstractEntity implements PromptViewable
     public String getInputValue(String inputName)
     {
 	return fields.getField(inputName).getDataString();
+    }
+
+    @Override
+    public String getBackLinkName()
+    {
+	return backLinkName;
+    }
+
+    @Override
+    public String getBackLinkUrl()
+    {
+	return backLinkUrl;
     }
 }
