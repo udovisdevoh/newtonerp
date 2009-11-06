@@ -1,5 +1,7 @@
 package modules.customerVendor;
 
+import java.util.GregorianCalendar;
+
 import modules.customerVendor.entityDefinitions.Customer;
 import modules.customerVendor.entityDefinitions.Invoice;
 import newtonERP.module.BaseAction;
@@ -59,5 +61,11 @@ public class CustomerVendor extends Module
 	customer2.setData("phone", "514-266-2710");
 	customer2.setData("addressID", 3);
 	customer2.newE();
+
+	Invoice invoice = new Invoice();
+	invoice.setData("total", 45.16);
+	invoice.setData("customerID", 2);
+	invoice.setData("date", new GregorianCalendar());
+	invoice.newE();
     }
 }
