@@ -80,11 +80,12 @@ public class PluralAccessorManager
 
 		if (resultSet.size() > 0)
 		    pluralAccessor.addAll(resultSet);
-
-		if (foreignEntity.getClass() != entity.getClass())
-		    pluralAccessorList.put(foreignEntity.getNaturalKeyName(),
-			    pluralAccessor);
 	    }
+
+	    if (flagPool.getSourceEntityDefinition().getClass() != entity
+		    .getClass())
+		pluralAccessorList.put(flagPool.getSourceEntityDefinition()
+			.getNaturalKeyName(), pluralAccessor);
 	}
     }
 

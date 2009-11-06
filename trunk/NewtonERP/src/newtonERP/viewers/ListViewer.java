@@ -79,6 +79,7 @@ public class ListViewer
 	int rowNumber = 0;
 	String cellValue = null;
 	String isHeader;
+	String moneyStyleModifier;
 
 	for (NaturalMap<String, String> row : rowValues)
 	{
@@ -93,14 +94,22 @@ public class ListViewer
 		if (rowNumber > 0
 			&& listEntity
 				.isListElementColumnMatchCurrencyFormat(cellKey))
+		{
 		    cellValue = MoneyViewer.getHtmlCode(cellValue);
+		    moneyStyleModifier = " class=\"moneyStyleModifier\"";
+		}
+		else
+		{
+		    moneyStyleModifier = "";
+		}
 
 		if (rowNumber == 0)
 		    isHeader = " class=\"ListViewerTableHeader\"";
 		else
 		    isHeader = "";
 
-		html += "<td" + isHeader + ">" + cellValue + "</td>";
+		html += "<td" + isHeader + moneyStyleModifier + ">" + cellValue
+			+ "</td>";
 	    }
 
 	    html += getSpecificButtonList(listEntity, listEntity.getKeyName(),

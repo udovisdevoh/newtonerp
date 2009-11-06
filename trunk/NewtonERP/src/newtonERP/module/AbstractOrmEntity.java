@@ -671,6 +671,6 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      */
     public String getBackLinkName()
     {
-	return "retour";
+	return "voir liste";
     }
 }

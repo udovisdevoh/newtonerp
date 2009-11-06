@@ -206,3 +206,8 @@ div.scrollableDivPair h4
 	margin-top:3px;
 	margin-bottom:3px;
 }
+
+td.moneyStyleModifier
+{
+	text-align:right;
+}
