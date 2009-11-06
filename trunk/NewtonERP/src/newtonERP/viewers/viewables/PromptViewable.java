@@ -87,5 +87,8 @@ public interface PromptViewable
      */
     public String getBackLinkName();
 
-    public Vector<String> getMessageList();
+    /**
+     * @return Liste des messages normaux
+     */
+    public Vector<String> getNormalMessageList();
 }
