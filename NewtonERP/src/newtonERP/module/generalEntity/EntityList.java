@@ -3,11 +3,10 @@ package newtonERP.module.generalEntity;
 import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.Iterator;
-import java.util.Map;
 import java.util.Set;
-import java.util.TreeMap;
 import java.util.Vector;
 
+import newtonERP.common.NaturalMap;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
@@ -89,11 +88,11 @@ public class EntityList extends AbstractEntity implements ListViewable,
     }
 
     @Override
-    public Vector<Map<String, String>> getRowList() throws Exception
+    public Vector<NaturalMap<String, String>> getRowList() throws Exception
     {
-	Vector<Map<String, String>> userListInfo = new Vector<Map<String, String>>();
+	Vector<NaturalMap<String, String>> userListInfo = new Vector<NaturalMap<String, String>>();
 
-	TreeMap<String, String> entityInfo;
+	NaturalMap<String, String> entityInfo;
 
 	internalEntityDefinition.initFields();
 
@@ -102,7 +101,7 @@ public class EntityList extends AbstractEntity implements ListViewable,
 	int counter = 0;
 	for (AbstractOrmEntity entity : data)
 	{
-	    entityInfo = new TreeMap<String, String>();
+	    entityInfo = new NaturalMap<String, String>();
 	    for (Field field : entity.getFields())
 	    {
 		if (internalEntityDefinition
