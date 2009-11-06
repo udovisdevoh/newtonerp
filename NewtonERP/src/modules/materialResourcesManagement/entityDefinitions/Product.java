@@ -27,6 +27,8 @@ public class Product extends AbstractOrmEntity implements PromptViewable
     {
 	super();
 	setVisibleName("Produit");
+	addCurrencyFormat("sellingPrice");
+	addCurrencyFormat("purchasingPrice");
     }
 
     @Override
