@@ -86,4 +86,6 @@ public interface PromptViewable
      * @return nom du url facultatif de retour
      */
     public String getBackLinkName();
+
+    public Vector<String> getMessageList();
 }

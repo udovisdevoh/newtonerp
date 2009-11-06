@@ -98,6 +98,10 @@ public class PromptViewer
 	    for (String message : entity.getAlertMessageList())
 		html += "<p class=\"errorMessage\">" + message + "</p>";
 
+	if (entity.getMessageList() != null)
+	    for (String message : entity.getMessageList())
+		html += "<p class=\"regularMessage\">" + message + "</p>";
+
 	if (entity instanceof AbstractOrmEntity)
 	{
 	    html += getSingleAccessorLinkList((AbstractOrmEntity) entity);

@@ -102,6 +102,12 @@ h2 /* sous-titres */
 	font-weight:bold;
 }
 
+.regularMessage
+{
+	color: #0A0;
+	font-weight:bold;
+}
+
 .checkBoxAtomicElement td 
 {
 	border-style: solid;

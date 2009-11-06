@@ -17,7 +17,8 @@ public class AbstractEntity
 {
     protected Fields fields;
     private HashSet<String> hiddenFieldList;
-    private Vector<String> alertMessageList = new Vector<String>();
+    private Vector<String> alertMessageList;
+    private Vector<String> messageList;
     private Hashtable<String, ListOfValue> positiveListOfValueList;
     private static Hashtable<String, ListOfValue> negativeListOfValueList;
     protected Module currentModule;
@@ -207,7 +208,7 @@ public class AbstractEntity
      */
     public final void addAlertMessage(String message)
     {
-	alertMessageList.add(message);
+	getAlertMessageList().add(message);
     }
 
     /**
@@ -301,5 +302,17 @@ public class AbstractEntity
     {
 	// laissez le get car c'est de la lazy initialization -Guillaume
 	getNegativeListOfValueList().put(foreignKeyName, listOfValue);
+    }
+
+    public Vector<String> getMessageList()
+    {
+	if (messageList == null)
+	    messageList = new Vector<String>();
+	return messageList;
+    }
+
+    public void addMessage(String message)
+    {
+	getMessageList().add(message);
     }
 }
