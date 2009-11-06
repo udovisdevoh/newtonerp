@@ -50,7 +50,7 @@ public class HumanResources extends Module
 	salTyp2.newE();
 
 	PeriodeType perTyp1 = new PeriodeType();
-	perTyp1.setData("PeriodeType", "vaccance");
+	perTyp1.setData("PeriodeType", "vacance");
 	perTyp1.newE();
 	PeriodeType perTyp2 = new PeriodeType();
 	perTyp2.setData("PeriodeType", "travail");
