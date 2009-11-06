@@ -24,7 +24,7 @@ public class Customer extends AbstractOrmEntity implements PromptViewable
     public Customer() throws Exception
     {
 	super();
-	setVisibleName("Client");
+	setVisibleName("Client/Fournisseur");
 	AccessorManager.addAccessor(this, new Address());
     }
 
