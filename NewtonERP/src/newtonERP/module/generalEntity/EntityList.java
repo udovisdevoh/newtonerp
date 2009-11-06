@@ -111,23 +111,29 @@ public class EntityList extends AbstractEntity implements ListViewable,
 		ListOfValue listOfValue = entity.tryMatchListOfValue(field
 			.getShortName());
 
+		String shortName = field.getShortName();
+		String dataString = field.getDataString();
+
 		if (counter == 0)
 		{
 		    if (listOfValue != null)
 			entityInfo.put(listOfValue.getLabelName(), listOfValue
 				.getLabelName());
 		    else
-			entityInfo.put(field.getShortName(), field.getName());
+			entityInfo.put(shortName, field.getName());
 		}
 		else
 		{
 
 		    if (listOfValue != null)
 			entityInfo.put(listOfValue.getLabelName(), listOfValue
-				.getForeignValue(field.getDataString()));
+				.getForeignValue(dataString));
 		    else
-			entityInfo.put(field.getShortName(), field
-				.getDataString());
+		    {
+			if (dataString == null)
+			    dataString = "";
+			entityInfo.put(shortName, dataString);
+		    }
 		}
 	    }
 	    userListInfo.add(entityInfo);

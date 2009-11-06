@@ -122,7 +122,6 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      * 
      * @throws OrmException remonte
      */
-
     public final void delete() throws OrmException
     {
 	delete(this);
