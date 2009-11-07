@@ -204,5 +204,6 @@ public class MaterialResourcesManagement extends Module
 	shipping.setData(new Shipper().getForeignKeyName(), 1);
 	shipping.setData("shippingComment", "Be extra careful");
 	shipping.setData(new Location().getForeignKeyName(), 1);
+	shipping.newE();
     }
 }
