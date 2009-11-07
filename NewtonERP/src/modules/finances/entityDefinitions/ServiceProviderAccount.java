@@ -29,7 +29,12 @@ public class ServiceProviderAccount extends AbstractOrmEntity implements
     {
 	super();
 	addNaturalKey("service");
+
+	// FIXME : Pourquoi la clé naturelle phone? Ceci doit planter non étant
+	// donnée que tu n'a pas de clé phone dans cette classe. Ajouté par
+	// Kovalev le 7 Novembre
 	addNaturalKey("phone");
+
 	addNaturalKey(getPrimaryKeyName());
 	AccessorManager.addAccessor(this, new ServiceProvider());
 	AccessorManager.addAccessor(this, new StateType());
