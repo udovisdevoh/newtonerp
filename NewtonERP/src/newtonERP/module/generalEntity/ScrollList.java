@@ -3,6 +3,7 @@ package newtonERP.module.generalEntity;
 import java.util.TreeMap;
 import java.util.Vector;
 
+import newtonERP.common.NaturalMap;
 import newtonERP.module.AbstractEntity;
 import newtonERP.viewers.viewables.ScrollListViewable;
 
@@ -17,7 +18,7 @@ public class ScrollList extends AbstractEntity implements ScrollListViewable
 
     private TreeMap<String, String> linkList;
 
-    private Vector<TreeMap<String, String>> linkPairList;
+    private Vector<NaturalMap<String, String>> linkPairList;
 
     private String titleUrl;
 
@@ -51,10 +52,10 @@ public class ScrollList extends AbstractEntity implements ScrollListViewable
 	return linkList;
     }
 
-    public Vector<TreeMap<String, String>> getLinkGroupList()
+    public Vector<NaturalMap<String, String>> getLinkGroupList()
     {
 	if (linkPairList == null)
-	    linkPairList = new Vector<TreeMap<String, String>>();
+	    linkPairList = new Vector<NaturalMap<String, String>>();
 
 	return linkPairList;
     }
@@ -74,7 +75,7 @@ public class ScrollList extends AbstractEntity implements ScrollListViewable
     public void addLinkGroup(String link1Name, String link1Url,
 	    String link2Name, String link2Url)
     {
-	TreeMap<String, String> linkGroup = new TreeMap<String, String>();
+	NaturalMap<String, String> linkGroup = new NaturalMap<String, String>();
 	linkGroup.put(link1Name, link1Url);
 	linkGroup.put(link2Name, link2Url);
 

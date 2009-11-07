@@ -211,3 +211,9 @@ td.moneyStyleModifier
 {
 	text-align:right;
 }
+
+a.linkPairTarget
+{
+	font-style: italic;
+	color: #22A3f9;
+}

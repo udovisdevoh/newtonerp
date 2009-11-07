@@ -1,7 +1,6 @@
 package newtonERP.viewers;
 
-import java.util.TreeMap;
-
+import newtonERP.common.NaturalMap;
 import newtonERP.viewers.viewables.ScrollListViewable;
 
 /**
@@ -33,13 +32,18 @@ public class ScrollListViewer
 	    html += "<a href=\"" + entity.getLinkList().get(linkName) + "\">"
 		    + linkName + "</a><br />";
 
-	for (TreeMap<String, String> linkPair : entity.getLinkGroupList())
+	for (NaturalMap<String, String> linkPair : entity.getLinkGroupList())
 	{
 	    int counter = 0;
-	    for (String linkName : linkPair.keySet())
+	    String styleModifier;
+	    for (String linkName : linkPair.getKeyList())
 	    {
-		html += "<a href=\"" + linkPair.get(linkName) + "\">"
-			+ linkName + "</a>";
+		if (counter > 0)
+		    styleModifier = " class=\"linkPairTarget\"";
+		else
+		    styleModifier = "";
+		html += "<a href=\"" + linkPair.get(linkName) + "\""
+			+ styleModifier + ">" + linkName + "</a>";
 
 		if (counter == linkPair.size() - 1)
 		    html += "<br>";
