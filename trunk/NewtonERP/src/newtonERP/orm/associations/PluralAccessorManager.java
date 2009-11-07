@@ -32,6 +32,41 @@ public class PluralAccessorManager
 	return pluralAccessorList;
     }
 
+    public static final Vector<AbstractOrmEntity> getPluralAccessor(
+	    AbstractOrmEntity entity, String accessorName) throws Exception
+    {
+	TreeMap<String, Vector<AbstractOrmEntity>> pluralAccessorList = new TreeMap<String, Vector<AbstractOrmEntity>>();
+
+	addFromPositiveFlagPoolList(pluralAccessorList, entity);
+
+	if (pluralAccessorList.containsKey(accessorName))
+	    return pluralAccessorList.get(accessorName);
+
+	addFromNegativeListOfValueList(pluralAccessorList, entity);
+
+	if (pluralAccessorList.containsKey(accessorName))
+	    return pluralAccessorList.get(accessorName);
+
+	addFromNegativeFlagPoolList(pluralAccessorList, entity);
+
+	if (pluralAccessorList.containsKey(accessorName))
+	    return pluralAccessorList.get(accessorName);
+
+	String availableAccessorList = "";
+
+	for (String currentAccessorName : pluralAccessorList.keySet())
+	    availableAccessorList += currentAccessorName + " ";
+
+	availableAccessorList = availableAccessorList.trim();
+
+	if (pluralAccessorList.size() > 0)
+	    throw new Exception(
+		    "Accesseur introuvable. Veuillez utiliser un des accesseurs suivant dans ce contexte: "
+			    + availableAccessorList);
+	else
+	    throw new Exception("Aucun accesseur disponible dans ce contexte");
+    }
+
     private static void addFromNegativeFlagPoolList(
 	    TreeMap<String, Vector<AbstractOrmEntity>> pluralAccessorList,
 	    AbstractOrmEntity entity) throws Exception
