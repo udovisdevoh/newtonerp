@@ -1,5 +1,8 @@
 package modules.materialResourcesManagement;
 
+import java.util.GregorianCalendar;
+
+import modules.customerVendor.entityDefinitions.Invoice;
 import modules.materialResourcesManagement.entityDefinitions.Latitude;
 import modules.materialResourcesManagement.entityDefinitions.Location;
 import modules.materialResourcesManagement.entityDefinitions.LocationStatus;
@@ -193,5 +196,13 @@ public class MaterialResourcesManagement extends Module
 	location.setData(new Longitude().getForeignKeyName(), 1);
 	location.setData(new LocationStatus().getForeignKeyName(), 1);
 	location.newE();
+
+	Shipping shipping = new Shipping();
+	shipping.setData(new Invoice().getForeignKeyName(), 1);
+	shipping.setData(new ShippingType().getForeignKeyName(), 2);
+	shipping.setData("estimatedShippingDate", new GregorianCalendar());
+	shipping.setData(new Shipper().getForeignKeyName(), 1);
+	shipping.setData("shippingComment", "Be extra careful");
+	shipping.setData(new Location().getForeignKeyName(), 1);
     }
 }
