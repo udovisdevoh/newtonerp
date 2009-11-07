@@ -5,7 +5,6 @@ import java.util.Vector;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.field.Field;
 import newtonERP.module.field.FieldInt;
-import newtonERP.module.field.FieldString;
 import newtonERP.module.field.Fields;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.viewers.viewables.PromptViewable;
@@ -15,8 +14,8 @@ import newtonERP.viewers.viewables.PromptViewable;
  * 
  * Eventually : (Sprint 4?)
  * 
- * Work out with the google api to locate the truck on the road, track the truck
- * route.
+ * Work out with the google api to locate the truck on the road, track the
+ * trucks route to destination.
  * 
  * @author r3hallejo
  */
@@ -32,7 +31,8 @@ public class Location extends AbstractOrmEntity implements PromptViewable
     {
 	super();
 	AccessorManager.addAccessor(this, new LocationStatus());
-	addNaturalKey(new LocationStatus().getForeignKeyName());
+	AccessorManager.addAccessor(this, new Latitude());
+	AccessorManager.addAccessor(this, new Longitude());
     }
 
     @Override
@@ -40,11 +40,12 @@ public class Location extends AbstractOrmEntity implements PromptViewable
     {
 	Vector<Field> fieldsInit = new Vector<Field>();
 	fieldsInit.add(new FieldInt("Numero", getPrimaryKeyName()));
-	fieldsInit.add(new FieldString("Latitude", "latitude"));
-	fieldsInit.add(new FieldString("Longitude", "longitude"));
 	fieldsInit.add(new FieldInt("Status", new LocationStatus()
+		.getForeignKeyName()));
+	fieldsInit.add(new FieldInt("Latitude", new Latitude()
+		.getForeignKeyName()));
+	fieldsInit.add(new FieldInt("Longitude", new Longitude()
 		.getForeignKeyName()));
 	return new Fields(fieldsInit);
     }
-
 }
