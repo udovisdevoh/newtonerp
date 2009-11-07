@@ -31,7 +31,6 @@ public class ServiceProvider extends AbstractOrmEntity implements
 	super();
 	setVisibleName("Fournisseurs de services");
 	addNaturalKey("name");
-	addNaturalKey("phone");
 	AccessorManager.addAccessor(this, new Address());
     }
 
@@ -41,7 +40,6 @@ public class ServiceProvider extends AbstractOrmEntity implements
 	Vector<Field> fieldsInit = new Vector<Field>();
 	fieldsInit.add(new FieldInt("Numéro", getPrimaryKeyName()));
 	fieldsInit.add(new FieldString("Nom", "name"));
-	fieldsInit.add(new FieldString("Téléphone", "phone"));
 	fieldsInit.add(new FieldInt("Adresse", new Address()
 		.getForeignKeyName()));
 
