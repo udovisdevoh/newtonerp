@@ -1,6 +1,6 @@
 package newtonERP.viewers.viewables;
 
-import java.util.Hashtable;
+import newtonERP.common.NaturalMap;
 
 /**
  * The select box view interface
@@ -12,7 +12,7 @@ public interface SelectBoxViewable
      * @return the elements of the select box
      * @throws Exception an exception that can occur in the orm
      */
-    public Hashtable<String, String> getElements() throws Exception;
+    public NaturalMap<String, String> getElements() throws Exception;
 
     /**
      * @return the label name
