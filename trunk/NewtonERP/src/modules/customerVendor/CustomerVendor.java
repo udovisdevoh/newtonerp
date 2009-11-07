@@ -23,7 +23,7 @@ public class CustomerVendor extends Module
 	super();
 	setDefaultAction(new BaseAction("GetList", new Merchant()));
 
-	addGlobalActionMenuItem("Clients", new BaseAction("GetList",
+	addGlobalActionMenuItem("Commerçants", new BaseAction("GetList",
 		new Merchant()));
 
 	addGlobalActionMenuItem("Factures", new BaseAction("GetList",

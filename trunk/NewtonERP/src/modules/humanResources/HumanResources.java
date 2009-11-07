@@ -64,8 +64,20 @@ public class HumanResources extends Module
 	empTyp2.newE();
 
 	Department dep = new Department();
-	dep.setData("departmentName", "direction");
+	dep.setData("departmentName", "Direction");
 	dep.newE();
+
+	Department dep1 = new Department();
+	dep1.setData("departmentName", "Marketing");
+	dep1.newE();
+
+	Department dep2 = new Department();
+	dep2.setData("departmentName", "Finances");
+	dep2.newE();
+
+	Department dep3 = new Department();
+	dep3.setData("departmentName", "Maintenance");
+	dep3.newE();
 
 	Employee emp1 = new Employee();
 	emp1.setData("firstName", "John");
