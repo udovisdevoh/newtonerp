@@ -1,7 +1,6 @@
 package newtonERP.viewers;
 
-import java.util.Hashtable;
-
+import newtonERP.common.NaturalMap;
 import newtonERP.viewers.viewables.SelectBoxViewable;
 
 /**
@@ -25,13 +24,13 @@ public class SelectBoxViewer
 	html += entity.getLabelName() + ": </td>";
 	html += "<td><select name=\"" + inputName + "\">";
 
-	Hashtable<String, String> elements = entity.getElements();
+	NaturalMap<String, String> elements = entity.getElements();
 
 	if (elements.get(inputValue) != null)
 	    html += "<option value=\"" + inputValue + "\">"
 		    + elements.get(inputValue) + "</option>";
 
-	for (String elementKey : elements.keySet())
+	for (String elementKey : elements.getKeyList())
 	{
 	    if (!elementKey.equals(inputValue))
 	    {

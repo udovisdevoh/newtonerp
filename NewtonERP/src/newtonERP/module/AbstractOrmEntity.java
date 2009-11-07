@@ -197,9 +197,8 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	    FlagPoolManager.applyFlagPoolChanges(this,
 		    getPositiveFlagPoolList().values(), parameters);
 
-	    // return editUI(new Hashtable<String, String>());
-
-	    retEntity.addNormalMessage("Changements accomplis.");
+	    retEntity = (AbstractOrmEntity) editUI(new Hashtable<String, String>());
+	    retEntity.addNormalMessage("Changements accomplis");
 	}
 	return retEntity;
     }

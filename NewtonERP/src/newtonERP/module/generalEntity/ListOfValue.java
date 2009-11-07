@@ -1,8 +1,8 @@
 package newtonERP.module.generalEntity;
 
-import java.util.Hashtable;
 import java.util.Vector;
 
+import newtonERP.common.NaturalMap;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.Orm;
 import newtonERP.orm.exceptions.OrmException;
@@ -34,11 +34,11 @@ public class ListOfValue implements SelectBoxViewable
 	this.foreignEntity = foreignEntity;
     }
 
-    public Hashtable<String, String> getElements() throws Exception
+    public NaturalMap<String, String> getElements() throws Exception
     {
 	Vector<AbstractOrmEntity> entityList = Orm.select(foreignEntity, null);
 
-	Hashtable<String, String> elementList = new Hashtable<String, String>();
+	NaturalMap<String, String> elementList = new NaturalMap<String, String>();
 
 	for (AbstractOrmEntity entity : entityList)
 	{
