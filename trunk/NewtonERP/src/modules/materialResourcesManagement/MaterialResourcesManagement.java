@@ -1,7 +1,9 @@
 package modules.materialResourcesManagement;
 
+import modules.materialResourcesManagement.entityDefinitions.Latitude;
 import modules.materialResourcesManagement.entityDefinitions.Location;
 import modules.materialResourcesManagement.entityDefinitions.LocationStatus;
+import modules.materialResourcesManagement.entityDefinitions.Longitude;
 import modules.materialResourcesManagement.entityDefinitions.Product;
 import modules.materialResourcesManagement.entityDefinitions.Shipper;
 import modules.materialResourcesManagement.entityDefinitions.Shipping;
@@ -41,6 +43,10 @@ public class MaterialResourcesManagement extends Module
 		new Location()));
 	addGlobalActionMenuItem("Type de locations", new BaseAction("GetList",
 		new LocationStatus()));
+	addGlobalActionMenuItem("Latitudes", new BaseAction("GetList",
+		new Latitude()));
+	addGlobalActionMenuItem("Longitudes", new BaseAction("GetList",
+		new Longitude()));
 	setVisibleName("Ressources matérielles");
     }
 
@@ -130,5 +136,62 @@ public class MaterialResourcesManagement extends Module
 	warehouse2.setData("warehouseName", "Arb_She");
 	warehouse2.setData("addressID", 3);
 	warehouse2.newE();
+
+	LocationStatus locStatus = new LocationStatus();
+	locStatus.setData("status", "At warehouse");
+	locStatus.newE();
+
+	LocationStatus locStatus1 = new LocationStatus();
+	locStatus1.setData("status", "On course");
+	locStatus1.newE();
+
+	LocationStatus locStatus2 = new LocationStatus();
+	locStatus2.setData("status", "At destination");
+	locStatus2.newE();
+
+	// Cegep du Vieux-Montréal
+	Latitude lat = new Latitude();
+	lat.setData("degrees", 45);
+	lat.setData("minutes", 30);
+	lat.setData("seconds", 51.13);
+	lat.newE();
+
+	Longitude longitude = new Longitude();
+	longitude.setData("degrees", 73);
+	longitude.setData("minutes", 33);
+	longitude.setData("seconds", 57.07);
+	longitude.newE();
+
+	// Université Sherbrooke
+	Latitude lat1 = new Latitude();
+	lat1.setData("degrees", 45);
+	lat1.setData("minutes", 22);
+	lat1.setData("seconds", 50.62);
+	lat1.newE();
+
+	Longitude longitude1 = new Longitude();
+	longitude1.setData("degrees", 71);
+	longitude1.setData("minutes", 55);
+	longitude1.setData("seconds", 50.09);
+	longitude1.newE();
+
+	// Université Laval
+	Latitude lat2 = new Latitude();
+	lat2.setData("degrees", 46);
+	lat2.setData("minutes", 46);
+	lat2.setData("seconds", 48.21);
+	lat2.newE();
+
+	Longitude longitude2 = new Longitude();
+	longitude2.setData("degrees", 71);
+	longitude2.setData("minutes", 16);
+	longitude2.setData("seconds", 27.76);
+	longitude2.newE();
+
+	Location location = new Location();
+	location.setData(new Latitude().getForeignKeyName(), 1);
+	location.setData(new Longitude().getForeignKeyName(), 1);
+	location.setData(new LocationStatus().getForeignKeyName(), 1);
+	location.newE();
     }
 }

@@ -25,12 +25,12 @@ public class Invoice extends AbstractOrmEntity implements PromptViewable
     public Invoice() throws Exception
     {
 	super();
-	AccessorManager.addAccessor(this, new Customer());
+	AccessorManager.addAccessor(this, new Merchant());
 	addCurrencyFormat("total");
 	setVisibleName("Facture");
 
 	addNaturalKey(getPrimaryKeyName());
-	addNaturalKey(new Customer().getForeignKeyName());
+	addNaturalKey(new Merchant().getForeignKeyName());
 	addNaturalKey("date");
     }
 
@@ -39,7 +39,7 @@ public class Invoice extends AbstractOrmEntity implements PromptViewable
 	Vector<Field> fieldList = new Vector<Field>();
 	fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
 	fieldList.add(new FieldDouble("Total", "total"));
-	fieldList.add(new FieldInt("Nom du client", new Customer()
+	fieldList.add(new FieldInt("Nom du client", new Merchant()
 		.getForeignKeyName()));
 	fieldList.add(new FieldDate("Date", "date"));
 	return new Fields(fieldList);

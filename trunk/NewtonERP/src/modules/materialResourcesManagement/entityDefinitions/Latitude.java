@@ -4,24 +4,30 @@ import java.util.Vector;
 
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.field.Field;
+import newtonERP.module.field.FieldDouble;
 import newtonERP.module.field.FieldInt;
-import newtonERP.module.field.FieldString;
 import newtonERP.module.field.Fields;
 import newtonERP.viewers.viewables.PromptViewable;
 
 /**
- * A location status
+ * A latitude coordinate of a location
  * 
  * @author r3hallejo
  */
-public class LocationStatus extends AbstractOrmEntity implements PromptViewable
+public class Latitude extends AbstractOrmEntity implements PromptViewable
 {
+
     /**
+     * Default constructor
+     * 
      * @throws Exception a general exception
      */
-    public LocationStatus() throws Exception
+    public Latitude() throws Exception
     {
 	super();
+	addNaturalKey("degrees");
+	addNaturalKey("minutes");
+	addNaturalKey("seconds");
     }
 
     @Override
@@ -29,7 +35,9 @@ public class LocationStatus extends AbstractOrmEntity implements PromptViewable
     {
 	Vector<Field> fieldsInit = new Vector<Field>();
 	fieldsInit.add(new FieldInt("Numero", getPrimaryKeyName()));
-	fieldsInit.add(new FieldString("Status", "status"));
+	fieldsInit.add(new FieldInt("Degrés", "degrees"));
+	fieldsInit.add(new FieldInt("Minutes", "minutes"));
+	fieldsInit.add(new FieldDouble("Secondes", "seconds"));
 	return new Fields(fieldsInit);
     }
 }

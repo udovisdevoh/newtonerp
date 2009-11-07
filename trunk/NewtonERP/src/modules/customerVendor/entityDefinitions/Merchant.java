@@ -16,12 +16,12 @@ import newtonERP.viewers.viewables.PromptViewable;
  * 
  *         Entité du client dans le module customerVendor
  */
-public class Customer extends AbstractOrmEntity implements PromptViewable
+public class Merchant extends AbstractOrmEntity implements PromptViewable
 {
     /**
      * @throws Exception si création fail
      */
-    public Customer() throws Exception
+    public Merchant() throws Exception
     {
 	super();
 	setVisibleName("Client/Fournisseur");
@@ -34,7 +34,6 @@ public class Customer extends AbstractOrmEntity implements PromptViewable
 	Vector<Field> fieldsInit = new Vector<Field>();
 	fieldsInit.add(new FieldInt("Numéro", getPrimaryKeyName()));
 	fieldsInit.add(new FieldString("Nom", "name"));
-	fieldsInit.add(new FieldString("Téléphone", "phone"));
 	fieldsInit.add(new FieldInt("Adresse", new Address()
 		.getForeignKeyName()));
 	return new Fields(fieldsInit);

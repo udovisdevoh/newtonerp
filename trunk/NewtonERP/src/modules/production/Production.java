@@ -38,6 +38,10 @@ public class Production extends Module
 
 	super.initDB();
 
+	StatusType status3 = new StatusType();
+	status3.setData("status", "Non assigne");
+	status3.newE();
+
 	StatusType status = new StatusType();
 	status.setData("status", "Assigne");
 	status.newE();
@@ -49,10 +53,6 @@ public class Production extends Module
 	StatusType status2 = new StatusType();
 	status2.setData("status", "Resolu");
 	status2.newE();
-
-	StatusType status3 = new StatusType();
-	status3.setData("status", "Non assigne");
-	status3.newE();
 
 	MaintenanceTicket ticket = new MaintenanceTicket();
 	ticket.setData("problemType",
