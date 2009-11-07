@@ -32,6 +32,12 @@ public class PluralAccessorManager
 	return pluralAccessorList;
     }
 
+    /**
+     * @param entity entité source
+     * @param accessorName nom de l'accesseur
+     * @return accesseur multiple
+     * @throws Exception si obtention fail
+     */
     public static final Vector<AbstractOrmEntity> getPluralAccessor(
 	    AbstractOrmEntity entity, String accessorName) throws Exception
     {
@@ -63,8 +69,7 @@ public class PluralAccessorManager
 	    throw new Exception(
 		    "Accesseur introuvable. Veuillez utiliser un des accesseurs suivant dans ce contexte: "
 			    + availableAccessorList);
-	else
-	    throw new Exception("Aucun accesseur disponible dans ce contexte");
+	throw new Exception("Aucun accesseur disponible dans ce contexte");
     }
 
     private static void addFromNegativeFlagPoolList(
