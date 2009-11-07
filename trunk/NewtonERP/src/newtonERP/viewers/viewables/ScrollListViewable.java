@@ -3,6 +3,8 @@ package newtonERP.viewers.viewables;
 import java.util.TreeMap;
 import java.util.Vector;
 
+import newtonERP.common.NaturalMap;
+
 /**
  * Element graphique visible en tant que liste scrollable de lien ou de texte
  * avec une scrollbar
@@ -23,7 +25,7 @@ public interface ScrollListViewable
     /**
      * @return liste de groupe de liens
      */
-    public Vector<TreeMap<String, String>> getLinkGroupList();
+    public Vector<NaturalMap<String, String>> getLinkGroupList();
 
     /**
      * @return url du titre si c'est un lien
