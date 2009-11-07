@@ -7,7 +7,6 @@ import newtonERP.module.field.Field;
 import newtonERP.module.field.FieldInt;
 import newtonERP.module.field.FieldString;
 import newtonERP.module.field.Fields;
-import newtonERP.orm.Orm;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.viewers.viewables.PromptViewable;
 
@@ -45,29 +44,25 @@ public class Groups extends AbstractOrmEntity implements PromptViewable
      */
     public Vector<Right> getRightList() throws Exception
     {
-	// Voici comment le code suivant pourrait être implémenté en utilisant
-	// les accesseurs
-	// Vector<Right> rightList = new Vector<Right>();
-	// for (AbstractOrmEntity entity : getPluralAccessorList().get("Right"))
-	// rightList.add((Right) entity);
-	// return rightList;*/
-
-	Vector<Right> rightResult = new Vector<Right>();
-	GroupsRight GroupsRightSearch = new GroupsRight();
-	String groupsId = getFields().getField(getPrimaryKeyName())
-		.getDataString();
-
-	GroupsRightSearch.getFields().setData("groupsID", groupsId);
-
-	Vector<AbstractOrmEntity> GroupsRights = Orm.select(GroupsRightSearch);
-	for (AbstractOrmEntity entity : GroupsRights)
-	{
-	    GroupsRight GroupsRight = (GroupsRight) entity;
-
-	    rightResult.add(GroupsRight.getRightEntity());
-	}
-
-	return rightResult;
+	Vector<Right> rightList = new Vector<Right>();
+	for (AbstractOrmEntity entity : getPluralAccessor("Right"))
+	    rightList.add((Right) entity);
+	return rightList;
+	/*
+	 * Vector<Right> rightResult = new Vector<Right>(); GroupsRight
+	 * GroupsRightSearch = new GroupsRight(); String groupsId =
+	 * getFields().getField(getPrimaryKeyName()) .getDataString();
+	 * 
+	 * GroupsRightSearch.getFields().setData("groupsID", groupsId);
+	 * 
+	 * Vector<AbstractOrmEntity> GroupsRights =
+	 * Orm.select(GroupsRightSearch); for (AbstractOrmEntity entity :
+	 * GroupsRights) { GroupsRight GroupsRight = (GroupsRight) entity;
+	 * 
+	 * rightResult.add(GroupsRight.getRightEntity()); }
+	 * 
+	 * return rightResult;
+	 */
 
     }
 }

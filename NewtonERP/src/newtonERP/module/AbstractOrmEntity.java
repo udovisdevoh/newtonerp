@@ -13,6 +13,7 @@ import newtonERP.module.generalEntity.ListOfValue;
 import newtonERP.orm.Orm;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.associations.FlagPoolManager;
+import newtonERP.orm.associations.PluralAccessorManager;
 import newtonERP.orm.exceptions.OrmException;
 import newtonERP.serveur.Servlet;
 import newtonERP.viewers.MoneyViewer;
@@ -671,5 +672,11 @@ public abstract class AbstractOrmEntity extends AbstractEntity
     public String getBackLinkName()
     {
 	return "voir liste";
+    }
+
+    protected Vector<AbstractOrmEntity> getPluralAccessor(String accessorName)
+	    throws Exception
+    {
+	return PluralAccessorManager.getPluralAccessor(this, accessorName);
     }
 }
