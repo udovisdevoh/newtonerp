@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import newtonERP.logging.Logger;
 import newtonERP.orm.OrmActions;
 import newtonERP.orm.exceptions.OrmException;
 import newtonERP.orm.exceptions.OrmSqlException;
@@ -52,11 +51,7 @@ public class SgbdSqlite implements Sgbdable
     {
 	try
 	{
-	    Logger.log("Attempting to close the connexion to db",
-		    Logger.State.INFO);
 	    connexion.close();
-	    Logger.log("Connexion has been succesfully closed",
-		    Logger.State.INFO);
 	} catch (SQLException e)
 	{
 	    throw new OrmSqlException(
@@ -70,11 +65,8 @@ public class SgbdSqlite implements Sgbdable
     {
 	try
 	{
-	    Logger.log("Initialisation of connection to db", Logger.State.INFO);
 	    Class.forName("org.sqlite.JDBC");
 	    connexion = DriverManager.getConnection("jdbc:sqlite:test.db");
-	    Logger.log("Connexion has been succesfully initialized",
-		    Logger.State.INFO);
 	} catch (Exception e)
 	{
 	    throw new OrmSqlException("Error connecting to the database : "
