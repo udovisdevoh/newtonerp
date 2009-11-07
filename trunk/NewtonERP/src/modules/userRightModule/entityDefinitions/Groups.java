@@ -45,6 +45,13 @@ public class Groups extends AbstractOrmEntity implements PromptViewable
      */
     public Vector<Right> getRightList() throws Exception
     {
+	// Voici comment le code suivant pourrait être implémenté en utilisant
+	// les accesseurs
+	// Vector<Right> rightList = new Vector<Right>();
+	// for (AbstractOrmEntity entity : getPluralAccessorList().get("Right"))
+	// rightList.add((Right) entity);
+	// return rightList;*/
+
 	Vector<Right> rightResult = new Vector<Right>();
 	GroupsRight GroupsRightSearch = new GroupsRight();
 	String groupsId = getFields().getField(getPrimaryKeyName())
@@ -61,5 +68,6 @@ public class Groups extends AbstractOrmEntity implements PromptViewable
 	}
 
 	return rightResult;
+
     }
 }
