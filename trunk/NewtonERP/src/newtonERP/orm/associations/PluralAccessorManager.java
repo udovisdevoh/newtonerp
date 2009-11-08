@@ -1,5 +1,6 @@
 package newtonERP.orm.associations;
 
+import java.util.Hashtable;
 import java.util.TreeMap;
 import java.util.Vector;
 
@@ -41,12 +42,15 @@ public class PluralAccessorManager
     public static final Vector<AbstractOrmEntity> getPluralAccessor(
 	    AbstractOrmEntity entity, String accessorName) throws Exception
     {
+	Vector<AbstractOrmEntity> pluralAccessor;
+
 	TreeMap<String, Vector<AbstractOrmEntity>> pluralAccessorList = new TreeMap<String, Vector<AbstractOrmEntity>>();
 
-	addFromPositiveFlagPoolList(pluralAccessorList, entity);
+	pluralAccessor = tryGetAccessorFromPositiveFlagPool(entity,
+		accessorName);
 
-	if (pluralAccessorList.containsKey(accessorName))
-	    return pluralAccessorList.get(accessorName);
+	if (pluralAccessor != null)
+	    return pluralAccessor;
 
 	addFromNegativeListOfValueList(pluralAccessorList, entity);
 
@@ -179,6 +183,50 @@ public class PluralAccessorManager
 		pluralAccessorList.put(flagPool.getForeignEntityDefinition()
 			.getClass().getSimpleName(), pluralAccessor);
 	}
+    }
+
+    private static Vector<AbstractOrmEntity> tryGetAccessorFromPositiveFlagPool(
+	    AbstractOrmEntity entity, String accessorName) throws Exception
+    {
+	accessorName = accessorName.toLowerCase();
+	Vector<AbstractOrmEntity> pluralAccessor;
+
+	Hashtable<String, FlagPool> positiveFlagPoolList = entity
+		.getPositiveFlagPoolList();
+
+	FlagPool selectedFlagPool = null;
+
+	for (FlagPool currentFlagPool : positiveFlagPoolList.values())
+	{
+	    if (currentFlagPool.getForeignEntityDefinition().getClass()
+		    .getSimpleName().toLowerCase().equals(accessorName))
+	    {
+		selectedFlagPool = currentFlagPool;
+		break;
+	    }
+	    else if (currentFlagPool.getForeignEntityDefinition()
+		    .getPrimaryKeyName().toLowerCase().equals(accessorName))
+	    {
+		selectedFlagPool = currentFlagPool;
+		break;
+	    }
+	    else if (currentFlagPool.getForeignEntityDefinition()
+		    .getForeignKeyName().toLowerCase().equals(accessorName))
+	    {
+		selectedFlagPool = currentFlagPool;
+		break;
+	    }
+	}
+
+	if (selectedFlagPool == null)
+	    selectedFlagPool = positiveFlagPoolList.get(accessorName);
+
+	if (selectedFlagPool == null)
+	    return null;
+
+	pluralAccessor = getPositivePluralAccessor(entity, selectedFlagPool);
+
+	return pluralAccessor;
     }
 
     private static Vector<AbstractOrmEntity> getPositivePluralAccessor(
