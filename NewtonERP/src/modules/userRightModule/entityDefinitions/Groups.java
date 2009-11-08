@@ -48,21 +48,5 @@ public class Groups extends AbstractOrmEntity implements PromptViewable
 	for (AbstractOrmEntity entity : getPluralAccessor("Right"))
 	    rightList.add((Right) entity);
 	return rightList;
-	/*
-	 * Vector<Right> rightResult = new Vector<Right>(); GroupsRight
-	 * GroupsRightSearch = new GroupsRight(); String groupsId =
-	 * getFields().getField(getPrimaryKeyName()) .getDataString();
-	 * 
-	 * GroupsRightSearch.getFields().setData("groupsID", groupsId);
-	 * 
-	 * Vector<AbstractOrmEntity> GroupsRights =
-	 * Orm.select(GroupsRightSearch); for (AbstractOrmEntity entity :
-	 * GroupsRights) { GroupsRight GroupsRight = (GroupsRight) entity;
-	 * 
-	 * rightResult.add(GroupsRight.getRightEntity()); }
-	 * 
-	 * return rightResult;
-	 */
-
     }
 }
