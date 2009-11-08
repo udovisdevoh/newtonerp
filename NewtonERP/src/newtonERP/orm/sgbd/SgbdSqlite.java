@@ -34,7 +34,6 @@ public class SgbdSqlite implements Sgbdable
 		return rs;
 	    }
 
-	    // Sinon peut importe l'action on retourne a rien!
 	    stat.execute(request);
 	    return stat.getGeneratedKeys();
 
