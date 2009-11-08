@@ -26,7 +26,7 @@ public class Bank extends AbstractOrmEntity implements PromptViewable
     {
 	super();
 	setVisibleName("Banques");
-	addNaturalKey("name");
+	addNaturalKey("transit");
 	AccessorManager.addAccessor(this, new Address());
     }
 
@@ -36,6 +36,7 @@ public class Bank extends AbstractOrmEntity implements PromptViewable
 	Vector<Field> fieldsInit = new Vector<Field>();
 	fieldsInit.add(new FieldInt("Numéro", getPrimaryKeyName()));
 	fieldsInit.add(new FieldString("Nom", "name"));
+	fieldsInit.add(new FieldInt("Transit", "transit"));
 	fieldsInit.add(new FieldInt("Adresse", new Address()
 		.getForeignKeyName()));
 	return new Fields(fieldsInit);
