@@ -620,11 +620,21 @@ par exemple, si on delete un Group, alors les GroupRight WHERE GroupID = ce grou
 
 ==Guillaume Lacasse==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
-  * ...livré...
+  * Optimisation de performance d'accesseurs multiples
+  * Simplification de requête d'accesseur multiples
+  * Cré classe generique NaturalMap (genre d'Hashtable ordonné)
+  * EditUI: après edit, retourne sur edit
+  * Promtp viewable, lien de retour
+  * Formatage d'argent aligné à droite
+  * List of value maintenant dans l'ordre d'insertion
+  * Corrigé bug ordre de vue des accesseur simples
+  * Corrigé des fautes
+  * Classe groups et user: ajout d'exemple d'utilisation d'accesseurs simples et multiples.
+  * Ajout de gestion d'exception lors d'obtention d'accesseur multiples qui dit quels accesseurs sont disponibles selon le contexte
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
-  * ...à livrer...
+  * Commencer module de spécification
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
-  * ...problème, besoin d'aide, qui aidera...
+  * Complexité des accesseurs multiples
 
 ==Pascal Lemay==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
