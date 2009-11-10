@@ -3,6 +3,7 @@ package modules.customerVendor;
 import java.util.GregorianCalendar;
 
 import modules.customerVendor.entityDefinitions.Invoice;
+import modules.customerVendor.entityDefinitions.InvoiceLine;
 import modules.customerVendor.entityDefinitions.Merchant;
 import newtonERP.module.BaseAction;
 import newtonERP.module.Module;
@@ -10,7 +11,7 @@ import newtonERP.module.Module;
 /**
  * Représente le module client-fournisseur (facturation et factures de
  * fournisseur + le marketing )
- * @author r3lemaypa Guillaume cloutierJo
+ * @author r3lemaypa Guillaume cloutierJo r3hallejo
  */
 public class CustomerVendor extends Module
 {
@@ -28,6 +29,9 @@ public class CustomerVendor extends Module
 
 	addGlobalActionMenuItem("Factures", new BaseAction("GetList",
 		new Invoice()));
+
+	addGlobalActionMenuItem("Lignes de factures", new BaseAction("GetList",
+		new InvoiceLine()));
 
 	setVisibleName("Clients / Fournisseurs");
     }
