@@ -83,6 +83,9 @@ public class TimeTable extends AbstractEntity
 	this.cases = cases;
     }
 
+    /**
+     * @return le titre de la page
+     */
     public String getTitle()
     {
 	return "Horaire";
