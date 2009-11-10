@@ -612,7 +612,7 @@ par exemple, si on delete un Group, alors les GroupRight WHERE GroupID = ce grou
   * quelques changements au niveau de customer vendor (dont dans merchant que j'ai renommé, enlevé le phone qui est contenu dans l'adresse)
   * Trouvé pourquoi la connection a sqlite étais si lente. C'etait le logger utiliser, j'ai donc supprimer ca.
   * Touch-up ici et la
-  * Commentaire dans le module de pascal (FIXME) rien de grave mais faudra s'en parler
+  * Debut de linkage des factures avec invoices lines et products. Méthode pour calculer le total faite. Devra être appelée par une task. De meme que les actions update de quantités
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
   * ...à livrer...
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
