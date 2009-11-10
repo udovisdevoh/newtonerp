@@ -674,6 +674,11 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	return "voir liste";
     }
 
+    /**
+     * @param accessorName
+     * @return accesseur multiple voulu
+     * @throws Exception si obtention fail
+     */
     public Vector<AbstractOrmEntity> getPluralAccessor(String accessorName)
 	    throws Exception
     {
