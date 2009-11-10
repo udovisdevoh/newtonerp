@@ -3,6 +3,7 @@ package newtonERP.viewers;
 import java.util.Hashtable;
 import java.util.Iterator;
 
+import modules.humanResources.entityDefinitions.TimeTable;
 import newtonERP.Authentication;
 import newtonERP.ListModule;
 import newtonERP.module.AbstractEntity;
@@ -48,6 +49,8 @@ public abstract class Viewer
 	else if (entity instanceof StaticTextViewable)
 	    viewerHtml = StaticTextViewer
 		    .getHtmlCode((StaticTextViewable) entity);
+	else if (entity instanceof TimeTable)
+	    viewerHtml = TimeTableViewer.getHtmlCode((TimeTable) entity);
 	else if (entity == null)
 	    viewerHtml = "<!-- page vide -->";
 	else

@@ -2,6 +2,7 @@ package newtonERP.module.field;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
@@ -110,5 +111,21 @@ public class FieldDateTime extends Field
 	Date tempDate = dateFormatter.parse(dateInString);
 	gregorianCalendar.setTime(tempDate);
 	return gregorianCalendar;
+    }
+
+    /**
+     * @param first premier date
+     * @param second deuxieme date
+     * @param field etendu de comparaison
+     * @return true si les 2 date son dans le meme intervale
+     */
+    static public boolean isInSameDay(GregorianCalendar first,
+	    GregorianCalendar second)
+    {
+	boolean ret;
+	ret = first.get(Calendar.DAY_OF_YEAR) == second
+		.get(Calendar.DAY_OF_YEAR);
+	ret &= first.get(Calendar.YEAR) == second.get(Calendar.YEAR);
+	return ret;
     }
 }

@@ -1,5 +1,6 @@
 package modules.humanResources;
 
+import modules.humanResources.actions.GetOneTimeTable;
 import modules.humanResources.entityDefinitions.Department;
 import modules.humanResources.entityDefinitions.Employee;
 import modules.humanResources.entityDefinitions.EmployeeType;
@@ -35,6 +36,7 @@ public class HumanResources extends Module
 		new SalaryType()));
 	addGlobalActionMenuItem("Type de période", new BaseAction("GetList",
 		new PeriodeType()));
+	addGlobalActionMenuItem("voire l'horaire", new GetOneTimeTable());
 
 	setVisibleName("Ressources humaines");
     }

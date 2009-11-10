@@ -172,15 +172,29 @@ public class Fields implements Iterable<Field>
      * 
      * *ATTENTION* NE PAS UTILISE UNE ENTITY COMME SEARCHCRITERIA APRES AVOIR
      * UTILISER CETTE FONCTION
+     * @param allField true pour mettre tous les champ a leur valeur par defaut
+     *            false pour ne mettre les valeurpar defaut qu'au field n'étant
+     *            pas settez
      * 
+     * @throws FieldNotCompatibleException remonte
+     */
+    public void setDefaultValue(boolean allField)
+	    throws FieldNotCompatibleException
+    {
+	for (Field field : getFields())
+	{
+	    if (field.getData() == null || allField)
+		field.setDefaultValue();
+	}
+    }
+
+    /**
+     * identique a setDefaultValue(true);
      * @throws FieldNotCompatibleException remonte
      */
     public void setDefaultValue() throws FieldNotCompatibleException
     {
-	for (Field field : getFields())
-	{
-	    field.setDefaultValue();
-	}
+	setDefaultValue(true);
     }
 
     /**
