@@ -674,7 +674,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	return "voir liste";
     }
 
-    protected Vector<AbstractOrmEntity> getPluralAccessor(String accessorName)
+    public Vector<AbstractOrmEntity> getPluralAccessor(String accessorName)
 	    throws Exception
     {
 	return PluralAccessorManager.getPluralAccessor(this, accessorName);
