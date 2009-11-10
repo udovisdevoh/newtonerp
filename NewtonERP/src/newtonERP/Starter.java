@@ -1,5 +1,7 @@
 package newtonERP;
 
+import java.net.BindException;
+
 import modules.userRightModule.actions.CreateAllRight;
 import newtonERP.logging.Logger;
 import newtonERP.orm.Orm;
@@ -45,13 +47,16 @@ public class Starter
 	server.setStopAtShutdown(true);
 	Context context = new Context(server, "/", Context.SESSIONS);
 	context.setServletHandler(new Servlet());
-	/*
-	 * ResourceHandler resourceHandler = new ResourceHandler();
-	 * resourceHandler.setResourceBase(".");
-	 * context.addHandler(resourceHandler);
-	 */server.start();
 
-	doWeExit();
+	try
+	{
+	    server.start();
+	    doWeExit();
+	} catch (BindException e)
+	{
+	    System.err.println("      *****serveur déja partie********");
+	    shutdown();
+	}
     }
 
     /**

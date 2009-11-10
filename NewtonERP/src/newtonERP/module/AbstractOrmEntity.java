@@ -674,7 +674,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
     }
 
     /**
-     * @param accessorName
+     * @param accessorName non de l'accesseur
      * @return accesseur multiple voulu
      * @throws Exception si obtention fail
      */

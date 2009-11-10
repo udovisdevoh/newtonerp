@@ -30,7 +30,7 @@ public class GetOneTimeTable extends AbstractAction
     private static SimpleDateFormat dateFormatter = new SimpleDateFormat(
 	    "yyyy-MM-dd");
     private static SimpleDateFormat timeFormatter = new SimpleDateFormat(
-	    "HH:mm");
+	    "HH:00");
 
     /**
      * constructeur vide
@@ -60,7 +60,8 @@ public class GetOneTimeTable extends AbstractAction
 	// remplie les header de gauche
 	for (int i = 0; i < leftHeader.length; i++)
 	{
-	    leftHeader[i] = new CaseTable(i + "");
+	    date.set(Calendar.HOUR_OF_DAY, i);
+	    leftHeader[i] = new CaseTable(timeFormatter.format(date.getTime()));
 	}
 
 	// remplie les data et leheader du haut
