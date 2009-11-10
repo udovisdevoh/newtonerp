@@ -197,4 +197,20 @@ public class Servlet extends ServletHandler
 
 	return link;
     }
+
+    /**
+     * @param module module a lier
+     * @param action action a lier
+     * @return le lien relatif vers les ressource demander
+     * @throws Exception remonte
+     */
+    static public String makeLink(AbstractAction action) throws Exception
+    {
+	if (action instanceof BaseAction)
+	{
+	    return makeLink(((BaseAction) action).getEntity()
+		    .getCurrentModule(), action);
+	}
+	return makeLink(action.getEntityUsable().getCurrentModule(), action);
+    }
 }

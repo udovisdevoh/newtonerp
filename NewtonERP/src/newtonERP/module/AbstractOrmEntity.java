@@ -68,10 +68,9 @@ public abstract class AbstractOrmEntity extends AbstractEntity
     public AbstractEntity newUI(Hashtable<String, String> parameters)
 	    throws Exception
     {
-	AbstractOrmEntity entity = this.getClass().newInstance();
-	entity.getFields().setDefaultValue();
+	getFields().setDefaultValue(false);
 
-	return entity.editUI(parameters);
+	return editUI(parameters);
     }
 
     /**
