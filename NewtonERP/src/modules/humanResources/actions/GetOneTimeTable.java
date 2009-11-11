@@ -13,6 +13,7 @@ import modules.humanResources.entityDefinitions.CaseTable;
 import modules.humanResources.entityDefinitions.PeriodeType;
 import modules.humanResources.entityDefinitions.Schedule;
 import modules.humanResources.entityDefinitions.TimeTable;
+import newtonERP.common.ActionLink;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
@@ -31,6 +32,8 @@ public class GetOneTimeTable extends AbstractAction
 	    "yyyy-MM-dd");
     private static SimpleDateFormat timeFormatter = new SimpleDateFormat(
 	    "HH:00");
+    private static SimpleDateFormat weekDayFormatter = new SimpleDateFormat(
+	    "EEEE");
 
     /**
      * constructeur vide
@@ -52,10 +55,21 @@ public class GetOneTimeTable extends AbstractAction
     {
 	Vector<AbstractOrmEntity> vSchedul = new Schedule().get("1=1");
 	// todo comment on fais un select sans where :S...
-	GregorianCalendar date = new GregorianCalendar();
+	GregorianCalendar date;
+	GregorianCalendar StartDate;
 	CaseTable[] header = new CaseTable[10];
 	CaseTable[] leftHeader = new CaseTable[24];
 	CaseTable[][] cases = new CaseTable[24][10];
+
+	if (parameters.containsKey("startDate"))
+	    date = FieldDateTime.getFormatedDate(parameters.get("startDate"),
+		    dateFormatter);
+	else
+	{
+	    date = new GregorianCalendar();
+	    date.set(Calendar.DAY_OF_WEEK, date.getFirstDayOfWeek());
+	}
+	StartDate = (GregorianCalendar) date.clone();
 
 	// remplie les header de gauche
 	for (int i = 0; i < leftHeader.length; i++)
@@ -67,8 +81,8 @@ public class GetOneTimeTable extends AbstractAction
 	// remplie les data et leheader du haut
 	for (int i = 0; i < 10; i++)
 	{
-	    date.add(Calendar.DAY_OF_YEAR, 1);
-	    header[i] = new CaseTable(dateFormatter.format(date.getTime()));
+	    header[i] = new CaseTable(weekDayFormatter.format(date.getTime())
+		    + " " + dateFormatter.format(date.getTime()));
 
 	    for (int j = 0; j < leftHeader.length; j++)
 	    {
@@ -100,11 +114,23 @@ public class GetOneTimeTable extends AbstractAction
 		}
 
 	    }
+	    date.add(Calendar.DAY_OF_YEAR, 1);
 	}
 	TimeTable tt = new TimeTable();
 	tt.setCases(cases);
 	tt.setHeader(header);
 	tt.setLeftHeader(leftHeader);
+	tt.setTitle("Horaire");
+	// lien precedent
+	date = (GregorianCalendar) StartDate.clone();
+	date.add(Calendar.DAY_OF_YEAR, -7);
+	parameters.put("startDate", dateFormatter.format(date.getTime()));
+	tt.addGlobalActions(new ActionLink("Précédent", this, parameters));
+	// lien suivant
+	date = (GregorianCalendar) StartDate.clone();
+	date.add(Calendar.DAY_OF_YEAR, 7);
+	parameters.put("startDate", dateFormatter.format(date.getTime()));
+	tt.addGlobalActions(new ActionLink("suivant", this, parameters));
 
 	return tt;
     }

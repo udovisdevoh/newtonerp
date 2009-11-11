@@ -107,8 +107,21 @@ public class FieldDateTime extends Field
     public static GregorianCalendar getFormatedDate(String dateInString)
 	    throws Exception
     {
+	return getFormatedDate(dateInString, dateFormatter);
+    }
+
+    /**
+     * Convertie une date de string vers GregorianCalendar
+     * @param dateInString date en string
+     * @param sdf format de dateTime a utiliser
+     * @return date un gregorian calendar
+     * @throws Exception si formattage fail
+     */
+    public static GregorianCalendar getFormatedDate(String dateInString,
+	    SimpleDateFormat sdf) throws Exception
+    {
 	GregorianCalendar gregorianCalendar = new GregorianCalendar();
-	Date tempDate = dateFormatter.parse(dateInString);
+	Date tempDate = sdf.parse(dateInString);
 	gregorianCalendar.setTime(tempDate);
 	return gregorianCalendar;
     }
@@ -119,7 +132,7 @@ public class FieldDateTime extends Field
      * @param field etendu de comparaison
      * @return true si les 2 date son dans le meme intervale
      */
-    static public boolean isInSameDay(GregorianCalendar first,
+    public static boolean isInSameDay(GregorianCalendar first,
 	    GregorianCalendar second)
     {
 	boolean ret;

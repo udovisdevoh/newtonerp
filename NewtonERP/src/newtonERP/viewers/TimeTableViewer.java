@@ -1,7 +1,10 @@
 package newtonERP.viewers;
 
+import java.util.Vector;
+
 import modules.humanResources.entityDefinitions.CaseTable;
 import modules.humanResources.entityDefinitions.TimeTable;
+import newtonERP.common.ActionLink;
 import newtonERP.serveur.Servlet;
 
 /**
@@ -26,13 +29,27 @@ public class TimeTableViewer
 	html += "<h2>" + ttEntity.getTitle() + "</h2>";
 	// TODO: modifier les class de style et mettre du style css a la place
 	// un moment donnée
-	html += "<table class=\"ListViewerTable\" border=\"0\" cellpadding=\"3\" cellspacing=\"0\">";
+	html += getGlobalLink(ttEntity.getGlobalActions());
 
+	html += "<table class=\"ListViewerTable\" border=\"0\" cellpadding=\"3\" cellspacing=\"0\">";
 	html += getTableHeader(ttEntity.getHeader());
 	html += getDataRowList(ttEntity.getCases(), ttEntity.getLeftHeader());
 
 	html += "</table>";
 
+	return html;
+    }
+
+    private static String getGlobalLink(Vector<ActionLink> globalActions)
+	    throws Exception
+    {
+	String html = "";
+	for (ActionLink globalAction : globalActions)
+	{
+
+	    html += " <a href=\"" + globalAction.getUrl() + "\">";
+	    html += globalAction.getName() + "</a> ";
+	}
 	return html;
     }
 

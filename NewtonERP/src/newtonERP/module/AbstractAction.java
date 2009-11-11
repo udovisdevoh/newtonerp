@@ -10,6 +10,7 @@ import java.util.Hashtable;
 public abstract class AbstractAction
 {
     private AbstractEntity entityUsable;
+    private Module ownedByModul;
 
     protected AbstractAction()
     {
@@ -69,6 +70,22 @@ public abstract class AbstractAction
     public AbstractEntity getEntityUsable()
     {
 	return entityUsable;
+    }
+
+    /**
+     * @param ownedByModul the ownedByModul to set
+     */
+    public void setOwnedByModul(Module ownedByModul)
+    {
+	this.ownedByModul = ownedByModul;
+    }
+
+    /**
+     * @return the ownedByModul
+     */
+    public Module getOwnedByModul()
+    {
+	return ownedByModul;
     }
 
 }

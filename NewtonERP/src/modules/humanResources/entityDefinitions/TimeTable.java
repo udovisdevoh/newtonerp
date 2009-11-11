@@ -2,10 +2,8 @@ package modules.humanResources.entityDefinitions;
 
 import java.util.Vector;
 
+import newtonERP.common.ActionLink;
 import newtonERP.module.AbstractEntity;
-import newtonERP.module.field.Field;
-import newtonERP.module.field.FieldDate;
-import newtonERP.module.field.Fields;
 
 /**
  * Représente un département dans une compagnie
@@ -13,9 +11,11 @@ import newtonERP.module.field.Fields;
  */
 public class TimeTable extends AbstractEntity
 {
-    CaseTable[] header;
-    CaseTable[] leftHeader;
-    CaseTable[][] cases;
+    private CaseTable[] header;
+    private CaseTable[] leftHeader;
+    private CaseTable[][] cases;
+    private String title;
+    private Vector<ActionLink> globalActions = new Vector<ActionLink>();
 
     /**
      * @throws Exception si création fails
@@ -23,16 +23,6 @@ public class TimeTable extends AbstractEntity
     public TimeTable() throws Exception
     {
 	super();
-    }
-
-    public Fields initFields() throws Exception
-    {
-	Vector<Field> fieldsData = new Vector<Field>();
-
-	fieldsData.add(new FieldDate("date de début", "dateStart"));
-	fieldsData.add(new FieldDate("date de fin", "dateStop"));
-
-	return new Fields(fieldsData);
     }
 
     /**
@@ -84,11 +74,43 @@ public class TimeTable extends AbstractEntity
     }
 
     /**
-     * @return le titre de la page
+     * @param title the title to set
+     */
+    public void setTitle(String title)
+    {
+	this.title = title;
+    }
+
+    /**
+     * @return the title
      */
     public String getTitle()
     {
-	return "Horaire";
+	return title;
+    }
+
+    /**
+     * @param globalActions the globalActions to set
+     */
+    public void setGlobalActions(Vector<ActionLink> globalActions)
+    {
+	this.globalActions = globalActions;
+    }
+
+    /**
+     * @return the globalActions
+     */
+    public Vector<ActionLink> getGlobalActions()
+    {
+	return globalActions;
+    }
+
+    /**
+     * @param globalAction the globalActions to add
+     */
+    public void addGlobalActions(ActionLink globalAction)
+    {
+	globalActions.add(globalAction);
     }
 
 }
