@@ -12,10 +12,17 @@ import newtonERP.module.field.Fields;
 import newtonERP.module.generalEntity.EntityList;
 import newtonERP.viewers.viewables.PromptViewable;
 
+/**
+ * Opérateur de spécification (et, ou etc...)
+ * @author Guillaume Lacasse
+ */
 public class SpecificationOperator extends AbstractOrmEntity implements
 	PromptViewable
 {
 
+    /**
+     * @throws Exception si création fail
+     */
     public SpecificationOperator() throws Exception
     {
 	super();
