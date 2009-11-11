@@ -3,13 +3,17 @@ package modules.customerVendor.actions;
 import java.util.Hashtable;
 import java.util.Vector;
 
+import modules.customerVendor.entityDefinitions.Invoice;
 import modules.customerVendor.entityDefinitions.InvoiceLine;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
+import newtonERP.orm.Orm;
 
 /**
- * To calculate the total of the invoice
+ * Will be called by tasks. To calculate the total of the invoice
+ * 
+ * TODO : Add the taxes (from another action?)
  * 
  * @author r3hallejo
  */
@@ -22,7 +26,7 @@ public class CalculateInvoiceTotal extends AbstractAction
      */
     public CalculateInvoiceTotal() throws Exception
     {
-	super(new InvoiceLine()); // Travaille avec les invoices line
+	super(new Invoice());
     }
 
     @Override
@@ -30,17 +34,20 @@ public class CalculateInvoiceTotal extends AbstractAction
 	    Hashtable<String, String> parameters) throws Exception
     {
 	Double totalInvoice = 0.0;
-	AbstractOrmEntity invoice = (AbstractOrmEntity) entity;
+	Invoice actionInvoice = (Invoice) entity;
 
-	Vector<AbstractOrmEntity> invoiceLines = invoice
-		.getPluralAccessor("invoiceLineID");
+	Vector<AbstractOrmEntity> invoiceLines = actionInvoice
+		.getPluralAccessor("InvoiceLine");
 
 	for (AbstractOrmEntity line : invoiceLines)
 	{
 	    totalInvoice += (Double) ((InvoiceLine) line).getData("unitPrice");
 	}
 
-	// TODO : Update invoice (celle passé en parametre)
+	actionInvoice.setData("total", totalInvoice);
+
+	// TODO : Is this the right way to do it?
+	Orm.update((AbstractOrmEntity) entity, null);
 
 	return null;
     }
