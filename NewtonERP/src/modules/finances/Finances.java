@@ -44,6 +44,9 @@ public class Finances extends Module
 	addGlobalActionMenuItem("Types d'états", new BaseAction("GetList",
 		new StateType()));
 
+	// addGlobalActionMenuItem("Voir Services à payer",new
+	// DisplayUnpaidServices());
+
 	setVisibleName("Finances");
 
     }
