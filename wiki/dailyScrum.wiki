@@ -638,7 +638,7 @@ par exemple, si on delete un Group, alors les GroupRight WHERE GroupID = ce grou
 
 ==Pascal Lemay==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
-  * Implantation du module finances.
+  * Modifications dans l'implantation du module finances.
   * Création de ses entités de base + links avec entités d'autres modules...
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
   * Ajouter d'autres entités utiles (module finance).
