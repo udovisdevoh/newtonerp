@@ -1,5 +1,6 @@
 package newtonERP.orm.associations;
 
+import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.TreeMap;
 import java.util.Vector;
@@ -137,14 +138,11 @@ public class PluralAccessorManager
 	    TreeMap<String, Vector<AbstractOrmEntity>> pluralAccessorList,
 	    AbstractOrmEntity entity) throws Exception
     {
-	ListOfValue listOfValue;
 	AbstractOrmEntity foreignEntityDefinition;
-	for (String listOfValueName : entity.getNegativeListOfValueList()
-		.keySet())
-	{
-	    listOfValue = entity.getNegativeListOfValueList().get(
-		    listOfValueName);
 
+	for (ListOfValue listOfValue : new HashSet<ListOfValue>(entity
+		.getNegativeListOfValueList()))
+	{
 	    if (entity.getClass() != listOfValue.getForeignEntityDefinition()
 		    .getClass())
 		continue;

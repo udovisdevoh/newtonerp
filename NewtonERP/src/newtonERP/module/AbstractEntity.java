@@ -22,7 +22,7 @@ public class AbstractEntity
     private Vector<String> alertMessageList;
     private Vector<String> normalMessageList;
     private Hashtable<String, ListOfValue> positiveListOfValueList;
-    private static Hashtable<String, ListOfValue> negativeListOfValueList;
+    private static HashSet<ListOfValue> negativeListOfValueList;
     protected Module currentModule;
     private AbstractAction currentAction;
     protected String promptMessage;
@@ -255,10 +255,10 @@ public class AbstractEntity
     /**
      * @return liste des listOfValue
      */
-    public Hashtable<String, ListOfValue> getNegativeListOfValueList()
+    public HashSet<ListOfValue> getNegativeListOfValueList()
     {
 	if (negativeListOfValueList == null)
-	    negativeListOfValueList = new Hashtable<String, ListOfValue>();
+	    negativeListOfValueList = new HashSet<ListOfValue>();
 
 	return negativeListOfValueList;
     }
@@ -300,11 +300,10 @@ public class AbstractEntity
      * @param foreignKeyName nom de la clef etrangère de la listOfValue
      * @param listOfValue listOfValue à ajouter
      */
-    public void addNegativeListOfValue(String foreignKeyName,
-	    ListOfValue listOfValue)
+    public void addNegativeListOfValue(ListOfValue listOfValue)
     {
 	// laissez le get car c'est de la lazy initialization -Guillaume
-	getNegativeListOfValueList().put(foreignKeyName, listOfValue);
+	getNegativeListOfValueList().add(listOfValue);
     }
 
     /**
