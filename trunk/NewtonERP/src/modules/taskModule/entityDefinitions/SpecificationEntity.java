@@ -35,8 +35,10 @@ public class SpecificationEntity extends AbstractOrmEntity implements
 	fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
 	fieldList.add(new FieldString("Description", "name"));
 	fieldList.add(new FieldString("Nom de classe", "className"));
+	fieldList.add(new FieldInt("Spécification parent 1", "parent1"));
 	fieldList.add(new FieldInt("Opérateur composite",
 		new SpecificationOperator().getForeignKeyName()));
+	fieldList.add(new FieldInt("Spécification parent 2", "parent2"));
 	return new Fields(fieldList);
     }
 }
