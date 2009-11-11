@@ -13,7 +13,7 @@ import newtonERP.viewers.viewables.PromptViewable;
 
 /**
  * Entité du client dans le module customerVendor
- * @author Gabriel
+ * @author r3hallejo
  * 
  */
 public class Merchant extends AbstractOrmEntity implements PromptViewable

@@ -4,13 +4,17 @@ import java.util.GregorianCalendar;
 
 import modules.customerVendor.entityDefinitions.Invoice;
 import modules.customerVendor.entityDefinitions.InvoiceLine;
+import modules.customerVendor.entityDefinitions.InvoiceTaxLine;
 import modules.customerVendor.entityDefinitions.Merchant;
+import modules.customerVendor.entityDefinitions.Tax;
+import modules.materialResourcesManagement.entityDefinitions.Product;
 import newtonERP.module.BaseAction;
 import newtonERP.module.Module;
 
 /**
  * Représente le module client-fournisseur (facturation et factures de
  * fournisseur + le marketing )
+ * 
  * @author r3lemaypa Guillaume cloutierJo r3hallejo
  */
 public class CustomerVendor extends Module
@@ -32,6 +36,11 @@ public class CustomerVendor extends Module
 
 	addGlobalActionMenuItem("Lignes de factures", new BaseAction("GetList",
 		new InvoiceLine()));
+
+	addGlobalActionMenuItem("Lignes de taxes", new BaseAction("GetList",
+		new InvoiceTaxLine()));
+
+	addGlobalActionMenuItem("Taxes", new BaseAction("GetList", new Tax()));
 
 	setVisibleName("Clients / Fournisseurs");
     }
@@ -65,5 +74,34 @@ public class CustomerVendor extends Module
 	invoice.setData(new Merchant().getForeignKeyName(), 2);
 	invoice.setData("date", new GregorianCalendar());
 	invoice.newE();
+
+	Tax taxe = new Tax();
+	taxe.setData("name", "TPS");
+	taxe.setData("code", "03123");
+	taxe.setData("value", 5);
+	taxe.newE();
+
+	Tax taxe1 = new Tax();
+	taxe1.setData("name", "TVQ");
+	taxe1.setData("code", "06544");
+	taxe1.setData("value", 7.5);
+	taxe1.newE();
+
+	InvoiceLine ligne = new InvoiceLine();
+	ligne.setData(new Invoice().getForeignKeyName(), 1);
+	ligne.setData(new Product().getForeignKeyName(), 1);
+	ligne.setData("quantity", 10);
+	ligne.setData("unitPrice", 13.99);
+	ligne.newE();
+
+	InvoiceTaxLine ligneTaxe = new InvoiceTaxLine();
+	ligneTaxe.setData(new Invoice().getForeignKeyName(), 1);
+	ligneTaxe.setData(new Tax().getForeignKeyName(), 1);
+	ligneTaxe.newE();
+
+	InvoiceTaxLine ligneTaxe1 = new InvoiceTaxLine();
+	ligneTaxe1.setData(new Invoice().getForeignKeyName(), 1);
+	ligneTaxe1.setData(new Tax().getForeignKeyName(), 2);
+	ligneTaxe1.newE();
     }
 }
