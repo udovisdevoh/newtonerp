@@ -66,16 +66,27 @@ public class PromptViewer
 
 	    if (listOfValue == null)
 	    {
-		if (entity.isFieldHidden(inputName))
-		    textFieldType = "password";
+		if (entity.isMatchLongText(inputName))
+		{
+		    html += "\n<tr><td valign=\"top\">"
+			    + entity.getLabelName(inputName)
+			    + ": </td><td><textarea class=\"textField\" name=\""
+			    + inputName + "\">" + inputValue
+			    + "</textarea></td></tr>";
+		}
 		else
-		    textFieldType = "text";
+		{
+		    if (entity.isFieldHidden(inputName))
+			textFieldType = "password";
+		    else
+			textFieldType = "text";
 
-		html += "\n<tr><td>" + entity.getLabelName(inputName)
-			+ ": </td><td><input type=\"" + textFieldType
-			+ "\" name=\"" + inputName + "\" value=\"" + inputValue
-			+ "\" class=\"textField\" " + isReadOnly
-			+ "></td></tr>";
+		    html += "\n<tr><td>" + entity.getLabelName(inputName)
+			    + ": </td><td><input type=\"" + textFieldType
+			    + "\" name=\"" + inputName + "\" value=\""
+			    + inputValue + "\" class=\"textField\" "
+			    + isReadOnly + "></td></tr>";
+		}
 	    }
 	    else
 	    {

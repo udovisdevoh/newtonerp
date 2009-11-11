@@ -193,7 +193,7 @@ h2 /* sous-titres */
 	color: red;
 }
 
-Input.textField
+.textField
 {
 	background-image: url('images/field.gif');
 	margin-bottom:3px;
@@ -201,6 +201,12 @@ Input.textField
 	border-style:solid;
 	border-width:1px;
 	padding:2px;
+}
+
+textarea.textField
+{
+	width:400px;
+	height:140px;
 }
 
 div.scrollableDivPair

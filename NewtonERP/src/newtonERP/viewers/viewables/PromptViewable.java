@@ -91,4 +91,6 @@ public interface PromptViewable
      * @return Liste des messages normaux
      */
     public Vector<String> getNormalMessageList();
+
+    public boolean isMatchLongText(String inputName);
 }

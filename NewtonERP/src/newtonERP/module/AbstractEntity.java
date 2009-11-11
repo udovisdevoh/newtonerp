@@ -25,6 +25,7 @@ public class AbstractEntity
     private AbstractAction currentAction;
     protected String promptMessage;
     private HashSet<String> currencyFormattedFieldList;
+    private HashSet<String> longTextFieldList;
 
     /**
      * construit une entity ne comportant aucun champ
@@ -320,5 +321,22 @@ public class AbstractEntity
     public void addNormalMessage(String message)
     {
 	getNormalMessageList().add(message);
+    }
+
+    private HashSet<String> getLongTextFieldList()
+    {
+	if (longTextFieldList == null)
+	    longTextFieldList = new HashSet<String>();
+	return longTextFieldList;
+    }
+
+    protected void addLongText(String fieldName)
+    {
+	getLongTextFieldList().add(fieldName);
+    }
+
+    public boolean isMatchLongText(String inputName)
+    {
+	return getLongTextFieldList().contains(inputName);
     }
 }
