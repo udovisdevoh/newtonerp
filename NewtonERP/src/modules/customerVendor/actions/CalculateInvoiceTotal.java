@@ -46,7 +46,6 @@ public class CalculateInvoiceTotal extends AbstractAction
 
 	actionInvoice.setData("total", totalInvoice);
 
-	// TODO : Is this the right way to do it?
 	Orm.update((AbstractOrmEntity) entity, null);
 
 	return null;
