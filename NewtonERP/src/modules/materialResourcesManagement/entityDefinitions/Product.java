@@ -41,6 +41,7 @@ public class Product extends AbstractOrmEntity implements PromptViewable
 	fieldsInit.add(new FieldInt("Quantité en stock", "quantityInStock"));
 	fieldsInit.add(new FieldInt("Point de commande", "reorderPoint"));
 	fieldsInit.add(new FieldInt("Quantité réservé", "reservedStock"));
+	fieldsInit.add(new FieldInt("Maximum en stock", "maxInStock"));
 	fieldsInit.add(new FieldDouble("Prix d'achat", "purchasingPrice"));
 	fieldsInit.add(new FieldDouble("Prix de vente", "sellingPrice"));
 	return new Fields(fieldsInit);
