@@ -6,6 +6,8 @@ import java.util.Vector;
 
 import newtonERP.module.exception.EntityException;
 import newtonERP.module.exception.FieldNotCompatibleException;
+import newtonERP.module.field.Field;
+import newtonERP.module.field.FieldBool;
 import newtonERP.module.field.Fields;
 import newtonERP.module.generalEntity.ListOfValue;
 
@@ -338,5 +340,17 @@ public class AbstractEntity
     public boolean isMatchLongText(String inputName)
     {
 	return getLongTextFieldList().contains(inputName);
+    }
+
+    public boolean isMatchCheckBox(String inputName)
+    {
+	Field field = getFields().getField(inputName);
+
+	if (field == null)
+	    return false;
+
+	if (field instanceof FieldBool)
+	    return true;
+	return false;
     }
 }

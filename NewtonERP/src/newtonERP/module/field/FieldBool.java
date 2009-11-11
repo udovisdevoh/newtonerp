@@ -6,9 +6,9 @@ import newtonERP.module.exception.InvalidOperatorException;
 /**
  * Boolean field in the entities
  * 
- * @author djo, r3hallejo
+ * @author CloutierJo, r3hallejo
  */
-public abstract class FieldBool extends Field
+public class FieldBool extends Field
 {
     Boolean data;
 
@@ -53,6 +53,9 @@ public abstract class FieldBool extends Field
      */
     public String getDataString()
     {
+	if (data == null)
+	    return "";
+
 	return (data).toString();
     }
 
@@ -61,6 +64,13 @@ public abstract class FieldBool extends Field
      */
     public void setData(String data)
     {
+	if (data.toLowerCase().equals("on")
+		|| data.toLowerCase().equals("true"))
+	{
+	    this.data = true;
+	    return;
+	}
+
 	this.data = Boolean.parseBoolean(data);
     }
 
@@ -109,5 +119,17 @@ public abstract class FieldBool extends Field
 	else
 	    throw new InvalidOperatorException("Opérateur invalide pour "
 		    + getClass().getSimpleName());
+    }
+
+    @Override
+    public String getDataString(Boolean forOrm)
+    {
+	return data.toString();
+    }
+
+    @Override
+    public void setDefaultValue() throws FieldNotCompatibleException
+    {
+	data = false;
     }
 }
