@@ -614,7 +614,8 @@ par exemple, si on delete un Group, alors les GroupRight WHERE GroupID = ce grou
   * Touch-up ici et la
   * Debut de linkage des factures avec invoices lines et products. Méthode pour calculer le total faite. Devra être appelée par une task. De meme que les actions update de quantités
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
-  * ...à livrer...
+  * actions de calculer le total de l'invoice
+  * actions de updater les quantités en db lors de l'ajout d'une invoiceLine
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
   * ...problème, besoin d'aide, qui aidera...
 
