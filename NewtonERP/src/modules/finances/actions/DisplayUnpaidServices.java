@@ -7,8 +7,8 @@ import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
 
 /**
- * Action CalculerSalaires: represente l'action de calculer le montant pour
- * salaire mensuel.
+ * Action DisplayUnpaidServices: represente l'action d'afficher les services à
+ * payer.
  * 
  * p.s. cette classe me sert de test pour l'instant...
  * @author Pascal Lemay
