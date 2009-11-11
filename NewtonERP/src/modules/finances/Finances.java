@@ -1,5 +1,6 @@
 package modules.finances;
 
+import modules.finances.actions.DisplayUnpaidServices;
 import modules.finances.entityDefinitions.Bank;
 import modules.finances.entityDefinitions.BankAccount;
 import modules.finances.entityDefinitions.ServiceProvider;
@@ -44,8 +45,8 @@ public class Finances extends Module
 	addGlobalActionMenuItem("Types d'états", new BaseAction("GetList",
 		new StateType()));
 
-	// addGlobalActionMenuItem("Voir Services à payer",new
-	// DisplayUnpaidServices());
+	addGlobalActionMenuItem("Voir Services à payer",
+		new DisplayUnpaidServices());
 
 	setVisibleName("Finances");
 
