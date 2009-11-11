@@ -1,10 +1,14 @@
 package modules.finances.actions;
 
 import java.util.Hashtable;
+import java.util.Vector;
 
 import modules.finances.entityDefinitions.ServiceProviderAccount;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
+import newtonERP.module.AbstractOrmEntity;
+import newtonERP.module.generalEntity.EntityList;
+import newtonERP.orm.Orm;
 
 /**
  * Action DisplayUnpaidServices: represente l'action d'afficher les services à
@@ -22,14 +26,32 @@ public class DisplayUnpaidServices extends AbstractAction
      */
     public DisplayUnpaidServices() throws Exception
     {
-	super(new ServiceProviderAccount());//
+	super(null);//
     }
 
     public AbstractEntity doAction(AbstractEntity entity,
 	    Hashtable<String, String> parameters) throws Exception
     {
-	// perform(parameters);
+	ServiceProviderAccount account = new ServiceProviderAccount();
+	EntityList list = new EntityList(account);
 
-	return null;
+	Vector<AbstractOrmEntity> types = account
+		.getPluralAccessor("StateType");
+
+	for (AbstractOrmEntity type : types)
+	{
+	    if (!type.getDataString("name").equals("Non-paye"))
+		types.remove(type);
+	}
+
+	Vector<AbstractOrmEntity> accounts = Orm.select(account);
+	for (AbstractOrmEntity ent : accounts)
+
+	    if (ent.getData("stateTypeID").equals(
+		    types.get(0).getPrimaryKeyValue()))
+
+		list.addEntity(ent);
+
+	return list;
     }
 }
