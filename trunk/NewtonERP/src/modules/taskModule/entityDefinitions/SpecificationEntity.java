@@ -7,6 +7,7 @@ import newtonERP.module.field.Field;
 import newtonERP.module.field.FieldInt;
 import newtonERP.module.field.FieldString;
 import newtonERP.module.field.Fields;
+import newtonERP.orm.associations.AccessorManager;
 import newtonERP.viewers.viewables.PromptViewable;
 
 public class SpecificationEntity extends AbstractOrmEntity implements
@@ -16,6 +17,8 @@ public class SpecificationEntity extends AbstractOrmEntity implements
     {
 	super();
 	setVisibleName("Spécification");
+	AccessorManager.addAccessor(this, new SpecificationOperator());
+	addNaturalKey("name");
     }
 
     @Override
@@ -25,7 +28,8 @@ public class SpecificationEntity extends AbstractOrmEntity implements
 	fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
 	fieldList.add(new FieldString("Description", "name"));
 	fieldList.add(new FieldString("Nom de classe", "className"));
+	fieldList.add(new FieldInt("Opérateur composite",
+		new SpecificationOperator().getForeignKeyName()));
 	return new Fields(fieldList);
     }
-
 }
