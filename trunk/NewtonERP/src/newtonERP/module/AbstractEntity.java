@@ -337,11 +337,19 @@ public class AbstractEntity
 	getLongTextFieldList().add(fieldName);
     }
 
+    /**
+     * @param inputName nom du champ
+     * @return si le nom du champ correspond à un long champ texte
+     */
     public boolean isMatchLongText(String inputName)
     {
 	return getLongTextFieldList().contains(inputName);
     }
 
+    /**
+     * @param inputName nom du champ
+     * @return si le champ est un checkbox
+     */
     public boolean isMatchCheckBox(String inputName)
     {
 	Field field = getFields().getField(inputName);
