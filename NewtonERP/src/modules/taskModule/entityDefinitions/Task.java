@@ -8,6 +8,7 @@ import newtonERP.module.field.FieldBool;
 import newtonERP.module.field.FieldInt;
 import newtonERP.module.field.FieldString;
 import newtonERP.module.field.Fields;
+import newtonERP.orm.associations.AccessorManager;
 import newtonERP.viewers.viewables.PromptViewable;
 
 /**
@@ -27,6 +28,7 @@ public class Task extends AbstractOrmEntity implements PromptViewable
 	addNaturalKey(getPrimaryKeyName());
 	addNaturalKey("name");
 	addLongText("description");
+	AccessorManager.addAccessor(this, new SpecificationEntity());
     }
 
     @Override
@@ -41,6 +43,8 @@ public class Task extends AbstractOrmEntity implements PromptViewable
 
 	fieldList.add(new FieldString("Description courte", "name"));
 	fieldList.add(new FieldString("Description longue", "description"));
+	fieldList.add(new FieldInt("Spécification", new SpecificationEntity()
+		.getForeignKeyName()));
 	return new Fields(fieldList);
     }
 }

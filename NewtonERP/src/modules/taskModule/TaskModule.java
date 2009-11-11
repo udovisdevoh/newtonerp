@@ -1,5 +1,6 @@
 package modules.taskModule;
 
+import modules.taskModule.entityDefinitions.SpecificationEntity;
 import modules.taskModule.entityDefinitions.Task;
 import newtonERP.module.BaseAction;
 import newtonERP.module.Module;
@@ -18,6 +19,9 @@ public class TaskModule extends Module
 	super();
 	setDefaultAction(new BaseAction("GetList", new Task()));
 	setVisibleName("Automatisation");
+	addGlobalActionMenuItem("Tâches", new BaseAction("GetList", new Task()));
+	addGlobalActionMenuItem("Spécifications", new BaseAction("GetList",
+		new SpecificationEntity()));
     }
 
     public void initDB() throws Exception
