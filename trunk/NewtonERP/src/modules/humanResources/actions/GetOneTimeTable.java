@@ -21,7 +21,7 @@ import newtonERP.module.BaseAction;
 import newtonERP.module.field.FieldDateTime;
 
 /**
- * @author djo
+ * @author CloutierJo
  * 
  */
 public class GetOneTimeTable extends AbstractAction
@@ -69,6 +69,9 @@ public class GetOneTimeTable extends AbstractAction
 	    date = new GregorianCalendar();
 	    date.set(Calendar.DAY_OF_WEEK, date.getFirstDayOfWeek());
 	}
+	date.set(Calendar.MINUTE, 0);
+	date.set(Calendar.SECOND, 0);
+
 	StartDate = (GregorianCalendar) date.clone();
 
 	// remplie les header de gauche
@@ -78,8 +81,8 @@ public class GetOneTimeTable extends AbstractAction
 	    leftHeader[i] = new CaseTable(timeFormatter.format(date.getTime()));
 	}
 
-	// remplie les data et leheader du haut
-	for (int i = 0; i < 10; i++)
+	// remplie les data et le header du haut
+	for (int i = 0; i < 10; i++) // passe chacun des jour
 	{
 	    header[i] = new CaseTable(weekDayFormatter.format(date.getTime())
 		    + " " + dateFormatter.format(date.getTime()));
@@ -97,25 +100,33 @@ public class GetOneTimeTable extends AbstractAction
 	    }
 	    for (AbstractOrmEntity schedul : vSchedul)
 	    {
-		GregorianCalendar gSchedul = (GregorianCalendar) schedul
-			.getData("timeStart");
-		if (FieldDateTime.isInSameDay(gSchedul, date))
+		for (int j = 0; j < leftHeader.length; j++)
 		{
-		    String strData = schedul.getSingleAccessor(
-			    new PeriodeType().getForeignKeyName())
-			    .getNaturalKeyDescription();
+		    date.set(Calendar.HOUR_OF_DAY, j);
+		    GregorianCalendar timeStart = (GregorianCalendar) schedul
+			    .getData("timeStart");
+		    GregorianCalendar timeStop = (GregorianCalendar) schedul
+			    .getData("timeStop");
+		    if (timeStart.compareTo(date) <= 0
+			    && timeStop.compareTo(date) >= 0)
+		    {
+			String strData = schedul.getSingleAccessor(
+				new PeriodeType().getForeignKeyName())
+				.getNaturalKeyDescription();
 
-		    String strParam = schedul.getPrimaryKeyName() + "="
-			    + schedul.getPrimaryKeyValue();
+			String strParam = schedul.getPrimaryKeyName() + "="
+				+ schedul.getPrimaryKeyValue();
 
-		    cases[gSchedul.get(Calendar.HOUR_OF_DAY)][i] = new CaseTable(
-			    strData, new BaseAction("Edit", new Schedule()),
-			    strParam);
+			cases[date.get(Calendar.HOUR_OF_DAY)][i] = new CaseTable(
+				strData,
+				new BaseAction("Edit", new Schedule()),
+				strParam);
+		    }
 		}
-
 	    }
 	    date.add(Calendar.DAY_OF_YEAR, 1);
 	}
+	// creation du TimeTable entity
 	TimeTable tt = new TimeTable();
 	tt.setCases(cases);
 	tt.setHeader(header);

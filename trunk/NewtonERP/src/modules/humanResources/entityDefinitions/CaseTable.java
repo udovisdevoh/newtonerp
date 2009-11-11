@@ -106,4 +106,48 @@ public class CaseTable extends AbstractEntity
 	this.param = param;
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
+    @Override
+    public boolean equals(Object obj)
+    {
+	if (this == obj)
+	    return true;
+	if (!super.equals(obj))
+	    return false;
+	if (!(obj instanceof CaseTable))
+	    return false;
+	CaseTable other = (CaseTable) obj;
+	if (actionLink == null)
+	{
+	    if (other.actionLink != null)
+		return false;
+	}
+	else if (!actionLink.equals(other.actionLink))
+	    return false;
+	if (param == null)
+	{
+	    if (other.param != null)
+		return false;
+	}
+	else if (!param.equals(other.param))
+	    return false;
+	if (value == null)
+	{
+	    if (other.value != null)
+		return false;
+	}
+	else if (!value.equals(other.value))
+	    return false;
+	return true;
+    }
+
+    @Override
+    public String toString()
+    {
+	return value;
+    }
 }

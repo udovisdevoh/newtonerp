@@ -397,4 +397,65 @@ public abstract class Module
     {
 	this.visibleName = visibleName;
     }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
+    @Override
+    public boolean equals(Object obj)
+    {
+	if (this == obj)
+	    return true;
+	if (obj == null)
+	    return false;
+	if (!(obj instanceof Module))
+	    return false;
+	Module other = (Module) obj;
+	if (actionList == null)
+	{
+	    if (other.actionList != null)
+		return false;
+	}
+	else if (!actionList.equals(other.actionList))
+	    return false;
+	if (defaultAction == null)
+	{
+	    if (other.defaultAction != null)
+		return false;
+	}
+	else if (!defaultAction.equals(other.defaultAction))
+	    return false;
+	if (defaultEntity == null)
+	{
+	    if (other.defaultEntity != null)
+		return false;
+	}
+	else if (!defaultEntity.equals(other.defaultEntity))
+	    return false;
+	if (entityDefinitionList == null)
+	{
+	    if (other.entityDefinitionList != null)
+		return false;
+	}
+	else if (!entityDefinitionList.equals(other.entityDefinitionList))
+	    return false;
+	if (globalActionList == null)
+	{
+	    if (other.globalActionList != null)
+		return false;
+	}
+	else if (!globalActionList.equals(other.globalActionList))
+	    return false;
+	if (visibleName == null)
+	{
+	    if (other.visibleName != null)
+		return false;
+	}
+	else if (!visibleName.equals(other.visibleName))
+	    return false;
+	return true;
+    }
+
 }

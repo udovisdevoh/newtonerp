@@ -75,15 +75,30 @@ public class TimeTableViewer
     {
 
 	String html = "";
-	// todo: change by th in css
-	String isHeader = " class=\"ListViewerTableHeader\"";
 
 	for (int i = 0; i < leftHeader.length; i++)
 	{
 	    html += "\n<tr>";
-	    html += "<th" + isHeader + ">" + getCase(leftHeader[i]) + "</th>";
-	    for (CaseTable dataCase : data[i])
-		html += "<td>" + getCase(dataCase) + "</td>";
+	    html += "<th>" + getCase(leftHeader[i]) + "</th>";
+	    for (int j = 0; j < data[i].length; j++)
+	    {
+		int k = 0;
+		String rowspan = "";
+		if (data[i][j] != null)
+		{
+		    for (k = i; k < leftHeader.length
+			    && data[i][j].equals(data[k][j]); k++)
+		    {
+			if (k != i)
+			    data[k][j] = null;
+		    }
+		    if (k - i > 1)
+			rowspan = " rowspan='" + (k - i) + "'";
+
+		    html += "<td" + rowspan + ">" + getCase(data[i][j])
+			    + "</td>";
+		}
+	    }
 	    html += "</tr>";
 	}
 

@@ -88,4 +88,36 @@ public abstract class AbstractAction
 	return ownedByModul;
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
+    @Override
+    public boolean equals(Object obj)
+    {
+	if (this == obj)
+	    return true;
+	if (obj == null)
+	    return false;
+	if (!(obj instanceof AbstractAction))
+	    return false;
+	AbstractAction other = (AbstractAction) obj;
+	if (entityUsable == null)
+	{
+	    if (other.entityUsable != null)
+		return false;
+	}
+	else if (!entityUsable.equals(other.entityUsable))
+	    return false;
+	if (ownedByModul == null)
+	{
+	    if (other.ownedByModul != null)
+		return false;
+	}
+	else if (!ownedByModul.equals(other.ownedByModul))
+	    return false;
+	return true;
+    }
+
 }
