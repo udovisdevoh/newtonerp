@@ -86,7 +86,7 @@ h2 /* sous-titres */
 	color: #0081d7;
 }
 
-.element_menu .selectedLink /* Tous les liens se trouvant dans un menu */
+.element_menu .selectedLink 
 {
 	color: #080;
 }
@@ -139,6 +139,19 @@ h2 /* sous-titres */
 	border-width: 2px;
 	border-color: #DDD #AAA #AAA #DDD;
 	background-attachment: fixed;
+	height:32px;
+}
+
+.ListViewerTable th
+{
+	text-align: center;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #39405d #61989f #61989f #39405d;
+	font-weight:bold;
+	background-color: #86a0b6;
+	background-image: url('/file/images/tableHeaderBackground.gif');
+	color: #efefef;
 	height:32px;
 }
 
