@@ -1,7 +1,17 @@
 package newtonERP.viewers;
 
+/**
+ * Viewer d'élément bool switchable de vrai à faux
+ * @author Guillaume Lacasse
+ */
 public class SwitchViewer
 {
+    /**
+     * @param keyName nom du champ de l'entité
+     * @param labelName nom de l'étiquette
+     * @param isChecked si la switch est à "on"
+     * @return code html de la switch true/false
+     */
     public static String getHtmlCode(String keyName, String labelName,
 	    boolean isChecked)
     {

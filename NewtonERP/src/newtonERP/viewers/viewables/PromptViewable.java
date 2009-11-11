@@ -92,7 +92,15 @@ public interface PromptViewable
      */
     public Vector<String> getNormalMessageList();
 
+    /**
+     * @param inputName nom du champ
+     * @return si le champ est un texte long
+     */
     public boolean isMatchLongText(String inputName);
 
+    /**
+     * @param inputName nom du champ
+     * @return is le champ est un check box (bool)
+     */
     public boolean isMatchCheckBox(String inputName);
 }
