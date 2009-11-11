@@ -129,6 +129,7 @@ public abstract class Module
     private final void addAction(AbstractAction action)
     {
 	actionList.put(action.getClass().getSimpleName(), action);
+	action.setOwnedByModul(this);
     }
 
     /**
