@@ -10,8 +10,16 @@ import newtonERP.module.field.FieldString;
 import newtonERP.module.field.Fields;
 import newtonERP.viewers.viewables.PromptViewable;
 
+/**
+ * entité représentant une task
+ * @author Guillaume Lacasse
+ * 
+ */
 public class Task extends AbstractOrmEntity implements PromptViewable
 {
+    /**
+     * @throws Exception si création fail
+     */
     public Task() throws Exception
     {
 	super();
