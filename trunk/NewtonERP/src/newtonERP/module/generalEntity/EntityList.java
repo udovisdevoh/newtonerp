@@ -128,6 +128,31 @@ public class EntityList extends AbstractEntity implements ListViewable,
 		    if (listOfValue != null)
 			entityInfo.put(listOfValue.getLabelName(), listOfValue
 				.getForeignValue(dataString));
+		    else if (internalEntityDefinition
+			    .isMatchCheckBox(shortName))
+		    {
+			if (dataString == null)
+			    dataString = "";
+			if (dataString.equals("true"))
+			{
+			    entityInfo.put(shortName, " - oui - ");
+			}
+			else
+			{
+			    entityInfo.put(shortName, " - non - ");
+			}
+		    }
+		    else if (internalEntityDefinition
+			    .isMatchLongText(shortName))
+		    {
+			if (dataString == null)
+			    dataString = "";
+
+			if (dataString.length() > 64)
+			    dataString = dataString.substring(0, 64) + "...";
+
+			entityInfo.put(shortName, dataString);
+		    }
 		    else
 		    {
 			if (dataString == null)
