@@ -30,7 +30,6 @@ public class ListOfValueManager
 
 	entity.addPositiveListOfValue(foreignKeyName, listOfValue);
 
-	String localForeignKeyName = ((entity)).getForeignKeyName();
-	foreignEntity.addNegativeListOfValue(localForeignKeyName, listOfValue);
+	foreignEntity.addNegativeListOfValue(listOfValue);
     }
 }
