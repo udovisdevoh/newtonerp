@@ -36,7 +36,7 @@ public abstract class AbstractAction
      * @return l,entite resultante de l'action
      * @throws Exception remonte
      */
-    public AbstractEntity perform(Hashtable<String, String> parameters)
+    public final AbstractEntity perform(Hashtable<String, String> parameters)
 	    throws Exception
     {
 
