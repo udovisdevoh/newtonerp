@@ -64,35 +64,43 @@ public class PromptViewer
 		    && inputName.equals(ormEntity.getPrimaryKeyName()))
 		isReadOnly = "DISABLED";
 
-	    if (listOfValue == null)
+	    if (entity.isMatchCheckBox(inputName))
 	    {
-		if (entity.isMatchLongText(inputName))
-		{
-		    html += "\n<tr><td valign=\"top\">"
-			    + entity.getLabelName(inputName)
-			    + ": </td><td><textarea class=\"textField\" name=\""
-			    + inputName + "\">" + inputValue
-			    + "</textarea></td></tr>";
-		}
-		else
-		{
-		    if (entity.isFieldHidden(inputName))
-			textFieldType = "password";
-		    else
-			textFieldType = "text";
-
-		    html += "\n<tr><td>" + entity.getLabelName(inputName)
-			    + ": </td><td><input type=\"" + textFieldType
-			    + "\" name=\"" + inputName + "\" value=\""
-			    + inputValue + "\" class=\"textField\" "
-			    + isReadOnly + "></td></tr>";
-		}
+		html += SwitchViewer.getHtmlCode(inputName, entity
+			.getLabelName(inputName), Boolean.valueOf(inputValue));
 	    }
 	    else
 	    {
-		html += "<tr><td>"
-			+ SelectBoxViewer.getHtmlCode(listOfValue, inputName,
-				inputValue) + "</td></tr>";
+		if (listOfValue == null)
+		{
+		    if (entity.isMatchLongText(inputName))
+		    {
+			html += "\n<tr><td valign=\"top\">"
+				+ entity.getLabelName(inputName)
+				+ ": </td><td><textarea class=\"textField\" name=\""
+				+ inputName + "\">" + inputValue
+				+ "</textarea></td></tr>";
+		    }
+		    else
+		    {
+			if (entity.isFieldHidden(inputName))
+			    textFieldType = "password";
+			else
+			    textFieldType = "text";
+
+			html += "\n<tr><td>" + entity.getLabelName(inputName)
+				+ ": </td><td><input type=\"" + textFieldType
+				+ "\" name=\"" + inputName + "\" value=\""
+				+ inputValue + "\" class=\"textField\" "
+				+ isReadOnly + "></td></tr>";
+		    }
+		}
+		else
+		{
+		    html += "<tr><td>"
+			    + SelectBoxViewer.getHtmlCode(listOfValue,
+				    inputName, inputValue) + "</td></tr>";
+		}
 	    }
 	}
 

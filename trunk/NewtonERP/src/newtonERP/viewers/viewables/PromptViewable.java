@@ -93,4 +93,6 @@ public interface PromptViewable
     public Vector<String> getNormalMessageList();
 
     public boolean isMatchLongText(String inputName);
+
+    public boolean isMatchCheckBox(String inputName);
 }
