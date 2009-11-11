@@ -10,9 +10,16 @@ import newtonERP.module.field.Fields;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.viewers.viewables.PromptViewable;
 
+/**
+ * Représente une entité de spécification
+ * @author Guillaume Lacasse
+ */
 public class SpecificationEntity extends AbstractOrmEntity implements
 	PromptViewable
 {
+    /**
+     * @throws Exception si création fail
+     */
     public SpecificationEntity() throws Exception
     {
 	super();
