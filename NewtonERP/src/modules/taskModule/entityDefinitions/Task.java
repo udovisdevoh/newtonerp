@@ -29,6 +29,7 @@ public class Task extends AbstractOrmEntity implements PromptViewable
 	addNaturalKey("name");
 	addLongText("description");
 	AccessorManager.addAccessor(this, new SpecificationEntity());
+	AccessorManager.addAccessor(this, new TaskAction());
     }
 
     @Override
@@ -44,6 +45,8 @@ public class Task extends AbstractOrmEntity implements PromptViewable
 	fieldList.add(new FieldString("Description courte", "name"));
 	fieldList.add(new FieldString("Description longue", "description"));
 	fieldList.add(new FieldInt("Spécification", new SpecificationEntity()
+		.getForeignKeyName()));
+	fieldList.add(new FieldInt("Action", new TaskAction()
 		.getForeignKeyName()));
 	return new Fields(fieldList);
     }

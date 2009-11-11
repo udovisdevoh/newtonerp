@@ -3,6 +3,7 @@ package modules.taskModule;
 import modules.taskModule.entityDefinitions.SpecificationEntity;
 import modules.taskModule.entityDefinitions.SpecificationOperator;
 import modules.taskModule.entityDefinitions.Task;
+import modules.taskModule.entityDefinitions.TaskAction;
 import newtonERP.module.BaseAction;
 import newtonERP.module.Module;
 
@@ -23,6 +24,8 @@ public class TaskModule extends Module
 	addGlobalActionMenuItem("Tâches", new BaseAction("GetList", new Task()));
 	addGlobalActionMenuItem("Spécifications", new BaseAction("GetList",
 		new SpecificationEntity()));
+	addGlobalActionMenuItem("Actions", new BaseAction("GetList",
+		new TaskAction()));
     }
 
     public void initDB() throws Exception
@@ -50,5 +53,9 @@ public class TaskModule extends Module
 	specification.setData(new SpecificationOperator().getForeignKeyName(),
 		1);
 	specification.newE();
+
+	TaskAction action = new TaskAction();
+	action.setData("name", "rien");
+	action.newE();
     }
 }

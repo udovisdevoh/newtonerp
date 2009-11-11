@@ -153,7 +153,7 @@ public abstract class Viewer
 			+ module.getVisibleName() + "</span><ul>";
 
 		for (String globalActionName : module.getGlobalActionMenu()
-			.keySet())
+			.getKeyList())
 		{
 		    menuModuleHtml += "<li><a href=\"";
 		    menuModuleHtml += Servlet.makeLink(module, module
