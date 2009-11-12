@@ -31,8 +31,8 @@ public class Location extends AbstractOrmEntity implements PromptViewable
     {
 	super();
 	AccessorManager.addAccessor(this, new LocationStatus());
-	AccessorManager.addAccessor(this, new Latitude());
-	AccessorManager.addAccessor(this, new Longitude());
+	AccessorManager.addAccessor(this, new LocationLatitude());
+	AccessorManager.addAccessor(this, new LocationLongitude());
     }
 
     @Override
@@ -42,9 +42,9 @@ public class Location extends AbstractOrmEntity implements PromptViewable
 	fieldsInit.add(new FieldInt("Numero", getPrimaryKeyName()));
 	fieldsInit.add(new FieldInt("Status", new LocationStatus()
 		.getForeignKeyName()));
-	fieldsInit.add(new FieldInt("Latitude", new Latitude()
+	fieldsInit.add(new FieldInt("Latitude", new LocationLatitude()
 		.getForeignKeyName()));
-	fieldsInit.add(new FieldInt("Longitude", new Longitude()
+	fieldsInit.add(new FieldInt("Longitude", new LocationLongitude()
 		.getForeignKeyName()));
 	return new Fields(fieldsInit);
     }

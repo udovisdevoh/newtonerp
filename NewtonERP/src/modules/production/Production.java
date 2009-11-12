@@ -6,8 +6,12 @@ import modules.humanResources.entityDefinitions.Employee;
 import modules.production.entityDefinitions.Machine;
 import modules.production.entityDefinitions.MachineDimension;
 import modules.production.entityDefinitions.MachineStatus;
+import modules.production.entityDefinitions.MaintenanceStatusType;
 import modules.production.entityDefinitions.MaintenanceTicket;
-import modules.production.entityDefinitions.StatusType;
+import modules.production.entityDefinitions.Project;
+import modules.production.entityDefinitions.ProjectType;
+import modules.production.entityDefinitions.Training;
+import modules.production.entityDefinitions.TrainingType;
 import newtonERP.module.BaseAction;
 import newtonERP.module.Module;
 
@@ -30,13 +34,21 @@ public class Production extends Module
 	addGlobalActionMenuItem("Tickets de maintenance", new BaseAction(
 		"GetList", new MaintenanceTicket()));
 	addGlobalActionMenuItem("Status", new BaseAction("GetList",
-		new StatusType()));
+		new MaintenanceStatusType()));
 	addGlobalActionMenuItem("Machines", new BaseAction("GetList",
 		new Machine()));
 	addGlobalActionMenuItem("Dimensions", new BaseAction("GetList",
 		new MachineDimension()));
 	addGlobalActionMenuItem("Status de machines", new BaseAction("GetList",
 		new MachineStatus()));
+	addGlobalActionMenuItem("Projets", new BaseAction("GetList",
+		new Project()));
+	addGlobalActionMenuItem("Types de projets", new BaseAction("GetList",
+		new ProjectType()));
+	addGlobalActionMenuItem("Formations", new BaseAction("GetList",
+		new Training()));
+	addGlobalActionMenuItem("Types de formations", new BaseAction(
+		"GetList", new TrainingType()));
     }
 
     @SuppressWarnings("static-access")
@@ -73,19 +85,19 @@ public class Production extends Module
 			"Compresser les feuilles sortie de la cuve");
 	machine.newE();
 
-	StatusType status3 = new StatusType();
+	MaintenanceStatusType status3 = new MaintenanceStatusType();
 	status3.setData("status", "Non assigne");
 	status3.newE();
 
-	StatusType status = new StatusType();
+	MaintenanceStatusType status = new MaintenanceStatusType();
 	status.setData("status", "Assigne");
 	status.newE();
 
-	StatusType status1 = new StatusType();
+	MaintenanceStatusType status1 = new MaintenanceStatusType();
 	status1.setData("status", "En cours");
 	status1.newE();
 
-	StatusType status2 = new StatusType();
+	MaintenanceStatusType status2 = new MaintenanceStatusType();
 	status2.setData("status", "Resolu");
 	status2.newE();
 
@@ -95,8 +107,28 @@ public class Production extends Module
 	ticket.setData(new Machine().getForeignKeyName(), 1);
 	ticket.setData("startDate", new GregorianCalendar());
 	ticket.setData("endDate", cd);
-	ticket.setData(new StatusType().getForeignKeyName(), 3);
+	ticket.setData(new MaintenanceStatusType().getForeignKeyName(), 3);
 	ticket.setData("comment", "");
 	ticket.newE();
+
+	ProjectType type = new ProjectType();
+	type.setData("type", "Ajout");
+	type.newE();
+
+	ProjectType type1 = new ProjectType();
+	type1.setData("type", "Mise à jour");
+	type1.newE();
+
+	ProjectType type2 = new ProjectType();
+	type2.setData("type", "Suppression");
+	type2.newE();
+
+	TrainingType type3 = new TrainingType();
+	type3.setData("name", "Machineries");
+	type3.newE();
+
+	TrainingType type4 = new TrainingType();
+	type4.setData("name", "Logiciel");
+	type4.newE();
     }
 }

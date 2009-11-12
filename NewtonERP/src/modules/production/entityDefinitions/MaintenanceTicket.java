@@ -31,11 +31,11 @@ public class MaintenanceTicket extends AbstractOrmEntity implements
 	super();
 	setVisibleName("Ticket de maintenance");
 	AccessorManager.addAccessor(this, new Employee());
-	AccessorManager.addAccessor(this, new StatusType());
+	AccessorManager.addAccessor(this, new MaintenanceStatusType());
 	AccessorManager.addAccessor(this, new Machine());
 	addNaturalKey(getPrimaryKeyName());
 	addNaturalKey("problemType");
-	addNaturalKey(new StatusType().getForeignKeyName());
+	addNaturalKey(new MaintenanceStatusType().getForeignKeyName());
     }
 
     @Override
@@ -50,7 +50,7 @@ public class MaintenanceTicket extends AbstractOrmEntity implements
 		.getForeignKeyName()));
 	fieldsInit.add(new FieldDateTime("Date de début", "startDate"));
 	fieldsInit.add(new FieldDateTime("Date de fin", "endDate"));
-	fieldsInit.add(new FieldInt("Status", new StatusType()
+	fieldsInit.add(new FieldInt("Status", new MaintenanceStatusType()
 		.getForeignKeyName()));
 	fieldsInit.add(new FieldText("Commentaire", "comment"));
 	return new Fields(fieldsInit);
