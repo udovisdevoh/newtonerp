@@ -2,10 +2,19 @@ package newtonERP.viewers.secondStep;
 
 import java.util.Hashtable;
 
+/**
+ * Ce viewer sert à inventer des couleurs en fonctions de noms de strings
+ * quelconques
+ * @author Guillaume
+ */
 public class ColorViewer
 {
     private static Hashtable<String, String> colorMap;
 
+    /**
+     * @param text string
+     * @return retourne une couleur pour cette string
+     */
     public static String getColor(String text)
     {
 	text = text.replaceAll("\\<.*?\\>", "");
