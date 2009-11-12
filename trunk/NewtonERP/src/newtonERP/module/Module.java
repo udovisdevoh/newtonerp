@@ -456,6 +456,10 @@ public abstract class Module
 	return true;
     }
 
+    /**
+     * @return nom du module dans le système (normalement nom de la classe mais
+     *         peut être overridé si c'est un module dynamique)
+     */
     public String getSystemName()
     {
 	return getClass().getSimpleName();

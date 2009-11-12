@@ -120,6 +120,10 @@ public abstract class AbstractAction
 	return true;
     }
 
+    /**
+     * @return nom de l'action dans le système (normalement nom de la classe
+     *         mais peut être overridé si c'est une action dynamique)
+     */
     public String getSystemName()
     {
 	return this.getClass().getSimpleName();

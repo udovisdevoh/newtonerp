@@ -31,7 +31,7 @@ public class TaskAction extends AbstractOrmEntity implements PromptViewable
 	Vector<Field> fieldList = new Vector<Field>();
 	fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
 	fieldList.add(new FieldString("Description", "name"));
-	fieldList.add(new FieldString("Nom de classe", "className"));
+	fieldList.add(new FieldString("Nom système", "systemName"));
 	return new Fields(fieldList);
     }
 

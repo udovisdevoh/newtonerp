@@ -26,7 +26,8 @@ public class BaseAction extends AbstractAction
     }
 
     /**
-     * @return the actionName
+     * @return nom de l'action de base (override le nom de la classe car
+     *         BaseAction n'a pas de sens)
      */
     @Override
     public String getSystemName()

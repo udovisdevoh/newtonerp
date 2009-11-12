@@ -224,6 +224,10 @@ public abstract class AbstractEntity
 	return promptMessage;
     }
 
+    /**
+     * @return nom de l'entité dans le système (normalement nom de la classe
+     *         mais peut être overridé si c'est une entité dynamique)
+     */
     public String getSystemName()
     {
 	return getClass().getSimpleName();
