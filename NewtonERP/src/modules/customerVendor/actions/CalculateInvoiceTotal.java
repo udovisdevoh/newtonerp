@@ -36,6 +36,7 @@ public class CalculateInvoiceTotal extends AbstractAction
 	Double totalInvoice = 0.0;
 	Invoice actionInvoice = (Invoice) entity;
 
+	// We get the invoiceLines associated
 	Vector<AbstractOrmEntity> invoiceLines = actionInvoice
 		.getPluralAccessor("InvoiceLine");
 
@@ -44,7 +45,18 @@ public class CalculateInvoiceTotal extends AbstractAction
 	    totalInvoice += (Double) ((InvoiceLine) line).getData("unitPrice");
 	}
 
+	// Here we have the total whitout taxes
 	actionInvoice.setData("total", totalInvoice);
+
+	// We get the tax lines associated
+	Vector<AbstractOrmEntity> invoiceTaxLines = actionInvoice
+		.getPluralAccessor("InvoiceTaxLine");
+
+	// For each tax
+	for (AbstractOrmEntity tax : invoiceTaxLines)
+	{
+	    totalInvoice += totalInvoice * (Double) tax.getData("value");
+	}
 
 	Orm.update((AbstractOrmEntity) entity, null);
 
