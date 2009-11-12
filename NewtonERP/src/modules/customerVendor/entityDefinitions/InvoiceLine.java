@@ -30,6 +30,7 @@ public class InvoiceLine extends AbstractOrmEntity implements PromptViewable
 	AccessorManager.addAccessor(this, new Product());
 	AccessorManager.addAccessor(this, new Invoice());
 	addCurrencyFormat("unitPrice");
+	setVisibleName("Ligne de facture");
     }
 
     @Override
