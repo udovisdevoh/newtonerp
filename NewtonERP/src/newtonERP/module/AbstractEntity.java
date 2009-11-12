@@ -15,7 +15,7 @@ import newtonERP.orm.field.Fields;
  * @author r3lemaypa, r3lacasgu, CloutierJo
  * 
  */
-public class AbstractEntity
+public abstract class AbstractEntity
 {
     protected Fields fields;
     private HashSet<String> hiddenFieldList;
@@ -220,8 +220,13 @@ public class AbstractEntity
     public String getPromptMessage()
     {
 	if (promptMessage == null)
-	    promptMessage = this.getClass().getSimpleName();
+	    promptMessage = getSystemName();
 	return promptMessage;
+    }
+
+    public String getSystemName()
+    {
+	return getClass().getSimpleName();
     }
 
     /**

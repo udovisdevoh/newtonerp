@@ -112,8 +112,8 @@ public class FlagPoolManager
     {
 	String entityName1, entityName2, intermediateEntityName;
 
-	entityName1 = entity1.getClass().getSimpleName();
-	entityName2 = entity2.getClass().getSimpleName();
+	entityName1 = entity1.getSystemName();
+	entityName2 = entity2.getSystemName();
 
 	if (entityName1.compareTo(entityName2) < 0)
 	    intermediateEntityName = entityName1 + entityName2;

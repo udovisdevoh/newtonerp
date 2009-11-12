@@ -172,7 +172,7 @@ public class Servlet extends ServletHandler
      */
     static public String makeLink(Module module)
     {
-	return "/" + module.getClass().getSimpleName();
+	return "/" + module.getSystemName();
     }
 
     /**
@@ -182,17 +182,17 @@ public class Servlet extends ServletHandler
      */
     static public String makeLink(Module module, AbstractAction action)
     {
-	String link = "/" + module.getClass().getSimpleName();
+	String link = "/" + module.getSystemName();
 	if (action instanceof BaseAction)
 	{
-	    String actionName = ((BaseAction) action).getActionName();
-	    String entityName = ((BaseAction) action).getEntity().getClass()
-		    .getSimpleName();
+	    String actionName = ((BaseAction) action).getSystemName();
+	    String entityName = ((BaseAction) action).getEntity()
+		    .getSystemName();
 	    link += "/" + actionName + "/" + entityName;
 	}
 	else
 	{
-	    link += "/" + action.getClass().getSimpleName();
+	    link += "/" + action.getSystemName();
 	}
 
 	return link;

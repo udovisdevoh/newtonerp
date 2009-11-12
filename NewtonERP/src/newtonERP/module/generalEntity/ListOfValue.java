@@ -100,11 +100,10 @@ public class ListOfValue implements SelectBoxViewable
      */
     public boolean equals(ListOfValue other)
     {
-	if (getForeignEntityDefinition().getClass().getSimpleName().equals(
-		other.getForeignEntityDefinition().getClass().getSimpleName()))
-	    if (getSourceEntityDefinition().getClass().getSimpleName().equals(
-		    other.getSourceEntityDefinition().getClass()
-			    .getSimpleName()))
+	if (getForeignEntityDefinition().getSystemName().equals(
+		other.getForeignEntityDefinition().getSystemName()))
+	    if (getSourceEntityDefinition().getSystemName().equals(
+		    other.getSourceEntityDefinition().getSystemName()))
 		if (getLabelName().equals(other.getLabelName()))
 		    return true;
 	return false;

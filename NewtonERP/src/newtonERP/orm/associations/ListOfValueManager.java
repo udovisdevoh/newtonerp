@@ -23,7 +23,7 @@ public class ListOfValueManager
 
 	if (entity.getFields().getField(foreignKeyName) == null)
 	    throw new TableAssociationException(foreignKeyName
-		    + " introuvable dans " + entity.getClass().getSimpleName());
+		    + " introuvable dans " + entity.getSystemName());
 
 	ListOfValue listOfValue = new ListOfValue(entity, foreignEntity
 		.getNaturalKeyName(), foreignEntity);
