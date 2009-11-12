@@ -35,6 +35,7 @@ public class MaintenanceTicket extends AbstractOrmEntity implements
 	addNaturalKey(getPrimaryKeyName());
 	addNaturalKey("problemType");
 	addNaturalKey(new StatusType().getForeignKeyName());
+	addLongText("comment");
     }
 
     @Override

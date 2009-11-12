@@ -18,8 +18,8 @@ import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.BaseAction;
 import newtonERP.module.Module;
-import newtonERP.viewers.ErrorViewer;
 import newtonERP.viewers.Viewer;
+import newtonERP.viewers.firstStep.ErrorViewer;
 
 import org.mortbay.jetty.Request;
 import org.mortbay.jetty.handler.ResourceHandler;
