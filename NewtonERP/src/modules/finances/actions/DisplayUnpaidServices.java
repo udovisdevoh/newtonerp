@@ -49,6 +49,23 @@ public class DisplayUnpaidServices extends AbstractAction
 	 * 
 	 * Added by Kovalev on November 11 @ 19h17
 	 */
+
+	/*
+	 * Encore une autre façon de faire (pas testée ici mais devrait marcher)
+	 * 
+	 * Au lieux de regarder tous les StateTypes pour ne garder que celui qui
+	 * a pour nom "Non-paye", pourquoi ne pas tout simplement créer une
+	 * entité de recherche avec comme paramètre "Non-paye"?
+	 * 
+	 * voici le code:
+	 * 
+	 * StateType searchEntity = new StateType();
+	 * searchEntity.setData("name", "Non-paye");
+	 * Vector<AbstractOrmEntity> types = Orm.select(searchEntity);
+	 * 
+	 * -Guillaume
+	 */
+
 	Vector<AbstractOrmEntity> types = account
 		.getPluralAccessor("StateType");
 
