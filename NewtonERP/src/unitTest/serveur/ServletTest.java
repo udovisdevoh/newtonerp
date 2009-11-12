@@ -4,7 +4,7 @@
 package unitTest.serveur;
 
 import junit.framework.TestCase;
-import newtonERP.ListModule;
+import newtonERP.common.ListModule;
 import newtonERP.serveur.Servlet;
 
 /**

@@ -6,10 +6,10 @@ import java.util.Vector;
 
 import newtonERP.module.exception.EntityException;
 import newtonERP.module.exception.FieldNotCompatibleException;
-import newtonERP.module.field.Field;
-import newtonERP.module.field.FieldBool;
-import newtonERP.module.field.Fields;
 import newtonERP.module.generalEntity.ListOfValue;
+import newtonERP.orm.field.Field;
+import newtonERP.orm.field.FieldBool;
+import newtonERP.orm.field.Fields;
 
 /**
  * @author r3lemaypa, r3lacasgu, CloutierJo

@@ -132,6 +132,11 @@ h2 /* sous-titres */
 	border-style:dashed;
 }
 
+.buttonLink
+{
+	margin: 0 3em;	
+}
+	
 .ListViewerTable td 
 {
 	background-color: #FFF;

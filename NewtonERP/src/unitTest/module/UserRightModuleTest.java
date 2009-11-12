@@ -7,7 +7,7 @@ package unitTest.module;
 import java.util.Hashtable;
 
 import junit.framework.TestCase;
-import newtonERP.ListModule;
+import newtonERP.common.ListModule;
 import newtonERP.module.Module;
 import newtonERP.orm.Orm;
 

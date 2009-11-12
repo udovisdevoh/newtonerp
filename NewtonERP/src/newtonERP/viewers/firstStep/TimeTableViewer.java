@@ -7,6 +7,7 @@ import modules.humanResources.entityDefinitions.TimeTable;
 import newtonERP.common.ActionLink;
 import newtonERP.serveur.Servlet;
 import newtonERP.viewers.ViewerException;
+import newtonERP.viewers.secondStep.ButtonLinkViewer;
 
 /**
  * Represents the list viewer for listing data
@@ -45,12 +46,18 @@ public class TimeTableViewer
 	    throws Exception
     {
 	String html = "";
+	html += "<p>";
 	for (ActionLink globalAction : globalActions)
 	{
 
-	    html += " <a href=\"" + globalAction.getUrl() + "\">";
-	    html += globalAction.getName() + "</a> ";
+	    html += ButtonLinkViewer.getHtmlCode(globalAction);
+	    /*
+	     * todo: remove when sucefully tested html += " <a href=\"" +
+	     * globalAction.getUrl() + "\">"; html += globalAction.getName() +
+	     * "</a> ";
+	     */
 	}
+	html += "</p>";
 	return html;
     }
 

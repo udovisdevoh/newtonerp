@@ -7,19 +7,19 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Vector;
 
-import newtonERP.ListModule;
+import newtonERP.common.ListModule;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.Module;
 import newtonERP.module.exception.ModuleException;
-import newtonERP.module.field.Field;
-import newtonERP.module.field.FieldBool;
-import newtonERP.module.field.FieldDateTime;
-import newtonERP.module.field.FieldDouble;
-import newtonERP.module.field.FieldInt;
-import newtonERP.module.field.FieldString;
-import newtonERP.module.field.Fields;
 import newtonERP.orm.exceptions.OrmException;
+import newtonERP.orm.field.Field;
+import newtonERP.orm.field.FieldBool;
+import newtonERP.orm.field.FieldDateTime;
+import newtonERP.orm.field.FieldDouble;
+import newtonERP.orm.field.FieldInt;
+import newtonERP.orm.field.FieldString;
+import newtonERP.orm.field.Fields;
 import newtonERP.orm.sgbd.SgbdSqlite;
 import newtonERP.orm.sgbd.Sgbdable;
 

@@ -1,4 +1,4 @@
-package newtonERP;
+package newtonERP.common;
 
 /**
  * @author Guillaume Lacasse Cette classe sert à authentifier un user de manière

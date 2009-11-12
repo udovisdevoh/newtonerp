@@ -1,7 +1,7 @@
 /**
  * 
  */
-package newtonERP;
+package newtonERP.common;
 
 import java.io.File;
 import java.util.Hashtable;

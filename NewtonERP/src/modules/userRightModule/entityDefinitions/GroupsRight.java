@@ -5,11 +5,11 @@ import java.util.Vector;
 
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.exception.FieldNotFoundException;
-import newtonERP.module.field.Field;
-import newtonERP.module.field.FieldInt;
-import newtonERP.module.field.Fields;
 import newtonERP.orm.Orm;
 import newtonERP.orm.exceptions.OrmException;
+import newtonERP.orm.field.Field;
+import newtonERP.orm.field.FieldInt;
+import newtonERP.orm.field.Fields;
 
 /**
  * Entity defenition representing a group right for the users

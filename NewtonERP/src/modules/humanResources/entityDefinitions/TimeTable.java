@@ -14,7 +14,6 @@ public class TimeTable extends AbstractEntity
     private CaseTable[] header;
     private CaseTable[] leftHeader;
     private CaseTable[][] cases;
-    private CaseTable defaultCase = new CaseTable();
     private String title;
     private Vector<ActionLink> globalActions = new Vector<ActionLink>();
 
@@ -113,15 +112,4 @@ public class TimeTable extends AbstractEntity
     {
 	globalActions.add(globalAction);
     }
-
-    public void setDefaultCase(CaseTable defaultCase)
-    {
-	this.defaultCase = defaultCase;
-    }
-
-    public CaseTable getDefaultCase()
-    {
-	return defaultCase;
-    }
-
 }

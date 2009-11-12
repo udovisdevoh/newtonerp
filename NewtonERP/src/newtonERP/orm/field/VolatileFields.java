@@ -1,4 +1,4 @@
-package newtonERP.module.field;
+package newtonERP.orm.field;
 
 /**
  * Version non-persistante de fields. Marche exactement comme fields sauf qu'on

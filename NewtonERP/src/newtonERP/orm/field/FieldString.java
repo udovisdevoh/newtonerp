@@ -1,16 +1,16 @@
-package newtonERP.module.field;
+package newtonERP.orm.field;
 
 import newtonERP.module.exception.FieldNotCompatibleException;
 import newtonERP.module.exception.InvalidOperatorException;
 
 /**
- * Boolean field in the entities
+ * String field in the entities
  * 
- * @author CloutierJo, r3hallejo
+ * @author djo, r3hallejo
  */
-public class FieldBool extends Field
+public class FieldString extends Field
 {
-    Boolean data;
+    String data;
 
     /**
      * constructeur minimum
@@ -19,7 +19,7 @@ public class FieldBool extends Field
      * @param shortName nom du champ qui sera utiliser a l'interne
      * @param data donne du champ
      */
-    public FieldBool(String name, String shortName, Boolean data)
+    public FieldString(String name, String shortName, String data)
     {
 	super(name, shortName);
 	this.data = data;
@@ -30,48 +30,30 @@ public class FieldBool extends Field
      * @param name nom du champ qui sera visible par l'utilisateur
      * @param shortName nom du champ qui sera utiliser a l'interne
      */
-    public FieldBool(String name, String shortName)
+    public FieldString(String name, String shortName)
     {
 	this(name, shortName, null);
-    }
-
-    private void setDataB(Boolean data)
-    {
-	this.data = data;
-    }
-
-    /**
-     * @param data the data to set
-     */
-    public void setData(Boolean data)
-    {
-	setDataB(data);
     }
 
     /**
      * @return the data
      */
-    public String getDataString()
+    public String getData()
     {
-	if (data == null)
-	    return "";
+	return data;
+    }
 
-	return (data).toString();
+    private void setDataS(String data)
+    {
+	this.data = data;
     }
 
     /**
-     * @param data the data to set
+     * @return the data
      */
-    public void setData(String data)
+    public String getDataString(Boolean forOrm)
     {
-	if (data.toLowerCase().equals("on")
-		|| data.toLowerCase().equals("true"))
-	{
-	    this.data = true;
-	    return;
-	}
-
-	this.data = Boolean.parseBoolean(data);
+	return data;
     }
 
     /*
@@ -85,24 +67,33 @@ public class FieldBool extends Field
 	    return true;
 	if (!super.equals(obj))
 	    return false;
-	if (!(obj instanceof FieldBool))
+	if (!(obj instanceof FieldString))
 	    return false;
-	FieldBool other = (FieldBool) obj;
-	if (data != other.data)
+	FieldString other = (FieldString) obj;
+	if (data == null)
+	{
+	    if (other.data != null)
+		return false;
+	}
+	else if (!data.equals(other.data))
 	    return false;
 	return true;
     }
 
-    public Boolean getData()
+    /**
+     * @param data the data to set
+     */
+    public void setData(String data)
     {
-	// TODO Auto-generated method stub
-	return data;
+	setDataS(data);
     }
 
     public void setData(Object data) throws FieldNotCompatibleException
     {
-	if (data instanceof Boolean)
-	    setDataB((Boolean) data);
+	if (data instanceof String)
+	    setDataS((String) data);
+	else if (data instanceof Number)
+	    setDataS(data + "");
 	else
 	    throw new FieldNotCompatibleException(getShortName(), data);
     }
@@ -121,15 +112,8 @@ public class FieldBool extends Field
 		    + getClass().getSimpleName());
     }
 
-    @Override
-    public String getDataString(Boolean forOrm)
+    public void setDefaultValue()
     {
-	return data.toString();
-    }
-
-    @Override
-    public void setDefaultValue() throws FieldNotCompatibleException
-    {
-	data = false;
+	setData("");
     }
 }

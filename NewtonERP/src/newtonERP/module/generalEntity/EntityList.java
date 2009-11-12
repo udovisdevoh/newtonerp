@@ -11,7 +11,7 @@ import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.BaseAction;
-import newtonERP.module.field.Field;
+import newtonERP.orm.field.Field;
 import newtonERP.viewers.viewables.ListViewable;
 import newtonERP.viewers.viewables.PromptViewable;
 

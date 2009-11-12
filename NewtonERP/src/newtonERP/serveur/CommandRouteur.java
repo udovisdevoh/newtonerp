@@ -3,8 +3,8 @@ package newtonERP.serveur;
 import java.util.Hashtable;
 
 import modules.userRightModule.actions.RightCheck;
-import newtonERP.Authentication;
-import newtonERP.ListModule;
+import newtonERP.common.Authentication;
+import newtonERP.common.ListModule;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.Module;
 import newtonERP.module.generalEntity.AlertEntity;

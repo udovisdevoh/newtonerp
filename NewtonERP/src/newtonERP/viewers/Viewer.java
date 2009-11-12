@@ -4,8 +4,8 @@ import java.util.Hashtable;
 import java.util.Iterator;
 
 import modules.humanResources.entityDefinitions.TimeTable;
-import newtonERP.Authentication;
-import newtonERP.ListModule;
+import newtonERP.common.Authentication;
+import newtonERP.common.ListModule;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.Module;
 import newtonERP.module.exception.ModuleException;

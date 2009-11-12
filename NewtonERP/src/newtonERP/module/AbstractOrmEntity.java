@@ -4,9 +4,7 @@ import java.util.Hashtable;
 import java.util.TreeMap;
 import java.util.Vector;
 
-import newtonERP.ListModule;
-import newtonERP.module.field.Field;
-import newtonERP.module.field.Fields;
+import newtonERP.common.ListModule;
 import newtonERP.module.generalEntity.EntityList;
 import newtonERP.module.generalEntity.FlagPool;
 import newtonERP.module.generalEntity.ListOfValue;
@@ -15,6 +13,8 @@ import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.associations.FlagPoolManager;
 import newtonERP.orm.associations.PluralAccessorManager;
 import newtonERP.orm.exceptions.OrmException;
+import newtonERP.orm.field.Field;
+import newtonERP.orm.field.Fields;
 import newtonERP.serveur.Servlet;
 import newtonERP.viewers.secondStep.MoneyViewer;
 

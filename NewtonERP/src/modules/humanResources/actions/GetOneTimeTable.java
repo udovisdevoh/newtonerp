@@ -18,7 +18,7 @@ import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.BaseAction;
-import newtonERP.module.field.FieldDateTime;
+import newtonERP.orm.field.FieldDateTime;
 
 /**
  * @author CloutierJo
