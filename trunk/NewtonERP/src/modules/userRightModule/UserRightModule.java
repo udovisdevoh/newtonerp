@@ -61,7 +61,7 @@ public class UserRightModule extends Module
 
 	// retrouve les rightID
 	search.clear();
-	search.add("moduleName='" + this.getClass().getSimpleName() + "'");
+	search.add("moduleName='" + getSystemName() + "'");
 
 	for (AbstractOrmEntity right : Orm.select(new Right(), search))
 	{
@@ -96,8 +96,7 @@ public class UserRightModule extends Module
 	// retrouve les rightID
 
 	Right right = new Right();
-	right.getFields().getField("moduleName").setData(
-		this.getClass().getSimpleName());
+	right.getFields().getField("moduleName").setData(getSystemName());
 	right.getFields().getField("actionName").setData("Login");
 	right = (Right) right.get(right).get(0);
 	rightID = (Integer) right.getData(right.getPrimaryKeyName());

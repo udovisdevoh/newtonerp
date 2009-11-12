@@ -394,11 +394,9 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      */
     public final String getPrimaryKeyName()
     {
-	String firstLetter = (getClass().getSimpleName().charAt(0) + "")
-		.toLowerCase();
+	String firstLetter = (getSystemName().charAt(0) + "").toLowerCase();
 
-	return "PK" + firstLetter + getClass().getSimpleName().substring(1)
-		+ "ID";
+	return "PK" + firstLetter + getSystemName().substring(1) + "ID";
     }
 
     /**
@@ -407,9 +405,8 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      */
     public String getForeignKeyName()
     {
-	String firstLetter = (getClass().getSimpleName().charAt(0) + "")
-		.toLowerCase();
-	return firstLetter + getClass().getSimpleName().substring(1) + "ID";
+	String firstLetter = (getSystemName().charAt(0) + "").toLowerCase();
+	return firstLetter + getSystemName().substring(1) + "ID";
     }
 
     /**
@@ -456,7 +453,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
     public final String getVisibleName()
     {
 	if (visibleName == null)
-	    visibleName = this.getClass().getSimpleName();
+	    visibleName = getSystemName();
 
 	return visibleName;
     }

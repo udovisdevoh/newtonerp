@@ -38,8 +38,8 @@ public class SingleAccessorManager
 		    foreignEntityDefinition);
 
 	    if (realForeignEntity != null)
-		singleAccessorList.put(realForeignEntity.getClass()
-			.getSimpleName(), realForeignEntity);
+		singleAccessorList.put(realForeignEntity.getSystemName(),
+			realForeignEntity);
 	}
 
 	return singleAccessorList;

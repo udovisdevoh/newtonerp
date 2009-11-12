@@ -120,4 +120,9 @@ public abstract class AbstractAction
 	return true;
     }
 
+    public String getSystemName()
+    {
+	return this.getClass().getSimpleName();
+    }
+
 }

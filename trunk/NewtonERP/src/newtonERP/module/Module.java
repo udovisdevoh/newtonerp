@@ -103,13 +103,12 @@ public abstract class Module
     {
 	if (action instanceof BaseAction)
 	{
-	    defaultAction = ((BaseAction) (action)).getActionName();
-	    defaultEntity = ((BaseAction) (action)).getEntity().getClass()
-		    .getSimpleName();
+	    defaultAction = ((BaseAction) (action)).getSystemName();
+	    defaultEntity = ((BaseAction) (action)).getEntity().getSystemName();
 	}
 	else
 	{
-	    defaultAction = action.getClass().getSimpleName();
+	    defaultAction = action.getSystemName();
 	}
     }
 
@@ -127,7 +126,7 @@ public abstract class Module
 
     private final void addAction(AbstractAction action)
     {
-	actionList.put(action.getClass().getSimpleName(), action);
+	actionList.put(action.getSystemName(), action);
 	action.setOwnedByModul(this);
     }
 
@@ -190,7 +189,7 @@ public abstract class Module
 
     private final void addDefinitionEntity(AbstractOrmEntity definitinEntity)
     {
-	entityDefinitionList.put(definitinEntity.getClass().getSimpleName(),
+	entityDefinitionList.put(definitinEntity.getSystemName(),
 		definitinEntity);
     }
 
@@ -280,7 +279,7 @@ public abstract class Module
 	// on donne au group admin le droit
 	// todo: a changé si l'on gère les dépendance de module
 	Right searchRight = new Right();
-	searchRight.setData("moduleName", this.getClass().getSimpleName());
+	searchRight.setData("moduleName", getSystemName());
 
 	for (AbstractOrmEntity right : Orm.select(searchRight))
 	{
@@ -384,7 +383,7 @@ public abstract class Module
     public final String getVisibleName()
     {
 	if (visibleName == null)
-	    visibleName = this.getClass().getSimpleName();
+	    visibleName = getSystemName();
 
 	return visibleName;
     }
@@ -457,4 +456,8 @@ public abstract class Module
 	return true;
     }
 
+    public String getSystemName()
+    {
+	return getClass().getSimpleName();
+    }
 }

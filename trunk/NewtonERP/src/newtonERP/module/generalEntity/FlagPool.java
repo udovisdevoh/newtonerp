@@ -88,7 +88,7 @@ public class FlagPool implements CheckListViewable
 		description += "_bis";
 
 	    availableElementList.put(description, intermediateEntityDefinition
-		    .getClass().getSimpleName()
+		    .getSystemName()
 		    + "."
 		    + intermediateKeyOut
 		    + "."
@@ -123,11 +123,8 @@ public class FlagPool implements CheckListViewable
 	HashSet<String> checkedElementList = new HashSet<String>();
 
 	for (AbstractOrmEntity entity : getPositivePluralIntermediateAccessor())
-	    checkedElementList.add(intermediateEntityDefinition.getClass()
-		    .getSimpleName()
-		    + "."
-		    + intermediateKeyOut
-		    + "."
+	    checkedElementList.add(intermediateEntityDefinition.getSystemName()
+		    + "." + intermediateKeyOut + "."
 		    + entity.getDataString(intermediateKeyOut));
 
 	return checkedElementList;

@@ -65,9 +65,9 @@ public class ListViewer
 	    action = globalActionButtonList.get(buttonCaption);
 
 	    if (action instanceof BaseAction)
-		actionName = ((BaseAction) (action)).getActionName();
+		actionName = ((BaseAction) (action)).getSystemName();
 	    else
-		actionName = action.getClass().getSimpleName();
+		actionName = action.getSystemName();
 
 	    html += getButton(buttonCaption, null, null, action, module, entity
 		    .getButtonConfirmList().contains(actionName), entity
@@ -147,9 +147,9 @@ public class ListViewer
 	    if (action == null)
 		throw new ActionNotFoundException("Action is null");
 	    else if (action instanceof BaseAction)
-		actionName = ((BaseAction) (action)).getActionName();
+		actionName = ((BaseAction) (action)).getSystemName();
 	    else
-		actionName = action.getClass().getSimpleName();
+		actionName = action.getSystemName();
 
 	    html += getButton(buttonCaption, key, value, action, module,
 		    listEntity.getButtonConfirmList().contains(actionName),

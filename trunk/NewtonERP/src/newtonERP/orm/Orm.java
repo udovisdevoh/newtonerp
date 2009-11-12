@@ -65,7 +65,7 @@ public class Orm
 	    throws OrmException
     {
 	String sqlQuery = "SELECT * FROM " + prefix
-		+ searchEntity.getClass().getSimpleName();
+		+ searchEntity.getSystemName();
 
 	if (searchCriteriasParam != null)
 	    sqlQuery = buildWhereClauseForQuery(sqlQuery, searchCriteriasParam);
@@ -93,7 +93,7 @@ public class Orm
 	    Vector<AbstractOrmEntity> searchEntities) throws OrmException
     {
 	String sqlQuery = "SELECT * FROM " + prefix
-		+ searchEntities.get(0).getClass().getSimpleName();
+		+ searchEntities.get(0).getSystemName();
 
 	if (!searchEntities.isEmpty())
 	    sqlQuery = buildWhereClauseForQuery(searchEntities, sqlQuery);
@@ -131,8 +131,8 @@ public class Orm
     @SuppressWarnings("unchecked")
     public static int insert(AbstractOrmEntity newEntity) throws OrmException
     {
-	String sqlQuery = "INSERT INTO " + prefix
-		+ newEntity.getClass().getSimpleName() + " (";
+	String sqlQuery = "INSERT INTO " + prefix + newEntity.getSystemName()
+		+ " (";
 	String valuesQuery = " VALUES (";
 
 	// We now iterate through the data so we can add the fields to the query
@@ -214,7 +214,7 @@ public class Orm
 	    Vector<String> searchCriterias) throws OrmException
     {
 	String sqlQuery = "DELETE FROM " + prefix
-		+ searchEntity.getClass().getSimpleName();
+		+ searchEntity.getSystemName();
 
 	sqlQuery = buildWhereClauseForQuery(sqlQuery, searchCriterias);
 
@@ -237,7 +237,7 @@ public class Orm
 	    throws OrmException
     {
 	String sqlQuery = "DELETE FROM " + prefix
-		+ searchEntities.get(0).getClass().getSimpleName();
+		+ searchEntities.get(0).getSystemName();
 
 	sqlQuery = buildWhereClauseForQuery(searchEntities, sqlQuery);
 
@@ -275,7 +275,7 @@ public class Orm
 	    Vector<String> searchCriterias) throws OrmException
     {
 	String sqlQuery = "UPDATE " + prefix
-		+ entityContainingChanges.getClass().getSimpleName() + " SET ";
+		+ entityContainingChanges.getSystemName() + " SET ";
 
 	sqlQuery = buildSetClauseForQuery(entityContainingChanges.getFields(),
 		sqlQuery);
@@ -301,7 +301,7 @@ public class Orm
 	    AbstractOrmEntity entityContainingChanges) throws OrmException
     {
 	String sqlQuery = "UPDATE " + prefix
-		+ entityContainingChanges.getClass().getSimpleName() + " SET ";
+		+ entityContainingChanges.getSystemName() + " SET ";
 
 	sqlQuery = buildSetClauseForQuery(entityContainingChanges.getFields(),
 		sqlQuery);
@@ -432,8 +432,7 @@ public class Orm
 		    Collection<Field> fields = ((AbstractEntity) entity)
 			    .getFields().getFields();
 
-		    sqlQuery += prefix + entity.getClass().getSimpleName()
-			    + " ( ";
+		    sqlQuery += prefix + entity.getSystemName() + " ( ";
 
 		    // For each field into my entity
 		    for (Field field : fields)

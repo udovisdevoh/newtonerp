@@ -143,9 +143,8 @@ public class PluralAccessorManager
 	for (ListOfValue listOfValue : new HashSet<ListOfValue>(entity
 		.getNegativeListOfValueList()))
 	{
-	    if (!entity.getClass().getSimpleName().equals(
-		    listOfValue.getForeignEntityDefinition().getClass()
-			    .getSimpleName()))
+	    if (!entity.getSystemName().equals(
+		    listOfValue.getForeignEntityDefinition().getSystemName()))
 		continue;
 
 	    foreignEntityDefinition = listOfValue.getSourceEntityDefinition()
@@ -162,8 +161,8 @@ public class PluralAccessorManager
 	    Vector<AbstractOrmEntity> resultSet = Orm
 		    .select(foreignEntityDefinition);
 
-	    pluralAccessorList.put(foreignEntityDefinition.getClass()
-		    .getSimpleName(), resultSet);
+	    pluralAccessorList.put(foreignEntityDefinition.getSystemName(),
+		    resultSet);
 	}
     }
 
@@ -181,7 +180,7 @@ public class PluralAccessorManager
 
 	    if (pluralAccessor != null)
 		pluralAccessorList.put(flagPool.getForeignEntityDefinition()
-			.getClass().getSimpleName(), pluralAccessor);
+			.getSystemName(), pluralAccessor);
 	}
     }
 
@@ -198,8 +197,8 @@ public class PluralAccessorManager
 
 	for (FlagPool currentFlagPool : positiveFlagPoolList.values())
 	{
-	    if (currentFlagPool.getForeignEntityDefinition().getClass()
-		    .getSimpleName().toLowerCase().equals(accessorName))
+	    if (currentFlagPool.getForeignEntityDefinition().getSystemName()
+		    .toLowerCase().equals(accessorName))
 	    {
 		selectedFlagPool = currentFlagPool;
 		break;
