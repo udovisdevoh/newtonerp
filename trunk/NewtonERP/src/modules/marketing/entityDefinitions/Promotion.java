@@ -5,6 +5,7 @@ import java.util.Vector;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.field.Field;
 import newtonERP.module.field.FieldDate;
+import newtonERP.module.field.FieldDouble;
 import newtonERP.module.field.FieldInt;
 import newtonERP.module.field.FieldString;
 import newtonERP.module.field.Fields;
@@ -38,7 +39,7 @@ public class Promotion extends AbstractOrmEntity implements PromptViewable
 		"startDate"));
 	fieldsInit.add(new FieldDate("Date de la fin de la promotion",
 		"endingDate"));
-	fieldsInit.add(new FieldInt("Budjet accordé", "budget"));
+	fieldsInit.add(new FieldDouble("Budjet accordé", "budget"));
 	fieldsInit.add(new FieldString("Notes de la modalité", "modality"));
 	return new Fields(fieldsInit);
     }
