@@ -49,7 +49,7 @@ public class TaskModule extends Module
 	SpecificationEntity specification;
 	specification = new SpecificationEntity();
 	specification.setData("name", "defaultSpecification");
-	specification.setData("className", "defaultSpecification");
+	specification.setData("systemName", "defaultSpecification");
 	specification.setData(new SpecificationOperator().getForeignKeyName(),
 		1);
 	specification.newE();
