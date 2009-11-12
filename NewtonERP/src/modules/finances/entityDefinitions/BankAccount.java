@@ -5,7 +5,7 @@ import java.util.Vector;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.field.Field;
-import newtonERP.orm.field.FieldDouble;
+import newtonERP.orm.field.FieldCurrency;
 import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.FieldString;
 import newtonERP.orm.field.Fields;
@@ -26,8 +26,6 @@ public class BankAccount extends AbstractOrmEntity implements PromptViewable
     {
 	super();
 	addNaturalKey("folio");
-	addCurrencyFormat("balance");
-	addCurrencyFormat("margin");
 	AccessorManager.addAccessor(this, new Bank());
 	setVisibleName("Comptes Bancaires");
     }
@@ -38,8 +36,8 @@ public class BankAccount extends AbstractOrmEntity implements PromptViewable
 	Vector<Field> fieldsInit = new Vector<Field>();
 	fieldsInit.add(new FieldInt("Numéro", getPrimaryKeyName()));
 	fieldsInit.add(new FieldString("Folio", "folio"));
-	fieldsInit.add(new FieldDouble("Solde", "balance"));
-	fieldsInit.add(new FieldDouble("Marge", "margin"));
+	fieldsInit.add(new FieldCurrency("Solde", "balance"));
+	fieldsInit.add(new FieldCurrency("Marge", "margin"));
 	fieldsInit.add(new FieldInt("Numéro de Banque", new Bank()
 		.getForeignKeyName()));
 

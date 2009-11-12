@@ -14,6 +14,7 @@ import newtonERP.orm.associations.FlagPoolManager;
 import newtonERP.orm.associations.PluralAccessorManager;
 import newtonERP.orm.exceptions.OrmException;
 import newtonERP.orm.field.Field;
+import newtonERP.orm.field.FieldCurrency;
 import newtonERP.orm.field.Fields;
 import newtonERP.serveur.Servlet;
 import newtonERP.viewers.secondStep.MoneyViewer;
@@ -515,7 +516,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	    {
 		currentFieldValue = getDataString(naturalKeyName);
 
-		if (isMatchCurrencyFormat(naturalKeyName))
+		if (getFields().getField(naturalKeyName) instanceof FieldCurrency)
 		    currentFieldValue = MoneyViewer
 			    .getHtmlCode(currentFieldValue);
 

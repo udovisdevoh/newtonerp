@@ -15,6 +15,8 @@ public abstract class Field
     private String name; // Name is the name that is visible by the end-user
     private String shortName; // Short name is the name that is used internally
     protected String operator;
+    private Boolean hidden = false;
+    private Boolean readOnly = false;
 
     /**
      * default constructor
@@ -106,6 +108,38 @@ public abstract class Field
     public String getOperator()
     {
 	return operator;
+    }
+
+    /**
+     * @param hidden the hidden to set
+     */
+    public void setHidden(Boolean hidden)
+    {
+	this.hidden = hidden;
+    }
+
+    /**
+     * @return the hidden
+     */
+    public Boolean isHidden()
+    {
+	return hidden;
+    }
+
+    /**
+     * @param readOnly the readOnly to set
+     */
+    public void setReadOnly(Boolean readOnly)
+    {
+	this.readOnly = readOnly;
+    }
+
+    /**
+     * @return the readOnly
+     */
+    public Boolean isReadOnly()
+    {
+	return readOnly;
     }
 
     /*

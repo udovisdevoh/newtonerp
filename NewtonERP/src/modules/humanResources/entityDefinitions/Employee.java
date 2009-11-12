@@ -5,7 +5,7 @@ import java.util.Vector;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.field.Field;
-import newtonERP.orm.field.FieldDouble;
+import newtonERP.orm.field.FieldCurrency;
 import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.FieldString;
 import newtonERP.orm.field.Fields;
@@ -28,7 +28,6 @@ public class Employee extends AbstractOrmEntity implements PromptViewable
 	AccessorManager.addAccessor(this, new Department());
 	AccessorManager.addAccessor(this, new EmployeeType());
 	AccessorManager.addAccessor(this, new SalaryType());
-	addCurrencyFormat("salary");
 
 	setVisibleName("Employé");
     }
@@ -48,7 +47,7 @@ public class Employee extends AbstractOrmEntity implements PromptViewable
 		.getForeignKeyName()));
 	fieldsData.add(new FieldInt("Type de salaire", new SalaryType()
 		.getForeignKeyName()));
-	fieldsData.add(new FieldDouble("Salaire", "salary"));
+	fieldsData.add(new FieldCurrency("Salaire", "salary"));
 	fieldsData.add(new FieldInt("Nombre de jour de vacance possible",
 		"nbVacancyDays"));
 	fieldsData.add(new FieldInt("Nombre de jour de maladie possible",

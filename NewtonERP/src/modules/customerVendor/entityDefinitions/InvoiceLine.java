@@ -6,7 +6,7 @@ import modules.materialResourcesManagement.entityDefinitions.Product;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.field.Field;
-import newtonERP.orm.field.FieldDouble;
+import newtonERP.orm.field.FieldCurrency;
 import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.Fields;
 import newtonERP.viewers.viewables.PromptViewable;
@@ -29,7 +29,6 @@ public class InvoiceLine extends AbstractOrmEntity implements PromptViewable
 	super();
 	AccessorManager.addAccessor(this, new Product());
 	AccessorManager.addAccessor(this, new Invoice());
-	addCurrencyFormat("unitPrice");
 	setVisibleName("Ligne de facture");
     }
 
@@ -43,7 +42,7 @@ public class InvoiceLine extends AbstractOrmEntity implements PromptViewable
 	fieldList.add(new FieldInt("Id de produit", new Product()
 		.getForeignKeyName()));
 	fieldList.add(new FieldInt("Quantité", "quantity"));
-	fieldList.add(new FieldDouble("Prix unitaire", "unitPrice"));
+	fieldList.add(new FieldCurrency("Prix unitaire", "unitPrice"));
 	return new Fields(fieldList);
     }
 

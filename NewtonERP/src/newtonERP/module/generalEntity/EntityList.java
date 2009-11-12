@@ -12,6 +12,7 @@ import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.BaseAction;
 import newtonERP.orm.field.Field;
+import newtonERP.orm.field.FieldText;
 import newtonERP.viewers.viewables.ListViewable;
 import newtonERP.viewers.viewables.PromptViewable;
 
@@ -105,8 +106,7 @@ public class EntityList extends AbstractEntity implements ListViewable,
 	    entityInfo = new NaturalMap<String, String>();
 	    for (Field field : entity.getFields())
 	    {
-		if (internalEntityDefinition
-			.isFieldHidden(field.getShortName()))
+		if (field.isHidden())
 		    continue;
 
 		ListOfValue listOfValue = entity.tryMatchListOfValue(field
@@ -143,8 +143,7 @@ public class EntityList extends AbstractEntity implements ListViewable,
 			    entityInfo.put(shortName, " - non - ");
 			}
 		    }
-		    else if (internalEntityDefinition
-			    .isMatchLongText(shortName))
+		    else if (field instanceof FieldText)
 		    {
 			if (dataString == null)
 			    dataString = "";
@@ -237,12 +236,6 @@ public class EntityList extends AbstractEntity implements ListViewable,
     public void removeSpecificActionButton(String string)
     {
 	specificActionButtonList.remove(string);
-    }
-
-    @Override
-    public boolean isListElementColumnMatchCurrencyFormat(String fieldName)
-    {
-	return internalEntityDefinition.isMatchCurrencyFormat(fieldName);
     }
 
     @Override

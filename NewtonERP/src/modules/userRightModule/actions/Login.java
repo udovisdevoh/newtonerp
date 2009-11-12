@@ -11,6 +11,7 @@ import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.generalEntity.Form;
 import newtonERP.module.generalEntity.StaticTextEntity;
+import newtonERP.orm.field.Field;
 
 /**
  * Action class that creates all the rights for every module
@@ -37,10 +38,11 @@ public class Login extends AbstractAction
 
 	Form loginForm = new Form(new UserRightModule(), new Login());
 	loginForm.addNewField("Utilisateur", "name", currentLoginName);
-	loginForm.addNewField("Mot de passe", "password");
+	Field tmpPwd = new User().getFields().getField("password");
+	tmpPwd.setDefaultValue();
+	loginForm.addNewField(tmpPwd);
 	loginForm.setPromptMessage("Identification");
 	loginForm.setButtonCaption("Entrer");
-	loginForm.addHiddenField("password");
 
 	if (parameters.containsKey("submit"))
 	{

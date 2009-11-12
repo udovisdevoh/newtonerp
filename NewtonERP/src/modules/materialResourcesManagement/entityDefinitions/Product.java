@@ -4,7 +4,7 @@ import java.util.Vector;
 
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.field.Field;
-import newtonERP.orm.field.FieldDouble;
+import newtonERP.orm.field.FieldCurrency;
 import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.FieldString;
 import newtonERP.orm.field.Fields;
@@ -27,8 +27,6 @@ public class Product extends AbstractOrmEntity implements PromptViewable
     {
 	super();
 	setVisibleName("Produit");
-	addCurrencyFormat("sellingPrice");
-	addCurrencyFormat("purchasingPrice");
     }
 
     @Override
@@ -42,8 +40,8 @@ public class Product extends AbstractOrmEntity implements PromptViewable
 	fieldsInit.add(new FieldInt("Point de commande", "reorderPoint"));
 	fieldsInit.add(new FieldInt("Quantité réservé", "reservedStock"));
 	fieldsInit.add(new FieldInt("Maximum en stock", "maxInStock"));
-	fieldsInit.add(new FieldDouble("Prix d'achat", "purchasingPrice"));
-	fieldsInit.add(new FieldDouble("Prix de vente", "sellingPrice"));
+	fieldsInit.add(new FieldCurrency("Prix d'achat", "purchasingPrice"));
+	fieldsInit.add(new FieldCurrency("Prix de vente", "sellingPrice"));
 	return new Fields(fieldsInit);
     }
 

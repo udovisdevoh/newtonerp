@@ -5,8 +5,8 @@ import java.util.Vector;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.field.Field;
+import newtonERP.orm.field.FieldCurrency;
 import newtonERP.orm.field.FieldDate;
-import newtonERP.orm.field.FieldDouble;
 import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.FieldString;
 import newtonERP.orm.field.Fields;
@@ -32,7 +32,6 @@ public class ServiceProviderAccount extends AbstractOrmEntity implements
 	addNaturalKey(getPrimaryKeyName());
 	AccessorManager.addAccessor(this, new ServiceProvider());
 	AccessorManager.addAccessor(this, new StateType());
-	addCurrencyFormat("balance");
 	setVisibleName("Comptes Fournisseurs de services");
     }
 
@@ -43,7 +42,7 @@ public class ServiceProviderAccount extends AbstractOrmEntity implements
 	fieldsInit.add(new FieldInt("Numéro", getPrimaryKeyName()));
 	fieldsInit.add(new FieldString("Service", "service"));
 	fieldsInit.add(new FieldDate("Échéance", "deadline"));
-	fieldsInit.add(new FieldDouble("Solde", "balance"));
+	fieldsInit.add(new FieldCurrency("Solde", "balance"));
 	fieldsInit
 		.add(new FieldInt("État", new StateType().getForeignKeyName()));
 	fieldsInit.add(new FieldInt("Numéro de Fournisseur",

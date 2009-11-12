@@ -2,16 +2,18 @@ package newtonERP.viewers.firstStep;
 
 import java.util.Vector;
 
+import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.BaseAction;
 import newtonERP.module.generalEntity.FlagPool;
 import newtonERP.module.generalEntity.ListOfValue;
 import newtonERP.module.generalEntity.ScrollList;
+import newtonERP.orm.field.Field;
 import newtonERP.serveur.Servlet;
 import newtonERP.viewers.secondStep.CheckListViewer;
+import newtonERP.viewers.secondStep.FieldViewer;
 import newtonERP.viewers.secondStep.ScrollListViewer;
 import newtonERP.viewers.secondStep.SelectBoxViewer;
-import newtonERP.viewers.secondStep.SwitchViewer;
 import newtonERP.viewers.viewables.PromptViewable;
 
 /**
@@ -54,71 +56,25 @@ public class PromptViewer
 
 	html += "<table>";
 
-	String inputValue;
-	String textFieldType;
-	String moneyFormatStyle;
-
-	for (String inputName : entity.getOrderedFieldNameList())
+	for (Field field : ((AbstractEntity) entity).getFields())
 	{
-	    String isReadOnly = "";
-	    inputValue = entity.getInputValue(inputName);
 
-	    ListOfValue listOfValue = entity.tryMatchListOfValue(inputName);
+	    ListOfValue listOfValue = entity.tryMatchListOfValue(field
+		    .getShortName());
 
-	    if (entity instanceof AbstractOrmEntity
-		    && inputName.equals(ormEntity.getPrimaryKeyName()))
-		isReadOnly = "DISABLED";
-
-	    if (entity.isMatchCheckBox(inputName))
+	    if (listOfValue == null)
 	    {
-		html += SwitchViewer.getHtmlCode(inputName, entity
-			.getLabelName(inputName), Boolean.valueOf(inputValue));
+		html += "\n<tr><td>" + field.getName() + ": </td><td>"
+			+ FieldViewer.getHtmlCode(field) + "</td></tr>";
 	    }
 	    else
 	    {
-		if (listOfValue == null)
-		{
-		    if (entity.isMatchLongText(inputName))
-		    {
-			html += "\n<tr><td valign=\"top\">"
-				+ entity.getLabelName(inputName)
-				+ ": </td><td><textarea class=\"textField\" name=\""
-				+ inputName + "\">" + inputValue
-				+ "</textarea></td></tr>";
-		    }
-		    else
-		    {
-			if (entity.isFieldHidden(inputName))
-			    textFieldType = "password";
-			else
-			    textFieldType = "text";
-
-			if (entity instanceof AbstractOrmEntity
-				&& ormEntity.isMatchCurrencyFormat(inputName))
-			    moneyFormatStyle = " style=\"width:80px;text-align:right\"";
-			else
-			    moneyFormatStyle = "";
-
-			html += "\n<tr><td>" + entity.getLabelName(inputName)
-				+ ": </td><td><input" + moneyFormatStyle
-				+ " type=\"" + textFieldType + "\" name=\""
-				+ inputName + "\" value=\"" + inputValue
-				+ "\" class=\"textField\" " + isReadOnly + ">";
-
-			if (entity instanceof AbstractOrmEntity
-				&& ormEntity.isMatchCurrencyFormat(inputName))
-			    html += " $";
-
-			html += "</td></tr>";
-		    }
-		}
-		else
-		{
-		    html += "<tr><td>"
-			    + SelectBoxViewer.getHtmlCode(listOfValue,
-				    inputName, inputValue) + "</td></tr>";
-		}
+		html += "<tr><td>"
+			+ SelectBoxViewer.getHtmlCode(listOfValue, field
+				.getShortName(), field.getDataString())
+			+ "</td></tr>";
 	    }
+
 	}
 
 	if (entity instanceof AbstractOrmEntity)

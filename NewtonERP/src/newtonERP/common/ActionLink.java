@@ -54,7 +54,7 @@ public class ActionLink
 	if (parameters != null)
 	    this.parameters = (Hashtable<String, String>) parameters.clone();
 	else
-	    parameters = new Hashtable<String, String>();
+	    this.parameters = new Hashtable<String, String>();
     }
 
     /**
@@ -126,7 +126,8 @@ public class ActionLink
 	{
 	    param += key + "=" + parameters.get(key) + "&";
 	}
-	param = param.substring(0, param.length() - 1);
+	if (param.length() > 0)
+	    param = param.substring(0, param.length() - 1);
 	return Servlet.makeLink(action) + "?" + param;
     }
 

@@ -4,9 +4,10 @@ import newtonERP.module.exception.FieldNotCompatibleException;
 import newtonERP.module.exception.InvalidOperatorException;
 
 /**
- * String field in the entities
+ * String field in the entities (String is a short text where text is a long
+ * text)
  * 
- * @author djo, r3hallejo
+ * @author CloutierJo, r3hallejo
  */
 public class FieldString extends Field
 {

@@ -9,6 +9,7 @@ import newtonERP.orm.field.Field;
 import newtonERP.orm.field.FieldDateTime;
 import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.FieldString;
+import newtonERP.orm.field.FieldText;
 import newtonERP.orm.field.Fields;
 import newtonERP.viewers.viewables.PromptViewable;
 
@@ -35,7 +36,6 @@ public class MaintenanceTicket extends AbstractOrmEntity implements
 	addNaturalKey(getPrimaryKeyName());
 	addNaturalKey("problemType");
 	addNaturalKey(new StatusType().getForeignKeyName());
-	addLongText("comment");
     }
 
     @Override
@@ -52,7 +52,7 @@ public class MaintenanceTicket extends AbstractOrmEntity implements
 	fieldsInit.add(new FieldDateTime("Date de fin", "endDate"));
 	fieldsInit.add(new FieldInt("Status", new StatusType()
 		.getForeignKeyName()));
-	fieldsInit.add(new FieldString("Commentaire", "comment"));
+	fieldsInit.add(new FieldText("Commentaire", "comment"));
 	return new Fields(fieldsInit);
     }
 }

@@ -1,6 +1,9 @@
 package newtonERP.viewers.secondStep;
 
+import newtonERP.common.ActionLink;
 import newtonERP.common.NaturalMap;
+import newtonERP.module.BaseAction;
+import newtonERP.module.generalEntity.ListOfValue;
 import newtonERP.viewers.viewables.SelectBoxViewable;
 
 /**
@@ -21,7 +24,10 @@ public class SelectBoxViewer
     {
 	String html = "";
 
-	html += entity.getLabelName() + ": </td>";
+	html += LinkViewer.getHtmlCode(new ActionLink(entity.getLabelName(),
+		new BaseAction("GetList", ((ListOfValue) entity)
+			.getForeignEntityDefinition())));
+	html += ": </td>";
 	html += "<td><select name=\"" + inputName + "\">";
 
 	NaturalMap<String, String> elements = entity.getElements();

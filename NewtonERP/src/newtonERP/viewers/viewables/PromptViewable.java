@@ -53,12 +53,6 @@ public interface PromptViewable
     public Hashtable<String, FlagPool> getPositiveFlagPoolList();
 
     /**
-     * @param fieldName the field
-     * @return true or false if the field is hidden or not
-     */
-    public boolean isFieldHidden(String fieldName);
-
-    /**
      * @return liste des messages d'alerte
      */
     public Vector<String> getAlertMessageList();
@@ -91,12 +85,6 @@ public interface PromptViewable
      * @return Liste des messages normaux
      */
     public Vector<String> getNormalMessageList();
-
-    /**
-     * @param inputName nom du champ
-     * @return si le champ est un texte long
-     */
-    public boolean isMatchLongText(String inputName);
 
     /**
      * @param inputName nom du champ
