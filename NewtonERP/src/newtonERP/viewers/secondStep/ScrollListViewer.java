@@ -17,7 +17,8 @@ public class ScrollListViewer
     {
 	String html = "";
 
-	html += "<div class=\"scrollableDivPair\"><div><ul>";
+	html += "<div class=\"scrollableDivPair\" style=\"border-width:2px;border-style:dotted;border-color:"
+		+ ColorViewer.getColor(entity.getTitle()) + "\"><div><ul>";
 
 	if (entity.getTitleUrl() != null)
 	    html += "<a href=\"" + entity.getTitleUrl() + "\">";
@@ -36,9 +37,9 @@ public class ScrollListViewer
 	{
 	    int counter = 0;
 	    String styleModifier;
-	    html +="<li>";
+	    html += "<li>";
 	    for (String linkName : linkPair.getKeyList())
-	    {		
+	    {
 		if (counter > 0)
 		    styleModifier = " class=\"linkPairTarget\"";
 		else
@@ -52,7 +53,7 @@ public class ScrollListViewer
 		    html += " : ";
 		counter++;
 	    }
-	    html +="</li>";
+	    html += "</li>";
 	}
 
 	html += "</ul></div></div>";
