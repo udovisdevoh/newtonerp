@@ -26,7 +26,7 @@ public class InvoiceTaxLine extends AbstractOrmEntity implements PromptViewable
 	super();
 	AccessorManager.addAccessor(this, new Tax());
 	AccessorManager.addAccessor(this, new Invoice());
-	setVisibleName("Lignes de taxes");
+	setVisibleName("Ligne de taxe");
     }
 
     @Override
