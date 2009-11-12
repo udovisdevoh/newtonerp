@@ -29,6 +29,7 @@ public class InvoiceLine extends AbstractOrmEntity implements PromptViewable
 	super();
 	AccessorManager.addAccessor(this, new Product());
 	AccessorManager.addAccessor(this, new Invoice());
+	addCurrencyFormat("unitPrice");
     }
 
     @Override

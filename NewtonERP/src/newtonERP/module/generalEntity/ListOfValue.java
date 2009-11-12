@@ -103,8 +103,9 @@ public class ListOfValue implements SelectBoxViewable
 	if (getForeignEntityDefinition().getClass().getSimpleName().equals(
 		other.getForeignEntityDefinition().getClass().getSimpleName()))
 	    if (getSourceEntityDefinition().getClass().getSimpleName().equals(
-		    getSourceEntityDefinition().getClass().getSimpleName()))
-		if (getLabelName().equals(getLabelName()))
+		    other.getSourceEntityDefinition().getClass()
+			    .getSimpleName()))
+		if (getLabelName().equals(other.getLabelName()))
 		    return true;
 	return false;
     }

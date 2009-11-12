@@ -143,11 +143,13 @@ public class PluralAccessorManager
 	for (ListOfValue listOfValue : new HashSet<ListOfValue>(entity
 		.getNegativeListOfValueList()))
 	{
-	    if (entity.getClass() != listOfValue.getForeignEntityDefinition()
-		    .getClass())
+	    if (!entity.getClass().getSimpleName().equals(
+		    listOfValue.getForeignEntityDefinition().getClass()
+			    .getSimpleName()))
 		continue;
 
-	    foreignEntityDefinition = listOfValue.getSourceEntityDefinition();
+	    foreignEntityDefinition = listOfValue.getSourceEntityDefinition()
+		    .getClass().newInstance();
 	    foreignEntityDefinition.initFields();
 
 	    if (!foreignEntityDefinition.getFields().containsFieldName(
