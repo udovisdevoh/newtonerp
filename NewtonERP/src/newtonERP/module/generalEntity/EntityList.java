@@ -30,6 +30,7 @@ public class EntityList extends AbstractEntity implements ListViewable,
     private Vector<AbstractOrmEntity> data = new Vector<AbstractOrmEntity>();
     private AbstractOrmEntity internalEntityDefinition;
     private HashSet<String> buttonConfirmList = new HashSet<String>();
+    private String title;
 
     /**
      * @param internalEntityDefinition the internal entity defenition
@@ -249,5 +250,19 @@ public class EntityList extends AbstractEntity implements ListViewable,
     {
 	// TODO Auto-generated method stub
 	return null;
+    }
+
+    /**
+     * @param title titre qu'on peut overrider
+     */
+    public void setTitle(String title)
+    {
+	this.title = title;
+    }
+
+    @Override
+    public String getTitle()
+    {
+	return title;
     }
 }
