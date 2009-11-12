@@ -41,7 +41,6 @@ public class RightCheck extends AbstractAction
 
 	if (rightList.size() > 0)
 	    return rightList.get(0);
-	else
-	    return null;
+	return null;
     }
 }
