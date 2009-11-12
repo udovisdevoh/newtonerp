@@ -248,6 +248,7 @@ div.scrollableDivPair h4
 td.moneyStyleModifier
 {
 	text-align:right;
+	white-space:nowrap;
 }
 
 a.linkPairTarget
