@@ -173,7 +173,7 @@ public class PromptViewer
 			    + currentForeignEntity.getPrimaryKeyName()
 			    + "=" + currentForeignEntity.getPrimaryKeyValue());
 		}
-		html += "<tr><td>"
+		html += "<tr><td style=\"column-span: all;\" colspan=\"100%\">"
 			+ ScrollListViewer.getHtmlContent(scrollList)
 			+ "</td></tr>";
 	    }
@@ -213,7 +213,8 @@ public class PromptViewer
 	}
 
 	if (entity.getSingleAccessorList().size() > 0)
-	    html += "<tr><td>" + ScrollListViewer.getHtmlContent(scrollList)
+	    html += "<tr><td style=\"column-span: all;\" colspan=\"100%\">"
+		    + ScrollListViewer.getHtmlContent(scrollList)
 		    + "</td></tr>";
 
 	return html;

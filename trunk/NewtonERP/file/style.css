@@ -225,6 +225,20 @@ div.scrollableDivPair
 	overflow-y:scroll;
 }
 
+.scrollableDivPair ul
+{
+	margin:0px;
+	padding:0px;
+}
+
+.scrollableDivPair li
+{
+	margin:0px;
+	padding:0px;
+	margin-left:20px;
+	list-style-type:square;
+}
+
 div.scrollableDivPair h4
 {
 	margin-top:3px;
