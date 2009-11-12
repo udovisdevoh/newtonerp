@@ -8,9 +8,9 @@ import newtonERP.module.AbstractOrmEntity;
 
 public class DataCache
 {
-    private Hashtable<String, EntityCache> entityCacheList;
+    private static Hashtable<String, EntityCache> entityCacheList;
 
-    public Vector<AbstractOrmEntity> tryGetFromCache(
+    public static Vector<AbstractOrmEntity> tryGetFromCache(
 	    AbstractEntity entityDefinition, String sqlQuery)
     {
 	String entityName = entityDefinition.getClass().getSimpleName();
@@ -22,12 +22,16 @@ public class DataCache
 	    entityCache = new EntityCache();
 	    getEntityCacheList().put(entityName, entityCache);
 	}
+	else
+	{
+	    System.out.println("Getting " + entityName + " from cache");
+	}
 
 	return entityCache.getData(sqlQuery);
     }
 
-    public void addToCache(AbstractEntity entityDefinition, String sqlQuery,
-	    Vector<AbstractOrmEntity> entityList)
+    public static void addToCache(AbstractEntity entityDefinition,
+	    String sqlQuery, Vector<AbstractOrmEntity> entityList)
     {
 	String entityName = entityDefinition.getClass().getSimpleName();
 	EntityCache entityCache;
@@ -42,7 +46,7 @@ public class DataCache
 	entityCache.add(sqlQuery, entityList);
     }
 
-    public void clear(AbstractEntity entityDefinition)
+    public static void clear(AbstractEntity entityDefinition)
     {
 	String entityName = entityDefinition.getClass().getSimpleName();
 	EntityCache entityCache;
@@ -56,10 +60,33 @@ public class DataCache
 	entityCache.clear();
     }
 
-    private Hashtable<String, EntityCache> getEntityCacheList()
+    private static Hashtable<String, EntityCache> getEntityCacheList()
     {
 	if (entityCacheList == null)
 	    entityCacheList = new Hashtable<String, EntityCache>();
 	return entityCacheList;
+    }
+
+    public static void clearAll()
+    {
+	entityCacheList.clear();
+    }
+
+    public static void clear(Vector<AbstractOrmEntity> searchEntities)
+    {
+	if (searchEntities.size() > 0)
+	    clear(searchEntities.get(0));
+    }
+
+    public static Vector<AbstractOrmEntity> tryGetFromCache(
+	    Vector<AbstractOrmEntity> searchEntities, String sqlQuery)
+    {
+	return tryGetFromCache(searchEntities.get(0), sqlQuery);
+    }
+
+    public static void addToCache(Vector<AbstractOrmEntity> searchEntities,
+	    String sqlQuery, Vector<AbstractOrmEntity> entityList)
+    {
+	addToCache(searchEntities.get(0), sqlQuery, entityList);
     }
 }
