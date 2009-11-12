@@ -690,6 +690,7 @@ par exemple, si on delete un Group, alors les GroupRight WHERE GroupID = ce grou
   * Ajouté attribut de long textes
   * Reglé bug de memory leak
   * Cleané code de DisplayUnpaidService (pour Pascal et Kovalev)
+  * Refactor getClass().getSimpleName() -> getSystemName() pour gérer actions, entités et modules dynamique, de base et statiques polymorphiquement
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
   * Faire les premières spécifications atomiques
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
