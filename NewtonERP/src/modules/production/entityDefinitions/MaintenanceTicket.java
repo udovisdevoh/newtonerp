@@ -31,6 +31,7 @@ public class MaintenanceTicket extends AbstractOrmEntity implements
 	setVisibleName("Ticket de maintenance");
 	AccessorManager.addAccessor(this, new Employee());
 	AccessorManager.addAccessor(this, new StatusType());
+	AccessorManager.addAccessor(this, new Machine());
 	addNaturalKey(getPrimaryKeyName());
 	addNaturalKey("problemType");
 	addNaturalKey(new StatusType().getForeignKeyName());
@@ -41,6 +42,8 @@ public class MaintenanceTicket extends AbstractOrmEntity implements
     {
 	Vector<Field> fieldsInit = new Vector<Field>();
 	fieldsInit.add(new FieldInt("Numéro du ticket", getPrimaryKeyName()));
+	fieldsInit.add(new FieldInt("Machine concernée", new Machine()
+		.getForeignKeyName()));
 	fieldsInit.add(new FieldString("Problème rencontré", "problemType"));
 	fieldsInit.add(new FieldInt("Assigné à ", new Employee()
 		.getForeignKeyName()));
