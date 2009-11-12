@@ -1,4 +1,4 @@
-package newtonERP.viewers;
+package newtonERP.viewers.firstStep;
 
 import java.util.Vector;
 
@@ -8,6 +8,10 @@ import newtonERP.module.generalEntity.FlagPool;
 import newtonERP.module.generalEntity.ListOfValue;
 import newtonERP.module.generalEntity.ScrollList;
 import newtonERP.serveur.Servlet;
+import newtonERP.viewers.secondStep.CheckListViewer;
+import newtonERP.viewers.secondStep.ScrollListViewer;
+import newtonERP.viewers.secondStep.SelectBoxViewer;
+import newtonERP.viewers.secondStep.SwitchViewer;
 import newtonERP.viewers.viewables.PromptViewable;
 
 /**

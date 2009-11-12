@@ -1,4 +1,4 @@
-package newtonERP.viewers;
+package newtonERP.viewers.firstStep;
 
 import java.util.Hashtable;
 import java.util.Vector;
@@ -10,6 +10,8 @@ import newtonERP.module.Module;
 import newtonERP.module.exception.ActionNotFoundException;
 import newtonERP.module.exception.ModuleException;
 import newtonERP.serveur.Servlet;
+import newtonERP.viewers.ViewerException;
+import newtonERP.viewers.secondStep.MoneyViewer;
 import newtonERP.viewers.viewables.ListViewable;
 
 /**

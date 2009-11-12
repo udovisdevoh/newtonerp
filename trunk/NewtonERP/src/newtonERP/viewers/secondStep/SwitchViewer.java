@@ -1,4 +1,4 @@
-package newtonERP.viewers;
+package newtonERP.viewers.secondStep;
 
 /**
  * Viewer d'élément bool switchable de vrai à faux

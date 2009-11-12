@@ -1,4 +1,4 @@
-package newtonERP.viewers;
+package newtonERP.viewers.secondStep;
 
 import java.text.NumberFormat;
 

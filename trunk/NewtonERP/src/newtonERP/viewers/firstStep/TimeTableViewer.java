@@ -1,4 +1,4 @@
-package newtonERP.viewers;
+package newtonERP.viewers.firstStep;
 
 import java.util.Vector;
 
@@ -6,6 +6,7 @@ import modules.humanResources.entityDefinitions.CaseTable;
 import modules.humanResources.entityDefinitions.TimeTable;
 import newtonERP.common.ActionLink;
 import newtonERP.serveur.Servlet;
+import newtonERP.viewers.ViewerException;
 
 /**
  * Represents the list viewer for listing data
