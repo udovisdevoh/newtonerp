@@ -25,15 +25,14 @@ public class FieldViewer
 	String html;
 	if (field instanceof FieldBool)
 	    html = boolViewer(field);
+	else if (field instanceof FieldCurrency)
+	    html = currencyViewer(field);
 	else if (field instanceof FieldDouble || field instanceof FieldInt)
 	    html = numberViewer(field);
 	else if (field instanceof FieldDateTime)
 	    html = dateTimeViewer(field);
 	else if (field instanceof FieldText)
 	    html = textViewer(field);
-	if (field instanceof FieldCurrency)
-	    html = currencyViewer(field);
-
 	else
 	    html = otherViewer(field);
 
