@@ -5,12 +5,21 @@ import java.util.Vector;
 import newtonERP.common.ActionLink;
 import newtonERP.module.AbstractEntity;
 
+/**
+ * viewer servant a standardisé nos viewer
+ * @author CloutierJo
+ * 
+ */
 public class BaseViewer extends AbstractEntity
 {
 
     private String title;
     private Vector<ActionLink> globalActions = new Vector<ActionLink>();
 
+    /**
+     * constructeur vide
+     * @throws Exception remonte
+     */
     public BaseViewer() throws Exception
     {
 	super();
@@ -21,7 +30,7 @@ public class BaseViewer extends AbstractEntity
      */
     public void setTitle(String title)
     {
-        this.title = title;
+	this.title = title;
     }
 
     /**
@@ -29,7 +38,7 @@ public class BaseViewer extends AbstractEntity
      */
     public String getTitle()
     {
-        return title;
+	return title;
     }
 
     /**
@@ -37,7 +46,7 @@ public class BaseViewer extends AbstractEntity
      */
     public void setGlobalActions(Vector<ActionLink> globalActions)
     {
-        this.globalActions = globalActions;
+	this.globalActions = globalActions;
     }
 
     /**
@@ -45,7 +54,7 @@ public class BaseViewer extends AbstractEntity
      */
     public Vector<ActionLink> getGlobalActions()
     {
-        return globalActions;
+	return globalActions;
     }
 
     /**
@@ -53,7 +62,7 @@ public class BaseViewer extends AbstractEntity
      */
     public void addGlobalActions(ActionLink globalAction)
     {
-        globalActions.add(globalAction);
+	globalActions.add(globalAction);
     }
 
 }

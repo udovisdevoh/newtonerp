@@ -25,7 +25,6 @@ public class User extends AbstractOrmEntity implements PromptViewable
     public User() throws Exception
     {
 	super();
-	addHiddenField("password");
 	AccessorManager.addAccessor(this, new Groups());
 	setVisibleName("Utilisateur");
     }
@@ -35,7 +34,9 @@ public class User extends AbstractOrmEntity implements PromptViewable
 	Vector<Field> fieldsData = new Vector<Field>();
 	fieldsData.add(new FieldInt("Numéro de user", getPrimaryKeyName()));
 	fieldsData.add(new FieldString("Nom", "name"));
-	fieldsData.add(new FieldString("Mot de passe", "password"));
+	FieldString pwd = new FieldString("Mot de passe", "password");
+	pwd.setHidden(true);
+	fieldsData.add(pwd);
 	fieldsData.add(new FieldInt("Numéro de groupe", "groupsID"));
 	return new Fields(fieldsData);
     }

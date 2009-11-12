@@ -38,7 +38,8 @@ public class Fields implements Iterable<Field>
 	fieldsDataMap = new Hashtable<String, Field>();
 	for (Field field : fields)
 	{
-	    field.getShortName();
+	    if (field.getShortName().matches("PK.*"))
+		field.setReadOnly(true);
 	    fieldsDataMap.put(field.getShortName(), field);
 	}
     }

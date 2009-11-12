@@ -18,7 +18,6 @@ import newtonERP.orm.field.Fields;
 public abstract class AbstractEntity
 {
     protected Fields fields;
-    private HashSet<String> hiddenFieldList;
     private Vector<String> alertMessageList;
     private Vector<String> normalMessageList;
     private Hashtable<String, ListOfValue> positiveListOfValueList;
@@ -26,8 +25,6 @@ public abstract class AbstractEntity
     protected Module currentModule;
     private AbstractAction currentAction;
     protected String promptMessage;
-    private HashSet<String> currencyFormattedFieldList;
-    private HashSet<String> longTextFieldList;
 
     /**
      * construit une entity ne comportant aucun champ
@@ -48,27 +45,6 @@ public abstract class AbstractEntity
     public Fields initFields() throws Exception
     {
 	return new Fields();
-    }
-
-    /**
-     * @param fieldName the field name to hide
-     */
-    public void addHiddenField(String fieldName)
-    {
-	if (hiddenFieldList == null)
-	    hiddenFieldList = new HashSet<String>();
-	hiddenFieldList.add(fieldName);
-    }
-
-    /**
-     * @param fieldName the field to check
-     * @return true if it's hidden and false if it's not
-     */
-    public boolean isFieldHidden(String fieldName)
-    {
-	if (hiddenFieldList == null)
-	    return false;
-	return hiddenFieldList.contains(fieldName);
     }
 
     /*
@@ -273,28 +249,6 @@ public abstract class AbstractEntity
     }
 
     /**
-     * @param inputName nom du field
-     * @return retounre true si le field doit être formatté en argent
-     */
-    public boolean isMatchCurrencyFormat(String inputName)
-    {
-	if (currencyFormattedFieldList == null)
-	    return false;
-
-	return currencyFormattedFieldList.contains(inputName);
-    }
-
-    /**
-     * @param fieldName défini un nom de champ qui sera formaté en argent
-     */
-    public final void addCurrencyFormat(String fieldName)
-    {
-	if (currencyFormattedFieldList == null)
-	    currencyFormattedFieldList = new HashSet<String>();
-	currencyFormattedFieldList.add(fieldName);
-    }
-
-    /**
      * @param foreignKeyName nom de la clef etrangère de la listOfValue
      * @param listOfValue listOfValue à ajouter
      */
@@ -336,27 +290,6 @@ public abstract class AbstractEntity
     public void addNormalMessage(String message)
     {
 	getNormalMessageList().add(message);
-    }
-
-    private HashSet<String> getLongTextFieldList()
-    {
-	if (longTextFieldList == null)
-	    longTextFieldList = new HashSet<String>();
-	return longTextFieldList;
-    }
-
-    protected void addLongText(String fieldName)
-    {
-	getLongTextFieldList().add(fieldName);
-    }
-
-    /**
-     * @param inputName nom du champ
-     * @return si le nom du champ correspond à un long champ texte
-     */
-    public boolean isMatchLongText(String inputName)
-    {
-	return getLongTextFieldList().contains(inputName);
     }
 
     /**

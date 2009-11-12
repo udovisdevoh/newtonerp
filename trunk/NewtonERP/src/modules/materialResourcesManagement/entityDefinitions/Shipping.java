@@ -8,7 +8,7 @@ import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.FieldDate;
 import newtonERP.orm.field.FieldInt;
-import newtonERP.orm.field.FieldString;
+import newtonERP.orm.field.FieldText;
 import newtonERP.orm.field.Fields;
 import newtonERP.viewers.viewables.PromptViewable;
 
@@ -32,7 +32,6 @@ public class Shipping extends AbstractOrmEntity implements PromptViewable
 	AccessorManager.addAccessor(this, new Invoice());
 	AccessorManager.addAccessor(this, new Shipper());
 	AccessorManager.addAccessor(this, new Location());
-	addLongText("shippingComment");
     }
 
     @Override
@@ -49,7 +48,7 @@ public class Shipping extends AbstractOrmEntity implements PromptViewable
 		"estimatedShippingDate"));
 	fieldsInit.add(new FieldInt("Expéditeur", new Shipper()
 		.getForeignKeyName()));
-	fieldsInit.add(new FieldString("Commentaire", "shippingComment"));
+	fieldsInit.add(new FieldText("Commentaire", "shippingComment"));
 	fieldsInit.add(new FieldInt("Location", new Location()
 		.getForeignKeyName()));
 	return new Fields(fieldsInit);

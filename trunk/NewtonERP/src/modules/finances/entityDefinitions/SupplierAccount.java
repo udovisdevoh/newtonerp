@@ -7,8 +7,8 @@ import modules.customerVendor.entityDefinitions.Merchant;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.field.Field;
+import newtonERP.orm.field.FieldCurrency;
 import newtonERP.orm.field.FieldDate;
-import newtonERP.orm.field.FieldDouble;
 import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.Fields;
 import newtonERP.viewers.viewables.PromptViewable;
@@ -38,7 +38,6 @@ public class SupplierAccount extends AbstractOrmEntity implements
 	addNaturalKey("deadline");
 	addNaturalKey(getPrimaryKeyName());
 
-	addCurrencyFormat("balance");
 	setVisibleName("Compte Fournisseur");
     }
 
@@ -50,7 +49,7 @@ public class SupplierAccount extends AbstractOrmEntity implements
 	fieldsInit.add(new FieldInt("Facture", new Invoice()
 		.getForeignKeyName()));
 	fieldsInit.add(new FieldDate("Échéance", "deadline"));
-	fieldsInit.add(new FieldDouble("Solde", "balance"));
+	fieldsInit.add(new FieldCurrency("Solde", "balance"));
 	fieldsInit
 		.add(new FieldInt("État", new StateType().getForeignKeyName()));
 	fieldsInit.add(new FieldInt("Numéro de fournisseur", new Merchant()

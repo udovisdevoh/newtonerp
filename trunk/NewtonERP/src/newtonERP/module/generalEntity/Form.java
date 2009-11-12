@@ -51,7 +51,7 @@ public class Form extends AbstractEntity implements PromptViewable
     {
 	Field field = new FieldString(label, fieldName);
 	field.setData(currentValue);
-	((VolatileFields) (getFields())).add(field);
+	addNewField(field);
     }
 
     /**
@@ -64,6 +64,15 @@ public class Form extends AbstractEntity implements PromptViewable
 	    throws FieldNotFoundException, ParseException
     {
 	addNewField(label, fieldName, "");
+    }
+
+    /**
+     * @param field un field a ajouter
+     */
+    public void addNewField(Field field)
+
+    {
+	((VolatileFields) (getFields())).add(field);
     }
 
     @Override
