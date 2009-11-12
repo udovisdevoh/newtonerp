@@ -57,6 +57,9 @@ public class HumanResources extends Module
 	PeriodeType perTyp2 = new PeriodeType();
 	perTyp2.setData("PeriodeType", "travail");
 	perTyp2.newE();
+	PeriodeType perTyp3 = new PeriodeType();
+	perTyp3.setData("PeriodeType", "temps supplementaire");
+	perTyp3.newE();
 
 	EmployeeType empTyp1 = new EmployeeType();
 	empTyp1.setData("EmployeeType", "contractuel");
