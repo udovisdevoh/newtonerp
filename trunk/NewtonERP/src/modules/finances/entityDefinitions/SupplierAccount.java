@@ -2,8 +2,8 @@ package modules.finances.entityDefinitions;
 
 import java.util.Vector;
 
-import modules.customerVendor.entityDefinitions.Merchant;
 import modules.customerVendor.entityDefinitions.Invoice;
+import modules.customerVendor.entityDefinitions.Merchant;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.field.Field;
 import newtonERP.module.field.FieldDate;
@@ -33,6 +33,11 @@ public class SupplierAccount extends AbstractOrmEntity implements
 	AccessorManager.addAccessor(this, new Merchant());
 	AccessorManager.addAccessor(this, new Invoice());
 	AccessorManager.addAccessor(this, new StateType());
+
+	addNaturalKey("balance");
+	addNaturalKey("deadline");
+	addNaturalKey(getPrimaryKeyName());
+
 	addCurrencyFormat("balance");
 	setVisibleName("Compte Fournisseur");
     }

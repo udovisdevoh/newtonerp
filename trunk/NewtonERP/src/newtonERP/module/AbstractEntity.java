@@ -303,6 +303,11 @@ public class AbstractEntity
     public void addNegativeListOfValue(ListOfValue listOfValue)
     {
 	// laissez le get car c'est de la lazy initialization -Guillaume
+
+	for (ListOfValue currentListOfValue : getNegativeListOfValueList())
+	    if (currentListOfValue.equals(listOfValue))
+		return;
+
 	getNegativeListOfValueList().add(listOfValue);
     }
 
