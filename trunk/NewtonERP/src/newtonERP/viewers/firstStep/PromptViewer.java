@@ -56,6 +56,7 @@ public class PromptViewer
 
 	String inputValue;
 	String textFieldType;
+	String moneyFormatStyle;
 
 	for (String inputName : entity.getOrderedFieldNameList())
 	{
@@ -92,11 +93,23 @@ public class PromptViewer
 			else
 			    textFieldType = "text";
 
+			if (entity instanceof AbstractOrmEntity
+				&& ormEntity.isMatchCurrencyFormat(inputName))
+			    moneyFormatStyle = " style=\"width:80px;text-align:right\"";
+			else
+			    moneyFormatStyle = "";
+
 			html += "\n<tr><td>" + entity.getLabelName(inputName)
-				+ ": </td><td><input type=\"" + textFieldType
-				+ "\" name=\"" + inputName + "\" value=\""
-				+ inputValue + "\" class=\"textField\" "
-				+ isReadOnly + "></td></tr>";
+				+ ": </td><td><input" + moneyFormatStyle
+				+ " type=\"" + textFieldType + "\" name=\""
+				+ inputName + "\" value=\"" + inputValue
+				+ "\" class=\"textField\" " + isReadOnly + ">";
+
+			if (entity instanceof AbstractOrmEntity
+				&& ormEntity.isMatchCurrencyFormat(inputName))
+			    html += " $";
+
+			html += "</td></tr>";
 		    }
 		}
 		else
