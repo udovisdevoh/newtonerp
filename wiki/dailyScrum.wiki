@@ -714,7 +714,12 @@ par exemple, si on delete un Group, alors les GroupRight WHERE GroupID = ce grou
 
 ==Jonatan Cloutier==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
-  * ...livré...
+  * faire le rowSpan pour les plage horaire continue
+  * ménage de package
+  * ButtonLinkViewer et LinkViewer pour standardisé les lien
+  * généralisé timetableViewer
+  * début du BaseViewer
+  * retrait du paralélisme d'info
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
   * ...à livrer...
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
