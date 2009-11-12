@@ -33,8 +33,12 @@ public class ListViewer
     {
 	String html = "";
 
-	html += "<h2>Liste des " + listEntity.getVisibleInternalElementName()
-		+ "(s)" + "</h2>";
+	if (listEntity.getTitle() != null)
+	    html += "<h2>" + listEntity.getTitle() + "</h2>";
+	else
+	    html += "<h2>Liste des "
+		    + listEntity.getVisibleInternalElementName() + "(s)"
+		    + "</h2>";
 
 	html += "<table class=\"ListViewerTable\" border=\"0\" cellpadding=\"3\" cellspacing=\"0\">";
 

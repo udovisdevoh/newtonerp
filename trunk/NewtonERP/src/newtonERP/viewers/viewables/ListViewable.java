@@ -88,4 +88,9 @@ public interface ListViewable
      * @return liste des entité promptViewable
      */
     public Vector<PromptViewable> getViewableRowList();
+
+    /**
+     * @return Titre qui peut ou ne pas être overridé
+     */
+    public String getTitle();
 }

@@ -4,6 +4,7 @@ import java.util.Hashtable;
 import java.util.Vector;
 
 import modules.finances.entityDefinitions.ServiceProviderAccount;
+import modules.finances.entityDefinitions.StateType;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
@@ -50,38 +51,22 @@ public class DisplayUnpaidServices extends AbstractAction
 	 * Added by Kovalev on November 11 @ 19h17
 	 */
 
-	/*
-	 * Encore une autre façon de faire (pas testée ici mais devrait marcher)
-	 * 
-	 * Au lieux de regarder tous les StateTypes pour ne garder que celui qui
-	 * a pour nom "Non-paye", pourquoi ne pas tout simplement créer une
-	 * entité de recherche avec comme paramètre "Non-paye"?
-	 * 
-	 * voici le code:
-	 * 
-	 * StateType searchEntity = new StateType();
-	 * searchEntity.setData("name", "Non-paye");
-	 * Vector<AbstractOrmEntity> types = Orm.select(searchEntity);
-	 * 
-	 * -Guillaume
-	 */
+	// En fait, il ne faut pas utiliser les accesseurs multiples ici car
+	// ServiceProviderAccount n'a qu'un accesseur simple vers StateType.
+	// Voici le code qu'il faut utiliser: -Guillaume
 
-	Vector<AbstractOrmEntity> types = account
-		.getPluralAccessor("StateType");
+	StateType searchEntity = new StateType();
+	searchEntity.setData("name", "Non-paye");
+	Vector<AbstractOrmEntity> types = Orm.select(searchEntity);
 
-	for (AbstractOrmEntity type : types)
-	{
-	    if (!type.getDataString("name").equals("Non-paye"))
-		types.remove(type);
-	}
-
-	Vector<AbstractOrmEntity> accounts = Orm.select(account);
+	EntityList accounts = (EntityList) account.getList();
 	for (AbstractOrmEntity ent : accounts)
-
 	    if (ent.getData("stateTypeID").equals(
 		    types.get(0).getPrimaryKeyValue()))
-
 		list.addEntity(ent);
+
+	list.setCurrentModule(getOwnedByModul());
+	list.setTitle("Liste des comptes non-payés");
 
 	return list;
     }
