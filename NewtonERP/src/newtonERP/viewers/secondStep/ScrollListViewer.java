@@ -17,7 +17,7 @@ public class ScrollListViewer
     {
 	String html = "";
 
-	html += "<div class=\"scrollableDivPair\"><div>";
+	html += "<div class=\"scrollableDivPair\"><div><ul>";
 
 	if (entity.getTitleUrl() != null)
 	    html += "<a href=\"" + entity.getTitleUrl() + "\">";
@@ -29,15 +29,16 @@ public class ScrollListViewer
 	    html += "</a>";
 
 	for (String linkName : entity.getLinkList().keySet())
-	    html += "<a href=\"" + entity.getLinkList().get(linkName) + "\">"
-		    + linkName + "</a><br />";
+	    html += "<li><a href=\"" + entity.getLinkList().get(linkName)
+		    + "\">" + linkName + "</a></li>";
 
 	for (NaturalMap<String, String> linkPair : entity.getLinkGroupList())
 	{
 	    int counter = 0;
 	    String styleModifier;
+	    html +="<li>";
 	    for (String linkName : linkPair.getKeyList())
-	    {
+	    {		
 		if (counter > 0)
 		    styleModifier = " class=\"linkPairTarget\"";
 		else
@@ -46,14 +47,15 @@ public class ScrollListViewer
 			+ styleModifier + ">" + linkName + "</a>";
 
 		if (counter == linkPair.size() - 1)
-		    html += "<br>";
+		    html += "</li>";
 		else
 		    html += " : ";
 		counter++;
 	    }
+	    html +="</li>";
 	}
 
-	html += "</div></div>";
+	html += "</ul></div></div>";
 
 	return html;
     }
