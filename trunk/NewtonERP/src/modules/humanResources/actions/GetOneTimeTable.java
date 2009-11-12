@@ -78,13 +78,15 @@ public class GetOneTimeTable extends AbstractAction
 	for (int i = 0; i < leftHeader.length; i++)
 	{
 	    date.set(Calendar.HOUR_OF_DAY, i);
-	    leftHeader[i] = new GridCaseData(timeFormatter.format(date.getTime()));
+	    leftHeader[i] = new GridCaseData(timeFormatter.format(date
+		    .getTime()));
 	}
 
 	// remplie les data et le header du haut
 	for (int i = 0; i < 10; i++) // passe chacun des jour
 	{
-	    header[i] = new GridCaseData(weekDayFormatter.format(date.getTime())
+	    header[i] = new GridCaseData(weekDayFormatter
+		    .format(date.getTime())
 		    + " " + dateFormatter.format(date.getTime()));
 
 	    for (int j = 0; j < leftHeader.length; j++)
@@ -136,12 +138,12 @@ public class GetOneTimeTable extends AbstractAction
 	date = (GregorianCalendar) StartDate.clone();
 	date.add(Calendar.DAY_OF_YEAR, -7);
 	parameters.put("startDate", dateFormatter.format(date.getTime()));
-	tt.addGlobalActions(new ActionLink("Précédent", this, parameters));
+	tt.addGlobalActions(new ActionLink("< Précédent", this, parameters));
 	// lien suivant
 	date = (GregorianCalendar) StartDate.clone();
 	date.add(Calendar.DAY_OF_YEAR, 7);
 	parameters.put("startDate", dateFormatter.format(date.getTime()));
-	tt.addGlobalActions(new ActionLink("suivant", this, parameters));
+	tt.addGlobalActions(new ActionLink("Suivant >", this, parameters));
 
 	return tt;
     }
