@@ -107,7 +107,8 @@ public class GridViewer
 
 		    caseContent = getCase(data[i][j]);
 
-		    html += "<td" + rowspan + " style=\"background-color:"
+		    html += "<td class=\"gridCell\"" + rowspan
+			    + " style=\"background-color:"
 			    + ColorViewer.getColor(caseContent)
 			    + ";text-align:center\">" + caseContent + "</td>";
 		}
