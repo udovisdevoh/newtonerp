@@ -32,6 +32,7 @@ public class Shipping extends AbstractOrmEntity implements PromptViewable
 	AccessorManager.addAccessor(this, new Invoice());
 	AccessorManager.addAccessor(this, new Shipper());
 	AccessorManager.addAccessor(this, new Location());
+	addLongText("shippingComment");
     }
 
     @Override
