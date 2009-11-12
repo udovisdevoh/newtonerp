@@ -4,7 +4,7 @@ import java.util.Hashtable;
 import java.util.Vector;
 
 import modules.userRightModule.entityDefinitions.Right;
-import newtonERP.ListModule;
+import newtonERP.common.ListModule;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.Module;

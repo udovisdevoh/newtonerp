@@ -8,9 +8,9 @@ import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.Module;
 import newtonERP.module.exception.FieldNotFoundException;
-import newtonERP.module.field.Field;
-import newtonERP.module.field.FieldString;
-import newtonERP.module.field.VolatileFields;
+import newtonERP.orm.field.Field;
+import newtonERP.orm.field.FieldString;
+import newtonERP.orm.field.VolatileFields;
 import newtonERP.viewers.viewables.PromptViewable;
 
 /**

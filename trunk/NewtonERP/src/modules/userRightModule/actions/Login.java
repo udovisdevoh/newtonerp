@@ -5,7 +5,7 @@ import java.util.Vector;
 
 import modules.userRightModule.UserRightModule;
 import modules.userRightModule.entityDefinitions.User;
-import newtonERP.Authentication;
+import newtonERP.common.Authentication;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;

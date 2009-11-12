@@ -1,4 +1,4 @@
-package newtonERP.module.field;
+package newtonERP.orm.field;
 
 import newtonERP.module.exception.FieldNotCompatibleException;
 import newtonERP.module.exception.InvalidOperatorException;

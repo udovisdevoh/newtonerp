@@ -7,9 +7,9 @@ import java.util.Vector;
 
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
-import newtonERP.module.field.Field;
 import newtonERP.orm.exceptions.OrmEntityCreationException;
 import newtonERP.orm.exceptions.OrmException;
+import newtonERP.orm.field.Field;
 
 /**
  * Class used to create the entities in the select statement of the orm because

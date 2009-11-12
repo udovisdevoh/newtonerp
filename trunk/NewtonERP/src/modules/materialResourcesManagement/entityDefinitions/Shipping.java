@@ -4,12 +4,12 @@ import java.util.Vector;
 
 import modules.customerVendor.entityDefinitions.Invoice;
 import newtonERP.module.AbstractOrmEntity;
-import newtonERP.module.field.Field;
-import newtonERP.module.field.FieldDate;
-import newtonERP.module.field.FieldInt;
-import newtonERP.module.field.FieldString;
-import newtonERP.module.field.Fields;
 import newtonERP.orm.associations.AccessorManager;
+import newtonERP.orm.field.Field;
+import newtonERP.orm.field.FieldDate;
+import newtonERP.orm.field.FieldInt;
+import newtonERP.orm.field.FieldString;
+import newtonERP.orm.field.Fields;
 import newtonERP.viewers.viewables.PromptViewable;
 
 /**

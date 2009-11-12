@@ -5,7 +5,7 @@ package unitTest;
 
 import junit.framework.TestCase;
 import modules.testModule.TestModule;
-import newtonERP.ListModule;
+import newtonERP.common.ListModule;
 
 /**
  * @author djo
@@ -35,7 +35,7 @@ public class ListModuleTest extends TestCase
     }
 
     /**
-     * Test method for {@link newtonERP.ListModule#addModule(java.lang.String)}.
+     * Test method for {@link newtonERP.common.ListModule#addModule(java.lang.String)}.
      */
     public void testAddModule()
     {
@@ -45,7 +45,7 @@ public class ListModuleTest extends TestCase
 
     /**
      * Test method for
-     * {@link newtonERP.ListModule#removeModule(java.lang.String)}.
+     * {@link newtonERP.common.ListModule#removeModule(java.lang.String)}.
      */
     public void testRemoveModule()
     {
@@ -55,7 +55,7 @@ public class ListModuleTest extends TestCase
     }
 
     /**
-     * Test method for {@link newtonERP.ListModule#getAllModules()}.
+     * Test method for {@link newtonERP.common.ListModule#getAllModules()}.
      */
     public void testGetAllModules()
     {
@@ -63,7 +63,7 @@ public class ListModuleTest extends TestCase
     }
 
     /**
-     * Test method for {@link newtonERP.ListModule#getModule(java.lang.String)}.
+     * Test method for {@link newtonERP.common.ListModule#getModule(java.lang.String)}.
      */
     public void testGetModule()
     {
@@ -80,7 +80,7 @@ public class ListModuleTest extends TestCase
     }
 
     /**
-     * Test method for {@link newtonERP.ListModule#initAllModule()}.
+     * Test method for {@link newtonERP.common.ListModule#initAllModule()}.
      */
     public void testInitAllModule()
     {

@@ -3,6 +3,7 @@ package newtonERP;
 import java.net.BindException;
 
 import modules.userRightModule.actions.CreateAllRight;
+import newtonERP.common.ListModule;
 import newtonERP.logging.Logger;
 import newtonERP.orm.Orm;
 import newtonERP.orm.exceptions.OrmException;

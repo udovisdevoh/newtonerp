@@ -2,7 +2,7 @@ package modules.userRightModule.actions;
 
 import java.util.Hashtable;
 
-import newtonERP.Authentication;
+import newtonERP.common.Authentication;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.generalEntity.StaticTextEntity;
