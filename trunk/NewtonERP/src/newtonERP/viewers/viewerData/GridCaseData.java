@@ -1,4 +1,4 @@
-package modules.humanResources.entityDefinitions;
+package newtonERP.viewers.viewerData;
 
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
@@ -8,12 +8,10 @@ import newtonERP.module.AbstractEntity;
  * @author CloutierJo
  * 
  */
-public class CaseTable extends AbstractEntity
+public class GridCaseData extends AbstractEntity
 {
     String value;
     AbstractAction actionLink;
-    // todo: a ameliore, il faudrait un structure qui contienne
-    // action, module, param de maniere simple
     String param;
 
     /**
@@ -22,7 +20,7 @@ public class CaseTable extends AbstractEntity
      * @param param parametre d'URL
      * @throws Exception remonte (n'importe quoi...)
      */
-    public CaseTable(String value, AbstractAction actionLink, String param)
+    public GridCaseData(String value, AbstractAction actionLink, String param)
 	    throws Exception
     {
 	this.value = value;
@@ -35,7 +33,8 @@ public class CaseTable extends AbstractEntity
      * @param actionLink action a effectuer lorsque clique (null par defaut)
      * @throws Exception remonte
      */
-    public CaseTable(String value, AbstractAction actionLink) throws Exception
+    public GridCaseData(String value, AbstractAction actionLink)
+	    throws Exception
     {
 	this(value, actionLink, "");
     }
@@ -44,7 +43,7 @@ public class CaseTable extends AbstractEntity
      * @param value valeur a affiche dans cette case
      * @throws Exception remonte
      */
-    public CaseTable(String value) throws Exception
+    public GridCaseData(String value) throws Exception
     {
 	this(value, null);
     }
@@ -53,7 +52,7 @@ public class CaseTable extends AbstractEntity
      * constructeur vide
      * @throws Exception remonte
      */
-    public CaseTable() throws Exception
+    public GridCaseData() throws Exception
     {
 	this("");
     }
@@ -118,9 +117,9 @@ public class CaseTable extends AbstractEntity
 	    return true;
 	if (!super.equals(obj))
 	    return false;
-	if (!(obj instanceof CaseTable))
+	if (!(obj instanceof GridCaseData))
 	    return false;
-	CaseTable other = (CaseTable) obj;
+	GridCaseData other = (GridCaseData) obj;
 	if (actionLink == null)
 	{
 	    if (other.actionLink != null)

@@ -2,18 +2,18 @@ package newtonERP.viewers.firstStep;
 
 import java.util.Vector;
 
-import modules.humanResources.entityDefinitions.CaseTable;
-import modules.humanResources.entityDefinitions.TimeTable;
 import newtonERP.common.ActionLink;
 import newtonERP.serveur.Servlet;
 import newtonERP.viewers.ViewerException;
 import newtonERP.viewers.secondStep.ButtonLinkViewer;
+import newtonERP.viewers.viewerData.GridCaseData;
+import newtonERP.viewers.viewerData.GridViewerData;
 
 /**
  * Represents the list viewer for listing data
  * @author Guillaume Lacasse, Pascal Lemay
  */
-public class TimeTableViewer
+public class GridViewer
 {
     /**
      * Creates the html code for the web page
@@ -23,7 +23,7 @@ public class TimeTableViewer
      * @throws ViewerException an exception that can occur in the viewer
      * @throws Exception general exception
      */
-    public static String getHtmlCode(TimeTable ttEntity)
+    public static String getHtmlCode(GridViewerData ttEntity)
 	    throws ViewerException, Exception
     {
 	String html = "";
@@ -61,7 +61,7 @@ public class TimeTableViewer
 	return html;
     }
 
-    private static String getTableHeader(CaseTable[] headerCase)
+    private static String getTableHeader(GridCaseData[] headerCase)
 	    throws Exception
     {
 
@@ -71,15 +71,15 @@ public class TimeTableViewer
 
 	html += "\n<tr>";
 	html += "<th></th>";
-	for (CaseTable hCase : headerCase)
+	for (GridCaseData hCase : headerCase)
 	    html += "<th" + isHeader + ">" + getCase(hCase) + "</th>";
 
 	html += "</tr>";
 	return html;
     }
 
-    private static String getDataRowList(CaseTable[][] data,
-	    CaseTable[] leftHeader) throws Exception
+    private static String getDataRowList(GridCaseData[][] data,
+	    GridCaseData[] leftHeader) throws Exception
     {
 
 	String html = "";
@@ -113,7 +113,7 @@ public class TimeTableViewer
 	return html;
     }
 
-    private static String getCase(CaseTable dtCase) throws Exception
+    private static String getCase(GridCaseData dtCase) throws Exception
     {
 	String html = "";
 	if (dtCase != null)

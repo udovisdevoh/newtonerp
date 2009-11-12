@@ -9,16 +9,16 @@ import java.util.GregorianCalendar;
 import java.util.Hashtable;
 import java.util.Vector;
 
-import modules.humanResources.entityDefinitions.CaseTable;
 import modules.humanResources.entityDefinitions.PeriodeType;
 import modules.humanResources.entityDefinitions.Schedule;
-import modules.humanResources.entityDefinitions.TimeTable;
 import newtonERP.common.ActionLink;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.BaseAction;
 import newtonERP.orm.field.FieldDateTime;
+import newtonERP.viewers.viewerData.GridCaseData;
+import newtonERP.viewers.viewerData.GridViewerData;
 
 /**
  * @author CloutierJo
@@ -57,9 +57,9 @@ public class GetOneTimeTable extends AbstractAction
 	// todo comment on fais un select sans where :S...
 	GregorianCalendar date;
 	GregorianCalendar StartDate;
-	CaseTable[] header = new CaseTable[10];
-	CaseTable[] leftHeader = new CaseTable[24];
-	CaseTable[][] cases = new CaseTable[24][10];
+	GridCaseData[] header = new GridCaseData[10];
+	GridCaseData[] leftHeader = new GridCaseData[24];
+	GridCaseData[][] cases = new GridCaseData[24][10];
 
 	if (parameters.containsKey("startDate"))
 	    date = FieldDateTime.getFormatedDate(parameters.get("startDate"),
@@ -78,13 +78,13 @@ public class GetOneTimeTable extends AbstractAction
 	for (int i = 0; i < leftHeader.length; i++)
 	{
 	    date.set(Calendar.HOUR_OF_DAY, i);
-	    leftHeader[i] = new CaseTable(timeFormatter.format(date.getTime()));
+	    leftHeader[i] = new GridCaseData(timeFormatter.format(date.getTime()));
 	}
 
 	// remplie les data et le header du haut
 	for (int i = 0; i < 10; i++) // passe chacun des jour
 	{
-	    header[i] = new CaseTable(weekDayFormatter.format(date.getTime())
+	    header[i] = new GridCaseData(weekDayFormatter.format(date.getTime())
 		    + " " + dateFormatter.format(date.getTime()));
 
 	    for (int j = 0; j < leftHeader.length; j++)
@@ -94,7 +94,7 @@ public class GetOneTimeTable extends AbstractAction
 		String strParam = "timeStart="
 			+ dateTimeFormatter.format(date.getTime());
 
-		cases[j][i] = new CaseTable(strData, new BaseAction("New",
+		cases[j][i] = new GridCaseData(strData, new BaseAction("New",
 			new Schedule()), strParam);
 
 	    }
@@ -117,7 +117,7 @@ public class GetOneTimeTable extends AbstractAction
 			String strParam = schedul.getPrimaryKeyName() + "="
 				+ schedul.getPrimaryKeyValue();
 
-			cases[date.get(Calendar.HOUR_OF_DAY)][i] = new CaseTable(
+			cases[date.get(Calendar.HOUR_OF_DAY)][i] = new GridCaseData(
 				strData,
 				new BaseAction("Edit", new Schedule()),
 				strParam);
@@ -126,8 +126,8 @@ public class GetOneTimeTable extends AbstractAction
 	    }
 	    date.add(Calendar.DAY_OF_YEAR, 1);
 	}
-	// creation du TimeTable entity
-	TimeTable tt = new TimeTable();
+	// creation du GridViewerData entity
+	GridViewerData tt = new GridViewerData();
 	tt.setCases(cases);
 	tt.setHeader(header);
 	tt.setLeftHeader(leftHeader);
