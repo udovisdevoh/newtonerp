@@ -1,4 +1,4 @@
-package newtonERP.viewers;
+package newtonERP.viewers.firstStep;
 
 /**
  * Represents a errorPage for our ERP

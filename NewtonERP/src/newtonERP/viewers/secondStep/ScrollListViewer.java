@@ -1,4 +1,4 @@
-package newtonERP.viewers;
+package newtonERP.viewers.secondStep;
 
 import newtonERP.common.NaturalMap;
 import newtonERP.viewers.viewables.ScrollListViewable;

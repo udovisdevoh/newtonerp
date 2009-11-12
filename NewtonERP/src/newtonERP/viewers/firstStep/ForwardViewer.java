@@ -1,4 +1,4 @@
-package newtonERP.viewers;
+package newtonERP.viewers.firstStep;
 
 import newtonERP.viewers.viewables.ForwardViewable;
 
