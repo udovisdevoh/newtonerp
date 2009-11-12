@@ -92,6 +92,7 @@ public class MaterialResourcesManagement extends Module
 	product.setData("reorderPoint", 500);
 	product.setData("reservedStock", 200);
 	product.setData("purchasingPrice", 12.99);
+	product.setData("maxInStock", 4346);
 	product.setData("sellingPrice", 24.69);
 	product.newE();
 
@@ -102,6 +103,7 @@ public class MaterialResourcesManagement extends Module
 	product1.setData("reorderPoint", 8000);
 	product1.setData("reservedStock", 59);
 	product1.setData("purchasingPrice", 2.99);
+	product1.setData("maxInStock", 3246);
 	product1.setData("sellingPrice", 3.99);
 	product1.newE();
 
@@ -112,16 +114,18 @@ public class MaterialResourcesManagement extends Module
 	product2.setData("reorderPoint", 0);
 	product2.setData("reservedStock", 0);
 	product2.setData("purchasingPrice", 10.99);
+	product2.setData("maxInStock", 1346);
 	product2.setData("sellingPrice", 12.99);
 	product2.newE();
 
 	Product product3 = new Product();
 	product3.setData("code", "A987C");
-	product3.setData("name", "Écran LCD 17");
+	product3.setData("name", "Ecran LCD 17");
 	product3.setData("quantityInStock", 50);
 	product3.setData("reorderPoint", 20);
 	product3.setData("reservedStock", 2);
 	product3.setData("purchasingPrice", 109.99);
+	product3.setData("maxInStock", 6632);
 	product3.setData("sellingPrice", 129.99);
 	product3.newE();
 
