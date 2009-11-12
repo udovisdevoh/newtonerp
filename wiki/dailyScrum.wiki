@@ -675,8 +675,10 @@ par exemple, si on delete un Group, alors les GroupRight WHERE GroupID = ce grou
   * action reorder products
   * action update product quantities
   * ajout des entités invoiceTaxLine et tax
+  * Début du module production (Machines, etc pour la ligne de production)
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
-  * ...à livrer...
+  * méthode searchUnique pour l'orm pour dans les cas ou on envoie une recherche et que on sait explicitement que ca retournera un seul résultat.
+  * Continuer le module de production
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
   * ...problème, besoin d'aide, qui aidera...
 
