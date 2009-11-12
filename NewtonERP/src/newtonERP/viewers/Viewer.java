@@ -3,7 +3,6 @@ package newtonERP.viewers;
 import java.util.Hashtable;
 import java.util.Iterator;
 
-import modules.humanResources.entityDefinitions.TimeTable;
 import newtonERP.common.Authentication;
 import newtonERP.common.ListModule;
 import newtonERP.module.AbstractEntity;
@@ -15,12 +14,13 @@ import newtonERP.viewers.firstStep.ForwardViewer;
 import newtonERP.viewers.firstStep.ListViewer;
 import newtonERP.viewers.firstStep.PromptViewer;
 import newtonERP.viewers.firstStep.StaticTextViewer;
-import newtonERP.viewers.firstStep.TimeTableViewer;
+import newtonERP.viewers.firstStep.GridViewer;
 import newtonERP.viewers.viewables.AlertViewable;
 import newtonERP.viewers.viewables.ForwardViewable;
 import newtonERP.viewers.viewables.ListViewable;
 import newtonERP.viewers.viewables.PromptViewable;
 import newtonERP.viewers.viewables.StaticTextViewable;
+import newtonERP.viewers.viewerData.GridViewerData;
 
 /**
  * Represents the main viewer for our ERP
@@ -55,8 +55,8 @@ public abstract class Viewer
 	else if (entity instanceof StaticTextViewable)
 	    viewerHtml = StaticTextViewer
 		    .getHtmlCode((StaticTextViewable) entity);
-	else if (entity instanceof TimeTable)
-	    viewerHtml = TimeTableViewer.getHtmlCode((TimeTable) entity);
+	else if (entity instanceof GridViewerData)
+	    viewerHtml = GridViewer.getHtmlCode((GridViewerData) entity);
 	else if (entity == null)
 	    viewerHtml = "<!-- page vide -->";
 	else
