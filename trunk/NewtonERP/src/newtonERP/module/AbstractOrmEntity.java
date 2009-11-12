@@ -683,4 +683,41 @@ public abstract class AbstractOrmEntity extends AbstractEntity
     {
 	return PluralAccessorManager.getPluralAccessor(this, accessorName);
     }
+
+    /**
+     * @param accessorName nom de l'accesseur
+     * @param searchCriteriaEntity entité de recherche pour accesseur multiple
+     *            critérié
+     * @return accesseur multiple critérié
+     * @throws Exception si obtention fail
+     */
+    public Vector<AbstractOrmEntity> getPluralAccessor(String accessorName,
+	    AbstractOrmEntity searchCriteriaEntity) throws Exception
+    {
+	Vector<AbstractOrmEntity> uncleanedList = getPluralAccessor(accessorName);
+	Vector<AbstractOrmEntity> cleanList = new Vector<AbstractOrmEntity>();
+
+	for (AbstractOrmEntity entityFromList : uncleanedList)
+	    if (entityFromList.matchesCriteriasFrom(searchCriteriaEntity))
+		cleanList.add(entityFromList);
+
+	return cleanList;
+    }
+
+    private boolean matchesCriteriasFrom(AbstractOrmEntity searchCriteriaEntity)
+    {
+	String fieldValue, fieldValueToMatch;
+	for (Field field : searchCriteriaEntity.getFields())
+	{
+	    fieldValue = getDataString(field.getShortName());
+	    fieldValueToMatch = field.getDataString();
+
+	    if (fieldValueToMatch != null && !fieldValueToMatch.equals("null")
+		    && !fieldValueToMatch.equals(fieldValue))
+	    {
+		return false;
+	    }
+	}
+	return true;
+    }
 }

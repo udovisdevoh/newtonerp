@@ -30,19 +30,18 @@ public class RightCheck extends AbstractAction
 
 	User user = (User) userList.get(0);
 
-	for (Right right : user.getGroupsEntity().getRightList())
-	{
-	    String moduleName = right.getDataString("moduleName");
-	    String actionName = right.getDataString("actionName");
-	    String entityName = right.getDataString("entityName");
+	Right searchEntity = new Right();
+	searchEntity.setData("moduleName", parameters.get("module"));
+	searchEntity.setData("actionName", parameters.get("action"));
+	if (parameters.get("entity") != null)
+	    searchEntity.setData("entityName", parameters.get("entity"));
 
-	    if (moduleName.equals(parameters.get("module"))
-		    && actionName.equals(parameters.get("action"))
-		    && (entityName == null || entityName.equals(parameters
-			    .get("entity"))))
-		return right;
-	}
-	return null;
+	Vector<AbstractOrmEntity> rightList = user.getGroupsEntity()
+		.getPluralAccessor("Right", searchEntity);
 
+	if (rightList.size() > 0)
+	    return rightList.get(0);
+	else
+	    return null;
     }
 }
