@@ -6,6 +6,7 @@ import newtonERP.common.ActionLink;
 import newtonERP.serveur.Servlet;
 import newtonERP.viewers.ViewerException;
 import newtonERP.viewers.secondStep.ButtonLinkViewer;
+import newtonERP.viewers.secondStep.ColorViewer;
 import newtonERP.viewers.viewerData.GridCaseData;
 import newtonERP.viewers.viewerData.GridViewerData;
 
@@ -81,6 +82,7 @@ public class GridViewer
     private static String getDataRowList(GridCaseData[][] data,
 	    GridCaseData[] leftHeader) throws Exception
     {
+	String caseContent;
 
 	String html = "";
 
@@ -103,8 +105,11 @@ public class GridViewer
 		    if (k - i > 1)
 			rowspan = " rowspan='" + (k - i) + "'";
 
-		    html += "<td" + rowspan + ">" + getCase(data[i][j])
-			    + "</td>";
+		    caseContent = getCase(data[i][j]);
+
+		    html += "<td" + rowspan + " style=\"background-color:"
+			    + ColorViewer.getColor(caseContent)
+			    + ";text-align:center\">" + caseContent + "</td>";
 		}
 	    }
 	    html += "</tr>";
