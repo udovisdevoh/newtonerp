@@ -94,6 +94,10 @@ public class ListOfValue implements SelectBoxViewable
 	return sourceEntity;
     }
 
+    /**
+     * @param other autre list of value
+     * @return si les list of value sont pareilles
+     */
     public boolean equals(ListOfValue other)
     {
 	if (getForeignEntityDefinition().getClass().getSimpleName().equals(
