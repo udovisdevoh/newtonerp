@@ -10,11 +10,11 @@ import newtonERP.orm.field.Fields;
 import newtonERP.viewers.viewables.PromptViewable;
 
 /**
- * A longitude coordinate of a location
+ * A latitude coordinate of a location
  * 
  * @author r3hallejo
  */
-public class Longitude extends AbstractOrmEntity implements PromptViewable
+public class LocationLatitude extends AbstractOrmEntity implements PromptViewable
 {
 
     /**
@@ -22,7 +22,7 @@ public class Longitude extends AbstractOrmEntity implements PromptViewable
      * 
      * @throws Exception a general exception
      */
-    public Longitude() throws Exception
+    public LocationLatitude() throws Exception
     {
 	super();
 	addNaturalKey("degrees");
@@ -40,5 +40,4 @@ public class Longitude extends AbstractOrmEntity implements PromptViewable
 	fieldsInit.add(new FieldDouble("Secondes", "seconds"));
 	return new Fields(fieldsInit);
     }
-
 }

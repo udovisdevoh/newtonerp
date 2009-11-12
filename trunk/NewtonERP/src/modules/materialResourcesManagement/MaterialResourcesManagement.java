@@ -3,10 +3,10 @@ package modules.materialResourcesManagement;
 import java.util.GregorianCalendar;
 
 import modules.customerVendor.entityDefinitions.Invoice;
-import modules.materialResourcesManagement.entityDefinitions.Latitude;
+import modules.materialResourcesManagement.entityDefinitions.LocationLatitude;
 import modules.materialResourcesManagement.entityDefinitions.Location;
 import modules.materialResourcesManagement.entityDefinitions.LocationStatus;
-import modules.materialResourcesManagement.entityDefinitions.Longitude;
+import modules.materialResourcesManagement.entityDefinitions.LocationLongitude;
 import modules.materialResourcesManagement.entityDefinitions.Product;
 import modules.materialResourcesManagement.entityDefinitions.Shipper;
 import modules.materialResourcesManagement.entityDefinitions.Shipping;
@@ -47,9 +47,9 @@ public class MaterialResourcesManagement extends Module
 	addGlobalActionMenuItem("Type de locations", new BaseAction("GetList",
 		new LocationStatus()));
 	addGlobalActionMenuItem("Latitudes", new BaseAction("GetList",
-		new Latitude()));
+		new LocationLatitude()));
 	addGlobalActionMenuItem("Longitudes", new BaseAction("GetList",
-		new Longitude()));
+		new LocationLongitude()));
 	setVisibleName("Ressources matérielles");
     }
 
@@ -157,47 +157,47 @@ public class MaterialResourcesManagement extends Module
 	locStatus2.newE();
 
 	// Cegep du Vieux-Montréal
-	Latitude lat = new Latitude();
+	LocationLatitude lat = new LocationLatitude();
 	lat.setData("degrees", 45);
 	lat.setData("minutes", 30);
 	lat.setData("seconds", 51.13);
 	lat.newE();
 
-	Longitude longitude = new Longitude();
+	LocationLongitude longitude = new LocationLongitude();
 	longitude.setData("degrees", 73);
 	longitude.setData("minutes", 33);
 	longitude.setData("seconds", 57.07);
 	longitude.newE();
 
 	// Université Sherbrooke
-	Latitude lat1 = new Latitude();
+	LocationLatitude lat1 = new LocationLatitude();
 	lat1.setData("degrees", 45);
 	lat1.setData("minutes", 22);
 	lat1.setData("seconds", 50.62);
 	lat1.newE();
 
-	Longitude longitude1 = new Longitude();
+	LocationLongitude longitude1 = new LocationLongitude();
 	longitude1.setData("degrees", 71);
 	longitude1.setData("minutes", 55);
 	longitude1.setData("seconds", 50.09);
 	longitude1.newE();
 
 	// Université Laval
-	Latitude lat2 = new Latitude();
+	LocationLatitude lat2 = new LocationLatitude();
 	lat2.setData("degrees", 46);
 	lat2.setData("minutes", 46);
 	lat2.setData("seconds", 48.21);
 	lat2.newE();
 
-	Longitude longitude2 = new Longitude();
+	LocationLongitude longitude2 = new LocationLongitude();
 	longitude2.setData("degrees", 71);
 	longitude2.setData("minutes", 16);
 	longitude2.setData("seconds", 27.76);
 	longitude2.newE();
 
 	Location location = new Location();
-	location.setData(new Latitude().getForeignKeyName(), 1);
-	location.setData(new Longitude().getForeignKeyName(), 1);
+	location.setData(new LocationLatitude().getForeignKeyName(), 1);
+	location.setData(new LocationLongitude().getForeignKeyName(), 1);
 	location.setData(new LocationStatus().getForeignKeyName(), 1);
 	location.newE();
 
