@@ -26,7 +26,7 @@ public class DisplayUnpaidServices extends AbstractAction
      */
     public DisplayUnpaidServices() throws Exception
     {
-	super(null);//
+	super(null);
     }
 
     public AbstractEntity doAction(AbstractEntity entity,
@@ -35,6 +35,20 @@ public class DisplayUnpaidServices extends AbstractAction
 	ServiceProviderAccount account = new ServiceProviderAccount();
 	EntityList list = new EntityList(account);
 
+	/*
+	 * Another way of getting all the state types if the getPluralAccessor
+	 * does not work for a reason we don't understand.
+	 * 
+	 * The way would be to do. Warning -> Following lines has not been
+	 * tested. I'm only telling another way of doing it
+	 * 
+	 * Vector<AbstractOrmEntity> types =
+	 * Orm.executeCustomQuery("SELECT * FROM StateType");
+	 * 
+	 * And this would return all the StateType contained in the database
+	 * 
+	 * Added by Kovalev on November 11 @ 19h17
+	 */
 	Vector<AbstractOrmEntity> types = account
 		.getPluralAccessor("StateType");
 

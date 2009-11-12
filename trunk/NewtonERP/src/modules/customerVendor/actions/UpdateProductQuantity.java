@@ -44,8 +44,6 @@ public class UpdateProductQuantity extends AbstractAction
 		(Integer) productInvoiceLine.getData("quantityInStock")
 			- (Integer) actionInvoiceLine.getData("quantity"));
 
-	// TODO : Check if we have to reorder products? Or it will be done by
-	// tasks?
 	Orm.update(productInvoiceLine, null);
 
 	return null;
