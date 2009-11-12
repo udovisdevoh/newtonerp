@@ -149,7 +149,7 @@ public class EntityList extends AbstractEntity implements ListViewable,
 			    dataString = "";
 
 			if (dataString.length() > 64)
-			    dataString = dataString.substring(0, 64) + "...";
+			    dataString = dataString.substring(0, 64) + "[...]";
 
 			entityInfo.put(shortName, dataString);
 		    }

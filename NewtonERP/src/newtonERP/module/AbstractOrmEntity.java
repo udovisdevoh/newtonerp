@@ -16,7 +16,7 @@ import newtonERP.orm.associations.FlagPoolManager;
 import newtonERP.orm.associations.PluralAccessorManager;
 import newtonERP.orm.exceptions.OrmException;
 import newtonERP.serveur.Servlet;
-import newtonERP.viewers.MoneyViewer;
+import newtonERP.viewers.secondStep.MoneyViewer;
 
 /**
  * @author cloutierJo
