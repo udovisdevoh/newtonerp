@@ -19,7 +19,6 @@ import newtonERP.module.field.FieldDouble;
 import newtonERP.module.field.FieldInt;
 import newtonERP.module.field.FieldString;
 import newtonERP.module.field.Fields;
-import newtonERP.orm.cache.DataCache;
 import newtonERP.orm.exceptions.OrmException;
 import newtonERP.orm.sgbd.SgbdSqlite;
 import newtonERP.orm.sgbd.Sgbdable;
@@ -74,23 +73,9 @@ public class Orm
 	// TODO: Remove the next line when it will be properly debugged
 	System.out.println("SQL query produced : " + sqlQuery);
 
-	Vector<AbstractOrmEntity> entityListResult = DataCache.tryGetFromCache(
-		searchEntity, sqlQuery);
+	ResultSet rs = sgbd.execute(sqlQuery, OrmActions.SEARCH);
 
-	if (entityListResult == null)
-	{
-	    // Si le résultat n'est pas dans le cache, on va le chercher pour
-	    // vrai
-	    ResultSet rs = sgbd.execute(sqlQuery, OrmActions.SEARCH);
-	    entityListResult = EntityCreator.createEntitiesFromResultSet(rs,
-		    searchEntity);
-	    // On le met en suite dans le cache pour la prochaine fois jusqu'à
-	    // ce que cette table soit modifiée
-	    DataCache.addToCache(searchEntity, sqlQuery, entityListResult);
-	}
-
-	// On retourne le résultat
-	return entityListResult;
+	return EntityCreator.createEntitiesFromResultSet(rs, searchEntity);
     }
 
     /**
@@ -116,22 +101,10 @@ public class Orm
 	// TODO: Remove the next line when it will be properly debugged
 	System.out.println("SQL query produced : " + sqlQuery);
 
-	Vector<AbstractOrmEntity> entityListResult = DataCache.tryGetFromCache(
-		searchEntities, sqlQuery);
+	ResultSet rs = sgbd.execute(sqlQuery, OrmActions.SEARCH);
 
-	if (entityListResult == null)
-	{
-	    // Si le résultat n'est pas dans le cache, on va le chercher pour
-	    // vrai
-	    ResultSet rs = sgbd.execute(sqlQuery, OrmActions.SEARCH);
-	    entityListResult = EntityCreator.createEntitiesFromResultSet(rs,
-		    searchEntities.get(0));
-	    // On le met en suite dans le cache pour la prochaine fois jusqu'à
-	    // ce que cette table soit modifiée
-	    DataCache.addToCache(searchEntities, sqlQuery, entityListResult);
-	}
-
-	return entityListResult;
+	return EntityCreator.createEntitiesFromResultSet(rs, searchEntities
+		.get(0));
     }
 
     /**
@@ -158,9 +131,6 @@ public class Orm
     @SuppressWarnings("unchecked")
     public static int insert(AbstractOrmEntity newEntity) throws OrmException
     {
-	DataCache.clear(newEntity);// sert à cleaner le cache concernant cette
-	// entité
-
 	String sqlQuery = "INSERT INTO " + prefix
 		+ newEntity.getClass().getSimpleName() + " (";
 	String valuesQuery = " VALUES (";
@@ -243,9 +213,6 @@ public class Orm
     public static void delete(AbstractOrmEntity searchEntity,
 	    Vector<String> searchCriterias) throws OrmException
     {
-	DataCache.clear(searchEntity);// sert à cleaner le cache concernant
-	// cette entité
-
 	String sqlQuery = "DELETE FROM " + prefix
 		+ searchEntity.getClass().getSimpleName();
 
@@ -269,9 +236,6 @@ public class Orm
     public static void delete(Vector<AbstractOrmEntity> searchEntities)
 	    throws OrmException
     {
-	DataCache.clear(searchEntities);// sert à cleaner le cache concernant
-	// ces entité
-
 	String sqlQuery = "DELETE FROM " + prefix
 		+ searchEntities.get(0).getClass().getSimpleName();
 
@@ -294,9 +258,6 @@ public class Orm
     public static void delete(AbstractOrmEntity searchEntity)
 	    throws OrmException
     {
-	DataCache.clear(searchEntity);// sert à cleaner le cache concernant
-	// cette entité
-
 	Vector<AbstractOrmEntity> searchEntities = new Vector<AbstractOrmEntity>();
 	searchEntities.add(searchEntity);
 	delete(searchEntities);
@@ -313,9 +274,6 @@ public class Orm
     public static void update(AbstractOrmEntity entityContainingChanges,
 	    Vector<String> searchCriterias) throws OrmException
     {
-	DataCache.clear(entityContainingChanges);// sert à cleaner le cache
-	// concernant cette entité
-
 	String sqlQuery = "UPDATE " + prefix
 		+ entityContainingChanges.getClass().getSimpleName() + " SET ";
 
@@ -342,11 +300,6 @@ public class Orm
     public static void update(Vector<AbstractOrmEntity> searchEntities,
 	    AbstractOrmEntity entityContainingChanges) throws OrmException
     {
-	// sert à cleaner le cache
-	// concernant ces entités
-	DataCache.clear(searchEntities);
-	DataCache.clear(entityContainingChanges);
-
 	String sqlQuery = "UPDATE " + prefix
 		+ entityContainingChanges.getClass().getSimpleName() + " SET ";
 
@@ -560,8 +513,6 @@ public class Orm
      */
     public static void executeCustomQuery(String sqlQuery) throws OrmException
     {
-	DataCache.clearAll();// Efface le cache concernant tous les entités au
-	// cas où
 	sgbd.execute(sqlQuery, OrmActions.OTHER);
     }
 }
