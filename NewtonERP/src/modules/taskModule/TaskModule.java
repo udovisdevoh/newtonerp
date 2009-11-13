@@ -1,5 +1,6 @@
 package modules.taskModule;
 
+import modules.taskModule.entityDefinitions.Effect;
 import modules.taskModule.entityDefinitions.SearchCriteria;
 import modules.taskModule.entityDefinitions.SearchCriteriaOperator;
 import modules.taskModule.entityDefinitions.SearchEntity;
@@ -21,11 +22,13 @@ public class TaskModule extends Module
     {
 	super();
 	setDefaultAction(new BaseAction("GetList", new Task()));
-	setVisibleName("Automatisation");
+	setVisibleName("Automation");
 	addGlobalActionMenuItem("Tâches", new BaseAction("GetList", new Task()));
 
 	addGlobalActionMenuItem("Spécification", new BaseAction("GetList",
 		new Specification()));
+	addGlobalActionMenuItem("Effet",
+		new BaseAction("GetList", new Effect()));
 	addGlobalActionMenuItem("Entités de recherches", new BaseAction(
 		"GetList", new SearchEntity()));
 	addGlobalActionMenuItem("Critères de recherches", new BaseAction(
