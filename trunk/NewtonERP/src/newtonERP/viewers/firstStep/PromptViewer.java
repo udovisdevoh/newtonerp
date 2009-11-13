@@ -102,11 +102,11 @@ public class PromptViewer
 	}
 
 	html += "<tr><td colspan=\"2\" align=\"center\" class=\"submitButton\"><input class=\"submitButton\" type=\"submit\" name=\"submit\" value=\""
-		+ entity.getButtonCaption() + "\"></td></tr>";
-	html += "</table>";
-
+		+ entity.getButtonCaption() + "\">";
 	if (entity instanceof AbstractOrmEntity)
-	    html += getPrintButton();
+	    html += " " + getPrintButton();
+	html += "</td></tr>";
+	html += "</table>";
 
 	html += "</form>";
 

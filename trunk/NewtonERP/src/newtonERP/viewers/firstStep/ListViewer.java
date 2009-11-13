@@ -52,8 +52,6 @@ public class ListViewer
 	html += getGlobalButtonList(listEntity.getGlobalActionButtonList(),
 		listEntity.getCurrentModule(), listEntity);
 
-	html += getPrintButton();
-
 	return html;
     }
 
@@ -69,8 +67,10 @@ public class ListViewer
 	String html = "";
 	AbstractAction action;
 	String actionName;
+	html += "<table><tr>";
 	for (String buttonCaption : globalActionButtonList.keySet())
 	{
+	    html += "<td>";
 	    action = globalActionButtonList.get(buttonCaption);
 
 	    if (action instanceof BaseAction)
@@ -81,7 +81,12 @@ public class ListViewer
 	    html += getButton(buttonCaption, null, null, action, module, entity
 		    .getButtonConfirmList().contains(actionName), entity
 		    .getVisibleInternalElementName());
+	    html += "</td>";
 	}
+	html += "<td>" + getPrintButton() + "</td>";
+
+	html += "</tr></table>";
+
 	return html;
     }
 

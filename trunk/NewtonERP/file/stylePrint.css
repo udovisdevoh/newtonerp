@@ -97,6 +97,7 @@ table td
 select
 {
 	border: none;
+	background-color:#FFF;
 }
 
 .backLink
