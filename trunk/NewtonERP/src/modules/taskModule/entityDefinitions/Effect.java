@@ -11,8 +11,16 @@ import newtonERP.orm.field.FieldText;
 import newtonERP.orm.field.Fields;
 import newtonERP.viewers.viewables.PromptViewable;
 
+/**
+ * Représente l'effet d'une task son action son entité de recherche ses
+ * paramètres custom
+ * @author Guillaume Lacasse
+ */
 public class Effect extends AbstractOrmEntity implements PromptViewable
 {
+    /**
+     * @throws Exception si création fail
+     */
     public Effect() throws Exception
     {
 	super();
@@ -34,5 +42,4 @@ public class Effect extends AbstractOrmEntity implements PromptViewable
 		"actionSystemName"));
 	return new Fields(fieldList);
     }
-
 }

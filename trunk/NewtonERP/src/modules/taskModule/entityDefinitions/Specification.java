@@ -10,9 +10,15 @@ import newtonERP.orm.field.FieldText;
 import newtonERP.orm.field.Fields;
 import newtonERP.viewers.viewables.PromptViewable;
 
+/**
+ * Spécification d'une tâche
+ * @author Guillaume Lacasse
+ */
 public class Specification extends AbstractOrmEntity implements PromptViewable
 {
-
+    /**
+     * @throws Exception si création fail
+     */
     public Specification() throws Exception
     {
 	super();
