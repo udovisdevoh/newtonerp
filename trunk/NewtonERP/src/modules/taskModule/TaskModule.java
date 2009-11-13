@@ -1,10 +1,9 @@
 package modules.taskModule;
 
-import modules.taskModule.entityDefinitions.SpecificationEntity;
-import modules.taskModule.entityDefinitions.SpecificationOperator;
+import modules.taskModule.entityDefinitions.SearchCriteria;
+import modules.taskModule.entityDefinitions.SearchCriteriaOperator;
+import modules.taskModule.entityDefinitions.SearchEntity;
 import modules.taskModule.entityDefinitions.Task;
-import modules.taskModule.entityDefinitions.TaskEffect;
-import modules.taskModule.entityDefinitions.TaskSearchEntity;
 import newtonERP.module.BaseAction;
 import newtonERP.module.Module;
 
@@ -23,44 +22,52 @@ public class TaskModule extends Module
 	setDefaultAction(new BaseAction("GetList", new Task()));
 	setVisibleName("Automatisation");
 	addGlobalActionMenuItem("Tâches", new BaseAction("GetList", new Task()));
-	addGlobalActionMenuItem("Spécifications", new BaseAction("GetList",
-		new SpecificationEntity()));
-	addGlobalActionMenuItem("Effets", new BaseAction("GetList",
-		new TaskEffect()));
 	addGlobalActionMenuItem("Entités de recherches", new BaseAction(
-		"GetList", new TaskSearchEntity()));
+		"GetList", new SearchEntity()));
+	addGlobalActionMenuItem("Critères de recherches", new BaseAction(
+		"GetList", new SearchCriteria()));
     }
 
     public void initDB() throws Exception
     {
 	super.initDB();
 
-	SpecificationOperator operator;
+	SearchCriteriaOperator searchCriteriaOperator;
 
-	operator = new SpecificationOperator();
-	operator.setData("name", "aucun");
-	operator.newE();
+	searchCriteriaOperator = new SearchCriteriaOperator();
+	searchCriteriaOperator.setData("name", "=");
+	searchCriteriaOperator.newE();
 
-	operator = new SpecificationOperator();
-	operator.setData("name", "et");
-	operator.newE();
+	searchCriteriaOperator = new SearchCriteriaOperator();
+	searchCriteriaOperator.setData("name", "!=");
+	searchCriteriaOperator.newE();
 
-	operator = new SpecificationOperator();
-	operator.setData("name", "ou");
-	operator.newE();
+	searchCriteriaOperator = new SearchCriteriaOperator();
+	searchCriteriaOperator.setData("name", ">");
+	searchCriteriaOperator.newE();
 
-	SpecificationEntity specification;
-	specification = new SpecificationEntity();
-	specification.setData("name", "defaultSpecification");
-	specification.setData("systemName", "defaultSpecification");
-	specification.setData("parent1", 0);
-	specification.setData("parent2", 0);
-	specification.setData(new SpecificationOperator().getForeignKeyName(),
-		1);
-	specification.newE();
+	searchCriteriaOperator = new SearchCriteriaOperator();
+	searchCriteriaOperator.setData("name", "<");
+	searchCriteriaOperator.newE();
 
-	TaskEffect action = new TaskEffect();
-	action.setData("name", "rien");
-	action.newE();
+	searchCriteriaOperator = new SearchCriteriaOperator();
+	searchCriteriaOperator.setData("name", ">=");
+	searchCriteriaOperator.newE();
+
+	searchCriteriaOperator = new SearchCriteriaOperator();
+	searchCriteriaOperator.setData("name", "<=");
+	searchCriteriaOperator.newE();
+
+	searchCriteriaOperator = new SearchCriteriaOperator();
+	searchCriteriaOperator.setData("name", "in");
+	searchCriteriaOperator.newE();
+
+	searchCriteriaOperator = new SearchCriteriaOperator();
+	searchCriteriaOperator.setData("name", "is");
+	searchCriteriaOperator.newE();
+
+	searchCriteriaOperator = new SearchCriteriaOperator();
+	searchCriteriaOperator.setData("name", "like");
+	searchCriteriaOperator.newE();
     }
 }
