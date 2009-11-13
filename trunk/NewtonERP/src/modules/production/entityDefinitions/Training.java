@@ -3,8 +3,10 @@ package modules.production.entityDefinitions;
 import java.util.Vector;
 
 import newtonERP.module.AbstractOrmEntity;
+import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.FieldInt;
+import newtonERP.orm.field.FieldText;
 import newtonERP.orm.field.Fields;
 import newtonERP.viewers.viewables.PromptViewable;
 
@@ -24,6 +26,8 @@ public class Training extends AbstractOrmEntity implements PromptViewable
     {
 	super();
 	setVisibleName("Formation");
+	AccessorManager.addAccessor(this, new TrainingType());
+	AccessorManager.addAccessor(this, new Project());
     }
 
     @Override
@@ -31,7 +35,11 @@ public class Training extends AbstractOrmEntity implements PromptViewable
     {
 	Vector<Field> fieldsInit = new Vector<Field>();
 	fieldsInit.add(new FieldInt("Numero", getPrimaryKeyName()));
+	fieldsInit.add(new FieldInt("Projet associé", new Project()
+		.getForeignKeyName()));
+	fieldsInit.add(new FieldInt("Type de formation", new TrainingType()
+		.getForeignKeyName()));
+	fieldsInit.add(new FieldText("Description", "description"));
 	return new Fields(fieldsInit);
     }
-
 }
