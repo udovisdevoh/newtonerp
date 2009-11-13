@@ -5,11 +5,11 @@ import java.util.Vector;
 
 import newtonERP.common.NaturalMap;
 import newtonERP.module.AbstractAction;
-import newtonERP.module.AbstractEntity;
 import newtonERP.module.BaseAction;
 import newtonERP.module.Module;
 import newtonERP.module.exception.ActionNotFoundException;
 import newtonERP.module.exception.ModuleException;
+import newtonERP.module.generalEntity.EntityList;
 import newtonERP.orm.field.FieldCurrency;
 import newtonERP.serveur.Servlet;
 import newtonERP.viewers.ViewerException;
@@ -100,7 +100,8 @@ public class ListViewer
 		    cellValue = "";
 
 		if (rowNumber > 0
-			&& ((AbstractEntity) listEntity).getFields().getField(
+			&& listEntity instanceof EntityList
+			&& ((EntityList) listEntity).getFields().getField(
 				cellKey) instanceof FieldCurrency)
 		{
 		    cellValue = MoneyViewer.getHtmlCode(cellValue);
