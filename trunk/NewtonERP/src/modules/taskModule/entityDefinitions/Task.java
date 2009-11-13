@@ -7,7 +7,6 @@ import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.FieldBool;
 import newtonERP.orm.field.FieldInt;
-import newtonERP.orm.field.FieldText;
 import newtonERP.orm.field.Fields;
 import newtonERP.viewers.viewables.PromptViewable;
 
@@ -25,8 +24,8 @@ public class Task extends AbstractOrmEntity implements PromptViewable
     {
 	super();
 	setVisibleName("Tâche automatisée");
-	addNaturalKey(getPrimaryKeyName());
-	addNaturalKey("name");
+	addNaturalKey(new Specification().getForeignKeyName());
+	addNaturalKey(new Effect().getForeignKeyName());
 	AccessorManager.addAccessor(this, new Specification());
 	AccessorManager.addAccessor(this, new Effect());
     }
@@ -37,7 +36,6 @@ public class Task extends AbstractOrmEntity implements PromptViewable
 	Vector<Field> fieldList = new Vector<Field>();
 	fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
 	fieldList.add(new FieldBool("Est active", "isActive"));
-	fieldList.add(new FieldText("Description", "name"));
 	fieldList.add(new FieldInt("Specification", new Specification()
 		.getForeignKeyName()));
 	fieldList.add(new FieldInt("Effet", new Effect().getForeignKeyName()));
