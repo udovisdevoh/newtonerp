@@ -11,10 +11,10 @@ import newtonERP.module.exception.ModuleException;
 import newtonERP.serveur.Servlet;
 import newtonERP.viewers.firstStep.AlertViewer;
 import newtonERP.viewers.firstStep.ForwardViewer;
+import newtonERP.viewers.firstStep.GridViewer;
 import newtonERP.viewers.firstStep.ListViewer;
 import newtonERP.viewers.firstStep.PromptViewer;
 import newtonERP.viewers.firstStep.StaticTextViewer;
-import newtonERP.viewers.firstStep.GridViewer;
 import newtonERP.viewers.viewables.AlertViewable;
 import newtonERP.viewers.viewables.ForwardViewable;
 import newtonERP.viewers.viewables.ListViewable;
@@ -88,7 +88,8 @@ public abstract class Viewer
 		+ "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-1\" />";
 
 	// css******************************************************************
-	header += "<link rel=\"stylesheet\" media=\"screen\" type=\"text/css\" title=\"base\" href=\"/file/style.css\" />";
+	header += "<link rel=\"stylesheet\" type=\"text/css\" title=\"base\" href=\"/file/styleScreen.css\" media=\"screen\" />";
+	header += "<link rel=\"stylesheet\" type=\"text/css\" title=\"base\" href=\"/file/stylePrint.css\" media=\"print\" />";
 	header += "</head><body><div id=\"header\"><h1>" + pageTitle
 		+ "</h1></div>";
 

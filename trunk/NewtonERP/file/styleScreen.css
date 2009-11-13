@@ -13,16 +13,6 @@ body /*mise en page pour tout le corp*/
 	margin:0px;
 }
 
-a /* Tous les liens */
-{
-	color: #0081d7;
-}
-
-a:hover 
-{
-	color: red;
-}
-
 #header
 {
 	width: 100%
@@ -94,6 +84,32 @@ h2 /* sous-titres */
 .element_menu a:hover
 {
 	color: red;
+}
+
+a /* Tous les liens */
+{
+	color: #0081d7;
+}
+
+a:hover 
+{
+	color: red;
+}
+
+.textField
+{
+	background-image: url('images/field.gif');
+	margin-bottom:3px;
+	border-color:#9ca3c0;
+	border-style:solid;
+	border-width:1px;
+	padding:2px;
+}
+
+textarea.textField
+{
+	width:400px;
+	height:140px;
 }
 
 .errorMessage
@@ -184,41 +200,10 @@ h2 /* sous-titres */
 	margin-left:200px;
 }
 
-.topMenu
-{
-	text-align:right;
-}
-
-.topMenu a
-{
-	color: #0081d7;
-}
-
-.topMenu a:hover{
-	color: red;
-}
-
-.textField
-{
-	background-image: url('images/field.gif');
-	margin-bottom:3px;
-	border-color:#9ca3c0;
-	border-style:solid;
-	border-width:1px;
-	padding:2px;
-}
-
-textarea.textField
-{
-	width:400px;
-	height:140px;
-}
-
 div.scrollableDivPair
 {
-	border-style:solid;
 	border-color:#88A;
-	border-width:1px;
+	border-width:2px;border-style:dotted;
 	height:100px;
 	padding:4px;
 	background-image: url('images/motionBackground.gif');
@@ -257,6 +242,12 @@ a.linkPairTarget
 	color: #22A3f9;
 }
 
+a.linkPairTarget:hover
+{
+	font-style: italic;
+	color: #F00;
+}
+
 td.gridCell a
 {
 	color:#000;
@@ -265,4 +256,130 @@ td.gridCell a
 td.gridCell a:hover
 {
 	color:#F00;
+}
+
+.topMenu
+{
+	text-align:right;
+}
+
+.topMenu a
+{
+	color: #0081d7;
+}
+
+.topMenu a:hover
+{
+	color: red;
+}
+}
+
+@media print
+{
+h1
+{
+	display:none;
+	visibility:hidden;
+	height:0px;
+}
+
+td.moneyStyleModifier
+{
+	text-align:right;
+	white-space:nowrap;
+}
+
+body
+{
+	font-family: Arial;
+}
+
+.element_menu
+{
+	display:none;
+	visibility:hidden;
+	height:0px;
+}
+
+a
+{
+	color:#000;
+	text-decoration:none;
+}
+
+input
+{
+	border-width:0px;
+	border-style: none;
+	background-color:#FFF;
+	color:#000;
+	scrollbar-base-color:White;
+	border-color:#FFF;
+}
+
+.topMenu
+{
+	display:none;
+	visibility:hidden;
+	height:0px;
+}
+
+div.scrollableDivPair
+{
+	border-style:none;
+	border-width:0px;
+}
+
+table
+{
+	border-collapse:collapse;
+}
+
+table .ListViewerTableHeader
+{
+	border-style:solid;
+	border-width:1px;
+	border-color:#FFF;
+	background-color:#444;
+	color:#FFF;
+	font-weight:bold;
+}
+
+table td
+{
+	border-style:solid;
+	border-width:1px;
+	border-color:#000;
+}
+
+.submitButton
+{
+	display:none;
+	visibility:hidden;
+}
+
+.scrollableDivPair ul
+{
+	margin:0px;
+	padding:0px;
+}
+
+.scrollableDivPair li
+{
+	margin:0px;
+	padding:0px;
+	margin-left:20px;
+	list-style-type:square;
+}
+
+select
+{
+	border: none;
+}
+
+.backLink
+{
+	display:none;
+	visibility:hidden;
+	height:0px;
 }

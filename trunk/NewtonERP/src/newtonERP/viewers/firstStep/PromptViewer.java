@@ -39,7 +39,8 @@ public class PromptViewer
 		entity.getCurrentAction());
 
 	if (entity.getBackLinkUrl() != null)
-	    html += "<p><a href=\"" + entity.getBackLinkUrl() + "\"> < "
+	    html += "<p class=\"backLink\"><a class=\"backLink\" href=\""
+		    + entity.getBackLinkUrl() + "\"> < "
 		    + entity.getBackLinkName() + "</a></p>";
 
 	html += "<h2>" + entity.getPromptMessage() + "</h2>";
@@ -100,9 +101,12 @@ public class PromptViewer
 	    html += getMultipleAccessorLinkList((AbstractOrmEntity) entity);
 	}
 
-	html += "<tr><td colspan=\"2\" align=\"center\"><input type=\"submit\" name=\"submit\" value=\""
+	html += "<tr><td colspan=\"2\" align=\"center\" class=\"submitButton\"><input class=\"submitButton\" type=\"submit\" name=\"submit\" value=\""
 		+ entity.getButtonCaption() + "\"></td></tr>";
 	html += "</table>";
+
+	if (entity instanceof AbstractOrmEntity)
+	    html += getPrintButton();
 
 	html += "</form>";
 
@@ -187,5 +191,10 @@ public class PromptViewer
 		    + "</td></tr>";
 
 	return html;
+    }
+
+    private static String getPrintButton()
+    {
+	return "<form class=\"submitButton\"><input class=\"submitButton\" type=\"button\" value=\"Imprimer\" onclick=\"window.print();return false;\"/></form>";
     }
 }

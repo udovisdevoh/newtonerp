@@ -17,7 +17,7 @@ public class ScrollListViewer
     {
 	String html = "";
 
-	html += "<div class=\"scrollableDivPair\" style=\"border-width:2px;border-style:dotted;border-color:"
+	html += "<div class=\"scrollableDivPair\" style=\"border-color:"
 		+ ColorViewer.getColor(entity.getTitle()) + "\"><div><ul>";
 
 	if (entity.getTitleUrl() != null)

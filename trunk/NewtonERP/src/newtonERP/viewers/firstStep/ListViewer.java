@@ -52,7 +52,14 @@ public class ListViewer
 	html += getGlobalButtonList(listEntity.getGlobalActionButtonList(),
 		listEntity.getCurrentModule(), listEntity);
 
+	html += getPrintButton();
+
 	return html;
+    }
+
+    private static String getPrintButton()
+    {
+	return "<form class=\"submitButton\"><input class=\"submitButton\" type=\"button\" value=\"Imprimer\" onclick=\"window.print();return false;\"/></form>";
     }
 
     private static String getGlobalButtonList(
@@ -188,8 +195,8 @@ public class ListViewer
 	    html += "<input type=\"hidden\" name=\"" + key + "\" value=\""
 		    + value + "\" />";
 
-	html += "<input type=\"submit\" " + onClickConfirm + " value=\""
-		+ buttonCaption + "\" />";
+	html += "<input class=\"submitButton\" type=\"submit\" "
+		+ onClickConfirm + " value=\"" + buttonCaption + "\" />";
 
 	html += "</form>";
 
