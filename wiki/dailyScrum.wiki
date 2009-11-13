@@ -645,7 +645,7 @@ par exemple, si on delete un Group, alors les GroupRight WHERE GroupID = ce grou
   * Ajouter d'autres entités utiles (module finance).
   * Débuter l'élaboration d'actions de gestion.
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
-  * ...problème, besoin d'aide, qui aidera...
+  * no...
 
 ==Gabriel Therrien==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
@@ -698,11 +698,11 @@ par exemple, si on delete un Group, alors les GroupRight WHERE GroupID = ce grou
 
 ==Pascal Lemay==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
-  * ...livré...
+  * Débuter l'élaboration d'actions de gestion.
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
-  * ...à livrer...
+  * Poursuivre le travail sur les actions de gestion.
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
-  * ...problème, besoin d'aide, qui aidera...
+  * Un peu avec les accesseurs, mais là c'est OK.
 
 ==Gabriel Therrien==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
