@@ -31,6 +31,7 @@ public class CheckListViewer
 
 	HashSet<String> checkedElementList = entity.getCheckedElementList();
 
+	html += "<div class=\"checkList\">";
 	html += "<h3>" + entity.getVisibleDescription() + "</h3>";
 
 	html += "<ul>";
@@ -95,6 +96,8 @@ public class CheckListViewer
 	    previousSecondWord = currentSecondWord;
 	}
 	html += "</ul>";
+
+	html += "</div>";
 
 	return html;
     }

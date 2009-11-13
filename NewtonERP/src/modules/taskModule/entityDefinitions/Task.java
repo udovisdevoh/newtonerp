@@ -3,7 +3,6 @@ package modules.taskModule.entityDefinitions;
 import java.util.Vector;
 
 import newtonERP.module.AbstractOrmEntity;
-import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.FieldBool;
 import newtonERP.orm.field.FieldInt;
@@ -28,8 +27,6 @@ public class Task extends AbstractOrmEntity implements PromptViewable
 	setVisibleName("Tâche automatisée");
 	addNaturalKey(getPrimaryKeyName());
 	addNaturalKey("name");
-	AccessorManager.addAccessor(this, new SpecificationEntity());
-	AccessorManager.addAccessor(this, new TaskEffect());
     }
 
     @Override
@@ -44,10 +41,6 @@ public class Task extends AbstractOrmEntity implements PromptViewable
 
 	fieldList.add(new FieldString("Description courte", "name"));
 	fieldList.add(new FieldText("Description longue", "description"));
-	fieldList.add(new FieldInt("Spécification", new SpecificationEntity()
-		.getForeignKeyName()));
-	fieldList.add(new FieldInt("Effet", new TaskEffect()
-		.getForeignKeyName()));
 	return new Fields(fieldList);
     }
 }

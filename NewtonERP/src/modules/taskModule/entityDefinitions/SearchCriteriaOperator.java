@@ -12,21 +12,14 @@ import newtonERP.orm.field.FieldString;
 import newtonERP.orm.field.Fields;
 import newtonERP.viewers.viewables.PromptViewable;
 
-/**
- * Opérateur de spécification (et, ou etc...)
- * @author Guillaume Lacasse
- */
-public class SpecificationOperator extends AbstractOrmEntity implements
+public class SearchCriteriaOperator extends AbstractOrmEntity implements
 	PromptViewable
 {
-
-    /**
-     * @throws Exception si création fail
-     */
-    public SpecificationOperator() throws Exception
+    public SearchCriteriaOperator() throws Exception
     {
 	super();
 	setVisibleName("Opérateur");
+	addNaturalKey("name");
     }
 
     @Override
