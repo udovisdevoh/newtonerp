@@ -1,6 +1,7 @@
 package modules.taskModule;
 
 import modules.taskModule.entityDefinitions.Effect;
+import modules.taskModule.entityDefinitions.Parameter;
 import modules.taskModule.entityDefinitions.SearchCriteria;
 import modules.taskModule.entityDefinitions.SearchCriteriaOperator;
 import modules.taskModule.entityDefinitions.SearchEntity;
@@ -33,6 +34,8 @@ public class TaskModule extends Module
 		"GetList", new SearchEntity()));
 	addGlobalActionMenuItem("Critères de recherches", new BaseAction(
 		"GetList", new SearchCriteria()));
+	addGlobalActionMenuItem("Paramètres", new BaseAction("GetList",
+		new Parameter()));
     }
 
     public void initDB() throws Exception
