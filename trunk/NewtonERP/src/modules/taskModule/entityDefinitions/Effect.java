@@ -19,6 +19,7 @@ public class Effect extends AbstractOrmEntity implements PromptViewable
 	setVisibleName("Effet");
 	addNaturalKey("name");
 	AccessorManager.addAccessor(this, new SearchEntity());
+	AccessorManager.addAccessor(this, new Parameter());
     }
 
     @Override
