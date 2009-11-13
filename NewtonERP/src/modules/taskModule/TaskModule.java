@@ -3,6 +3,7 @@ package modules.taskModule;
 import modules.taskModule.entityDefinitions.SearchCriteria;
 import modules.taskModule.entityDefinitions.SearchCriteriaOperator;
 import modules.taskModule.entityDefinitions.SearchEntity;
+import modules.taskModule.entityDefinitions.Specification;
 import modules.taskModule.entityDefinitions.Task;
 import newtonERP.module.BaseAction;
 import newtonERP.module.Module;
@@ -22,6 +23,9 @@ public class TaskModule extends Module
 	setDefaultAction(new BaseAction("GetList", new Task()));
 	setVisibleName("Automatisation");
 	addGlobalActionMenuItem("Tâches", new BaseAction("GetList", new Task()));
+
+	addGlobalActionMenuItem("Spécification", new BaseAction("GetList",
+		new Specification()));
 	addGlobalActionMenuItem("Entités de recherches", new BaseAction(
 		"GetList", new SearchEntity()));
 	addGlobalActionMenuItem("Critères de recherches", new BaseAction(
