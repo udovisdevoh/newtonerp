@@ -12,9 +12,16 @@ import newtonERP.orm.field.FieldString;
 import newtonERP.orm.field.Fields;
 import newtonERP.viewers.viewables.PromptViewable;
 
+/**
+ * Opérateur de critère de recherche
+ * @author Guillaume Lacasse
+ */
 public class SearchCriteriaOperator extends AbstractOrmEntity implements
 	PromptViewable
 {
+    /**
+     * @throws Exception si création fail
+     */
     public SearchCriteriaOperator() throws Exception
     {
 	super();

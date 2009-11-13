@@ -10,9 +10,15 @@ import newtonERP.orm.field.FieldText;
 import newtonERP.orm.field.Fields;
 import newtonERP.viewers.viewables.PromptViewable;
 
-public class SearchEntity extends AbstractOrmEntity implements
-	PromptViewable
+/**
+ * Entité de recherche pour spécification
+ * @author Guillaume Lacasse
+ */
+public class SearchEntity extends AbstractOrmEntity implements PromptViewable
 {
+    /**
+     * @throws Exception si création fail
+     */
     public SearchEntity() throws Exception
     {
 	super();

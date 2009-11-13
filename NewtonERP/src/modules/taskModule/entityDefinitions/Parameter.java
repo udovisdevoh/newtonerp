@@ -10,9 +10,15 @@ import newtonERP.orm.field.FieldText;
 import newtonERP.orm.field.Fields;
 import newtonERP.viewers.viewables.PromptViewable;
 
+/**
+ * Paramètres custom utilisé par effet de task
+ * @author Guillaume Lacasse
+ */
 public class Parameter extends AbstractOrmEntity implements PromptViewable
 {
-
+    /**
+     * @throws Exception si création fail
+     */
     public Parameter() throws Exception
     {
 	super();
