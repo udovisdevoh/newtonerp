@@ -100,6 +100,12 @@ select
 	background-color:#FFF;
 }
 
+option
+{
+	border: none;
+	background-color:#FFF;
+}
+
 .backLink
 {
 	display:none;

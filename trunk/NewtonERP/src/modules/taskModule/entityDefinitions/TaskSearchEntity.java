@@ -9,19 +9,13 @@ import newtonERP.orm.field.FieldString;
 import newtonERP.orm.field.Fields;
 import newtonERP.viewers.viewables.PromptViewable;
 
-/**
- * Entité représentant une action
- * @author Guillaume Lacasse
- */
-public class TaskAction extends AbstractOrmEntity implements PromptViewable
+public class TaskSearchEntity extends AbstractOrmEntity implements
+	PromptViewable
 {
-    /**
-     * @throws Exception si création fail
-     */
-    public TaskAction() throws Exception
+    public TaskSearchEntity() throws Exception
     {
 	super();
-	setVisibleName("Action");
+	setVisibleName("Entité de recherche");
 	addNaturalKey("name");
     }
 
@@ -30,8 +24,8 @@ public class TaskAction extends AbstractOrmEntity implements PromptViewable
     {
 	Vector<Field> fieldList = new Vector<Field>();
 	fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
-	fieldList.add(new FieldString("Description", "name"));
-	fieldList.add(new FieldString("Nom système", "systemName"));
+	fieldList.add(new FieldString("Description courte", "name"));
+	fieldList.add(new FieldString("Nom système", "entitySystemName"));
 	return new Fields(fieldList);
     }
 
