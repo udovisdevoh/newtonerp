@@ -13,6 +13,7 @@ import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.BaseAction;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.FieldText;
+import newtonERP.orm.field.Fields;
 import newtonERP.viewers.viewables.ListViewable;
 import newtonERP.viewers.viewables.PromptViewable;
 
@@ -257,5 +258,10 @@ public class EntityList extends AbstractEntity implements ListViewable,
     public String getTitle()
     {
 	return title;
+    }
+
+    public Fields getFields()
+    {
+	return internalEntityDefinition.getFields();
     }
 }

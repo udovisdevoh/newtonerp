@@ -256,3 +256,13 @@ a.linkPairTarget
 	font-style: italic;
 	color: #22A3f9;
 }
+
+td.gridCell a
+{
+	color:#000;
+}
+
+td.gridCell a:hover
+{
+	color:#F00;
+}
