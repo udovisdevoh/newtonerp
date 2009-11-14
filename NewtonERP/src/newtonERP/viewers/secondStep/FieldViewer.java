@@ -57,7 +57,7 @@ public class FieldViewer
 	return "<input" + moneyFormatStyle + " type='" + textFieldType
 		+ "' name='" + field.getShortName() + "' value='"
 		+ field.getDataString() + "' class='textField'" + isReadOnly
-		+ "> $";
+		+ " /> $";
     }
 
     private static String textViewer(Field field)
@@ -103,9 +103,9 @@ public class FieldViewer
 	}
 
 	html += "oui: <input type=\"radio\" name=\"" + field.getShortName()
-		+ "\" value=\"true\"" + yesIsChecked + ">";
+		+ "\" value=\"true\"" + yesIsChecked + " />";
 	html += " | non: <input type=\"radio\" name=\"" + field.getShortName()
-		+ "\" value=\"false\"" + noIsChecked + ">";
+		+ "\" value=\"false\"" + noIsChecked + " />";
 
 	html += "</td></tr>";
 
@@ -127,6 +127,6 @@ public class FieldViewer
 
 	return "<input type='" + textFieldType + "' name='"
 		+ field.getShortName() + "' value='" + field.getDataString()
-		+ "' class='textField'" + isReadOnly + ">";
+		+ "' class='textField'" + isReadOnly + " />";
     }
 }
