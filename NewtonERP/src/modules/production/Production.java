@@ -111,6 +111,10 @@ public class Production extends Module
 	ticket.setData("comment", "");
 	ticket.newE();
 
+	ProjectType type5 = new ProjectType();
+	type5.setData("type", "");
+	type5.newE();
+
 	ProjectType type = new ProjectType();
 	type.setData("type", "Ajout");
 	type.newE();
@@ -130,5 +134,26 @@ public class Production extends Module
 	TrainingType type4 = new TrainingType();
 	type4.setData("name", "Logiciel");
 	type4.newE();
+
+	Project projet1 = new Project();
+	projet1.setData("projectName", "Nous");
+	projet1.setData(new ProjectType().getForeignKeyName(), 1);
+	projet1.setData("description", "");
+	projet1.newE();
+
+	Project projet = new Project();
+	projet.setData("projectName", "Ajout ligne production 2");
+	projet.setData(new ProjectType().getForeignKeyName(), 1);
+	projet
+		.setData(
+			"description",
+			"Projet visant à ajouter à notre usine de montréal une deuxième ligne de production");
+	projet.newE();
+
+	Training formation = new Training();
+	formation.setData(new Project().getForeignKeyName(), 1);
+	formation.setData(new TrainingType().getForeignKeyName(), 1);
+	formation.setData("description", "Formation requise pour la presse 2");
+	formation.newE();
     }
 }
