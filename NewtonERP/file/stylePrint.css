@@ -121,3 +121,17 @@ option
 	visibility:hidden;
 	height:0px;
 }
+
+.errorMessage
+{
+	display:none;
+	visibility:hidden;
+	height:0px;
+}
+
+.normalMessage
+{
+	display:none;
+	visibility:hidden;
+	height:0px;
+}
