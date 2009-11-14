@@ -1,8 +1,11 @@
 package modules.taskModule.entityDefinitions;
 
+import java.util.Hashtable;
 import java.util.Vector;
 
+import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
+import newtonERP.module.generalEntity.EntityList;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.FieldInt;
@@ -39,4 +42,40 @@ public class EntityEntity extends AbstractOrmEntity implements PromptViewable
 	return new Fields(fieldList);
     }
 
+    @Override
+    public AbstractEntity deleteUI(Hashtable<String, String> parameters)
+	    throws Exception
+    {
+	/*
+	 * On ne veut pas permettre l'effacement d'entité alors on redirige
+	 * l'effacement vers GetList
+	 */
+	EntityList entityList = (EntityList) super.getList();
+	return entityList;
+    }
+
+    @Override
+    public AbstractEntity editUI(Hashtable<String, String> parameters)
+	    throws Exception
+    {
+	/*
+	 * On ne veut pas permettre la modification d'entité alors on redirige
+	 * vers GetList
+	 */
+	EntityList entityList = (EntityList) super.getList();
+	return entityList;
+    }
+
+    @Override
+    public final AbstractEntity getList(Hashtable<String, String> parameters)
+	    throws Exception
+    {
+	// On ne veut pas permettre l'effacement ni la modification d'entité
+	// alors on enlève les
+	// bouton Delete et Modifier en passant son nom de caption en argument
+	EntityList entityList = (EntityList) super.getList(parameters);
+	entityList.removeSpecificActionButton("Effacer");
+	entityList.removeSpecificActionButton("Modifier");
+	return entityList;
+    }
 }

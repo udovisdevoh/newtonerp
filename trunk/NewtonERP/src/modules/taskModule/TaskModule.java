@@ -44,10 +44,6 @@ public class TaskModule extends Module
 		new Parameter()));
 	addGlobalActionMenuItem("Modules", new BaseAction("GetList",
 		new ModuleEntity()));
-	addGlobalActionMenuItem("Actions", new BaseAction("GetList",
-		new ActionEntity()));
-	addGlobalActionMenuItem("Entités", new BaseAction("GetList",
-		new EntityEntity()));
     }
 
     public void initDB() throws Exception
@@ -113,13 +109,13 @@ public class TaskModule extends Module
 
 	SearchEntity searchEntity = new SearchEntity();
 	searchEntity.setData("name", "Employe qui a un salaire poche");
-	searchEntity.setData("entitySystemName", "Employee");
+	searchEntity.setData(new EntityEntity().getForeignKeyName(), 1);
 	searchEntity.newE();
 
 	Effect effect = new Effect();
 	effect.setData("name", "On congedie le dude");
 	effect.setData(new SearchEntity().getForeignKeyName(), 1);
-	effect.setData("actionSystemName", "Delete");
+	effect.setData(new ActionEntity().getForeignKeyName(), 1);
 	effect.newE();
 
 	Specification specification = new Specification();
