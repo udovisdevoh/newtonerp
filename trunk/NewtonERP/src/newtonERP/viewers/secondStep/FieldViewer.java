@@ -99,15 +99,13 @@ public class FieldViewer
 	else
 	{
 	    yesIsChecked = "";
-	    noIsChecked = " checked";
+	    noIsChecked = " checked=\"checked\"";
 	}
 
 	html += "oui: <input type=\"radio\" name=\"" + field.getShortName()
 		+ "\" value=\"true\"" + yesIsChecked + " />";
 	html += " | non: <input type=\"radio\" name=\"" + field.getShortName()
 		+ "\" value=\"false\"" + noIsChecked + " />";
-
-	html += "</td></tr>";
 
 	return html;
     }
