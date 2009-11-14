@@ -30,13 +30,7 @@ import newtonERP.orm.sgbd.Sgbdable;
  * obviously. Then it's gonna send the query to the SgbdSqlite class to execute
  * it.
  * 
- * Types for the database : Integer, Double (Number?), String, Boolean
- * (Integer?)
- * 
  * http://www.sqlite.org/lang_keywords.html
- * 
- * Pour le nouveau where exemple : String where=
- * "(champentité1 AND champ2entité1) OR (champ1entité2 AND champ2entité2))" ;
  * 
  * TODO: Drop a module (maybe a an array of the entities to drop?)
  * 
@@ -118,6 +112,36 @@ public class Orm
 	Vector<AbstractOrmEntity> searchEntities = new Vector<AbstractOrmEntity>();
 	searchEntities.add(searchEntity);
 	return select(searchEntities);
+    }
+
+    /**
+     * Select. Use only if you are sure that it will return only 1 entity (or
+     * that you want the first entity)
+     * 
+     * @param searchEntity the entity from which we will perform our search
+     * @return the first entity from the result set
+     * @throws OrmException an exception that can occur in the orm
+     */
+    public static AbstractOrmEntity selectUnique(AbstractOrmEntity searchEntity)
+	    throws OrmException
+    {
+	Vector<AbstractOrmEntity> searchEntities = new Vector<AbstractOrmEntity>();
+	searchEntities.add(searchEntity);
+	return select(searchEntities).get(0);
+    }
+
+    /**
+     * Select. Use only if you are sure that it will return only 1 entity (or
+     * that you want the first entity)
+     * 
+     * @param searchEntities the entity from which we will perform our search
+     * @return the first entity from the result set
+     * @throws OrmException an exception that can occur in the orm
+     */
+    public static AbstractOrmEntity selectUnique(
+	    Vector<AbstractOrmEntity> searchEntities) throws OrmException
+    {
+	return select(searchEntities).get(0);
     }
 
     /**
@@ -314,6 +338,32 @@ public class Orm
     }
 
     /**
+     * Uses the new where builder
+     * 
+     * Method used to update / change an entity
+     * 
+     * @param searchEntity the entities from which we will build our where
+     *            clause
+     * @param entityContainingChanges the changes to apply
+     * @throws OrmException an exception that can occur in the orm
+     */
+    public static void updateUnique(AbstractOrmEntity searchEntity,
+	    AbstractOrmEntity entityContainingChanges) throws OrmException
+    {
+	String sqlQuery = "UPDATE " + prefix
+		+ entityContainingChanges.getSystemName() + " SET ";
+
+	sqlQuery = buildSetClauseForQuery(entityContainingChanges.getFields(),
+		sqlQuery);
+	sqlQuery = buildWhereClauseForQuery(searchEntity, sqlQuery);
+
+	// TODO: Remove this once it will be properly debugged
+	System.out.println("Sql query produced : " + sqlQuery);
+
+	sgbd.execute(sqlQuery, OrmActions.UPDATE);
+    }
+
+    /**
      * Use only for complex queries. Use buildWhereClauseForQuery instead
      * 
      * Method used to build the where clause for the delete, select and update
@@ -376,6 +426,36 @@ public class Orm
 	    sqlQuery += ")";
 	}
 	return sqlQuery += ";";
+    }
+
+    /**
+     * This is the new where builder!
+     * 
+     * Method used to build the where clause for the query
+     * 
+     * @param sqlQuery the non-finished sqlQuery
+     * @param searchEntities the entities used for the search
+     * @return the sqlQuery
+     */
+    private static String buildWhereClauseForQuery(
+	    AbstractOrmEntity searchEntity, String sqlQuery)
+    {
+	sqlQuery += " WHERE ( ";
+
+	for (Field field : searchEntity.getFields().getFields())
+	{
+	    if (field.getData() != null)
+	    {
+		sqlQuery += field.getShortName() + " " + field.getOperator()
+			+ " '" + field.getDataString(true) + "'";
+
+		sqlQuery += " AND ";
+	    }
+	}
+
+	sqlQuery = sqlQuery.substring(0, sqlQuery.length() - 4);
+
+	return sqlQuery += ");";
     }
 
     /**
