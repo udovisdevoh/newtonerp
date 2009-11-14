@@ -1,12 +1,17 @@
 package modules.taskModule;
 
+import java.util.Vector;
+
+import modules.taskModule.entityDefinitions.ActionEntity;
 import modules.taskModule.entityDefinitions.Effect;
+import modules.taskModule.entityDefinitions.EntityEntity;
 import modules.taskModule.entityDefinitions.Parameter;
 import modules.taskModule.entityDefinitions.SearchCriteria;
 import modules.taskModule.entityDefinitions.SearchCriteriaOperator;
 import modules.taskModule.entityDefinitions.SearchEntity;
 import modules.taskModule.entityDefinitions.Specification;
 import modules.taskModule.entityDefinitions.Task;
+import newtonERP.common.ListModule;
 import newtonERP.module.BaseAction;
 import newtonERP.module.Module;
 
@@ -36,11 +41,17 @@ public class TaskModule extends Module
 		"GetList", new SearchCriteria()));
 	addGlobalActionMenuItem("Paramètres", new BaseAction("GetList",
 		new Parameter()));
+	addGlobalActionMenuItem("Actions", new BaseAction("GetList",
+		new ActionEntity()));
+	addGlobalActionMenuItem("Entités", new BaseAction("GetList",
+		new EntityEntity()));
     }
 
     public void initDB() throws Exception
     {
 	super.initDB();
+
+	initActionsAndEntities();
 
 	// Les entitées suivantes sont là pour avoir des données par default
 	// qu'on doit garder
@@ -112,5 +123,61 @@ public class TaskModule extends Module
 	specification.setData("name", "Si employe en retard");
 	specification.setData(new SearchEntity().getForeignKeyName(), 1);
 	specification.newE();
+    }
+
+    private static void initActionsAndEntities() throws Exception
+    {
+	ActionEntity actionEntity;
+
+	actionEntity = new ActionEntity();
+	actionEntity.setData("moduleName", "");
+	actionEntity.setData("systemName", "Get");
+	actionEntity.newE();
+
+	actionEntity = new ActionEntity();
+	actionEntity.setData("moduleName", "");
+	actionEntity.setData("systemName", "New");
+	actionEntity.newE();
+
+	actionEntity = new ActionEntity();
+	actionEntity.setData("moduleName", "");
+	actionEntity.setData("systemName", "Edit");
+	actionEntity.newE();
+
+	actionEntity = new ActionEntity();
+	actionEntity.setData("moduleName", "");
+	actionEntity.setData("systemName", "Delete");
+	actionEntity.newE();
+
+	actionEntity = new ActionEntity();
+	actionEntity.setData("moduleName", "");
+	actionEntity.setData("systemName", "GetList");
+	actionEntity.newE();
+
+	EntityEntity entityEntity;
+
+	Module module = null;
+	Vector<String> allModule;
+	allModule = new Vector<String>(ListModule.getAllModules().keySet());
+	// on s'assure d'avoir créé le userRightModule en premier
+	for (String moduleName : allModule)
+	{
+	    module = ListModule.getModule(moduleName);
+	    for (String actionName : module.getActionList().keySet())
+	    {
+		actionEntity = new ActionEntity();
+		actionEntity.setData("moduleName", moduleName);
+		actionEntity.setData("systemName", actionName);
+		actionEntity.newE();
+	    }
+
+	    for (String entityName : module.getEntityDefinitionList().keySet())
+	    {
+		entityEntity = new EntityEntity();
+		entityEntity.setData("moduleName", moduleName);
+		entityEntity.setData("systemName", entityName);
+		entityEntity.newE();
+	    }
+	}
     }
 }
