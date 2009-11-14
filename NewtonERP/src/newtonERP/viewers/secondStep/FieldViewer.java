@@ -62,7 +62,11 @@ public class FieldViewer
 
     private static String textViewer(Field field)
     {
-	return "<textarea class='textField' name='" + field.getShortName()
+	if (!((FieldText) field).isVeryLong())
+	    return "<textarea class='textField' name='" + field.getShortName()
+		    + "'>" + field.getDataString() + "</textarea></td></tr>";
+
+	return "<textarea class='textFieldLong' name='" + field.getShortName()
 		+ "'>" + field.getDataString() + "</textarea></td></tr>";
     }
 

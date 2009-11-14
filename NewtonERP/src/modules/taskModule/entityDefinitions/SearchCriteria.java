@@ -41,7 +41,7 @@ public class SearchCriteria extends AbstractOrmEntity implements PromptViewable
 	fieldList.add(new FieldString("Nom de clef", "key"));
 	fieldList.add(new FieldInt("Opérateur", new SearchCriteriaOperator()
 		.getForeignKeyName()));
-	fieldList.add(new FieldText("Valeur", "value"));
+	fieldList.add(new FieldText("Valeur", "value", false));
 	return new Fields(fieldList);
     }
 }

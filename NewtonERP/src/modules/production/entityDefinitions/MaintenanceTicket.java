@@ -52,7 +52,7 @@ public class MaintenanceTicket extends AbstractOrmEntity implements
 	fieldsInit.add(new FieldDateTime("Date de fin", "endDate"));
 	fieldsInit.add(new FieldInt("Status", new MaintenanceStatusType()
 		.getForeignKeyName()));
-	fieldsInit.add(new FieldText("Commentaire", "comment"));
+	fieldsInit.add(new FieldText("Commentaire", "comment", false));
 	return new Fields(fieldsInit);
     }
 }

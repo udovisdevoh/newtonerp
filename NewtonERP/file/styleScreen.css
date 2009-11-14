@@ -122,6 +122,12 @@ textarea.textField
 	height:140px;
 }
 
+textarea.textFieldLong
+{
+	width:800px;
+	height:600px;
+}
+
 .errorMessage
 {
 	color: #F00;
