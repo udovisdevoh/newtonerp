@@ -106,6 +106,16 @@ a:hover
 	padding:2px;
 }
 
+select
+{
+	background-image: url('images/field.gif');
+	margin-bottom:3px;
+	border-color:#9ca3c0;
+	border-style:solid;
+	border-width:1px;
+	padding:2px;
+}
+
 textarea.textField
 {
 	width:400px;
