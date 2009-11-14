@@ -48,15 +48,17 @@ public class CalculateInvoiceTotal extends AbstractAction
 	// Here we have the total whitout taxes
 	actionInvoice.setData("total", totalInvoice);
 
+	// TODO : Make another action for this. We do not calculate the taxes at
+	// each new invoiceLine
 	// We get the tax lines associated
-	Vector<AbstractOrmEntity> invoiceTaxLines = actionInvoice
-		.getPluralAccessor("InvoiceTaxLine");
+	// Vector<AbstractOrmEntity> invoiceTaxLines = actionInvoice
+	// .getPluralAccessor("InvoiceTaxLine");
 
 	// For each tax
-	for (AbstractOrmEntity tax : invoiceTaxLines)
-	{
-	    totalInvoice += totalInvoice * (Double) tax.getData("value");
-	}
+	// for (AbstractOrmEntity tax : invoiceTaxLines)
+	// {
+	// totalInvoice += totalInvoice * (Double) tax.getData("value");
+	// }
 
 	Orm.update((AbstractOrmEntity) entity, null);
 
