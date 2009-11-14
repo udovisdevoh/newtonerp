@@ -6,7 +6,6 @@ import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.FieldInt;
-import newtonERP.orm.field.FieldString;
 import newtonERP.orm.field.FieldText;
 import newtonERP.orm.field.Fields;
 import newtonERP.viewers.viewables.PromptViewable;
@@ -28,6 +27,7 @@ public class Effect extends AbstractOrmEntity implements PromptViewable
 	addNaturalKey("name");
 	AccessorManager.addAccessor(this, new SearchEntity());
 	AccessorManager.addAccessor(this, new Parameter());
+	AccessorManager.addAccessor(this, new ActionEntity());
     }
 
     @Override
@@ -38,8 +38,8 @@ public class Effect extends AbstractOrmEntity implements PromptViewable
 	fieldList.add(new FieldText("Description", "name"));
 	fieldList.add(new FieldInt("Entité de recherche", new SearchEntity()
 		.getForeignKeyName()));
-	fieldList.add(new FieldString("Nom système d'action",
-		"actionSystemName"));
+	fieldList.add(new FieldInt("Action", new ActionEntity()
+		.getForeignKeyName()));
 	return new Fields(fieldList);
     }
 }
