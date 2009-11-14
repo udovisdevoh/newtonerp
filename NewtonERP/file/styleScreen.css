@@ -157,10 +157,9 @@ textarea.textFieldLong
 	padding-right: 6px;
 }
 
-#body /*mise en page du corp principal à droite du menu principal*/
+#body
 {
 	margin-left: 200px;
-	/*Une marge à gauche pour pousser le corps, afin qu'il ne passe plus sous le menu*/
 	padding: 10px;
 	margin-bottom:10px;
 	color: black;
@@ -291,7 +290,8 @@ td.gridCell a:hover
 
 .backLink
 {
-	margin-top:-16px;
+	margin-top:0px;
+	position:relative;
 }
 
 .printableText
