@@ -40,7 +40,7 @@ public class PromptViewer
 
 	if (entity.getBackLinkUrl() != null)
 	    html += "<p class=\"backLink\"><a class=\"backLink\" href=\""
-		    + entity.getBackLinkUrl() + "\"> < "
+		    + entity.getBackLinkUrl() + "\"> &lt; "
 		    + entity.getBackLinkName() + "</a></p>";
 
 	html += "<h2>" + entity.getPromptMessage() + "</h2>";
@@ -195,6 +195,6 @@ public class PromptViewer
 
     private static String getPrintButton()
     {
-	return "<form class=\"submitButton\"><input class=\"submitButton\" type=\"button\" value=\"Imprimer\" onclick=\"window.print();return false;\"/></form>";
+	return "<input class=\"submitButton\" type=\"button\" value=\"Imprimer\" onclick=\"window.print();return false;\" />";
     }
 }

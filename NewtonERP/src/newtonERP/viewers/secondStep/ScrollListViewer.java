@@ -18,16 +18,18 @@ public class ScrollListViewer
 	String html = "";
 
 	html += "<div class=\"scrollableDivPair\" style=\"border-color:"
-		+ ColorViewer.getColor(entity.getTitle()) + "\"><div><ul>";
+		+ ColorViewer.getColor(entity.getTitle()) + "\"><div>";
 
 	if (entity.getTitleUrl() != null)
 	    html += "<a href=\"" + entity.getTitleUrl() + "\">";
 
 	if (entity.getTitle() != null)
-	    html += "<h4>" + entity.getTitle() + "</h4>";
+	    html += "<b>" + entity.getTitle() + "</b>";
 
 	if (entity.getTitleUrl() != null)
 	    html += "</a>";
+
+	html += "<ul>";
 
 	for (String linkName : entity.getLinkList().keySet())
 	    html += "<li><a href=\"" + entity.getLinkList().get(linkName)
@@ -53,7 +55,7 @@ public class ScrollListViewer
 		    html += " : ";
 		counter++;
 	    }
-	    html += "</li>";
+	    // html += "</li>";
 	}
 
 	html += "</ul></div></div>";
