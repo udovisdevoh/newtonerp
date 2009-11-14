@@ -124,8 +124,14 @@ textarea.textField
 
 textarea.textFieldLong
 {
-	width:800px;
-	height:600px;
+	background-image: url('images/field.gif');
+	margin-bottom:3px;
+	border-color:#9ca3c0;
+	border-style:solid;
+	border-width:1px;
+	padding:2px;
+	width:796px;
+	height:596px;
 }
 
 .errorMessage
@@ -292,4 +298,11 @@ td.gridCell a:hover
 .backLink
 {
 	margin-top:-16px;
+}
+
+.printableText
+{
+	display:none;
+	visibility:hidden;
+	height:0px;
 }

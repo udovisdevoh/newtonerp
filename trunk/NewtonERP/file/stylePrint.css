@@ -135,3 +135,10 @@ option
 	visibility:hidden;
 	height:0px;
 }
+
+textarea
+{
+	display:none;
+	visibility:hidden;
+	height:0px;
+}

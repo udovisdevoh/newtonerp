@@ -64,10 +64,16 @@ public class FieldViewer
     {
 	if (!((FieldText) field).isVeryLong())
 	    return "<textarea class='textField' name='" + field.getShortName()
-		    + "'>" + field.getDataString() + "</textarea></td></tr>";
+		    + "'>" + field.getDataString()
+		    + "</textarea><div class=\"printableText\">"
+		    + field.getDataString().replace("\n", "<br />")
+		    + "</div></td></tr>";
 
 	return "<textarea class='textFieldLong' name='" + field.getShortName()
-		+ "'>" + field.getDataString() + "</textarea></td></tr>";
+		+ "'>" + field.getDataString()
+		+ "</textarea><div class=\"printableText\">"
+		+ field.getDataString().replace("\n", "<br />")
+		+ "</div></td></tr>";
     }
 
     private static String dateTimeViewer(Field field)
