@@ -138,12 +138,12 @@ public class GetOneTimeTable extends AbstractAction
 	date = (GregorianCalendar) StartDate.clone();
 	date.add(Calendar.DAY_OF_YEAR, -7);
 	parameters.put("startDate", dateFormatter.format(date.getTime()));
-	tt.addGlobalActions(new ActionLink("< Précédent", this, parameters));
+	tt.addGlobalActions(new ActionLink("&lt; Précédent", this, parameters));
 	// lien suivant
 	date = (GregorianCalendar) StartDate.clone();
 	date.add(Calendar.DAY_OF_YEAR, 7);
 	parameters.put("startDate", dateFormatter.format(date.getTime()));
-	tt.addGlobalActions(new ActionLink("Suivant >", this, parameters));
+	tt.addGlobalActions(new ActionLink("Suivant &gt;", this, parameters));
 
 	return tt;
     }
