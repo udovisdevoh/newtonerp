@@ -5,6 +5,7 @@ import java.util.Vector;
 import modules.taskModule.entityDefinitions.ActionEntity;
 import modules.taskModule.entityDefinitions.Effect;
 import modules.taskModule.entityDefinitions.EntityEntity;
+import modules.taskModule.entityDefinitions.ModuleEntity;
 import modules.taskModule.entityDefinitions.Parameter;
 import modules.taskModule.entityDefinitions.SearchCriteria;
 import modules.taskModule.entityDefinitions.SearchCriteriaOperator;
@@ -41,6 +42,8 @@ public class TaskModule extends Module
 		"GetList", new SearchCriteria()));
 	addGlobalActionMenuItem("Paramètres", new BaseAction("GetList",
 		new Parameter()));
+	addGlobalActionMenuItem("Modules", new BaseAction("GetList",
+		new ModuleEntity()));
 	addGlobalActionMenuItem("Actions", new BaseAction("GetList",
 		new ActionEntity()));
 	addGlobalActionMenuItem("Entités", new BaseAction("GetList",
@@ -127,30 +130,43 @@ public class TaskModule extends Module
 
     private static void initActionsAndEntities() throws Exception
     {
+	String moduleForeignKey = new ModuleEntity().getForeignKeyName();
+
+	ModuleEntity moduleEntity;
+
+	moduleEntity = new ModuleEntity();
+	moduleEntity.setData("systemName", "...");
+	moduleEntity.newE();
+
 	ActionEntity actionEntity;
 
 	actionEntity = new ActionEntity();
-	actionEntity.setData("moduleName", "");
+	actionEntity.setData(moduleForeignKey, moduleEntity
+		.getPrimaryKeyValue());
 	actionEntity.setData("systemName", "Get");
 	actionEntity.newE();
 
 	actionEntity = new ActionEntity();
-	actionEntity.setData("moduleName", "");
+	actionEntity.setData(moduleForeignKey, moduleEntity
+		.getPrimaryKeyValue());
 	actionEntity.setData("systemName", "New");
 	actionEntity.newE();
 
 	actionEntity = new ActionEntity();
-	actionEntity.setData("moduleName", "");
+	actionEntity.setData(moduleForeignKey, moduleEntity
+		.getPrimaryKeyValue());
 	actionEntity.setData("systemName", "Edit");
 	actionEntity.newE();
 
 	actionEntity = new ActionEntity();
-	actionEntity.setData("moduleName", "");
+	actionEntity.setData(moduleForeignKey, moduleEntity
+		.getPrimaryKeyValue());
 	actionEntity.setData("systemName", "Delete");
 	actionEntity.newE();
 
 	actionEntity = new ActionEntity();
-	actionEntity.setData("moduleName", "");
+	actionEntity.setData(moduleForeignKey, moduleEntity
+		.getPrimaryKeyValue());
 	actionEntity.setData("systemName", "GetList");
 	actionEntity.newE();
 
@@ -162,11 +178,16 @@ public class TaskModule extends Module
 	// on s'assure d'avoir créé le userRightModule en premier
 	for (String moduleName : allModule)
 	{
+	    moduleEntity = new ModuleEntity();
+	    moduleEntity.setData("systemName", moduleName);
+	    moduleEntity.newE();
+
 	    module = ListModule.getModule(moduleName);
 	    for (String actionName : module.getActionList().keySet())
 	    {
 		actionEntity = new ActionEntity();
-		actionEntity.setData("moduleName", moduleName);
+		actionEntity.setData(moduleForeignKey, moduleEntity
+			.getPrimaryKeyValue());
 		actionEntity.setData("systemName", actionName);
 		actionEntity.newE();
 	    }
@@ -174,7 +195,8 @@ public class TaskModule extends Module
 	    for (String entityName : module.getEntityDefinitionList().keySet())
 	    {
 		entityEntity = new EntityEntity();
-		entityEntity.setData("moduleName", moduleName);
+		entityEntity.setData(moduleForeignKey, moduleEntity
+			.getPrimaryKeyValue());
 		entityEntity.setData("systemName", entityName);
 		entityEntity.newE();
 	    }
