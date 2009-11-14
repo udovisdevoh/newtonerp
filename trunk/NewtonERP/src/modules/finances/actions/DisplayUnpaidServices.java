@@ -37,6 +37,13 @@ public class DisplayUnpaidServices extends AbstractAction
 	EntityList list = new EntityList(account);
 
 	StateType searchEntity = new StateType();
+	/*
+	 * Pourquoi pas mettre le non payé sous forme de flag plutôt? Ainsi ca
+	 * épargnerait le fait que si jamais ils décident de mettre d'autre
+	 * chose que non-payé ca va marcher pareil... A voir Pascal.
+	 * 
+	 * Ajouté par Kovalev le 13 Novembre a 21h
+	 */
 	searchEntity.setData("name", "Non-paye");
 	Vector<AbstractOrmEntity> types = Orm.select(searchEntity);
 
