@@ -48,7 +48,7 @@ public class Shipping extends AbstractOrmEntity implements PromptViewable
 		"estimatedShippingDate"));
 	fieldsInit.add(new FieldInt("Expéditeur", new Shipper()
 		.getForeignKeyName()));
-	fieldsInit.add(new FieldText("Commentaire", "shippingComment"));
+	fieldsInit.add(new FieldText("Commentaire", "shippingComment", false));
 	fieldsInit.add(new FieldInt("Location", new Location()
 		.getForeignKeyName()));
 	return new Fields(fieldsInit);

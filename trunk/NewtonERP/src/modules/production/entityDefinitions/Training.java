@@ -39,7 +39,7 @@ public class Training extends AbstractOrmEntity implements PromptViewable
 		.getForeignKeyName()));
 	fieldsInit.add(new FieldInt("Type de formation", new TrainingType()
 		.getForeignKeyName()));
-	fieldsInit.add(new FieldText("Description", "description"));
+	fieldsInit.add(new FieldText("Description", "description", true));
 	return new Fields(fieldsInit);
     }
 }

@@ -33,7 +33,7 @@ public class Parameter extends AbstractOrmEntity implements PromptViewable
 	Vector<Field> fieldList = new Vector<Field>();
 	fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
 	fieldList.add(new FieldString("Nom de clef", "key"));
-	fieldList.add(new FieldText("Valeur", "value"));
+	fieldList.add(new FieldText("Valeur", "value", false));
 	return new Fields(fieldList);
     }
 

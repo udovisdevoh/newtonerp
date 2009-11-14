@@ -33,7 +33,7 @@ public class Specification extends AbstractOrmEntity implements PromptViewable
 	Vector<Field> fieldList = new Vector<Field>();
 
 	fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
-	fieldList.add(new FieldText("Description", "name"));
+	fieldList.add(new FieldText("Description", "name", false));
 	fieldList.add(new FieldInt("Entité de recherche", new SearchEntity()
 		.getForeignKeyName()));
 	return new Fields(fieldList);

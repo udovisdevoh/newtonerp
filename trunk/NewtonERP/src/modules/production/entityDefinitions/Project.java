@@ -39,7 +39,7 @@ public class Project extends AbstractOrmEntity implements PromptViewable
 	fieldsInit.add(new FieldString("Nom du projet", "projectName"));
 	fieldsInit.add(new FieldInt("Type du projet", new ProjectType()
 		.getForeignKeyName()));
-	fieldsInit.add(new FieldText("Description", "description"));
+	fieldsInit.add(new FieldText("Description", "description", false));
 	return new Fields(fieldsInit);
     }
 }
