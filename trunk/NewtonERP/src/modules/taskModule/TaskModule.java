@@ -42,8 +42,6 @@ public class TaskModule extends Module
 		"GetList", new SearchCriteria()));
 	addGlobalActionMenuItem("Paramètres", new BaseAction("GetList",
 		new Parameter()));
-	addGlobalActionMenuItem("Modules", new BaseAction("GetList",
-		new ModuleEntity()));
     }
 
     public void initDB() throws Exception
