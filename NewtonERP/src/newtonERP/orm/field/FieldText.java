@@ -24,12 +24,22 @@ public class FieldText extends FieldString
     /**
      * @param name nom du champ qui sera visible par l'utilisateur
      * @param shortName nom du champ qui sera utiliser a l'interne
-     * @param isVeryLong if it is a very long text field
+     * @param isVeryLong if it is a very long text field (default: false)
      */
     public FieldText(String name, String shortName, boolean isVeryLong)
     {
 	super(name, shortName);
 	this.isVeryLong = isVeryLong;
+    }
+
+    /**
+     * isVeryLong sera à false par default
+     * @param name nom du champ qui sera visible par l'utilisateur
+     * @param shortName nom du champ qui sera utiliser a l'interne
+     */
+    public FieldText(String name, String shortName)
+    {
+	this(name, shortName, false);
     }
 
     /**
