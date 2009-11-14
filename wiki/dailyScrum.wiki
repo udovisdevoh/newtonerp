@@ -731,7 +731,10 @@ par exemple, si on delete un Group, alors les GroupRight WHERE GroupID = ce grou
 
 ==Jonathan Hallee==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
-  * ...livré...
+  * ajout d'un attribut sur textField qui s'appelle isVeryLong. Donc si vous mettez ca ca va vous faire un textField vraiment gros. (Utiliser pour des grosses descriptions etc)
+  * Ajout de la méthode searchUnique dans l'orm qui nous retourne toujours une seule entité
+  * Ajout de la méthode updateUnique dans l'orm qui nous épargne a avoir a gérer les vecteurs avec le new where builder.
+  * Touch ups sur mes actions
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
   * ...à livrer...
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
