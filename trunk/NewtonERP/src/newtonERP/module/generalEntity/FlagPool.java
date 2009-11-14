@@ -231,6 +231,7 @@ public class FlagPool implements CheckListViewable
     }
 
     /**
+     * @param searchCriteriaEntity critères de recherche facultatifs
      * @return accessor multiple vers entité étrangère
      * @throws Exception si obtention fail
      */
