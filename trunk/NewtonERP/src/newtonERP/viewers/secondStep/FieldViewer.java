@@ -44,7 +44,6 @@ public class FieldViewer
     {
 	String moneyFormatStyle = " style=\"width:80px;text-align:right\"";
 	String textFieldType = "";
-	String isReadOnly = "";
 
 	if (field.isHidden())
 	    textFieldType = "password";
@@ -52,12 +51,13 @@ public class FieldViewer
 	    textFieldType = "text";
 
 	if (field.isReadOnly())
-	    isReadOnly = "DISABLED";
+	    return "<input type='hidden' name='" + field.getShortName()
+		    + "' value='" + field.getDataString()
+		    + "' class='textField' />" + field.getDataString() + " $";
 
 	return "<input" + moneyFormatStyle + " type='" + textFieldType
 		+ "' name='" + field.getShortName() + "' value='"
-		+ field.getDataString() + "' class='textField'" + isReadOnly
-		+ " /> $";
+		+ field.getDataString() + "' class='textField' /> $";
     }
 
     private static String textViewer(Field field)
@@ -123,7 +123,9 @@ public class FieldViewer
 	    textFieldType = "text";
 
 	if (field.isReadOnly())
-	    isReadOnly = "DISABLED";
+	    return "<input type='hidden' name='" + field.getShortName()
+		    + "' value='" + field.getDataString()
+		    + "' class='textField' />" + field.getDataString();
 
 	return "<input type='" + textFieldType + "' name='"
 		+ field.getShortName() + "' value='" + field.getDataString()
