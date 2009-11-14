@@ -692,6 +692,12 @@ public abstract class AbstractOrmEntity extends AbstractEntity
     public Vector<AbstractOrmEntity> getPluralAccessor(String accessorName,
 	    AbstractOrmEntity searchCriteriaEntity) throws Exception
     {
+	Vector<AbstractOrmEntity> pluralAccessor = PluralAccessorManager
+		.getPluralAccessor(this, accessorName, searchCriteriaEntity);
+
+	if (pluralAccessor != null)
+	    return pluralAccessor;
+
 	Vector<AbstractOrmEntity> uncleanedList = getPluralAccessor(accessorName);
 	Vector<AbstractOrmEntity> cleanList = new Vector<AbstractOrmEntity>();
 
