@@ -207,6 +207,8 @@ public class FlagPool implements CheckListViewable
     public Vector<AbstractOrmEntity> getPositivePluralIntermediateAccessor()
 	    throws Exception
     {
+	// searchCriteriaEntity can be null
+
 	if (sourceKeyName == null || sourceKeyValue == null)
 	    throw new Exception(
 		    "Vous devez préablablement faire une query(clef, valeur) avant d'intéroger les éléments du flag pool");
@@ -232,22 +234,53 @@ public class FlagPool implements CheckListViewable
      * @return accessor multiple vers entité étrangère
      * @throws Exception si obtention fail
      */
-    public Vector<AbstractOrmEntity> getPositivePluralForeignAccessor()
-	    throws Exception
+    public Vector<AbstractOrmEntity> getPositivePluralForeignAccessor(
+	    AbstractOrmEntity searchCriteriaEntity) throws Exception
     {
-	Vector<AbstractOrmEntity> pluralIntermediateAccessor = getPositivePluralIntermediateAccessor();
+	// searchCriteriaEntity can be null
 
 	Vector<AbstractOrmEntity> pluralForeignAccessor = new Vector<AbstractOrmEntity>();
 
-	for (AbstractOrmEntity intermediateEntity : pluralIntermediateAccessor)
+	Vector<AbstractOrmEntity> resultSet;
+
+	if (searchCriteriaEntity == null)
 	{
-	    foreignEntityDefinition.setData(foreignKey, intermediateEntity
-		    .getData(intermediateKeyOut));
-	    Vector<AbstractOrmEntity> resultSet = Orm
-		    .select(foreignEntityDefinition);
+	    Vector<AbstractOrmEntity> pluralIntermediateAccessor = getPositivePluralIntermediateAccessor();
+	    for (AbstractOrmEntity intermediateEntity : pluralIntermediateAccessor)
+	    {
+		foreignEntityDefinition.setData(foreignKey, intermediateEntity
+			.getData(intermediateKeyOut));
+
+		resultSet = Orm.select(foreignEntityDefinition);
+
+		for (AbstractOrmEntity result : resultSet)
+		{
+		    pluralForeignAccessor.add(result);
+		}
+	    }
+	}
+	else
+	{
+	    resultSet = Orm.select(searchCriteriaEntity);
+
+	    AbstractOrmEntity criteredIntermediateEntityDefinition = intermediateEntityDefinition
+		    .getClass().newInstance();
+	    criteredIntermediateEntityDefinition.initFields();
+
 	    for (AbstractOrmEntity result : resultSet)
 	    {
-		pluralForeignAccessor.add(result);
+		Vector<AbstractOrmEntity> intermediateResultSet;
+
+		criteredIntermediateEntityDefinition.setData(
+			intermediateKeyOut, result.getPrimaryKeyValue());
+		criteredIntermediateEntityDefinition.setData(intermediateKeyIn,
+			sourceEntityDefinition.getPrimaryKeyValue());
+
+		intermediateResultSet = Orm
+			.select(criteredIntermediateEntityDefinition);
+
+		if (intermediateResultSet.size() > 0)
+		    pluralForeignAccessor.add(result);
 	    }
 	}
 
