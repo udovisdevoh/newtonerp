@@ -8,6 +8,7 @@ import newtonERP.orm.field.Field;
 import newtonERP.orm.field.FieldDate;
 import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.FieldString;
+import newtonERP.orm.field.FieldText;
 import newtonERP.orm.field.Fields;
 import newtonERP.viewers.viewables.PromptViewable;
 
@@ -42,7 +43,7 @@ public class Machine extends AbstractOrmEntity implements PromptViewable
 		.getForeignKeyName()));
 	fieldsInit.add(new FieldInt("Dimensions", new MachineDimension()
 		.getForeignKeyName()));
-	fieldsInit.add(new FieldString("Fonction", "function"));
+	fieldsInit.add(new FieldText("Fonction", "function", false));
 	return new Fields(fieldsInit);
     }
 }
