@@ -3,6 +3,7 @@ package newtonERP.viewers.viewables;
 import java.util.TreeMap;
 import java.util.Vector;
 
+import newtonERP.common.ActionLink;
 import newtonERP.common.NaturalMap;
 
 /**
@@ -31,4 +32,9 @@ public interface ScrollListViewable
      * @return url du titre si c'est un lien
      */
     public String getTitleUrl();
+
+    /**
+     * @return liste des actionLink
+     */
+    public Vector<ActionLink> getActionLinkList();
 }

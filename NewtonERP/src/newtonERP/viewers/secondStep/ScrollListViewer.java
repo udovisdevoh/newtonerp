@@ -1,5 +1,6 @@
 package newtonERP.viewers.secondStep;
 
+import newtonERP.common.ActionLink;
 import newtonERP.common.NaturalMap;
 import newtonERP.viewers.viewables.ScrollListViewable;
 
@@ -12,8 +13,10 @@ public class ScrollListViewer
     /**
      * @param entity liste à afficher
      * @return code HTML
+     * @throws Exception si obtention fail
      */
     public static String getHtmlContent(ScrollListViewable entity)
+	    throws Exception
     {
 	String html = "";
 
@@ -58,7 +61,14 @@ public class ScrollListViewer
 	    // html += "</li>";
 	}
 
-	html += "</ul></div></div>";
+	html += "</ul>";
+
+	html = html.replace("<ul></ul>", "");
+
+	for (ActionLink actionLink : entity.getActionLinkList())
+	    html += ButtonLinkViewer.getHtmlCode(actionLink);
+
+	html += "</div></div>";
 
 	return html;
     }
