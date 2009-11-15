@@ -3,7 +3,7 @@ package modules.taskModule;
 import java.util.Vector;
 
 import modules.taskModule.entityDefinitions.ActionEntity;
-import modules.taskModule.entityDefinitions.Effect;
+import modules.taskModule.entityDefinitions.EffectEntity;
 import modules.taskModule.entityDefinitions.EntityEntity;
 import modules.taskModule.entityDefinitions.ModuleEntity;
 import modules.taskModule.entityDefinitions.Parameter;
@@ -11,7 +11,7 @@ import modules.taskModule.entityDefinitions.SearchCriteria;
 import modules.taskModule.entityDefinitions.SearchCriteriaOperator;
 import modules.taskModule.entityDefinitions.SearchEntity;
 import modules.taskModule.entityDefinitions.Specification;
-import modules.taskModule.entityDefinitions.Task;
+import modules.taskModule.entityDefinitions.TaskEntity;
 import newtonERP.common.ListModule;
 import newtonERP.module.BaseAction;
 import newtonERP.module.Module;
@@ -28,14 +28,14 @@ public class TaskModule extends Module
     public TaskModule() throws Exception
     {
 	super();
-	setDefaultAction(new BaseAction("GetList", new Task()));
+	setDefaultAction(new BaseAction("GetList", new TaskEntity()));
 	setVisibleName("Automation");
-	addGlobalActionMenuItem("Tâches", new BaseAction("GetList", new Task()));
+	addGlobalActionMenuItem("Tâches", new BaseAction("GetList", new TaskEntity()));
 
 	addGlobalActionMenuItem("Spécification", new BaseAction("GetList",
 		new Specification()));
 	addGlobalActionMenuItem("Effet",
-		new BaseAction("GetList", new Effect()));
+		new BaseAction("GetList", new EffectEntity()));
 	addGlobalActionMenuItem("Entités de recherches", new BaseAction(
 		"GetList", new SearchEntity()));
 	addGlobalActionMenuItem("Critères de recherches", new BaseAction(
@@ -110,7 +110,7 @@ public class TaskModule extends Module
 	searchEntity.setData(new EntityEntity().getForeignKeyName(), 1);
 	searchEntity.newE();
 
-	Effect effect = new Effect();
+	EffectEntity effect = new EffectEntity();
 	effect.setData("name", "On congedie le dude");
 	effect.setData(new SearchEntity().getForeignKeyName(), 1);
 	effect.setData(new ActionEntity().getForeignKeyName(), 1);
