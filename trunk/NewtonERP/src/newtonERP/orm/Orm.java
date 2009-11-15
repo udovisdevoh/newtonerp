@@ -125,9 +125,7 @@ public class Orm
     public static AbstractOrmEntity selectUnique(AbstractOrmEntity searchEntity)
 	    throws OrmException
     {
-	Vector<AbstractOrmEntity> searchEntities = new Vector<AbstractOrmEntity>();
-	searchEntities.add(searchEntity);
-	return select(searchEntities).get(0);
+	return select(searchEntity).get(0);
     }
 
     /**

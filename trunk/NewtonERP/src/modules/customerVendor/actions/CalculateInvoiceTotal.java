@@ -5,6 +5,7 @@ import java.util.Vector;
 
 import modules.customerVendor.entityDefinitions.Invoice;
 import modules.customerVendor.entityDefinitions.InvoiceLine;
+import modules.customerVendor.entityDefinitions.InvoiceTaxLine;
 import modules.customerVendor.entityDefinitions.Tax;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
@@ -40,8 +41,10 @@ public class CalculateInvoiceTotal extends AbstractAction
 	totalInvoice = 0.0;
 
 	// We get the invoiceLines associated
-	Vector<AbstractOrmEntity> invoiceLines = actionInvoice
-		.getPluralAccessor("InvoiceLine");
+	InvoiceLine invoiceLine = new InvoiceLine();
+	invoiceLine.setData(new Invoice().getForeignKeyName(), actionInvoice
+		.getPrimaryKeyValue());
+	Vector<AbstractOrmEntity> invoiceLines = Orm.select(invoiceLine);
 
 	for (AbstractOrmEntity line : invoiceLines)
 	{
@@ -51,8 +54,10 @@ public class CalculateInvoiceTotal extends AbstractAction
 
 	actionInvoice.setData("total", totalInvoice);
 
-	Vector<AbstractOrmEntity> invoiceTaxLines = actionInvoice
-		.getPluralAccessor("InvoiceTaxLine");
+	InvoiceTaxLine invoiceTaxLine = new InvoiceTaxLine();
+	invoiceTaxLine.setData(new Invoice().getForeignKeyName(), actionInvoice
+		.getPrimaryKeyValue());
+	Vector<AbstractOrmEntity> invoiceTaxLines = Orm.select(invoiceTaxLine);
 
 	// For each tax
 	for (AbstractOrmEntity tax : invoiceTaxLines)
