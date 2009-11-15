@@ -1,8 +1,12 @@
 package modules.customerVendor.entityDefinitions;
 
+import java.util.Hashtable;
 import java.util.Vector;
 
+import modules.customerVendor.actions.CalculateInvoiceTotal;
+import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
+import newtonERP.module.generalEntity.EntityList;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.FieldCurrency;
@@ -42,5 +46,15 @@ public class Invoice extends AbstractOrmEntity implements PromptViewable
 		.getForeignKeyName()));
 	fieldList.add(new FieldDate("Date", "date"));
 	return new Fields(fieldList);
+    }
+
+    @Override
+    public final AbstractEntity getList(Hashtable<String, String> parameters)
+	    throws Exception
+    {
+	EntityList entityList = (EntityList) super.getList(parameters);
+	entityList.addSpecificActionButtonList("Calculer facture",
+		new CalculateInvoiceTotal());
+	return entityList;
     }
 }
