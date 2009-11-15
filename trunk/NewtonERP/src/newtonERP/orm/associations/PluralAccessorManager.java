@@ -22,10 +22,10 @@ public class PluralAccessorManager
      * @return liste des accessors 1 à 1 et plusieurs à 1 pour l'entité source
      * @throws Exception si obtention de l'accessor multiple fail
      */
-    public static final TreeMap<String, Vector<AbstractOrmEntity>> getPluralAccessorList(
+    public static final TreeMap<String, PluralAccessor> getPluralAccessorList(
 	    AbstractOrmEntity entity) throws Exception
     {
-	TreeMap<String, Vector<AbstractOrmEntity>> pluralAccessorList = new TreeMap<String, Vector<AbstractOrmEntity>>();
+	TreeMap<String, PluralAccessor> pluralAccessorList = new TreeMap<String, PluralAccessor>();
 
 	addFromPositiveFlagPoolList(pluralAccessorList, entity);
 	addFromNegativeListOfValueList(pluralAccessorList, entity);
@@ -42,13 +42,13 @@ public class PluralAccessorManager
      * @return accesseur multiple
      * @throws Exception si obtention fail
      */
-    public static Vector<AbstractOrmEntity> getPluralAccessor(
-	    AbstractOrmEntity entity, String accessorName,
-	    AbstractOrmEntity searchCriteriaEntity) throws Exception
+    public static PluralAccessor getPluralAccessor(AbstractOrmEntity entity,
+	    String accessorName, AbstractOrmEntity searchCriteriaEntity)
+	    throws Exception
     {
-	Vector<AbstractOrmEntity> pluralAccessor;
+	PluralAccessor pluralAccessor;
 
-	TreeMap<String, Vector<AbstractOrmEntity>> pluralAccessorList = new TreeMap<String, Vector<AbstractOrmEntity>>();
+	TreeMap<String, PluralAccessor> pluralAccessorList = new TreeMap<String, PluralAccessor>();
 
 	pluralAccessor = tryGetAccessorFromPositiveFlagPool(entity,
 		accessorName, searchCriteriaEntity);
@@ -86,19 +86,19 @@ public class PluralAccessorManager
      * @return accesseur multiple
      * @throws Exception si obtention fail
      */
-    public static final Vector<AbstractOrmEntity> getPluralAccessor(
+    public static final PluralAccessor getPluralAccessor(
 	    AbstractOrmEntity entity, String accessorName) throws Exception
     {
 	return getPluralAccessor(entity, accessorName, null);
     }
 
     private static void addFromNegativeFlagPoolList(
-	    TreeMap<String, Vector<AbstractOrmEntity>> pluralAccessorList,
+	    TreeMap<String, PluralAccessor> pluralAccessorList,
 	    AbstractOrmEntity entity) throws Exception
     {
-	Vector<AbstractOrmEntity> intermediatePluralAccessor;
+	PluralAccessor intermediatePluralAccessor;
 	Vector<AbstractOrmEntity> resultSet;
-	Vector<AbstractOrmEntity> pluralAccessor;
+	PluralAccessor pluralAccessor;
 	AbstractOrmEntity intermediateEntityDefinition;
 	FlagPool flagPool;
 
@@ -122,10 +122,11 @@ public class PluralAccessorManager
 	    intermediateEntityDefinition.setData(entity.getForeignKeyName(),
 		    entity.getPrimaryKeyValue());
 
-	    intermediatePluralAccessor = Orm
-		    .select(intermediateEntityDefinition);
+	    intermediatePluralAccessor = new PluralAccessor(
+		    intermediateEntityDefinition, Orm
+			    .select(intermediateEntityDefinition));
 
-	    pluralAccessor = new Vector<AbstractOrmEntity>();
+	    pluralAccessor = null;
 	    for (AbstractOrmEntity intermediateEntity : intermediatePluralAccessor)
 	    {
 		String keyOut = flagPool.getIntermediateKeyIn();
@@ -137,6 +138,9 @@ public class PluralAccessorManager
 			intermediateEntity.getData(keyOut));
 
 		resultSet = Orm.select(foreignEntity);
+
+		if (pluralAccessor == null)
+		    pluralAccessor = new PluralAccessor(foreignEntity);
 
 		if (resultSet.size() > 0)
 		    pluralAccessor.addAll(resultSet);
@@ -150,7 +154,7 @@ public class PluralAccessorManager
     }
 
     private static void addFromNegativeListOfValueList(
-	    TreeMap<String, Vector<AbstractOrmEntity>> pluralAccessorList,
+	    TreeMap<String, PluralAccessor> pluralAccessorList,
 	    AbstractOrmEntity entity) throws Exception
     {
 	// searchCriteriaEntity can be null
@@ -179,15 +183,15 @@ public class PluralAccessorManager
 		    .select(foreignEntityDefinition);
 
 	    pluralAccessorList.put(foreignEntityDefinition.getSystemName(),
-		    resultSet);
+		    new PluralAccessor(foreignEntityDefinition, resultSet));
 	}
     }
 
     private static void addFromPositiveFlagPoolList(
-	    TreeMap<String, Vector<AbstractOrmEntity>> pluralAccessorList,
+	    TreeMap<String, PluralAccessor> pluralAccessorList,
 	    AbstractOrmEntity entity) throws Exception
     {
-	Vector<AbstractOrmEntity> pluralAccessor;
+	PluralAccessor pluralAccessor;
 	FlagPool flagPool;
 
 	for (String flagPoolName : entity.getPositiveFlagPoolList().keySet())
@@ -201,14 +205,14 @@ public class PluralAccessorManager
 	}
     }
 
-    private static Vector<AbstractOrmEntity> tryGetAccessorFromPositiveFlagPool(
+    private static PluralAccessor tryGetAccessorFromPositiveFlagPool(
 	    AbstractOrmEntity entity, String accessorName,
 	    AbstractOrmEntity searchCriteriaEntity) throws Exception
     {
 	// searchCriteriaEntity can be null
 
 	accessorName = accessorName.toLowerCase();
-	Vector<AbstractOrmEntity> pluralAccessor;
+	PluralAccessor pluralAccessor;
 
 	Hashtable<String, FlagPool> positiveFlagPoolList = entity
 		.getPositiveFlagPoolList();
@@ -249,7 +253,7 @@ public class PluralAccessorManager
 	return pluralAccessor;
     }
 
-    private static Vector<AbstractOrmEntity> getPositivePluralAccessor(
+    private static PluralAccessor getPositivePluralAccessor(
 	    AbstractOrmEntity entity, FlagPool flagPool,
 	    AbstractOrmEntity searchCriteriaEntity) throws Exception
     {

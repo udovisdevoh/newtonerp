@@ -11,6 +11,7 @@ import newtonERP.module.generalEntity.ListOfValue;
 import newtonERP.orm.Orm;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.associations.FlagPoolManager;
+import newtonERP.orm.associations.PluralAccessor;
 import newtonERP.orm.associations.PluralAccessorManager;
 import newtonERP.orm.exceptions.OrmException;
 import newtonERP.orm.field.Field;
@@ -29,7 +30,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 
     private String visibleName;
 
-    private TreeMap<String, Vector<AbstractOrmEntity>> pluralAccessorList;
+    private TreeMap<String, PluralAccessor> pluralAccessorList;
 
     private TreeMap<String, AbstractOrmEntity> singleAccessorList;
 
@@ -575,7 +576,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      * @return la liste des accessors plusieurs à plusieurs pour cette entité
      * @throws Exception si obtention de liste d'accessor fail
      */
-    public final TreeMap<String, Vector<AbstractOrmEntity>> getPluralAccessorList()
+    public final TreeMap<String, PluralAccessor> getPluralAccessorList()
 	    throws Exception
     {
 	if (pluralAccessorList == null)
@@ -676,7 +677,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      * @return accesseur multiple voulu
      * @throws Exception si obtention fail
      */
-    public Vector<AbstractOrmEntity> getPluralAccessor(String accessorName)
+    public PluralAccessor getPluralAccessor(String accessorName)
 	    throws Exception
     {
 	return PluralAccessorManager.getPluralAccessor(this, accessorName);
@@ -689,17 +690,18 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      * @return accesseur multiple critérié
      * @throws Exception si obtention fail
      */
-    public Vector<AbstractOrmEntity> getPluralAccessor(String accessorName,
+    public PluralAccessor getPluralAccessor(String accessorName,
 	    AbstractOrmEntity searchCriteriaEntity) throws Exception
     {
-	Vector<AbstractOrmEntity> pluralAccessor = PluralAccessorManager
+	PluralAccessor pluralAccessor = PluralAccessorManager
 		.getPluralAccessor(this, accessorName, searchCriteriaEntity);
 
 	if (pluralAccessor != null)
 	    return pluralAccessor;
 
-	Vector<AbstractOrmEntity> uncleanedList = getPluralAccessor(accessorName);
-	Vector<AbstractOrmEntity> cleanList = new Vector<AbstractOrmEntity>();
+	PluralAccessor uncleanedList = getPluralAccessor(accessorName);
+	PluralAccessor cleanList = new PluralAccessor(uncleanedList
+		.getInternalEntityDefinition());
 
 	for (AbstractOrmEntity entityFromList : uncleanedList)
 	    if (entityFromList.matchesCriteriasFrom(searchCriteriaEntity))

@@ -1,13 +1,12 @@
 package newtonERP.viewers.firstStep;
 
-import java.util.Vector;
-
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.BaseAction;
 import newtonERP.module.generalEntity.FlagPool;
 import newtonERP.module.generalEntity.ListOfValue;
 import newtonERP.module.generalEntity.ScrollList;
+import newtonERP.orm.associations.PluralAccessor;
 import newtonERP.orm.field.Field;
 import newtonERP.serveur.Servlet;
 import newtonERP.viewers.secondStep.CheckListViewer;
@@ -118,7 +117,7 @@ public class PromptViewer
     {
 	String html = "";
 
-	Vector<AbstractOrmEntity> pluralAccessor;
+	PluralAccessor pluralAccessor;
 
 	ScrollList scrollList;
 

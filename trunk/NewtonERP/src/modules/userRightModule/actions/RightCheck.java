@@ -9,6 +9,7 @@ import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.Orm;
+import newtonERP.orm.associations.PluralAccessor;
 
 /**
  * Action class that checks the right on an entity
@@ -36,8 +37,8 @@ public class RightCheck extends AbstractAction
 	if (parameters.get("entity") != null)
 	    searchEntity.setData("entityName", parameters.get("entity"));
 
-	Vector<AbstractOrmEntity> rightList = user.getGroupsEntity()
-		.getPluralAccessor("Right", searchEntity);
+	PluralAccessor rightList = user.getGroupsEntity().getPluralAccessor(
+		"Right", searchEntity);
 
 	if (rightList.size() > 0)
 	    return rightList.get(0);
