@@ -7,6 +7,7 @@ import java.util.Vector;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.exception.FieldNotCompatibleException;
 import newtonERP.orm.Orm;
+import newtonERP.orm.associations.PluralAccessor;
 import newtonERP.viewers.viewables.CheckListViewable;
 
 /**
@@ -235,12 +236,13 @@ public class FlagPool implements CheckListViewable
      * @return accessor multiple vers entité étrangère
      * @throws Exception si obtention fail
      */
-    public Vector<AbstractOrmEntity> getPositivePluralForeignAccessor(
+    public PluralAccessor getPositivePluralForeignAccessor(
 	    AbstractOrmEntity searchCriteriaEntity) throws Exception
     {
 	// searchCriteriaEntity can be null
 
-	Vector<AbstractOrmEntity> pluralForeignAccessor = new Vector<AbstractOrmEntity>();
+	PluralAccessor pluralForeignAccessor = new PluralAccessor(
+		foreignEntityDefinition);
 
 	Vector<AbstractOrmEntity> resultSet;
 
