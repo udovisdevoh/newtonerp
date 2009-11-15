@@ -3,6 +3,7 @@ package newtonERP.module.generalEntity;
 import java.util.TreeMap;
 import java.util.Vector;
 
+import newtonERP.common.ActionLink;
 import newtonERP.common.NaturalMap;
 import newtonERP.module.AbstractEntity;
 import newtonERP.viewers.viewables.ScrollListViewable;
@@ -21,6 +22,8 @@ public class ScrollList extends AbstractEntity implements ScrollListViewable
     private Vector<NaturalMap<String, String>> linkPairList;
 
     private String titleUrl;
+
+    private Vector<ActionLink> actionLinkList;
 
     /**
      * @param title titre
@@ -94,5 +97,23 @@ public class ScrollList extends AbstractEntity implements ScrollListViewable
     public String getTitleUrl()
     {
 	return titleUrl;
+    }
+
+    /**
+     * @param actionLink actionLink à ajouter
+     */
+    public void addActionLink(ActionLink actionLink)
+    {
+	getActionLinkList().add(actionLink);
+    }
+
+    /**
+     * @return liste des actionLink
+     */
+    public Vector<ActionLink> getActionLinkList()
+    {
+	if (actionLinkList == null)
+	    actionLinkList = new Vector<ActionLink>();
+	return actionLinkList;
     }
 }

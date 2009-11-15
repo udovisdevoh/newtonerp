@@ -1,5 +1,6 @@
 package newtonERP.viewers.firstStep;
 
+import newtonERP.common.ActionLink;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.BaseAction;
@@ -125,6 +126,9 @@ public class PromptViewer
 	{
 	    pluralAccessor = entity.getPluralAccessorList().get(accessorName);
 
+	    if (pluralAccessor == null)
+		continue;
+
 	    scrollList = new ScrollList(pluralAccessor
 		    .getInternalEntityDefinition().getVisibleName()
 		    + "(s)");
@@ -146,6 +150,19 @@ public class PromptViewer
 			+ "="
 			+ currentForeignEntity.getPrimaryKeyValue());
 	    }
+
+	    if (pluralAccessor.getInternalEntityDefinition().getFields()
+		    .containsFieldName(entity.getForeignKeyName()))
+	    {
+		ActionLink newItemActionLink = new ActionLink(
+			"<img src='/file/images/plusIcon.gif' alt='Nouveau' style='display:block;margin-left:3px;margin-top:2px' />",
+			new BaseAction("New", pluralAccessor
+				.getInternalEntityDefinition()));
+		newItemActionLink.addParameters(entity.getForeignKeyName(),
+			entity.getPrimaryKeyValue().toString());
+		scrollList.addActionLink(newItemActionLink);
+	    }
+
 	    html += "<tr><td style=\"column-span: all;\" colspan=\"100%\">"
 		    + ScrollListViewer.getHtmlContent(scrollList)
 		    + "</td></tr>";

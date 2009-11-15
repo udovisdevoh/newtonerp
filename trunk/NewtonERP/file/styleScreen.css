@@ -44,6 +44,11 @@ h2 /* sous-titres */
 	font-family: Arial, "Arial Black", "Times New Roman", Times, serif;
 }
 
+a img
+{
+	border-width:0px;
+}
+
 .element_menu
 {
 	float: left; /* Le menu flottant à gauche */
