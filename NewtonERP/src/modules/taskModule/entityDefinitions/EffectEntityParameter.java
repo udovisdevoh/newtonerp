@@ -11,13 +11,13 @@ import newtonERP.orm.field.Fields;
  * Entité intermédiaire entre effect et parameter
  * @author Guillaume Lacasse
  */
-public class EffectParameter extends AbstractOrmEntity
+public class EffectEntityParameter extends AbstractOrmEntity
 {
 
     /**
      * @throws Exception si création fail
      */
-    public EffectParameter() throws Exception
+    public EffectEntityParameter() throws Exception
     {
 	super();
 	setVisibleName("Paramètre d'éffet");
@@ -27,7 +27,7 @@ public class EffectParameter extends AbstractOrmEntity
     public Fields initFields() throws Exception
     {
 	Vector<Field> fieldsInit = new Vector<Field>();
-	fieldsInit.add(new FieldInt("Effet", "effectID"));
+	fieldsInit.add(new FieldInt("Effet", "effectEntityID"));
 	fieldsInit.add(new FieldInt("Paramètre", "parameterID"));
 	return new Fields(fieldsInit);
     }
