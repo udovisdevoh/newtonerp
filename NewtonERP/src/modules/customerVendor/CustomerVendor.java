@@ -70,9 +70,10 @@ public class CustomerVendor extends Module
 	customer2.newE();
 
 	Invoice invoice = new Invoice();
-	invoice.setData("total", 45.16);
+	invoice.setData("total", 0);
 	invoice.setData(new Merchant().getForeignKeyName(), 2);
 	invoice.setData("date", new GregorianCalendar());
+	invoice.setData("taxTotal", 0);
 	invoice.newE();
 
 	Tax taxe = new Tax();
@@ -91,7 +92,7 @@ public class CustomerVendor extends Module
 	ligne.setData(new Invoice().getForeignKeyName(), 1);
 	ligne.setData(new Product().getForeignKeyName(), 1);
 	ligne.setData("quantity", 10);
-	ligne.setData("unitPrice", 13.99);
+	ligne.setData("unitPrice", 10.0);
 	ligne.newE();
 
 	InvoiceTaxLine ligneTaxe = new InvoiceTaxLine();

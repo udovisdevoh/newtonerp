@@ -42,6 +42,7 @@ public class Invoice extends AbstractOrmEntity implements PromptViewable
 	Vector<Field> fieldList = new Vector<Field>();
 	fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
 	fieldList.add(new FieldCurrency("Total", "total"));
+	fieldList.add(new FieldCurrency("Total taxes", "taxTotal"));
 	fieldList.add(new FieldInt("Nom du client", new Merchant()
 		.getForeignKeyName()));
 	fieldList.add(new FieldDate("Date", "date"));
