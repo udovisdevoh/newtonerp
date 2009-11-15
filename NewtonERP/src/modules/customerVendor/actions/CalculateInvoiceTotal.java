@@ -63,8 +63,8 @@ public class CalculateInvoiceTotal extends AbstractAction
 	for (AbstractOrmEntity tax : invoiceTaxLines)
 	{
 	    Tax taxe = new Tax();
-	    taxe.setData(new Tax().getPrimaryKeyName(), tax
-		    .getPrimaryKeyValue());
+	    taxe.setData(new Tax().getPrimaryKeyName(), tax.getData(new Tax()
+		    .getForeignKeyName()));
 
 	    Tax myTax = (Tax) Orm.selectUnique(taxe);
 
