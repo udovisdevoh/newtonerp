@@ -125,30 +125,30 @@ public class PromptViewer
 	{
 	    pluralAccessor = entity.getPluralAccessorList().get(accessorName);
 
-	    if (pluralAccessor.size() > 0)
+	    scrollList = new ScrollList(pluralAccessor
+		    .getInternalEntityDefinition().getVisibleName()
+		    + "(s)");
+
+	    scrollList.setTitleUrl(Servlet.makeLink(pluralAccessor
+		    .getInternalEntityDefinition().getCurrentModule(),
+		    new BaseAction("GetList", pluralAccessor
+			    .getInternalEntityDefinition())));
+
+	    for (AbstractOrmEntity currentForeignEntity : pluralAccessor)
 	    {
-		scrollList = new ScrollList(pluralAccessor.get(0)
-			.getVisibleName()
-			+ "(s)");
 
-		for (AbstractOrmEntity currentForeignEntity : pluralAccessor)
-		{
-		    scrollList.setTitleUrl(Servlet.makeLink(
-			    currentForeignEntity.getCurrentModule(),
-			    new BaseAction("GetList", currentForeignEntity)));
-
-		    scrollList.addLink(currentForeignEntity
-			    .getNaturalKeyDescription(), Servlet.makeLink(
-			    currentForeignEntity.getCurrentModule(),
-			    new BaseAction("Edit", currentForeignEntity))
-			    + "?"
-			    + currentForeignEntity.getPrimaryKeyName()
-			    + "=" + currentForeignEntity.getPrimaryKeyValue());
-		}
-		html += "<tr><td style=\"column-span: all;\" colspan=\"100%\">"
-			+ ScrollListViewer.getHtmlContent(scrollList)
-			+ "</td></tr>";
+		scrollList.addLink(currentForeignEntity
+			.getNaturalKeyDescription(), Servlet.makeLink(
+			currentForeignEntity.getCurrentModule(),
+			new BaseAction("Edit", currentForeignEntity))
+			+ "?"
+			+ currentForeignEntity.getPrimaryKeyName()
+			+ "="
+			+ currentForeignEntity.getPrimaryKeyValue());
 	    }
+	    html += "<tr><td style=\"column-span: all;\" colspan=\"100%\">"
+		    + ScrollListViewer.getHtmlContent(scrollList)
+		    + "</td></tr>";
 	}
 
 	return html;
