@@ -152,7 +152,8 @@ public class PromptViewer
 	    }
 
 	    if (pluralAccessor.getInternalEntityDefinition().getFields()
-		    .containsFieldName(entity.getForeignKeyName()))
+		    .containsFieldName(entity.getForeignKeyName())
+		    && entity.getPrimaryKeyValue() != 0)
 	    {
 		ActionLink newItemActionLink = new ActionLink(
 			"<img src='/file/images/plusIcon.gif' alt='Nouveau' style='display:block;margin-left:3px;margin-top:2px' />",
