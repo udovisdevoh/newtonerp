@@ -33,8 +33,8 @@ public class CalculateInvoiceTotal extends AbstractAction
     protected AbstractEntity doAction(AbstractEntity entity,
 	    Hashtable<String, String> parameters) throws Exception
     {
-	Double totalInvoice = 0.0;
 	Invoice actionInvoice = (Invoice) entity;
+	Double totalInvoice = (Double) entity.getData("total");
 
 	// We get the invoiceLines associated
 	Vector<AbstractOrmEntity> invoiceLines = actionInvoice
@@ -42,13 +42,19 @@ public class CalculateInvoiceTotal extends AbstractAction
 
 	for (AbstractOrmEntity line : invoiceLines)
 	{
-	    totalInvoice += (Double) ((InvoiceLine) line).getData("unitPrice");
+	    if (totalInvoice == null)
+		totalInvoice = 0.0;
+
+	    totalInvoice += ((Double) ((InvoiceLine) line).getData("unitPrice") * (Integer) line
+		    .getData("quantity"));
 	}
 
-	// Here we have the total whitout taxes
 	actionInvoice.setData("total", totalInvoice);
 
-	Orm.updateUnique((AbstractOrmEntity) entity, actionInvoice);
+	Vector<String> searchCriterias = new Vector<String>();
+	searchCriterias.add(actionInvoice.getPrimaryKeyName() + "='"
+		+ actionInvoice.getPrimaryKeyValue() + "'");
+	Orm.update(actionInvoice, searchCriterias);
 
 	return null;
     }
