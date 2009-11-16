@@ -10,13 +10,12 @@ import newtonERP.orm.field.FieldCurrency;
 import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.FieldString;
 import newtonERP.orm.field.Fields;
-import newtonERP.viewers.viewables.PromptViewable;
 
 /**
  * Représente un entité d'employé
  * @author Guillaume
  */
-public class Employee extends AbstractOrmEntity implements PromptViewable
+public class Employee extends AbstractOrmEntity
 {
 
     /**

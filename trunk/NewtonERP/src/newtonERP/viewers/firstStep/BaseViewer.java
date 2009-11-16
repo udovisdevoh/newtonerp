@@ -16,11 +16,38 @@ public class BaseViewer
      * donne le code html des element de base du haut
      * @param entity l'entity cntenant ces information
      * @return le code html
+     * @throws Exception remonte
      */
-    public static String getTopHtmlCode(BaseViewerData entity)
+    public static String getTopHtmlCode(BaseViewerData entity) throws Exception
     {
 	String html = "";
+	if (entity.getBackLink() != null)
+	    html += "<p class='backLink'><a class='backLink' href='"
+		    + entity.getBackLink().getUrlParam() + "'> &lt; "
+		    + entity.getBackLink().getName() + "</a></p>";
+
 	html += "<h2>" + entity.getTitle() + "</h2>";
+
+	html += getMessage(entity);
+
+	return html;
+    }
+
+    /**
+     * @param entity
+     * @param html
+     * @return
+     */
+    private static String getMessage(BaseViewerData entity)
+    {
+	String html = "";
+	if (entity.getAlertMessageList() != null)
+	    for (String message : entity.getAlertMessageList())
+		html += "<p class='errorMessage'>" + message + "</p>";
+
+	if (entity.getNormalMessageList() != null)
+	    for (String message : entity.getNormalMessageList())
+		html += "<p class='normalMessage'>" + message + "</p>";
 	return html;
     }
 
@@ -39,8 +66,8 @@ public class BaseViewer
 	{
 	    html += ButtonLinkViewer.getHtmlCode(globalAction);
 	    /*
-	     * todo: remove when sucefully tested html += " <a href=\"" +
-	     * globalAction.getUrl() + "\">"; html += globalAction.getName() +
+	     * todo: remove when sucefully tested html += " <a href='" +
+	     * globalAction.getUrl() + "'>"; html += globalAction.getName() +
 	     * "</a> ";
 	     */
 	}
@@ -53,6 +80,6 @@ public class BaseViewer
     private static String getPrintButton()
     {
 
-	return "<form class=\"submitButton\"><input class=\"submitButton\" type=\"button\" value=\"Imprimer\" onclick=\"window.print();return false;\"/></form>";
+	return "<form class='submitButton'><input class='submitButton' type='button' value='Imprimer' onclick='window.print();return false;'/></form>";
     }
 }

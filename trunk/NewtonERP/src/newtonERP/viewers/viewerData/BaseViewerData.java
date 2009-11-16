@@ -14,6 +14,9 @@ public class BaseViewerData extends AbstractEntity
 {
     private String title;
     private Vector<ActionLink> globalActions = new Vector<ActionLink>();
+    private Vector<String> alertMessageList = new Vector<String>();
+    private Vector<String> normalMessageList = new Vector<String>();
+    private ActionLink backLink;
 
     /**
      * constructeur vide
@@ -62,6 +65,70 @@ public class BaseViewerData extends AbstractEntity
     public void addGlobalActions(ActionLink globalAction)
     {
 	globalActions.add(globalAction);
+    }
+
+    /**
+     * @return the alertMessageList
+     */
+    public Vector<String> getAlertMessageList()
+    {
+	return alertMessageList;
+    }
+
+    /**
+     * @param alertMessageList the alertMessageList to set
+     */
+    public void setAlertMessageList(Vector<String> alertMessageList)
+    {
+	this.alertMessageList = alertMessageList;
+    }
+
+    /**
+     * @param message message à ajouter
+     */
+    public final void addAlertMessage(String message)
+    {
+	alertMessageList.add(message);
+    }
+
+    /**
+     * @return the normalMessageList
+     */
+    public Vector<String> getNormalMessageList()
+    {
+	return normalMessageList;
+    }
+
+    /**
+     * @param normalMessageList the normalMessageList to set
+     */
+    public void setNormalMessageList(Vector<String> normalMessageList)
+    {
+	this.normalMessageList = normalMessageList;
+    }
+
+    /**
+     * @param message nouveau message normal
+     */
+    public void addNormalMessage(String message)
+    {
+	normalMessageList.add(message);
+    }
+
+    /**
+     * @return the backLink
+     */
+    public ActionLink getBackLink()
+    {
+	return backLink;
+    }
+
+    /**
+     * @param backLink the backLink to set
+     */
+    public void setBackLink(ActionLink backLink)
+    {
+	this.backLink = backLink;
     }
 
 }

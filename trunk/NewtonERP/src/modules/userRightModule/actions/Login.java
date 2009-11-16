@@ -5,6 +5,7 @@ import java.util.Vector;
 
 import modules.userRightModule.UserRightModule;
 import modules.userRightModule.entityDefinitions.User;
+import newtonERP.common.ActionLink;
 import newtonERP.common.Authentication;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
@@ -37,12 +38,12 @@ public class Login extends AbstractAction
 	    currentLoginName = "";
 
 	Form loginForm = new Form(new UserRightModule(), new Login());
-	loginForm.addNewField("Utilisateur", "name", currentLoginName);
+	loginForm.addField("Utilisateur", "name", currentLoginName);
 	Field tmpPwd = new User().getFields().getField("password");
 	tmpPwd.setDefaultValue();
-	loginForm.addNewField(tmpPwd);
-	loginForm.setPromptMessage("Identification");
-	loginForm.setButtonCaption("Entrer");
+	loginForm.addField(tmpPwd);
+	loginForm.setTitle("Identification");
+	loginForm.setButtonAction(new ActionLink("Entrer", this));
 
 	if (parameters.containsKey("submit"))
 	{
