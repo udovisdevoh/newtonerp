@@ -37,4 +37,19 @@ public class Parameter extends AbstractOrmEntity implements PromptViewable
 	return new Fields(fieldList);
     }
 
+    /**
+     * @return clef du paramètre
+     */
+    public String getKey()
+    {
+	return getDataString("key");
+    }
+
+    /**
+     * @return valeur du paramètre
+     */
+    public String getValue()
+    {
+	return getDataString("value");
+    }
 }

@@ -66,7 +66,7 @@ public class BaseAction extends AbstractAction
      * newtonERP.module.AbstractAction#doAction(newtonERP.module.AbstractEntity,
      * java.util.Hashtable)
      */
-    protected AbstractEntity doAction(
+    public AbstractEntity doAction(
 	    @SuppressWarnings("hiding") AbstractEntity entity,
 	    Hashtable<String, String> parameters) throws Exception
     {

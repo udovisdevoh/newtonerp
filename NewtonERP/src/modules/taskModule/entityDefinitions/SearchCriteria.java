@@ -44,4 +44,20 @@ public class SearchCriteria extends AbstractOrmEntity implements PromptViewable
 	fieldList.add(new FieldText("Valeur", "value", false));
 	return new Fields(fieldList);
     }
+
+    /**
+     * @return clef du critère de recherche
+     */
+    public String getKey()
+    {
+	return (String) getData("key");
+    }
+
+    /**
+     * @return valeur du critère de recherche
+     */
+    public Object getValue()
+    {
+	return getData("value");
+    }
 }

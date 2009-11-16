@@ -24,7 +24,7 @@ public class CreateAllRight extends AbstractAction
 	super(null); // ne travaille pas avec une entity
     }
 
-    protected AbstractEntity doAction(AbstractEntity entity,
+    public AbstractEntity doAction(AbstractEntity entity,
 	    Hashtable<String, String> parameters) throws Exception
     {
 	Module module = null;

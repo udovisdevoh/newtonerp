@@ -73,4 +73,10 @@ public class EntityEntity extends AbstractOrmEntity implements PromptViewable
 	ListViewerData entityList = super.getList(parameters);
 	return entityList;
     }
+
+    public AbstractOrmEntity getEntityDefinition()
+    {
+	// TODO Auto-generated method stub
+	return null;
+    }
 }

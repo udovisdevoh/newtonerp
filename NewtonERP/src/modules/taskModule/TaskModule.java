@@ -57,7 +57,10 @@ public class TaskModule extends Module
 	// pour tester
 	Parameter parameter = new Parameter();
 	parameter.setData("key", "message");
-	parameter.setData("value", "Voici votre nouveau login");
+	parameter
+		.setData("value",
+			"Voici votre nouveau compte utilisateur :Employee.firstName:Employee.lastName");
+	// parameter.setData("value", ":Employee.firstName:Employee.lastName");
 	parameter.newE();
 
 	SearchCriteria searchCriteria = new SearchCriteria();
@@ -84,11 +87,11 @@ public class TaskModule extends Module
 	specification.setData(new SearchEntity().getForeignKeyName(), 1);
 	specification.newE();
 
-	TaskEntity task = new TaskEntity();
-	task.setData("isActive", true);
-	task.setData(new Specification().getForeignKeyName(), 1);
-	task.setData(new EffectEntity().getForeignKeyName(), 1);
-	task.newE();
+	// TaskEntity task = new TaskEntity();
+	// task.setData("isActive", true);
+	// task.setData(new Specification().getForeignKeyName(), 1);
+	// task.setData(new EffectEntity().getForeignKeyName(), 1);
+	// task.newE();
     }
 
     private static void initSearchCriteriaOperators() throws Exception

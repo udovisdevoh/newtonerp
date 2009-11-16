@@ -59,9 +59,9 @@ public abstract class AbstractAction
      * @param entity entite a utiliser a l'intérieur du doAction
      * @param parameters list de parametre autre que l'entite
      * @return l'entite resultante
-     * @throws Exception
+     * @throws Exception si exécution fail
      */
-    protected abstract AbstractEntity doAction(AbstractEntity entity,
+    public abstract AbstractEntity doAction(AbstractEntity entity,
 	    Hashtable<String, String> parameters) throws Exception;
 
     /**

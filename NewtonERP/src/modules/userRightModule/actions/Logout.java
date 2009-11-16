@@ -15,7 +15,7 @@ public class Logout extends AbstractAction
 {
 
     @Override
-    protected AbstractEntity doAction(AbstractEntity entity,
+    public AbstractEntity doAction(AbstractEntity entity,
 	    Hashtable<String, String> parameters) throws Exception
     {
 	Authentication.setCurrentUserName(null);

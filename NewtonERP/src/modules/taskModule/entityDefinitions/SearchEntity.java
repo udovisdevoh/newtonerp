@@ -4,6 +4,7 @@ import java.util.Vector;
 
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.associations.AccessorManager;
+import newtonERP.orm.associations.PluralAccessor;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.FieldText;
@@ -36,5 +37,40 @@ public class SearchEntity extends AbstractOrmEntity implements PromptViewable
 	fieldList.add(new FieldInt("Entité", new EntityEntity()
 		.getForeignKeyName()));
 	return new Fields(fieldList);
+    }
+
+    /**
+     * @return vraie entité de recherche
+     * @throws Exception si obtention fail
+     */
+    public AbstractOrmEntity getEntity() throws Exception
+    {
+	EntityEntity entityEntity = (EntityEntity) getSingleAccessor(new EntityEntity()
+		.getForeignKeyName());
+
+	AbstractOrmEntity entity = entityEntity.getEntityDefinition();
+
+	Vector<SearchCriteria> searchCriteriaList = getSearchCriteriaList();
+
+	for (SearchCriteria searchCriteria : searchCriteriaList)
+	    addSearchCriteria(entity, searchCriteria);
+
+	return entity;
+    }
+
+    private Vector<SearchCriteria> getSearchCriteriaList() throws Exception
+    {
+	PluralAccessor searchCriteriaList = getPluralAccessor("SearchCriteria");
+	Vector<SearchCriteria> searchCriteriaVector = new Vector<SearchCriteria>();
+	for (AbstractOrmEntity entity : searchCriteriaList)
+	    searchCriteriaVector.add((SearchCriteria) entity);
+	return searchCriteriaVector;
+    }
+
+    private void addSearchCriteria(AbstractOrmEntity entity,
+	    SearchCriteria searchCriteria) throws Exception
+    {
+	entity.setData(searchCriteria.getKey(), searchCriteria.getValue());
+
     }
 }
