@@ -42,6 +42,7 @@ public class ServiceProviderAccount extends AbstractOrmEntity implements
 	fieldsInit.add(new FieldInt("Numéro", getPrimaryKeyName()));
 	fieldsInit.add(new FieldString("Service", "service"));
 	fieldsInit.add(new FieldDate("Échéance", "deadline"));
+	fieldsInit.add(new FieldDate("Date de paiement", "paymentDate"));
 	fieldsInit.add(new FieldCurrency("Solde", "balance"));
 	fieldsInit
 		.add(new FieldInt("État", new StateType().getForeignKeyName()));
