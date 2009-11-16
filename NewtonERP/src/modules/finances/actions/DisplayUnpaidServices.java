@@ -12,10 +12,9 @@ import newtonERP.module.generalEntity.EntityList;
 import newtonERP.orm.Orm;
 
 /**
- * Action DisplayUnpaidServices: represente l'action d'afficher les services à
+ * Action DisplayUnpaidServices: représente l'action d'afficher les services à
  * payer.
  * 
- * p.s. cette classe me sert de test pour l'instant...
  * @author Pascal Lemay
  */
 

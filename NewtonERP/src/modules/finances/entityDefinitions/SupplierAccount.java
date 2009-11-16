@@ -49,6 +49,7 @@ public class SupplierAccount extends AbstractOrmEntity implements
 	fieldsInit.add(new FieldInt("Facture", new Invoice()
 		.getForeignKeyName()));
 	fieldsInit.add(new FieldDate("Échéance", "deadline"));
+	fieldsInit.add(new FieldDate("Date de paiement", "paymentDate"));
 	fieldsInit.add(new FieldCurrency("Solde", "balance"));
 	fieldsInit
 		.add(new FieldInt("État", new StateType().getForeignKeyName()));
