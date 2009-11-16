@@ -38,55 +38,27 @@ public class UserRightModule extends Module
 
     public void initDB() throws Exception
     {
-	// cree le groupe
-	Groups group = new Groups();
-	group.setData("groupName", "admin");
-	Orm.insert(group);
-
-	// retrouve le groupsID
-	Vector<String> search = new Vector<String>();
-	search.add("groupName=" + "'admin'");
-	int groupsID = (Integer) ((Groups) Orm.select(group, search).get(0))
-		.getData(group.getPrimaryKeyName());
-
-	// cree le user
-	User user = new User();
-	user.setData("name", "admin");
-	user.setData("password", "aaa");
-	user.setData("groupsID", groupsID);
-	Orm.insert(user);
-
-	int rightID;
-	GroupsRight GroupsRight = new GroupsRight();
-
-	// retrouve les rightID
-	search.clear();
-	search.add("moduleName='" + getSystemName() + "'");
-
-	for (AbstractOrmEntity right : Orm.select(new Right(), search))
-	{
-	    rightID = (Integer) ((Right) right).getData(right
-		    .getPrimaryKeyName());
-
-	    // cree le GroupsRight
-	    GroupsRight.setData("groupsID", groupsID);
-	    GroupsRight.setData("rightID", rightID);
-	    Orm.insert(GroupsRight);
-	}
+	Groups groups;
+	User user;
+	int rightID, groupsID;
+	Right right;
+	GroupsRight groupsRight;
+	Vector<String> search;
 
 	// ***************** unlogged User ****************
 	// cree le groupe
-	group = new Groups();
-	group.setData("groupName", "unLogedGroup");
-	Orm.insert(group);
+	groups = new Groups();
+	groups.setData("groupName", "unLogedGroup");
+	groups.newE();
 
 	// retrouve le groupsID
+	search = new Vector<String>();
 	search.clear();
 	search.add("groupName=" + "'unLogedGroup'");
-	groupsID = (Integer) ((Groups) Orm.select(group, search).get(0))
-		.getData(group.getPrimaryKeyName());
+	groupsID = (Integer) ((Groups) Orm.select(groups, search).get(0))
+		.getData(groups.getPrimaryKeyName());
 
-	// cree le user
+	// cree le user unloggedUser
 	user = new User();
 	user.setData("name", "unLogedUser");
 	user.setData("password", "");
@@ -95,15 +67,51 @@ public class UserRightModule extends Module
 
 	// retrouve les rightID
 
-	Right right = new Right();
+	right = new Right();
 	right.getFields().getField("moduleName").setData(getSystemName());
 	right.getFields().getField("actionName").setData("Login");
 	right = (Right) right.get(right).get(0);
 	rightID = (Integer) right.getData(right.getPrimaryKeyName());
 
 	// cree le GroupsRight
-	GroupsRight.setData("groupsID", groupsID);
-	GroupsRight.setData("rightID", rightID);
-	Orm.insert(GroupsRight);
+	groupsRight = new GroupsRight();
+	groupsRight.setData("groupsID", groupsID);
+	groupsRight.setData("rightID", rightID);
+	groupsRight.newE();
+
+	// cree le groupe
+	groups = new Groups();
+	groups.setData("groupName", "admin");
+	groups.newE();
+
+	// retrouve le groupsID
+	search = new Vector<String>();
+	search.add("groupName=" + "'admin'");
+	groupsID = (Integer) ((Groups) Orm.select(groups, search).get(0))
+		.getData(groups.getPrimaryKeyName());
+
+	// cree le user Admin
+	user = new User();
+	user.setData("name", "admin");
+	user.setData("password", "aaa");
+	user.setData("groupsID", groupsID);
+	user.newE();
+
+	groupsRight = new GroupsRight();
+
+	// retrouve les rightID
+	search.clear();
+	search.add("moduleName='" + getSystemName() + "'");
+
+	for (AbstractOrmEntity currentRight : Orm.select(new Right(), search))
+	{
+	    rightID = (Integer) ((Right) currentRight).getData(currentRight
+		    .getPrimaryKeyName());
+
+	    // cree le GroupsRight
+	    groupsRight.setData("groupsID", groupsID);
+	    groupsRight.setData("rightID", rightID);
+	    groupsRight.newE();
+	}
     }
 }
