@@ -4,13 +4,13 @@ import java.util.Vector;
 
 import newtonERP.common.ActionLink;
 import newtonERP.module.AbstractEntity;
-import newtonERP.module.generalEntity.EntityList;
 import newtonERP.serveur.Servlet;
 import newtonERP.viewers.ViewerException;
 import newtonERP.viewers.secondStep.ButtonLinkViewer;
 import newtonERP.viewers.secondStep.ColorViewer;
 import newtonERP.viewers.viewerData.GridCaseData;
 import newtonERP.viewers.viewerData.GridViewerData;
+import newtonERP.viewers.viewerData.ListViewerData;
 
 /**
  * Represents the list viewer for listing data
@@ -34,7 +34,7 @@ public class GridViewer
 	// TODO: modifier les class de style et mettre du style css a la place
 	// un moment donnée
 
-	html += "<table class=\"ListViewerTable\" border=\"0\" cellpadding=\"3\" cellspacing=\"0\">";
+	html += "<table class='ListViewerTable' border='0' cellpadding='3' cellspacing='0'>";
 	html += getTableHeader(gridEntity.getHeader(), gridEntity
 		.getLeftHeader().length > 0);
 	html += getDataRowList(gridEntity);
@@ -50,7 +50,7 @@ public class GridViewer
 
 	String html = "";
 	// todo: change by th in css
-	String isHeader = " class=\"ListViewerTableHeader\"";
+	String isHeader = " class='ListViewerTableHeader'";
 
 	html += "\n<tr>";
 	if (hasLeftHeader)
@@ -98,17 +98,18 @@ public class GridViewer
 		    caseContent = getCase(data[i][j]);
 
 		    if (gridData.isColor())
-			color = " style=\"background-color:"
-				+ ColorViewer.getColor(caseContent);
+			color = " background-color:"
+				+ ColorViewer.getColor(caseContent) + ";";
 
-		    html += "<td class=\"gridCell\" style=\"" + rowspan + color
-			    + ";text-align:center\">" + caseContent + "</td>";
+		    html += "<td class='gridCell'" + rowspan + "style='"
+			    + color + "text-align:center;'>" + caseContent
+			    + "</td>";
 		}
 	    }
-	    if (gridData instanceof EntityList)
+	    if (gridData instanceof ListViewerData)
 		html += getSpecificButton(gridData
-			.getSpecificActionButtonList(), ((EntityList) gridData)
-			.getEntity().get(i));
+			.getSpecificActionButtonList(),
+			((ListViewerData) gridData).getEntity().get(i));
 	    else
 		html += getSpecificButton(gridData
 			.getSpecificActionButtonList(), null);
@@ -143,8 +144,8 @@ public class GridViewer
 	if (dtCase != null)
 	{
 	    if (dtCase.getActionLink() != null)
-		html += "<a href=\"" + Servlet.makeLink(dtCase.getActionLink())
-			+ "?" + dtCase.getParam() + "\">";
+		html += "<a href='" + Servlet.makeLink(dtCase.getActionLink())
+			+ "?" + dtCase.getParam() + "'>";
 	    html += dtCase.getValue();
 	    if (dtCase.getActionLink() != null)
 		html += "</a>";
