@@ -27,7 +27,7 @@ public class LinkViewer
 	 */
 
 	String html = "";
-	html += " <a href='" + actionLink.getUrl() + "'>";
+	html += " <a href='" + actionLink.getUrlParam() + "'>";
 	html += actionLink.getName() + "</a> ";
 
 	return html;

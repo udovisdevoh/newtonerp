@@ -66,7 +66,7 @@ public class ScrollListViewer
 	html = html.replace("<ul></ul>", "");
 
 	for (ActionLink actionLink : entity.getActionLinkList())
-	    html += ButtonLinkViewer.getHtmlCode(actionLink);
+	    html += LinkViewer.getHtmlCode(actionLink);
 
 	html += "</div></div>";
 

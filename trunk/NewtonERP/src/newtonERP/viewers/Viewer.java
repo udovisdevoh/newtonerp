@@ -10,16 +10,16 @@ import newtonERP.module.Module;
 import newtonERP.module.exception.ModuleException;
 import newtonERP.serveur.Servlet;
 import newtonERP.viewers.firstStep.AlertViewer;
+import newtonERP.viewers.firstStep.BaseViewer;
 import newtonERP.viewers.firstStep.ForwardViewer;
 import newtonERP.viewers.firstStep.GridViewer;
-import newtonERP.viewers.firstStep.ListViewer;
 import newtonERP.viewers.firstStep.PromptViewer;
 import newtonERP.viewers.firstStep.StaticTextViewer;
 import newtonERP.viewers.viewables.AlertViewable;
 import newtonERP.viewers.viewables.ForwardViewable;
-import newtonERP.viewers.viewables.ListViewable;
 import newtonERP.viewers.viewables.PromptViewable;
 import newtonERP.viewers.viewables.StaticTextViewable;
+import newtonERP.viewers.viewerData.BaseViewerData;
 import newtonERP.viewers.viewerData.GridViewerData;
 
 /**
@@ -44,23 +44,27 @@ public abstract class Viewer
     // Exception
     {
 	String viewerHtml = "";
+	if (entity instanceof BaseViewerData)
+	    viewerHtml += BaseViewer.getTopHtmlCode((BaseViewerData) entity);
+
 	if (entity instanceof PromptViewable)
-	    viewerHtml = PromptViewer.getHtmlCode((PromptViewable) entity);
-	else if (entity instanceof ListViewable)
-	    viewerHtml = ListViewer.getHtmlCode((ListViewable) entity);
+	    viewerHtml += PromptViewer.getHtmlCode((PromptViewable) entity);
 	else if (entity instanceof ForwardViewable)
-	    viewerHtml = ForwardViewer.getHtmlCode((ForwardViewable) entity);
+	    viewerHtml += ForwardViewer.getHtmlCode((ForwardViewable) entity);
 	else if (entity instanceof AlertViewable)
-	    viewerHtml = AlertViewer.getHtmlCode((AlertViewable) entity);
+	    viewerHtml += AlertViewer.getHtmlCode((AlertViewable) entity);
 	else if (entity instanceof StaticTextViewable)
-	    viewerHtml = StaticTextViewer
+	    viewerHtml += StaticTextViewer
 		    .getHtmlCode((StaticTextViewable) entity);
 	else if (entity instanceof GridViewerData)
-	    viewerHtml = GridViewer.getHtmlCode((GridViewerData) entity);
+	    viewerHtml += GridViewer.getHtmlCode((GridViewerData) entity);
 	else if (entity == null)
-	    viewerHtml = "<!-- page vide -->";
+	    viewerHtml += "<!-- page vide -->";
 	else
 	    throw new ViewerException("Couldn't find proper viewer for entity");
+
+	if (entity instanceof BaseViewerData)
+	    viewerHtml += BaseViewer.getBottomHtmlCode((BaseViewerData) entity);
 
 	return getHeader(moduleName, actionName) + getLeftMenu(moduleName)
 		+ viewerHtml + getFooter();

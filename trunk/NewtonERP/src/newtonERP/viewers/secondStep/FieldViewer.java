@@ -57,7 +57,7 @@ public class FieldViewer
 
 	return "<input" + moneyFormatStyle + " type='" + textFieldType
 		+ "' name='" + field.getShortName() + "' value='"
-		+ field.getDataString() + "' class='textField' /> $";
+		+ field.getDataString() + "' class='textField' />";
     }
 
     private static String textViewer(Field field)

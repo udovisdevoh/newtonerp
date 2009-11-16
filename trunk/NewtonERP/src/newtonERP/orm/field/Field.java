@@ -81,8 +81,9 @@ public abstract class Field
     /**
      * @param data the data to set
      * @throws ParseException an exception that can occur during parsing dates
+     * @throws Exception remonte
      */
-    public abstract void setData(String data) throws ParseException;
+    public abstract void setData(String data) throws ParseException, Exception;
 
     /**
      * @param data the data to set

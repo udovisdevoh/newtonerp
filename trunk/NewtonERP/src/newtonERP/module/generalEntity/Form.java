@@ -1,13 +1,10 @@
 package newtonERP.module.generalEntity;
 
-import java.text.ParseException;
 import java.util.Hashtable;
-import java.util.Vector;
 
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.Module;
-import newtonERP.module.exception.FieldNotFoundException;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.FieldString;
 import newtonERP.orm.field.VolatileFields;
@@ -43,11 +40,10 @@ public class Form extends AbstractEntity implements PromptViewable
      * @param label étiquette du champ
      * @param fieldName nom du champ
      * @param currentValue valeur courante
-     * @throws FieldNotFoundException si field introuvable
-     * @throws ParseException an exception that can occur during parsing dates
+     * @throws Exception remonte
      */
     public void addNewField(String label, String fieldName, String currentValue)
-	    throws FieldNotFoundException, ParseException
+	    throws Exception
     {
 	Field field = new FieldString(label, fieldName);
 	field.setData(currentValue);
@@ -57,11 +53,9 @@ public class Form extends AbstractEntity implements PromptViewable
     /**
      * @param label étiquette du champ
      * @param fieldName nom du champ
-     * @throws FieldNotFoundException si field introuvable
-     * @throws ParseException an exception that can occur during parsong dates
+     * @throws Exception remonte
      */
-    public void addNewField(String label, String fieldName)
-	    throws FieldNotFoundException, ParseException
+    public void addNewField(String label, String fieldName) throws Exception
     {
 	addNewField(label, fieldName, "");
     }
@@ -96,12 +90,6 @@ public class Form extends AbstractEntity implements PromptViewable
     {
 	// Aucun flag pool dans un formulaire, null: OK
 	return null;
-    }
-
-    @Override
-    public Vector<String> getOrderedFieldNameList()
-    {
-	return fields.getOrderedFieldNameList();
     }
 
     @Override

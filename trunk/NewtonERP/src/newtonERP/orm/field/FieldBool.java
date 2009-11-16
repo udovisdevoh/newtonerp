@@ -48,15 +48,18 @@ public class FieldBool extends Field
 	setDataB(data);
     }
 
-    /**
-     * @return the data
-     */
-    public String getDataString()
+    @Override
+    public String getDataString(Boolean forOrm)
     {
 	if (data == null)
 	    return "";
 
-	return (data).toString();
+	if (forOrm)
+	    return data.toString();
+	else if (data)
+	    return "Oui";
+	else
+	    return "Non";
     }
 
     /**
@@ -119,12 +122,6 @@ public class FieldBool extends Field
 	else
 	    throw new InvalidOperatorException("Opérateur invalide pour "
 		    + getClass().getSimpleName());
-    }
-
-    @Override
-    public String getDataString(Boolean forOrm)
-    {
-	return data.toString();
     }
 
     @Override

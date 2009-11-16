@@ -1,6 +1,10 @@
 package newtonERP.viewers.secondStep;
 
+import java.util.Hashtable;
+
 import newtonERP.common.ActionLink;
+import newtonERP.module.AbstractEntity;
+import newtonERP.module.AbstractOrmEntity;
 
 /**
  * Sert à formatter de l'argent
@@ -11,43 +15,61 @@ public class ButtonLinkViewer
 {
     /**
      * @param actionLink representation du lien a effectuer
+     * @param entity entity d'ou tiré les parametre, peu etre null
+     * @return bouton de lien
+     * @throws Exception remonte
+     */
+
+    public static String getHtmlCode(ActionLink actionLink,
+	    AbstractEntity entity) throws Exception
+    {
+	String html = "";
+	String onClickConfirm = "";
+
+	if (actionLink.isConfirm())
+	    onClickConfirm = getOnClickConfirm(actionLink.getName(), entity
+		    .getSystemName(), ((AbstractOrmEntity) entity)
+		    .getNaturalKeyDescription());
+
+	html += "<form method='get' action='" + actionLink.getUrl() + "'>";
+
+	Hashtable<String, String> param = actionLink.getParameters(entity);
+	for (String key : param.keySet())
+	{
+	    html += "<input type='hidden' name='" + key + "' value='"
+		    + param.get(key) + "' />";
+	}
+	html += "<input class='submitButton' type='submit' " + onClickConfirm
+		+ " value='" + actionLink.getName() + "' />";
+
+	html += "</form>";
+
+	return html;
+    }
+
+    /**
+     * @param actionLink representation du lien a effectuer
      * @return bouton de lien
      * @throws Exception remonte
      */
     public static String getHtmlCode(ActionLink actionLink) throws Exception
     {
-	// String onClickConfirm = "";
-
-	/*
-	 * todo: a remettre des que les viewer son plus generaliser que
-	 * presentement if (isConfirm) if (action.getEntityUsable() == null)
-	 * onClickConfirm = getOnClickConfirm(buttonCaption,"", value); else
-	 * onClickConfirm = getOnClickConfirm(buttonCaption,
-	 * action.getEntityUsable() .getVisibleInternalElementName(), value);
-	 */
-
-	String html = "";
-	html += " <a class='buttonLink' href='" + actionLink.getUrl() + "'>";
-	html += actionLink.getName() + "</a> ";
-
-	return html;
-
+	return getHtmlCode(actionLink, null);
     }
 
-    @SuppressWarnings("unused")
     // todo: retire lorsque la correction est aporter plus haut
     private static String getOnClickConfirm(String actionName,
 	    String entityTypeName, String value)
     {
 	String html = "";
 
-	html += "onclick=\"return confirm(\'Voulez-vous vraiment ";
+	html += "onclick='return confirm(\'Voulez-vous vraiment ";
 	html += actionName + " ";
 	html += entityTypeName;
 	html += " " + value;
 	html += "?\')";
 
-	html += "\"";
+	html += "'";
 
 	return html;
     }

@@ -62,15 +62,10 @@ public class ModuleEntity extends AbstractOrmEntity implements PromptViewable
     }
 
     @Override
-    public final AbstractEntity getList(Hashtable<String, String> parameters)
+    public final EntityList getList(Hashtable<String, String> parameters)
 	    throws Exception
     {
-	// On ne veut pas permettre l'effacement ni la modification de module
-	// alors on enlève les
-	// bouton Delete et Modifier en passant son nom de caption en argument
-	EntityList entityList = (EntityList) super.getList(parameters);
-	entityList.removeSpecificActionButton("Effacer");
-	entityList.removeSpecificActionButton("Modifier");
+	EntityList entityList = super.getList(parameters);
 	return entityList;
     }
 }
