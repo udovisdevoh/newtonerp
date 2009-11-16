@@ -58,7 +58,13 @@ public class TaskManager
     private static Collection<TaskEntity> getConcernedTaskList(
 	    AbstractOrmEntity entity) throws Exception
     {
-	Vector<TaskEntity> concernedTaskList = new Vector<TaskEntity>();
+	Vector<TaskEntity> concernedTaskList = TaskCache
+		.getConcernedTaskList(entity);
+
+	if (concernedTaskList != null)
+	    return concernedTaskList;
+
+	concernedTaskList = new Vector<TaskEntity>();
 
 	try
 	{
@@ -87,6 +93,8 @@ public class TaskManager
 	    System.out
 		    .println("Impossible d'obtenir la liste des tâches pour cette entité");
 	}
+
+	TaskCache.setConcernedTaskList(entity, concernedTaskList);
 
 	return concernedTaskList;
     }
