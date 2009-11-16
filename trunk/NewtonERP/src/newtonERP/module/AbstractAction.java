@@ -83,7 +83,7 @@ public abstract class AbstractAction
     /**
      * @return the ownedByModul
      */
-    public Module getOwnedByModul()
+    public Module getOwnedByModule()
     {
 	return ownedByModul;
     }

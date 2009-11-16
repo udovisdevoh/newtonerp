@@ -62,9 +62,12 @@ public class Invoice extends AbstractOrmEntity implements PromptViewable
     public final EntityList getList(Hashtable<String, String> parameters)
 	    throws Exception
     {
+	CalculateInvoiceTotal calculerInvoiceTotal = new CalculateInvoiceTotal();
+	calculerInvoiceTotal.setOwnedByModul(getCurrentModule());
+
 	EntityList entityList = super.getList(parameters);
 	entityList.addSpecificActionButtonList(new ActionLink(
-		"Calculer facture", new CalculateInvoiceTotal()));
+		"Calculer facture", calculerInvoiceTotal));
 	return entityList;
     }
 }

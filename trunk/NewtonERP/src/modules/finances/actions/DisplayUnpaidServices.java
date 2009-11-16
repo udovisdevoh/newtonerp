@@ -53,7 +53,7 @@ public class DisplayUnpaidServices extends AbstractAction
 		    types.get(0).getPrimaryKeyValue()))
 		list.addEntity(ent);
 
-	list.setCurrentModule(getOwnedByModul());
+	list.setCurrentModule(getOwnedByModule());
 	list.setTitle("Liste des comptes non-payés");
 
 	return list;

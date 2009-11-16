@@ -18,6 +18,10 @@ public class MoneyViewer
      */
     public static String getHtmlCode(String inputValue)
     {
+	inputValue = inputValue.replace("$", "");
+	inputValue = inputValue.replace(',', '.');
+	inputValue = inputValue.trim();
+
 	if (inputValue.equals(""))
 	    inputValue = "0.0";
 

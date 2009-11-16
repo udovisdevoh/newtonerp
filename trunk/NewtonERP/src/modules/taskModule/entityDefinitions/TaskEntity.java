@@ -38,7 +38,46 @@ public class TaskEntity extends AbstractOrmEntity implements PromptViewable
 	fieldList.add(new FieldBool("Est active", "isActive"));
 	fieldList.add(new FieldInt("Specification", new Specification()
 		.getForeignKeyName()));
-	fieldList.add(new FieldInt("Effet", new EffectEntity().getForeignKeyName()));
+	fieldList.add(new FieldInt("Effet", new EffectEntity()
+		.getForeignKeyName()));
 	return new Fields(fieldList);
+    }
+
+    /**
+     * @return true si la spécification de la tâche est satisfaite
+     * @throws Exception si vérification fail
+     */
+    public boolean isSatisfied() throws Exception
+    {
+	return getSpecification().isSatisfied();
+    }
+
+    private Specification getSpecification() throws Exception
+    {
+	return (Specification) getSingleAccessor(new Specification()
+		.getForeignKeyName());
+    }
+
+    /**
+     * Execute l'effet de la tâche
+     * @throws Exception si execution fail
+     */
+    public void execute() throws Exception
+    {
+	getEffect().execute();
+    }
+
+    private EffectEntity getEffect() throws Exception
+    {
+	return (EffectEntity) getSingleAccessor(new EffectEntity()
+		.getForeignKeyName());
+    }
+
+    /**
+     * @return si la tâche est présentement active
+     */
+    public boolean isActive()
+    {
+	return Boolean.parseBoolean(getDataString("isActive"));
     }
 }

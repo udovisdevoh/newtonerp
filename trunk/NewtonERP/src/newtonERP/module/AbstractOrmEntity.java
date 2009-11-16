@@ -109,9 +109,9 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      * 
      * @param whereClause the where clause for the query
      * 
-     * @throws OrmException remonte
+     * @throws Exception remonte
      */
-    public final void delete(String whereClause) throws OrmException
+    public final void delete(String whereClause) throws Exception
     {
 	Vector<String> whereParameter = new Vector<String>();
 	whereParameter.add(whereClause);
@@ -121,9 +121,9 @@ public abstract class AbstractOrmEntity extends AbstractEntity
     /**
      * supprime l'entity en DB, la clause where est definie par this
      * 
-     * @throws OrmException remonte
+     * @throws Exception remonte
      */
-    public final void delete() throws OrmException
+    public final void delete() throws Exception
     {
 	delete(this);
     }
@@ -133,9 +133,9 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      * 
      * @param whereClause the where clause for the query
      * 
-     * @throws OrmException remonte
+     * @throws Exception remonte
      */
-    public final void delete(AbstractOrmEntity whereClause) throws OrmException
+    public final void delete(AbstractOrmEntity whereClause) throws Exception
     {
 	Vector<AbstractOrmEntity> whereParameter = new Vector<AbstractOrmEntity>();
 	whereParameter.add(whereClause);
@@ -148,11 +148,11 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      * 
      * @param whereClause the where clause for the query
      * 
-     * @throws OrmException remonte
+     * @throws Exception remonte
      * @see
      */
     public final void delete(Vector<AbstractOrmEntity> whereClause)
-	    throws OrmException
+	    throws Exception
     {
 	Orm.delete(whereClause);
     }
@@ -207,9 +207,9 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      * met a jour l'entity en DB, l'ID doit etre présent
      * 
      * @param whereClause the where clause for the query
-     * @throws OrmException remonte
+     * @throws Exception remonte
      */
-    public final void edit(String whereClause) throws OrmException
+    public final void edit(String whereClause) throws Exception
     {
 	Vector<String> whereParameter = new Vector<String>();
 	whereParameter.add(whereClause);
@@ -223,9 +223,9 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      * @param whereClause the where clause for the query
      * @param changeToApply the chang to apply to entity matching the where
      *            clause
-     * @throws OrmException remonte
+     * @throws Exception remonte
      */
-    public final void edit(AbstractOrmEntity changeToApply) throws OrmException
+    public final void edit(AbstractOrmEntity changeToApply) throws Exception
     {
 	edit(this, changeToApply);
     }
@@ -236,10 +236,10 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      * @param whereClause the where clause for the query
      * @param changeToApply the chang to apply to entity matching the where
      *            clause
-     * @throws OrmException remonte
+     * @throws Exception remonte
      */
     public final void edit(AbstractOrmEntity whereClause,
-	    AbstractOrmEntity changeToApply) throws OrmException
+	    AbstractOrmEntity changeToApply) throws Exception
     {
 	Vector<AbstractOrmEntity> whereParameter = new Vector<AbstractOrmEntity>();
 	whereParameter.add(whereClause);
@@ -252,10 +252,10 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      * @param whereClause the where clause for the query
      * @param changeToApply the chang to apply to entity matching the where
      *            clause
-     * @throws OrmException remonte
+     * @throws Exception remonte
      */
     public final void edit(Vector<AbstractOrmEntity> whereClause,
-	    AbstractOrmEntity changeToApply) throws OrmException
+	    AbstractOrmEntity changeToApply) throws Exception
     {
 	Orm.update(whereClause, changeToApply);
     }

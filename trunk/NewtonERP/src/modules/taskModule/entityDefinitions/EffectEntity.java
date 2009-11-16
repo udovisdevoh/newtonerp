@@ -42,4 +42,13 @@ public class EffectEntity extends AbstractOrmEntity implements PromptViewable
 		.getForeignKeyName()));
 	return new Fields(fieldList);
     }
+
+    /**
+     * Exécute l'effet d'une tâche
+     */
+    public void execute()
+    {
+	System.out.println("Exécution d'une tâche");
+	// TODO Auto-generated method stub
+    }
 }

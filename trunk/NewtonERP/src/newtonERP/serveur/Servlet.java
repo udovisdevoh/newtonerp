@@ -211,6 +211,6 @@ public class Servlet extends ServletHandler
 	    return makeLink(((BaseAction) action).getEntity()
 		    .getCurrentModule(), action);
 	}
-	return makeLink(action.getOwnedByModul(), action);
+	return makeLink(action.getOwnedByModule(), action);
     }
 }
