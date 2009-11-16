@@ -1,5 +1,6 @@
 package modules.customerVendor.actions;
 
+import java.util.Collections;
 import java.util.Hashtable;
 import java.util.Vector;
 
@@ -7,6 +8,7 @@ import modules.customerVendor.entityDefinitions.Invoice;
 import modules.customerVendor.entityDefinitions.InvoiceLine;
 import modules.customerVendor.entityDefinitions.InvoiceTaxLine;
 import modules.customerVendor.entityDefinitions.Tax;
+import modules.customerVendor.entityDefinitions.TaxType;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
@@ -37,6 +39,7 @@ public class CalculateInvoiceTotal extends AbstractAction
     public AbstractEntity doAction(AbstractEntity entity,
 	    Hashtable<String, String> parameters) throws Exception
     {
+	Vector<Tax> taxContainer = new Vector<Tax>();
 	Invoice actionInvoice = (Invoice) entity;
 	Double totalInvoice = (Double) entity.getData("total");
 	Double taxTotal = (Double) entity.getData("taxTotal");
@@ -72,6 +75,24 @@ public class CalculateInvoiceTotal extends AbstractAction
 
 	    Tax myTax = (Tax) Orm.selectUnique(taxe);
 
+	    taxContainer.add(myTax);
+	}
+
+	// On calcule toujours la taxe provinciale avant la taxe fédérale
+	for (int i = 0; i < taxContainer.size(); i++)
+	{
+	    TaxType type = new TaxType();
+	    type.setData(new TaxType().getPrimaryKeyName(), taxContainer.get(i)
+		    .getData(new TaxType().getForeignKeyName()));
+
+	    TaxType selectedType = (TaxType) Orm.selectUnique(type);
+
+	    if (selectedType.getData("name").equals("Fédéral"))
+		Collections.swap(taxContainer, i, 1);
+	}
+
+	for (Tax myTax : taxContainer)
+	{
 	    taxTotal += totalInvoice * ((Double) myTax.getData("value") / 100);
 	    totalInvoice += taxTotal;
 	}
