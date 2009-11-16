@@ -8,6 +8,7 @@ import modules.customerVendor.entityDefinitions.InvoiceStatus;
 import modules.customerVendor.entityDefinitions.InvoiceTaxLine;
 import modules.customerVendor.entityDefinitions.Merchant;
 import modules.customerVendor.entityDefinitions.Tax;
+import modules.customerVendor.entityDefinitions.TaxType;
 import modules.materialResourcesManagement.entityDefinitions.Product;
 import newtonERP.module.BaseAction;
 import newtonERP.module.Module;
@@ -49,6 +50,14 @@ public class CustomerVendor extends Module
     public void initDB() throws Exception
     {
 	super.initDB();
+
+	TaxType type = new TaxType();
+	type.setData("name", "Provincial");
+	type.newE();
+
+	TaxType type1 = new TaxType();
+	type1.setData("name", "Fédéral");
+	type1.newE();
 
 	InvoiceStatus status10 = new InvoiceStatus();
 	status10.setData("status", "Payé et livrée");
@@ -95,12 +104,14 @@ public class CustomerVendor extends Module
 	taxe.setData("name", "TPS");
 	taxe.setData("code", "03123");
 	taxe.setData("value", 5);
+	taxe.setData(new TaxType().getForeignKeyName(), 2);
 	taxe.newE();
 
 	Tax taxe1 = new Tax();
 	taxe1.setData("name", "TVQ");
 	taxe1.setData("code", "06544");
 	taxe1.setData("value", 7.5);
+	taxe1.setData(new TaxType().getForeignKeyName(), 1);
 	taxe1.newE();
 
 	InvoiceLine ligne = new InvoiceLine();
