@@ -14,7 +14,7 @@ import newtonERP.viewers.secondStep.CheckListViewer;
 import newtonERP.viewers.secondStep.FieldViewer;
 import newtonERP.viewers.secondStep.ScrollListViewer;
 import newtonERP.viewers.secondStep.SelectBoxViewer;
-import newtonERP.viewers.viewables.PromptViewable;
+import newtonERP.viewers.viewerData.PromptViewerData;
 
 /**
  * Represents the prompt viewer
@@ -24,44 +24,31 @@ public class PromptViewer
 {
     /**
      * Return the html code for the web page
-     * @param entity the entity to view
+     * @param promptData the entity to view
      * @return html
      * @throws Exception general exception
      */
-    @SuppressWarnings("null")
-    public static String getHtmlCode(PromptViewable entity) throws Exception
+    public static String getHtmlCode(PromptViewerData promptData)
+	    throws Exception
     {
 	AbstractOrmEntity ormEntity = null;
 	System.out.println("getHtmlCode() (prompt viewer)");
 	String html = "";
+	AbstractEntity data = promptData.getData();
 
-	String formActionUrl = Servlet.makeLink(entity.getCurrentModule(),
-		entity.getCurrentAction());
+	if (data instanceof AbstractOrmEntity)
+	    ormEntity = (AbstractOrmEntity) (data);
 
-	if (entity.getBackLinkUrl() != null)
-	    html += "<p class=\"backLink\"><a class=\"backLink\" href=\""
-		    + entity.getBackLinkUrl() + "\"> &lt; "
-		    + entity.getBackLinkName() + "</a></p>";
-
-	html += "<h2>" + entity.getPromptMessage() + "</h2>";
-
-	if (entity instanceof AbstractOrmEntity)
-	{
-	    ormEntity = (AbstractOrmEntity) (entity);
-	    // if (ormEntity.getPrimaryKeyValue() != 0)
-	    formActionUrl += "?" + ormEntity.getPrimaryKeyName() + "="
-		    + ormEntity.getPrimaryKeyValue();
-	}
-
-	html += "<form method=\"post\" action=\"" + formActionUrl + "\">";
+	html += "<form method=\"post\" action=\""
+		+ promptData.getButtonAction().getUrlParam() + "\">";
 
 	html += "<table>";
 
-	for (Field field : ((AbstractEntity) entity).getFields())
+	for (Field field : promptData.getData().getFields())
 	{
 
-	    ListOfValue listOfValue = entity.tryMatchListOfValue(field
-		    .getShortName());
+	    ListOfValue listOfValue = promptData.getData().tryMatchListOfValue(
+		    field.getShortName());
 
 	    if (listOfValue == null)
 	    {
@@ -78,8 +65,10 @@ public class PromptViewer
 
 	}
 
-	if (entity instanceof AbstractOrmEntity)
-	    for (FlagPool flagPool : entity.getPositiveFlagPoolList().values())
+	if (data instanceof AbstractOrmEntity)
+	{
+	    for (FlagPool flagPool : ormEntity.getPositiveFlagPoolList()
+		    .values())
 	    {
 		flagPool.query(ormEntity.getPrimaryKeyName(), ormEntity
 			.getPrimaryKeyValue());
@@ -87,23 +76,14 @@ public class PromptViewer
 			+ CheckListViewer.getHtmlCode(flagPool) + "</td></tr>";
 	    }
 
-	if (entity.getAlertMessageList() != null)
-	    for (String message : entity.getAlertMessageList())
-		html += "<p class=\"errorMessage\">" + message + "</p>";
-
-	if (entity.getNormalMessageList() != null)
-	    for (String message : entity.getNormalMessageList())
-		html += "<p class=\"normalMessage\">" + message + "</p>";
-
-	if (entity instanceof AbstractOrmEntity)
-	{
-	    html += getSingleAccessorLinkList((AbstractOrmEntity) entity);
-	    html += getMultipleAccessorLinkList((AbstractOrmEntity) entity);
+	    html += getSingleAccessorLinkList((AbstractOrmEntity) data);
+	    html += getMultipleAccessorLinkList((AbstractOrmEntity) data);
 	}
 
-	html += "<tr><td colspan=\"2\" align=\"center\" class=\"submitButton\"><input class=\"submitButton\" type=\"submit\" name=\"submit\" value=\""
-		+ entity.getButtonCaption() + "\" />";
-	if (entity instanceof AbstractOrmEntity)
+	html += "<tr><td colspan=\"2\" align=\"center\" class=\"submitButton\">"
+		+ "<input class=\"submitButton\" type=\"submit\" name=\"submit\" value=\""
+		+ promptData.getButtonAction().getName() + "\" />";
+	if (data instanceof AbstractOrmEntity)
 	    html += " " + getPrintButton();
 	html += "</td></tr>";
 	html += "</table>";

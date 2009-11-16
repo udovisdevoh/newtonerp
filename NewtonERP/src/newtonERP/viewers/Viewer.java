@@ -17,10 +17,10 @@ import newtonERP.viewers.firstStep.PromptViewer;
 import newtonERP.viewers.firstStep.StaticTextViewer;
 import newtonERP.viewers.viewables.AlertViewable;
 import newtonERP.viewers.viewables.ForwardViewable;
-import newtonERP.viewers.viewables.PromptViewable;
 import newtonERP.viewers.viewables.StaticTextViewable;
 import newtonERP.viewers.viewerData.BaseViewerData;
 import newtonERP.viewers.viewerData.GridViewerData;
+import newtonERP.viewers.viewerData.PromptViewerData;
 
 /**
  * Represents the main viewer for our ERP
@@ -47,8 +47,8 @@ public abstract class Viewer
 	if (entity instanceof BaseViewerData)
 	    viewerHtml += BaseViewer.getTopHtmlCode((BaseViewerData) entity);
 
-	if (entity instanceof PromptViewable)
-	    viewerHtml += PromptViewer.getHtmlCode((PromptViewable) entity);
+	if (entity instanceof PromptViewerData)
+	    viewerHtml += PromptViewer.getHtmlCode((PromptViewerData) entity);
 	else if (entity instanceof ForwardViewable)
 	    viewerHtml += ForwardViewer.getHtmlCode((ForwardViewable) entity);
 	else if (entity instanceof AlertViewable)

@@ -17,9 +17,9 @@ import newtonERP.orm.exceptions.OrmException;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.FieldCurrency;
 import newtonERP.orm.field.Fields;
-import newtonERP.serveur.Servlet;
 import newtonERP.viewers.secondStep.MoneyViewer;
 import newtonERP.viewers.viewerData.ListViewerData;
+import newtonERP.viewers.viewerData.PromptViewerData;
 
 /**
  * @author cloutierJo
@@ -164,9 +164,12 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      * @return todo: qu'Est-ce que l'on devrai retourné en general?
      * @throws Exception remonte
      */
-    public AbstractEntity editUI(Hashtable<String, String> parameters)
+    public PromptViewerData editUI(Hashtable<String, String> parameters)
 	    throws Exception
     {
+
+	PromptViewerData promptData = new PromptViewerData();
+
 	AbstractOrmEntity retEntity;
 	AbstractOrmEntity searchEntity = this.getClass().newInstance();
 	if (getPrimaryKeyValue() != 0)
@@ -189,18 +192,24 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 		newE();
 	    }
 	    else
-	    {// todo: faire un edit sans param qui ne se base que sur la cle
-		// Primaire
+	    {
 		edit(getPrimaryKeyName() + "='" + getPrimaryKeyValue() + "'");
 	    }
 
 	    FlagPoolManager.applyFlagPoolChanges(this,
 		    getPositiveFlagPoolList().values(), parameters);
 
-	    retEntity = (AbstractOrmEntity) editUI(new Hashtable<String, String>());
-	    retEntity.addNormalMessage("Changements accomplis");
+	    retEntity = (AbstractOrmEntity) editUI(
+		    new Hashtable<String, String>()).getData();
+	    promptData.addNormalMessage("Changements accomplis");
 	}
-	return retEntity;
+
+	promptData.setData(retEntity);
+	promptData.setButtonAction(new ActionLink("Enregistrer",
+		new BaseAction("Edit", this)));
+	promptData.setBackLink(new ActionLink("< Voir Liste", new BaseAction(
+		"GetList", this)));
+	return promptData;
     }
 
     /**
@@ -447,18 +456,6 @@ public abstract class AbstractOrmEntity extends AbstractEntity
     }
 
     /**
-     * Implémentation par default pouvant être overridée dans l'entité
-     * @return Description
-     */
-    @Override
-    public final String getPromptMessage()
-    {
-	if (promptMessage == null)
-	    promptMessage = getVisibleName();
-	return promptMessage;
-    }
-
-    /**
      * @return Nom visible de l'entités
      */
     public final String getVisibleName()
@@ -653,24 +650,6 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	if (negativeFlagPoolList == null)
 	    negativeFlagPoolList = new Hashtable<String, FlagPool>();
 	return negativeFlagPoolList;
-    }
-
-    /**
-     * @return url facultatif du lien de retour
-     * @throws Exception si obtention fail
-     */
-    public String getBackLinkUrl() throws Exception
-    {
-	return Servlet.makeLink(getCurrentModule(), new BaseAction("GetList",
-		this));
-    }
-
-    /**
-     * @return nom du lien de retour facultatif
-     */
-    public String getBackLinkName()
-    {
-	return "voir liste";
     }
 
     /**

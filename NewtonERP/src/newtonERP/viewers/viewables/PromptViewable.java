@@ -15,16 +15,6 @@ import newtonERP.module.generalEntity.ListOfValue;
 public interface PromptViewable
 {
     /**
-     * @return message du prompt, exemple: quel est votre nom?
-     */
-    public String getPromptMessage();
-
-    /**
-     * @return nom du bouton "ok"
-     */
-    public String getButtonCaption();
-
-    /**
      * @param inputName nom d'un field
      * @return nom complete d'un field
      */

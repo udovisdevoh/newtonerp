@@ -2,7 +2,6 @@ package newtonERP.module;
 
 import java.util.HashSet;
 import java.util.Hashtable;
-import java.util.Vector;
 
 import newtonERP.module.exception.EntityException;
 import newtonERP.module.generalEntity.ListOfValue;
@@ -17,13 +16,10 @@ import newtonERP.orm.field.Fields;
 public abstract class AbstractEntity
 {
     protected Fields fields;
-    private Vector<String> alertMessageList;
-    private Vector<String> normalMessageList;
     private Hashtable<String, ListOfValue> positiveListOfValueList;
     private static HashSet<ListOfValue> negativeListOfValueList;
     protected Module currentModule;
     private AbstractAction currentAction;
-    protected String promptMessage;
 
     /**
      * construit une entity ne comportant aucun champ
@@ -120,16 +116,6 @@ public abstract class AbstractEntity
     }
 
     /**
-     * @return Liste des warning pouvant être affichés
-     */
-    public Vector<String> getAlertMessageList()
-    {
-	if (alertMessageList == null)
-	    alertMessageList = new Vector<String>();
-	return alertMessageList;
-    }
-
-    /**
      * @param fieldKeyName the field name
      * @return If list of value exist, return it, else, return null
      */
@@ -180,24 +166,6 @@ public abstract class AbstractEntity
     }
 
     /**
-     * @param message message à ajouter
-     */
-    public final void addAlertMessage(String message)
-    {
-	getAlertMessageList().add(message);
-    }
-
-    /**
-     * @return message d'invite
-     */
-    public String getPromptMessage()
-    {
-	if (promptMessage == null)
-	    promptMessage = getSystemName();
-	return promptMessage;
-    }
-
-    /**
      * @return nom de l'entité dans le système (normalement nom de la classe
      *         mais peut être overridé si c'est une entité dynamique)
      */
@@ -207,18 +175,10 @@ public abstract class AbstractEntity
     }
 
     /**
-     * @param promptMessage message d'invite
-     */
-    public void setPromptMessage(String promptMessage)
-    {
-	this.promptMessage = promptMessage;
-    }
-
-    /**
      * @param inputName nom d'un field
      * @return nom complete d'un field
      */
-    public final String getLabelName(String inputName)
+    public String getLabelName(String inputName)
     {
 	return getFields().getField(inputName).getName();
     }
@@ -269,24 +229,6 @@ public abstract class AbstractEntity
 		return;
 
 	getNegativeListOfValueList().add(listOfValue);
-    }
-
-    /**
-     * @return Liste des messages normaux
-     */
-    public Vector<String> getNormalMessageList()
-    {
-	if (normalMessageList == null)
-	    normalMessageList = new Vector<String>();
-	return normalMessageList;
-    }
-
-    /**
-     * @param message nouveau message normal
-     */
-    public void addNormalMessage(String message)
-    {
-	getNormalMessageList().add(message);
     }
 
     /**
