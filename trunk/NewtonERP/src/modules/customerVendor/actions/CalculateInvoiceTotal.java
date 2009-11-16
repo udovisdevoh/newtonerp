@@ -15,6 +15,10 @@ import newtonERP.orm.Orm;
 /**
  * Will be called by tasks. To calculate the total of the invoice
  * 
+ * TVQ = Provincial TPS = Fédéral
+ * 
+ * On calcule les taxes provinciales avant fédérales.
+ * 
  * @author r3hallejo
  */
 public class CalculateInvoiceTotal extends AbstractAction
@@ -69,6 +73,7 @@ public class CalculateInvoiceTotal extends AbstractAction
 	    Tax myTax = (Tax) Orm.selectUnique(taxe);
 
 	    taxTotal += totalInvoice * ((Double) myTax.getData("value") / 100);
+	    totalInvoice += taxTotal;
 	}
 
 	actionInvoice.setData("taxTotal", taxTotal);
@@ -78,6 +83,6 @@ public class CalculateInvoiceTotal extends AbstractAction
 		+ actionInvoice.getPrimaryKeyValue() + "'");
 	Orm.update(actionInvoice, searchCriterias);
 
-	return null;
+	return new Invoice().getList();
     }
 }
