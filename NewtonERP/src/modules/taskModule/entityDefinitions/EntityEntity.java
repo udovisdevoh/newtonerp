@@ -5,6 +5,7 @@ import java.util.Vector;
 
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
+import newtonERP.module.Module;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.FieldInt;
@@ -74,9 +75,25 @@ public class EntityEntity extends AbstractOrmEntity implements PromptViewable
 	return entityList;
     }
 
-    public AbstractOrmEntity getEntityDefinition()
+    /**
+     * @return definition réele d'entité selon EntityEntity
+     * @throws Exception si obtention fail
+     */
+    public AbstractOrmEntity getEntityDefinition() throws Exception
     {
-	// TODO Auto-generated method stub
-	return null;
+	Module module = getModuleEntity().getModule();
+	String entityName = getEntityName();
+	return module.getEntityDefinition(entityName);
+    }
+
+    private String getEntityName()
+    {
+	return getDataString("systemName");
+    }
+
+    private ModuleEntity getModuleEntity() throws Exception
+    {
+	return (ModuleEntity) getSingleAccessor(new ModuleEntity()
+		.getForeignKeyName());
     }
 }

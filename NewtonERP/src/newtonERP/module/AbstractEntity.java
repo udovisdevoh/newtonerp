@@ -5,7 +5,6 @@ import java.util.Hashtable;
 import java.util.Vector;
 
 import newtonERP.module.exception.EntityException;
-import newtonERP.module.exception.FieldNotCompatibleException;
 import newtonERP.module.generalEntity.ListOfValue;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.FieldBool;
@@ -113,13 +112,11 @@ public abstract class AbstractEntity
     /**
      * @param shortName le nom du champ voulu
      * @param data the data to set
-     * @throws FieldNotCompatibleException si le type ne correspond pas avec le
-     *             champ demande
+     * @throws Exception remonte
      */
-    public void setData(String shortName, Object data)
-	    throws FieldNotCompatibleException
+    public void setData(String shortName, Object data) throws Exception
     {
-	getFields().getField(shortName).setData(data);
+	getFields().setData(shortName, data);
     }
 
     /**
