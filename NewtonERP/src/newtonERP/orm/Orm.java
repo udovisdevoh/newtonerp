@@ -375,13 +375,13 @@ public class Orm
     private static String buildWhereClauseForQuery(String sqlQuery,
 	    Vector<String> searchCriterias)
     {
-	sqlQuery += " WHERE ";
+	sqlQuery += " WHERE ( ";
 
 	// We add each string to the sqlQuery
 	for (String parameter : searchCriterias)
 	    sqlQuery += parameter;
 
-	return sqlQuery + ";";
+	return sqlQuery + " );";
     }
 
     /**

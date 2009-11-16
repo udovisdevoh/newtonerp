@@ -4,6 +4,7 @@ import java.util.GregorianCalendar;
 
 import modules.customerVendor.entityDefinitions.Invoice;
 import modules.customerVendor.entityDefinitions.InvoiceLine;
+import modules.customerVendor.entityDefinitions.InvoiceStatus;
 import modules.customerVendor.entityDefinitions.InvoiceTaxLine;
 import modules.customerVendor.entityDefinitions.Merchant;
 import modules.customerVendor.entityDefinitions.Tax;
@@ -49,6 +50,18 @@ public class CustomerVendor extends Module
     {
 	super.initDB();
 
+	InvoiceStatus status10 = new InvoiceStatus();
+	status10.setData("status", "Payé et livrée");
+	status10.newE();
+
+	InvoiceStatus status11 = new InvoiceStatus();
+	status11.setData("status", "Fermée");
+	status11.newE();
+
+	InvoiceStatus status12 = new InvoiceStatus();
+	status12.setData("status", "Nouveau");
+	status12.newE();
+
 	Merchant customer3 = new Merchant();
 	customer3.setData("name", "Nous");
 	customer3.setData("addressID", 1);
@@ -74,6 +87,8 @@ public class CustomerVendor extends Module
 	invoice.setData(new Merchant().getForeignKeyName(), 2);
 	invoice.setData("date", new GregorianCalendar());
 	invoice.setData("taxTotal", 0);
+	invoice.setData(new InvoiceStatus().getForeignKeyName(), 3);
+	invoice.setData("isForCustomer", true);
 	invoice.newE();
 
 	Tax taxe = new Tax();

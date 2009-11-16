@@ -40,7 +40,7 @@ public class CalculateInvoiceTotal extends AbstractAction
 	taxTotal = 0.0;
 	totalInvoice = 0.0;
 
-	// We get the invoiceLines associated
+	// INVOICE LINES
 	InvoiceLine invoiceLine = new InvoiceLine();
 	invoiceLine.setData(new Invoice().getForeignKeyName(), actionInvoice
 		.getPrimaryKeyValue());
@@ -59,7 +59,7 @@ public class CalculateInvoiceTotal extends AbstractAction
 		.getPrimaryKeyValue());
 	Vector<AbstractOrmEntity> invoiceTaxLines = Orm.select(invoiceTaxLine);
 
-	// For each tax
+	// TAX LINES
 	for (AbstractOrmEntity tax : invoiceTaxLines)
 	{
 	    Tax taxe = new Tax();
