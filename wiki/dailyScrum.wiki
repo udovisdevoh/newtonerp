@@ -747,9 +747,9 @@ par exemple, si on delete un Group, alors les GroupRight WHERE GroupID = ce grou
   * Corrections de bug HTML pour rendre projet conforme aux standards W3C
   * Ajout de la classe PluralAccessor qui remplace Vector<AbstractOrmEntity>
   * Vue des accesseurs multiples affiche maintenant accesseurs vides
-  * Ajouté un actionLink dans les vues d'accesseurs multiples pour créer une entité 
-  * Création d'un cache pour rendre le TaskManager plus performantétrangère selon critères d'accesseurs
+  * Ajouté un actionLink dans les vues d'accesseurs multiples pour créer une entité étrangère selon critères d'accesseurs
   * TaskManager intégré au projet. Il reste à rendre fonctionnel l'exécution d'une tâche et le test d'une spécification.
+  * Création d'un cache pour rendre le TaskManager plus performant
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
   * ...à livrer...
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
