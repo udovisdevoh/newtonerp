@@ -12,6 +12,7 @@ import modules.taskModule.entityDefinitions.SearchCriteriaOperator;
 import modules.taskModule.entityDefinitions.SearchEntity;
 import modules.taskModule.entityDefinitions.Specification;
 import modules.taskModule.entityDefinitions.TaskEntity;
+import modules.userRightModule.entityDefinitions.User;
 import newtonERP.common.ListModule;
 import newtonERP.module.BaseAction;
 import newtonERP.module.Module;
@@ -60,11 +61,11 @@ public class TaskModule extends Module
 	parameter.newE();
 
 	SearchCriteria searchCriteria = new SearchCriteria();
-	searchCriteria.setData("key", "salaire");
+	searchCriteria.setData("key", new User().getForeignKeyName());
 	searchCriteria.setData(new SearchEntity().getForeignKeyName(), 1);
 	searchCriteria.setData(
-		new SearchCriteriaOperator().getForeignKeyName(), 5);
-	searchCriteria.setData("value", "33400");
+		new SearchCriteriaOperator().getForeignKeyName(), 1);
+	searchCriteria.setData("value", "2");
 	searchCriteria.newE();
 
 	SearchEntity searchEntity = new SearchEntity();

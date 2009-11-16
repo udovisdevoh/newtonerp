@@ -78,6 +78,6 @@ public class TaskEntity extends AbstractOrmEntity implements PromptViewable
      */
     public boolean isActive()
     {
-	return Boolean.parseBoolean(getDataString("isActive"));
+	return (Boolean) (getData("isActive"));
     }
 }
