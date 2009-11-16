@@ -735,6 +735,7 @@ par exemple, si on delete un Group, alors les GroupRight WHERE GroupID = ce grou
   * Ajout de la méthode searchUnique dans l'orm qui nous retourne toujours une seule entité
   * Ajout de la méthode updateUnique dans l'orm qui nous épargne a avoir a gérer les vecteurs avec le new where builder.
   * CalculateInvoiceTotal marche parfaitement avec les taxes. On calcule avec un boutton qui a été ajouter sur la liste des factures
+  * Update product quantities l'action marche. Validation que si on a assez de produits en stock.
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
   * ...à livrer...
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
