@@ -202,6 +202,11 @@ textarea.textFieldLong
 	height:32px;
 }
 
+th a
+{
+	color:#FFA;
+}
+
 .ListViewerTable td.ListViewerTableHeader
 {
 	text-align: center;

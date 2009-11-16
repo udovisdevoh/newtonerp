@@ -22,6 +22,7 @@ import newtonERP.orm.field.FieldString;
 import newtonERP.orm.field.Fields;
 import newtonERP.orm.sgbd.SgbdSqlite;
 import newtonERP.orm.sgbd.Sgbdable;
+import newtonERP.taskManager.TaskManager;
 
 /**
  * Basic class for the orm. It is used to put the objects in the databse using
@@ -148,10 +149,10 @@ public class Orm
      * 
      * @param newEntity the entity to be inserted
      * @return valeur de a cle primaire
-     * @throws OrmException an exception that can occur into the orm
+     * @throws Exception si insertion fail
      */
     @SuppressWarnings("unchecked")
-    public static int insert(AbstractOrmEntity newEntity) throws OrmException
+    public static int insert(AbstractOrmEntity newEntity) throws Exception
     {
 	String sqlQuery = "INSERT INTO " + prefix + newEntity.getSystemName()
 		+ " (";
@@ -201,6 +202,10 @@ public class Orm
 	System.out.println("SQL query produced : " + sqlQuery);
 
 	ResultSet rs = sgbd.execute(sqlQuery, OrmActions.INSERT);
+
+	// On avertit le task manager
+	TaskManager.executeTasks(newEntity);
+
 	try
 	{
 	    return rs.getInt(1);
@@ -216,10 +221,10 @@ public class Orm
      * Insert an entity if no entity matches current field
      * 
      * @param newUniqueEntity New unique entity to insert
-     * @throws OrmException an exception that can occur into the orm
+     * @throws Exception si insertion fail
      */
     public static void insertUnique(AbstractOrmEntity newUniqueEntity)
-	    throws OrmException
+	    throws Exception
     {
 	if (select(newUniqueEntity).size() < 1)
 	    insert(newUniqueEntity);
@@ -230,10 +235,10 @@ public class Orm
      * 
      * @param searchEntity the entity to be researched
      * @param searchCriterias the search criterias for the where clause
-     * @throws OrmException an exception that can occur into the orm
+     * @throws Exception si effacement fail
      */
     public static void delete(AbstractOrmEntity searchEntity,
-	    Vector<String> searchCriterias) throws OrmException
+	    Vector<String> searchCriterias) throws Exception
     {
 	String sqlQuery = "DELETE FROM " + prefix
 		+ searchEntity.getSystemName();
@@ -244,6 +249,9 @@ public class Orm
 	System.out.println("Sql query produced : " + sqlQuery);
 
 	sgbd.execute(sqlQuery, OrmActions.DELETE);
+
+	// On avertit le task manager
+	TaskManager.executeTasks(searchEntity);
     }
 
     /**
@@ -253,10 +261,10 @@ public class Orm
      * 
      * @param searchEntities the entities from which we will build our where
      *            clause
-     * @throws OrmException an exception that can occur in the orm
+     * @throws Exception si effacement fail
      */
     public static void delete(Vector<AbstractOrmEntity> searchEntities)
-	    throws OrmException
+	    throws Exception
     {
 	String sqlQuery = "DELETE FROM " + prefix
 		+ searchEntities.get(0).getSystemName();
@@ -267,6 +275,9 @@ public class Orm
 	System.out.println("Sql query produced : " + sqlQuery);
 
 	sgbd.execute(sqlQuery, OrmActions.DELETE);
+
+	// On avertit le task manager
+	TaskManager.executeTasks(searchEntities);
     }
 
     /**
@@ -275,14 +286,16 @@ public class Orm
      * Method used to delete an entity from the database
      * 
      * @param searchEntity the entity from which we will build our where
-     * @throws OrmException an exception that can occur in the orm
+     * @throws Exception si effacement fail
      */
-    public static void delete(AbstractOrmEntity searchEntity)
-	    throws OrmException
+    public static void delete(AbstractOrmEntity searchEntity) throws Exception
     {
 	Vector<AbstractOrmEntity> searchEntities = new Vector<AbstractOrmEntity>();
 	searchEntities.add(searchEntity);
 	delete(searchEntities);
+
+	// On avertit le task manager
+	TaskManager.executeTasks(searchEntities);
     }
 
     /**
@@ -291,10 +304,10 @@ public class Orm
      * @param entityContainingChanges the entity that has been changed and will
      *            be in the orm
      * @param searchCriterias the criterias used by the update
-     * @throws OrmException an exception that can occur into the orm
+     * @throws Exception si update fail
      */
     public static void update(AbstractOrmEntity entityContainingChanges,
-	    Vector<String> searchCriterias) throws OrmException
+	    Vector<String> searchCriterias) throws Exception
     {
 	String sqlQuery = "UPDATE " + prefix
 		+ entityContainingChanges.getSystemName() + " SET ";
@@ -307,6 +320,9 @@ public class Orm
 	System.out.println("Sql query produced : " + sqlQuery);
 
 	sgbd.execute(sqlQuery, OrmActions.UPDATE);
+
+	// On avertit le task manager
+	TaskManager.executeTasks(entityContainingChanges);
     }
 
     /**
@@ -317,10 +333,10 @@ public class Orm
      * @param searchEntities the entities from which we will build our where
      *            clause
      * @param entityContainingChanges the changes to apply
-     * @throws OrmException an exception that can occur in the orm
+     * @throws Exception si update fail
      */
     public static void update(Vector<AbstractOrmEntity> searchEntities,
-	    AbstractOrmEntity entityContainingChanges) throws OrmException
+	    AbstractOrmEntity entityContainingChanges) throws Exception
     {
 	String sqlQuery = "UPDATE " + prefix
 		+ entityContainingChanges.getSystemName() + " SET ";
@@ -333,6 +349,9 @@ public class Orm
 	System.out.println("Sql query produced : " + sqlQuery);
 
 	sgbd.execute(sqlQuery, OrmActions.UPDATE);
+
+	// On avertit le task manager
+	TaskManager.executeTasks(entityContainingChanges);
     }
 
     /**
@@ -343,10 +362,10 @@ public class Orm
      * @param searchEntity the entities from which we will build our where
      *            clause
      * @param entityContainingChanges the changes to apply
-     * @throws OrmException an exception that can occur in the orm
+     * @throws Exception si update fail
      */
     public static void updateUnique(AbstractOrmEntity searchEntity,
-	    AbstractOrmEntity entityContainingChanges) throws OrmException
+	    AbstractOrmEntity entityContainingChanges) throws Exception
     {
 	String sqlQuery = "UPDATE " + prefix
 		+ entityContainingChanges.getSystemName() + " SET ";
@@ -359,6 +378,9 @@ public class Orm
 	System.out.println("Sql query produced : " + sqlQuery);
 
 	sgbd.execute(sqlQuery, OrmActions.UPDATE);
+
+	// On avertit le task manager
+	TaskManager.executeTasks(entityContainingChanges);
     }
 
     /**
@@ -586,10 +608,14 @@ public class Orm
      * To execute a custom query
      * 
      * @param sqlQuery the executed
-     * @throws OrmException an exception that can occur in the orm
+     * @throws Exception si exécution fail
      */
-    public static void executeCustomQuery(String sqlQuery) throws OrmException
+    public static void executeCustomQuery(String sqlQuery) throws Exception
     {
 	sgbd.execute(sqlQuery, OrmActions.OTHER);
+
+	// On avertit le task manager de vérifier tous les tâches car on ne sait
+	// pas quelle entité à été modifiée
+	TaskManager.executeAllTasks();
     }
 }

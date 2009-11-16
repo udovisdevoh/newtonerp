@@ -2,6 +2,7 @@ package modules.humanResources.entityDefinitions;
 
 import java.util.Vector;
 
+import modules.userRightModule.entityDefinitions.User;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.field.Field;
@@ -28,6 +29,7 @@ public class Employee extends AbstractOrmEntity implements PromptViewable
 	AccessorManager.addAccessor(this, new Department());
 	AccessorManager.addAccessor(this, new EmployeeType());
 	AccessorManager.addAccessor(this, new SalaryType());
+	AccessorManager.addAccessor(this, new User());
 
 	setVisibleName("Employé");
     }
@@ -52,6 +54,8 @@ public class Employee extends AbstractOrmEntity implements PromptViewable
 		"nbVacancyDays"));
 	fieldsData.add(new FieldInt("Nombre de jour de maladie possible",
 		"nbSicknessDays"));
+	fieldsData.add(new FieldInt("Compte système", new User()
+		.getForeignKeyName()));
 
 	return new Fields(fieldsData);
     }

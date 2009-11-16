@@ -38,4 +38,15 @@ public class Specification extends AbstractOrmEntity implements PromptViewable
 		.getForeignKeyName()));
 	return new Fields(fieldList);
     }
+
+    /**
+     * @return true si la spécification est satisfaite
+     */
+    public boolean isSatisfied()
+    {
+	System.out
+		.println("Vérification à savoir si une spécification est satisfaite");
+	// TODO Auto-generated method stub
+	return false;
+    }
 }

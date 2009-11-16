@@ -30,12 +30,13 @@ public class TaskModule extends Module
 	super();
 	setDefaultAction(new BaseAction("GetList", new TaskEntity()));
 	setVisibleName("Automation");
-	addGlobalActionMenuItem("Tâches", new BaseAction("GetList", new TaskEntity()));
+	addGlobalActionMenuItem("Tâches", new BaseAction("GetList",
+		new TaskEntity()));
 
 	addGlobalActionMenuItem("Spécification", new BaseAction("GetList",
 		new Specification()));
-	addGlobalActionMenuItem("Effet",
-		new BaseAction("GetList", new EffectEntity()));
+	addGlobalActionMenuItem("Effet", new BaseAction("GetList",
+		new EffectEntity()));
 	addGlobalActionMenuItem("Entités de recherches", new BaseAction(
 		"GetList", new SearchEntity()));
 	addGlobalActionMenuItem("Critères de recherches", new BaseAction(
@@ -49,9 +50,45 @@ public class TaskModule extends Module
 	super.initDB();
 
 	initActionsAndEntities();
+	initSearchCriteriaOperators();
 
+	// les entitées suivantes sont là juste
+	// pour tester
+	Parameter parameter = new Parameter();
+	parameter.setData("key", "message");
+	parameter.setData("value", "Voici votre nouveau login");
+	parameter.newE();
+
+	SearchCriteria searchCriteria = new SearchCriteria();
+	searchCriteria.setData("key", "salaire");
+	searchCriteria.setData(new SearchEntity().getForeignKeyName(), 1);
+	searchCriteria.setData(
+		new SearchCriteriaOperator().getForeignKeyName(), 5);
+	searchCriteria.setData("value", "33400");
+	searchCriteria.newE();
+
+	SearchEntity searchEntity = new SearchEntity();
+	searchEntity.setData("name", "Employe sans login");
+	searchEntity.setData(new EntityEntity().getForeignKeyName(), 19);
+	searchEntity.newE();
+
+	EffectEntity effect = new EffectEntity();
+	effect.setData("name", "On cre un login");
+	effect.setData(new SearchEntity().getForeignKeyName(), 1);
+	effect.setData(new ActionEntity().getForeignKeyName(), 1);
+	effect.newE();
+
+	Specification specification = new Specification();
+	specification.setData("name", "Si employe pas encore de login");
+	specification.setData(new SearchEntity().getForeignKeyName(), 1);
+	specification.newE();
+    }
+
+    private static void initSearchCriteriaOperators() throws Exception
+    {
 	// Les entitées suivantes sont là pour avoir des données par default
 	// qu'on doit garder
+
 	SearchCriteriaOperator searchCriteriaOperator;
 
 	searchCriteriaOperator = new SearchCriteriaOperator();
@@ -89,41 +126,13 @@ public class TaskModule extends Module
 	searchCriteriaOperator = new SearchCriteriaOperator();
 	searchCriteriaOperator.setData("name", "like");
 	searchCriteriaOperator.newE();
-
-	// Contrairement aux précédentes, les entitées suivantes sont là juste
-	// pour tester
-	Parameter parameter = new Parameter();
-	parameter.setData("key", "message");
-	parameter.setData("value", "vous etes vire mon estie");
-	parameter.newE();
-
-	SearchCriteria searchCriteria = new SearchCriteria();
-	searchCriteria.setData("key", "salaire");
-	searchCriteria.setData(new SearchEntity().getForeignKeyName(), 1);
-	searchCriteria.setData(
-		new SearchCriteriaOperator().getForeignKeyName(), 5);
-	searchCriteria.setData("value", "33400");
-	searchCriteria.newE();
-
-	SearchEntity searchEntity = new SearchEntity();
-	searchEntity.setData("name", "Employe qui a un salaire poche");
-	searchEntity.setData(new EntityEntity().getForeignKeyName(), 1);
-	searchEntity.newE();
-
-	EffectEntity effect = new EffectEntity();
-	effect.setData("name", "On congedie le dude");
-	effect.setData(new SearchEntity().getForeignKeyName(), 1);
-	effect.setData(new ActionEntity().getForeignKeyName(), 1);
-	effect.newE();
-
-	Specification specification = new Specification();
-	specification.setData("name", "Si employe en retard");
-	specification.setData(new SearchEntity().getForeignKeyName(), 1);
-	specification.newE();
     }
 
     private static void initActionsAndEntities() throws Exception
     {
+	// Les entitées suivantes sont là pour avoir des données par default
+	// qu'on doit garder
+
 	String moduleForeignKey = new ModuleEntity().getForeignKeyName();
 
 	ModuleEntity moduleEntity;
