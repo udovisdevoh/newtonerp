@@ -6,7 +6,6 @@ import java.util.Vector;
 
 import newtonERP.common.ActionLink;
 import newtonERP.common.ListModule;
-import newtonERP.module.generalEntity.EntityList;
 import newtonERP.module.generalEntity.FlagPool;
 import newtonERP.module.generalEntity.ListOfValue;
 import newtonERP.orm.Orm;
@@ -20,6 +19,7 @@ import newtonERP.orm.field.FieldCurrency;
 import newtonERP.orm.field.Fields;
 import newtonERP.serveur.Servlet;
 import newtonERP.viewers.secondStep.MoneyViewer;
+import newtonERP.viewers.viewerData.ListViewerData;
 
 /**
  * @author cloutierJo
@@ -288,12 +288,12 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      * @return une liste d'entité de ce type
      * @throws Exception lorsque la requête d'obtention de liste échoue
      */
-    public EntityList getList(Hashtable<String, String> parameters)
+    public ListViewerData getList(Hashtable<String, String> parameters)
 	    throws Exception
     {
 	Vector<AbstractOrmEntity> resultSet;
 	AbstractOrmEntity searchEntity = this.getClass().newInstance();
-	EntityList entityList = new EntityList(searchEntity);
+	ListViewerData entityList = new ListViewerData(searchEntity);
 
 	resultSet = Orm.select(searchEntity, null);
 	for (AbstractOrmEntity entity : resultSet)

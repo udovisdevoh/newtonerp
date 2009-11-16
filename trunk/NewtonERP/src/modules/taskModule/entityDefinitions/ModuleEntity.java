@@ -5,12 +5,12 @@ import java.util.Vector;
 
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
-import newtonERP.module.generalEntity.EntityList;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.FieldString;
 import newtonERP.orm.field.Fields;
 import newtonERP.viewers.viewables.PromptViewable;
+import newtonERP.viewers.viewerData.ListViewerData;
 
 /**
  * Entité représentant un module
@@ -45,7 +45,7 @@ public class ModuleEntity extends AbstractOrmEntity implements PromptViewable
 	 * On ne veut pas permettre l'effacement de module alors on redirige
 	 * l'effacement vers GetList
 	 */
-	EntityList entityList = (EntityList) super.getList();
+	ListViewerData entityList = (ListViewerData) super.getList();
 	return entityList;
     }
 
@@ -57,15 +57,15 @@ public class ModuleEntity extends AbstractOrmEntity implements PromptViewable
 	 * On ne veut pas permettre la modification de module alors on redirige
 	 * vers GetList
 	 */
-	EntityList entityList = (EntityList) super.getList();
+	ListViewerData entityList = (ListViewerData) super.getList();
 	return entityList;
     }
 
     @Override
-    public final EntityList getList(Hashtable<String, String> parameters)
+    public final ListViewerData getList(Hashtable<String, String> parameters)
 	    throws Exception
     {
-	EntityList entityList = super.getList(parameters);
+	ListViewerData entityList = super.getList(parameters);
 	return entityList;
     }
 }

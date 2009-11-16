@@ -8,8 +8,8 @@ import modules.finances.entityDefinitions.StateType;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
-import newtonERP.module.generalEntity.EntityList;
 import newtonERP.orm.Orm;
+import newtonERP.viewers.viewerData.ListViewerData;
 
 /**
  * Action DisplayUnpaidServices: représente l'action d'afficher les services à
@@ -33,7 +33,7 @@ public class DisplayUnpaidServices extends AbstractAction
 	    Hashtable<String, String> parameters) throws Exception
     {
 	ServiceProviderAccount account = new ServiceProviderAccount();
-	EntityList list = new EntityList(account);
+	ListViewerData list = new ListViewerData(account);
 
 	StateType searchEntity = new StateType();
 	/*
@@ -46,7 +46,7 @@ public class DisplayUnpaidServices extends AbstractAction
 	searchEntity.setData("name", "Non-paye");
 	Vector<AbstractOrmEntity> types = Orm.select(searchEntity);
 
-	EntityList accounts = (EntityList) account.getList();
+	ListViewerData accounts = (ListViewerData) account.getList();
 	for (AbstractOrmEntity ent : accounts)
 	    if (ent.getData("stateTypeID").equals(
 		    types.get(0).getPrimaryKeyValue()))
