@@ -82,7 +82,7 @@ public class GridViewer
 		int k = 0;
 		String rowspan = "";
 		String color = "";
-
+		String moneyStyleModifier = "";
 		if (data[i][j] != null)
 		{
 		    for (k = i; k < data.length
@@ -97,13 +97,16 @@ public class GridViewer
 
 		    caseContent = getCase(data[i][j]);
 
+		    if (caseContent.endsWith("$"))
+			moneyStyleModifier = " moneyStyleModifier";
+
 		    if (gridData.isColor())
 			color = " background-color:"
 				+ ColorViewer.getColor(caseContent) + ";";
 
-		    html += "<td class='gridCell'" + rowspan + "style='"
-			    + color + "text-align:center;'>" + caseContent
-			    + "</td>";
+		    html += "<td class='gridCell" + moneyStyleModifier + "' "
+			    + rowspan + "style='" + color
+			    + "text-align:center;'>" + caseContent + "</td>";
 		}
 	    }
 	    if (gridData instanceof ListViewerData)
