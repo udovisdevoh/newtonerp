@@ -65,7 +65,7 @@ public class TaskModule extends Module
 	searchCriteria.setData(new SearchEntity().getForeignKeyName(), 1);
 	searchCriteria.setData(
 		new SearchCriteriaOperator().getForeignKeyName(), 1);
-	searchCriteria.setData("value", "2");
+	searchCriteria.setData("value", 1);
 	searchCriteria.newE();
 
 	SearchEntity searchEntity = new SearchEntity();
@@ -83,6 +83,12 @@ public class TaskModule extends Module
 	specification.setData("name", "Si employe pas encore de login");
 	specification.setData(new SearchEntity().getForeignKeyName(), 1);
 	specification.newE();
+
+	TaskEntity task = new TaskEntity();
+	task.setData("isActive", true);
+	task.setData(new Specification().getForeignKeyName(), 1);
+	task.setData(new EffectEntity().getForeignKeyName(), 1);
+	task.newE();
     }
 
     private static void initSearchCriteriaOperators() throws Exception
