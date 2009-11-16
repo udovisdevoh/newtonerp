@@ -6,7 +6,6 @@ import java.util.Vector;
 import modules.customerVendor.actions.CalculateInvoiceTotal;
 import newtonERP.common.ActionLink;
 import newtonERP.module.AbstractOrmEntity;
-import newtonERP.module.generalEntity.EntityList;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.FieldBool;
@@ -15,6 +14,7 @@ import newtonERP.orm.field.FieldDate;
 import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.Fields;
 import newtonERP.viewers.viewables.PromptViewable;
+import newtonERP.viewers.viewerData.ListViewerData;
 
 /**
  * Invoice working for customers dans vendors
@@ -59,13 +59,13 @@ public class Invoice extends AbstractOrmEntity implements PromptViewable
     }
 
     @Override
-    public final EntityList getList(Hashtable<String, String> parameters)
+    public final ListViewerData getList(Hashtable<String, String> parameters)
 	    throws Exception
     {
 	CalculateInvoiceTotal calculerInvoiceTotal = new CalculateInvoiceTotal();
 	calculerInvoiceTotal.setOwnedByModul(getCurrentModule());
 
-	EntityList entityList = super.getList(parameters);
+	ListViewerData entityList = super.getList(parameters);
 	entityList.addSpecificActionButtonList(new ActionLink(
 		"Calculer facture", calculerInvoiceTotal));
 	return entityList;
