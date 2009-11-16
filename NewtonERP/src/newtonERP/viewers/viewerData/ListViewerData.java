@@ -77,6 +77,8 @@ public class ListViewerData extends GridViewerData implements
 		else
 		{
 		    value = field.getDataString();
+		    if (value == null)
+			value = "";
 		    if (value.length() > 64)
 			value = field.getDataString().substring(0, 64)
 				+ "[...]";
