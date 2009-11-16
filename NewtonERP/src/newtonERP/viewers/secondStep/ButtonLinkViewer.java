@@ -63,11 +63,11 @@ public class ButtonLinkViewer
     {
 	String html = "";
 
-	html += "onclick='return confirm(\'Voulez-vous vraiment ";
+	html += "onclick='return confirm(\"Voulez-vous vraiment ";
 	html += actionName + " ";
 	html += entityTypeName;
 	html += " " + value;
-	html += "?\')";
+	html += "?\")";
 
 	html += "'";
 
