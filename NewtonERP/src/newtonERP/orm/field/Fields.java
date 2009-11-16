@@ -200,7 +200,9 @@ public class Fields implements Iterable<Field>
 
     /**
      * @return noms des clefs des champs par ordre d'insertion
+     * @deprecated use getLongFieldNameList
      */
+    @Deprecated
     public Vector<String> getOrderedFieldNameList()
     {
 	Vector<String> orderedFieldNameList = new Vector<String>();

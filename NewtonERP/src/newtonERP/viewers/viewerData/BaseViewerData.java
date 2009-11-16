@@ -10,9 +10,8 @@ import newtonERP.module.AbstractEntity;
  * @author CloutierJo
  * 
  */
-public class BaseViewer extends AbstractEntity
+public class BaseViewerData extends AbstractEntity
 {
-
     private String title;
     private Vector<ActionLink> globalActions = new Vector<ActionLink>();
 
@@ -20,7 +19,7 @@ public class BaseViewer extends AbstractEntity
      * constructeur vide
      * @throws Exception remonte
      */
-    public BaseViewer() throws Exception
+    public BaseViewerData() throws Exception
     {
 	super();
     }

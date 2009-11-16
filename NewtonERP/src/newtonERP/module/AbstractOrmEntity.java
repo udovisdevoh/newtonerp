@@ -4,6 +4,7 @@ import java.util.Hashtable;
 import java.util.TreeMap;
 import java.util.Vector;
 
+import newtonERP.common.ActionLink;
 import newtonERP.common.ListModule;
 import newtonERP.module.generalEntity.EntityList;
 import newtonERP.module.generalEntity.FlagPool;
@@ -27,11 +28,8 @@ import newtonERP.viewers.secondStep.MoneyViewer;
 public abstract class AbstractOrmEntity extends AbstractEntity
 {
     private Vector<String> naturalKeyNameList;
-
     private String visibleName;
-
     private TreeMap<String, PluralAccessor> pluralAccessorList;
-
     private TreeMap<String, AbstractOrmEntity> singleAccessorList;
 
     /**
@@ -290,21 +288,32 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      * @return une liste d'entité de ce type
      * @throws Exception lorsque la requête d'obtention de liste échoue
      */
-    public AbstractEntity getList(Hashtable<String, String> parameters)
+    public EntityList getList(Hashtable<String, String> parameters)
 	    throws Exception
     {
 	Vector<AbstractOrmEntity> resultSet;
-
 	AbstractOrmEntity searchEntity = this.getClass().newInstance();
-
-	resultSet = Orm.select(searchEntity, null);
-
 	EntityList entityList = new EntityList(searchEntity);
 
+	resultSet = Orm.select(searchEntity, null);
 	for (AbstractOrmEntity entity : resultSet)
 	    entityList.addEntity(entity);
 
 	entityList.setCurrentModule(getCurrentModule());
+	entityList.setTitle(getVisibleName());
+	entityList.addGlobalActions(new ActionLink("Nouveau "
+		+ getVisibleName(), new BaseAction("New", this)));
+
+	// ajout des action specifique
+	ActionLink specAction = new ActionLink("Modifier", new BaseAction(
+		"Edit", this));
+	specAction.addParameters(getPrimaryKeyName(), "&");
+	entityList.addSpecificActionButtonList(specAction);
+
+	specAction = new ActionLink("Effacer", new BaseAction("Delete", this));
+	specAction.addParameters(getPrimaryKeyName(), "&");
+	specAction.setConfirm(true);
+	entityList.addSpecificActionButtonList(specAction);
 
 	return entityList;
     }
@@ -607,14 +616,6 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	    throws Exception
     {
 	return AccessorManager.getSingleAccessor(this, accessorName);
-    }
-
-    /**
-     * @return liste des clefs des champs par ordre d'insertion
-     */
-    public Vector<String> getOrderedFieldNameList()
-    {
-	return fields.getOrderedFieldNameList();
     }
 
     /**

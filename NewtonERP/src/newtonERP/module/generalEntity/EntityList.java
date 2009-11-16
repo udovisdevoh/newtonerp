@@ -1,171 +1,94 @@
 package newtonERP.module.generalEntity;
 
-import java.util.HashSet;
-import java.util.Hashtable;
 import java.util.Iterator;
-import java.util.Set;
 import java.util.Vector;
 
-import newtonERP.common.NaturalMap;
-import newtonERP.module.AbstractAction;
-import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.BaseAction;
 import newtonERP.orm.field.Field;
-import newtonERP.orm.field.FieldText;
-import newtonERP.orm.field.Fields;
-import newtonERP.viewers.viewables.ListViewable;
-import newtonERP.viewers.viewables.PromptViewable;
+import newtonERP.viewers.viewerData.GridCaseData;
+import newtonERP.viewers.viewerData.GridViewerData;
 
 /**
- * @author Guillaume Lacasse
+ * @author Guillaume Lacasse, CloutierJo
  * 
  */
-public class EntityList extends AbstractEntity implements ListViewable,
+public class EntityList extends GridViewerData implements
 	Iterable<AbstractOrmEntity>
 {
-    // Je ne sais pas comment initialiser un vector avec des valeurs par défault
-    // en JAVA
-    // -Guillaume
-    private Hashtable<String, AbstractAction> globalActionButtonList;
-    private Hashtable<String, AbstractAction> specificActionButtonList;
+    private AbstractOrmEntity dataType;
     private Vector<AbstractOrmEntity> data = new Vector<AbstractOrmEntity>();
-    private AbstractOrmEntity internalEntityDefinition;
-    private HashSet<String> buttonConfirmList = new HashSet<String>();
-    private String title;
 
     /**
-     * @param internalEntityDefinition the internal entity defenition
-     * @throws Exception exception lancée si création fail
+     * constructeur par defaut
+     * @param dataType type d'entity a etre liste
+     * @throws Exception remonte
      */
-    public EntityList(AbstractOrmEntity internalEntityDefinition)
-	    throws Exception
+    public EntityList(AbstractOrmEntity dataType) throws Exception
     {
-	this.internalEntityDefinition = internalEntityDefinition;
-	specificActionButtonList = buildSpecificActionButtonList();
-	addButtonConfirm("Delete");
+	super();
+	this.dataType = dataType;
     }
 
-    private void addButtonConfirm(String string)
+    /**
+     * @return les entity
+     */
+    public Vector<AbstractOrmEntity> getEntity()
     {
-	buttonConfirmList.add(string);
+	return data;
     }
 
-    @Override
-    public Vector<String> getColumnTitleList() throws Exception
+    public GridCaseData[] getHeader() throws Exception
     {
-	Vector<String> columnTitleList = new Vector<String>();
-
-	Set<String> shortKeySet = getRowList().get(0).keySet();
-	String currentName;
-
-	for (String shortKey : shortKeySet)
+	Vector<GridCaseData> header = new Vector<GridCaseData>();
+	for (Field field : dataType.getFields())
 	{
-	    try
-	    {
-		Field currentField = internalEntityDefinition.getFields()
-			.getField(shortKey);
-		currentName = currentField.getName();
-	    } catch (Exception e)
-	    {
-		currentName = shortKey;
-	    }
+	    ListOfValue listOfValue = dataType.tryMatchListOfValue(field
+		    .getShortName());
 
-	    columnTitleList.add(currentName);
+	    if (listOfValue != null)
+		header.add(new GridCaseData(listOfValue.getLabelName(),
+			new BaseAction("GetList", listOfValue
+				.getForeignEntityDefinition())));
+	    else
+		header.add(new GridCaseData(field.getName()));
 	}
-
-	return columnTitleList;
+	return header.toArray(new GridCaseData[0]);
     }
 
-    @Override
-    public Hashtable<String, AbstractAction> getGlobalActionButtonList()
+    public GridCaseData[][] getCases() throws Exception
     {
-	if (globalActionButtonList == null)
-	{
-	    globalActionButtonList = new Hashtable<String, AbstractAction>();
-	    globalActionButtonList.put("Nouveau "
-		    + internalEntityDefinition.getVisibleName(),
-		    new BaseAction("New", internalEntityDefinition));
-	}
-	return globalActionButtonList;
-    }
+	Vector<GridCaseData[]> dataList = new Vector<GridCaseData[]>();
+	String value;
 
-    @Override
-    public Vector<NaturalMap<String, String>> getRowList() throws Exception
-    {
-	Vector<NaturalMap<String, String>> userListInfo = new Vector<NaturalMap<String, String>>();
-
-	NaturalMap<String, String> entityInfo;
-
-	internalEntityDefinition.initFields();
-
-	data.insertElementAt(internalEntityDefinition, 0);
-
-	int counter = 0;
 	for (AbstractOrmEntity entity : data)
 	{
-	    entityInfo = new NaturalMap<String, String>();
+	    Vector<GridCaseData> oneData = new Vector<GridCaseData>();
 	    for (Field field : entity.getFields())
 	    {
+		value = "";
 		if (field.isHidden())
 		    continue;
 
 		ListOfValue listOfValue = entity.tryMatchListOfValue(field
 			.getShortName());
 
-		String shortName = field.getShortName();
-		String dataString = field.getDataString();
-
-		if (counter == 0)
-		{
-		    if (listOfValue != null)
-			entityInfo.put(listOfValue.getLabelName(), listOfValue
-				.getLabelName());
-		    else
-			entityInfo.put(shortName, field.getName());
-		}
+		if (listOfValue != null)
+		    value = listOfValue.getForeignValue(field.getDataString());
 		else
 		{
-
-		    if (listOfValue != null)
-			entityInfo.put(listOfValue.getLabelName(), listOfValue
-				.getForeignValue(dataString));
-		    else if (internalEntityDefinition
-			    .isMatchCheckBox(shortName))
-		    {
-			if (dataString == null)
-			    dataString = "";
-			if (dataString.equals("true"))
-			{
-			    entityInfo.put(shortName, " - oui - ");
-			}
-			else
-			{
-			    entityInfo.put(shortName, " - non - ");
-			}
-		    }
-		    else if (field instanceof FieldText)
-		    {
-			if (dataString == null)
-			    dataString = "";
-
-			if (dataString.length() > 64)
-			    dataString = dataString.substring(0, 64) + "[...]";
-
-			entityInfo.put(shortName, dataString);
-		    }
-		    else
-		    {
-			if (dataString == null)
-			    dataString = "";
-			entityInfo.put(shortName, dataString);
-		    }
+		    value = field.getDataString();
+		    if (value.length() > 64)
+			value = field.getDataString().substring(0, 64)
+				+ "[...]";
 		}
+		oneData.add(new GridCaseData(value));
+
 	    }
-	    userListInfo.add(entityInfo);
-	    counter++;
+	    dataList.add(oneData.toArray(new GridCaseData[0]));
 	}
-	return userListInfo;
+	return dataList.toArray(new GridCaseData[0][0]);
+
     }
 
     /**
@@ -176,92 +99,17 @@ public class EntityList extends AbstractEntity implements ListViewable,
 	data.add(entity);
     }
 
-    private Hashtable<String, AbstractAction> buildSpecificActionButtonList()
-    {
-	specificActionButtonList = new Hashtable<String, AbstractAction>();
-	specificActionButtonList.put("Modifier", new BaseAction("Edit",
-		internalEntityDefinition));
-	specificActionButtonList.put("Effacer", new BaseAction("Delete",
-		internalEntityDefinition));
-	return specificActionButtonList;
-    }
-
-    @Override
-    public Hashtable<String, AbstractAction> getSpecificActionButtonList()
-    {
-	return specificActionButtonList;
-    }
-
     /**
-     * @param caption nom visible du bouton
-     * @param action action du bouton
+     * @return the dataType
      */
-    public void addSpecificActionButtonList(String caption,
-	    AbstractAction action)
+    public AbstractOrmEntity getDataType()
     {
-	specificActionButtonList.put(caption, action);
-    }
-
-    public String getKeyName()
-    {
-	return internalEntityDefinition.getPrimaryKeyName();
-    }
-
-    public String getKeyValue(int rowNumber)
-    {
-	return data.get(rowNumber).getFields().getField(getKeyName())
-		.getDataString();
-    }
-
-    @Override
-    public String getVisibleInternalElementName()
-    {
-	return internalEntityDefinition.getVisibleName();
+	return dataType;
     }
 
     @Override
     public Iterator<AbstractOrmEntity> iterator()
     {
 	return data.iterator();
-    }
-
-    @Override
-    public Set<String> getButtonConfirmList()
-    {
-	return buttonConfirmList;
-    }
-
-    /**
-     * @param string caption du bouton à enlever
-     */
-    public void removeSpecificActionButton(String string)
-    {
-	specificActionButtonList.remove(string);
-    }
-
-    @Override
-    public Vector<PromptViewable> getViewableRowList()
-    {
-	// TODO Auto-generated method stub
-	return null;
-    }
-
-    /**
-     * @param title titre qu'on peut overrider
-     */
-    public void setTitle(String title)
-    {
-	this.title = title;
-    }
-
-    @Override
-    public String getTitle()
-    {
-	return title;
-    }
-
-    public Fields getFields()
-    {
-	return internalEntityDefinition.getFields();
     }
 }

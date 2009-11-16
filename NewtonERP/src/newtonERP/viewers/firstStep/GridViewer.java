@@ -3,6 +3,8 @@ package newtonERP.viewers.firstStep;
 import java.util.Vector;
 
 import newtonERP.common.ActionLink;
+import newtonERP.module.AbstractEntity;
+import newtonERP.module.generalEntity.EntityList;
 import newtonERP.serveur.Servlet;
 import newtonERP.viewers.ViewerException;
 import newtonERP.viewers.secondStep.ButtonLinkViewer;
@@ -19,51 +21,31 @@ public class GridViewer
     /**
      * Creates the html code for the web page
      * 
-     * @param ttEntity the entity to view in list
+     * @param gridEntity the entity to view in list
      * @return html the html code
      * @throws ViewerException an exception that can occur in the viewer
      * @throws Exception general exception
      */
-    public static String getHtmlCode(GridViewerData ttEntity)
+    public static String getHtmlCode(GridViewerData gridEntity)
 	    throws ViewerException, Exception
     {
 	String html = "";
 
-	html += "<h2>" + ttEntity.getTitle() + "</h2>";
 	// TODO: modifier les class de style et mettre du style css a la place
 	// un moment donnée
-	html += getGlobalLink(ttEntity.getGlobalActions());
 
 	html += "<table class=\"ListViewerTable\" border=\"0\" cellpadding=\"3\" cellspacing=\"0\">";
-	html += getTableHeader(ttEntity.getHeader());
-	html += getDataRowList(ttEntity.getCases(), ttEntity.getLeftHeader());
+	html += getTableHeader(gridEntity.getHeader(), gridEntity
+		.getLeftHeader().length > 0);
+	html += getDataRowList(gridEntity);
 
 	html += "</table>";
 
 	return html;
     }
 
-    private static String getGlobalLink(Vector<ActionLink> globalActions)
-	    throws Exception
-    {
-	String html = "";
-	html += "<p>";
-	for (ActionLink globalAction : globalActions)
-	{
-
-	    html += ButtonLinkViewer.getHtmlCode(globalAction);
-	    /*
-	     * todo: remove when sucefully tested html += " <a href=\"" +
-	     * globalAction.getUrl() + "\">"; html += globalAction.getName() +
-	     * "</a> ";
-	     */
-	}
-	html += "</p>";
-	return html;
-    }
-
-    private static String getTableHeader(GridCaseData[] headerCase)
-	    throws Exception
+    private static String getTableHeader(GridCaseData[] headerCase,
+	    boolean hasLeftHeader) throws Exception
     {
 
 	String html = "";
@@ -71,7 +53,8 @@ public class GridViewer
 	String isHeader = " class=\"ListViewerTableHeader\"";
 
 	html += "\n<tr>";
-	html += "<th></th>";
+	if (hasLeftHeader)
+	    html += "<th></th>";
 	for (GridCaseData hCase : headerCase)
 	    html += "<th" + isHeader + ">" + getCase(hCase) + "</th>";
 
@@ -79,25 +62,32 @@ public class GridViewer
 	return html;
     }
 
-    private static String getDataRowList(GridCaseData[][] data,
-	    GridCaseData[] leftHeader) throws Exception
+    private static String getDataRowList(GridViewerData gridData)
+	    throws Exception
     {
+	GridCaseData[][] data = gridData.getCases();
+	GridCaseData[] leftHeader = gridData.getLeftHeader();
 	String caseContent;
 
 	String html = "";
 
-	for (int i = 0; i < leftHeader.length; i++)
+	for (int i = 0; i < data.length; i++)
 	{
 	    html += "\n<tr>";
-	    html += "<th>" + getCase(leftHeader[i]) + "</th>";
+	    if (i < leftHeader.length)
+		html += "<th>" + getCase(leftHeader[i]) + "</th>";
+
 	    for (int j = 0; j < data[i].length; j++)
 	    {
 		int k = 0;
 		String rowspan = "";
+		String color = "";
+
 		if (data[i][j] != null)
 		{
-		    for (k = i; k < leftHeader.length
-			    && data[i][j].equals(data[k][j]); k++)
+		    for (k = i; k < data.length
+			    && data[i][j].equals(data[k][j])
+			    && gridData.isSpanSimilar(); k++)
 		    {
 			if (k != i)
 			    data[k][j] = null;
@@ -107,16 +97,44 @@ public class GridViewer
 
 		    caseContent = getCase(data[i][j]);
 
-		    html += "<td class=\"gridCell\"" + rowspan
-			    + " style=\"background-color:"
-			    + ColorViewer.getColor(caseContent)
+		    if (gridData.isColor())
+			color = " style=\"background-color:"
+				+ ColorViewer.getColor(caseContent);
+
+		    html += "<td class=\"gridCell\"" + rowspan + color
 			    + ";text-align:center\">" + caseContent + "</td>";
 		}
 	    }
+	    if (gridData instanceof EntityList)
+		html += getSpecificButton(gridData
+			.getSpecificActionButtonList(), ((EntityList) gridData)
+			.getEntity().get(i));
+	    else
+		html += getSpecificButton(gridData
+			.getSpecificActionButtonList(), null);
+
 	    html += "</tr>";
 	}
 
 	return html;
+    }
+
+    private static String getSpecificButton(Vector<ActionLink> actionLinks,
+	    AbstractEntity entity) throws Exception
+    {
+	String html = "";
+
+	for (ActionLink action : actionLinks)
+	{
+	    html += "<td>";
+
+	    html += ButtonLinkViewer.getHtmlCode(action, entity);
+
+	    html += "</td>";
+	}
+
+	return html;
+
     }
 
     private static String getCase(GridCaseData dtCase) throws Exception

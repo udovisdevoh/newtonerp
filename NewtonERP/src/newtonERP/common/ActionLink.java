@@ -3,6 +3,7 @@ package newtonERP.common;
 import java.util.Hashtable;
 
 import newtonERP.module.AbstractAction;
+import newtonERP.module.AbstractEntity;
 import newtonERP.serveur.Servlet;
 
 /**
@@ -14,6 +15,7 @@ public class ActionLink
     private String name;
     private AbstractAction action;
     private Hashtable<String, String> parameters;
+    private boolean confirm = false;
 
     /**
      * constructeur vide
@@ -98,6 +100,23 @@ public class ActionLink
     }
 
     /**
+     * @param entity entity servant a compile les parametre
+     * @return les parametre compile
+     */
+    public Hashtable<String, String> getParameters(AbstractEntity entity)
+    {
+	Hashtable<String, String> newparam = new Hashtable<String, String>();
+	for (String key : parameters.keySet())
+	{
+	    if (parameters.get(key).startsWith("&"))
+		newparam.put(key, entity.getDataString(key));
+	    else
+		newparam.put(key, parameters.get(key));
+	}
+	return newparam;
+    }
+
+    /**
      * @param parameters the parameters to set
      */
     public void setParameters(Hashtable<String, String> parameters)
@@ -116,19 +135,70 @@ public class ActionLink
     }
 
     /**
-     * @return l'url relatif et suivie des parametre
+     * @return l'url relatif
      * @throws Exception remonte
      */
     public String getUrl() throws Exception
     {
+	return Servlet.makeLink(action);
+    }
+
+    /**
+     * @param entity entity servant a definir les parametre dynamique
+     * @return les parametre sous la forme key=value&key2=value2... (ne contien
+     *         pas le '?')
+     * @throws Exception remonte
+     */
+    public String getParam(AbstractEntity entity) throws Exception
+    {
 	String param = "";
-	for (String key : parameters.keySet())
+	for (String key : getParameters(entity).keySet())
 	{
-	    param += key + "=" + parameters.get(key) + "&";
+	    param += key + "=";
+	    param += parameters.get(key);
+	    param += "&";
 	}
 	if (param.length() > 0)
 	    param = param.substring(0, param.length() - 1);
-	return Servlet.makeLink(action) + "?" + param;
+
+	return param;
+    }
+
+    /**
+     * @param entity entity servant a definir les parametre dynamique
+     * @return l'url relatif et suivie des parametre, utilisabe directement dans
+     *         un lien web
+     * @throws Exception remonte
+     */
+    public String getUrlParam(AbstractEntity entity) throws Exception
+    {
+	return getUrl() + "?" + getParam(entity);
+    }
+
+    /**
+     * @return l'url relatif et suivie des parametre, utilisabe directement dans
+     *         un lien web
+     * @throws Exception remonte
+     */
+    public String getUrlParam() throws Exception
+    {
+	return getUrlParam(null);
+    }
+
+    /**
+     * @return the confirm
+     */
+    public boolean isConfirm()
+    {
+	return confirm;
+    }
+
+    /**
+     * @param confirm the confirm to set
+     */
+    public void setConfirm(boolean confirm)
+    {
+	this.confirm = confirm;
     }
 
 }

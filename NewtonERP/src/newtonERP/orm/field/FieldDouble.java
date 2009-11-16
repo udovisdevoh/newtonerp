@@ -66,8 +66,9 @@ public class FieldDouble extends Field
 
     /**
      * @param data the data to set
+     * @throws Exception remonte
      */
-    public void setData(String data)
+    public void setData(String data) throws Exception
     {
 	if (data == null || data.equals("null"))
 	    data = "0.0";
