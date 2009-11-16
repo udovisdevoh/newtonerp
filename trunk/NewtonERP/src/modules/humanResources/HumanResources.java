@@ -99,7 +99,7 @@ public class HumanResources extends Module
 	emp1.setData("salary", 200000);
 	emp1.setData("nbVacancyDays", 28);
 	emp1.setData("nbSicknessDays", 6);
-	emp1.setData(new User().getForeignKeyName(), 2);
+	emp1.setData(new User().getForeignKeyName(), 1);
 	emp1.newE();
 
 	Employee emp2 = new Employee();
@@ -116,7 +116,7 @@ public class HumanResources extends Module
 	emp2.setData("salary", 13);
 	emp2.setData("nbVacancyDays", 14);
 	emp2.setData("nbSicknessDays", 3);
-	emp2.setData(new User().getForeignKeyName(), 2);
+	emp2.setData(new User().getForeignKeyName(), 1);
 	emp2.newE();
 
     }

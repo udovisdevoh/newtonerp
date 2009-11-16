@@ -6,7 +6,9 @@ import java.util.Vector;
 import modules.taskModule.entityDefinitions.EntityEntity;
 import modules.taskModule.entityDefinitions.Specification;
 import modules.taskModule.entityDefinitions.TaskEntity;
+import newtonERP.common.ListModule;
 import newtonERP.module.AbstractOrmEntity;
+import newtonERP.module.Module;
 import newtonERP.orm.Orm;
 import newtonERP.orm.associations.PluralAccessor;
 
@@ -16,6 +18,8 @@ import newtonERP.orm.associations.PluralAccessor;
  */
 public class TaskManager
 {
+    private static Vector<String> taskModuleEntityDefinitionNameList;
+
     /**
      * @param entity Entité pour laquelle on doit effecter des tâches s'il y a
      *            lieu
@@ -23,11 +27,40 @@ public class TaskManager
      */
     public static void executeTasks(AbstractOrmEntity entity) throws Exception
     {
+	if (isEntityRelatedToTaskModule(entity))
+	    TaskCache.clear();
+
 	Collection<TaskEntity> concernedTaskList = getConcernedTaskList(entity);
 	for (TaskEntity task : concernedTaskList)
 	    if (task.isActive())
 		if (task.isSatisfied())
 		    task.execute();
+    }
+
+    private static boolean isEntityRelatedToTaskModule(AbstractOrmEntity entity)
+	    throws Exception
+    {
+	return getTaskModuleEntityDefinitionNameList().contains(
+		entity.getSystemName());
+    }
+
+    private static Vector<String> getTaskModuleEntityDefinitionNameList()
+	    throws Exception
+    {
+	if (taskModuleEntityDefinitionNameList == null)
+	{
+	    taskModuleEntityDefinitionNameList = new Vector<String>();
+
+	    Module taskModule = ListModule.getModule("TaskModule");
+
+	    for (String entityDefinitionName : taskModule
+		    .getEntityDefinitionList().keySet())
+	    {
+		taskModuleEntityDefinitionNameList.add(entityDefinitionName);
+	    }
+	}
+
+	return taskModuleEntityDefinitionNameList;
     }
 
     /**

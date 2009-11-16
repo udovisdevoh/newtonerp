@@ -18,7 +18,7 @@ import newtonERP.orm.associations.PluralAccessor;
 public class RightCheck extends AbstractAction
 {
     @Override
-    protected AbstractEntity doAction(AbstractEntity entity,
+    public AbstractEntity doAction(AbstractEntity entity,
 	    Hashtable<String, String> parameters) throws Exception
     {
 	Vector<String> search = new Vector<String>();

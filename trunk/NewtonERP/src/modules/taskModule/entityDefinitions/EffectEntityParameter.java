@@ -31,5 +31,4 @@ public class EffectEntityParameter extends AbstractOrmEntity
 	fieldsInit.add(new FieldInt("Paramètre", "parameterID"));
 	return new Fields(fieldsInit);
     }
-
 }

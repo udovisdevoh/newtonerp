@@ -3,6 +3,7 @@ package modules.taskModule.entityDefinitions;
 import java.util.Vector;
 
 import newtonERP.module.AbstractOrmEntity;
+import newtonERP.orm.Orm;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.FieldInt;
@@ -41,12 +42,27 @@ public class Specification extends AbstractOrmEntity implements PromptViewable
 
     /**
      * @return true si la spécification est satisfaite
+     * @throws Exception si test fail
      */
-    public boolean isSatisfied()
+    public boolean isSatisfied() throws Exception
     {
 	System.out
 		.println("Vérification à savoir si une spécification est satisfaite");
-	// TODO Auto-generated method stub
+
+	AbstractOrmEntity searchEntity = getSearchEntity();
+
+	Vector<AbstractOrmEntity> result = Orm.select(searchEntity);
+
+	if (result.size() > 0)
+	    return true;
 	return false;
+    }
+
+    private AbstractOrmEntity getSearchEntity() throws Exception
+    {
+	SearchEntity searchEntity = (SearchEntity) getSingleAccessor(new SearchEntity()
+		.getForeignKeyName());
+
+	return searchEntity.getEntity();
     }
 }

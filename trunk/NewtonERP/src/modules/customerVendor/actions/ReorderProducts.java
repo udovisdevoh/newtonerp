@@ -25,7 +25,7 @@ public class ReorderProducts extends AbstractAction
     }
 
     @Override
-    protected AbstractEntity doAction(AbstractEntity entity,
+    public AbstractEntity doAction(AbstractEntity entity,
 	    Hashtable<String, String> parameters) throws Exception
     {
 	Product product = (Product) entity;

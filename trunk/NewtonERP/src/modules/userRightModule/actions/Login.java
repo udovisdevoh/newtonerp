@@ -29,7 +29,7 @@ public class Login extends AbstractAction
 	super(new User()); // Travaille avec des users
     }
 
-    protected AbstractEntity doAction(AbstractEntity entity,
+    public AbstractEntity doAction(AbstractEntity entity,
 	    Hashtable<String, String> parameters) throws Exception
     {
 	String currentLoginName = parameters.get("name");

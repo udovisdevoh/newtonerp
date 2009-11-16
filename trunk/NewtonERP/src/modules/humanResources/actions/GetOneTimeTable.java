@@ -50,7 +50,7 @@ public class GetOneTimeTable extends AbstractAction
      * newtonERP.module.AbstractAction#doAction(newtonERP.module.AbstractEntity,
      * java.util.Hashtable)
      */
-    protected AbstractEntity doAction(AbstractEntity entity,
+    public AbstractEntity doAction(AbstractEntity entity,
 	    Hashtable<String, String> parameters) throws Exception
     {
 	Vector<AbstractOrmEntity> vSchedul = new Schedule().get("1=1");

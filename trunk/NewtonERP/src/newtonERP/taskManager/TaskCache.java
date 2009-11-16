@@ -42,4 +42,12 @@ public class TaskCache
 	getCacheList().put(entity.getSystemName(), concernedTaskList);
     }
 
+    /**
+     * Clear the cache
+     */
+    public static void clear()
+    {
+	getCacheList().clear();
+    }
+
 }
