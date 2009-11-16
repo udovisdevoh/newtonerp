@@ -149,3 +149,10 @@ textarea
 	visibility:hidden;
 	height:0px;
 }
+
+img
+{
+	display:none;
+	visibility:hidden;
+	height:0px;
+}
