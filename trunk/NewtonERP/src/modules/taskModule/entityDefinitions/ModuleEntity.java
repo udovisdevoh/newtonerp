@@ -3,8 +3,10 @@ package modules.taskModule.entityDefinitions;
 import java.util.Hashtable;
 import java.util.Vector;
 
+import newtonERP.common.ListModule;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
+import newtonERP.module.Module;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.FieldString;
@@ -67,5 +69,19 @@ public class ModuleEntity extends AbstractOrmEntity implements PromptViewable
     {
 	ListViewerData entityList = super.getList(parameters);
 	return entityList;
+    }
+
+    /**
+     * @return vrai module
+     * @throws Exception si obtention fail
+     */
+    public Module getModule() throws Exception
+    {
+	return ListModule.getModule(getModuleName());
+    }
+
+    private String getModuleName()
+    {
+	return getDataString("systemName");
     }
 }

@@ -118,9 +118,15 @@ public class EffectEntity extends AbstractOrmEntity implements PromptViewable
 		.getDataString(key));
     }
 
-    private AbstractAction getAction()
+    private AbstractAction getAction() throws Exception
     {
-	// TODO Auto-generated method stub
-	return null;
+	ActionEntity actionEntity = getActionEntity();
+	return actionEntity.getAction();
+    }
+
+    private ActionEntity getActionEntity() throws Exception
+    {
+	return (ActionEntity) getSingleAccessor(new ActionEntity()
+		.getForeignKeyName());
     }
 }

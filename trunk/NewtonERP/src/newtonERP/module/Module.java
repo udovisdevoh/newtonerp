@@ -214,10 +214,10 @@ public abstract class Module
      * @return action de ce nom contenue dans le HashTable
      * @throws ModuleException si l'action n'Existe pas
      */
-    public final AbstractEntity getEntityDefinition(String entityDefinitionName)
-	    throws ModuleException
+    public final AbstractOrmEntity getEntityDefinition(
+	    String entityDefinitionName) throws ModuleException
     {
-	AbstractEntity entity = null;
+	AbstractOrmEntity entity = null;
 	try
 	{
 	    entity = entityDefinitionList.get(entityDefinitionName);
@@ -329,7 +329,7 @@ public abstract class Module
     public final AbstractEntity doAction(String actionName, String entityName,
 	    Hashtable<String, String> parameters) throws Exception
     {
-	AbstractOrmEntity entity = (AbstractOrmEntity) getEntityDefinition(entityName);
+	AbstractOrmEntity entity = getEntityDefinition(entityName);
 	entity.getFields().setFromHashTable(parameters);
 	if (actionName.equals("New"))
 	    return entity.newUI(parameters);

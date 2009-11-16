@@ -3,8 +3,10 @@ package modules.taskModule.entityDefinitions;
 import java.util.Hashtable;
 import java.util.Vector;
 
+import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
+import newtonERP.module.Module;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.FieldInt;
@@ -72,5 +74,27 @@ public class ActionEntity extends AbstractOrmEntity implements PromptViewable
     {
 	ListViewerData entityList = super.getList(parameters);
 	return entityList;
+    }
+
+    /**
+     * @return retourne une instance de vrai action selon l'entité d'action
+     * @throws Exception si obtention fail
+     */
+    public AbstractAction getAction() throws Exception
+    {
+	String actionName = getActionName();
+	Module module = getModuleEntity().getModule();
+	return module.getAction(actionName);
+    }
+
+    private ModuleEntity getModuleEntity() throws Exception
+    {
+	return (ModuleEntity) getSingleAccessor(new ModuleEntity()
+		.getForeignKeyName());
+    }
+
+    private String getActionName()
+    {
+	return getDataString("systemName");
     }
 }

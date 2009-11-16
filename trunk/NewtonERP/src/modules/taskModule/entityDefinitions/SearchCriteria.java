@@ -56,8 +56,8 @@ public class SearchCriteria extends AbstractOrmEntity implements PromptViewable
     /**
      * @return valeur du critère de recherche
      */
-    public Object getValue()
+    public String getValue()
     {
-	return getData("value");
+	return getDataString("value");
     }
 }

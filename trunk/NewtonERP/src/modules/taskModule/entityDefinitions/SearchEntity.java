@@ -70,7 +70,9 @@ public class SearchEntity extends AbstractOrmEntity implements PromptViewable
     private void addSearchCriteria(AbstractOrmEntity entity,
 	    SearchCriteria searchCriteria) throws Exception
     {
-	entity.setData(searchCriteria.getKey(), searchCriteria.getValue());
+	String key = searchCriteria.getKey();
+	String value = searchCriteria.getValue();
 
+	entity.setData(key, value);
     }
 }
