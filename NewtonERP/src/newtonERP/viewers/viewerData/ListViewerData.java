@@ -49,7 +49,7 @@ public class ListViewerData extends GridViewerData implements
 		header.add(new GridCaseData(listOfValue.getLabelName(),
 			new BaseAction("GetList", listOfValue
 				.getForeignEntityDefinition())));
-	    else
+	    else if (!field.isHidden())
 		header.add(new GridCaseData(field.getName()));
 	}
 	return header.toArray(new GridCaseData[0]);
@@ -74,7 +74,7 @@ public class ListViewerData extends GridViewerData implements
 
 		if (listOfValue != null)
 		    value = listOfValue.getForeignValue(field.getDataString());
-		else
+		else if (!field.isHidden())
 		{
 		    value = field.getDataString();
 		    if (value == null)
