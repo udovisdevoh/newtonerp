@@ -40,7 +40,7 @@ public class ButtonLinkViewer
 		    + param.get(key) + "' />";
 	}
 	html += "<input class='submitButton' type='submit' " + onClickConfirm
-		+ " value='" + actionLink.getName() + "' />";
+		+ " value=\"" + actionLink.getName() + "\" />";
 
 	html += "</form>";
 
@@ -57,7 +57,6 @@ public class ButtonLinkViewer
 	return getHtmlCode(actionLink, null);
     }
 
-    // todo: retire lorsque la correction est aporter plus haut
     private static String getOnClickConfirm(String actionName,
 	    String entityTypeName, String value)
     {
