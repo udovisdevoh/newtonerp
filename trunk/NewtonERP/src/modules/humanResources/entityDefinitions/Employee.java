@@ -53,8 +53,10 @@ public class Employee extends AbstractOrmEntity
 		"nbVacancyDays"));
 	fieldsData.add(new FieldInt("Nombre de jour de maladie possible",
 		"nbSicknessDays"));
-	fieldsData.add(new FieldInt("Compte système", new User()
-		.getForeignKeyName()));
+	FieldInt fieldUser = new FieldInt("Compte système", new User()
+		.getForeignKeyName());
+	fieldUser.setReadOnly(true);
+	fieldsData.add(fieldUser);
 
 	return new Fields(fieldsData);
     }
