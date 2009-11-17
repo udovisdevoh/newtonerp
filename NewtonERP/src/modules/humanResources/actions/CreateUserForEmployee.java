@@ -30,6 +30,7 @@ public class CreateUserForEmployee extends AbstractAction
 	    Hashtable<String, String> parameters) throws Exception
     {
 	Employee employee = (Employee) entity;
+
 	String userName = getUserName(employee);
 	User user;
 
@@ -46,7 +47,7 @@ public class CreateUserForEmployee extends AbstractAction
 
 	employee.assign(user);
 	employee.save();
-	return user;
+	return entity;
     }
 
     private User tryGetExistingUser(String userName) throws Exception
