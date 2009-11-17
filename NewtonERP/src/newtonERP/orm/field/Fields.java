@@ -220,4 +220,15 @@ public class Fields implements Iterable<Field>
     {
 	return fieldsDataMap.containsKey(fieldName);
     }
+
+    /**
+     * @return true si au moins un field n'a pas une valeur null, sinon false
+     */
+    public boolean containsValues()
+    {
+	for (Field field : this)
+	    if (field.getData() != null)
+		return true;
+	return false;
+    }
 }

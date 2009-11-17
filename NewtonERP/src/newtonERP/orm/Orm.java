@@ -91,7 +91,7 @@ public class Orm
 		+ searchEntities.get(0).getSystemName();
 
 	if (!searchEntities.isEmpty())
-	    sqlQuery = buildWhereClauseForQuery(searchEntities, sqlQuery);
+	    sqlQuery += buildWhereClauseForQuery(searchEntities) + ";";
 
 	// TODO: Remove the next line when it will be properly debugged
 	System.out.println("SQL query produced : " + sqlQuery);
@@ -269,7 +269,7 @@ public class Orm
 	String sqlQuery = "DELETE FROM " + prefix
 		+ searchEntities.get(0).getSystemName();
 
-	sqlQuery = buildWhereClauseForQuery(searchEntities, sqlQuery);
+	sqlQuery += buildWhereClauseForQuery(searchEntities) + ";";
 
 	// TODO: Remove the next line once this will be properly debugged
 	System.out.println("Sql query produced : " + sqlQuery);
@@ -343,7 +343,7 @@ public class Orm
 
 	sqlQuery = buildSetClauseForQuery(entityContainingChanges.getFields(),
 		sqlQuery);
-	sqlQuery = buildWhereClauseForQuery(searchEntities, sqlQuery);
+	sqlQuery += buildWhereClauseForQuery(searchEntities) + ";";
 
 	// TODO: Remove this once it will be properly debugged
 	System.out.println("Sql query produced : " + sqlQuery);
@@ -416,36 +416,52 @@ public class Orm
      * @return the sqlQuery
      */
     private static String buildWhereClauseForQuery(
-	    Vector<AbstractOrmEntity> searchEntities, String sqlQuery)
+	    Vector<AbstractOrmEntity> searchEntities)
     {
+	String whereClause = "";
 	int entityPosition = 0;
-	sqlQuery += " WHERE ";
+	boolean addedCriteriaToWhereCondition = false;
+	whereClause += " WHERE ";
 
 	for (AbstractOrmEntity entity : searchEntities)
 	{
+	    // Si les fields de
+	    // cette entité
+	    // ne contiennent que des null
+	    if (!entity.getFields().containsValues())
+		continue;
+
 	    entityPosition += 1;
-	    sqlQuery += "( ";
+	    whereClause += "( ";
 
 	    for (Field field : entity.getFields().getFields())
 	    {
 		if (field.getData() != null)
 		{
-		    sqlQuery += field.getShortName() + " "
+		    whereClause += field.getShortName() + " "
 			    + field.getOperator() + " '"
 			    + field.getDataString(true) + "'";
 
-		    sqlQuery += " AND ";
+		    whereClause += " AND ";
 		}
 	    }
 
-	    sqlQuery = sqlQuery.substring(0, sqlQuery.length() - 4);
+	    whereClause = whereClause.substring(0, whereClause.length() - 4);
 
 	    if (entity.getFields().getFields().size() < entityPosition)
-		sqlQuery += " OR ";
+		whereClause += " OR ";
 
-	    sqlQuery += ")";
+	    whereClause += ")";
+	    // au moins un field était
+	    // utilisable donc on cré
+	    // un where
+	    addedCriteriaToWhereCondition = true;
 	}
-	return sqlQuery += ";";
+
+	if (addedCriteriaToWhereCondition)
+	    return whereClause; // On retourne la clause du where car elle n'est
+				// pas vide
+	return "";// Sinon, aucune clause where ne doit être ajoutée
     }
 
     /**
