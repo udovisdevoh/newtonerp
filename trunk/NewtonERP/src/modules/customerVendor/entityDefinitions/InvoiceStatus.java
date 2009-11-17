@@ -1,12 +1,16 @@
 package modules.customerVendor.entityDefinitions;
 
+import java.util.Hashtable;
 import java.util.Vector;
 
+import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.FieldString;
 import newtonERP.orm.field.Fields;
+import newtonERP.viewers.viewerData.BaseViewerData;
+import newtonERP.viewers.viewerData.ListViewerData;
 
 /**
  * Represents an invoice status
@@ -36,4 +40,27 @@ public class InvoiceStatus extends AbstractOrmEntity
 	return new Fields(fieldList);
     }
 
+    @Override
+    public BaseViewerData editUI(Hashtable<String, String> parameters)
+	    throws Exception
+    {
+	/*
+	 * On ne veut pas permettre la modification de droit alors on redirige
+	 * vers GetList
+	 */
+	ListViewerData entityList = super.getList();
+	return entityList;
+    }
+
+    @Override
+    public AbstractEntity deleteUI(Hashtable<String, String> parameters)
+	    throws Exception
+    {
+	/*
+	 * On ne veut pas permettre l'effacement de droit alors on redirige
+	 * l'effacement vers GetList
+	 */
+	ListViewerData entityList = super.getList();
+	return entityList;
+    }
 }
