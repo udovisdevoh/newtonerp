@@ -739,7 +739,7 @@ par exemple, si on delete un Group, alors les GroupRight WHERE GroupID = ce grou
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
   * ...à livrer...
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
-  * ...problème, besoin d'aide, qui aidera...
+  * c'est pas un peu bad de juste rediriger les actions des bouttons modifier vers getList si on ne veut pas pouvoir modifier?
 
 ==Guillaume Lacasse==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
