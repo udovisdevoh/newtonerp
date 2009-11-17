@@ -3,8 +3,8 @@ package modules.customerVendor.entityDefinitions;
 import java.util.Vector;
 
 import newtonERP.module.AbstractOrmEntity;
-import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.field.Field;
+import newtonERP.orm.field.FieldBool;
 import newtonERP.orm.field.FieldDouble;
 import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.FieldString;
@@ -26,7 +26,7 @@ public class Tax extends AbstractOrmEntity
     {
 	super();
 	setVisibleName("Taxes");
-	AccessorManager.addAccessor(this, new TaxType());
+	// AccessorManager.addAccessor(this, new TaxType());
     }
 
     @Override
@@ -37,8 +37,10 @@ public class Tax extends AbstractOrmEntity
 	fieldsInit.add(new FieldString("Nom", "name"));
 	fieldsInit.add(new FieldString("Code", "code"));
 	fieldsInit.add(new FieldDouble("Valeur", "value"));
-	fieldsInit.add(new FieldInt("Type de taxe", new TaxType()
-		.getForeignKeyName()));
+	fieldsInit.add(new FieldBool("Type Fédéral", "isFederalTax"));
+	fieldsInit.add(new FieldBool("Type Provincial", "isStateTax"));
+	// fieldsInit.add(new FieldInt("Type de taxe", new TaxType()
+	// .getForeignKeyName()));
 	return new Fields(fieldsInit);
     }
 

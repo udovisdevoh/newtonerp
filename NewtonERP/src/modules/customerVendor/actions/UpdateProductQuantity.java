@@ -10,7 +10,6 @@ import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.Orm;
-import newtonERP.viewers.viewerData.ListViewerData;
 
 /**
  * Will be called by tasks. Used to update product quantities in database each
@@ -87,10 +86,13 @@ public class UpdateProductQuantity extends AbstractAction
 	}
 	else
 	{
-	    ListViewerData invoiceList = new Invoice().getList();
-	    invoiceList
-		    .addAlertMessage("Impossible de mettre a jour. Manque d'inventaire");
-	    return invoiceList;
+	    System.out.println("Inventaire insuffisant");
+	    /*
+	     * FIXME : Does not work ListViewerData invoiceList = new
+	     * Invoice().getList(); invoiceList .
+	     * addAlertMessage("Impossible de mettre a jour. Manque d'inventaire"
+	     * ); return invoiceList;
+	     */
 	}
 
 	return new Invoice().getList();

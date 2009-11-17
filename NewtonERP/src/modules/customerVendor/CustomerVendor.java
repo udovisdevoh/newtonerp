@@ -104,14 +104,16 @@ public class CustomerVendor extends Module
 	taxe.setData("name", "TPS");
 	taxe.setData("code", "03123");
 	taxe.setData("value", 5);
-	taxe.setData(new TaxType().getForeignKeyName(), 2);
+	taxe.setData("isFederalTax", true);
+	taxe.setData("isStateTax", false);
 	taxe.newE();
 
 	Tax taxe1 = new Tax();
 	taxe1.setData("name", "TVQ");
 	taxe1.setData("code", "06544");
 	taxe1.setData("value", 7.5);
-	taxe1.setData(new TaxType().getForeignKeyName(), 1);
+	taxe1.setData("isFederalTax", false);
+	taxe1.setData("isStateTax", true);
 	taxe1.newE();
 
 	InvoiceLine ligne = new InvoiceLine();
