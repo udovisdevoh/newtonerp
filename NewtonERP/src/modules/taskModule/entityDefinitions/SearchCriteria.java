@@ -59,4 +59,19 @@ public class SearchCriteria extends AbstractOrmEntity
     {
 	return getDataString("value");
     }
+
+    /**
+     * @return opérateur en string
+     * @throws Exception si optention fail
+     */
+    public String getOperator() throws Exception
+    {
+	return getOperatorEntity().getOperator();
+    }
+
+    private SearchCriteriaOperator getOperatorEntity() throws Exception
+    {
+	return (SearchCriteriaOperator) getSingleAccessor(new SearchCriteriaOperator()
+		.getForeignKeyName());
+    }
 }

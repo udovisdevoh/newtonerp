@@ -68,4 +68,12 @@ public class SearchCriteriaOperator extends AbstractOrmEntity
 	ListViewerData entityList = super.getList(parameters);
 	return entityList;
     }
+
+    /**
+     * @return opérateur en string
+     */
+    public String getOperator()
+    {
+	return getDataString("name");
+    }
 }
