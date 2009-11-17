@@ -59,8 +59,8 @@ public class PromptViewer
 	    {
 		html += "<tr><td>"
 			+ SelectBoxViewer.getHtmlCode(listOfValue, field
-				.getShortName(), field.getDataString())
-			+ "</td></tr>";
+				.getShortName(), field.getDataString(), field
+				.isReadOnly()) + "</td></tr>";
 	    }
 
 	}

@@ -20,31 +20,48 @@ public class SelectBoxViewer
      * @throws Exception si obtention de code fail
      */
     public static String getHtmlCode(SelectBoxViewable entity,
-	    String inputName, String inputValue) throws Exception
+	    String inputName, String inputValue, boolean isReadOnly)
+	    throws Exception
     {
 	String html = "";
 
 	html += LinkViewer.getHtmlCode(new ActionLink(entity.getLabelName(),
 		new BaseAction("GetList", ((ListOfValue) entity)
 			.getForeignEntityDefinition())));
-	html += ": </td>";
-	html += "<td><select name=\"" + inputName + "\">";
+	html += ": </td><td>";
 
 	NaturalMap<String, String> elements = entity.getElements();
 
-	if (elements.get(inputValue) != null)
-	    html += "<option value=\"" + inputValue + "\">"
-		    + elements.get(inputValue) + "</option>";
-
-	for (String elementKey : elements.getKeyList())
+	if (isReadOnly)
 	{
-	    if (!elementKey.equals(inputValue))
-	    {
-		html += "<option value=\"" + elementKey + "\">"
-			+ elements.get(elementKey) + "</option>";
-	    }
+	    if (inputValue == null || inputValue.equals("null")
+		    || inputValue.equals("0"))
+		inputValue = "1";
+
+	    html += elements.get(inputValue);
+	    html += "<input type=\"hidden\" name=\"" + inputName
+		    + "\" value=\"" + inputValue + "\" />";
 	}
-	html += "</select>";
+	else
+	{
+	    html += "<select name=\"" + inputName + "\">";
+
+	    if (elements.get(inputValue) != null)
+		html += "<option value=\"" + inputValue + "\">"
+			+ elements.get(inputValue) + "</option>";
+
+	    for (String elementKey : elements.getKeyList())
+	    {
+		if (!elementKey.equals(inputValue))
+		{
+		    html += "<option value=\"" + elementKey + "\">"
+			    + elements.get(elementKey) + "</option>";
+		}
+	    }
+	    html += "</select>";
+	}
+
+	html += "</td>";
 
 	return html;
     }
