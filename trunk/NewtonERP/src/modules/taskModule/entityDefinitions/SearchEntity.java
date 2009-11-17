@@ -71,7 +71,8 @@ public class SearchEntity extends AbstractOrmEntity
     {
 	String key = searchCriteria.getKey();
 	String value = searchCriteria.getValue();
-
+	String operator = searchCriteria.getOperator();
 	entity.setData(key, value);
+	entity.getFields().getField(key).setOperator(operator);
     }
 }
