@@ -77,10 +77,13 @@ public class CalculateInvoiceTotal extends AbstractAction
 	    taxContainer.add(myTax);
 	}
 
-	// On calcule toujours la taxe provinciale avant la taxe fédérale
+	/*
+	 * On swap le fédéral et provincial si il y a lieu ainsi on calcule
+	 * toujours la taxe provinciale avant la fédérale
+	 */
 	for (int i = 0; i < taxContainer.size(); i++)
 	{
-	    if (taxContainer.get(i).getData("isFederalTax").equals(true))
+	    if (taxContainer.get(i).getData("isStateTax").equals(true))
 		Collections.swap(taxContainer, i, 1);
 	}
 
