@@ -85,7 +85,7 @@ public class EffectEntity extends AbstractOrmEntity
     private Vector<AbstractOrmEntity> getAffectedEntityList() throws Exception
     {
 	AbstractOrmEntity searchEntity = getSearchEntity();
-	return Orm.select(searchEntity, null);
+	return Orm.select(searchEntity);
     }
 
     private AbstractOrmEntity getSearchEntity() throws Exception
@@ -126,18 +126,22 @@ public class EffectEntity extends AbstractOrmEntity
 	for (String key : parameters.keySet())
 	{
 	    value = parameters.get(key);
-	    value = replaceToEntityFieldValue(entity, key, value);
-	    parameters.put(key, value);
+	    for (String variable : entity.getFields().getKeyList())
+	    {
+		value = replaceToEntityFieldValue(entity, value, variable);
+		parameters.put(key, value);
+	    }
 	}
 
 	return parameters;
     }
 
     private String replaceToEntityFieldValue(AbstractOrmEntity entity,
-	    String key, String value)
+	    String value, String variable)
     {
-	return value.replace(":" + entity.getSystemName() + "." + key, entity
-		.getDataString(key));
+
+	return value.replace(":" + entity.getSystemName() + "." + variable,
+		entity.getDataString(variable));
     }
 
     private AbstractAction getAction() throws Exception
