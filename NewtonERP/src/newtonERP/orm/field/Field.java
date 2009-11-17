@@ -184,4 +184,12 @@ public abstract class Field
     {
 	return "{" + getClass().getSimpleName() + ":" + getDataString() + "}";
     }
+
+    /**
+     * @return nom système d'un field
+     */
+    public String getSystemName()
+    {
+	return getClass().getSimpleName();
+    }
 }
