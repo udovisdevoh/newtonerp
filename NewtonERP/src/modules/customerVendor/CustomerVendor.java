@@ -28,21 +28,17 @@ public class CustomerVendor extends Module
     {
 	super();
 	setDefaultAction(new BaseAction("GetList", new Merchant()));
-
 	addGlobalActionMenuItem("Commerçants", new BaseAction("GetList",
 		new Merchant()));
-
 	addGlobalActionMenuItem("Factures", new BaseAction("GetList",
 		new Invoice()));
-
 	addGlobalActionMenuItem("Lignes de factures", new BaseAction("GetList",
 		new InvoiceLine()));
-
 	addGlobalActionMenuItem("Lignes de taxes", new BaseAction("GetList",
 		new InvoiceTaxLine()));
-
 	addGlobalActionMenuItem("Taxes", new BaseAction("GetList", new Tax()));
-
+	addGlobalActionMenuItem("Status de facture", new BaseAction("GetList",
+		new InvoiceStatus()));
 	setVisibleName("Clients / Fournisseurs");
     }
 
