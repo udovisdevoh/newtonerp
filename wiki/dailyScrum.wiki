@@ -754,6 +754,7 @@ par exemple, si on delete un Group, alors les GroupRight WHERE GroupID = ce grou
   * Nouvelle methode dans AbstractOrmEntity: methode save
   * Nouvelle methode dans AbstractOrmEntity: methode assign
   * TaskManager est fonctionnel!!!
+  * Cré une task qui cré automatiquement des users pour les employés qui n'en on pas.
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
   * ...à livrer...
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
