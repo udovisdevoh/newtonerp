@@ -8,7 +8,6 @@ import modules.customerVendor.entityDefinitions.Invoice;
 import modules.customerVendor.entityDefinitions.InvoiceLine;
 import modules.customerVendor.entityDefinitions.InvoiceTaxLine;
 import modules.customerVendor.entityDefinitions.Tax;
-import modules.customerVendor.entityDefinitions.TaxType;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
@@ -81,13 +80,7 @@ public class CalculateInvoiceTotal extends AbstractAction
 	// On calcule toujours la taxe provinciale avant la taxe fédérale
 	for (int i = 0; i < taxContainer.size(); i++)
 	{
-	    TaxType type = new TaxType();
-	    type.setData(new TaxType().getPrimaryKeyName(), taxContainer.get(i)
-		    .getData(new TaxType().getForeignKeyName()));
-
-	    TaxType selectedType = (TaxType) Orm.selectUnique(type);
-
-	    if (selectedType.getData("name").equals("Fédéral"))
+	    if (taxContainer.get(i).getData("isFederalTax").equals(true))
 		Collections.swap(taxContainer, i, 1);
 	}
 
