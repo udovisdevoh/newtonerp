@@ -1,22 +1,23 @@
 package modules.humanResources.entityDefinitions;
 
+import java.util.Hashtable;
 import java.util.Vector;
 
 import modules.humanResources.actions.GetOneTimeTable;
+import newtonERP.common.ActionLink;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.FieldDateTime;
 import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.Fields;
-import newtonERP.serveur.Servlet;
-import newtonERP.viewers.viewables.PromptViewable;
+import newtonERP.viewers.viewerData.PromptViewerData;
 
 /**
  * Représente un département dans une compagnie
  * @author Guillaume
  */
-public class Schedule extends AbstractOrmEntity implements PromptViewable
+public class Schedule extends AbstractOrmEntity
 {
 
     /**
@@ -48,15 +49,13 @@ public class Schedule extends AbstractOrmEntity implements PromptViewable
 	return new Fields(fieldsData);
     }
 
-    @Override
-    public String getBackLinkName()
+    public PromptViewerData editUI(Hashtable<String, String> parameters)
+	    throws Exception
     {
-	return "Voir l'horaire";
-    }
-
-    @Override
-    public String getBackLinkUrl() throws Exception
-    {
-	return Servlet.makeLink(getCurrentModule(), new GetOneTimeTable());
+	PromptViewerData data = (PromptViewerData) super.editUI(parameters);
+	data
+		.setBackLink(new ActionLink("Voir l'horaire",
+			new GetOneTimeTable()));
+	return data;
     }
 }

@@ -7,7 +7,6 @@ import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.Fields;
-import newtonERP.viewers.viewables.PromptViewable;
 
 /**
  * Represents a shipping location
@@ -19,7 +18,7 @@ import newtonERP.viewers.viewables.PromptViewable;
  * 
  * @author r3hallejo
  */
-public class Location extends AbstractOrmEntity implements PromptViewable
+public class Location extends AbstractOrmEntity
 {
 
     /**

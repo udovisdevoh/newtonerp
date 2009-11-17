@@ -7,13 +7,12 @@ import newtonERP.orm.field.Field;
 import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.FieldString;
 import newtonERP.orm.field.Fields;
-import newtonERP.viewers.viewables.PromptViewable;
 
 /**
  * Représente un département dans une compagnie
  * @author Guillaume
  */
-public class PeriodeType extends AbstractOrmEntity implements PromptViewable
+public class PeriodeType extends AbstractOrmEntity
 {
 
     /**

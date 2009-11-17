@@ -9,14 +9,13 @@ import newtonERP.orm.field.FieldDate;
 import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.FieldString;
 import newtonERP.orm.field.Fields;
-import newtonERP.viewers.viewables.PromptViewable;
 
 /**
  * Entité d'une promotion
  * @author Gabriel
  * 
  */
-public class Promotion extends AbstractOrmEntity implements PromptViewable
+public class Promotion extends AbstractOrmEntity
 {
     /**
      * @throws Exception si création fail

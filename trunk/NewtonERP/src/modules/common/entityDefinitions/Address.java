@@ -8,14 +8,13 @@ import newtonERP.orm.field.Field;
 import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.FieldString;
 import newtonERP.orm.field.Fields;
-import newtonERP.viewers.viewables.PromptViewable;
 
 /**
  * A warehouse address
  * 
  * @author r3hallejo
  */
-public class Address extends AbstractOrmEntity implements PromptViewable
+public class Address extends AbstractOrmEntity
 {
 
     /**

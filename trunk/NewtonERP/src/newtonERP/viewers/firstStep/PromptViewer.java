@@ -67,14 +67,16 @@ public class PromptViewer
 
 	if (data instanceof AbstractOrmEntity)
 	{
-	    for (FlagPool flagPool : ormEntity.getPositiveFlagPoolList()
-		    .values())
-	    {
-		flagPool.query(ormEntity.getPrimaryKeyName(), ormEntity
-			.getPrimaryKeyValue());
-		html += "<tr><td colspan=\"2\">"
-			+ CheckListViewer.getHtmlCode(flagPool) + "</td></tr>";
-	    }
+	    if (ormEntity != null)
+		for (FlagPool flagPool : ormEntity.getPositiveFlagPoolList()
+			.values())
+		{
+		    flagPool.query(ormEntity.getPrimaryKeyName(), ormEntity
+			    .getPrimaryKeyValue());
+		    html += "<tr><td colspan=\"2\">"
+			    + CheckListViewer.getHtmlCode(flagPool)
+			    + "</td></tr>";
+		}
 
 	    html += getSingleAccessorLinkList((AbstractOrmEntity) data);
 	    html += getMultipleAccessorLinkList((AbstractOrmEntity) data);

@@ -7,14 +7,13 @@ import newtonERP.orm.field.Field;
 import newtonERP.orm.field.FieldDouble;
 import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.Fields;
-import newtonERP.viewers.viewables.PromptViewable;
 
 /**
  * A latitude coordinate of a location
  * 
  * @author r3hallejo
  */
-public class LocationLatitude extends AbstractOrmEntity implements PromptViewable
+public class LocationLatitude extends AbstractOrmEntity
 {
 
     /**

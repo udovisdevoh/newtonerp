@@ -9,14 +9,13 @@ import newtonERP.orm.field.Field;
 import newtonERP.orm.field.FieldCurrency;
 import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.Fields;
-import newtonERP.viewers.viewables.PromptViewable;
 
 /**
  * An invoice line
  * 
  * @author r3hallejo
  */
-public class InvoiceLine extends AbstractOrmEntity implements PromptViewable
+public class InvoiceLine extends AbstractOrmEntity
 {
 
     /**

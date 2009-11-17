@@ -46,7 +46,7 @@ public class DisplayUnpaidServices extends AbstractAction
 	searchEntity.setData("name", "Non-paye");
 	Vector<AbstractOrmEntity> types = Orm.select(searchEntity);
 
-	ListViewerData accounts = (ListViewerData) account.getList();
+	ListViewerData accounts = account.getList();
 	for (AbstractOrmEntity ent : accounts)
 	    if (ent.getData("stateTypeID").equals(
 		    types.get(0).getPrimaryKeyValue()))

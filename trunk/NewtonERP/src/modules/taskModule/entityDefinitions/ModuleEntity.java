@@ -11,14 +11,14 @@ import newtonERP.orm.field.Field;
 import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.FieldString;
 import newtonERP.orm.field.Fields;
-import newtonERP.viewers.viewables.PromptViewable;
+import newtonERP.viewers.viewerData.BaseViewerData;
 import newtonERP.viewers.viewerData.ListViewerData;
 
 /**
  * Entité représentant un module
  * @author Guillaume Lacasse
  */
-public class ModuleEntity extends AbstractOrmEntity implements PromptViewable
+public class ModuleEntity extends AbstractOrmEntity
 {
     /**
      * @throws Exception si création fail
@@ -47,19 +47,19 @@ public class ModuleEntity extends AbstractOrmEntity implements PromptViewable
 	 * On ne veut pas permettre l'effacement de module alors on redirige
 	 * l'effacement vers GetList
 	 */
-	ListViewerData entityList = (ListViewerData) super.getList();
+	ListViewerData entityList = super.getList();
 	return entityList;
     }
 
     @Override
-    public AbstractEntity editUI(Hashtable<String, String> parameters)
+    public BaseViewerData editUI(Hashtable<String, String> parameters)
 	    throws Exception
     {
 	/*
 	 * On ne veut pas permettre la modification de module alors on redirige
 	 * vers GetList
 	 */
-	ListViewerData entityList = (ListViewerData) super.getList();
+	ListViewerData entityList = super.getList();
 	return entityList;
     }
 

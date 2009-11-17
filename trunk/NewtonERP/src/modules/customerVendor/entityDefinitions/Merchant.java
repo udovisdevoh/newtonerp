@@ -9,14 +9,13 @@ import newtonERP.orm.field.Field;
 import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.FieldString;
 import newtonERP.orm.field.Fields;
-import newtonERP.viewers.viewables.PromptViewable;
 
 /**
  * Entité du client dans le module customerVendor
  * @author r3hallejo
  * 
  */
-public class Merchant extends AbstractOrmEntity implements PromptViewable
+public class Merchant extends AbstractOrmEntity
 {
     /**
      * @throws Exception si création fail

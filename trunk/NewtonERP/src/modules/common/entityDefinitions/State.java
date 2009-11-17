@@ -7,14 +7,13 @@ import newtonERP.orm.field.Field;
 import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.FieldString;
 import newtonERP.orm.field.Fields;
-import newtonERP.viewers.viewables.PromptViewable;
 
 /**
  * State
  * 
  * @author r3hallejo
  */
-public class State extends AbstractOrmEntity implements PromptViewable
+public class State extends AbstractOrmEntity
 {
 
     /**

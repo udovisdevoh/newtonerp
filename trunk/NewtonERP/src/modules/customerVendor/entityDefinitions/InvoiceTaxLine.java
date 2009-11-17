@@ -7,14 +7,13 @@ import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.Fields;
-import newtonERP.viewers.viewables.PromptViewable;
 
 /**
  * Represents an invoice tax line.
  * 
  * @author r3hallejo
  */
-public class InvoiceTaxLine extends AbstractOrmEntity implements PromptViewable
+public class InvoiceTaxLine extends AbstractOrmEntity
 {
     /**
      * Default constructor

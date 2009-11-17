@@ -9,7 +9,6 @@ import newtonERP.orm.field.Field;
 import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.FieldString;
 import newtonERP.orm.field.Fields;
-import newtonERP.viewers.viewables.PromptViewable;
 
 /**
  * Entité Bank du module finances: représente les coordonnées des banques avec
@@ -17,7 +16,7 @@ import newtonERP.viewers.viewables.PromptViewable;
  * 
  * @author Pascal Lemay
  */
-public class Bank extends AbstractOrmEntity implements PromptViewable
+public class Bank extends AbstractOrmEntity
 {
     /**
      * @throws Exception if creation fails

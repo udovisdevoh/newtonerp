@@ -11,15 +11,13 @@ import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.FieldString;
 import newtonERP.orm.field.FieldText;
 import newtonERP.orm.field.Fields;
-import newtonERP.viewers.viewables.PromptViewable;
 
 /**
  * A new maintenance work order to do because of a broken machine
  * 
  * @author r3hallejo
  */
-public class MaintenanceTicket extends AbstractOrmEntity implements
-	PromptViewable
+public class MaintenanceTicket extends AbstractOrmEntity
 {
     /**
      * Default constructor

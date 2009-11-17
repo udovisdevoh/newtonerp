@@ -9,15 +9,14 @@ import newtonERP.orm.field.Field;
 import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.FieldString;
 import newtonERP.orm.field.Fields;
-import newtonERP.viewers.viewables.PromptViewable;
+import newtonERP.viewers.viewerData.BaseViewerData;
 import newtonERP.viewers.viewerData.ListViewerData;
 
 /**
  * Opérateur de critère de recherche
  * @author Guillaume Lacasse
  */
-public class SearchCriteriaOperator extends AbstractOrmEntity implements
-	PromptViewable
+public class SearchCriteriaOperator extends AbstractOrmEntity
 {
     /**
      * @throws Exception si création fail
@@ -46,19 +45,19 @@ public class SearchCriteriaOperator extends AbstractOrmEntity implements
 	 * On ne veut pas permettre l'effacement d'opérateur alors on redirige
 	 * l'effacement vers GetList
 	 */
-	ListViewerData entityList = (ListViewerData) super.getList();
+	ListViewerData entityList = super.getList();
 	return entityList;
     }
 
     @Override
-    public AbstractEntity editUI(Hashtable<String, String> parameters)
+    public BaseViewerData editUI(Hashtable<String, String> parameters)
 	    throws Exception
     {
 	/*
 	 * On ne veut pas permettre la modification d'opérateur alors on
 	 * redirige vers GetList
 	 */
-	ListViewerData entityList = (ListViewerData) super.getList();
+	ListViewerData entityList = super.getList();
 	return entityList;
     }
 
