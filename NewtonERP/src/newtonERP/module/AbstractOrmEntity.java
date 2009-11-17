@@ -208,7 +208,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	promptData.setData(retEntity);
 	promptData.setButtonAction(new ActionLink("Enregistrer",
 		new BaseAction("Edit", this)));
-	promptData.setBackLink(new ActionLink("< Voir Liste", new BaseAction(
+	promptData.setBackLink(new ActionLink("Voir Liste", new BaseAction(
 		"GetList", this)));
 	return promptData;
     }
