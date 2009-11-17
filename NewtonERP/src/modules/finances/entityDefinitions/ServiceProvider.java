@@ -9,7 +9,6 @@ import newtonERP.orm.field.Field;
 import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.FieldString;
 import newtonERP.orm.field.Fields;
-import newtonERP.viewers.viewables.PromptViewable;
 
 /**
  * Entité ServiceProvider du module finances: représente les coordonnées des
@@ -20,8 +19,7 @@ import newtonERP.viewers.viewables.PromptViewable;
  * @author Pascal Lemay
  */
 
-public class ServiceProvider extends AbstractOrmEntity implements
-	PromptViewable
+public class ServiceProvider extends AbstractOrmEntity
 {
     /**
      * @throws Exception if creation fails

@@ -10,14 +10,13 @@ import newtonERP.orm.field.FieldDate;
 import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.FieldText;
 import newtonERP.orm.field.Fields;
-import newtonERP.viewers.viewables.PromptViewable;
 
 /**
  * A delivery when a new Invoice (Customer or Vendor) has been generated
  * 
  * @author r3hallejo
  */
-public class Shipping extends AbstractOrmEntity implements PromptViewable
+public class Shipping extends AbstractOrmEntity
 {
     /**
      * Default constructor

@@ -7,13 +7,12 @@ import newtonERP.orm.field.Field;
 import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.FieldString;
 import newtonERP.orm.field.Fields;
-import newtonERP.viewers.viewables.PromptViewable;
 
 /**
  * Représente un type d'état de compte, par exemple: en souffrance, payé, etc...
  * @author Guillaume Lacasse
  */
-public class StateType extends AbstractOrmEntity implements PromptViewable
+public class StateType extends AbstractOrmEntity
 {
 
     /**

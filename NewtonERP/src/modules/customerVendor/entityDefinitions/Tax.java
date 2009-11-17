@@ -9,14 +9,13 @@ import newtonERP.orm.field.FieldDouble;
 import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.FieldString;
 import newtonERP.orm.field.Fields;
-import newtonERP.viewers.viewables.PromptViewable;
 
 /**
  * A tax entity
  * 
  * @author r3hallejo
  */
-public class Tax extends AbstractOrmEntity implements PromptViewable
+public class Tax extends AbstractOrmEntity
 {
     /**
      * Default constructor

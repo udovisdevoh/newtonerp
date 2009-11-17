@@ -8,13 +8,12 @@ import newtonERP.orm.field.Field;
 import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.FieldString;
 import newtonERP.orm.field.Fields;
-import newtonERP.viewers.viewables.PromptViewable;
 
 /**
  * Entity defenition class representing a group for the users
  * @author CloutierJo, r3hallejo
  */
-public class Groups extends AbstractOrmEntity implements PromptViewable
+public class Groups extends AbstractOrmEntity
 {
     /**
      * @throws Exception Cré un Groups

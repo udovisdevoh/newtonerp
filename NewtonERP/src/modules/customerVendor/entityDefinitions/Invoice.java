@@ -14,7 +14,6 @@ import newtonERP.orm.field.FieldCurrency;
 import newtonERP.orm.field.FieldDate;
 import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.Fields;
-import newtonERP.viewers.viewables.PromptViewable;
 import newtonERP.viewers.viewerData.ListViewerData;
 
 /**
@@ -22,7 +21,7 @@ import newtonERP.viewers.viewerData.ListViewerData;
  * 
  * @author r3hallejo
  */
-public class Invoice extends AbstractOrmEntity implements PromptViewable
+public class Invoice extends AbstractOrmEntity
 {
 
     /**

@@ -8,15 +8,13 @@ import newtonERP.orm.field.FieldDouble;
 import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.FieldString;
 import newtonERP.orm.field.Fields;
-import newtonERP.viewers.viewables.PromptViewable;
 
 /**
  * A machinery dimension. Warning : May disappear in further refactoring
  * 
  * @author r3hallejo
  */
-public class MachineDimension extends AbstractOrmEntity implements
-	PromptViewable
+public class MachineDimension extends AbstractOrmEntity
 {
 
     /**

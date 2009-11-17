@@ -9,7 +9,6 @@ import newtonERP.orm.field.FieldCurrency;
 import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.FieldString;
 import newtonERP.orm.field.Fields;
-import newtonERP.viewers.viewables.PromptViewable;
 
 /**
  * Entité BankAccount du module finances: représente les comptes bancaires
@@ -17,7 +16,7 @@ import newtonERP.viewers.viewables.PromptViewable;
  * 
  * @author Pascal Lemay
  */
-public class BankAccount extends AbstractOrmEntity implements PromptViewable
+public class BankAccount extends AbstractOrmEntity
 {
     /**
      * @throws Exception if creation fails

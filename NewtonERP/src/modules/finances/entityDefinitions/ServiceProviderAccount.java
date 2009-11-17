@@ -10,7 +10,6 @@ import newtonERP.orm.field.FieldDate;
 import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.FieldString;
 import newtonERP.orm.field.Fields;
-import newtonERP.viewers.viewables.PromptViewable;
 
 /**
  * Entité ServiceProviderAccount du module finances: représente les montant
@@ -19,8 +18,7 @@ import newtonERP.viewers.viewables.PromptViewable;
  * @author Pascal Lemay
  */
 
-public class ServiceProviderAccount extends AbstractOrmEntity implements
-	PromptViewable
+public class ServiceProviderAccount extends AbstractOrmEntity
 {
     /**
      * @throws Exception if creation fails

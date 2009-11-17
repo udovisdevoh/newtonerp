@@ -9,13 +9,12 @@ import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.FieldString;
 import newtonERP.orm.field.FieldText;
 import newtonERP.orm.field.Fields;
-import newtonERP.viewers.viewables.PromptViewable;
 
 /**
  * Critère de recherche pour une entité de recherche
  * @author Guillaume Lacasse
  */
-public class SearchCriteria extends AbstractOrmEntity implements PromptViewable
+public class SearchCriteria extends AbstractOrmEntity
 {
     /**
      * @throws Exception si création fail

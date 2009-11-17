@@ -11,7 +11,6 @@ import newtonERP.orm.field.FieldCurrency;
 import newtonERP.orm.field.FieldDate;
 import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.Fields;
-import newtonERP.viewers.viewables.PromptViewable;
 
 /**
  * Entité supplierAccount du module finances: représente les montant payables
@@ -19,8 +18,7 @@ import newtonERP.viewers.viewables.PromptViewable;
  * 
  * @author Pascal Lemay
  */
-public class SupplierAccount extends AbstractOrmEntity implements
-	PromptViewable
+public class SupplierAccount extends AbstractOrmEntity
 
 {
     /**

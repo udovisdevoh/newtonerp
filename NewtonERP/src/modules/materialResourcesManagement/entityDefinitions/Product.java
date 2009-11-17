@@ -8,14 +8,13 @@ import newtonERP.orm.field.FieldCurrency;
 import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.FieldString;
 import newtonERP.orm.field.Fields;
-import newtonERP.viewers.viewables.PromptViewable;
 
 /**
  * A product
  * 
  * @author r3hallejo
  */
-public class Product extends AbstractOrmEntity implements PromptViewable
+public class Product extends AbstractOrmEntity
 {
 
     /**

@@ -13,6 +13,10 @@ import newtonERP.orm.field.VolatileFields;
 public class VolatilEntity extends AbstractEntity
 {
 
+    /**
+     * default constructor
+     * @throws Exception remonte
+     */
     public VolatilEntity() throws Exception
     {
 	super();

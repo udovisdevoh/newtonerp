@@ -10,7 +10,6 @@ import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.FieldString;
 import newtonERP.orm.field.FieldText;
 import newtonERP.orm.field.Fields;
-import newtonERP.viewers.viewables.PromptViewable;
 
 /**
  * Represents any machine forming a production line.
@@ -19,7 +18,7 @@ import newtonERP.viewers.viewables.PromptViewable;
  * 
  * @author r3hallejo
  */
-public class Machine extends AbstractOrmEntity implements PromptViewable
+public class Machine extends AbstractOrmEntity
 {
     /**
      * @throws Exception a general exception

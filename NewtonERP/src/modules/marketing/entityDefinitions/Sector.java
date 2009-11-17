@@ -7,14 +7,13 @@ import newtonERP.orm.field.Field;
 import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.FieldString;
 import newtonERP.orm.field.Fields;
-import newtonERP.viewers.viewables.PromptViewable;
 
 /**
  * Entité dun sector
  * @author Gabriel
  * 
  */
-public class Sector extends AbstractOrmEntity implements PromptViewable
+public class Sector extends AbstractOrmEntity
 {
     /**
      * @throws Exception si création fail

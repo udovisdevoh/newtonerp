@@ -12,14 +12,13 @@ import newtonERP.orm.field.Field;
 import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.FieldText;
 import newtonERP.orm.field.Fields;
-import newtonERP.viewers.viewables.PromptViewable;
 
 /**
  * Représente l'effet d'une task son action son entité de recherche ses
  * paramètres custom
  * @author Guillaume Lacasse
  */
-public class EffectEntity extends AbstractOrmEntity implements PromptViewable
+public class EffectEntity extends AbstractOrmEntity
 {
     /**
      * @throws Exception si création fail

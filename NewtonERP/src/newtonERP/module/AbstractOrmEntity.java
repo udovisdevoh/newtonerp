@@ -18,6 +18,7 @@ import newtonERP.orm.field.Field;
 import newtonERP.orm.field.FieldCurrency;
 import newtonERP.orm.field.Fields;
 import newtonERP.viewers.secondStep.MoneyViewer;
+import newtonERP.viewers.viewerData.BaseViewerData;
 import newtonERP.viewers.viewerData.ListViewerData;
 import newtonERP.viewers.viewerData.PromptViewerData;
 
@@ -164,7 +165,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      * @return todo: qu'Est-ce que l'on devrai retourné en general?
      * @throws Exception remonte
      */
-    public PromptViewerData editUI(Hashtable<String, String> parameters)
+    public BaseViewerData editUI(Hashtable<String, String> parameters)
 	    throws Exception
     {
 
@@ -199,8 +200,8 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	    FlagPoolManager.applyFlagPoolChanges(this,
 		    getPositiveFlagPoolList().values(), parameters);
 
-	    retEntity = (AbstractOrmEntity) editUI(
-		    new Hashtable<String, String>()).getData();
+	    retEntity = (AbstractOrmEntity) ((PromptViewerData) editUI(new Hashtable<String, String>()))
+		    .getData();
 	    promptData.addNormalMessage("Changements accomplis");
 	}
 
@@ -287,7 +288,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      * @return ne liste d'entité de ce type
      * @throws Exception lorsque la requête d'obtention de liste échoue
      */
-    public final AbstractEntity getList() throws Exception
+    public final ListViewerData getList() throws Exception
     {
 	return getList(new Hashtable<String, String>());
     }
