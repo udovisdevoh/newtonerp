@@ -16,6 +16,7 @@ public class SelectBoxViewer
      * @param entity the entity to view
      * @param inputName the input name
      * @param inputValue the input value
+     * @param isReadOnly si le select box est readonly
      * @return the html code of this view
      * @throws Exception si obtention de code fail
      */
@@ -38,7 +39,8 @@ public class SelectBoxViewer
 		    || inputValue.equals("0"))
 		inputValue = "1";
 
-	    html += elements.get(inputValue);
+	    if (elements.get(inputValue) != null)
+		html += elements.get(inputValue);
 	    html += "<input type=\"hidden\" name=\"" + inputName
 		    + "\" value=\"" + inputValue + "\" />";
 	}
