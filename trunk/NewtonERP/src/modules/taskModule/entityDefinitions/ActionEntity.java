@@ -6,6 +6,7 @@ import java.util.Vector;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
+import newtonERP.module.BaseAction;
 import newtonERP.module.Module;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.field.Field;
@@ -93,8 +94,20 @@ public class ActionEntity extends AbstractOrmEntity
 		.getForeignKeyName());
     }
 
-    private String getActionName()
+    /**
+     * @return nom de l'action
+     */
+    public String getActionName()
     {
 	return getDataString("systemName");
+    }
+
+    /**
+     * @param entity entité
+     * @return base action correspondant à la définition d'entité
+     */
+    public BaseAction getBaseAction(AbstractOrmEntity entity)
+    {
+	return new BaseAction(getActionName(), entity);
     }
 }
