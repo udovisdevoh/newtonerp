@@ -5,6 +5,7 @@ import java.util.Vector;
 
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractOrmEntity;
+import newtonERP.module.BaseAction;
 import newtonERP.orm.Orm;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.associations.PluralAccessor;
@@ -56,7 +57,29 @@ public class EffectEntity extends AbstractOrmEntity
 	AbstractAction action = getAction();
 	Vector<AbstractOrmEntity> entityList = getAffectedEntityList();
 	for (AbstractOrmEntity entity : entityList)
-	    action.doAction(entity, getParameters(entity));
+	{
+	    if (action instanceof BaseAction)
+	    {
+		doBaseAction((BaseAction) action, entity, getParameters(entity));
+	    }
+	    else
+		action.doAction(entity, getParameters(entity));
+	}
+    }
+
+    private void doBaseAction(BaseAction baseAction, AbstractOrmEntity entity,
+	    Hashtable<String, String> parameters) throws Exception
+    {
+	if (baseAction.getSystemName().equals("Get"))
+	    entity.getUI(parameters);
+	else if (baseAction.getSystemName().equals("Delete"))
+	    entity.deleteUI(parameters);
+	else if (baseAction.getSystemName().equals("New"))
+	    entity.newUI(parameters);
+	else if (baseAction.getSystemName().equals("GetList"))
+	    entity.getList(parameters);
+	else if (baseAction.getSystemName().equals("GetList"))
+	    entity.editUI(parameters);
     }
 
     private Vector<AbstractOrmEntity> getAffectedEntityList() throws Exception
@@ -120,6 +143,9 @@ public class EffectEntity extends AbstractOrmEntity
     private AbstractAction getAction() throws Exception
     {
 	ActionEntity actionEntity = getActionEntity();
+
+	if (BaseAction.isNameMatchesBaseAction(actionEntity.getActionName()))
+	    return actionEntity.getBaseAction(getSearchEntity());
 	return actionEntity.getAction();
     }
 

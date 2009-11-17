@@ -75,4 +75,15 @@ public class BaseAction extends AbstractAction
 
     }
 
+    /**
+     * @param name nom de l'action
+     * @return true si le nom est un nom de base action
+     */
+    public static boolean isNameMatchesBaseAction(String name)
+    {
+	if (name.equals("Get") || name.equals("Edit") || name.equals("GetList")
+		|| name.equals("Delete") || name.equals("New"))
+	    return true;
+	return false;
+    }
 }

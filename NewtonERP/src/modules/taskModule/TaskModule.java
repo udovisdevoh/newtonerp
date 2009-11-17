@@ -16,6 +16,7 @@ import modules.userRightModule.entityDefinitions.User;
 import newtonERP.common.ListModule;
 import newtonERP.module.BaseAction;
 import newtonERP.module.Module;
+import newtonERP.orm.Orm;
 
 /**
  * Module des tasks
@@ -71,9 +72,14 @@ public class TaskModule extends Module
 	searchCriteria.setData("value", 1);
 	searchCriteria.newE();
 
+	EntityEntity entity = new EntityEntity();
+	entity.setData("systemName", "Employee");
+	entity = (EntityEntity) Orm.selectUnique(entity);
+	int entityId = entity.getPrimaryKeyValue();
+
 	SearchEntity searchEntity = new SearchEntity();
 	searchEntity.setData("name", "Employe sans login");
-	searchEntity.setData(new EntityEntity().getForeignKeyName(), 19);
+	searchEntity.setData(new EntityEntity().getForeignKeyName(), entityId);
 	searchEntity.newE();
 
 	EffectEntity effect = new EffectEntity();
@@ -87,11 +93,11 @@ public class TaskModule extends Module
 	specification.setData(new SearchEntity().getForeignKeyName(), 1);
 	specification.newE();
 
-	// TaskEntity task = new TaskEntity();
-	// task.setData("isActive", true);
-	// task.setData(new Specification().getForeignKeyName(), 1);
-	// task.setData(new EffectEntity().getForeignKeyName(), 1);
-	// task.newE();
+	TaskEntity task = new TaskEntity();
+	task.setData("isActive", false);
+	task.setData(new Specification().getForeignKeyName(), 1);
+	task.setData(new EffectEntity().getForeignKeyName(), 1);
+	task.newE();
     }
 
     private static void initSearchCriteriaOperators() throws Exception
