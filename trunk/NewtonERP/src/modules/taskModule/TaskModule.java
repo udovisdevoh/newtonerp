@@ -5,6 +5,8 @@ import java.util.Vector;
 import modules.taskModule.entityDefinitions.ActionEntity;
 import modules.taskModule.entityDefinitions.EffectEntity;
 import modules.taskModule.entityDefinitions.EntityEntity;
+import modules.taskModule.entityDefinitions.FieldEntity;
+import modules.taskModule.entityDefinitions.FieldTypeEntity;
 import modules.taskModule.entityDefinitions.ModuleEntity;
 import modules.taskModule.entityDefinitions.Parameter;
 import modules.taskModule.entityDefinitions.SearchCriteria;
@@ -14,9 +16,11 @@ import modules.taskModule.entityDefinitions.Specification;
 import modules.taskModule.entityDefinitions.TaskEntity;
 import modules.userRightModule.entityDefinitions.User;
 import newtonERP.common.ListModule;
+import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.BaseAction;
 import newtonERP.module.Module;
 import newtonERP.orm.Orm;
+import newtonERP.orm.field.Field;
 
 /**
  * Module des tasks
@@ -224,7 +228,48 @@ public class TaskModule extends Module
 			.getPrimaryKeyValue());
 		entityEntity.setData("systemName", entityName);
 		entityEntity.newE();
+
+		AbstractOrmEntity realEntity = module.getEntityDefinitionList()
+			.get(entityName);
+
+		initFieldEntitiesForEntityEntity(entityEntity, realEntity);
 	    }
 	}
+    }
+
+    private static void initFieldEntitiesForEntityEntity(
+	    EntityEntity entityEntity, AbstractOrmEntity realEntity)
+	    throws Exception
+    {
+	realEntity.initFields();
+
+	for (Field field : realEntity.getFields())
+	    initFieldEntity(field, entityEntity);
+    }
+
+    private static void initFieldEntity(Field field, EntityEntity entityEntity)
+	    throws Exception
+    {
+	FieldTypeEntity fieldType = getOrCreateFieldType(field);
+	FieldEntity fieldEntity = new FieldEntity();
+	fieldEntity.setData("name", field.getShortName());
+	fieldEntity.assign(fieldType);
+	fieldEntity.assign(entityEntity);
+	fieldEntity.newE();
+    }
+
+    private static FieldTypeEntity getOrCreateFieldType(Field field)
+	    throws Exception
+    {
+	FieldTypeEntity fieldType = new FieldTypeEntity();
+	fieldType.setData("systemName", field.getSystemName());
+
+	Vector<AbstractOrmEntity> result = Orm.select(fieldType);
+
+	if (result.size() > 0)
+	    return (FieldTypeEntity) result.get(0);
+
+	fieldType.newE();
+	return fieldType;
     }
 }

@@ -11,7 +11,6 @@ import newtonERP.orm.field.Field;
 import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.FieldString;
 import newtonERP.orm.field.Fields;
-import newtonERP.viewers.viewerData.BaseViewerData;
 import newtonERP.viewers.viewerData.ListViewerData;
 
 /**
@@ -52,26 +51,6 @@ public class EntityEntity extends AbstractOrmEntity
 	 * l'effacement vers GetList
 	 */
 	ListViewerData entityList = super.getList();
-	return entityList;
-    }
-
-    @Override
-    public BaseViewerData editUI(Hashtable<String, String> parameters)
-	    throws Exception
-    {
-	/*
-	 * On ne veut pas permettre la modification d'entité alors on redirige
-	 * vers GetList
-	 */
-	ListViewerData entityList = super.getList();
-	return entityList;
-    }
-
-    @Override
-    public final ListViewerData getList(Hashtable<String, String> parameters)
-	    throws Exception
-    {
-	ListViewerData entityList = super.getList(parameters);
 	return entityList;
     }
 
