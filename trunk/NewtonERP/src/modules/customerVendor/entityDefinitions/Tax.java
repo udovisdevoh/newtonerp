@@ -26,7 +26,6 @@ public class Tax extends AbstractOrmEntity
     {
 	super();
 	setVisibleName("Taxes");
-	// AccessorManager.addAccessor(this, new TaxType());
     }
 
     @Override
@@ -36,11 +35,9 @@ public class Tax extends AbstractOrmEntity
 	fieldsInit.add(new FieldInt("Numero", getPrimaryKeyName()));
 	fieldsInit.add(new FieldString("Nom", "name"));
 	fieldsInit.add(new FieldString("Code", "code"));
-	fieldsInit.add(new FieldDouble("Valeur", "value"));
+	fieldsInit.add(new FieldDouble("Valeur en %", "value"));
 	fieldsInit.add(new FieldBool("Type Fédéral", "isFederalTax"));
 	fieldsInit.add(new FieldBool("Type Provincial", "isStateTax"));
-	// fieldsInit.add(new FieldInt("Type de taxe", new TaxType()
-	// .getForeignKeyName()));
 	return new Fields(fieldsInit);
     }
 
