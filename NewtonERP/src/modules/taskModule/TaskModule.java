@@ -82,10 +82,16 @@ public class TaskModule extends Module
 	searchEntity.setData(new EntityEntity().getForeignKeyName(), entityId);
 	searchEntity.newE();
 
+	ActionEntity actionEntity = new ActionEntity();
+	actionEntity.setData("systemName", "CreateUserForEmployee");
+	actionEntity = (ActionEntity) actionEntity.get().get(0);
+
 	EffectEntity effect = new EffectEntity();
 	effect.setData("name", "On cre un login");
 	effect.setData(new SearchEntity().getForeignKeyName(), 1);
-	effect.setData(new ActionEntity().getForeignKeyName(), 1);
+	// effect.setData(actionEntity.getForeignKeyName(), actionEntity
+	// .getPrimaryKeyValue());
+	effect.assign(actionEntity);
 	effect.newE();
 
 	Specification specification = new Specification();
