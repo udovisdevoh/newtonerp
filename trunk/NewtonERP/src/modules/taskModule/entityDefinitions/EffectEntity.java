@@ -85,7 +85,7 @@ public class EffectEntity extends AbstractOrmEntity
     private Vector<AbstractOrmEntity> getAffectedEntityList() throws Exception
     {
 	AbstractOrmEntity searchEntity = getSearchEntity();
-	return Orm.select(searchEntity);
+	return Orm.select(searchEntity, null);
     }
 
     private AbstractOrmEntity getSearchEntity() throws Exception

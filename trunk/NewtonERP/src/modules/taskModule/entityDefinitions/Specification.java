@@ -50,7 +50,7 @@ public class Specification extends AbstractOrmEntity
 
 	AbstractOrmEntity searchEntity = getSearchEntity();
 
-	Vector<AbstractOrmEntity> result = Orm.select(searchEntity);
+	Vector<AbstractOrmEntity> result = Orm.select(searchEntity, null);
 
 	if (result.size() > 0)
 	    return true;
