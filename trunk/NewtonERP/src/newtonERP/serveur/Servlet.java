@@ -49,7 +49,7 @@ public class Servlet extends ServletHandler
 	    ServletException
     {
 	System.err.println(target);
-
+	request.setCharacterEncoding("iso-8859-1");
 	if (target.matches("/file/.*")) // si on veut un fichier
 	{
 	    resourceHandler.handle(target, request, response, dispatch);
