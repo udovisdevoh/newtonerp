@@ -707,4 +707,39 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	}
 	return true;
     }
+
+    /**
+     * @param foreignEntity entité étrangère
+     * @throws Exception si assignation
+     */
+    public void assign(AbstractOrmEntity foreignEntity) throws Exception
+    {
+	String foreignEntityForeignKeyName = foreignEntity.getForeignKeyName();
+	String localEntityForeignKeyName = getForeignKeyName();
+
+	if (getFields().containsFieldName(foreignEntityForeignKeyName))
+	{
+	    setData(foreignEntityForeignKeyName, foreignEntity
+		    .getPrimaryKeyValue());
+	}
+	else if (foreignEntity.getFields().containsFieldName(
+		localEntityForeignKeyName))
+	{
+	    foreignEntity.setData(localEntityForeignKeyName,
+		    getPrimaryKeyValue());
+	}
+	else
+	{
+	    throw new Exception("Impossible d'assigner " + getNaturalKeyName()
+		    + " à " + foreignEntity.getNaturalKeyName());
+	}
+    }
+
+    /**
+     * @throws Exception si enregistrement fail
+     */
+    public void save() throws Exception
+    {
+	edit(getPrimaryKeyName() + "='" + getPrimaryKeyValue() + "'");
+    }
 }
