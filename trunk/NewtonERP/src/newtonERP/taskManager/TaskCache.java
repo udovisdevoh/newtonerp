@@ -4,7 +4,6 @@ import java.util.Hashtable;
 import java.util.Vector;
 
 import modules.taskModule.entityDefinitions.TaskEntity;
-import newtonERP.module.AbstractOrmEntity;
 
 /**
  * Cache pour que taskManager se rappelle des tasks concernant entitées
@@ -16,13 +15,12 @@ public class TaskCache
     private static Hashtable<String, Vector<TaskEntity>> cacheList;
 
     /**
-     * @param entity entité pour laquelle on veut les tasks concernées
+     * @param entityName entité pour laquelle on veut les tasks concernées
      * @return tasks concernées pour entité
      */
-    public static Vector<TaskEntity> getConcernedTaskList(
-	    AbstractOrmEntity entity)
+    public static Vector<TaskEntity> getConcernedTaskList(String entityName)
     {
-	return getCacheList().get(entity.getSystemName());
+	return getCacheList().get(entityName);
     }
 
     private static Hashtable<String, Vector<TaskEntity>> getCacheList()
@@ -33,13 +31,13 @@ public class TaskCache
     }
 
     /**
-     * @param entity pour laquelle on veut les tasks concernées
+     * @param entityName nom d'entité pour laquelle on veut les tasks concernées
      * @param concernedTaskList tasks concernées pour entité
      */
-    public static void setConcernedTaskList(AbstractOrmEntity entity,
+    public static void setConcernedTaskList(String entityName,
 	    Vector<TaskEntity> concernedTaskList)
     {
-	getCacheList().put(entity.getSystemName(), concernedTaskList);
+	getCacheList().put(entityName, concernedTaskList);
     }
 
     /**

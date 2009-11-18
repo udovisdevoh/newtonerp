@@ -50,20 +50,26 @@ public class EffectEntity extends AbstractOrmEntity
 
     /**
      * Exécute l'effet d'une tâche
+     * @return entité viewable en tant que résultat de la tâche
      * @throws Exception si exécution fail
      */
-    public void execute() throws Exception
+    public AbstractEntity execute() throws Exception
     {
+	AbstractEntity returnEntity = null;
+
 	System.out.println("Exécution d'une tâche");
 	AbstractAction action = getAction();
 	Vector<AbstractOrmEntity> entityList = getAffectedEntityList();
 	for (AbstractOrmEntity entity : entityList)
 	{
 	    if (action instanceof BaseAction)
-		doBaseAction((BaseAction) action, entity, getParameters(entity));
+		returnEntity = doBaseAction((BaseAction) action, entity,
+			getParameters(entity));
 	    else
-		action.doAction(entity, getParameters(entity));
+		returnEntity = action.doAction(entity, getParameters(entity));
 	}
+
+	return returnEntity;
     }
 
     private AbstractEntity doBaseAction(BaseAction baseAction,

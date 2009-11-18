@@ -2,6 +2,7 @@ package modules.taskModule.entityDefinitions;
 
 import java.util.Vector;
 
+import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.field.Field;
@@ -59,11 +60,12 @@ public class TaskEntity extends AbstractOrmEntity
 
     /**
      * Execute l'effet de la tâche
+     * @return entité viewable, résultat de la tâche
      * @throws Exception si execution fail
      */
-    public void execute() throws Exception
+    public AbstractEntity execute() throws Exception
     {
-	getEffect().execute();
+	return getEffect().execute();
     }
 
     private EffectEntity getEffect() throws Exception
