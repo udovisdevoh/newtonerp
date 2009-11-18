@@ -15,7 +15,6 @@ import newtonERP.module.AbstractEntity;
  */
 public class PayingService extends AbstractAction
 {
-
     /**
      * constructeur
      * @throws Exception si création fail
