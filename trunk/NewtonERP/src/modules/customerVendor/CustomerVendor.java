@@ -121,5 +121,74 @@ public class CustomerVendor extends Module
 	ligneTaxe1.newE();
 
 	// TÂCHES AUTOMATISÉES
+
+	// ModuleEntity module = new ModuleEntity();
+	// module.setData("systemName", "CustomerVendor");
+	// module.newE();
+
+	// ModuleEntity foundModule = (ModuleEntity) Orm.selectUnique(module);
+
+	// EntityEntity entite = new EntityEntity();
+	// entite.setData("systemName", "InvoiceLine");
+	// entite.setData(new ModuleEntity().getForeignKeyName(), foundModule
+	// .getPrimaryKeyValue());
+	// entite.newE();
+
+	// EntityEntity foundEntity = (EntityEntity) Orm.selectUnique(entite);
+
+	// SearchEntity searchEntity = new SearchEntity();
+	// searchEntity.setData("name", "Pour chaque InvoiceLine");
+	// searchEntity.setData(new EntityEntity().getForeignKeyName(),
+	// foundEntity.getPrimaryKeyValue());
+	// searchEntity.newE();
+
+	// ModuleEntity moduleAction = new ModuleEntity();
+	// moduleAction.setData("systemName", "CustomerVendor");
+	// module.newE();
+
+	// ModuleEntity foundModuleAction = (ModuleEntity) Orm
+	// .selectUnique(moduleAction);
+
+	// ActionEntity action = new ActionEntity();
+	// action.setData("systemName", "GetAndCalculateAssociatedInvoice");
+	// action.setData(new ModuleEntity().getForeignKeyName(),
+	// foundModuleAction.getPrimaryKeyValue());
+	// action.newE();
+
+	// SearchEntity foundSearchEntity = (SearchEntity) Orm
+	// .selectUnique(searchEntity);
+	// ActionEntity foundActionEntity = (ActionEntity) Orm
+	// .selectUnique(action);
+
+	// EffectEntity effet = new EffectEntity();
+	// effet.setData("name",
+	// "On calcule la facture pour chaque InvoiceLine");
+	// effet.setData(new SearchEntity().getForeignKeyName(),
+	// foundSearchEntity
+	// .getPrimaryKeyValue());
+	// effet.setData(new ActionEntity().getForeignKeyName(),
+	// foundActionEntity
+	// .getPrimaryKeyValue());
+	// effet.newE();
+
+	// Specification specification = new Specification();
+	// specification.setData("name", "On calcule la facture");
+	// specification.setData(new SearchEntity().getForeignKeyName(),
+	// foundSearchEntity.getPrimaryKeyValue());
+	// specification.newE();
+
+	// Specification foundSpecification = (Specification) Orm
+	// .selectUnique(specification);
+	// EffectEntity foundEffectEntity = (EffectEntity)
+	// Orm.selectUnique(effet);
+
+	// TaskEntity task = new TaskEntity();
+	// task.setData("isActive", true);
+	// task.setData(new Specification().getForeignKeyName(),
+	// foundSpecification.getPrimaryKeyValue());
+	// task.setData(new EffectEntity().getForeignKeyName(),
+	// foundEffectEntity
+	// .getPrimaryKeyValue());
+	// task.newE();
     }
 }
