@@ -96,7 +96,11 @@ public class Fields implements Iterable<Field>
 	{
 	    try
 	    {
-		setData(key, parameters.get(key));
+		Object value = parameters.get(key);
+		if (value instanceof String)
+		    value = (((String) (value)).replace("&rsquo;", "'"));
+
+		setData(key, value);
 	    } catch (FieldNotFoundException e)
 	    {
 		// nothing to do
