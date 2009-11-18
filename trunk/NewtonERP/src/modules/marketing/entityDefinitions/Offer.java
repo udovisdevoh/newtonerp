@@ -4,33 +4,35 @@ import java.util.Vector;
 
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.field.Field;
+import newtonERP.orm.field.FieldCurrency;
 import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.FieldString;
 import newtonERP.orm.field.Fields;
 
 /**
- * Entité dun sector
+ * Entité d'une promotion
  * @author Gabriel
  * 
  */
-public class Sector extends AbstractOrmEntity
+public class Offer extends AbstractOrmEntity
 {
     /**
      * @throws Exception si création fail
      */
-    public Sector() throws Exception
+    public Offer() throws Exception
     {
 	super();
-	setVisibleName("Secteurs");
-
+	setVisibleName("Offre");
     }
 
     @Override
     public Fields initFields() throws Exception
     {
+
 	Vector<Field> fieldsInit = new Vector<Field>();
 	fieldsInit.add(new FieldInt("Numéro", getPrimaryKeyName()));
-	fieldsInit.add(new FieldString("Nom du Secteur", "sector"));
+	fieldsInit.add(new FieldString("Nom De l'offre", "Offre"));
+	fieldsInit.add(new FieldCurrency("Prix", "Price"));
 	return new Fields(fieldsInit);
     }
 }

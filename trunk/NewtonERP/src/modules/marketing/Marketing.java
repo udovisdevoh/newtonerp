@@ -1,6 +1,8 @@
 package modules.marketing;
 
+import modules.marketing.entityDefinitions.Offer;
 import modules.marketing.entityDefinitions.Promotion;
+import modules.marketing.entityDefinitions.Sector;
 import newtonERP.module.BaseAction;
 import newtonERP.module.Module;
 
@@ -20,6 +22,10 @@ public class Marketing extends Module
 	setDefaultAction(new BaseAction("GetList", new Promotion()));
 	addGlobalActionMenuItem("Promotion", new BaseAction("GetList",
 		new Promotion()));
+	addGlobalActionMenuItem("Secteur", new BaseAction("GetList",
+		new Sector()));
+	addGlobalActionMenuItem("Offre", new BaseAction("GetList", new Offer()));
 	setVisibleName("Publicité");
+
     }
 }

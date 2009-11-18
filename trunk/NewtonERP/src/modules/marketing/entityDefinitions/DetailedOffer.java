@@ -6,7 +6,6 @@ import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.FieldCurrency;
-import newtonERP.orm.field.FieldDate;
 import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.FieldString;
 import newtonERP.orm.field.FieldText;
@@ -17,16 +16,16 @@ import newtonERP.orm.field.Fields;
  * @author Gabriel
  * 
  */
-public class Promotion extends AbstractOrmEntity
+public class DetailedOffer extends AbstractOrmEntity
 {
     /**
      * @throws Exception si création fail
      */
-    public Promotion() throws Exception
+    public DetailedOffer() throws Exception
     {
 	super();
-	setVisibleName("Promotion");
-	AccessorManager.addAccessor(this, new Sector());
+	setVisibleName("Offre détaillé");
+	AccessorManager.addAccessor(this, new Offer());
     }
 
     @Override
@@ -35,15 +34,10 @@ public class Promotion extends AbstractOrmEntity
 
 	Vector<Field> fieldsInit = new Vector<Field>();
 	fieldsInit.add(new FieldInt("Numéro", getPrimaryKeyName()));
-	fieldsInit.add(new FieldString("Nom De La Promotion", "promotionname"));
-	fieldsInit.add(new FieldDate("Date du début de la promotion",
-		"startDate"));
-	fieldsInit.add(new FieldDate("Date de la fin de la promotion",
-		"endingDate"));
-	fieldsInit.add(new FieldCurrency("Budjet accordé", "budget"));
-	fieldsInit.add(new FieldText("Notes de la modalité", "modality"));
-	fieldsInit
-		.add(new FieldInt("Secteur", new Sector().getForeignKeyName()));
+	fieldsInit.add(new FieldInt("Offre", new Offer().getForeignKeyName()));
+	fieldsInit.add(new FieldString("Nom Du detail", "detailName"));
+	fieldsInit.add(new FieldText("details", "detail"));
+	fieldsInit.add(new FieldCurrency("Prix", "Price"));
 	return new Fields(fieldsInit);
     }
 }
