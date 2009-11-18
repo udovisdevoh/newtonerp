@@ -56,4 +56,5 @@ public class SupplierAccount extends AbstractOrmEntity
 
 	return new Fields(fieldsInit);
     }
+
 }
