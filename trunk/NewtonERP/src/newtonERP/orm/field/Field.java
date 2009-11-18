@@ -17,6 +17,7 @@ public abstract class Field
     protected String operator;
     private Boolean hidden = false;
     private Boolean readOnly = false;
+    private Boolean isNaturalKey = false;
 
     /**
      * default constructor
@@ -199,4 +200,19 @@ public abstract class Field
 	return getClass().getSimpleName();
     }
 
+    /**
+     * @return si le field est une clef naturelle
+     */
+    public final boolean isNaturalKey()
+    {
+	return isNaturalKey;
+    }
+
+    /**
+     * @param isNaturalKey mettre le field comme clef naturelle ou pas
+     */
+    public final void setNaturalKey(boolean isNaturalKey)
+    {
+	this.isNaturalKey = isNaturalKey;
+    }
 }

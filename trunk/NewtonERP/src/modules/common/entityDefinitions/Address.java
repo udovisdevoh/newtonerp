@@ -27,21 +27,27 @@ public class Address extends AbstractOrmEntity
 	super();
 	AccessorManager.addAccessor(this, new Country());
 	AccessorManager.addAccessor(this, new State());
-	addNaturalKey("streetNumber");
-	addNaturalKey("streetName");
-	addNaturalKey("city");
 	setVisibleName("Adresse");
     }
 
     @Override
     public Fields initFields() throws Exception
     {
+	FieldString streetName = new FieldString("Rue", "streetName");
+	streetName.setNaturalKey(true);
+
+	FieldInt streetNumber = new FieldInt("Numero de rue", "streetNumber");
+	streetNumber.setNaturalKey(true);
+
+	FieldString city = new FieldString("Ville", "city");
+	city.setNaturalKey(true);
+
 	Vector<Field> fieldsInit = new Vector<Field>();
 	fieldsInit
 		.add(new FieldInt("Numero de l'adresse", getPrimaryKeyName()));
-	fieldsInit.add(new FieldString("Ville", "city"));
-	fieldsInit.add(new FieldString("Rue", "streetName"));
-	fieldsInit.add(new FieldInt("Numero de rue", "streetNumber"));
+	fieldsInit.add(city);
+	fieldsInit.add(streetNumber);
+	fieldsInit.add(streetName);
 	fieldsInit.add(new FieldString("Code postal", "postalCode"));
 	fieldsInit
 		.add(new FieldString("Numero de telephone", "telephoneNumber"));

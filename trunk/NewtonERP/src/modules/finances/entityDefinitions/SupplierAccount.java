@@ -27,28 +27,31 @@ public class SupplierAccount extends AbstractOrmEntity
     public SupplierAccount() throws Exception
     {
 	super();
-	addNaturalKey(getPrimaryKeyName());
 	AccessorManager.addAccessor(this, new Merchant());
 	AccessorManager.addAccessor(this, new Invoice());
 	AccessorManager.addAccessor(this, new StateType());
-
-	addNaturalKey("balance");
-	addNaturalKey("deadline");
-	addNaturalKey(getPrimaryKeyName());
-
 	setVisibleName("Compte Fournisseur");
     }
 
     @Override
     public Fields initFields() throws Exception
     {
+	FieldInt primaryKey = new FieldInt("Numéro", getPrimaryKeyName());
+	primaryKey.setNaturalKey(true);
+
+	FieldCurrency balance = new FieldCurrency("Solde", "balance");
+	balance.setNaturalKey(true);
+
+	FieldDate deadLine = new FieldDate("Échéance", "deadline");
+	deadLine.setNaturalKey(true);
+
 	Vector<Field> fieldsInit = new Vector<Field>();
-	fieldsInit.add(new FieldInt("Numéro", getPrimaryKeyName()));
+	fieldsInit.add(primaryKey);
 	fieldsInit.add(new FieldInt("Facture", new Invoice()
 		.getForeignKeyName()));
-	fieldsInit.add(new FieldDate("Échéance", "deadline"));
+	fieldsInit.add(deadLine);
 	fieldsInit.add(new FieldDate("Date de paiement", "paymentDate"));
-	fieldsInit.add(new FieldCurrency("Solde", "balance"));
+	fieldsInit.add(balance);
 	fieldsInit
 		.add(new FieldInt("État", new StateType().getForeignKeyName()));
 	fieldsInit.add(new FieldInt("Numéro de fournisseur", new Merchant()

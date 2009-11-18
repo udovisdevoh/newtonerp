@@ -22,17 +22,22 @@ public class Parameter extends AbstractOrmEntity
     {
 	super();
 	setVisibleName("Paramêtre générique");
-	addNaturalKey("key");
-	addNaturalKey("value");
     }
 
     @Override
     public Fields initFields() throws Exception
     {
+	FieldString key = new FieldString("Nom de clef", "key");
+	key.setNaturalKey(true);
+
+	FieldText value = new FieldText("Valeur", "value", false);
+	value.setNaturalKey(true);
+
 	Vector<Field> fieldList = new Vector<Field>();
 	fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
-	fieldList.add(new FieldString("Nom de clef", "key"));
-	fieldList.add(new FieldText("Valeur", "value", false));
+	fieldList.add(key);
+	fieldList.add(value);
+
 	return new Fields(fieldList);
     }
 

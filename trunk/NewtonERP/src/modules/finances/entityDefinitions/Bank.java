@@ -25,17 +25,19 @@ public class Bank extends AbstractOrmEntity
     {
 	super();
 	setVisibleName("Banques");
-	addNaturalKey("transit");
 	AccessorManager.addAccessor(this, new Address());
     }
 
     @Override
     public Fields initFields() throws Exception
     {
+	FieldInt transit = new FieldInt("Transit", "transit");
+	transit.setNaturalKey(true);
+
 	Vector<Field> fieldsInit = new Vector<Field>();
 	fieldsInit.add(new FieldInt("Numéro", getPrimaryKeyName()));
 	fieldsInit.add(new FieldString("Nom", "name"));
-	fieldsInit.add(new FieldInt("Transit", "transit"));
+	fieldsInit.add(transit);
 	fieldsInit.add(new FieldInt("Adresse", new Address()
 		.getForeignKeyName()));
 	return new Fields(fieldsInit);

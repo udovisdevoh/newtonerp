@@ -21,16 +21,18 @@ public class Groups extends AbstractOrmEntity
     public Groups() throws Exception
     {
 	super();
-	addNaturalKey("groupName");
 	AccessorManager.addAccessor(this, new Right());
 	setVisibleName("Groupe");
     }
 
     public Fields initFields() throws Exception
     {
+	FieldString groupName = new FieldString("Nom", "groupName");
+	groupName.setNaturalKey(true);
+
 	Vector<Field> fieldsInit = new Vector<Field>();
 	fieldsInit.add(new FieldInt("Numéro", getPrimaryKeyName()));
-	fieldsInit.add(new FieldString("Nom", "groupName"));
+	fieldsInit.add(groupName);
 	return new Fields(fieldsInit);
     }
 

@@ -28,7 +28,6 @@ public class ServiceProvider extends AbstractOrmEntity
     {
 	super();
 	setVisibleName("Fournisseurs de services");
-	addNaturalKey("name");
 	AccessorManager.addAccessor(this, new Address());
     }
 

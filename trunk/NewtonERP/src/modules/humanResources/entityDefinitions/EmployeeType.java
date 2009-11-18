@@ -27,11 +27,12 @@ public class EmployeeType extends AbstractOrmEntity
     @Override
     public Fields initFields() throws Exception
     {
+	FieldString employeeType = new FieldString("type", "EmployeeType");
+	employeeType.setNaturalKey(true);
+
 	Vector<Field> fieldsData = new Vector<Field>();
 	fieldsData.add(new FieldInt("Numéro de type", getPrimaryKeyName()));
-	fieldsData.add(new FieldString("type", "EmployeeType"));
-
-	addNaturalKey("EmployeeType");
+	fieldsData.add(employeeType);
 	return new Fields(fieldsData);
     }
 

@@ -29,15 +29,20 @@ public class Right extends AbstractOrmEntity
 
     public Fields initFields()
     {
+	FieldString moduleName = new FieldString("Nom", "moduleName");
+	moduleName.setNaturalKey(true);
+
+	FieldString entityName = new FieldString("Entité", "entityName");
+	entityName.setNaturalKey(true);
+
+	FieldString actionName = new FieldString("Action", "actionName");
+	actionName.setNaturalKey(true);
+
 	Vector<Field> fieldsInit = new Vector<Field>();
 	fieldsInit.add(new FieldInt("Numéro", getPrimaryKeyName()));
-	fieldsInit.add(new FieldString("Nom", "moduleName"));
-	fieldsInit.add(new FieldString("Action", "actionName"));
-	fieldsInit.add(new FieldString("Entité", "entityName"));
-
-	addNaturalKey("moduleName");
-	addNaturalKey("entityName");
-	addNaturalKey("actionName");
+	fieldsInit.add(moduleName);
+	fieldsInit.add(entityName);
+	fieldsInit.add(actionName);
 
 	return new Fields(fieldsInit);
     }

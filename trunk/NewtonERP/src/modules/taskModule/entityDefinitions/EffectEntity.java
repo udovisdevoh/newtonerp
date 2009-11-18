@@ -29,7 +29,6 @@ public class EffectEntity extends AbstractOrmEntity
     {
 	super();
 	setVisibleName("Effet");
-	addNaturalKey("name");
 	AccessorManager.addAccessor(this, new SearchEntity());
 	AccessorManager.addAccessor(this, new Parameter());
 	AccessorManager.addAccessor(this, new ActionEntity());

@@ -25,7 +25,6 @@ public class SearchCriteriaOperator extends AbstractOrmEntity
     {
 	super();
 	setVisibleName("Opérateur");
-	addNaturalKey("name");
     }
 
     @Override

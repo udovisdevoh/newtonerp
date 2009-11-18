@@ -23,7 +23,6 @@ public class ModuleEntity extends AbstractOrmEntity
     {
 	super();
 	setVisibleName("Module");
-	addNaturalKey("systemName");
     }
 
     @Override

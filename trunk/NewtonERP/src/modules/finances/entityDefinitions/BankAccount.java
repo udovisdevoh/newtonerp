@@ -24,7 +24,6 @@ public class BankAccount extends AbstractOrmEntity
     public BankAccount() throws Exception
     {
 	super();
-	addNaturalKey("folio");
 	AccessorManager.addAccessor(this, new Bank());
 	setVisibleName("Comptes Bancaires");
     }
@@ -32,9 +31,12 @@ public class BankAccount extends AbstractOrmEntity
     @Override
     public Fields initFields() throws Exception
     {
+	FieldString folio = new FieldString("Folio", "folio");
+	folio.setNaturalKey(true);
+
 	Vector<Field> fieldsInit = new Vector<Field>();
 	fieldsInit.add(new FieldInt("Numéro", getPrimaryKeyName()));
-	fieldsInit.add(new FieldString("Folio", "folio"));
+	fieldsInit.add(folio);
 	fieldsInit.add(new FieldCurrency("Solde", "balance"));
 	fieldsInit.add(new FieldCurrency("Marge", "margin"));
 	fieldsInit.add(new FieldInt("Numéro de Banque", new Bank()

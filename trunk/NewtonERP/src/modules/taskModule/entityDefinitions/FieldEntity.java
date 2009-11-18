@@ -25,9 +25,6 @@ public class FieldEntity extends AbstractOrmEntity
 	setVisibleName("Champ");
 	AccessorManager.addAccessor(this, new FieldTypeEntity());
 	AccessorManager.addAccessor(this, new EntityEntity());
-	addNaturalKey(new FieldTypeEntity().getForeignKeyName());
-	addNaturalKey("name");
-	addNaturalKey("visibleName");
     }
 
     @Override
@@ -43,6 +40,7 @@ public class FieldEntity extends AbstractOrmEntity
 		.getForeignKeyName()));
 	fieldList.add(new FieldBool("Lecture seule", "readOnly"));
 	fieldList.add(new FieldBool("Caché", "hidden"));
+	fieldList.add(new FieldBool("Clef naturelle", "naturalKey"));
 
 	return new Fields(fieldList);
     }

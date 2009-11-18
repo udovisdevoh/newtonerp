@@ -29,19 +29,23 @@ public class ActionEntity extends AbstractOrmEntity
     {
 	super();
 	setVisibleName("Action");
-	addNaturalKey(new ModuleEntity().getForeignKeyName());
-	addNaturalKey("systemName");
 	AccessorManager.addAccessor(this, new ModuleEntity());
     }
 
     @Override
     public Fields initFields() throws Exception
     {
+	FieldInt moduleEntity = new FieldInt("Module", new ModuleEntity()
+		.getForeignKeyName());
+	moduleEntity.setNaturalKey(true);
+
+	FieldString systemName = new FieldString("Nom système", "systemName");
+	systemName.setNaturalKey(true);
+
 	Vector<Field> fieldList = new Vector<Field>();
 	fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
-	fieldList.add(new FieldString("Nom système", "systemName"));
-	fieldList.add(new FieldInt("Module", new ModuleEntity()
-		.getForeignKeyName()));
+	fieldList.add(systemName);
+	fieldList.add(moduleEntity);
 	return new Fields(fieldList);
     }
 

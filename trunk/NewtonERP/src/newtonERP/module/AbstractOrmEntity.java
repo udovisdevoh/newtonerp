@@ -28,7 +28,6 @@ import newtonERP.viewers.viewerData.PromptViewerData;
  */
 public abstract class AbstractOrmEntity extends AbstractEntity
 {
-    private Vector<String> naturalKeyNameList;
     private String visibleName;
     private TreeMap<String, PluralAccessor> pluralAccessorList;
     private TreeMap<String, AbstractOrmEntity> singleAccessorList;
@@ -489,8 +488,11 @@ public abstract class AbstractOrmEntity extends AbstractEntity
     public Vector<String> getNaturalKeyNameList()
 
     {
-	if (naturalKeyNameList == null)
-	    naturalKeyNameList = new Vector<String>();
+	Vector<String> naturalKeyNameList = new Vector<String>();
+
+	for (Field field : getFields())
+	    if (field.isNaturalKey())
+		naturalKeyNameList.add(field.getShortName());
 
 	if (naturalKeyNameList.size() < 1) // 1er Comportement par default si
 	    // clef
@@ -551,16 +553,6 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	}
 
 	return description.trim();
-    }
-
-    /**
-     * @param keyName Ajoute une clef naturelle à l'entité
-     */
-    public final void addNaturalKey(String keyName)
-    {
-	if (naturalKeyNameList == null)
-	    naturalKeyNameList = new Vector<String>();
-	naturalKeyNameList.add(keyName);
     }
 
     /**

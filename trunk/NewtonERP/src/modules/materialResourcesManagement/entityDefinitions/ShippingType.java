@@ -25,16 +25,17 @@ public class ShippingType extends AbstractOrmEntity
     {
 	super();
 	setVisibleName("Type de livraison");
-	addNaturalKey("shippingType");
     }
 
     @Override
     public Fields initFields() throws Exception
     {
+	FieldString shippingType = new FieldString("Type", "shippingType");
+	shippingType.setNaturalKey(true);
+
 	Vector<Field> fieldsInit = new Vector<Field>();
 	fieldsInit.add(new FieldInt("Numero du type", getPrimaryKeyName()));
-	fieldsInit.add(new FieldString("Type", "shippingType"));
+	fieldsInit.add(shippingType);
 	return new Fields(fieldsInit);
     }
-
 }
