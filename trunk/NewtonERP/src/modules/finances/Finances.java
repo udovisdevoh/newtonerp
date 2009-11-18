@@ -64,9 +64,5 @@ public class Finances extends Module
 	stateType = new StateType();
 	stateType.setData("name", "Non-paye");
 	stateType.newE();
-
-	stateType = new StateType();
-	stateType.setData("name", "Client bannit");
-	stateType.newE();
     }
 }
