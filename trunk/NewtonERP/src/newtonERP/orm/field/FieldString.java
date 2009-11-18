@@ -54,6 +54,9 @@ public class FieldString extends Field
      */
     public String getDataString(Boolean forOrm)
     {
+	if (forOrm)
+	    return data.replace("'", "&#39;");
+
 	return data;
     }
 

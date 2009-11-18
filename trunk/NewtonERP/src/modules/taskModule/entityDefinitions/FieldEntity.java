@@ -5,6 +5,7 @@ import java.util.Vector;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.field.Field;
+import newtonERP.orm.field.FieldBool;
 import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.FieldString;
 import newtonERP.orm.field.Fields;
@@ -26,6 +27,7 @@ public class FieldEntity extends AbstractOrmEntity
 	AccessorManager.addAccessor(this, new EntityEntity());
 	addNaturalKey(new FieldTypeEntity().getForeignKeyName());
 	addNaturalKey("name");
+	addNaturalKey("visibleName");
     }
 
     @Override
@@ -34,10 +36,14 @@ public class FieldEntity extends AbstractOrmEntity
 	Vector<Field> fieldList = new Vector<Field>();
 	fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
 	fieldList.add(new FieldString("Nom", "name"));
+	fieldList.add(new FieldString("Nom visible", "visibleName"));
 	fieldList.add(new FieldInt("Type", new FieldTypeEntity()
 		.getForeignKeyName()));
 	fieldList.add(new FieldInt("Entité", new EntityEntity()
 		.getForeignKeyName()));
+	fieldList.add(new FieldBool("Lecture seule", "readOnly"));
+	fieldList.add(new FieldBool("Caché", "hidden"));
+
 	return new Fields(fieldList);
     }
 }

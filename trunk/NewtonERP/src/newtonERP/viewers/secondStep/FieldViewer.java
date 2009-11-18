@@ -53,27 +53,33 @@ public class FieldViewer
 	if (field.isReadOnly())
 	    return "<input type='hidden' name='" + field.getShortName()
 		    + "' value='" + field.getDataString()
-		    + "' class='textField' />" + field.getDataString();
+		    + "' class='textField' />"
+		    + field.getDataString().replace("'", "&#39;");
 
 	return "<input" + moneyFormatStyle + " type='" + textFieldType
 		+ "' name='" + field.getShortName() + "' value='"
-		+ field.getDataString() + "' class='textField' />";
+		+ field.getDataString().replace("'", "&#39;")
+		+ "' class='textField' />";
     }
 
     private static String textViewer(Field field)
     {
 	if (!((FieldText) field).isVeryLong())
-	    return "<textarea class='textField' name='" + field.getShortName()
-		    + "'>" + field.getDataString()
+	    return "<textarea class='textField' name='"
+		    + field.getShortName()
+		    + "'>"
+		    + field.getDataString()
 		    + "</textarea><div class=\"printableText\">"
-		    + field.getDataString().replace("\n", "<br />")
-		    + "</div></td></tr>";
+		    + field.getDataString().replace("'", "&#39;").replace("\n",
+			    "<br />") + "</div></td></tr>";
 
-	return "<textarea class='textFieldLong' name='" + field.getShortName()
-		+ "'>" + field.getDataString()
+	return "<textarea class='textFieldLong' name='"
+		+ field.getShortName()
+		+ "'>"
+		+ field.getDataString()
 		+ "</textarea><div class=\"printableText\">"
-		+ field.getDataString().replace("\n", "<br />")
-		+ "</div></td></tr>";
+		+ field.getDataString().replace("'", "&#39;").replace("\n",
+			"<br />") + "</div></td></tr>";
     }
 
     private static String dateTimeViewer(Field field)
@@ -123,10 +129,12 @@ public class FieldViewer
 	if (field.isReadOnly())
 	    return "<input type='hidden' name='" + field.getShortName()
 		    + "' value='" + field.getDataString()
-		    + "' class='textField' />" + field.getDataString();
+		    + "' class='textField' />"
+		    + field.getDataString().replace("'", "&#39;");
 
 	return "<input type='" + textFieldType + "' name='"
-		+ field.getShortName() + "' value='" + field.getDataString()
+		+ field.getShortName() + "' value='"
+		+ field.getDataString().replace("'", "&#39;")
 		+ "' class='textField'" + isReadOnly + " />";
     }
 }

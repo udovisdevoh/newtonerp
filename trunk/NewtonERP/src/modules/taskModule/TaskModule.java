@@ -35,10 +35,11 @@ public class TaskModule extends Module
     {
 	super();
 	setDefaultAction(new BaseAction("GetList", new TaskEntity()));
-	setVisibleName("Automation");
+	setVisibleName("Système");
+	addGlobalActionMenuItem("Modules", new BaseAction("GetList",
+		new ModuleEntity()));
 	addGlobalActionMenuItem("Tâches", new BaseAction("GetList",
 		new TaskEntity()));
-
 	addGlobalActionMenuItem("Spécification", new BaseAction("GetList",
 		new Specification()));
 	addGlobalActionMenuItem("Effet", new BaseAction("GetList",
@@ -266,6 +267,9 @@ public class TaskModule extends Module
 	FieldTypeEntity fieldType = getOrCreateFieldType(field);
 	FieldEntity fieldEntity = new FieldEntity();
 	fieldEntity.setData("name", field.getShortName());
+	fieldEntity.setData("visibleName", field.getName());
+	fieldEntity.setData("readOnly", field.isReadOnly());
+	fieldEntity.setData("hidden", field.isHidden());
 	fieldEntity.assign(fieldType);
 	fieldEntity.assign(entityEntity);
 	fieldEntity.newE();
