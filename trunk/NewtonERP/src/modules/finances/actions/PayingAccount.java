@@ -31,12 +31,6 @@ public class PayingAccount extends AbstractAction
 	    Hashtable<String, String> parameters) throws Exception
     {
 
-	/*
-	 * if (entity instanceof SupplierAccount) { SupplierAccount account =
-	 * (SupplierAccount) entity; account.setData("paymentDate", new
-	 * GregorianCalendar()); account.setData(new
-	 * StateType().getForeignKeyName(), "Paye"); return account; }
-	 */
 	if (entity instanceof ServiceProviderAccount)
 	{
 	    ServiceProviderAccount account = (ServiceProviderAccount) entity;
