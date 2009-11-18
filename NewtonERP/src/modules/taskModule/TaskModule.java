@@ -55,10 +55,102 @@ public class TaskModule extends Module
     public void initDB() throws Exception
     {
 	super.initDB();
-
 	initActionsAndEntities();
 	initSearchCriteriaOperators();
+	initTestTasks();
+    }
 
+    private static void initTestTasks() throws Exception
+    {
+	// NOS TÂCHES AUTOMATISÉES
+	initEmployeeNewUserTask();
+	initInvoiceLineTask();
+	initInvoiceTaxLineTask();
+    }
+
+    private static void initInvoiceLineTask() throws Exception
+    {
+	// CALCUL AUTOMATIQUE DE FACTURE A PARTIR D'UN INVOICELINE
+	ModuleEntity customerVendor = new ModuleEntity();
+	customerVendor.setData("systemName", "CustomerVendor");
+	customerVendor = (ModuleEntity) Orm.selectUnique(customerVendor);
+
+	EntityEntity invoiceLineEntity = new EntityEntity();
+	invoiceLineEntity.setData("systemName", "InvoiceLine");
+	invoiceLineEntity.assign(customerVendor);
+	invoiceLineEntity = (EntityEntity) Orm.selectUnique(invoiceLineEntity);
+
+	SearchEntity searchEntity = new SearchEntity();
+	searchEntity.setData("name", "Pour chaque InvoiceLine");
+	searchEntity.assign(invoiceLineEntity);
+	searchEntity.newE();
+
+	ActionEntity action = new ActionEntity();
+	action.setData("systemName", "GetAndCalculateAssociatedInvoice");
+	action.assign(customerVendor);
+	action = (ActionEntity) Orm.selectUnique(action);
+
+	EffectEntity effet = new EffectEntity();
+	effet.setData("name", "On calcule la facture pour chaque InvoiceLine");
+	effet.assign(searchEntity);
+	effet.assign(action);
+	effet.newE();
+
+	Specification specification = new Specification();
+	specification.setData("name", "On calcule la facture");
+	specification.assign(searchEntity);
+	specification.newE();
+
+	TaskEntity task = new TaskEntity();
+	task.setData("isActive", true);
+	task.assign(effet);
+	task.assign(specification);
+	task.newE();
+    }
+
+    private static void initInvoiceTaxLineTask() throws Exception
+    {
+	// CALCUL AUTOMATIQUE DE FACTURE A PARTIR D'UN TAXLINE
+	ModuleEntity customerVendor = new ModuleEntity();
+	customerVendor.setData("systemName", "CustomerVendor");
+	customerVendor = (ModuleEntity) Orm.selectUnique(customerVendor);
+
+	EntityEntity invoiceTaxLineEntity = new EntityEntity();
+	invoiceTaxLineEntity.setData("systemName", "InvoiceTaxLine");
+	invoiceTaxLineEntity.assign(customerVendor);
+	invoiceTaxLineEntity = (EntityEntity) Orm
+		.selectUnique(invoiceTaxLineEntity);
+
+	SearchEntity searchEntity1 = new SearchEntity();
+	searchEntity1.setData("name", "Pour chaque TaxLine");
+	searchEntity1.assign(invoiceTaxLineEntity);
+	searchEntity1.newE();
+
+	ActionEntity action = new ActionEntity();
+	action.setData("systemName", "GetAndCalculateAssociatedInvoiceFromTax");
+	action.assign(customerVendor);
+	action = (ActionEntity) Orm.selectUnique(action);
+
+	EffectEntity effet1 = new EffectEntity();
+	effet1.setData("name", "On calcule la facture pour chaque TaxLine");
+	effet1.assign(searchEntity1);
+	effet1.assign(action);
+	effet1.newE();
+
+	Specification specification1 = new Specification();
+	specification1.setData("name", "On calcule la facture pour taxes");
+	specification1.assign(searchEntity1);
+	specification1.newE();
+
+	TaskEntity task1 = new TaskEntity();
+	task1.setData("isActive", true);
+	task1.assign(specification1);
+	task1.assign(effet1);
+	task1.newE();
+    }
+
+    private static void initEmployeeNewUserTask() throws Exception
+    {
 	// les entitées suivantes sont là juste
 	// pour tester
 	Parameter parameter = new Parameter();
