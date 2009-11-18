@@ -36,7 +36,15 @@ public class UpdateProductQuantity extends AbstractAction
 	    Hashtable<String, String> parameters) throws Exception
     {
 	Boolean updatable = true;
-	Invoice actionInvoice = (Invoice) entity;
+
+	/*
+	 * TODO : Enlever ce maudit hack batard la. La facture en paramètre ne
+	 * devrait pas être null. Trouver pourquoi elle n'a que la clé primaire
+	 * non nulle. En attendant ca marche. A régler jeudi
+	 * 
+	 * Invoice actionInvoice = (Invoice) entity;
+	 */
+	Invoice actionInvoice = (Invoice) Orm.selectUnique((Invoice) entity);
 
 	InvoiceLine invoiceLine = new InvoiceLine();
 	invoiceLine.setData(new Invoice().getForeignKeyName(), actionInvoice
