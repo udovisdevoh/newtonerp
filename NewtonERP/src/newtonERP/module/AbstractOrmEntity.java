@@ -212,6 +212,8 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 		new BaseAction("Edit", this)));
 	promptData.setBackLink(new ActionLink("Voir Liste", new BaseAction(
 		"GetList", this)));
+	promptData.setTitle(retEntity.getVisibleName());
+
 	return promptData;
     }
 
