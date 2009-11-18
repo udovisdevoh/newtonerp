@@ -52,13 +52,12 @@ public class FieldDateTime extends Field
     @Override
     public String getDataString(Boolean forOrm)
     {
-	// TODO : Remove this code if no bug is reported with this class
-	// if (data == null)
-	// data = new GregorianCalendar();
 	if (data == null)
 	    return null;
-
-	return dateFormatter.format(data.getTime());
+	String retVal = dateFormatter.format(data.getTime());
+	if (forOrm)
+	    return addSlash(retVal);
+	return retVal;
     }
 
     @Override

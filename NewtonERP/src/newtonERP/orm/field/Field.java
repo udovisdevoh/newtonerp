@@ -185,6 +185,12 @@ public abstract class Field
 	return "{" + getClass().getSimpleName() + ":" + getDataString() + "}";
     }
 
+    protected String addSlash(String str)
+    {
+	str = str.replace("'", "''");
+	return str;
+    }
+
     /**
      * @return nom système d'un field
      */
@@ -192,4 +198,5 @@ public abstract class Field
     {
 	return getClass().getSimpleName();
     }
+
 }

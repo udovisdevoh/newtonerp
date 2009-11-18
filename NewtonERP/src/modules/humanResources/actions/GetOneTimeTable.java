@@ -93,11 +93,13 @@ public class GetOneTimeTable extends AbstractAction
 	    {
 		String strData = "...";
 		date.set(Calendar.HOUR_OF_DAY, j);
-		String strParam = "timeStart="
-			+ dateTimeFormatter.format(date.getTime());
+		Hashtable<String, String> param = new Hashtable<String, String>();
+		param
+			.put("timeStart", dateTimeFormatter.format(date
+				.getTime()));
 
 		cases[j][i] = new GridCaseData(strData, new BaseAction("New",
-			new Schedule()), strParam);
+			new Schedule()), param);
 
 	    }
 	    for (AbstractOrmEntity schedul : vSchedul)
@@ -116,13 +118,13 @@ public class GetOneTimeTable extends AbstractAction
 				new PeriodeType().getForeignKeyName())
 				.getNaturalKeyDescription();
 
-			String strParam = schedul.getPrimaryKeyName() + "="
-				+ schedul.getPrimaryKeyValue();
+			Hashtable<String, String> param = new Hashtable<String, String>();
+			param.put(schedul.getPrimaryKeyName(), schedul
+				.getPrimaryKeyValue().toString());
 
 			cases[date.get(Calendar.HOUR_OF_DAY)][i] = new GridCaseData(
 				strData,
-				new BaseAction("Edit", new Schedule()),
-				strParam);
+				new BaseAction("Edit", new Schedule()), param);
 		    }
 		}
 	    }

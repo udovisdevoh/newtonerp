@@ -1,51 +1,46 @@
 package newtonERP.viewers.viewerData;
 
+import java.util.Hashtable;
+
+import newtonERP.common.ActionLink;
 import newtonERP.module.AbstractAction;
-import newtonERP.module.AbstractEntity;
 
 /**
  * represent une cellule d'un tableau affichable
  * @author CloutierJo
  * 
  */
-public class GridCaseData extends AbstractEntity
+public class GridCaseData extends ActionLink
 {
-    String value;
-    AbstractAction actionLink;
-    String param;
-
     /**
-     * @param value valeur a affiche dans cette case
-     * @param actionLink action a effectuer lorsque clique (null par defaut)
-     * @param param parametre d'URL
-     * @throws Exception remonte (n'importe quoi...)
+     * @param name valeur a affiche dans cette case
+     * @param action action a effectuer lorsque clique (null par defaut)
+     * @param parameters parametre du lien
      */
-    public GridCaseData(String value, AbstractAction actionLink, String param)
-	    throws Exception
+    public GridCaseData(String name, AbstractAction action,
+	    Hashtable<String, String> parameters)
     {
-	this.value = value;
-	this.actionLink = actionLink;
-	this.param = param;
+	super(name, action, parameters);
     }
 
     /**
-     * @param value valeur a affiche dans cette case
+     * @param name valeur a affiche dans cette case
      * @param actionLink action a effectuer lorsque clique (null par defaut)
      * @throws Exception remonte
      */
-    public GridCaseData(String value, AbstractAction actionLink)
+    public GridCaseData(String name, AbstractAction actionLink)
 	    throws Exception
     {
-	this(value, actionLink, "");
+	this(name, actionLink, null);
     }
 
     /**
-     * @param value valeur a affiche dans cette case
+     * @param name valeur a affiche dans cette case
      * @throws Exception remonte
      */
-    public GridCaseData(String value) throws Exception
+    public GridCaseData(String name) throws Exception
     {
-	this(value, null);
+	this(name, null);
     }
 
     /**
@@ -58,95 +53,12 @@ public class GridCaseData extends AbstractEntity
     }
 
     /**
-     * @return the value
+     * methode de remplacement temporaire
+     * @return l'action
      */
-    public String getValue()
-    {
-	return value;
-    }
-
-    /**
-     * @param value the value to set
-     */
-    public void setValue(String value)
-    {
-	this.value = value;
-    }
-
-    /**
-     * @return the actionLink
-     */
+    @Deprecated
     public AbstractAction getActionLink()
     {
-	return actionLink;
-    }
-
-    /**
-     * @param actionLink the actionLink to set
-     */
-    public void setActionLink(AbstractAction actionLink)
-    {
-	this.actionLink = actionLink;
-    }
-
-    /**
-     * @return the param
-     */
-    public String getParam()
-    {
-	return param;
-    }
-
-    /**
-     * @param param the param to set
-     */
-    public void setParam(String param)
-    {
-	this.param = param;
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.lang.Object#equals(java.lang.Object)
-     */
-    @Override
-    public boolean equals(Object obj)
-    {
-	if (this == obj)
-	    return true;
-	if (!super.equals(obj))
-	    return false;
-	if (!(obj instanceof GridCaseData))
-	    return false;
-	GridCaseData other = (GridCaseData) obj;
-	if (actionLink == null)
-	{
-	    if (other.actionLink != null)
-		return false;
-	}
-	else if (!actionLink.equals(other.actionLink))
-	    return false;
-	if (param == null)
-	{
-	    if (other.param != null)
-		return false;
-	}
-	else if (!param.equals(other.param))
-	    return false;
-	if (value == null)
-	{
-	    if (other.value != null)
-		return false;
-	}
-	else if (!value.equals(other.value))
-	    return false;
-	return true;
-    }
-
-    @Override
-    public String toString()
-    {
-	return value;
+	return getAction();
     }
 }

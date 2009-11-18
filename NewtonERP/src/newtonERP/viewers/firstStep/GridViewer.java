@@ -4,7 +4,6 @@ import java.util.Vector;
 
 import newtonERP.common.ActionLink;
 import newtonERP.module.AbstractEntity;
-import newtonERP.serveur.Servlet;
 import newtonERP.viewers.ViewerException;
 import newtonERP.viewers.secondStep.ButtonLinkViewer;
 import newtonERP.viewers.secondStep.ColorViewer;
@@ -146,11 +145,10 @@ public class GridViewer
 	String html = "";
 	if (dtCase != null)
 	{
-	    if (dtCase.getActionLink() != null)
-		html += "<a href='" + Servlet.makeLink(dtCase.getActionLink())
-			+ "?" + dtCase.getParam() + "'>";
-	    html += dtCase.getValue();
-	    if (dtCase.getActionLink() != null)
+	    if (dtCase.getAction() != null)
+		html += "<a href='" + dtCase.getUrlParam() + "'>";
+	    html += dtCase.getName();
+	    if (dtCase.getAction() != null)
 		html += "</a>";
 	}
 	return html;
