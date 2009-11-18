@@ -801,6 +801,7 @@ par exemple, si on delete un Group, alors les GroupRight WHERE GroupID = ce grou
   * Débuggé task manager
   * Setté clef naturelles d'entité du module de module
   * Refactor de tous les entités: c'est field qui gère les clefs naturelles
+  * Déplacé et simplifié tâches hardcodées de initDB de customer vendor vers initDb de TaskModule
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
   * Vues critériées
   * Module softcodage de module
