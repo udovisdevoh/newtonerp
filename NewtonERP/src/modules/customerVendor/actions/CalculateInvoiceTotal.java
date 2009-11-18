@@ -96,6 +96,8 @@ public class CalculateInvoiceTotal extends AbstractAction
 		+ actionInvoice.getPrimaryKeyValue() + "'");
 	Orm.update(actionInvoice, searchCriterias);
 
+	// actionInvoice.save();
+
 	return new Invoice().getList();
     }
 }

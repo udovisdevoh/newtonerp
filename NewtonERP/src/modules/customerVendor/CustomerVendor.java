@@ -9,8 +9,16 @@ import modules.customerVendor.entityDefinitions.InvoiceTaxLine;
 import modules.customerVendor.entityDefinitions.Merchant;
 import modules.customerVendor.entityDefinitions.Tax;
 import modules.materialResourcesManagement.entityDefinitions.Product;
+import modules.taskModule.entityDefinitions.ActionEntity;
+import modules.taskModule.entityDefinitions.EffectEntity;
+import modules.taskModule.entityDefinitions.EntityEntity;
+import modules.taskModule.entityDefinitions.ModuleEntity;
+import modules.taskModule.entityDefinitions.SearchEntity;
+import modules.taskModule.entityDefinitions.Specification;
+import modules.taskModule.entityDefinitions.TaskEntity;
 import newtonERP.module.BaseAction;
 import newtonERP.module.Module;
+import newtonERP.orm.Orm;
 
 /**
  * Représente le module client-fournisseur (facturation et factures de
@@ -85,6 +93,7 @@ public class CustomerVendor extends Module
 	invoice.setData("taxTotal", 0);
 	invoice.setData(new InvoiceStatus().getForeignKeyName(), 3);
 	invoice.setData("isForCustomer", true);
+	invoice.setData("isForSupplier", false);
 	invoice.newE();
 
 	Tax taxe = new Tax();
@@ -122,73 +131,139 @@ public class CustomerVendor extends Module
 
 	// TÂCHES AUTOMATISÉES
 
-	// ModuleEntity module = new ModuleEntity();
-	// module.setData("systemName", "CustomerVendor");
-	// module.newE();
+	// CALCUL AUTOMATIQUE DE FACTURE A PARTIR D'UN INVOICELINE
 
-	// ModuleEntity foundModule = (ModuleEntity) Orm.selectUnique(module);
+	ModuleEntity module = new ModuleEntity();
+	module.setData("systemName", "CustomerVendor");
+	module.newE();
 
-	// EntityEntity entite = new EntityEntity();
-	// entite.setData("systemName", "InvoiceLine");
-	// entite.setData(new ModuleEntity().getForeignKeyName(), foundModule
-	// .getPrimaryKeyValue());
-	// entite.newE();
+	ModuleEntity foundModule = (ModuleEntity) Orm.selectUnique(module);
 
-	// EntityEntity foundEntity = (EntityEntity) Orm.selectUnique(entite);
+	EntityEntity entite = new EntityEntity();
+	entite.setData("systemName", "InvoiceLine");
+	entite.setData(new ModuleEntity().getForeignKeyName(), foundModule
+		.getPrimaryKeyValue());
+	entite.newE();
 
-	// SearchEntity searchEntity = new SearchEntity();
-	// searchEntity.setData("name", "Pour chaque InvoiceLine");
-	// searchEntity.setData(new EntityEntity().getForeignKeyName(),
-	// foundEntity.getPrimaryKeyValue());
-	// searchEntity.newE();
+	EntityEntity foundEntity = (EntityEntity) Orm.selectUnique(entite);
 
-	// ModuleEntity moduleAction = new ModuleEntity();
-	// moduleAction.setData("systemName", "CustomerVendor");
-	// module.newE();
+	SearchEntity searchEntity = new SearchEntity();
+	searchEntity.setData("name", "Pour chaque InvoiceLine");
+	searchEntity.setData(new EntityEntity().getForeignKeyName(),
+		foundEntity.getPrimaryKeyValue());
+	searchEntity.newE();
 
-	// ModuleEntity foundModuleAction = (ModuleEntity) Orm
-	// .selectUnique(moduleAction);
+	ModuleEntity moduleAction = new ModuleEntity();
+	moduleAction.setData("systemName", "CustomerVendor");
+	module.newE();
 
-	// ActionEntity action = new ActionEntity();
-	// action.setData("systemName", "GetAndCalculateAssociatedInvoice");
-	// action.setData(new ModuleEntity().getForeignKeyName(),
-	// foundModuleAction.getPrimaryKeyValue());
-	// action.newE();
+	ModuleEntity foundModuleAction = (ModuleEntity) Orm
+		.selectUnique(moduleAction);
 
-	// SearchEntity foundSearchEntity = (SearchEntity) Orm
-	// .selectUnique(searchEntity);
-	// ActionEntity foundActionEntity = (ActionEntity) Orm
-	// .selectUnique(action);
+	ActionEntity action = new ActionEntity();
+	action.setData("systemName", "GetAndCalculateAssociatedInvoice");
+	action.setData(new ModuleEntity().getForeignKeyName(),
+		foundModuleAction.getPrimaryKeyValue());
+	action.newE();
 
-	// EffectEntity effet = new EffectEntity();
-	// effet.setData("name",
-	// "On calcule la facture pour chaque InvoiceLine");
-	// effet.setData(new SearchEntity().getForeignKeyName(),
-	// foundSearchEntity
-	// .getPrimaryKeyValue());
-	// effet.setData(new ActionEntity().getForeignKeyName(),
-	// foundActionEntity
-	// .getPrimaryKeyValue());
-	// effet.newE();
+	SearchEntity foundSearchEntity = (SearchEntity) Orm
+		.selectUnique(searchEntity);
+	ActionEntity foundActionEntity = (ActionEntity) Orm
+		.selectUnique(action);
 
-	// Specification specification = new Specification();
-	// specification.setData("name", "On calcule la facture");
-	// specification.setData(new SearchEntity().getForeignKeyName(),
-	// foundSearchEntity.getPrimaryKeyValue());
-	// specification.newE();
+	EffectEntity effet = new EffectEntity();
+	effet.setData("name", "On calcule la facture pour chaque InvoiceLine");
+	effet.setData(new SearchEntity().getForeignKeyName(), foundSearchEntity
+		.getPrimaryKeyValue());
+	effet.setData(new ActionEntity().getForeignKeyName(), foundActionEntity
+		.getPrimaryKeyValue());
+	effet.newE();
 
-	// Specification foundSpecification = (Specification) Orm
-	// .selectUnique(specification);
-	// EffectEntity foundEffectEntity = (EffectEntity)
-	// Orm.selectUnique(effet);
+	Specification specification = new Specification();
+	specification.setData("name", "On calcule la facture");
+	specification.setData(new SearchEntity().getForeignKeyName(),
+		foundSearchEntity.getPrimaryKeyValue());
+	specification.newE();
 
-	// TaskEntity task = new TaskEntity();
-	// task.setData("isActive", true);
-	// task.setData(new Specification().getForeignKeyName(),
-	// foundSpecification.getPrimaryKeyValue());
-	// task.setData(new EffectEntity().getForeignKeyName(),
-	// foundEffectEntity
-	// .getPrimaryKeyValue());
-	// task.newE();
+	Specification foundSpecification = (Specification) Orm
+		.selectUnique(specification);
+	EffectEntity foundEffectEntity = (EffectEntity) Orm.selectUnique(effet);
+
+	TaskEntity task = new TaskEntity();
+	task.setData("isActive", true);
+	task.setData(new Specification().getForeignKeyName(),
+		foundSpecification.getPrimaryKeyValue());
+	task.setData(new EffectEntity().getForeignKeyName(), foundEffectEntity
+		.getPrimaryKeyValue());
+	task.newE();
+
+	// CALCUL AUTOMATIQUE DE FACTURE A PARTIR D'UN TAXLINE
+
+	ModuleEntity module1 = new ModuleEntity();
+	module1.setData("systemName", "CustomerVendor");
+	module1.newE();
+
+	ModuleEntity foundModule1 = (ModuleEntity) Orm.selectUnique(module);
+
+	EntityEntity entite1 = new EntityEntity();
+	entite1.setData("systemName", "InvoiceTaxLine");
+	entite1.setData(new ModuleEntity().getForeignKeyName(), foundModule1
+		.getPrimaryKeyValue());
+	entite1.newE();
+
+	EntityEntity foundEntity1 = (EntityEntity) Orm.selectUnique(entite1);
+
+	SearchEntity searchEntity1 = new SearchEntity();
+	searchEntity1.setData("name", "Pour chaque TaxLine");
+	searchEntity1.setData(new EntityEntity().getForeignKeyName(),
+		foundEntity1.getPrimaryKeyValue());
+	searchEntity1.newE();
+
+	ModuleEntity moduleAction1 = new ModuleEntity();
+	moduleAction1.setData("systemName", "CustomerVendor");
+	moduleAction1.newE();
+
+	ModuleEntity foundModuleAction1 = (ModuleEntity) Orm
+		.selectUnique(moduleAction1);
+
+	ActionEntity action1 = new ActionEntity();
+	action1
+		.setData("systemName",
+			"GetAndCalculateAssociatedInvoiceFromTax");
+	action1.setData(new ModuleEntity().getForeignKeyName(),
+		foundModuleAction1.getPrimaryKeyValue());
+	action1.newE();
+
+	SearchEntity foundSearchEntity1 = (SearchEntity) Orm
+		.selectUnique(searchEntity1);
+	ActionEntity foundActionEntity1 = (ActionEntity) Orm
+		.selectUnique(action1);
+
+	EffectEntity effet1 = new EffectEntity();
+	effet1.setData("name", "On calcule la facture pour chaque TaxLine");
+	effet1.setData(new SearchEntity().getForeignKeyName(),
+		foundSearchEntity1.getPrimaryKeyValue());
+	effet1.setData(new ActionEntity().getForeignKeyName(),
+		foundActionEntity1.getPrimaryKeyValue());
+	effet1.newE();
+
+	Specification specification1 = new Specification();
+	specification1.setData("name", "On calcule la facture pour taxes");
+	specification1.setData(new SearchEntity().getForeignKeyName(),
+		foundSearchEntity1.getPrimaryKeyValue());
+	specification1.newE();
+
+	Specification foundSpecification1 = (Specification) Orm
+		.selectUnique(specification1);
+	EffectEntity foundEffectEntity1 = (EffectEntity) Orm
+		.selectUnique(effet1);
+
+	TaskEntity task1 = new TaskEntity();
+	task1.setData("isActive", true);
+	task1.setData(new Specification().getForeignKeyName(),
+		foundSpecification1.getPrimaryKeyValue());
+	task1.setData(new EffectEntity().getForeignKeyName(),
+		foundEffectEntity1.getPrimaryKeyValue());
+	task1.newE();
     }
 }
