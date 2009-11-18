@@ -68,18 +68,14 @@ public class Invoice extends AbstractOrmEntity
     public final ListViewerData getList(Hashtable<String, String> parameters)
 	    throws Exception
     {
-	CalculateInvoiceTotal calculerInvoiceTotal = new CalculateInvoiceTotal();
-	calculerInvoiceTotal.setOwnedByModul(getCurrentModule());
-
-	UpdateProductQuantity updateProductQuantity = new UpdateProductQuantity();
-	updateProductQuantity.setOwnedByModul(getCurrentModule());
-
-	Hashtable<String, String> parametersA = new Hashtable<String, String>();
-	parametersA.put(getPrimaryKeyName(), "&");
+	parameters.put(getPrimaryKeyName(), "&");
 
 	ListViewerData entityList = super.getList(parameters);
 	entityList.addSpecificActionButtonList(new ActionLink(
-		"Mettre a jour produits", updateProductQuantity, parametersA));
+		"Calculer facture", new CalculateInvoiceTotal(), parameters));
+	entityList.addSpecificActionButtonList(new ActionLink(
+		"Mettre a jour produits", new UpdateProductQuantity(),
+		parameters));
 
 	return entityList;
     }
