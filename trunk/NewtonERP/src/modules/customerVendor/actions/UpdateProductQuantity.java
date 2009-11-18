@@ -43,24 +43,36 @@ public class UpdateProductQuantity extends AbstractAction
 		.getPrimaryKeyValue());
 	Vector<AbstractOrmEntity> invoiceLines = Orm.select(invoiceLine);
 
-	/*
-	 * On fait le check pour chaque ligne de facture si jamais il y a un
-	 * produit pour lequel on a pas assez d'inventaire le reste de la
-	 * facture est bloquée et les produits ne sont pas mis à jour
-	 */
-	for (AbstractOrmEntity actionInvoiceLine : invoiceLines)
+	if (actionInvoice.getData("isForCustomer").equals(true)
+		&& actionInvoice.getData("isForSupplier").equals(true))
 	{
-	    Product product = new Product();
-	    product.setData(new Product().getPrimaryKeyName(),
-		    actionInvoiceLine
-			    .getData(new Product().getForeignKeyName()));
+	    ListViewerData invoiceList = new Invoice().getList();
+	    invoiceList
+		    .addAlertMessage("Facture invalide. Veuillez mettre le type de commerçant");
+	    return invoiceList;
+	}
 
-	    Product myProduct = (Product) Orm.selectUnique(product);
-
-	    if (((Integer) myProduct.getData("quantityInStock")
-		    - (Integer) actionInvoiceLine.getData("quantity") < 0))
+	if (actionInvoice.getData("isForCustomer").equals(true))
+	{
+	    /*
+	     * On fait le check pour chaque ligne de facture si jamais il y a un
+	     * produit pour lequel on a pas assez d'inventaire le reste de la
+	     * facture est bloquée et les produits ne sont pas mis à jour
+	     */
+	    for (AbstractOrmEntity actionInvoiceLine : invoiceLines)
 	    {
-		updatable = false;
+		Product product = new Product();
+		product.setData(new Product().getPrimaryKeyName(),
+			actionInvoiceLine.getData(new Product()
+				.getForeignKeyName()));
+
+		Product myProduct = (Product) Orm.selectUnique(product);
+
+		if (((Integer) myProduct.getData("quantityInStock")
+			- (Integer) actionInvoiceLine.getData("quantity") < 0))
+		{
+		    updatable = false;
+		}
 	    }
 	}
 
@@ -75,14 +87,23 @@ public class UpdateProductQuantity extends AbstractAction
 
 		Product myProduct2 = (Product) Orm.selectUnique(product2);
 
-		myProduct2.setData("quantityInStock", (Integer) myProduct2
-			.getData("quantityInStock")
-			- (Integer) actionInvoiceLine1.getData("quantity"));
+		if (actionInvoice.getData("isForCustomer").equals(true))
+		{
+		    myProduct2.setData("quantityInStock", (Integer) myProduct2
+			    .getData("quantityInStock")
+			    - (Integer) actionInvoiceLine1.getData("quantity"));
+		}
+		else if (actionInvoice.getData("isForSupplier").equals(true))
+		    myProduct2.setData("quantityInStock", (Integer) myProduct2
+			    .getData("quantityInStock")
+			    + (Integer) actionInvoiceLine1.getData("quantity"));
 
 		Vector<String> searchCriterias = new Vector<String>();
 		searchCriterias.add(myProduct2.getPrimaryKeyName() + "='"
 			+ myProduct2.getPrimaryKeyValue() + "'");
 		Orm.update(myProduct2, searchCriterias);
+
+		// myProduct2.save();
 	    }
 	}
 	else

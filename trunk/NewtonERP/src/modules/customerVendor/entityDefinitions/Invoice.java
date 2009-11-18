@@ -58,6 +58,7 @@ public class Invoice extends AbstractOrmEntity
 	fieldList.add(merchant);
 	fieldList.add(date);
 	fieldList.add(new FieldBool("Pour client", "isForCustomer"));
+	fieldList.add(new FieldBool("Pour Fournisseur", "isForSupplier"));
 	fieldList.add(new FieldInt("Status", new InvoiceStatus()
 		.getForeignKeyName()));
 	return new Fields(fieldList);
@@ -77,8 +78,6 @@ public class Invoice extends AbstractOrmEntity
 	parametersA.put(getPrimaryKeyName(), "&");
 
 	ListViewerData entityList = super.getList(parameters);
-	entityList.addSpecificActionButtonList(new ActionLink(
-		"Calculer facture", calculerInvoiceTotal, parametersA));
 	entityList.addSpecificActionButtonList(new ActionLink(
 		"Mettre a jour produits", updateProductQuantity, parametersA));
 
