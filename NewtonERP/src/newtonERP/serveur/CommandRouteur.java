@@ -8,6 +8,7 @@ import newtonERP.common.ListModule;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.Module;
 import newtonERP.module.generalEntity.AlertEntity;
+import newtonERP.taskManager.TaskManager;
 
 /**
  * @author Gabriel Therrien JoCloutier
@@ -80,6 +81,14 @@ public class CommandRouteur
 			"Vous n'avez pas les droits pour faire cette action.");
 	    }
 	}
+
+	// On avertit le task manager et on retourne une entité provenant du
+	// task manager
+	// si une tâche a été faite
+	AbstractEntity taskManagerRetView = TaskManager
+		.executeTasks(entityName);
+	if (taskManagerRetView != null)
+	    retView = taskManagerRetView;
 
 	return retView;
     }

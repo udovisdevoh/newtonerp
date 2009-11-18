@@ -22,7 +22,6 @@ import newtonERP.orm.field.FieldString;
 import newtonERP.orm.field.Fields;
 import newtonERP.orm.sgbd.SgbdSqlite;
 import newtonERP.orm.sgbd.Sgbdable;
-import newtonERP.taskManager.TaskManager;
 
 /**
  * Basic class for the orm. It is used to put the objects in the databse using
@@ -203,9 +202,6 @@ public class Orm
 
 	ResultSet rs = sgbd.execute(sqlQuery, OrmActions.INSERT);
 
-	// On avertit le task manager
-	TaskManager.executeTasks(newEntity);
-
 	try
 	{
 	    return rs.getInt(1);
@@ -249,9 +245,6 @@ public class Orm
 	System.out.println("Sql query produced : " + sqlQuery);
 
 	sgbd.execute(sqlQuery, OrmActions.DELETE);
-
-	// On avertit le task manager
-	TaskManager.executeTasks(searchEntity);
     }
 
     /**
@@ -275,9 +268,6 @@ public class Orm
 	System.out.println("Sql query produced : " + sqlQuery);
 
 	sgbd.execute(sqlQuery, OrmActions.DELETE);
-
-	// On avertit le task manager
-	TaskManager.executeTasks(searchEntities);
     }
 
     /**
@@ -293,9 +283,6 @@ public class Orm
 	Vector<AbstractOrmEntity> searchEntities = new Vector<AbstractOrmEntity>();
 	searchEntities.add(searchEntity);
 	delete(searchEntities);
-
-	// On avertit le task manager
-	TaskManager.executeTasks(searchEntities);
     }
 
     /**
@@ -320,9 +307,6 @@ public class Orm
 	System.out.println("Sql query produced : " + sqlQuery);
 
 	sgbd.execute(sqlQuery, OrmActions.UPDATE);
-
-	// On avertit le task manager
-	TaskManager.executeTasks(entityContainingChanges);
     }
 
     /**
@@ -349,9 +333,6 @@ public class Orm
 	System.out.println("Sql query produced : " + sqlQuery);
 
 	sgbd.execute(sqlQuery, OrmActions.UPDATE);
-
-	// On avertit le task manager
-	TaskManager.executeTasks(entityContainingChanges);
     }
 
     /**
@@ -378,9 +359,6 @@ public class Orm
 	System.out.println("Sql query produced : " + sqlQuery);
 
 	sgbd.execute(sqlQuery, OrmActions.UPDATE);
-
-	// On avertit le task manager
-	TaskManager.executeTasks(entityContainingChanges);
     }
 
     /**
@@ -629,9 +607,5 @@ public class Orm
     public static void executeCustomQuery(String sqlQuery) throws Exception
     {
 	sgbd.execute(sqlQuery, OrmActions.OTHER);
-
-	// On avertit le task manager de vérifier tous les tâches car on ne sait
-	// pas quelle entité à été modifiée
-	TaskManager.executeAllTasks();
     }
 }

@@ -168,17 +168,19 @@ public abstract class AbstractOrmEntity extends AbstractEntity
     public BaseViewerData editUI(Hashtable<String, String> parameters)
 	    throws Exception
     {
-
 	PromptViewerData promptData = new PromptViewerData();
 
 	AbstractOrmEntity retEntity;
 	AbstractOrmEntity searchEntity = this.getClass().newInstance();
 	if (getPrimaryKeyValue() != 0)
 	{
-	    searchEntity.setData(getPrimaryKeyName(), getPrimaryKeyValue());
+	    String primaryKeyName = getPrimaryKeyName();
+	    Integer primaryKeyValue = getPrimaryKeyValue();
+	    searchEntity.setData(primaryKeyName, primaryKeyValue);
 
 	    // il ne peu y avoir plus d'une entity (search par primaryKey)
-	    retEntity = get(searchEntity).get(0);
+	    Vector<AbstractOrmEntity> result = get(searchEntity);
+	    retEntity = result.get(0);
 	}
 	else
 	{

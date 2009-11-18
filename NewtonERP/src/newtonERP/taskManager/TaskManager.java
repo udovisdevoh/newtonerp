@@ -7,6 +7,7 @@ import modules.taskModule.entityDefinitions.EntityEntity;
 import modules.taskModule.entityDefinitions.Specification;
 import modules.taskModule.entityDefinitions.TaskEntity;
 import newtonERP.common.ListModule;
+import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.Module;
 import newtonERP.orm.Orm;
@@ -23,25 +24,44 @@ public class TaskManager
     /**
      * @param entity Entité pour laquelle on doit effecter des tâches s'il y a
      *            lieu
+     * @return entité viewable de retour
      * @throws Exception si exécution fail
      */
-    public static void executeTasks(AbstractOrmEntity entity) throws Exception
+    public static AbstractEntity executeTasks(AbstractOrmEntity entity)
+	    throws Exception
     {
-	if (isEntityRelatedToTaskModule(entity))
+	return executeTasks(entity.getSystemName());
+    }
+
+    /**
+     * @param entityName nom de l'entité
+     * @return enitité visible de retour
+     * @throws Exception si exécution fail
+     */
+    public static AbstractEntity executeTasks(String entityName)
+	    throws Exception
+    {
+	if (entityName == null)
+	    return null;
+
+	AbstractEntity retEntity = null;
+
+	if (isEntityRelatedToTaskModule(entityName))
 	    TaskCache.clear();
 
-	Collection<TaskEntity> concernedTaskList = getConcernedTaskList(entity);
+	Collection<TaskEntity> concernedTaskList = getConcernedTaskList(entityName);
 	for (TaskEntity task : concernedTaskList)
 	    if (task.isActive())
 		if (task.isSatisfied())
-		    task.execute();
+		    retEntity = task.execute();
+
+	return retEntity;
     }
 
-    private static boolean isEntityRelatedToTaskModule(AbstractOrmEntity entity)
+    private static boolean isEntityRelatedToTaskModule(String entityName)
 	    throws Exception
     {
-	return getTaskModuleEntityDefinitionNameList().contains(
-		entity.getSystemName());
+	return getTaskModuleEntityDefinitionNameList().contains(entityName);
     }
 
     private static Vector<String> getTaskModuleEntityDefinitionNameList()
@@ -88,11 +108,11 @@ public class TaskManager
 	return taskList;
     }
 
-    private static Collection<TaskEntity> getConcernedTaskList(
-	    AbstractOrmEntity entity) throws Exception
+    private static Collection<TaskEntity> getConcernedTaskList(String entityName)
+	    throws Exception
     {
 	Vector<TaskEntity> concernedTaskList = TaskCache
-		.getConcernedTaskList(entity);
+		.getConcernedTaskList(entityName);
 
 	if (concernedTaskList != null)
 	    return concernedTaskList;
@@ -103,7 +123,7 @@ public class TaskManager
 	{
 	    // On va chercher l'entité représentant le type d'entité de l'entité
 	    // (c'est très fourrant)
-	    EntityEntity entityEntity = getEntityEntity(entity);
+	    EntityEntity entityEntity = getEntityEntity(entityName);
 
 	    // On va chercher les entités de recherches concernant l'entité de
 	    // définition d'entité
@@ -127,7 +147,7 @@ public class TaskManager
 		    .println("Impossible d'obtenir la liste des tâches pour cette entité");
 	}
 
-	TaskCache.setConcernedTaskList(entity, concernedTaskList);
+	TaskCache.setConcernedTaskList(entityName, concernedTaskList);
 
 	return concernedTaskList;
     }
@@ -171,12 +191,12 @@ public class TaskManager
 	return entityEntity.getPluralAccessor("SearchEntity");
     }
 
-    private static EntityEntity getEntityEntity(AbstractOrmEntity entity)
+    private static EntityEntity getEntityEntity(String entityName)
 	    throws Exception
     {
 	EntityEntity searchEntity = new EntityEntity();
 	searchEntity.initFields();
-	searchEntity.setData("systemName", entity.getSystemName());
+	searchEntity.setData("systemName", entityName);
 
 	return (EntityEntity) (Orm.selectUnique(searchEntity));
     }

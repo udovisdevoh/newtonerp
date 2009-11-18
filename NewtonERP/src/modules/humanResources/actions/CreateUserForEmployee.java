@@ -50,7 +50,7 @@ public class CreateUserForEmployee extends AbstractAction
 	employee.assign(user);
 	employee.save();
 
-	return entity;
+	return employee.editUI(null);
     }
 
     private User tryGetExistingUser(String userName) throws Exception
