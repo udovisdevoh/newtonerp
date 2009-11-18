@@ -30,8 +30,6 @@ public class ServiceProviderAccount extends AbstractOrmEntity
     public ServiceProviderAccount() throws Exception
     {
 	super();
-	addNaturalKey("service");
-	addNaturalKey(getPrimaryKeyName());
 	AccessorManager.addAccessor(this, new ServiceProvider());
 	AccessorManager.addAccessor(this, new StateType());
 	setVisibleName("Comptes Fournisseurs de services");
@@ -40,9 +38,15 @@ public class ServiceProviderAccount extends AbstractOrmEntity
     @Override
     public Fields initFields() throws Exception
     {
+	FieldString service = new FieldString("Service", "service");
+	service.setNaturalKey(true);
+
+	FieldInt primaryKey = new FieldInt("Numéro", getPrimaryKeyName());
+	primaryKey.setNaturalKey(true);
+
 	Vector<Field> fieldsInit = new Vector<Field>();
-	fieldsInit.add(new FieldInt("Numéro", getPrimaryKeyName()));
-	fieldsInit.add(new FieldString("Service", "service"));
+	fieldsInit.add(primaryKey);
+	fieldsInit.add(service);
 	fieldsInit.add(new FieldDate("Échéance", "deadline"));
 	fieldsInit.add(new FieldDate("Date de paiement", "paymentDate"));
 	fieldsInit.add(new FieldCurrency("Solde", "balance"));

@@ -237,14 +237,16 @@ public class TaskModule extends Module
 
 	    for (String entityName : module.getEntityDefinitionList().keySet())
 	    {
+		AbstractOrmEntity realEntity = module.getEntityDefinitionList()
+			.get(entityName);
+
 		entityEntity = new EntityEntity();
 		entityEntity.setData(moduleForeignKey, moduleEntity
 			.getPrimaryKeyValue());
 		entityEntity.setData("systemName", entityName);
+		entityEntity
+			.setData("visibleName", realEntity.getVisibleName());
 		entityEntity.newE();
-
-		AbstractOrmEntity realEntity = module.getEntityDefinitionList()
-			.get(entityName);
 
 		initFieldEntitiesForEntityEntity(entityEntity, realEntity);
 	    }
@@ -270,6 +272,7 @@ public class TaskModule extends Module
 	fieldEntity.setData("visibleName", field.getName());
 	fieldEntity.setData("readOnly", field.isReadOnly());
 	fieldEntity.setData("hidden", field.isHidden());
+	fieldEntity.setData("naturalKey", field.isNaturalKey());
 	fieldEntity.assign(fieldType);
 	fieldEntity.assign(entityEntity);
 	fieldEntity.newE();

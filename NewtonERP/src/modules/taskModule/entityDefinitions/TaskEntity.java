@@ -24,8 +24,6 @@ public class TaskEntity extends AbstractOrmEntity
     {
 	super();
 	setVisibleName("Tâche automatisée");
-	addNaturalKey(new Specification().getForeignKeyName());
-	addNaturalKey(new EffectEntity().getForeignKeyName());
 	AccessorManager.addAccessor(this, new Specification());
 	AccessorManager.addAccessor(this, new EffectEntity());
     }
@@ -33,13 +31,19 @@ public class TaskEntity extends AbstractOrmEntity
     @Override
     public Fields initFields() throws Exception
     {
+	FieldInt specification = new FieldInt("Specification",
+		new Specification().getForeignKeyName());
+	specification.setNaturalKey(true);
+
+	FieldInt effet = new FieldInt("Effet", new EffectEntity()
+		.getForeignKeyName());
+	effet.setNaturalKey(true);
+
 	Vector<Field> fieldList = new Vector<Field>();
 	fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
 	fieldList.add(new FieldBool("Est active", "isActive"));
-	fieldList.add(new FieldInt("Specification", new Specification()
-		.getForeignKeyName()));
-	fieldList.add(new FieldInt("Effet", new EffectEntity()
-		.getForeignKeyName()));
+	fieldList.add(specification);
+	fieldList.add(effet);
 	return new Fields(fieldList);
     }
 

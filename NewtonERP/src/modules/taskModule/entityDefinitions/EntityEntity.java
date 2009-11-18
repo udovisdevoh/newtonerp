@@ -26,8 +26,6 @@ public class EntityEntity extends AbstractOrmEntity
     {
 	super();
 	setVisibleName("Entité");
-	addNaturalKey(new ModuleEntity().getForeignKeyName());
-	addNaturalKey("systemName");
 	AccessorManager.addAccessor(this, new ModuleEntity());
     }
 
@@ -37,6 +35,7 @@ public class EntityEntity extends AbstractOrmEntity
 	Vector<Field> fieldList = new Vector<Field>();
 	fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
 	fieldList.add(new FieldString("Nom système", "systemName"));
+	fieldList.add(new FieldString("Nom visible", "visibleName"));
 	fieldList.add(new FieldInt("Module", new ModuleEntity()
 		.getForeignKeyName()));
 	return new Fields(fieldList);

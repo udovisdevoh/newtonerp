@@ -23,7 +23,6 @@ public class SearchEntity extends AbstractOrmEntity
     {
 	super();
 	setVisibleName("Entité de recherche");
-	addNaturalKey("name");
 	AccessorManager.addAccessor(this, new EntityEntity());
     }
 

@@ -27,11 +27,12 @@ public class PeriodeType extends AbstractOrmEntity
     @Override
     public Fields initFields() throws Exception
     {
+	FieldString periodType = new FieldString("type", "PeriodeType");
+	periodType.setNaturalKey(true);
+
 	Vector<Field> fieldsData = new Vector<Field>();
 	fieldsData.add(new FieldInt("Numéro de type", getPrimaryKeyName()));
-	fieldsData.add(new FieldString("type", "PeriodeType"));
-
-	addNaturalKey("PeriodeType");
+	fieldsData.add(periodType);
 	return new Fields(fieldsData);
     }
 

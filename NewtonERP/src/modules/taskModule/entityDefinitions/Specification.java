@@ -23,7 +23,6 @@ public class Specification extends AbstractOrmEntity
     {
 	super();
 	setVisibleName("Spécification");
-	addNaturalKey("name");
 	AccessorManager.addAccessor(this, new SearchEntity());
     }
 

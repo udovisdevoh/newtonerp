@@ -31,25 +31,33 @@ public class MaintenanceTicket extends AbstractOrmEntity
 	AccessorManager.addAccessor(this, new Employee());
 	AccessorManager.addAccessor(this, new MaintenanceStatusType());
 	AccessorManager.addAccessor(this, new Machine());
-	addNaturalKey(getPrimaryKeyName());
-	addNaturalKey("problemType");
-	addNaturalKey(new MaintenanceStatusType().getForeignKeyName());
     }
 
     @Override
     public Fields initFields() throws Exception
     {
+	FieldInt primaryKey = new FieldInt("Numéro du ticket",
+		getPrimaryKeyName());
+	primaryKey.setNaturalKey(true);
+
+	FieldString problemType = new FieldString("Problème rencontré",
+		"problemType");
+	problemType.setNaturalKey(true);
+
+	FieldInt maintenanceStatusType = new FieldInt("Status",
+		new MaintenanceStatusType().getForeignKeyName());
+	maintenanceStatusType.setNaturalKey(true);
+
 	Vector<Field> fieldsInit = new Vector<Field>();
-	fieldsInit.add(new FieldInt("Numéro du ticket", getPrimaryKeyName()));
+	fieldsInit.add(primaryKey);
 	fieldsInit.add(new FieldInt("Machine concernée", new Machine()
 		.getForeignKeyName()));
-	fieldsInit.add(new FieldString("Problème rencontré", "problemType"));
+	fieldsInit.add(problemType);
 	fieldsInit.add(new FieldInt("Assigné à ", new Employee()
 		.getForeignKeyName()));
 	fieldsInit.add(new FieldDateTime("Date de début", "startDate"));
 	fieldsInit.add(new FieldDateTime("Date de fin", "endDate"));
-	fieldsInit.add(new FieldInt("Status", new MaintenanceStatusType()
-		.getForeignKeyName()));
+	fieldsInit.add(maintenanceStatusType);
 	fieldsInit.add(new FieldText("Commentaire", "comment", false));
 	return new Fields(fieldsInit);
     }

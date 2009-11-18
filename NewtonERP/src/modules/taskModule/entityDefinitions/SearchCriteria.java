@@ -23,9 +23,6 @@ public class SearchCriteria extends AbstractOrmEntity
     {
 	super();
 	setVisibleName("Critère de rercherche");
-	addNaturalKey("key");
-	addNaturalKey(new SearchCriteriaOperator().getForeignKeyName());
-	addNaturalKey("value");
 	AccessorManager.addAccessor(this, new SearchCriteriaOperator());
 	AccessorManager.addAccessor(this, new SearchEntity());
     }
@@ -33,14 +30,23 @@ public class SearchCriteria extends AbstractOrmEntity
     @Override
     public Fields initFields() throws Exception
     {
+	FieldString key = new FieldString("Nom de clef", "key");
+	key.setNaturalKey(true);
+
+	FieldInt specOperator = new FieldInt("Opérateur",
+		new SearchCriteriaOperator().getForeignKeyName());
+	specOperator.setNaturalKey(true);
+
+	FieldText value = new FieldText("Valeur", "value", false);
+	value.setNaturalKey(true);
+
 	Vector<Field> fieldList = new Vector<Field>();
 	fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
 	fieldList.add(new FieldInt("Entité de recherche", new SearchEntity()
 		.getForeignKeyName()));
-	fieldList.add(new FieldString("Nom de clef", "key"));
-	fieldList.add(new FieldInt("Opérateur", new SearchCriteriaOperator()
-		.getForeignKeyName()));
-	fieldList.add(new FieldText("Valeur", "value", false));
+	fieldList.add(key);
+	fieldList.add(specOperator);
+	fieldList.add(value);
 	return new Fields(fieldList);
     }
 

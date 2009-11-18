@@ -33,25 +33,30 @@ public class Invoice extends AbstractOrmEntity
 	AccessorManager.addAccessor(this, new Merchant());
 	AccessorManager.addAccessor(this, new InvoiceStatus());
 	setVisibleName("Facture");
-
-	addNaturalKey(getPrimaryKeyName());
-	addNaturalKey(new Merchant().getForeignKeyName());
-	addNaturalKey("date");
     }
 
     public Fields initFields() throws Exception
     {
+	FieldInt primaryKey = new FieldInt("Numéro", getPrimaryKeyName());
+	primaryKey.setNaturalKey(true);
+
+	FieldInt merchant = new FieldInt("Nom du client", new Merchant()
+		.getForeignKeyName());
+	merchant.setNaturalKey(true);
+
+	FieldDate date = new FieldDate("Date", "date");
+	date.setNaturalKey(true);
+
 	Vector<Field> fieldList = new Vector<Field>();
-	fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
+	fieldList.add(primaryKey);
 	FieldCurrency total = new FieldCurrency("Total", "total");
 	total.setReadOnly(true);
 	fieldList.add(total);
 	FieldCurrency taxTotal = new FieldCurrency("Total taxes", "taxTotal");
 	taxTotal.setReadOnly(true);
 	fieldList.add(taxTotal);
-	fieldList.add(new FieldInt("Nom du client", new Merchant()
-		.getForeignKeyName()));
-	fieldList.add(new FieldDate("Date", "date"));
+	fieldList.add(merchant);
+	fieldList.add(date);
 	fieldList.add(new FieldBool("Pour client", "isForCustomer"));
 	fieldList.add(new FieldInt("Status", new InvoiceStatus()
 		.getForeignKeyName()));

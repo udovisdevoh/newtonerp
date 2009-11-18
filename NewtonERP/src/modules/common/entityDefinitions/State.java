@@ -22,17 +22,19 @@ public class State extends AbstractOrmEntity
     public State() throws Exception
     {
 	super();
-	addNaturalKey("name");
 	setVisibleName("Provinces / États");
     }
 
     @Override
     public Fields initFields() throws Exception
     {
+	FieldString name = new FieldString("Nom", "name");
+	name.setNaturalKey(true);
+
 	Vector<Field> fieldList = new Vector<Field>();
 	fieldList.add(new FieldInt("Numero de province / état",
 		getPrimaryKeyName()));
-	fieldList.add(new FieldString("Nom", "name"));
+	fieldList.add(name);
 	return new Fields(fieldList);
     }
 

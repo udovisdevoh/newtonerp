@@ -23,15 +23,17 @@ public class Country extends AbstractOrmEntity
     {
 	super();
 	setVisibleName("Pays");
-	addNaturalKey("name");
     }
 
     @Override
     public Fields initFields() throws Exception
     {
+	FieldString name = new FieldString("Nom", "name");
+	name.setNaturalKey(true);
+
 	Vector<Field> fieldList = new Vector<Field>();
 	fieldList.add(new FieldInt("Numero de pays", getPrimaryKeyName()));
-	fieldList.add(new FieldString("Nom", "name"));
+	fieldList.add(name);
 	return new Fields(fieldList);
     }
 
