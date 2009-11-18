@@ -30,10 +30,13 @@ public class FieldEntity extends AbstractOrmEntity
     @Override
     public Fields initFields() throws Exception
     {
+	FieldString visibleName = new FieldString("Nom visible", "visibleName");
+	visibleName.setNaturalKey(true);
+
 	Vector<Field> fieldList = new Vector<Field>();
 	fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
 	fieldList.add(new FieldString("Nom", "name"));
-	fieldList.add(new FieldString("Nom visible", "visibleName"));
+	fieldList.add(visibleName);
 	fieldList.add(new FieldInt("Type", new FieldTypeEntity()
 		.getForeignKeyName()));
 	fieldList.add(new FieldInt("Entité", new EntityEntity()
