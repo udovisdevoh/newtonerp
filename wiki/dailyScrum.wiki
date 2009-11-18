@@ -737,7 +737,9 @@ par exemple, si on delete un Group, alors les GroupRight WHERE GroupID = ce grou
   * CalculateInvoiceTotal marche parfaitement avec les taxes. On calcule avec un boutton qui a été ajouter sur la liste des factures
   * Update product quantities l'action marche. Validation que si on a assez de produits en stock.
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
-  * ...à livrer...
+  * continuer module de production (location d'équipement)
+  * voir si on doit gérer que les produits on été updater en db sur la facture
+  * finir de hardcoder l'action qui update la invoice a chaque nouveau InvoiceLine
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
   * c'est pas un peu bad de juste rediriger les actions des bouttons modifier vers getList si on ne veut pas pouvoir modifier?
 
