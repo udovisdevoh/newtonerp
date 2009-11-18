@@ -760,7 +760,7 @@ par exemple, si on delete un Group, alors les GroupRight WHERE GroupID = ce grou
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
   * GetList: Pages multiples et vues critériées
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
-  * ...problème, besoin d'aide, qui aidera...
+  * Le J a planté.
 
 ==Pascal Lemay==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
@@ -798,9 +798,12 @@ par exemple, si on delete un Group, alors les GroupRight WHERE GroupID = ce grou
 
 ==Guillaume Lacasse==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
-  * ...livré...
+  * Débuggé task manager
+  * Setté clef naturelles d'entité du module de module
+  * Refactor de tous les entités: c'est field qui gère les clefs naturelles
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
-  * ...à livrer...
+  * Vues critériées
+  * Module softcodage de module
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
   * ...problème, besoin d'aide, qui aidera...
 
