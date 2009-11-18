@@ -97,7 +97,7 @@ public class TaskModule extends Module
 	effet.newE();
 
 	Specification specification = new Specification();
-	specification.setData("name", "On calcule la facture");
+	specification.setData("name", "Lorsqu'une invoice line a été écrite");
 	specification.assign(searchEntity);
 	specification.newE();
 
@@ -138,7 +138,7 @@ public class TaskModule extends Module
 	effet1.newE();
 
 	Specification specification1 = new Specification();
-	specification1.setData("name", "On calcule la facture pour taxes");
+	specification1.setData("name", "Lorsqu'une tax line a été écrite");
 	specification1.assign(searchEntity1);
 	specification1.newE();
 
