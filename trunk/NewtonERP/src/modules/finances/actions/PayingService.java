@@ -10,6 +10,7 @@ import modules.finances.entityDefinitions.StateType;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
+import newtonERP.module.generalEntity.AlertEntity;
 import newtonERP.orm.Orm;
 
 /**
@@ -33,8 +34,6 @@ public class PayingService extends AbstractAction
     {
 
 	ServiceProviderAccount account = (ServiceProviderAccount) entity;
-	account.setData("paymentDate", new GregorianCalendar());
-	account.setData(new StateType().getForeignKeyName(), 1);
 
 	/*
 	 * Vector<String> searchCriterias = new Vector<String>();
@@ -46,10 +45,17 @@ public class PayingService extends AbstractAction
 	BankAccount searchEntity = new BankAccount();
 	searchEntity.setData("folio", "2148");// tempo
 	Vector<AbstractOrmEntity> bankAccount = Orm.select(searchEntity);
-	new DebitFromBankAccount().doAction(bankAccount.get(0), null);
 
-	account.save();
-	return account.getList();
+	AlertEntity alert = (AlertEntity) new DebitFromBankAccount().doAction(
+		bankAccount.get(0), null);
+	if (alert.getMessage().equals("Paiement effectué"))
+	{
+	    account.setData("paymentDate", new GregorianCalendar());
+	    account.setData(new StateType().getForeignKeyName(), 1);
+	    account.save();
+	    return account.getList();
+	}
+	return alert;
 
     }
 }
