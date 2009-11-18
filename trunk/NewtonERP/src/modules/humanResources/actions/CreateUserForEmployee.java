@@ -32,13 +32,15 @@ public class CreateUserForEmployee extends AbstractAction
 	Employee employee = (Employee) entity;
 
 	String userName = getUserName(employee);
-	User user;
+
+	User user = null;
 
 	user = tryGetExistingUser(userName);
 
 	if (user == null)
 	{
 	    user = new User();
+	    user.initFields();
 	    user.setData("name", userName);
 	    user.setData("password", "aaa");
 	    user.setData(new Groups().getForeignKeyName(), 1);
@@ -47,6 +49,7 @@ public class CreateUserForEmployee extends AbstractAction
 
 	employee.assign(user);
 	employee.save();
+
 	return entity;
     }
 

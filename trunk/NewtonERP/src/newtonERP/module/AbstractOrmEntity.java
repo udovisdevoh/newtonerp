@@ -740,6 +740,9 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      */
     public void save() throws Exception
     {
+	if (getPrimaryKeyValue() == null)
+	    throw new Exception("Aucune valeur de clef primaire disponible");
+
 	edit(getPrimaryKeyName() + "='" + getPrimaryKeyValue() + "'");
     }
 }
