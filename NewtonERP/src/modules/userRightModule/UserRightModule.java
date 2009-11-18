@@ -58,7 +58,7 @@ public class UserRightModule extends Module
 	groupsID = (Integer) ((Groups) Orm.select(groups, search).get(0))
 		.getData(groups.getPrimaryKeyName());
 
-	// cree le user unloggedUser
+	// cree le user unLogedUser
 	user = new User();
 	user.setData("name", "unLogedUser");
 	user.setData("password", "");

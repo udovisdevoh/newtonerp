@@ -68,23 +68,33 @@ public class TaskModule extends Module
 	// parameter.setData("value", ":Employee.firstName:Employee.lastName");
 	parameter.newE();
 
-	SearchCriteria searchCriteria = new SearchCriteria();
-	searchCriteria.setData("key", new User().getForeignKeyName());
-	searchCriteria.setData(new SearchEntity().getForeignKeyName(), 1);
-	searchCriteria.setData(
-		new SearchCriteriaOperator().getForeignKeyName(), 1);
-	searchCriteria.setData("value", 1);
-	searchCriteria.newE();
+	SearchCriteriaOperator equals = new SearchCriteriaOperator();
+	equals.setData("name", "=");
+	equals = (SearchCriteriaOperator) Orm.selectUnique(equals);
 
 	EntityEntity entity = new EntityEntity();
 	entity.setData("systemName", "Employee");
 	entity = (EntityEntity) Orm.selectUnique(entity);
-	int entityId = entity.getPrimaryKeyValue();
 
 	SearchEntity searchEntity = new SearchEntity();
 	searchEntity.setData("name", "Employe sans login");
-	searchEntity.setData(new EntityEntity().getForeignKeyName(), entityId);
+	searchEntity.setData(entity.getForeignKeyName(), entity
+		.getPrimaryKeyValue());
 	searchEntity.newE();
+
+	User user = new User();
+	user.setData("name", "unLogedUser");
+	user = (User) Orm.selectUnique(user);
+
+	SearchCriteria searchCriteria = new SearchCriteria();
+	searchCriteria.setData("key", new User().getForeignKeyName());
+	searchCriteria.setData(searchEntity.getForeignKeyName(), searchEntity
+		.getPrimaryKeyValue());
+	searchCriteria.setData(
+		new SearchCriteriaOperator().getForeignKeyName(), equals
+			.getPrimaryKeyValue());
+	searchCriteria.setData("value", user.getPrimaryKeyValue());
+	searchCriteria.newE();
 
 	ActionEntity actionEntity = new ActionEntity();
 	actionEntity.setData("systemName", "CreateUserForEmployee");
@@ -92,7 +102,8 @@ public class TaskModule extends Module
 
 	EffectEntity effect = new EffectEntity();
 	effect.setData("name", "On cre un login");
-	effect.setData(new SearchEntity().getForeignKeyName(), 1);
+	effect.setData(searchEntity.getForeignKeyName(), searchEntity
+		.getPrimaryKeyValue());
 	// effect.setData(actionEntity.getForeignKeyName(), actionEntity
 	// .getPrimaryKeyValue());
 	effect.assign(actionEntity);
@@ -100,13 +111,15 @@ public class TaskModule extends Module
 
 	Specification specification = new Specification();
 	specification.setData("name", "Si employe pas encore de login");
-	specification.setData(new SearchEntity().getForeignKeyName(), 1);
+	specification.setData(searchEntity.getForeignKeyName(), searchEntity
+		.getPrimaryKeyValue());
 	specification.newE();
 
 	TaskEntity task = new TaskEntity();
 	task.setData("isActive", false);
-	task.setData(new Specification().getForeignKeyName(), 1);
-	task.setData(new EffectEntity().getForeignKeyName(), 1);
+	task.setData(specification.getForeignKeyName(), specification
+		.getPrimaryKeyValue());
+	task.setData(effect.getForeignKeyName(), effect.getPrimaryKeyValue());
 	task.newE();
     }
 
