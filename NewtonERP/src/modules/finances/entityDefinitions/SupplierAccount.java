@@ -1,9 +1,12 @@
 package modules.finances.entityDefinitions;
 
+import java.util.Hashtable;
 import java.util.Vector;
 
 import modules.customerVendor.entityDefinitions.Invoice;
 import modules.customerVendor.entityDefinitions.Merchant;
+import modules.finances.actions.PayingService;
+import newtonERP.common.ActionLink;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.field.Field;
@@ -11,6 +14,7 @@ import newtonERP.orm.field.FieldCurrency;
 import newtonERP.orm.field.FieldDate;
 import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.Fields;
+import newtonERP.viewers.viewerData.ListViewerData;
 
 /**
  * Entité supplierAccount du module finances: représente les montant payables
@@ -58,6 +62,24 @@ public class SupplierAccount extends AbstractOrmEntity
 		.getForeignKeyName()));
 
 	return new Fields(fieldsInit);
+    }
+
+    @Override
+    public final ListViewerData getList(Hashtable<String, String> parameters)
+	    throws Exception
+    {
+	PayingService paying = new PayingService();
+	paying.setOwnedByModul(getCurrentModule());
+
+	Hashtable<String, String> actionParameters = new Hashtable<String, String>();
+	actionParameters.put(getPrimaryKeyName(), "&");
+
+	ListViewerData list = super.getList(parameters);
+
+	list.addSpecificActionButtonList(new ActionLink("Payer", paying,
+		actionParameters));
+
+	return list;
     }
 
 }

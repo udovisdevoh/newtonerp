@@ -3,7 +3,7 @@ package modules.finances.entityDefinitions;
 import java.util.Hashtable;
 import java.util.Vector;
 
-import modules.finances.actions.PayingAccount;
+import modules.finances.actions.PayingService;
 import newtonERP.common.ActionLink;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.associations.AccessorManager;
@@ -62,7 +62,7 @@ public class ServiceProviderAccount extends AbstractOrmEntity
     public final ListViewerData getList(Hashtable<String, String> parameters)
 	    throws Exception
     {
-	PayingAccount paying = new PayingAccount();
+	PayingService paying = new PayingService();
 	paying.setOwnedByModul(getCurrentModule());
 
 	Hashtable<String, String> actionParameters = new Hashtable<String, String>();
