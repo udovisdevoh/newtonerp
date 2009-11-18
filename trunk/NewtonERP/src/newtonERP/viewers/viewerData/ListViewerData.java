@@ -1,5 +1,6 @@
 package newtonERP.viewers.viewerData;
 
+import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Vector;
 
@@ -73,7 +74,15 @@ public class ListViewerData extends GridViewerData implements
 			.getShortName());
 
 		if (listOfValue != null)
+		{
 		    value = listOfValue.getForeignValue(field.getDataString());
+		    Hashtable<String, String> param = new Hashtable<String, String>();
+		    param.put(listOfValue.getForeignEntityDefinition()
+			    .getPrimaryKeyName(), field.getDataString());
+
+		    oneData.add(new GridCaseData(value, new BaseAction("Edit",
+			    listOfValue.getForeignEntityDefinition()), param));
+		}
 		else if (!field.isHidden())
 		{
 		    value = field.getDataString();
@@ -82,9 +91,10 @@ public class ListViewerData extends GridViewerData implements
 		    if (value.length() > 64)
 			value = field.getDataString().substring(0, 64)
 				+ "[...]";
+		    oneData.add(new GridCaseData(value));
 		}
-		oneData.add(new GridCaseData(value));
-
+		else
+		    oneData.add(new GridCaseData(value));
 	    }
 	    dataList.add(oneData.toArray(new GridCaseData[0]));
 	}

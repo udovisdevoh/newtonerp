@@ -53,13 +53,11 @@ public class FieldViewer
 	if (field.isReadOnly())
 	    return "<input type='hidden' name='" + field.getShortName()
 		    + "' value='" + field.getDataString()
-		    + "' class='textField' />"
-		    + field.getDataString().replace("'", "&#39;");
+		    + "' class='textField' />" + field.getDataString();
 
 	return "<input" + moneyFormatStyle + " type='" + textFieldType
 		+ "' name='" + field.getShortName() + "' value='"
-		+ field.getDataString().replace("'", "&#39;")
-		+ "' class='textField' />";
+		+ field.getDataString() + "' class='textField' />";
     }
 
     private static String textViewer(Field field)

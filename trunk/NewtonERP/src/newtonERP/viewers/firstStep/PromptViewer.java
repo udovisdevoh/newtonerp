@@ -85,8 +85,7 @@ public class PromptViewer
 	html += "<tr><td colspan=\"2\" align=\"center\" class=\"submitButton\">"
 		+ "<input class=\"submitButton\" type=\"submit\" name=\"submit\" value=\""
 		+ promptData.getButtonAction().getName() + "\" />";
-	if (data instanceof AbstractOrmEntity)
-	    html += " " + getPrintButton();
+
 	html += "</td></tr>";
 	html += "</table>";
 
@@ -190,10 +189,5 @@ public class PromptViewer
 		    + "</td></tr>";
 
 	return html;
-    }
-
-    private static String getPrintButton()
-    {
-	return "<input class=\"submitButton\" type=\"button\" value=\"Imprimer\" onclick=\"window.print();return false;\" />";
     }
 }

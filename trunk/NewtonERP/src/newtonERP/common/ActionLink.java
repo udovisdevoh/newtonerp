@@ -201,4 +201,49 @@ public class ActionLink
 	this.confirm = confirm;
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
+    public boolean equals(Object obj)
+    {
+	if (this == obj)
+	    return true;
+	if (obj == null)
+	    return false;
+	if (!(obj instanceof ActionLink))
+	    return false;
+	ActionLink other = (ActionLink) obj;
+	if (action == null)
+	{
+	    if (other.action != null)
+		return false;
+	}
+	else if (!action.equals(other.action))
+	    return false;
+	if (confirm != other.confirm)
+	    return false;
+	if (name == null)
+	{
+	    if (other.name != null)
+		return false;
+	}
+	else if (!name.equals(other.name))
+	    return false;
+	if (parameters == null)
+	{
+	    if (other.parameters != null)
+		return false;
+	}
+	else if (!parameters.equals(other.parameters))
+	    return false;
+	return true;
+    }
+
+    public String toString()
+    {
+	return name;
+    }
+
 }

@@ -61,6 +61,8 @@ public class FieldInt extends Field
      */
     public String getDataString(Boolean forOrm)
     {
+	if (forOrm)
+	    return addSlash(data + "");
 	return data + "";
     }
 

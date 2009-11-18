@@ -10,7 +10,6 @@ import java.util.Hashtable;
 public abstract class AbstractAction
 {
     private AbstractEntity entityUsable;
-    private Module ownedByModul;
 
     protected AbstractAction()
     {
@@ -77,15 +76,16 @@ public abstract class AbstractAction
      */
     public void setOwnedByModul(Module ownedByModul)
     {
-	this.ownedByModul = ownedByModul;
+	ActionModule.addActionModule(this, ownedByModul);
     }
 
     /**
      * @return the ownedByModul
+     * @throws Exception remonte
      */
-    public Module getOwnedByModule()
+    public Module getOwnedByModule() throws Exception
     {
-	return ownedByModul;
+	return ActionModule.getModule(this);
     }
 
     /*
@@ -110,13 +110,7 @@ public abstract class AbstractAction
 	}
 	else if (!entityUsable.equals(other.entityUsable))
 	    return false;
-	if (ownedByModul == null)
-	{
-	    if (other.ownedByModul != null)
-		return false;
-	}
-	else if (!ownedByModul.equals(other.ownedByModul))
-	    return false;
+
 	return true;
     }
 

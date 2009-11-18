@@ -55,7 +55,7 @@ public class FieldBool extends Field
 	    return "";
 
 	if (forOrm)
-	    return data.toString();
+	    return addSlash(data.toString());
 	else if (data)
 	    return "Oui";
 	else

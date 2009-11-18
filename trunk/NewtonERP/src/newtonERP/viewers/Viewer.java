@@ -39,9 +39,7 @@ public abstract class Viewer
      * @throws Exception general exception
      */
     public static String getHtmlCode(AbstractEntity entity, String moduleName,
-	    String actionName) throws ViewerException, Exception // TODO: remove
-    // trow
-    // Exception
+	    String actionName) throws Exception
     {
 	String viewerHtml = "";
 	if (entity instanceof BaseViewerData)
