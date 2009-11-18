@@ -11,7 +11,7 @@ import newtonERP.module.generalEntity.StaticTextEntity;
  * Action DebitFromBankAccount: représente l'action de débiter le montant d'un
  * compte payer au compte de banque correspondant.
  * 
- * ps pas terminer
+ * ps pas terminé
  * @author Pascal Lemay
  */
 public class DebitFromBankAccount extends AbstractAction
@@ -29,10 +29,12 @@ public class DebitFromBankAccount extends AbstractAction
 	    Hashtable<String, String> parameters) throws Exception
     {
 	BankAccount bankAccount = (BankAccount) entity;
-	// bankAccount.setData("balance",);
+	Double montant = (Double) bankAccount.getData("balance");
+	montant -= 250;// pour test
+	bankAccount.setData("balance", montant);
+	bankAccount.save();
 
-	System.out.println("test débiter");
-	return new StaticTextEntity("kossé tu fa la...");
+	return new StaticTextEntity("Paiement effectué");
     }
 
 }
