@@ -39,6 +39,8 @@ public class PayingService extends AbstractAction
 	 * account.getPrimaryKeyValue() + "'"); Orm.update(account,
 	 * searchCriterias);
 	 */
+
+	new DebitFromBankAccount().doAction(null, null);// test
 	account.save();
 	return account.getList();
 
