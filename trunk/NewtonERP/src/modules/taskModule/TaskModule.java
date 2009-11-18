@@ -179,6 +179,7 @@ public class TaskModule extends Module
 
 	moduleEntity = new ModuleEntity();
 	moduleEntity.setData("systemName", "...");
+	moduleEntity.setData("visibleName", "...");
 	moduleEntity.newE();
 
 	ActionEntity actionEntity;
