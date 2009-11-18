@@ -221,11 +221,13 @@ public class TaskModule extends Module
 	// on s'assure d'avoir créé le userRightModule en premier
 	for (String moduleName : allModule)
 	{
+	    module = ListModule.getModule(moduleName);
+
 	    moduleEntity = new ModuleEntity();
 	    moduleEntity.setData("systemName", moduleName);
+	    moduleEntity.setData("visibleName", module.getVisibleName());
 	    moduleEntity.newE();
 
-	    module = ListModule.getModule(moduleName);
 	    for (String actionName : module.getActionList().keySet())
 	    {
 		actionEntity = new ActionEntity();

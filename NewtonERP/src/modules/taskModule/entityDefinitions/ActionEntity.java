@@ -37,7 +37,6 @@ public class ActionEntity extends AbstractOrmEntity
     {
 	FieldInt moduleEntity = new FieldInt("Module", new ModuleEntity()
 		.getForeignKeyName());
-	moduleEntity.setNaturalKey(true);
 
 	FieldString systemName = new FieldString("Nom système", "systemName");
 	systemName.setNaturalKey(true);
