@@ -119,5 +119,7 @@ public class CustomerVendor extends Module
 	ligneTaxe1.setData(new Invoice().getForeignKeyName(), 1);
 	ligneTaxe1.setData(new Tax().getForeignKeyName(), 2);
 	ligneTaxe1.newE();
+
+	// TÂCHES AUTOMATISÉES
     }
 }
