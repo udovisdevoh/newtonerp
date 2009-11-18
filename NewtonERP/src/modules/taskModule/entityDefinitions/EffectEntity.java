@@ -4,6 +4,7 @@ import java.util.Hashtable;
 import java.util.Vector;
 
 import newtonERP.module.AbstractAction;
+import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.BaseAction;
 import newtonERP.orm.Orm;
@@ -59,27 +60,27 @@ public class EffectEntity extends AbstractOrmEntity
 	for (AbstractOrmEntity entity : entityList)
 	{
 	    if (action instanceof BaseAction)
-	    {
 		doBaseAction((BaseAction) action, entity, getParameters(entity));
-	    }
 	    else
 		action.doAction(entity, getParameters(entity));
 	}
     }
 
-    private void doBaseAction(BaseAction baseAction, AbstractOrmEntity entity,
-	    Hashtable<String, String> parameters) throws Exception
+    private AbstractEntity doBaseAction(BaseAction baseAction,
+	    AbstractOrmEntity entity, Hashtable<String, String> parameters)
+	    throws Exception
     {
 	if (baseAction.getSystemName().equals("Get"))
-	    entity.getUI(parameters);
+	    return entity.getUI(parameters);
 	else if (baseAction.getSystemName().equals("Delete"))
-	    entity.deleteUI(parameters);
+	    return entity.deleteUI(parameters);
 	else if (baseAction.getSystemName().equals("New"))
-	    entity.newUI(parameters);
+	    return entity.newUI(parameters);
 	else if (baseAction.getSystemName().equals("GetList"))
-	    entity.getList(parameters);
+	    return entity.getList(parameters);
 	else if (baseAction.getSystemName().equals("GetList"))
-	    entity.editUI(parameters);
+	    return entity.editUI(parameters);
+	throw new Exception("Base Entity type not found");
     }
 
     private Vector<AbstractOrmEntity> getAffectedEntityList() throws Exception

@@ -460,7 +460,7 @@ public class Orm
 
 	if (addedCriteriaToWhereCondition)
 	    return whereClause; // On retourne la clause du where car elle n'est
-				// pas vide
+	// pas vide
 	return "";// Sinon, aucune clause where ne doit être ajoutée
     }
 
