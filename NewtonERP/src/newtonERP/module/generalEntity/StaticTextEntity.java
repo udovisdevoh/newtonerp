@@ -24,6 +24,6 @@ public class StaticTextEntity extends AbstractEntity implements
 
     public String getText()
     {
-	return text.replace('<', ' ').replace('>', ' ');
+	return text.replace("<", "&lt;").replace(">", "&gt;");
     }
 }
