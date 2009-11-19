@@ -821,6 +821,8 @@ par exemple, si on delete un Group, alors les GroupRight WHERE GroupID = ce grou
   * Module: ajouté comportement par default si aucun élément de menu d'action global n'a été spécifié
   * Module: prise en charge des cas ou aucune action par default n'a été définie (le comportement par default sera de prendre la première entité et de faire un GetList dessus)
   * Module Système: Ajouté entité d'accesseur
+  * Générateur de code pour classe de module fonctionnel
+  * Début de générateur de code pour classe d'entité
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
   * Vues critériées
   * Module softcodage de module
