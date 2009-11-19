@@ -95,11 +95,19 @@ public class EntitySourceCodeBuilder
 	if (isReadOnly(fieldEntity))
 	    sourceCode += "        " + getSystemName(fieldEntity)
 		    + ".setReadOnly(true);\n";
+	if (isDynamicField(fieldEntity))
+	    sourceCode += "        " + getSystemName(fieldEntity)
+		    + ".setDynamicField(true);\n";
 
 	sourceCode += "        fieldList.add(" + getSystemName(fieldEntity)
 		+ ");\n";
 
 	return sourceCode;
+    }
+
+    private static boolean isDynamicField(FieldEntity fieldEntity)
+    {
+	return (Boolean) fieldEntity.getData("dynamicField");
     }
 
     private static boolean isHidden(FieldEntity fieldEntity)

@@ -18,6 +18,7 @@ public abstract class Field<T>
     private Boolean hidden = false;
     private Boolean readOnly = false;
     private Boolean isNaturalKey = false;
+    private Boolean isDynamicField = false;
     private FieldValidator<T> validator;
 
     /**
@@ -168,6 +169,22 @@ public abstract class Field<T>
     public void setHidden(Boolean hidden)
     {
 	this.hidden = hidden;
+    }
+
+    /**
+     * @param isDynamicField si le champ est dynamique
+     */
+    public void setDynamicField(Boolean isDynamicField)
+    {
+	this.isDynamicField = isDynamicField;
+    }
+
+    /**
+     * @return si le field est dynamic
+     */
+    public Boolean isDynamicField()
+    {
+	return isDynamicField;
     }
 
     /**

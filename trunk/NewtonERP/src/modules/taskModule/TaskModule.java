@@ -368,6 +368,7 @@ public class TaskModule extends Module
 	fieldEntity.setData("readOnly", field.isReadOnly());
 	fieldEntity.setData("hidden", field.isHidden());
 	fieldEntity.setData("naturalKey", field.isNaturalKey());
+	fieldEntity.setData("dynamicField", field.isDynamicField());
 	fieldEntity.assign(fieldType);
 	fieldEntity.assign(entityEntity);
 	fieldEntity.newE();
