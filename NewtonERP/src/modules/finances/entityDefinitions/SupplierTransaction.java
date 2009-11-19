@@ -34,7 +34,7 @@ public class SupplierTransaction extends AbstractOrmEntity
 	AccessorManager.addAccessor(this, new Merchant());
 	AccessorManager.addAccessor(this, new Invoice());
 	AccessorManager.addAccessor(this, new StateType());
-	setVisibleName("Compte Fournisseur");
+	setVisibleName("Transaction Fournisseur");
     }
 
     @Override

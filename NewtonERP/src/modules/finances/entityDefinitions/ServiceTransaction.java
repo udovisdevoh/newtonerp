@@ -32,7 +32,7 @@ public class ServiceTransaction extends AbstractOrmEntity
 	super();
 	AccessorManager.addAccessor(this, new ServiceProvider());
 	AccessorManager.addAccessor(this, new StateType());
-	setVisibleName("Comptes Fournisseurs de services");
+	setVisibleName("Transaction de services");
     }
 
     @Override
