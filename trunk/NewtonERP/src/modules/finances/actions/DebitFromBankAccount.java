@@ -9,7 +9,7 @@ import newtonERP.module.generalEntity.AlertEntity;
 
 /**
  * Action DebitFromBankAccount: représente l'action de débiter le montant d'un
- * compte payer au compte de banque correspondant.
+ * compte à payer au compte de banque correspondant.
  * 
  * ps pas terminé
  * 
@@ -30,14 +30,17 @@ public class DebitFromBankAccount extends AbstractAction
 	    Hashtable<String, String> parameters) throws Exception
     {
 	BankAccount bankAccount = (BankAccount) entity;
-	Double balance = Double.parseDouble(parameters.get("balance"));
-	Double montant = (Double) bankAccount.getData("balance");
+	// Montant de transaction
+	Double bill = Double.parseDouble(parameters.get("balance"));
+	// Solde du compte
+	Double balance = (Double) bankAccount.getData("balance");
+	// Disponible sur marge
 	Double marginBalance = (Double) bankAccount.getData("marginBalance");
 
-	if (balance <= (montant + marginBalance))
+	if (bill <= (balance + marginBalance))
 	{
-	    montant -= balance;// pour test
-	    bankAccount.setData("balance", montant);
+	    balance -= bill;// débitage
+	    bankAccount.setData("balance", balance);
 	    bankAccount.save();
 	    return new AlertEntity("Paiement effectué");
 	}
