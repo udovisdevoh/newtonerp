@@ -34,20 +34,20 @@ public class PayingService extends AbstractAction
     {
 
 	ServiceProviderAccount account = (ServiceProviderAccount) entity;
-
-	/*
-	 * Vector<String> searchCriterias = new Vector<String>();
-	 * searchCriterias.add(account.getPrimaryKeyName() + "='" +
-	 * account.getPrimaryKeyValue() + "'"); Orm.update(account,
-	 * searchCriterias);
-	 */
+	Double balance = (Double) account.getList(parameters).getEntity()
+		.get(0).getData("balance");
+	String balanceParam = String.valueOf(balance);
 
 	BankAccount searchEntity = new BankAccount();
 	searchEntity.setData("folio", "2148");// tempo
 	Vector<AbstractOrmEntity> bankAccount = Orm.select(searchEntity);
 
+	Hashtable<String, String> actionParameters = new Hashtable<String, String>();
+	actionParameters.put("balance", balanceParam);
+
 	AlertEntity alert = (AlertEntity) new DebitFromBankAccount().doAction(
-		bankAccount.get(0), null);
+		bankAccount.get(0), actionParameters);
+
 	if (alert.getMessage().equals("Paiement effectué"))
 	{
 	    account.setData("paymentDate", new GregorianCalendar());

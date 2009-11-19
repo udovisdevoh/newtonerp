@@ -29,15 +29,14 @@ public class DebitFromBankAccount extends AbstractAction
     public AbstractEntity doAction(AbstractEntity entity,
 	    Hashtable<String, String> parameters) throws Exception
     {
-	double aPayer = 0.0;// test
-
 	BankAccount bankAccount = (BankAccount) entity;
+	Double balance = Double.parseDouble(parameters.get("balance"));
 	Double montant = (Double) bankAccount.getData("balance");
 	Double margin = (Double) bankAccount.getData("margin");
 
-	if (aPayer < (montant + margin))
+	if (balance < (montant + margin))
 	{
-	    montant -= 250;// pour test
+	    montant -= balance;// pour test
 	    bankAccount.setData("balance", montant);
 	    bankAccount.save();
 	    return new AlertEntity("Paiement effectué");
