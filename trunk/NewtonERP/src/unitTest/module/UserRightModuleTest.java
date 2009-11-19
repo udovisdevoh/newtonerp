@@ -16,7 +16,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * @author djo
+ * @author CloutierJo
  * 
  */
 public class UserRightModuleTest extends TestCase

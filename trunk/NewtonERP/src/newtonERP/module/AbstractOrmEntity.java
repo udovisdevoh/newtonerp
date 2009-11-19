@@ -440,7 +440,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
     {
 	String primaryKeyName = getPrimaryKeyName();
 	Fields fieldsList = getFields();
-	Field field = fieldsList.getField(primaryKeyName);
+	Field<?> field = fieldsList.getField(primaryKeyName);
 
 	if (field == null || field.getData() == null)
 	    return null;
@@ -490,21 +490,21 @@ public abstract class AbstractOrmEntity extends AbstractEntity
     {
 	Vector<String> naturalKeyNameList = new Vector<String>();
 
-	for (Field field : getFields())
+	for (Field<?> field : getFields())
 	    if (field.isNaturalKey())
 		naturalKeyNameList.add(field.getShortName());
 
 	if (naturalKeyNameList.size() < 1) // 1er Comportement par default si
 	    // clef
 	    // naturelle vide
-	    for (Field field : getFields())
+	    for (Field<?> field : getFields())
 		if (field.getShortName().toLowerCase().contains("name"))
 		    naturalKeyNameList.add(field.getShortName());
 
 	if (naturalKeyNameList.size() < 1) // 2e Comportement par default si
 	    // clef
 	    // naturelle vide
-	    for (Field field : getFields())
+	    for (Field<?> field : getFields())
 		if (!field.getShortName().equals(getPrimaryKeyName()))
 		    naturalKeyNameList.add(field.getShortName());
 
@@ -690,7 +690,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
     private boolean matchesCriteriasFrom(AbstractOrmEntity searchCriteriaEntity)
     {
 	String fieldValue, fieldValueToMatch;
-	for (Field field : searchCriteriaEntity.getFields())
+	for (Field<?> field : searchCriteriaEntity.getFields())
 	{
 	    fieldValue = getDataString(field.getShortName());
 	    fieldValueToMatch = field.getDataString();

@@ -237,7 +237,7 @@ public abstract class AbstractEntity
      */
     public boolean isMatchCheckBox(String inputName)
     {
-	Field field = getFields().getField(inputName);
+	Field<?> field = getFields().getField(inputName);
 
 	if (field == null)
 	    return false;

@@ -8,7 +8,7 @@ import modules.testModule.TestModule;
 import newtonERP.common.ListModule;
 
 /**
- * @author djo
+ * @author CloutierJo
  * 
  */
 public class ListModuleTest extends TestCase

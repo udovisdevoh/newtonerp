@@ -12,31 +12,31 @@ import newtonERP.module.exception.FieldNotFoundException;
 /**
  * All the fields of an entity
  * 
- * @author djo
+ * @author CloutierJo
  */
-public class Fields implements Iterable<Field>
+public class Fields implements Iterable<Field<?>>
 {
 
-    Hashtable<String, Field> fieldsDataMap;
-    Vector<Field> fieldsDataVector;
+    Hashtable<String, Field<?>> fieldsDataMap;
+    Collection<Field<?>> fieldsDataVector;
 
     /**
      * constructeur vide, permet de construire un Fields sans aucun champ
      */
     public Fields()
     {
-	fieldsDataMap = new Hashtable<String, Field>();
-	fieldsDataVector = new Vector<Field>();
+	fieldsDataMap = new Hashtable<String, Field<?>>();
+	fieldsDataVector = new Vector<Field<?>>();
     }
 
     /**
      * @param fields une liste de champ a inclure dans le Fields
      */
-    public Fields(Vector<Field> fields)
+    public Fields(Vector<Field<?>> fields)
     {
 	fieldsDataVector = fields;
-	fieldsDataMap = new Hashtable<String, Field>();
-	for (Field field : fields)
+	fieldsDataMap = new Hashtable<String, Field<?>>();
+	for (Field<?> field : fields)
 	{
 	    if (field.getShortName().matches("PK.*"))
 		field.setReadOnly(true);
@@ -47,7 +47,7 @@ public class Fields implements Iterable<Field>
     /**
      * @return the fields
      */
-    public Collection<Field> getFields()
+    public Collection<Field<?>> getFields()
     {
 	return fieldsDataVector;
     }
@@ -56,7 +56,7 @@ public class Fields implements Iterable<Field>
      * @param shortName le nom du champ voulu
      * @return the named field
      */
-    public Field getField(String shortName)
+    public Field<?> getField(String shortName)
     {
 	return fieldsDataMap.get(shortName);
     }
@@ -148,7 +148,7 @@ public class Fields implements Iterable<Field>
      * iterate over the fields (not the keys)
      */
     @Override
-    public Iterator<Field> iterator()
+    public Iterator<Field<?>> iterator()
     {
 	return fieldsDataVector.iterator();
     }
@@ -167,7 +167,7 @@ public class Fields implements Iterable<Field>
     public Collection<String> getLongFieldNameList()
     {
 	Vector<String> longFieldName = new Vector<String>();
-	for (Field field : this)
+	for (Field<?> field : this)
 	    longFieldName.add(field.getName());
 	return longFieldName;
     }
@@ -186,7 +186,7 @@ public class Fields implements Iterable<Field>
     public void setDefaultValue(boolean allField)
 	    throws FieldNotCompatibleException
     {
-	for (Field field : getFields())
+	for (Field<?> field : getFields())
 	{
 	    if (field.getData() == null || allField)
 		field.setDefaultValue();
@@ -210,7 +210,7 @@ public class Fields implements Iterable<Field>
     public Vector<String> getOrderedFieldNameList()
     {
 	Vector<String> orderedFieldNameList = new Vector<String>();
-	for (Field field : fieldsDataVector)
+	for (Field<?> field : fieldsDataVector)
 	    orderedFieldNameList.add(field.getShortName());
 
 	return orderedFieldNameList;
@@ -230,7 +230,7 @@ public class Fields implements Iterable<Field>
      */
     public boolean containsValues()
     {
-	for (Field field : this)
+	for (Field<?> field : this)
 	    if (field.getData() != null)
 		return true;
 	return false;

@@ -162,7 +162,7 @@ public class Orm
 	while (dataIterator.hasNext())
 	{
 	    // Retrieve key
-	    Field field = (Field) dataIterator.next();
+	    Field<?> field = (Field) dataIterator.next();
 
 	    // If it's the end or not we add the key to the query with the
 	    // right string ("," or not) and the value
@@ -412,7 +412,7 @@ public class Orm
 	    entityPosition += 1;
 	    whereClause += "( ";
 
-	    for (Field field : entity.getFields().getFields())
+	    for (Field<?> field : entity.getFields().getFields())
 	    {
 		if (field.getData() != null)
 		{
@@ -456,7 +456,7 @@ public class Orm
     {
 	sqlQuery += " WHERE ( ";
 
-	for (Field field : searchEntity.getFields().getFields())
+	for (Field<?> field : searchEntity.getFields().getFields())
 	{
 	    if (field.getData() != null)
 	    {
@@ -481,12 +481,12 @@ public class Orm
      */
     private static String buildSetClauseForQuery(Fields fields, String sqlQuery)
     {
-	Iterator<Field> dataIterator = fields.iterator();
+	Iterator<Field<?>> dataIterator = fields.iterator();
 
 	while (dataIterator.hasNext())
 	{
 	    // Retrieve key
-	    Field data = dataIterator.next();
+	    Field<?> data = dataIterator.next();
 	    if (!data.getShortName().matches("PK.*") && data.getData() != null)
 	    {
 		sqlQuery += data.getShortName() + "='"
@@ -523,13 +523,13 @@ public class Orm
 		    // Be sure to create the table only if it doesn't already
 		    // exists
 		    String sqlQuery = "CREATE TABLE IF NOT EXISTS ";
-		    Collection<Field> fields = ((AbstractEntity) entity)
+		    Collection<Field<?>> fields = ((AbstractEntity) entity)
 			    .getFields().getFields();
 
 		    sqlQuery += prefix + entity.getSystemName() + " ( ";
 
 		    // For each field into my entity
-		    for (Field field : fields)
+		    for (Field<?> field : fields)
 		    {
 			// If it is a primary because it matches PK, else we
 			// check the datatypes and match them with a datatype

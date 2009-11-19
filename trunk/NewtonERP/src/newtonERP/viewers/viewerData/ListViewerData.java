@@ -41,7 +41,7 @@ public class ListViewerData extends GridViewerData implements
     public GridCaseData[] getHeader() throws Exception
     {
 	Vector<GridCaseData> header = new Vector<GridCaseData>();
-	for (Field field : dataType.getFields())
+	for (Field<?> field : dataType.getFields())
 	{
 	    ListOfValue listOfValue = dataType.tryMatchListOfValue(field
 		    .getShortName());
@@ -64,7 +64,7 @@ public class ListViewerData extends GridViewerData implements
 	for (AbstractOrmEntity entity : data)
 	{
 	    Vector<GridCaseData> oneData = new Vector<GridCaseData>();
-	    for (Field field : entity.getFields())
+	    for (Field<?> field : entity.getFields())
 	    {
 		value = "";
 		if (field.isHidden())

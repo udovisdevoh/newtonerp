@@ -11,7 +11,7 @@ public class VolatileFields extends Fields
     /**
      * @param field field à ajouter ou remplacer s'il existe
      */
-    public void add(Field field)
+    public void add(Field<?> field)
     {
 	fieldsDataMap.put(field.getShortName(), field);
 	fieldsDataVector.add(field);

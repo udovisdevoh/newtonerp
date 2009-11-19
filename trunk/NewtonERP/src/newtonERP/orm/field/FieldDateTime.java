@@ -14,11 +14,10 @@ import newtonERP.module.exception.InvalidOperatorException;
  * 
  * @author r3hallejo
  */
-public class FieldDateTime extends Field
+public class FieldDateTime extends Field<GregorianCalendar>
 {
     private static SimpleDateFormat dateFormatter = new SimpleDateFormat(
 	    "yyyy-MM-dd HH:mm:ss");
-    protected GregorianCalendar data;
 
     /**
      * constructeur minimum
@@ -26,27 +25,23 @@ public class FieldDateTime extends Field
      * @param name nom du champ qui sera visible par l'utilisateur
      * @param shortName nom du champ qui sera utiliser a l'interne
      * @param data donne du champ
+     * @throws InvalidOperatorException remonte
      */
     public FieldDateTime(String name, String shortName, GregorianCalendar data)
+	    throws InvalidOperatorException
     {
-	super(name, shortName);
-	this.data = data;
-	operator = "=";
+	super(name, shortName, data);
     }
 
     /**
      * @param name nom du champ qui sera visible par l'utilisateur
      * @param shortName nom du champ qui sera utiliser a l'interne
+     * @throws InvalidOperatorException remonte
      */
     public FieldDateTime(String name, String shortName)
+	    throws InvalidOperatorException
     {
 	this(name, shortName, null);
-    }
-
-    @Override
-    public Object getData()
-    {
-	return data;
     }
 
     @Override
@@ -69,16 +64,6 @@ public class FieldDateTime extends Field
     }
 
     @Override
-    public void setData(Object date) throws FieldNotCompatibleException
-    {
-	if (date instanceof GregorianCalendar)
-	    data = (GregorianCalendar) date;
-	else
-	    throw new FieldNotCompatibleException(
-		    "Field has to be a gregorian calendar");
-    }
-
-    @Override
     public void setOperator(String operator) throws InvalidOperatorException
     {
 	operator.trim();
@@ -95,6 +80,16 @@ public class FieldDateTime extends Field
     public void setDefaultValue() throws FieldNotCompatibleException
     {
 	setData(new GregorianCalendar());
+    }
+
+    @Override
+    public void setData(Object date) throws FieldNotCompatibleException
+    {
+	if (date instanceof GregorianCalendar)
+	    setDataType((GregorianCalendar) date);
+	else
+	    throw new FieldNotCompatibleException(
+		    "Field has to be a gregorian calendar");
     }
 
     /**

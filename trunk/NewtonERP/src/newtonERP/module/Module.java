@@ -54,7 +54,7 @@ import newtonERP.orm.Orm;
  *             @Override
  *             public Fields initFields()
  *             {
- *	           Vector<Field> fields = new Vector<Field>();
+ *	           Vector<Field<?>> fields = new Vector<Field<?>>();
  *	           fields.add(new FieldInt("numéro de groupe", "groupsID"));
  *	           fields.add(new FieldInt("numéro de droit", "rightID"));
  *	           return new Fields(fields);
