@@ -1,7 +1,10 @@
 package modules.taskModule.entityDefinitions;
 
+import java.util.Hashtable;
 import java.util.Vector;
 
+import modules.taskModule.actions.ViewModuleSource;
+import newtonERP.common.ActionLink;
 import newtonERP.common.ListModule;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.Module;
@@ -9,6 +12,7 @@ import newtonERP.orm.field.Field;
 import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.FieldString;
 import newtonERP.orm.field.Fields;
+import newtonERP.viewers.viewerData.BaseViewerData;
 
 /**
  * Entité représentant un module
@@ -50,5 +54,15 @@ public class ModuleEntity extends AbstractOrmEntity
     private String getModuleName()
     {
 	return getDataString("systemName");
+    }
+
+    @Override
+    public BaseViewerData editUI(Hashtable<String, String> parameters)
+	    throws Exception
+    {
+	BaseViewerData data = super.editUI(parameters);
+	data.addGlobalActions(new ActionLink("Voir code source",
+		new ViewModuleSource()));
+	return data;
     }
 }
