@@ -17,8 +17,8 @@ import newtonERP.orm.field.Fields;
 import newtonERP.viewers.viewerData.ListViewerData;
 
 /**
- * Entité supplierAccount du module finances: représente les montant payables
- * aux fournisseurs et leurs dates d'échéance
+ * Entité supplierTransaction du module finances: représente les montants
+ * payables aux fournisseurs et leurs dates d'échéance
  * 
  * @author Pascal Lemay
  */

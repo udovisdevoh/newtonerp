@@ -16,8 +16,9 @@ import newtonERP.orm.field.Fields;
 import newtonERP.viewers.viewerData.ListViewerData;
 
 /**
- * Entité ServiceProviderAccount du module finances: représente les montant
- * payables aux fournisseurs de services (internet, électricité...)
+ * Entité ServiceTransaction du module finances: représente les montants
+ * payables aux fournisseurs de services (internet, électricité...)et leurs
+ * dates d'échéance
  * 
  * @author Pascal Lemay
  */
