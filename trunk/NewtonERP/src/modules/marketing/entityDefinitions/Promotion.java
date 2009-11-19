@@ -33,7 +33,7 @@ public class Promotion extends AbstractOrmEntity
     public Fields initFields() throws Exception
     {
 
-	Vector<Field> fieldsInit = new Vector<Field>();
+	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
 	fieldsInit.add(new FieldInt("Numéro", getPrimaryKeyName()));
 	fieldsInit.add(new FieldString("Nom De La Promotion", "promotionname"));
 	fieldsInit.add(new FieldDate("Date du début de la promotion",

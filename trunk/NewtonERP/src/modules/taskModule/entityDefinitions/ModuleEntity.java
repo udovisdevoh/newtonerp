@@ -35,7 +35,7 @@ public class ModuleEntity extends AbstractOrmEntity
 	FieldString visibleName = new FieldString("Nom visible", "visibleName");
 	visibleName.setNaturalKey(true);
 
-	Vector<Field> fieldList = new Vector<Field>();
+	Vector<Field<?>> fieldList = new Vector<Field<?>>();
 	fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
 	fieldList.add(new FieldString("Nom système", "systemName"));
 	fieldList.add(visibleName);

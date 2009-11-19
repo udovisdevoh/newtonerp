@@ -39,7 +39,7 @@ public class TaskEntity extends AbstractOrmEntity
 		.getForeignKeyName());
 	effet.setNaturalKey(true);
 
-	Vector<Field> fieldList = new Vector<Field>();
+	Vector<Field<?>> fieldList = new Vector<Field<?>>();
 	fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
 	fieldList.add(new FieldBool("Est active", "isActive"));
 	fieldList.add(specification);

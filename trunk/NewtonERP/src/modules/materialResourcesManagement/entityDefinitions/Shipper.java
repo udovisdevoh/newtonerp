@@ -30,7 +30,7 @@ public class Shipper extends AbstractOrmEntity
     @Override
     public Fields initFields() throws Exception
     {
-	Vector<Field> fieldsInit = new Vector<Field>();
+	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
 	fieldsInit.add(new FieldInt("Numero de l'expéditeur",
 		getPrimaryKeyName()));
 	fieldsInit.add(new FieldString("Nom de l'expéditeur", "shipperName"));

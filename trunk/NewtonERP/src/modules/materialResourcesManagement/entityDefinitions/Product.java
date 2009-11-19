@@ -31,7 +31,7 @@ public class Product extends AbstractOrmEntity
     @Override
     public Fields initFields() throws Exception
     {
-	Vector<Field> fieldsInit = new Vector<Field>();
+	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
 	fieldsInit.add(new FieldInt("Numero de produit", getPrimaryKeyName()));
 	fieldsInit.add(new FieldString("Code de produit", "code"));
 	fieldsInit.add(new FieldString("Nom de produit", "name"));

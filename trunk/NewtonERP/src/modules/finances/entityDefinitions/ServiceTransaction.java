@@ -45,7 +45,7 @@ public class ServiceTransaction extends AbstractOrmEntity
 	FieldInt primaryKey = new FieldInt("Numéro", getPrimaryKeyName());
 	primaryKey.setNaturalKey(true);
 
-	Vector<Field> fieldsInit = new Vector<Field>();
+	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
 	fieldsInit.add(primaryKey);
 	fieldsInit.add(service);
 	fieldsInit.add(new FieldDate("Échéance", "deadline"));

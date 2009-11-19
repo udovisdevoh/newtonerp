@@ -3,8 +3,6 @@ package modules.finances.entityDefinitions;
 import java.util.Hashtable;
 import java.util.Vector;
 
-import modules.customerVendor.entityDefinitions.Invoice;
-import modules.customerVendor.entityDefinitions.Merchant;
 import modules.finances.actions.PayingService;
 import newtonERP.common.ActionLink;
 import newtonERP.module.AbstractOrmEntity;
@@ -13,53 +11,49 @@ import newtonERP.orm.field.Field;
 import newtonERP.orm.field.FieldCurrency;
 import newtonERP.orm.field.FieldDate;
 import newtonERP.orm.field.FieldInt;
+import newtonERP.orm.field.FieldString;
 import newtonERP.orm.field.Fields;
 import newtonERP.viewers.viewerData.ListViewerData;
 
 /**
- * Entité supplierTransaction du module finances: représente les montants
- * payables aux fournisseurs et leurs dates d'échéance
+ * Entité ServiceProviderAccount du module finances: représente les montant
+ * payables aux fournisseurs de services (internet, électricité...)
  * 
  * @author Pascal Lemay
  */
-public class SupplierTransaction extends AbstractOrmEntity
 
+public class ServiceProviderAccount extends AbstractOrmEntity
 {
     /**
      * @throws Exception if creation fails
      */
-    public SupplierTransaction() throws Exception
+    public ServiceProviderAccount() throws Exception
     {
 	super();
-	AccessorManager.addAccessor(this, new Merchant());
-	AccessorManager.addAccessor(this, new Invoice());
+	AccessorManager.addAccessor(this, new ServiceProvider());
 	AccessorManager.addAccessor(this, new StateType());
-	setVisibleName("Transaction Fournisseur");
+	setVisibleName("Comptes Fournisseurs de services");
     }
 
     @Override
     public Fields initFields() throws Exception
     {
+	FieldString service = new FieldString("Service", "service");
+	service.setNaturalKey(true);
+
 	FieldInt primaryKey = new FieldInt("Numéro", getPrimaryKeyName());
 	primaryKey.setNaturalKey(true);
 
-	FieldCurrency balance = new FieldCurrency("Solde", "balance");
-	balance.setNaturalKey(true);
-
-	FieldDate deadLine = new FieldDate("Échéance", "deadline");
-	deadLine.setNaturalKey(true);
-
 	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
 	fieldsInit.add(primaryKey);
-	fieldsInit.add(new FieldInt("Facture", new Invoice()
-		.getForeignKeyName()));
-	fieldsInit.add(deadLine);
+	fieldsInit.add(service);
+	fieldsInit.add(new FieldDate("Échéance", "deadline"));
 	fieldsInit.add(new FieldDate("Date de paiement", "paymentDate"));
-	fieldsInit.add(balance);
+	fieldsInit.add(new FieldCurrency("Solde", "balance"));
 	fieldsInit
 		.add(new FieldInt("État", new StateType().getForeignKeyName()));
-	fieldsInit.add(new FieldInt("Numéro de fournisseur", new Merchant()
-		.getForeignKeyName()));
+	fieldsInit.add(new FieldInt("Numéro de Fournisseur",
+		new ServiceProvider().getForeignKeyName()));
 
 	return new Fields(fieldsInit);
     }

@@ -35,7 +35,7 @@ public class Schedule extends AbstractOrmEntity
     @Override
     public Fields initFields() throws Exception
     {
-	Vector<Field> fieldsData = new Vector<Field>();
+	Vector<Field<?>> fieldsData = new Vector<Field<?>>();
 
 	fieldsData.add(new FieldInt("Numéro d'horaire", getPrimaryKeyName()));
 

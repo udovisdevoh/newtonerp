@@ -5,6 +5,7 @@ import java.util.Vector;
 
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
+import newtonERP.module.exception.InvalidOperatorException;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.FieldString;
@@ -27,7 +28,7 @@ public class Right extends AbstractOrmEntity
 	setVisibleName("Droit");
     }
 
-    public Fields initFields()
+    public Fields initFields() throws InvalidOperatorException
     {
 	FieldString moduleName = new FieldString("Nom", "moduleName");
 	moduleName.setNaturalKey(true);
@@ -38,7 +39,7 @@ public class Right extends AbstractOrmEntity
 	FieldString actionName = new FieldString("Action", "actionName");
 	actionName.setNaturalKey(true);
 
-	Vector<Field> fieldsInit = new Vector<Field>();
+	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
 	fieldsInit.add(new FieldInt("Numéro", getPrimaryKeyName()));
 	fieldsInit.add(moduleName);
 	fieldsInit.add(entityName);

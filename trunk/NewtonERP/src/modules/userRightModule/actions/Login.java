@@ -39,7 +39,7 @@ public class Login extends AbstractAction
 
 	Form loginForm = new Form(new UserRightModule(), new Login());
 	loginForm.addField("Utilisateur", "name", currentLoginName);
-	Field tmpPwd = new User().getFields().getField("password");
+	Field<?> tmpPwd = new User().getFields().getField("password");
 	tmpPwd.setDefaultValue();
 	loginForm.addField(tmpPwd);
 	loginForm.setTitle("Identification");

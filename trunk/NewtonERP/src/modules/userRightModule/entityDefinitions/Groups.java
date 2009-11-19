@@ -30,7 +30,7 @@ public class Groups extends AbstractOrmEntity
 	FieldString groupName = new FieldString("Nom", "groupName");
 	groupName.setNaturalKey(true);
 
-	Vector<Field> fieldsInit = new Vector<Field>();
+	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
 	fieldsInit.add(new FieldInt("Numéro", getPrimaryKeyName()));
 	fieldsInit.add(groupName);
 	return new Fields(fieldsInit);

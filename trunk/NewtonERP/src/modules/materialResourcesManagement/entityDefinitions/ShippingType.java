@@ -33,7 +33,7 @@ public class ShippingType extends AbstractOrmEntity
 	FieldString shippingType = new FieldString("Type", "shippingType");
 	shippingType.setNaturalKey(true);
 
-	Vector<Field> fieldsInit = new Vector<Field>();
+	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
 	fieldsInit.add(new FieldInt("Numero du type", getPrimaryKeyName()));
 	fieldsInit.add(shippingType);
 	return new Fields(fieldsInit);

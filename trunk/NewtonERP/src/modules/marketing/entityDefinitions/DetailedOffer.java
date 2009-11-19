@@ -32,7 +32,7 @@ public class DetailedOffer extends AbstractOrmEntity
     public Fields initFields() throws Exception
     {
 
-	Vector<Field> fieldsInit = new Vector<Field>();
+	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
 	fieldsInit.add(new FieldInt("Numéro", getPrimaryKeyName()));
 	fieldsInit.add(new FieldInt("Offre", new Offer().getForeignKeyName()));
 	fieldsInit.add(new FieldString("Nom Du detail", "detailName"));

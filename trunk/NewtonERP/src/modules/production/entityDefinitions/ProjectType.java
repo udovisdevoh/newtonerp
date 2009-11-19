@@ -29,7 +29,7 @@ public class ProjectType extends AbstractOrmEntity
     @Override
     public Fields initFields() throws Exception
     {
-	Vector<Field> fieldsInit = new Vector<Field>();
+	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
 	fieldsInit.add(new FieldInt("Numero", getPrimaryKeyName()));
 	fieldsInit.add(new FieldString("Type", "type"));
 	return new Fields(fieldsInit);

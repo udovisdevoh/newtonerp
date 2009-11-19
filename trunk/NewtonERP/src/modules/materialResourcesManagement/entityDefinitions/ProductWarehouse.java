@@ -47,7 +47,7 @@ public class ProductWarehouse extends AbstractOrmEntity
     @Override
     public Fields initFields() throws Exception
     {
-	Vector<Field> fieldsInit = new Vector<Field>();
+	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
 	fieldsInit.add(new FieldInt("Numéro de warehouse", "warehouseID"));
 	fieldsInit.add(new FieldInt("Numéro de produit", "productID"));
 	return new Fields(fieldsInit);

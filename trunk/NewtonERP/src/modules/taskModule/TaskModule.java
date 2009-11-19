@@ -354,11 +354,11 @@ public class TaskModule extends Module
     {
 	realEntity.initFields();
 
-	for (Field field : realEntity.getFields())
+	for (Field<?> field : realEntity.getFields())
 	    initFieldEntity(field, entityEntity);
     }
 
-    private static void initFieldEntity(Field field, EntityEntity entityEntity)
+    private static void initFieldEntity(Field<?> field, EntityEntity entityEntity)
 	    throws Exception
     {
 	FieldTypeEntity fieldType = getOrCreateFieldType(field);
@@ -373,7 +373,7 @@ public class TaskModule extends Module
 	fieldEntity.newE();
     }
 
-    private static FieldTypeEntity getOrCreateFieldType(Field field)
+    private static FieldTypeEntity getOrCreateFieldType(Field<?> field)
 	    throws Exception
     {
 	FieldTypeEntity fieldType = new FieldTypeEntity();

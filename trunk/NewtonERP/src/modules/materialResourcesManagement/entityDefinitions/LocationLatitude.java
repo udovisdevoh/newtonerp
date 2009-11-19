@@ -38,7 +38,7 @@ public class LocationLatitude extends AbstractOrmEntity
 	FieldDouble seconds = new FieldDouble("Secondes", "seconds");
 	seconds.setNaturalKey(true);
 
-	Vector<Field> fieldsInit = new Vector<Field>();
+	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
 	fieldsInit.add(new FieldInt("Numero", getPrimaryKeyName()));
 	fieldsInit.add(degrees);
 	fieldsInit.add(minutes);

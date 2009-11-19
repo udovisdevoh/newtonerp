@@ -36,7 +36,7 @@ public class Shipping extends AbstractOrmEntity
     @Override
     public Fields initFields() throws Exception
     {
-	Vector<Field> fieldsInit = new Vector<Field>();
+	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
 	fieldsInit
 		.add(new FieldInt("Numero de livraison", getPrimaryKeyName()));
 	fieldsInit.add(new FieldInt("Facture associée", new Invoice()

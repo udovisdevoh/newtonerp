@@ -3,6 +3,7 @@ package modules.testModule.entityDefinitions;
 import java.util.Vector;
 
 import newtonERP.module.AbstractOrmEntity;
+import newtonERP.module.exception.InvalidOperatorException;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.FieldString;
@@ -24,9 +25,9 @@ public class TestEntity extends AbstractOrmEntity
 	super();
     }
 
-    public Fields initFields()
+    public Fields initFields() throws InvalidOperatorException
     {
-	Vector<Field> fieldsInit = new Vector<Field>();
+	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
 	fieldsInit.add(new FieldInt("Numéro du test", "testID"));
 	fieldsInit.add(new FieldString("Nom", "name"));
 	fieldsInit.add(new FieldInt("Age", "age"));

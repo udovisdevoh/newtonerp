@@ -30,7 +30,7 @@ public class EmployeeType extends AbstractOrmEntity
 	FieldString employeeType = new FieldString("type", "EmployeeType");
 	employeeType.setNaturalKey(true);
 
-	Vector<Field> fieldsData = new Vector<Field>();
+	Vector<Field<?>> fieldsData = new Vector<Field<?>>();
 	fieldsData.add(new FieldInt("Numéro de type", getPrimaryKeyName()));
 	fieldsData.add(employeeType);
 	return new Fields(fieldsData);
