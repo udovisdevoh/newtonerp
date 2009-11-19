@@ -2,7 +2,6 @@ package modules.finances.actions;
 
 import java.util.GregorianCalendar;
 import java.util.Hashtable;
-import java.util.Vector;
 
 import modules.finances.entityDefinitions.BankAccount;
 import modules.finances.entityDefinitions.StateType;
@@ -43,13 +42,13 @@ public class PayingSupplier extends AbstractAction
 
 	BankAccount searchEntity = new BankAccount();
 	searchEntity.setData("folio", "2148");// tempo
-	Vector<AbstractOrmEntity> bankAccount = Orm.select(searchEntity);
+	AbstractOrmEntity bankAccount = Orm.selectUnique(searchEntity);
 
 	Hashtable<String, String> actionParameters = new Hashtable<String, String>();
 	actionParameters.put("bill", billParam);
 
 	AlertEntity alert = (AlertEntity) new DebitFromBankAccount().doAction(
-		bankAccount.get(0), actionParameters);
+		bankAccount, actionParameters);
 
 	if (alert.getMessage().equals("Paiement effectué"))
 	{
