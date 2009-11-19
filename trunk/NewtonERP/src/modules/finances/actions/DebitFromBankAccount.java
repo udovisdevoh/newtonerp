@@ -8,8 +8,9 @@ import newtonERP.module.AbstractEntity;
 import newtonERP.module.generalEntity.AlertEntity;
 
 /**
- * Action DebitFromBankAccount: représente l'action de débiter le montant d'un
- * compte à payer au compte de banque correspondant.
+ * Action DebitFromBankAccount: called from PayingService ou PayingSupplier
+ * représente l'action de débiter le montant d'une transaction à payer, du
+ * compte de banque correspondant.
  * 
  * ps pas terminé
  * 
@@ -31,7 +32,7 @@ public class DebitFromBankAccount extends AbstractAction
     {
 	BankAccount bankAccount = (BankAccount) entity;
 	// Montant de transaction
-	Double bill = Double.parseDouble(parameters.get("balance"));
+	Double bill = Double.parseDouble(parameters.get("bill"));
 	// Solde du compte
 	Double balance = (Double) bankAccount.getData("balance");
 	// Disponible sur marge

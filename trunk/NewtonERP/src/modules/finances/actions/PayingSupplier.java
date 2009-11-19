@@ -35,28 +35,28 @@ public class PayingSupplier extends AbstractAction
 	    Hashtable<String, String> parameters) throws Exception
     {
 
-	SupplierTransaction account = (SupplierTransaction) entity;
+	SupplierTransaction transaction = (SupplierTransaction) entity;
 
-	Double balance = (Double) account.getList(parameters).getEntity()
-		.get(0).getData("balance");
-	String balanceParam = String.valueOf(balance);
+	Double bill = (Double) transaction.getList(parameters).getEntity().get(
+		0).getData("balance");
+	String billParam = String.valueOf(bill);
 
 	BankAccount searchEntity = new BankAccount();
 	searchEntity.setData("folio", "2148");// tempo
 	Vector<AbstractOrmEntity> bankAccount = Orm.select(searchEntity);
 
 	Hashtable<String, String> actionParameters = new Hashtable<String, String>();
-	actionParameters.put("balance", balanceParam);
+	actionParameters.put("bill", billParam);
 
 	AlertEntity alert = (AlertEntity) new DebitFromBankAccount().doAction(
 		bankAccount.get(0), actionParameters);
 
 	if (alert.getMessage().equals("Paiement effectué"))
 	{
-	    account.setData("paymentDate", new GregorianCalendar());
-	    account.setData(new StateType().getForeignKeyName(), 1);
-	    account.save();
-	    return account.getList();
+	    transaction.setData("paymentDate", new GregorianCalendar());
+	    transaction.setData(new StateType().getForeignKeyName(), 1);
+	    transaction.save();
+	    return transaction.getList();
 	}
 	return alert;
 
