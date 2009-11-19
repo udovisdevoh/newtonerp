@@ -8,7 +8,7 @@ import newtonERP.common.ListModule;
 import newtonERP.serveur.Servlet;
 
 /**
- * @author djo
+ * @author CloutierJo
  * 
  */
 public class ServletTest extends TestCase

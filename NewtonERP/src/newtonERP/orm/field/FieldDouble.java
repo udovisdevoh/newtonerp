@@ -6,64 +6,33 @@ import newtonERP.module.exception.InvalidOperatorException;
 /**
  * Double field in the entities
  * 
- * @author djo
+ * @author CloutierJo
  */
-public class FieldDouble extends Field
+public class FieldDouble extends Field<Double>
 {
-    Double data;
-
     /**
      * constructeur minimum
      * 
      * @param name nom du champ qui sera visible par l'utilisateur
      * @param shortName nom du champ qui sera utiliser a l'interne
      * @param data donne du champ
+     * @throws InvalidOperatorException remonte
      */
     public FieldDouble(String name, String shortName, Double data)
+	    throws InvalidOperatorException
     {
-	super(name, shortName);
-	this.data = data;
-	operator = "=";
+	super(name, shortName, data);
     }
 
     /**
      * @param name nom du champ qui sera visible par l'utilisateur
      * @param shortName nom du champ qui sera utiliser a l'interne
+     * @throws InvalidOperatorException remonte
      */
     public FieldDouble(String name, String shortName)
+	    throws InvalidOperatorException
     {
 	this(name, shortName, null);
-    }
-
-    /**
-     * @return the data
-     */
-    public Double getData()
-    {
-	return data;
-    }
-
-    private void setDataD(Double data)
-    {
-	this.data = data;
-    }
-
-    /**
-     * @param data the data to set
-     */
-    public void setData(Double data)
-    {
-	setDataD(data);
-    }
-
-    /**
-     * @return the data
-     */
-    public String getDataString(Boolean forOrm)
-    {
-	if (forOrm)
-	    return addSlash(data + "");
-	return data + "";
     }
 
     /**
@@ -75,36 +44,6 @@ public class FieldDouble extends Field
 	if (data == null || data.equals("null"))
 	    data = "0.0";
 	this.data = Double.parseDouble(data);
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.lang.Object#equals(java.lang.Object)
-     */
-    public boolean equals(Object obj)
-    {
-	if (this == obj)
-	    return true;
-	if (!super.equals(obj))
-	    return false;
-	if (!(obj instanceof FieldDouble))
-	    return false;
-	FieldDouble other = (FieldDouble) obj;
-	if (Double.doubleToLongBits(data) != Double
-		.doubleToLongBits(other.data))
-	    return false;
-	return true;
-    }
-
-    public void setData(Object data) throws FieldNotCompatibleException
-    {
-	if (data instanceof Double)
-	    setDataD((Double) data);
-	else if (data instanceof Integer)
-	    setDataD((double) ((Integer) (data)));
-	else
-	    throw new FieldNotCompatibleException(getShortName(), data);
     }
 
     @Override
@@ -124,6 +63,16 @@ public class FieldDouble extends Field
 
     public void setDefaultValue() throws FieldNotCompatibleException
     {
-	setData(0);
+	setData(0.);
+    }
+
+    public void setData(Object data) throws FieldNotCompatibleException
+    {
+	if (data instanceof Double)
+	    setDataType((Double) data);
+	else if (data instanceof Integer)
+	    setDataType((double) ((Integer) (data)));
+	else
+	    throw new FieldNotCompatibleException(getShortName(), data);
     }
 }

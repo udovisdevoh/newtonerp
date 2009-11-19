@@ -11,7 +11,7 @@ import modules.testModule.entityDefinitions.TestEntity;
 import newtonERP.module.exception.FieldNotFoundException;
 
 /**
- * @author djo
+ * @author CloutierJo
  * 
  */
 public class EntityTest extends TestCase

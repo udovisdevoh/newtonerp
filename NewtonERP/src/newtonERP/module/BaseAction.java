@@ -6,7 +6,7 @@ package newtonERP.module;
 import java.util.Hashtable;
 
 /**
- * @author djo
+ * @author CloutierJo
  * 
  */
 public class BaseAction extends AbstractAction

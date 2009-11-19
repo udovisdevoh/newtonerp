@@ -45,12 +45,12 @@ public class EntityCreator
 		// Our Fields array and our parameters hashtable
 		AbstractOrmEntity entity = searchEntity.getClass()
 			.newInstance();
-		Collection<Field> fields = ((AbstractEntity) entity)
+		Collection<Field<?>> fields = ((AbstractEntity) entity)
 			.getFields().getFields();
 		Hashtable<String, Object> parameters = new Hashtable<String, Object>();
 
 		// We add each column to the hashtable plus it's value
-		for (Field field : fields)
+		for (Field<?> field : fields)
 		{
 		    String key = field.getShortName();
 		    Object value = rs.getObject(field.getShortName());

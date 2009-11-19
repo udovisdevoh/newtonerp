@@ -1,23 +1,24 @@
 package newtonERP.orm.field;
 
-import java.text.ParseException;
-
 import newtonERP.module.exception.FieldNotCompatibleException;
 import newtonERP.module.exception.InvalidOperatorException;
 
 /**
  * Super class for entity fields used in the modules
  * 
- * @author djo, r3hallejo
+ * @author CloutierJo, r3hallejo
+ * @param <T> type de field
  */
-public abstract class Field
+public abstract class Field<T>
 {
+    T data;
     private String name; // Name is the name that is visible by the end-user
     private String shortName; // Short name is the name that is used internally
     protected String operator;
     private Boolean hidden = false;
     private Boolean readOnly = false;
     private Boolean isNaturalKey = false;
+    private FieldValidator<T> validator;
 
     /**
      * default constructor
@@ -25,7 +26,8 @@ public abstract class Field
     @SuppressWarnings("unused")
     private Field()
     {
-	// on ne doit pas pouvoir initialiser un Field sans son name etshortName
+	// on ne doit pas pouvoir initialiser un Field sans son name et
+	// shortName
     }
 
     /**
@@ -34,13 +36,60 @@ public abstract class Field
      * @param data donne du champ
      * @param name nom du champ qui sera visible par l'utilisateur
      * @param shortName nom du champ qui sera utiliser a l'interne
+     * @throws InvalidOperatorException remonte
      */
-    public Field(String name, String shortName)
+    public Field(String name, String shortName) throws InvalidOperatorException
     {
+	this(name, shortName, null);
+    }
+
+    /**
+     * constructeur minimum
+     * 
+     * @param name nom du champ qui sera visible par l'utilisateur
+     * @param shortName nom du champ qui sera utiliser a l'interne
+     * @param data donne du champ
+     * @throws InvalidOperatorException remonte
+     */
+    public Field(String name, String shortName, T data)
+	    throws InvalidOperatorException
+    {
+
 	this.name = name;
 	// TODO: validate that shortName are really shortName
 	this.shortName = shortName;
+	this.data = data;
+	setOperator("=");
+	setValidator(new FieldValidator<T>()
+	{
+	    public boolean validate(T value)
+	    {
+		return true;
+	    }
+	});
     }
+
+    /**
+     * @param data the data to set
+     * @throws Exception remonte
+     */
+    public abstract void setData(String data) throws Exception;
+
+    /**
+     * Validation on operators will be done in the fields types
+     * 
+     * @param operator the operator to set in the field
+     * @throws InvalidOperatorException if an operator is wrong for the data
+     *             type
+     */
+    public abstract void setOperator(String operator)
+	    throws InvalidOperatorException;
+
+    /**
+     * definie la valeur par defaut (devrais etre une valeur null)
+     * @throws FieldNotCompatibleException remonte
+     */
+    public abstract void setDefaultValue() throws FieldNotCompatibleException;
 
     /**
      * @return the name
@@ -72,37 +121,38 @@ public abstract class Field
      *            par défaut false
      * @return the data
      */
-    public abstract String getDataString(Boolean forOrm);
+    public String getDataString(Boolean forOrm)
+    {
+	if (data == null)
+	    return "";
+	if (forOrm)
+	    return addSlash(data.toString());
+	return data.toString();
+    }
 
     /**
      * @return the data
      */
-    public abstract Object getData();
+    public T getData()
+    {
+	return data;
+    }
 
     /**
      * @param data the data to set
-     * @throws ParseException an exception that can occur during parsing dates
-     * @throws Exception remonte
      */
-    public abstract void setData(String data) throws ParseException, Exception;
+    protected void setDataType(T data)
+    {
+	if (validator.validate(data))
+	    this.data = data;
+    }
 
     /**
      * @param data the data to set
-     * @throws FieldNotCompatibleException si le type ne correspond pas avec le
-     *             champ demande
+     * @throws FieldNotCompatibleException remonte
      */
     public abstract void setData(Object data)
 	    throws FieldNotCompatibleException;
-
-    /**
-     * Validation on operators will be done in the fields types
-     * 
-     * @param operator the operator to set in the field
-     * @throws InvalidOperatorException if an operator is wrong for the data
-     *             type
-     */
-    public abstract void setOperator(String operator)
-	    throws InvalidOperatorException;
 
     /**
      * @return the operator
@@ -144,43 +194,6 @@ public abstract class Field
 	return readOnly;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.lang.Object#equals(java.lang.Object)
-     */
-    public boolean equals(Object obj)
-    {
-	if (this == obj)
-	    return true;
-	if (obj == null)
-	    return false;
-	if (!(obj instanceof Field))
-	    return false;
-	Field other = (Field) obj;
-	if (name == null)
-	{
-	    if (other.name != null)
-		return false;
-	}
-	else if (!name.equals(other.name))
-	    return false;
-	if (shortName == null)
-	{
-	    if (other.shortName != null)
-		return false;
-	}
-	else if (!shortName.equals(other.shortName))
-	    return false;
-	return true;
-    }
-
-    /**
-     * definie la valeur par defaut (devrais etre une valeur null)
-     * @throws FieldNotCompatibleException remonte
-     */
-    public abstract void setDefaultValue() throws FieldNotCompatibleException;
-
     public String toString()
     {
 	return "{" + getClass().getSimpleName() + ":" + getDataString() + "}";
@@ -188,7 +201,7 @@ public abstract class Field
 
     protected String addSlash(String str)
     {
-	str = str.replace("'", "''");
+	str = str.replace("'", "`");
 	return str;
     }
 
@@ -214,5 +227,60 @@ public abstract class Field
     public final void setNaturalKey(boolean isNaturalKey)
     {
 	this.isNaturalKey = isNaturalKey;
+    }
+
+    /**
+     * @param fieldValidator un validateur
+     * @param validator the validator to set
+     */
+    public void setValidator(FieldValidator<T> fieldValidator)
+    {
+	validator = fieldValidator;
+    }
+
+    /**
+     * @return the validator
+     */
+    public FieldValidator<T> getValidator()
+    {
+	return validator;
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
+    public boolean equals(Object obj)
+    {
+	if (this == obj)
+	    return true;
+	if (obj == null)
+	    return false;
+	if (!(obj instanceof Field))
+	    return false;
+	Field<?> other = (Field<?>) obj;
+	if (data == null)
+	{
+	    if (other.data != null)
+		return false;
+	}
+	else if (!data.equals(other.data))
+	    return false;
+	if (name == null)
+	{
+	    if (other.name != null)
+		return false;
+	}
+	else if (!name.equals(other.name))
+	    return false;
+	if (shortName == null)
+	{
+	    if (other.shortName != null)
+		return false;
+	}
+	else if (!shortName.equals(other.shortName))
+	    return false;
+	return true;
     }
 }

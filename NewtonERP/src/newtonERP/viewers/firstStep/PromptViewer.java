@@ -44,7 +44,7 @@ public class PromptViewer
 
 	html += "<table>";
 
-	for (Field field : promptData.getData().getFields())
+	for (Field<?> field : promptData.getData().getFields())
 	{
 
 	    ListOfValue listOfValue = promptData.getData().tryMatchListOfValue(

@@ -52,7 +52,7 @@ public class Form extends PromptViewerData
     /**
      * @param field un field a ajouter
      */
-    public void addField(Field field)
+    public void addField(Field<?> field)
     {
 	((VolatilEntity) getData()).addField(field);
     }

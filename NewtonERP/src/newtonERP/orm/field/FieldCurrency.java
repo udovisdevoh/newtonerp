@@ -3,10 +3,12 @@ package newtonERP.orm.field;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
+import newtonERP.module.exception.InvalidOperatorException;
+
 /**
  * Double field in the entities
  * 
- * @author djo
+ * @author CloutierJo
  */
 public class FieldCurrency extends FieldDouble
 {
@@ -19,8 +21,10 @@ public class FieldCurrency extends FieldDouble
      * @param name nom du champ qui sera visible par l'utilisateur
      * @param shortName nom du champ qui sera utiliser a l'interne
      * @param data donne du champ
+     * @throws InvalidOperatorException remonte
      */
     public FieldCurrency(String name, String shortName, Double data)
+	    throws InvalidOperatorException
     {
 	super(name, shortName, data);
 	df.setGroupingUsed(false);
@@ -29,8 +33,10 @@ public class FieldCurrency extends FieldDouble
     /**
      * @param name nom du champ qui sera visible par l'utilisateur
      * @param shortName nom du champ qui sera utiliser a l'interne
+     * @throws InvalidOperatorException remonte
      */
     public FieldCurrency(String name, String shortName)
+	    throws InvalidOperatorException
     {
 	this(name, shortName, null);
     }

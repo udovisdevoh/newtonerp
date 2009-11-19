@@ -36,7 +36,7 @@ public class VolatilEntity extends AbstractEntity
     public void addField(String label, String fieldName, String currentValue)
 	    throws Exception
     {
-	Field field = new FieldString(label, fieldName);
+	Field<?> field = new FieldString(label, fieldName);
 	field.setData(currentValue);
 	addField(field);
     }
@@ -54,7 +54,7 @@ public class VolatilEntity extends AbstractEntity
     /**
      * @param field un field a ajouter
      */
-    public void addField(Field field)
+    public void addField(Field<?> field)
     {
 	((VolatileFields) (getFields())).add(field);
     }

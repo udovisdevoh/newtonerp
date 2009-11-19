@@ -8,44 +8,31 @@ import newtonERP.module.exception.InvalidOperatorException;
  * 
  * @author CloutierJo, r3hallejo
  */
-public class FieldBool extends Field
+public class FieldBool extends Field<Boolean>
 {
-    Boolean data;
-
     /**
      * constructeur minimum
      * 
      * @param name nom du champ qui sera visible par l'utilisateur
      * @param shortName nom du champ qui sera utiliser a l'interne
      * @param data donne du champ
+     * @throws InvalidOperatorException remonte
      */
     public FieldBool(String name, String shortName, Boolean data)
+	    throws InvalidOperatorException
     {
-	super(name, shortName);
-	this.data = data;
-	operator = "=";
+	super(name, shortName, data);
     }
 
     /**
      * @param name nom du champ qui sera visible par l'utilisateur
      * @param shortName nom du champ qui sera utiliser a l'interne
+     * @throws InvalidOperatorException remonte
      */
     public FieldBool(String name, String shortName)
+	    throws InvalidOperatorException
     {
 	this(name, shortName, null);
-    }
-
-    private void setDataB(Boolean data)
-    {
-	this.data = data;
-    }
-
-    /**
-     * @param data the data to set
-     */
-    public void setData(Boolean data)
-    {
-	setDataB(data);
     }
 
     @Override
@@ -70,44 +57,10 @@ public class FieldBool extends Field
 	if (data.toLowerCase().equals("on")
 		|| data.toLowerCase().equals("true"))
 	{
-	    this.data = true;
-	    return;
+	    setDataType(true);
 	}
-
-	this.data = Boolean.parseBoolean(data);
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.lang.Object#equals(java.lang.Object)
-     */
-    public boolean equals(Object obj)
-    {
-	if (this == obj)
-	    return true;
-	if (!super.equals(obj))
-	    return false;
-	if (!(obj instanceof FieldBool))
-	    return false;
-	FieldBool other = (FieldBool) obj;
-	if (data != other.data)
-	    return false;
-	return true;
-    }
-
-    public Boolean getData()
-    {
-	// TODO Auto-generated method stub
-	return data;
-    }
-
-    public void setData(Object data) throws FieldNotCompatibleException
-    {
-	if (data instanceof Boolean)
-	    setDataB((Boolean) data);
 	else
-	    throw new FieldNotCompatibleException(getShortName(), data);
+	    setDataType(Boolean.parseBoolean(data));
     }
 
     @Override
@@ -120,13 +73,21 @@ public class FieldBool extends Field
 	    super.operator = operator;
 	}
 	else
-	    throw new InvalidOperatorException("Opérateur invalide pour "
-		    + getClass().getSimpleName());
+	    throw new InvalidOperatorException("Opérateur ( " + operator
+		    + " ) invalide pour " + getSystemName());
     }
 
     @Override
     public void setDefaultValue() throws FieldNotCompatibleException
     {
 	data = false;
+    }
+
+    public void setData(Object data) throws FieldNotCompatibleException
+    {
+	if (data instanceof Boolean)
+	    setDataType((Boolean) data);
+	else
+	    throw new FieldNotCompatibleException(getShortName(), data);
     }
 }

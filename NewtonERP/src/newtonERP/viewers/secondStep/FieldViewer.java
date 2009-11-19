@@ -20,7 +20,7 @@ public class FieldViewer
      * @return les code html
      * @throws Exception remonte
      */
-    public static String getHtmlCode(Field field) throws Exception
+    public static String getHtmlCode(Field<?> field) throws Exception
     {
 	String html;
 	if (field instanceof FieldBool)
@@ -40,7 +40,7 @@ public class FieldViewer
 
     }
 
-    private static String currencyViewer(Field field)
+    private static String currencyViewer(Field<?> field)
     {
 	String moneyFormatStyle = " style=\"width:80px;text-align:right\"";
 	String textFieldType = "";
@@ -60,37 +60,32 @@ public class FieldViewer
 		+ field.getDataString() + "' class='textField' />";
     }
 
-    private static String textViewer(Field field)
+    private static String textViewer(Field<?> field)
     {
+	String longText = "";
 	if (!((FieldText) field).isVeryLong())
-	    return "<textarea class='textField' name='"
-		    + field.getShortName()
-		    + "'>"
-		    + field.getDataString()
-		    + "</textarea><div class=\"printableText\">"
-		    + field.getDataString().replace("'", "&#39;").replace("\n",
-			    "<br />") + "</div></td></tr>";
+	    longText = "textField";
+	else
+	    longText = "textFieldLong";
 
-	return "<textarea class='textFieldLong' name='"
-		+ field.getShortName()
-		+ "'>"
-		+ field.getDataString()
+	return "<textarea class='" + longText + "' name='"
+		+ field.getShortName() + "'>" + field.getDataString()
 		+ "</textarea><div class=\"printableText\">"
-		+ field.getDataString().replace("'", "&#39;").replace("\n",
-			"<br />") + "</div></td></tr>";
+		+ field.getDataString().replace("\n", "<br />")
+		+ "</div></td></tr>";
     }
 
-    private static String dateTimeViewer(Field field)
+    private static String dateTimeViewer(Field<?> field)
     {
 	return otherViewer(field);
     }
 
-    private static String numberViewer(Field field)
+    private static String numberViewer(Field<?> field)
     {
 	return otherViewer(field);
     }
 
-    private static String boolViewer(Field field)
+    private static String boolViewer(Field<?> field)
     {
 	String html = "";
 	String yesIsChecked, noIsChecked;
@@ -114,7 +109,7 @@ public class FieldViewer
 	return html;
     }
 
-    private static String otherViewer(Field field)
+    private static String otherViewer(Field<?> field)
     {
 	String textFieldType = "";
 	String isReadOnly = "";
@@ -127,12 +122,10 @@ public class FieldViewer
 	if (field.isReadOnly())
 	    return "<input type='hidden' name='" + field.getShortName()
 		    + "' value='" + field.getDataString()
-		    + "' class='textField' />"
-		    + field.getDataString().replace("'", "&#39;");
+		    + "' class='textField' />" + field.getDataString();
 
 	return "<input type='" + textFieldType + "' name='"
-		+ field.getShortName() + "' value='"
-		+ field.getDataString().replace("'", "&#39;")
+		+ field.getShortName() + "' value='" + field.getDataString()
 		+ "' class='textField'" + isReadOnly + " />";
     }
 }
