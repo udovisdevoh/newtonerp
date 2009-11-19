@@ -33,6 +33,10 @@ public class SgbdSqlite implements Sgbdable
 		ResultSet rs = stat.executeQuery(request);
 		return rs;
 	    }
+	    else if (action.equals(OrmActions.OTHER))
+	    {
+		stat.executeQuery(request);
+	    }
 
 	    stat.execute(request);
 	    return stat.getGeneratedKeys();
