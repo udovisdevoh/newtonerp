@@ -39,14 +39,12 @@ public class ServiceTransaction extends AbstractOrmEntity
     @Override
     public Fields initFields() throws Exception
     {
-	FieldString service = new FieldString("Service", "service");
-	service.setNaturalKey(true);
-
+	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
 	FieldInt primaryKey = new FieldInt("Numéro", getPrimaryKeyName());
 	primaryKey.setNaturalKey(true);
-
-	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
 	fieldsInit.add(primaryKey);
+	FieldString service = new FieldString("Service", "service");
+	service.setNaturalKey(true);
 	fieldsInit.add(service);
 	fieldsInit.add(new FieldDate("Échéance", "deadline"));
 	fieldsInit.add(new FieldDate("Date de paiement", "paymentDate"));
