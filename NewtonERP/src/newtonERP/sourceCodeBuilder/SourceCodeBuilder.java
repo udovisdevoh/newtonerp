@@ -1,5 +1,6 @@
 package newtonERP.sourceCodeBuilder;
 
+import modules.taskModule.entityDefinitions.EntityEntity;
 import modules.taskModule.entityDefinitions.ModuleEntity;
 
 /**
@@ -17,5 +18,16 @@ public class SourceCodeBuilder
 	    throws Exception
     {
 	return ModuleSourceCodeBuilder.build(moduleEntity);
+    }
+
+    /**
+     * @param entityEntity entité pour laquelle on veut le code source
+     * @return code source d'une entité
+     * @throws Exception si construction fail
+     */
+    public static String buildEntitySourceCode(EntityEntity entityEntity)
+	    throws Exception
+    {
+	return EntitySourceCodeBuilder.build(entityEntity);
     }
 }

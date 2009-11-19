@@ -3,6 +3,8 @@ package modules.taskModule.entityDefinitions;
 import java.util.Hashtable;
 import java.util.Vector;
 
+import modules.taskModule.actions.ViewEntitySource;
+import newtonERP.common.ActionLink;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.Module;
@@ -56,6 +58,18 @@ public class EntityEntity extends AbstractOrmEntity
 	 * l'effacement vers GetList
 	 */
 	ListViewerData entityList = super.getList();
+	return entityList;
+    }
+
+    @Override
+    public ListViewerData getList(Hashtable<String, String> parameters)
+	    throws Exception
+    {
+	parameters.put(getPrimaryKeyName(), "&");
+
+	ListViewerData entityList = super.getList(parameters);
+	entityList.addSpecificActionButtonList(new ActionLink(
+		"Générer code source", new ViewEntitySource(), parameters));
 	return entityList;
     }
 
