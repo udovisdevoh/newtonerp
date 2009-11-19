@@ -42,6 +42,38 @@ public class Orm
     private static String prefix = "Newton_";
 
     /**
+     * Alter table
+     * 
+     * @param entity the entity containing the new field
+     * @param field the field to add
+     * @throws OrmException an exception that can occur in the orm
+     */
+    public static void addColumnToTable(AbstractOrmEntity entity, Field<?> field)
+	    throws OrmException
+    {
+	String sqlQuery = "ALTER TABLE " + prefix + entity.getSystemName()
+		+ " ADD COLUMN " + field.getShortName();
+
+	if (field instanceof FieldDouble)
+	{
+	    sqlQuery += field.getShortName() + " DOUBLE PRECISION;";
+	}
+	else if (field instanceof FieldString || field instanceof FieldDateTime)
+	{
+	    sqlQuery += field.getShortName() + " STRING;";
+	}
+	else if (field instanceof FieldBool || field instanceof FieldInt)
+	{
+	    sqlQuery += field.getShortName() + " INTEGER;";
+	}
+
+	// TODO: Remove the next line when it will be properly debugged
+	System.out.println("SQL query produced : " + sqlQuery);
+
+	sgbd.execute(sqlQuery, OrmActions.OTHER);
+    }
+
+    /**
      * Use only for complex queries. Use the select that takes only a vector of
      * entities instead
      * 

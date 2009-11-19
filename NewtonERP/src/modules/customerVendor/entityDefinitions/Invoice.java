@@ -50,10 +50,8 @@ public class Invoice extends AbstractOrmEntity
 	Vector<Field<?>> fieldList = new Vector<Field<?>>();
 	fieldList.add(primaryKey);
 	FieldCurrency total = new FieldCurrency("Total", "total");
-	total.setReadOnly(true);
 	fieldList.add(total);
 	FieldCurrency taxTotal = new FieldCurrency("Total taxes", "taxTotal");
-	taxTotal.setReadOnly(true);
 	fieldList.add(taxTotal);
 	fieldList.add(merchant);
 	fieldList.add(date);

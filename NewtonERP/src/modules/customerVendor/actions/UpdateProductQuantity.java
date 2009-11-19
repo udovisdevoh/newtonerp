@@ -43,8 +43,10 @@ public class UpdateProductQuantity extends AbstractAction
 		.getPrimaryKeyValue());
 	Vector<AbstractOrmEntity> invoiceLines = Orm.select(invoiceLine);
 
-	if (actionInvoice.getData("isForCustomer").equals(true)
-		&& actionInvoice.getData("isForSupplier").equals(true))
+	if ((actionInvoice.getData("isForCustomer").equals(true) && actionInvoice
+		.getData("isForSupplier").equals(true))
+		|| (actionInvoice.getData("isForCustomer").equals(false) && actionInvoice
+			.getData("isForSupplier").equals(false)))
 	{
 	    ListViewerData invoiceList = new Invoice().getList();
 	    invoiceList
