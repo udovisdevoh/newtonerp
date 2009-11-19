@@ -764,11 +764,13 @@ par exemple, si on delete un Group, alors les GroupRight WHERE GroupID = ce grou
 
 ==Pascal Lemay==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
-  * ...livré...
+  * Actions de gestion: (DisplayUnpaidService), et (début de payingService)
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
-  * ...à livrer...
+  * Poursuivre payingService
+  * Débuter payingSupplier
+  * Action de débiter d'un compte bancaire
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
-  * ...problème, besoin d'aide, qui aidera...
+  * Un peu ; il m'a fallu expérimenter pas mal donc pas mal de temps pour peu de résultat...
 
 ==Gabriel Therrien==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
@@ -824,11 +826,14 @@ par exemple, si on delete un Group, alors les GroupRight WHERE GroupID = ce grou
 
 ==Pascal Lemay==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
-  * ...livré...
+  * PayingService (à terminer)
+  * PayingSupplier (à terminer)
+  * DebitFromBankAccount(à terminer)
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
-  * ...à livrer...
+  * Terminer si possible les trois actions metionnées plus haut
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
-  * ...problème, besoin d'aide, qui aidera...
+  * oui, petit problème pour récupération d'un field,trop long à expliquer ici...
+  * à voir avec jo.
 
 ==Gabriel Therrien==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
