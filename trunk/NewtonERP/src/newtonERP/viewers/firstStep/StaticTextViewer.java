@@ -14,7 +14,8 @@ public class StaticTextViewer
      */
     public static String getHtmlCode(StaticTextViewable entity)
     {
-	return "<pre>" + entity.getText().replace('<', ' ').replace('>', ' ')
+	return "<pre>"
+		+ entity.getText().replace("<", "&lt;").replace(">", "&gt;")
 		+ "</pre>";
     }
 }

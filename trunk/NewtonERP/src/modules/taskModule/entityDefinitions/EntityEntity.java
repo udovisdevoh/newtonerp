@@ -1,6 +1,7 @@
 package modules.taskModule.entityDefinitions;
 
 import java.util.Hashtable;
+import java.util.Iterator;
 import java.util.Vector;
 
 import modules.taskModule.actions.ViewEntitySource;
@@ -9,6 +10,7 @@ import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.Module;
 import newtonERP.orm.associations.AccessorManager;
+import newtonERP.orm.associations.PluralAccessor;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.FieldString;
@@ -19,7 +21,8 @@ import newtonERP.viewers.viewerData.ListViewerData;
  * Représente une définition d'entité pour une entité
  * @author Guillaume Lacasse
  */
-public class EntityEntity extends AbstractOrmEntity
+public class EntityEntity extends AbstractOrmEntity implements
+	Iterable<FieldEntity>
 {
     /**
      * @throws Exception si création fail
@@ -93,5 +96,26 @@ public class EntityEntity extends AbstractOrmEntity
     {
 	return (ModuleEntity) getSingleAccessor(new ModuleEntity()
 		.getForeignKeyName());
+    }
+
+    @Override
+    public Iterator<FieldEntity> iterator()
+    {
+	Vector<FieldEntity> fieldEntityVector = new Vector<FieldEntity>();
+	PluralAccessor accessor;
+	try
+	{
+	    accessor = getPluralAccessor("FieldEntity");
+	    for (AbstractOrmEntity entity : accessor)
+		fieldEntityVector.add((FieldEntity) entity);
+	} catch (Exception e)
+	{
+	    e.printStackTrace();
+	    // Obligé de faire un catch car iterator() ne peut pas avoir de
+	    // throws pour lancer
+	    // d'exception non-gérée, maudites exceptions de Java
+	}
+
+	return fieldEntityVector.iterator();
     }
 }

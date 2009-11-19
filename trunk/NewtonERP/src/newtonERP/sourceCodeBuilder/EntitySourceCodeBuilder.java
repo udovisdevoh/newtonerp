@@ -1,6 +1,8 @@
 package newtonERP.sourceCodeBuilder;
 
 import modules.taskModule.entityDefinitions.EntityEntity;
+import modules.taskModule.entityDefinitions.FieldEntity;
+import modules.taskModule.entityDefinitions.FieldTypeEntity;
 import modules.taskModule.entityDefinitions.ModuleEntity;
 import newtonERP.orm.Orm;
 
@@ -25,8 +27,123 @@ public class EntitySourceCodeBuilder
 		+ ".entityDefinitions;\n";
 	sourceCode += "\n";
 	sourceCode += "import newtonERP.orm.field.*;\n";
+	sourceCode += "import newtonERP.orm.associations.AccessorManager;\n";
+	sourceCode += "import newtonERP.module.AbstractOrmEntity;\n";
+	sourceCode += "import java.util.Hashtable;\n";
+	sourceCode += "import java.util.Vector;\n";
+
+	sourceCode += "\n";
+	sourceCode += "/**\n";
+	sourceCode += " * " + getVisibleName(entityEntity) + "\n";
+	sourceCode += " * @author NewtonERP code generator\n";
+	sourceCode += " */\n";
+	sourceCode += "public class " + getSystemName(entityEntity)
+		+ " extends AbstractOrmEntity\n";
+	sourceCode += "{\n";
+	sourceCode += "    /**\n";
+	sourceCode += "     * constructor\n";
+	sourceCode += "     * @throws Exception remonte\n";
+	sourceCode += "     */\n";
+	sourceCode += "    public " + getSystemName(entityEntity)
+		+ "() throws Exception\n";
+	sourceCode += "    {\n";
+	sourceCode += "        super();\n";
+	sourceCode += "        setVisibleName(\""
+		+ getVisibleName(entityEntity) + "\");\n";
+
+	sourceCode += "    }\n";
+	sourceCode += "\n";
+	sourceCode += "    public Fields initFields() throws Exception\n";
+	sourceCode += "    {\n";
+
+	sourceCode += "        Vector<Field<?>> fieldList = new Vector<Field<?>>();\n";
+	sourceCode += getFieldsCode(entityEntity);
+	sourceCode += "        return new Fields(fieldList);\n";
+	sourceCode += "    }\n";
+	sourceCode += "}\n";
 
 	return sourceCode;
+    }
+
+    private static String getFieldsCode(EntityEntity entityEntity)
+	    throws Exception
+    {
+	String sourceCode = "";
+	for (FieldEntity fieldEntity : entityEntity)
+	    sourceCode += getFieldCode(fieldEntity);
+	return sourceCode;
+    }
+
+    private static String getFieldCode(FieldEntity fieldEntity)
+	    throws Exception
+    {
+	String sourceCode = "";
+
+	sourceCode += "\n";
+	sourceCode += "        " + getFieldType(fieldEntity) + " "
+		+ getSystemName(fieldEntity) + " = new "
+		+ getFieldType(fieldEntity) + "(\""
+		+ getVisibleName(fieldEntity) + "\", \""
+		+ getSystemName(fieldEntity) + "\");\n";
+
+	if (isNaturalKey(fieldEntity))
+	    sourceCode += "        " + getSystemName(fieldEntity)
+		    + ".setNaturalKey(true);\n";
+	if (isHidden(fieldEntity))
+	    sourceCode += "        " + getSystemName(fieldEntity)
+		    + ".setHidden(true);\n";
+	if (isReadOnly(fieldEntity))
+	    sourceCode += "        " + getSystemName(fieldEntity)
+		    + ".setReadOnly(true);\n";
+
+	sourceCode += "        fieldList.add(" + getSystemName(fieldEntity)
+		+ ");\n";
+
+	return sourceCode;
+    }
+
+    private static boolean isHidden(FieldEntity fieldEntity)
+    {
+	return (Boolean) fieldEntity.getData("hidden");
+    }
+
+    private static boolean isReadOnly(FieldEntity fieldEntity)
+    {
+	return (Boolean) fieldEntity.getData("readOnly");
+    }
+
+    private static boolean isNaturalKey(FieldEntity fieldEntity)
+    {
+	return (Boolean) fieldEntity.getData("naturalKey");
+    }
+
+    private static String getVisibleName(FieldEntity fieldEntity)
+    {
+	return fieldEntity.getDataString("visibleName");
+    }
+
+    private static String getFieldType(FieldEntity fieldEntity)
+	    throws Exception
+    {
+	FieldTypeEntity fieldType = (FieldTypeEntity) fieldEntity
+		.getSingleAccessor(new FieldTypeEntity().getForeignKeyName());
+
+	return fieldType.getDataString("systemName");
+    }
+
+    private static String getSystemName(FieldEntity fieldEntity)
+    {
+	return fieldEntity.getDataString("name");
+    }
+
+    private static String getSystemName(EntityEntity entityEntity)
+    {
+	return entityEntity.getDataString("systemName");
+    }
+
+    private static String getVisibleName(EntityEntity entityEntity)
+    {
+	return entityEntity.getDataString("visibleName");
     }
 
     private static String getPackageName(EntityEntity entityEntity)
