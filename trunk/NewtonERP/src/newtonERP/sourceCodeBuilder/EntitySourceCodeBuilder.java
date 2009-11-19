@@ -1,6 +1,7 @@
 package newtonERP.sourceCodeBuilder;
 
 import modules.taskModule.entityDefinitions.EntityEntity;
+import modules.taskModule.entityDefinitions.ModuleEntity;
 import newtonERP.orm.Orm;
 
 /**
@@ -20,10 +21,26 @@ public class EntitySourceCodeBuilder
 
 	String sourceCode = "";
 
-	sourceCode += "//TEST1\n";
-	sourceCode += "//TEST2\n";
+	sourceCode += "package modules." + getPackageName(entityEntity)
+		+ ".entityDefinitions;\n";
+	sourceCode += "\n";
+	sourceCode += "import newtonERP.orm.field.*;\n";
 
 	return sourceCode;
+    }
+
+    private static String getPackageName(EntityEntity entityEntity)
+	    throws Exception
+    {
+	return ModuleSourceCodeBuilder
+		.getPackageName(getModuleEntity(entityEntity));
+    }
+
+    private static ModuleEntity getModuleEntity(EntityEntity entityEntity)
+	    throws Exception
+    {
+	return (ModuleEntity) entityEntity.getSingleAccessor(new ModuleEntity()
+		.getForeignKeyName());
     }
 
 }

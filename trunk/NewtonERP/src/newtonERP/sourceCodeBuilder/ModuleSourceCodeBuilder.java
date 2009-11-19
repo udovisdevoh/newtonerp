@@ -56,7 +56,7 @@ public class ModuleSourceCodeBuilder
 	return moduleEntity.getDataString("visibleName");
     }
 
-    private static String getPackageName(ModuleEntity moduleEntity)
+    protected static String getPackageName(ModuleEntity moduleEntity)
     {
 	return getSystemName(moduleEntity).substring(0, 1).toLowerCase()
 		+ getSystemName(moduleEntity).substring(1);
