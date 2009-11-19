@@ -1,10 +1,13 @@
 package newtonERP.sourceCodeBuilder;
 
+import modules.taskModule.entityDefinitions.AccessorEntity;
 import modules.taskModule.entityDefinitions.EntityEntity;
 import modules.taskModule.entityDefinitions.FieldEntity;
 import modules.taskModule.entityDefinitions.FieldTypeEntity;
 import modules.taskModule.entityDefinitions.ModuleEntity;
+import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.Orm;
+import newtonERP.orm.associations.PluralAccessor;
 
 /**
  * Sert à générer le code source d'une entité
@@ -51,6 +54,8 @@ public class EntitySourceCodeBuilder
 	sourceCode += "        setVisibleName(\""
 		+ getVisibleName(entityEntity) + "\");\n";
 
+	sourceCode += getAccessorListCode(entityEntity);
+
 	sourceCode += "    }\n";
 	sourceCode += "\n";
 	sourceCode += "    public Fields initFields() throws Exception\n";
@@ -63,6 +68,29 @@ public class EntitySourceCodeBuilder
 	sourceCode += "}\n";
 
 	return sourceCode;
+    }
+
+    private static String getAccessorListCode(EntityEntity entityEntity)
+	    throws Exception
+    {
+	String sourceCode = "";
+
+	PluralAccessor accessorList = entityEntity
+		.getPluralAccessor("AccessorEntity");
+
+	for (AbstractOrmEntity entity : accessorList)
+	{
+	    AccessorEntity accessorEntity = (AccessorEntity) entity;
+	    sourceCode += "        AccessorManager.addAccessor(this, new "
+		    + getForeignEntityName(accessorEntity) + "());\n";
+	}
+
+	return sourceCode;
+    }
+
+    private static String getForeignEntityName(AccessorEntity accessorEntity)
+    {
+	return accessorEntity.getDataString("foreignEntityName");
     }
 
     private static String getFieldsCode(EntityEntity entityEntity)
