@@ -1,6 +1,7 @@
 package newtonERP.module;
 
 import java.io.File;
+import java.util.Collection;
 import java.util.Hashtable;
 
 import modules.userRightModule.entityDefinitions.Groups;
@@ -85,6 +86,8 @@ public abstract class Module
     private String defaultEntity;
 
     private String visibleName;
+
+    private NaturalMap<String, AbstractAction> defaultBehaviorMenu;
 
     /**
      * constructeur par default
@@ -363,9 +366,7 @@ public abstract class Module
      */
     public final void addGlobalActionMenuItem(String name, AbstractAction action)
     {
-	if (globalActionList == null)
-	    globalActionList = new NaturalMap<String, AbstractAction>();
-	globalActionList.put(name, action);
+	getGlobalActionMenu().put(name, action);
     }
 
     /**
@@ -463,5 +464,44 @@ public abstract class Module
     public String getSystemName()
     {
 	return getClass().getSimpleName();
+    }
+
+    /**
+     * @return retourne les élément du menu du module peu importe qu'ils aient
+     *         été spécifiés ou pas (cas pour lequel les éléments par défault
+     *         seront des GetList sur chaque entité du module)
+     * @throws Exception si obtention fail
+     */
+    public NaturalMap<String, AbstractAction> getGlobalActionMenuOrReturnDefaultBehavior()
+	    throws Exception
+    {
+	if (getGlobalActionMenu().size() < 1)
+	    return getDefaultBehaviorMenu();
+	return getGlobalActionMenu();
+    }
+
+    private NaturalMap<String, AbstractAction> getDefaultBehaviorMenu()
+	    throws Exception
+    {
+	if (defaultBehaviorMenu == null)
+	{
+	    defaultBehaviorMenu = new NaturalMap<String, AbstractAction>();
+	    Collection<AbstractOrmEntity> currentEntityDefinitionList = getEntityDefinitionList()
+		    .values();
+	    for (AbstractOrmEntity entity : currentEntityDefinitionList)
+	    {
+		if (entity == null)
+		    continue;
+		entity.initFields();
+		String visibleActionName = entity.getVisibleName();
+
+		if (visibleActionName == null)
+		    continue;
+		if (!defaultBehaviorMenu.containsKey(visibleActionName))
+		    defaultBehaviorMenu.put(visibleActionName, new BaseAction(
+			    "GetList", entity.getClass().newInstance()));
+	    }
+	}
+	return defaultBehaviorMenu;
     }
 }
