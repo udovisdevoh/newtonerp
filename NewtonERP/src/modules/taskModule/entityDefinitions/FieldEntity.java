@@ -33,7 +33,7 @@ public class FieldEntity extends AbstractOrmEntity
 	FieldString visibleName = new FieldString("Nom visible", "visibleName");
 	visibleName.setNaturalKey(true);
 
-	Vector<Field> fieldList = new Vector<Field>();
+	Vector<Field<?>> fieldList = new Vector<Field<?>>();
 	fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
 	fieldList.add(new FieldString("Nom", "name"));
 	fieldList.add(visibleName);

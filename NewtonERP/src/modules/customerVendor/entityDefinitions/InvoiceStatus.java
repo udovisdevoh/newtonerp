@@ -34,7 +34,7 @@ public class InvoiceStatus extends AbstractOrmEntity
     @Override
     public Fields initFields() throws Exception
     {
-	Vector<Field> fieldList = new Vector<Field>();
+	Vector<Field<?>> fieldList = new Vector<Field<?>>();
 	fieldList.add(new FieldInt("Numero", getPrimaryKeyName()));
 	fieldList.add(new FieldString("Status", "status"));
 	return new Fields(fieldList);

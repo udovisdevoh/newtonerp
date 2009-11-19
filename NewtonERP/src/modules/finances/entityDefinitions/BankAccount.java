@@ -34,7 +34,7 @@ public class BankAccount extends AbstractOrmEntity
 	FieldString folio = new FieldString("Folio", "folio");
 	folio.setNaturalKey(true);
 
-	Vector<Field> fieldsInit = new Vector<Field>();
+	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
 	fieldsInit.add(new FieldInt("Numéro", getPrimaryKeyName()));
 	fieldsInit.add(folio);
 	fieldsInit.add(new FieldCurrency("Solde", "balance"));

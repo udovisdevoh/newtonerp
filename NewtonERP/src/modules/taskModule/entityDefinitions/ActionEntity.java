@@ -40,7 +40,7 @@ public class ActionEntity extends AbstractOrmEntity
 	FieldString systemName = new FieldString("Nom système", "systemName");
 	systemName.setNaturalKey(true);
 
-	Vector<Field> fieldList = new Vector<Field>();
+	Vector<Field<?>> fieldList = new Vector<Field<?>>();
 	fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
 	fieldList.add(systemName);
 	fieldList.add(moduleEntity);

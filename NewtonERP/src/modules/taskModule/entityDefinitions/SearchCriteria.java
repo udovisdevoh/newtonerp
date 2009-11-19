@@ -40,7 +40,7 @@ public class SearchCriteria extends AbstractOrmEntity
 	FieldText value = new FieldText("Valeur", "value", false);
 	value.setNaturalKey(true);
 
-	Vector<Field> fieldList = new Vector<Field>();
+	Vector<Field<?>> fieldList = new Vector<Field<?>>();
 	fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
 	fieldList.add(new FieldInt("Entité de recherche", new SearchEntity()
 		.getForeignKeyName()));

@@ -28,7 +28,7 @@ public class StateType extends AbstractOrmEntity
     @Override
     public Fields initFields() throws Exception
     {
-	Vector<Field> fieldsInit = new Vector<Field>();
+	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
 	fieldsInit.add(new FieldInt("Numéro", getPrimaryKeyName()));
 	fieldsInit.add(new FieldString("Description", "name"));
 	return new Fields(fieldsInit);

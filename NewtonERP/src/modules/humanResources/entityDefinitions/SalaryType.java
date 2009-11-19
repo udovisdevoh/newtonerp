@@ -30,7 +30,7 @@ public class SalaryType extends AbstractOrmEntity
 	FieldString salaryType = new FieldString("type", "SalaryType");
 	salaryType.setNaturalKey(true);
 
-	Vector<Field> fieldsData = new Vector<Field>();
+	Vector<Field<?>> fieldsData = new Vector<Field<?>>();
 	fieldsData.add(new FieldInt("Numéro de type", getPrimaryKeyName()));
 	fieldsData.add(salaryType);
 

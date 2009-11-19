@@ -29,7 +29,7 @@ public class MaintenanceStatusType extends AbstractOrmEntity
     @Override
     public Fields initFields() throws Exception
     {
-	Vector<Field> fieldsInit = new Vector<Field>();
+	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
 	fieldsInit.add(new FieldInt("Numero du status", getPrimaryKeyName()));
 	fieldsInit.add(new FieldString("Status", "status"));
 	return new Fields(fieldsInit);

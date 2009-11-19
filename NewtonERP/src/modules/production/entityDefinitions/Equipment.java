@@ -28,7 +28,7 @@ public class Equipment extends AbstractOrmEntity
     @Override
     public Fields initFields() throws Exception
     {
-	Vector<Field> fieldList = new Vector<Field>();
+	Vector<Field<?>> fieldList = new Vector<Field<?>>();
 	fieldList.add(new FieldInt("Numero", getPrimaryKeyName()));
 	fieldList.add(new FieldString("Nom", "name"));
 	return new Fields(fieldList);

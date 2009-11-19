@@ -31,7 +31,7 @@ public class Country extends AbstractOrmEntity
 	FieldString name = new FieldString("Nom", "name");
 	name.setNaturalKey(true);
 
-	Vector<Field> fieldList = new Vector<Field>();
+	Vector<Field<?>> fieldList = new Vector<Field<?>>();
 	fieldList.add(new FieldInt("Numero de pays", getPrimaryKeyName()));
 	fieldList.add(name);
 	return new Fields(fieldList);

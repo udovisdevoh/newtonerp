@@ -9,6 +9,7 @@ import newtonERP.orm.field.Field;
 import newtonERP.orm.field.FieldCurrency;
 import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.FieldString;
+import newtonERP.orm.field.FieldValidator;
 import newtonERP.orm.field.Fields;
 
 /**
@@ -36,11 +37,23 @@ public class Employee extends AbstractOrmEntity
     @Override
     public Fields initFields() throws Exception
     {
-	Vector<Field> fieldsData = new Vector<Field>();
+	Vector<Field<?>> fieldsData = new Vector<Field<?>>();
 	fieldsData.add(new FieldInt("Numéro d'employé", getPrimaryKeyName()));
 	fieldsData.add(new FieldString("Prénom", "firstName"));
 	fieldsData.add(new FieldString("Nom de famille", "lastName"));
-	fieldsData.add(new FieldInt("Numéro d'assurance social", "NAS"));
+	// ******* NAS *******
+	Field<Integer> fieldNAS = new FieldInt("Numéro d'assurance social",
+		"NAS");
+	fieldNAS.setValidator(new FieldValidator<Integer>()
+	{
+	    public boolean validate(Integer value)
+	    {
+
+		return value.toString().length() == 9;
+	    }
+	});
+	fieldsData.add(fieldNAS);
+	// ******* *******
 	fieldsData.add(new FieldInt("Type d'employé", new EmployeeType()
 		.getForeignKeyName()));
 	fieldsData.add(new FieldString("Poste", "poste"));
@@ -49,6 +62,7 @@ public class Employee extends AbstractOrmEntity
 	fieldsData.add(new FieldInt("Type de salaire", new SalaryType()
 		.getForeignKeyName()));
 	fieldsData.add(new FieldCurrency("Salaire", "salary"));
+
 	fieldsData.add(new FieldInt("Nombre de jour de vacance possible",
 		"nbVacancyDays"));
 	fieldsData.add(new FieldInt("Nombre de jour de maladie possible",

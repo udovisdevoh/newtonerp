@@ -34,7 +34,7 @@ public class Warehouse extends AbstractOrmEntity
     @Override
     public Fields initFields() throws Exception
     {
-	Vector<Field> fieldsInit = new Vector<Field>();
+	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
 	fieldsInit
 		.add(new FieldInt("Numero de l'entrepot", getPrimaryKeyName()));
 	fieldsInit.add(new FieldString("Nom de l'entrepôt", "warehouseName"));

@@ -33,7 +33,7 @@ public class Parameter extends AbstractOrmEntity
 	FieldText value = new FieldText("Valeur", "value", false);
 	value.setNaturalKey(true);
 
-	Vector<Field> fieldList = new Vector<Field>();
+	Vector<Field<?>> fieldList = new Vector<Field<?>>();
 	fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
 	fieldList.add(key);
 	fieldList.add(value);

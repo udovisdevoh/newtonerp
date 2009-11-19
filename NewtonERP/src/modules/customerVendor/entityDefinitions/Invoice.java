@@ -47,7 +47,7 @@ public class Invoice extends AbstractOrmEntity
 	FieldDate date = new FieldDate("Date", "date");
 	date.setNaturalKey(true);
 
-	Vector<Field> fieldList = new Vector<Field>();
+	Vector<Field<?>> fieldList = new Vector<Field<?>>();
 	fieldList.add(primaryKey);
 	FieldCurrency total = new FieldCurrency("Total", "total");
 	total.setReadOnly(true);

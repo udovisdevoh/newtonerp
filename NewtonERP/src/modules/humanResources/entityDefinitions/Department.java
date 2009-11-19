@@ -27,7 +27,7 @@ public class Department extends AbstractOrmEntity
     @Override
     public Fields initFields() throws Exception
     {
-	Vector<Field> fieldsData = new Vector<Field>();
+	Vector<Field<?>> fieldsData = new Vector<Field<?>>();
 	fieldsData.add(new FieldInt("Numéro de département",
 		getPrimaryKeyName()));
 	fieldsData.add(new FieldString("Nom", "departmentName"));

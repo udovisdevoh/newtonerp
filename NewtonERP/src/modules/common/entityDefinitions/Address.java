@@ -42,7 +42,7 @@ public class Address extends AbstractOrmEntity
 	FieldString city = new FieldString("Ville", "city");
 	city.setNaturalKey(true);
 
-	Vector<Field> fieldsInit = new Vector<Field>();
+	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
 	fieldsInit
 		.add(new FieldInt("Numero de l'adresse", getPrimaryKeyName()));
 	fieldsInit.add(city);

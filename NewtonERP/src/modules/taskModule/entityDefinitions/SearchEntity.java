@@ -29,7 +29,7 @@ public class SearchEntity extends AbstractOrmEntity
     @Override
     public Fields initFields() throws Exception
     {
-	Vector<Field> fieldList = new Vector<Field>();
+	Vector<Field<?>> fieldList = new Vector<Field<?>>();
 	fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
 	fieldList.add(new FieldText("Description", "name", false));
 	fieldList.add(new FieldInt("Entité", new EntityEntity()

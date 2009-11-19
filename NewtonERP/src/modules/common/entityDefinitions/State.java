@@ -31,7 +31,7 @@ public class State extends AbstractOrmEntity
 	FieldString name = new FieldString("Nom", "name");
 	name.setNaturalKey(true);
 
-	Vector<Field> fieldList = new Vector<Field>();
+	Vector<Field<?>> fieldList = new Vector<Field<?>>();
 	fieldList.add(new FieldInt("Numero de province / état",
 		getPrimaryKeyName()));
 	fieldList.add(name);

@@ -5,6 +5,7 @@ import java.util.Vector;
 
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.exception.FieldNotFoundException;
+import newtonERP.module.exception.InvalidOperatorException;
 import newtonERP.orm.Orm;
 import newtonERP.orm.exceptions.OrmException;
 import newtonERP.orm.field.Field;
@@ -44,9 +45,9 @@ public class GroupsRight extends AbstractOrmEntity
 	getFields().setData("rightID", rightIdValue);
     }
 
-    public Fields initFields()
+    public Fields initFields() throws InvalidOperatorException
     {
-	Vector<Field> fieldsInit = new Vector<Field>();
+	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
 	fieldsInit.add(new FieldInt("Numéro de groupe", "groupsID"));
 	fieldsInit.add(new FieldInt("Numéro de droit", "rightID"));
 	return new Fields(fieldsInit);

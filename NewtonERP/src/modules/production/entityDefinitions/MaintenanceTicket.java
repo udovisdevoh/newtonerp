@@ -48,7 +48,7 @@ public class MaintenanceTicket extends AbstractOrmEntity
 		new MaintenanceStatusType().getForeignKeyName());
 	maintenanceStatusType.setNaturalKey(true);
 
-	Vector<Field> fieldsInit = new Vector<Field>();
+	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
 	fieldsInit.add(primaryKey);
 	fieldsInit.add(new FieldInt("Machine concernée", new Machine()
 		.getForeignKeyName()));

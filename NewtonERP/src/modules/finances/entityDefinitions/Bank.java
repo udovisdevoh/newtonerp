@@ -34,7 +34,7 @@ public class Bank extends AbstractOrmEntity
 	FieldInt transit = new FieldInt("Transit", "transit");
 	transit.setNaturalKey(true);
 
-	Vector<Field> fieldsInit = new Vector<Field>();
+	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
 	fieldsInit.add(new FieldInt("Numéro", getPrimaryKeyName()));
 	fieldsInit.add(new FieldString("Nom", "name"));
 	fieldsInit.add(transit);

@@ -30,7 +30,7 @@ public class User extends AbstractOrmEntity
 
     public Fields initFields() throws Exception
     {
-	Vector<Field> fieldsData = new Vector<Field>();
+	Vector<Field<?>> fieldsData = new Vector<Field<?>>();
 	fieldsData.add(new FieldInt("Numéro de user", getPrimaryKeyName()));
 	fieldsData.add(new FieldString("Nom", "name"));
 	FieldString pwd = new FieldString("Mot de passe", "password");
