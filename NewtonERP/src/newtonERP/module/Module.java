@@ -3,6 +3,7 @@ package newtonERP.module;
 import java.io.File;
 import java.util.Collection;
 import java.util.Hashtable;
+import java.util.Vector;
 
 import modules.userRightModule.entityDefinitions.Groups;
 import modules.userRightModule.entityDefinitions.GroupsRight;
@@ -122,8 +123,18 @@ public abstract class Module
     public String getDefaultAction() throws ActionNotFoundException
     {
 	if (defaultAction == null)
-	    throw new ActionNotFoundException(
-		    "Vous devez spécifier l'action par default de ce module.");
+	{
+	    if (getEntityDefinitionList().size() < 1)
+		throw new ActionNotFoundException(
+			"Impossible de définir une action par default car aucune entité n'est utilisable.");
+
+	    Vector<AbstractOrmEntity> currentDefinitionList = new Vector<AbstractOrmEntity>(
+		    getEntityDefinitionList().values());
+
+	    defaultEntity = currentDefinitionList.get(0).getSystemName();
+	    defaultAction = "GetList";
+	}
+
 	return defaultAction;
     }
 
