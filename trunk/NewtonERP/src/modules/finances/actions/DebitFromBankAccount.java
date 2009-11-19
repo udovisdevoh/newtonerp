@@ -32,9 +32,9 @@ public class DebitFromBankAccount extends AbstractAction
 	BankAccount bankAccount = (BankAccount) entity;
 	Double balance = Double.parseDouble(parameters.get("balance"));
 	Double montant = (Double) bankAccount.getData("balance");
-	Double margin = (Double) bankAccount.getData("margin");
+	Double marginBalance = (Double) bankAccount.getData("marginBalance");
 
-	if (balance < (montant + margin))
+	if (balance <= (montant + marginBalance))
 	{
 	    montant -= balance;// pour test
 	    bankAccount.setData("balance", montant);
