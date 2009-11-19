@@ -5,7 +5,7 @@ import java.util.Hashtable;
 import java.util.Vector;
 
 import modules.finances.entityDefinitions.BankAccount;
-import modules.finances.entityDefinitions.ServiceProviderAccount;
+import modules.finances.entityDefinitions.ServiceTransaction;
 import modules.finances.entityDefinitions.StateType;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
@@ -26,14 +26,14 @@ public class PayingService extends AbstractAction
      */
     public PayingService() throws Exception
     {
-	super(new ServiceProviderAccount());
+	super(new ServiceTransaction());
     }
 
     public AbstractEntity doAction(AbstractEntity entity,
 	    Hashtable<String, String> parameters) throws Exception
     {
 
-	ServiceProviderAccount account = (ServiceProviderAccount) entity;
+	ServiceTransaction account = (ServiceTransaction) entity;
 	Double balance = (Double) account.getList(parameters).getEntity()
 		.get(0).getData("balance");
 	String balanceParam = String.valueOf(balance);
