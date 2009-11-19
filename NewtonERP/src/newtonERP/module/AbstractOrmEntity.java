@@ -31,6 +31,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
     private String visibleName;
     private TreeMap<String, PluralAccessor> pluralAccessorList;
     private TreeMap<String, AbstractOrmEntity> singleAccessorList;
+    private Vector<String> accessorNameList;
 
     /**
      * @throws Exception lorsque la création de l'entité échoue
@@ -740,5 +741,15 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	    throw new Exception("Aucune valeur de clef primaire disponible");
 
 	edit(getPrimaryKeyName() + "='" + getPrimaryKeyValue() + "'");
+    }
+
+    /**
+     * @return nom de tous les accesseurs
+     */
+    public Vector<String> getAccessorNameList()
+    {
+	if (accessorNameList == null)
+	    accessorNameList = new Vector<String>();
+	return accessorNameList;
     }
 }
