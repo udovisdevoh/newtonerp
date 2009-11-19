@@ -2,6 +2,7 @@ package modules.taskModule;
 
 import java.util.Vector;
 
+import modules.taskModule.entityDefinitions.AccessorEntity;
 import modules.taskModule.entityDefinitions.ActionEntity;
 import modules.taskModule.entityDefinitions.EffectEntity;
 import modules.taskModule.entityDefinitions.EntityEntity;
@@ -344,7 +345,22 @@ public class TaskModule extends Module
 		entityEntity.newE();
 
 		initFieldEntitiesForEntityEntity(entityEntity, realEntity);
+		initAccessorEntityListForEntityEntity(entityEntity, realEntity
+			.getAccessorNameList());
 	    }
+	}
+    }
+
+    private static void initAccessorEntityListForEntityEntity(
+	    EntityEntity entityEntity, Vector<String> accessorNameList)
+	    throws Exception
+    {
+	for (String accessorName : accessorNameList)
+	{
+	    AccessorEntity accessorEntity = new AccessorEntity();
+	    accessorEntity.assign(entityEntity);
+	    accessorEntity.setData("foreignEntityName", accessorName);
+	    accessorEntity.newE();
 	}
     }
 

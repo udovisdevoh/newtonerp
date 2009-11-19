@@ -6,6 +6,7 @@ import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.FieldInt;
+import newtonERP.orm.field.FieldString;
 import newtonERP.orm.field.Fields;
 
 /**
@@ -22,7 +23,6 @@ public class AccessorEntity extends AbstractOrmEntity
 	super();
 	setVisibleName("Accesseur");
 	AccessorManager.addAccessor(this, new EntityEntity());
-	AccessorManager.addAccessor(this, new SearchEntity());
     }
 
     @Override
@@ -32,9 +32,7 @@ public class AccessorEntity extends AbstractOrmEntity
 	fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
 	fieldList.add(new FieldInt("Entité parent", new EntityEntity()
 		.getForeignKeyName()));
-	fieldList.add(new FieldInt("Entité étrangère", new SearchEntity()
-		.getForeignKeyName()));
+	fieldList.add(new FieldString("Entité étrangère", "foreignEntityName"));
 	return new Fields(fieldList);
     }
-
 }
