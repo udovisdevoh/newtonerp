@@ -4,9 +4,9 @@ import modules.finances.actions.DisplayUnpaidServices;
 import modules.finances.entityDefinitions.Bank;
 import modules.finances.entityDefinitions.BankAccount;
 import modules.finances.entityDefinitions.ServiceProvider;
-import modules.finances.entityDefinitions.ServiceProviderAccount;
+import modules.finances.entityDefinitions.ServiceTransaction;
 import modules.finances.entityDefinitions.StateType;
-import modules.finances.entityDefinitions.SupplierAccount;
+import modules.finances.entityDefinitions.SupplierTransaction;
 import newtonERP.module.BaseAction;
 import newtonERP.module.Module;
 
@@ -25,7 +25,7 @@ public class Finances extends Module
     {
 	super();
 
-	setDefaultAction(new BaseAction("GetList", new SupplierAccount()));
+	setDefaultAction(new BaseAction("GetList", new SupplierTransaction()));
 
 	addGlobalActionMenuItem("Comptes Bancaires", new BaseAction("GetList",
 		new BankAccount()));
@@ -34,10 +34,10 @@ public class Finances extends Module
 		new BaseAction("GetList", new Bank()));
 
 	addGlobalActionMenuItem("Comptes Fournisseurs", new BaseAction(
-		"GetList", new SupplierAccount()));
+		"GetList", new SupplierTransaction()));
 
 	addGlobalActionMenuItem("Comptes Fournisseurs de services",
-		new BaseAction("GetList", new ServiceProviderAccount()));
+		new BaseAction("GetList", new ServiceTransaction()));
 
 	addGlobalActionMenuItem("Fournisseurs de services", new BaseAction(
 		"GetList", new ServiceProvider()));

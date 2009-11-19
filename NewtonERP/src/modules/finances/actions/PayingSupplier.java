@@ -6,7 +6,7 @@ import java.util.Vector;
 
 import modules.finances.entityDefinitions.BankAccount;
 import modules.finances.entityDefinitions.StateType;
-import modules.finances.entityDefinitions.SupplierAccount;
+import modules.finances.entityDefinitions.SupplierTransaction;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
@@ -28,14 +28,14 @@ public class PayingSupplier extends AbstractAction
      */
     public PayingSupplier() throws Exception
     {
-	super(new SupplierAccount());
+	super(new SupplierTransaction());
     }
 
     public AbstractEntity doAction(AbstractEntity entity,
 	    Hashtable<String, String> parameters) throws Exception
     {
 
-	SupplierAccount account = (SupplierAccount) entity;
+	SupplierTransaction account = (SupplierTransaction) entity;
 
 	Double balance = (Double) account.getList(parameters).getEntity()
 		.get(0).getData("balance");

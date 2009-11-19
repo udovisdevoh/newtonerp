@@ -3,7 +3,7 @@ package modules.finances.actions;
 import java.util.Hashtable;
 import java.util.Vector;
 
-import modules.finances.entityDefinitions.ServiceProviderAccount;
+import modules.finances.entityDefinitions.ServiceTransaction;
 import modules.finances.entityDefinitions.StateType;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
@@ -32,7 +32,7 @@ public class DisplayUnpaidServices extends AbstractAction
     public AbstractEntity doAction(AbstractEntity entity,
 	    Hashtable<String, String> parameters) throws Exception
     {
-	ServiceProviderAccount account = new ServiceProviderAccount();
+	ServiceTransaction account = new ServiceTransaction();
 	ListViewerData list = new ListViewerData(account);
 
 	StateType searchEntity = new StateType();
