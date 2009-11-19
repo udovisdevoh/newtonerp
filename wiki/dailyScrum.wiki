@@ -780,9 +780,23 @@ par exemple, si on delete un Group, alors les GroupRight WHERE GroupID = ce grou
 
 ==Jonatan Cloutier==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
-  * ...livré...
+  * retiré le paralélisme d'information entre les entity et les field
+  * standardisé l'affichage de field
+  * simplifier le prompt viewer
+  * correction du bug de textField non affiché (mauvaise erreur de ma part)
+  * listViewer est maintenant completement transphormé en grid viewer
+  * buttonLinkViewer créé maintenant de réel boutton 
+  * création du base viewer fonctionnel pour le GridViewer et le PromptViewer
+  * ajustement du currency format
+  * change encoding du server les accent marche
+  * correction du bug de null pointer dans horaire
+  * correciton du ownedByModule (fonctionne toujours maintenant)
+  * correction de ' en DB (me dire s'il y a d'autre probleme du genre)
+  * correction du bug double PrintButton dans le promptViewer
+  * refactor de GridCaseData
+  * ajout des lien vers les foreignEntity dans le listViewer
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
-  * ...à livrer...
+  * faire les champs calculé
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
   * ...problème, besoin d'aide, qui aidera...
 
@@ -828,6 +842,6 @@ par exemple, si on delete un Group, alors les GroupRight WHERE GroupID = ce grou
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
   * ...livré...
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
-  * ...à livrer...
+  * commencer le taskViewer
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
   * ...problème, besoin d'aide, qui aidera...
