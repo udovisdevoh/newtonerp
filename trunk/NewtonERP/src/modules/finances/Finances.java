@@ -33,11 +33,11 @@ public class Finances extends Module
 	addGlobalActionMenuItem("Banques",
 		new BaseAction("GetList", new Bank()));
 
-	addGlobalActionMenuItem("Comptes Fournisseurs", new BaseAction(
+	addGlobalActionMenuItem("Transaction Fournisseurs", new BaseAction(
 		"GetList", new SupplierTransaction()));
 
-	addGlobalActionMenuItem("Comptes Fournisseurs de services",
-		new BaseAction("GetList", new ServiceTransaction()));
+	addGlobalActionMenuItem("Transaction de services", new BaseAction(
+		"GetList", new ServiceTransaction()));
 
 	addGlobalActionMenuItem("Fournisseurs de services", new BaseAction(
 		"GetList", new ServiceProvider()));
