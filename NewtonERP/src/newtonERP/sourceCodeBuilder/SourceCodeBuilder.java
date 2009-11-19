@@ -11,8 +11,10 @@ public class SourceCodeBuilder
     /**
      * @param moduleEntity entité du module
      * @return code source
+     * @throws Exception si construction fail
      */
     public static String buildModuleSourceCode(ModuleEntity moduleEntity)
+	    throws Exception
     {
 	return ModuleSourceCodeBuilder.build(moduleEntity);
     }

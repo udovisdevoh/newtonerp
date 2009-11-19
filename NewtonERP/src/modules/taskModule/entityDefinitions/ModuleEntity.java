@@ -12,7 +12,7 @@ import newtonERP.orm.field.Field;
 import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.FieldString;
 import newtonERP.orm.field.Fields;
-import newtonERP.viewers.viewerData.BaseViewerData;
+import newtonERP.viewers.viewerData.ListViewerData;
 
 /**
  * Entité représentant un module
@@ -57,12 +57,14 @@ public class ModuleEntity extends AbstractOrmEntity
     }
 
     @Override
-    public BaseViewerData editUI(Hashtable<String, String> parameters)
+    public ListViewerData getList(Hashtable<String, String> parameters)
 	    throws Exception
     {
-	BaseViewerData data = super.editUI(parameters);
-	data.addGlobalActions(new ActionLink("Voir code source",
-		new ViewModuleSource()));
-	return data;
+	parameters.put(getPrimaryKeyName(), "&");
+
+	ListViewerData entityList = super.getList(parameters);
+	entityList.addSpecificActionButtonList(new ActionLink(
+		"Générer code source", new ViewModuleSource(), parameters));
+	return entityList;
     }
 }
