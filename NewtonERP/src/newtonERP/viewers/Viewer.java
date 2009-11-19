@@ -7,7 +7,6 @@ import newtonERP.common.Authentication;
 import newtonERP.common.ListModule;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.Module;
-import newtonERP.module.exception.ModuleException;
 import newtonERP.serveur.Servlet;
 import newtonERP.viewers.firstStep.AlertViewer;
 import newtonERP.viewers.firstStep.BaseViewer;
@@ -135,9 +134,9 @@ public abstract class Viewer
      * 
      * @param moduleName the module name
      * @return html
-     * @throws ModuleException an exception that can occur in the module
+     * @throws Exception si obtention fail
      */
-    public static String getLeftMenu(String moduleName) throws ModuleException
+    public static String getLeftMenu(String moduleName) throws Exception
     {
 	Hashtable<String, String> mod = ListModule.getAllModules();
 	Iterator<String> keys = mod.keySet().iterator();
@@ -161,12 +160,14 @@ public abstract class Viewer
 		menuModuleHtml += "<li><span class=\"selectedLink\">"
 			+ module.getVisibleName() + "</span><ul>";
 
-		for (String globalActionName : module.getGlobalActionMenu()
+		for (String globalActionName : module
+			.getGlobalActionMenuOrReturnDefaultBehavior()
 			.getKeyList())
 		{
 		    menuModuleHtml += "<li><a href=\"";
 		    menuModuleHtml += Servlet.makeLink(module, module
-			    .getGlobalActionMenu().get(globalActionName));
+			    .getGlobalActionMenuOrReturnDefaultBehavior().get(
+				    globalActionName));
 		    menuModuleHtml += "\">" + globalActionName + "</a></li>";
 		}
 	    }
