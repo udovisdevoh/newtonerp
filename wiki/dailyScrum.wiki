@@ -818,6 +818,9 @@ par exemple, si on delete un Group, alors les GroupRight WHERE GroupID = ce grou
   * Setté clef naturelles d'entité du module de module
   * Refactor de tous les entités: c'est field qui gère les clefs naturelles
   * Déplacé et simplifié tâches hardcodées de initDB de customer vendor vers initDb de TaskModule
+  * Module: ajouté comportement par default si aucun élément de menu d'action global n'a été spécifié
+  * Module: prise en charge des cas ou aucune action par default n'a été définie (le comportement par default sera de prendre la première entité et de faire un GetList dessus)
+  * Module Système: Ajouté entité d'accesseur
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
   * Vues critériées
   * Module softcodage de module
