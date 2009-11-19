@@ -12,7 +12,7 @@ public class ModuleSourceCodeBuilder
     /**
      * @param moduleEntity entité du module
      * @return code source
-     * @throws Exception
+     * @throws Exception si construction fail
      */
     public static String build(ModuleEntity moduleEntity) throws Exception
     {

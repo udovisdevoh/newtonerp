@@ -358,8 +358,8 @@ public class TaskModule extends Module
 	    initFieldEntity(field, entityEntity);
     }
 
-    private static void initFieldEntity(Field<?> field, EntityEntity entityEntity)
-	    throws Exception
+    private static void initFieldEntity(Field<?> field,
+	    EntityEntity entityEntity) throws Exception
     {
 	FieldTypeEntity fieldType = getOrCreateFieldType(field);
 	FieldEntity fieldEntity = new FieldEntity();
