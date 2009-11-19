@@ -3,28 +3,26 @@ package modules.production.entityDefinitions;
 import java.util.Vector;
 
 import newtonERP.module.AbstractOrmEntity;
-import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.FieldString;
 import newtonERP.orm.field.Fields;
 
 /**
- * An equipment for maintenance or other
+ * An equipment type
  * 
  * @author r3hallejo
  */
-public class Equipment extends AbstractOrmEntity
+public class EquipmentType extends AbstractOrmEntity
 {
     /**
      * Default constructor
      * 
      * @throws Exception a general exception
      */
-    public Equipment() throws Exception
+    public EquipmentType() throws Exception
     {
-	setVisibleName("Équipement");
-	AccessorManager.addAccessor(this, new EquipmentType());
+	setVisibleName("Type d'équipements");
     }
 
     @Override
@@ -33,8 +31,7 @@ public class Equipment extends AbstractOrmEntity
 	Vector<Field<?>> fieldList = new Vector<Field<?>>();
 	fieldList.add(new FieldInt("Numero", getPrimaryKeyName()));
 	fieldList.add(new FieldString("Nom", "name"));
-	fieldList.add(new FieldInt("Type", new EquipmentType()
-		.getForeignKeyName()));
 	return new Fields(fieldList);
     }
+
 }

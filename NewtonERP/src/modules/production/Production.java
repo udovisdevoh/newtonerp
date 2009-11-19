@@ -3,6 +3,11 @@ package modules.production;
 import java.util.GregorianCalendar;
 
 import modules.humanResources.entityDefinitions.Employee;
+import modules.production.actions.GetEquipmentSchedule;
+import modules.production.entityDefinitions.Equipment;
+import modules.production.entityDefinitions.EquipmentPeriodType;
+import modules.production.entityDefinitions.EquipmentSchedule;
+import modules.production.entityDefinitions.EquipmentType;
 import modules.production.entityDefinitions.Machine;
 import modules.production.entityDefinitions.MachineDimension;
 import modules.production.entityDefinitions.MachineStatus;
@@ -49,6 +54,15 @@ public class Production extends Module
 		new Training()));
 	addGlobalActionMenuItem("Types de formations", new BaseAction(
 		"GetList", new TrainingType()));
+	addGlobalActionMenuItem("Équipements", new BaseAction("GetList",
+		new Equipment()));
+	addGlobalActionMenuItem("Type d'équipements", new BaseAction("GetList",
+		new EquipmentType()));
+	addGlobalActionMenuItem("Horaire d'équipements", new BaseAction(
+		"GetList", new EquipmentSchedule()));
+	addGlobalActionMenuItem("Type de période d'équipements",
+		new BaseAction("GetList", new EquipmentPeriodType()));
+	addGlobalActionMenuItem("Voir l'horaire", new GetEquipmentSchedule());
     }
 
     @SuppressWarnings("static-access")
@@ -155,5 +169,18 @@ public class Production extends Module
 	formation.setData(new TrainingType().getForeignKeyName(), 1);
 	formation.setData("description", "Formation requise pour la presse 2");
 	formation.newE();
+
+	EquipmentType typeEquipement = new EquipmentType();
+	typeEquipement.setData("name", "Outils");
+	typeEquipement.newE();
+
+	EquipmentPeriodType periode = new EquipmentPeriodType();
+	periode.setData("periodType", "Réservé");
+	periode.newE();
+
+	Equipment equipement = new Equipment();
+	equipement.setData("name", "Chariot Élévateur");
+	equipement.assign(typeEquipement);
+	equipement.newE();
     }
 }

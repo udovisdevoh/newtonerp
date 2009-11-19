@@ -36,14 +36,6 @@ public class UpdateProductQuantity extends AbstractAction
 	    Hashtable<String, String> parameters) throws Exception
     {
 	Boolean updatable = true;
-
-	/*
-	 * TODO : Enlever ce maudit hack batard la. La facture en paramètre ne
-	 * devrait pas être null. Trouver pourquoi elle n'a que la clé primaire
-	 * non nulle. En attendant ca marche. A régler jeudi
-	 * 
-	 * Invoice actionInvoice = (Invoice) entity;
-	 */
 	Invoice actionInvoice = (Invoice) Orm.selectUnique((Invoice) entity);
 
 	InvoiceLine invoiceLine = new InvoiceLine();
@@ -62,11 +54,6 @@ public class UpdateProductQuantity extends AbstractAction
 
 	if (actionInvoice.getData("isForCustomer").equals(true))
 	{
-	    /*
-	     * On fait le check pour chaque ligne de facture si jamais il y a un
-	     * produit pour lequel on a pas assez d'inventaire le reste de la
-	     * facture est bloquée et les produits ne sont pas mis à jour
-	     */
 	    for (AbstractOrmEntity actionInvoiceLine : invoiceLines)
 	    {
 		Product product = new Product();
@@ -106,12 +93,7 @@ public class UpdateProductQuantity extends AbstractAction
 			    .getData("quantityInStock")
 			    + (Integer) actionInvoiceLine1.getData("quantity"));
 
-		Vector<String> searchCriterias = new Vector<String>();
-		searchCriterias.add(myProduct2.getPrimaryKeyName() + "='"
-			+ myProduct2.getPrimaryKeyValue() + "'");
-		Orm.update(myProduct2, searchCriterias);
-
-		// myProduct2.save();
+		myProduct2.save();
 	    }
 	}
 	else
