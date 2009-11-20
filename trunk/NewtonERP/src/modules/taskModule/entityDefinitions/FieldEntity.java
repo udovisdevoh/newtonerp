@@ -44,7 +44,11 @@ public class FieldEntity extends AbstractOrmEntity
 	fieldList.add(new FieldBool("Lecture seule", "readOnly"));
 	fieldList.add(new FieldBool("Caché", "hidden"));
 	fieldList.add(new FieldBool("Clef naturelle", "naturalKey"));
-	fieldList.add(new FieldBool("Champ dynamique", "dynamicField"));
+
+	FieldBool dynamicField = new FieldBool("Champ dynamique",
+		"dynamicField");
+	dynamicField.setData(true);
+	fieldList.add(dynamicField);
 
 	return new Fields(fieldList);
     }

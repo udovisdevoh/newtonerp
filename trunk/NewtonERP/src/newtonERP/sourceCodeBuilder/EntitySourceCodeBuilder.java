@@ -106,35 +106,41 @@ public class EntitySourceCodeBuilder
 	    EntityEntity entityEntity) throws Exception
     {
 	String sourceCode = "";
-	String variableName = getSystemName(fieldEntity);
-	if (variableName.equals(getPrimaryKeyName(entityEntity)))
-	    variableName = "getPrimaryKeyName()";
+	String quotedShortName = getSystemName(fieldEntity);
+	if (quotedShortName.equals(getPrimaryKeyName(entityEntity)))
+	    quotedShortName = "getPrimaryKeyName()";
 	else
-	    variableName = "\"" + variableName + "\"";
+	    quotedShortName = "\"" + quotedShortName + "\"";
+
+	String camelCaseName = getCamelCaseName(fieldEntity);
 
 	sourceCode += "\n";
 	sourceCode += "        " + getFieldType(fieldEntity) + " "
-		+ getSystemName(fieldEntity).toLowerCase() + " = new "
-		+ getFieldType(fieldEntity) + "(\""
-		+ getVisibleName(fieldEntity) + "\", " + variableName + ");\n";
+		+ camelCaseName + " = new " + getFieldType(fieldEntity) + "(\""
+		+ getVisibleName(fieldEntity) + "\", " + quotedShortName
+		+ ");\n";
 
 	if (isNaturalKey(fieldEntity))
-	    sourceCode += "        " + getSystemName(fieldEntity).toLowerCase()
+	    sourceCode += "        " + camelCaseName
 		    + ".setNaturalKey(true);\n";
 	if (isHidden(fieldEntity))
-	    sourceCode += "        " + getSystemName(fieldEntity).toLowerCase()
-		    + ".setHidden(true);\n";
+	    sourceCode += "        " + camelCaseName + ".setHidden(true);\n";
 	if (isReadOnly(fieldEntity))
-	    sourceCode += "        " + getSystemName(fieldEntity).toLowerCase()
-		    + ".setReadOnly(true);\n";
+	    sourceCode += "        " + camelCaseName + ".setReadOnly(true);\n";
 	if (isDynamicField(fieldEntity))
-	    sourceCode += "        " + getSystemName(fieldEntity).toLowerCase()
+	    sourceCode += "        " + camelCaseName
 		    + ".setDynamicField(true);\n";
 
-	sourceCode += "        fieldList.add("
-		+ getSystemName(fieldEntity).toLowerCase() + ");\n";
+	sourceCode += "        fieldList.add(" + camelCaseName + ");\n";
 
 	return sourceCode;
+    }
+
+    private static String getCamelCaseName(FieldEntity fieldEntity)
+    {
+	String name = getSystemName(fieldEntity);
+	name = name.substring(0, 1).toLowerCase() + name.substring(1);
+	return name;
     }
 
     private static String getPrimaryKeyName(EntityEntity entityEntity)
