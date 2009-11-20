@@ -9,6 +9,7 @@ import newtonERP.common.ActionLink;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.field.Field;
+import newtonERP.orm.field.FieldCalcule;
 import newtonERP.orm.field.Fields;
 import newtonERP.orm.field.Type.FieldBool;
 import newtonERP.orm.field.Type.FieldCurrency;
@@ -53,6 +54,18 @@ public class Invoice extends AbstractOrmEntity
 	fieldList.add(total);
 	FieldCurrency taxTotal = new FieldCurrency("Total taxes", "taxTotal");
 	fieldList.add(taxTotal);
+
+	FieldCurrency fieldCalc = new FieldCurrency("Grand total", "grandTotal");
+	fieldCalc.setCalcul(new FieldCalcule<Double>()
+	{
+	    public Double calculate(Fields entityFields)
+	    {
+		return (Double) entityFields.getField("total").getData()
+			+ (Double) entityFields.getField("taxTotal").getData();
+	    }
+	});
+	fieldList.add(fieldCalc);
+
 	fieldList.add(merchant);
 	fieldList.add(date);
 	fieldList.add(new FieldBool("Pour client", "isForCustomer"));
