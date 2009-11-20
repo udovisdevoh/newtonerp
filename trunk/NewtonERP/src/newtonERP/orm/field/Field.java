@@ -340,4 +340,20 @@ public abstract class Field<T>
 	    return false;
 	return true;
     }
+
+    /**
+     * @param shortName nom court
+     */
+    public void setShortName(String shortName)
+    {
+	this.shortName = shortName;
+    }
+
+    /**
+     * @param visibleName nom visible
+     */
+    public void setVisibleName(String visibleName)
+    {
+	this.name = visibleName;
+    }
 }
