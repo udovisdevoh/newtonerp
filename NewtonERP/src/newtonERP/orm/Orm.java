@@ -569,11 +569,18 @@ public class Orm
 			// If it is a primary because it matches PK, else we
 			// check the datatypes and match them with a datatype
 			// good for the database
-			if (field.getCalcul() == null)
-			{
-			    // do not do anything
-			}
-			else if (field.getShortName().matches("PK.*"))
+			// TODO : Jo je ne comprend pas pourquoi tu fesait ca,
+			// bref ca buggait car il arrivait sur le if, ce n'était
+			// pas vrai alors il n'insérait aucun champs. Svp dire
+			// c'est quoi tu veut faire. La je l'ai enlevé, anyway
+			// ca sert a rien de faire un if avec aucun traitement
+			// non?
+			// if (field.getCalcul() == null)
+			// {
+			// do not do anything
+			// }
+			/* else */
+			if (field.getShortName().matches("PK.*"))
 			{
 			    sqlQuery += field.getShortName()
 				    + " INTEGER PRIMARY KEY AUTOINCREMENT, ";
