@@ -6,9 +6,9 @@ import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.associations.PluralAccessor;
 import newtonERP.orm.field.Field;
-import newtonERP.orm.field.FieldInt;
-import newtonERP.orm.field.FieldText;
 import newtonERP.orm.field.Fields;
+import newtonERP.orm.field.Type.FieldInt;
+import newtonERP.orm.field.Type.FieldText;
 
 /**
  * Entité de recherche pour spécification

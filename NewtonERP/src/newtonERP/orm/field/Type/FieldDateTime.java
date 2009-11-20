@@ -1,4 +1,4 @@
-package newtonERP.orm.field;
+package newtonERP.orm.field.Type;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -8,6 +8,7 @@ import java.util.GregorianCalendar;
 
 import newtonERP.module.exception.FieldNotCompatibleException;
 import newtonERP.module.exception.InvalidOperatorException;
+import newtonERP.orm.field.Field;
 
 /**
  * Date field for entities

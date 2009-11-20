@@ -4,11 +4,11 @@ import java.util.Vector;
 
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.field.Field;
-import newtonERP.orm.field.FieldBool;
-import newtonERP.orm.field.FieldDouble;
-import newtonERP.orm.field.FieldInt;
-import newtonERP.orm.field.FieldString;
 import newtonERP.orm.field.Fields;
+import newtonERP.orm.field.Type.FieldBool;
+import newtonERP.orm.field.Type.FieldDouble;
+import newtonERP.orm.field.Type.FieldInt;
+import newtonERP.orm.field.Type.FieldString;
 
 /**
  * A tax entity

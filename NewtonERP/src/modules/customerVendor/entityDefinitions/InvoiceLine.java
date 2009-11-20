@@ -6,9 +6,9 @@ import modules.materialResourcesManagement.entityDefinitions.Product;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.field.Field;
-import newtonERP.orm.field.FieldCurrency;
-import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.Fields;
+import newtonERP.orm.field.Type.FieldCurrency;
+import newtonERP.orm.field.Type.FieldInt;
 
 /**
  * An invoice line

@@ -11,7 +11,7 @@ import newtonERP.module.exception.InvalidOperatorException;
  */
 public abstract class Field<T>
 {
-    T data;
+    protected T data;
     private String name; // Name is the name that is visible by the end-user
     private String shortName; // Short name is the name that is used internally
     protected String operator;

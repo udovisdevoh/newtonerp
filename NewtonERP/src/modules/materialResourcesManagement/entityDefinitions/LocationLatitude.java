@@ -4,9 +4,9 @@ import java.util.Vector;
 
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.field.Field;
-import newtonERP.orm.field.FieldDouble;
-import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.Fields;
+import newtonERP.orm.field.Type.FieldDouble;
+import newtonERP.orm.field.Type.FieldInt;
 
 /**
  * A latitude coordinate of a location

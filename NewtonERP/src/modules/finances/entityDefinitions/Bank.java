@@ -6,9 +6,9 @@ import modules.common.entityDefinitions.Address;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.field.Field;
-import newtonERP.orm.field.FieldInt;
-import newtonERP.orm.field.FieldString;
 import newtonERP.orm.field.Fields;
+import newtonERP.orm.field.Type.FieldInt;
+import newtonERP.orm.field.Type.FieldString;
 
 /**
  * Entité Bank du module finances: représente les coordonnées des banques avec

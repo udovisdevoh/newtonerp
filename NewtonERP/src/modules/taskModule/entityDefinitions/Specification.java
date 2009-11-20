@@ -6,9 +6,9 @@ import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.Orm;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.field.Field;
-import newtonERP.orm.field.FieldInt;
-import newtonERP.orm.field.FieldText;
 import newtonERP.orm.field.Fields;
+import newtonERP.orm.field.Type.FieldInt;
+import newtonERP.orm.field.Type.FieldText;
 
 /**
  * Spécification d'une tâche

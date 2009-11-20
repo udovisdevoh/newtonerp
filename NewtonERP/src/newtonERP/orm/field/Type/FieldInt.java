@@ -1,14 +1,15 @@
-package newtonERP.orm.field;
+package newtonERP.orm.field.Type;
 
 import newtonERP.module.exception.FieldNotCompatibleException;
 import newtonERP.module.exception.InvalidOperatorException;
+import newtonERP.orm.field.Field;
 
 /**
- * Double field in the entities
+ * Integer field in the entities
  * 
- * @author CloutierJo
+ * @author CloutierJo, r3hallejo
  */
-public class FieldDouble extends Field<Double>
+public class FieldInt extends Field<Integer>
 {
     /**
      * constructeur minimum
@@ -18,7 +19,7 @@ public class FieldDouble extends Field<Double>
      * @param data donne du champ
      * @throws InvalidOperatorException remonte
      */
-    public FieldDouble(String name, String shortName, Double data)
+    public FieldInt(String name, String shortName, Integer data)
 	    throws InvalidOperatorException
     {
 	super(name, shortName, data);
@@ -29,7 +30,7 @@ public class FieldDouble extends Field<Double>
      * @param shortName nom du champ qui sera utiliser a l'interne
      * @throws InvalidOperatorException remonte
      */
-    public FieldDouble(String name, String shortName)
+    public FieldInt(String name, String shortName)
 	    throws InvalidOperatorException
     {
 	this(name, shortName, null);
@@ -37,13 +38,12 @@ public class FieldDouble extends Field<Double>
 
     /**
      * @param data the data to set
-     * @throws Exception remonte
      */
-    public void setData(String data) throws Exception
+    public void setData(String data)
     {
 	if (data == null || data.equals("null"))
-	    data = "0.0";
-	this.data = Double.parseDouble(data);
+	    data = "0";
+	setDataType(Integer.parseInt(data));
     }
 
     @Override
@@ -51,7 +51,7 @@ public class FieldDouble extends Field<Double>
     {
 	operator.trim();
 
-	if (operator.equals("<") || operator.equals(">")
+	if (operator.equals(">") || operator.equals("<")
 		|| operator.equals("="))
 	{
 	    super.operator = operator;
@@ -63,16 +63,15 @@ public class FieldDouble extends Field<Double>
 
     public void setDefaultValue() throws FieldNotCompatibleException
     {
-	setData(0.);
+	setData(0);
     }
 
     public void setData(Object data) throws FieldNotCompatibleException
     {
-	if (data instanceof Double)
-	    setDataType((Double) data);
-	else if (data instanceof Integer)
-	    setDataType((double) ((Integer) (data)));
+	if (data instanceof Integer)
+	    setDataType((Integer) data);
 	else
 	    throw new FieldNotCompatibleException(getShortName(), data);
     }
+
 }

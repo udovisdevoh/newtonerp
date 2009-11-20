@@ -7,9 +7,9 @@ import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.exception.InvalidOperatorException;
 import newtonERP.orm.field.Field;
-import newtonERP.orm.field.FieldInt;
-import newtonERP.orm.field.FieldString;
 import newtonERP.orm.field.Fields;
+import newtonERP.orm.field.Type.FieldInt;
+import newtonERP.orm.field.Type.FieldString;
 import newtonERP.viewers.viewerData.BaseViewerData;
 import newtonERP.viewers.viewerData.ListViewerData;
 

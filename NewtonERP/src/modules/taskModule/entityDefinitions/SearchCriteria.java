@@ -5,10 +5,10 @@ import java.util.Vector;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.field.Field;
-import newtonERP.orm.field.FieldInt;
-import newtonERP.orm.field.FieldString;
-import newtonERP.orm.field.FieldText;
 import newtonERP.orm.field.Fields;
+import newtonERP.orm.field.Type.FieldInt;
+import newtonERP.orm.field.Type.FieldString;
+import newtonERP.orm.field.Type.FieldText;
 
 /**
  * Critère de recherche pour une entité de recherche
