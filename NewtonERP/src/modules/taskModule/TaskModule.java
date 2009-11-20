@@ -104,6 +104,7 @@ public class TaskModule extends Module
 
 	TaskEntity task = new TaskEntity();
 	task.setData("isActive", true);
+	task.setData("straightSearch", true);
 	task.assign(effet);
 	task.assign(specification);
 	task.newE();
@@ -122,32 +123,33 @@ public class TaskModule extends Module
 	invoiceTaxLineEntity = (EntityEntity) Orm
 		.selectUnique(invoiceTaxLineEntity);
 
-	SearchEntity searchEntity1 = new SearchEntity();
-	searchEntity1.setData("name", "Pour chaque TaxLine");
-	searchEntity1.assign(invoiceTaxLineEntity);
-	searchEntity1.newE();
+	SearchEntity searchEntity = new SearchEntity();
+	searchEntity.setData("name", "Pour chaque TaxLine");
+	searchEntity.assign(invoiceTaxLineEntity);
+	searchEntity.newE();
 
 	ActionEntity action = new ActionEntity();
 	action.setData("systemName", "GetAndCalculateAssociatedInvoiceFromTax");
 	action.assign(customerVendor);
 	action = (ActionEntity) Orm.selectUnique(action);
 
-	EffectEntity effet1 = new EffectEntity();
-	effet1.setData("name", "On calcule la facture pour chaque TaxLine");
-	effet1.assign(searchEntity1);
-	effet1.assign(action);
-	effet1.newE();
+	EffectEntity effet = new EffectEntity();
+	effet.setData("name", "On calcule la facture pour chaque TaxLine");
+	effet.assign(searchEntity);
+	effet.assign(action);
+	effet.newE();
 
-	Specification specification1 = new Specification();
-	specification1.setData("name", "Lorsqu'une tax line a été écrite");
-	specification1.assign(searchEntity1);
-	specification1.newE();
+	Specification specification = new Specification();
+	specification.setData("name", "Lorsqu'une tax line a été écrite");
+	specification.assign(searchEntity);
+	specification.newE();
 
-	TaskEntity task1 = new TaskEntity();
-	task1.setData("isActive", true);
-	task1.assign(specification1);
-	task1.assign(effet1);
-	task1.newE();
+	TaskEntity task = new TaskEntity();
+	task.setData("isActive", true);
+	task.setData("straightSearch", true);
+	task.assign(specification);
+	task.assign(effet);
+	task.newE();
     }
 
     private static void initEmployeeNewUserTask() throws Exception
@@ -211,6 +213,7 @@ public class TaskModule extends Module
 
 	TaskEntity task = new TaskEntity();
 	task.setData("isActive", false);
+	task.setData("straightSearch", false);
 	task.setData(specification.getForeignKeyName(), specification
 		.getPrimaryKeyValue());
 	task.setData(effect.getForeignKeyName(), effect.getPrimaryKeyValue());
