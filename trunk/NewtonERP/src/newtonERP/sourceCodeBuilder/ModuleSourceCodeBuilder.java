@@ -24,7 +24,7 @@ public class ModuleSourceCodeBuilder
 	sourceCode += "\n";
 	sourceCode += "/**\n";
 	sourceCode += " * " + getVisibleName(moduleEntity) + "\n";
-	sourceCode += " * @author NewtonERP code generator\n";
+	sourceCode += " * @author NewtonERP code generator - Guillaume Lacasse\n";
 	sourceCode += " */\n";
 
 	sourceCode += "public class " + getSystemName(moduleEntity)
