@@ -6,6 +6,7 @@ import modules.userRightModule.entityDefinitions.User;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.field.Field;
+import newtonERP.orm.field.FieldCalcule;
 import newtonERP.orm.field.FieldCurrency;
 import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.FieldString;
@@ -42,13 +43,11 @@ public class Employee extends AbstractOrmEntity
 	fieldsData.add(new FieldString("Prénom", "firstName"));
 	fieldsData.add(new FieldString("Nom de famille", "lastName"));
 	// ******* NAS *******
-	Field<Integer> fieldNAS = new FieldInt("Numéro d'assurance social",
-		"NAS");
+	FieldInt fieldNAS = new FieldInt("Numéro d'assurance social", "NAS");
 	fieldNAS.setValidator(new FieldValidator<Integer>()
 	{
 	    public boolean validate(Integer value)
 	    {
-
 		return value.toString().length() == 9;
 	    }
 	});
@@ -71,6 +70,18 @@ public class Employee extends AbstractOrmEntity
 		.getForeignKeyName());
 	fieldUser.setReadOnly(true);
 	fieldsData.add(fieldUser);
+	FieldInt fieldCalc = new FieldInt("calcule", "calcul");
+	fieldCalc.setCalcul(new FieldCalcule<Integer>()
+	{
+	    public Integer calculate(Fields entityFields)
+	    {
+		return (Integer) entityFields.getField("nbVacancyDays")
+			.getData()
+			- (Integer) entityFields.getField("nbSicknessDays")
+				.getData();
+	    }
+	});
+	fieldsData.add(fieldCalc);
 
 	return new Fields(fieldsData);
     }
