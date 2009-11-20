@@ -30,13 +30,8 @@ public class LocationLatitude extends AbstractOrmEntity
     public Fields initFields() throws Exception
     {
 	FieldInt degrees = new FieldInt("Degrés", "degrees");
-	degrees.setNaturalKey(true);
-
 	FieldInt minutes = new FieldInt("Minutes", "minutes");
-	minutes.setNaturalKey(true);
-
 	FieldDouble seconds = new FieldDouble("Secondes", "seconds");
-	seconds.setNaturalKey(true);
 
 	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
 	fieldsInit.add(new FieldInt("Numero", getPrimaryKeyName()));
