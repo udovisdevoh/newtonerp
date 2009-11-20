@@ -6,8 +6,8 @@ import java.util.Hashtable;
 import newtonERP.module.exception.EntityException;
 import newtonERP.module.generalEntity.ListOfValue;
 import newtonERP.orm.field.Field;
-import newtonERP.orm.field.FieldBool;
 import newtonERP.orm.field.Fields;
+import newtonERP.orm.field.Type.FieldBool;
 
 /**
  * @author r3lemaypa, r3lacasgu, CloutierJo

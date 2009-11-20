@@ -7,11 +7,11 @@ import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.FieldCalcule;
-import newtonERP.orm.field.FieldCurrency;
-import newtonERP.orm.field.FieldInt;
-import newtonERP.orm.field.FieldString;
 import newtonERP.orm.field.FieldValidator;
 import newtonERP.orm.field.Fields;
+import newtonERP.orm.field.Type.FieldCurrency;
+import newtonERP.orm.field.Type.FieldInt;
+import newtonERP.orm.field.Type.FieldString;
 
 /**
  * Représente un entité d'employé

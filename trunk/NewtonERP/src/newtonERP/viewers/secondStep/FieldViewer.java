@@ -1,12 +1,12 @@
 package newtonERP.viewers.secondStep;
 
 import newtonERP.orm.field.Field;
-import newtonERP.orm.field.FieldBool;
-import newtonERP.orm.field.FieldCurrency;
-import newtonERP.orm.field.FieldDateTime;
-import newtonERP.orm.field.FieldDouble;
-import newtonERP.orm.field.FieldInt;
-import newtonERP.orm.field.FieldText;
+import newtonERP.orm.field.Type.FieldBool;
+import newtonERP.orm.field.Type.FieldCurrency;
+import newtonERP.orm.field.Type.FieldDateTime;
+import newtonERP.orm.field.Type.FieldDouble;
+import newtonERP.orm.field.Type.FieldInt;
+import newtonERP.orm.field.Type.FieldText;
 
 /**
  * Sert à formatter de l'argent

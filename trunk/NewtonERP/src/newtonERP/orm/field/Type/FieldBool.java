@@ -1,15 +1,15 @@
-package newtonERP.orm.field;
+package newtonERP.orm.field.Type;
 
 import newtonERP.module.exception.FieldNotCompatibleException;
 import newtonERP.module.exception.InvalidOperatorException;
+import newtonERP.orm.field.Field;
 
 /**
- * String field in the entities (String is a short text where text is a long
- * text)
+ * Boolean field in the entities
  * 
  * @author CloutierJo, r3hallejo
  */
-public class FieldString extends Field<String>
+public class FieldBool extends Field<Boolean>
 {
     /**
      * constructeur minimum
@@ -19,7 +19,7 @@ public class FieldString extends Field<String>
      * @param data donne du champ
      * @throws InvalidOperatorException remonte
      */
-    public FieldString(String name, String shortName, String data)
+    public FieldBool(String name, String shortName, Boolean data)
 	    throws InvalidOperatorException
     {
 	super(name, shortName, data);
@@ -30,10 +30,38 @@ public class FieldString extends Field<String>
      * @param shortName nom du champ qui sera utiliser a l'interne
      * @throws InvalidOperatorException remonte
      */
-    public FieldString(String name, String shortName)
+    public FieldBool(String name, String shortName)
 	    throws InvalidOperatorException
     {
 	this(name, shortName, null);
+    }
+
+    @Override
+    public String getDataString(Boolean forOrm)
+    {
+	if (data == null)
+	    return "";
+
+	if (forOrm)
+	    return addSlash(data.toString());
+	else if (data)
+	    return "Oui";
+	else
+	    return "Non";
+    }
+
+    /**
+     * @param data the data to set
+     */
+    public void setData(String data)
+    {
+	if (data.toLowerCase().equals("on")
+		|| data.toLowerCase().equals("true"))
+	{
+	    setDataType(true);
+	}
+	else
+	    setDataType(Boolean.parseBoolean(data));
     }
 
     @Override
@@ -46,26 +74,20 @@ public class FieldString extends Field<String>
 	    super.operator = operator;
 	}
 	else
-	    throw new InvalidOperatorException("Opérateur invalide pour "
-		    + getClass().getSimpleName());
+	    throw new InvalidOperatorException("Opérateur ( " + operator
+		    + " ) invalide pour " + getSystemName());
     }
 
-    public void setDefaultValue()
+    @Override
+    public void setDefaultValue() throws FieldNotCompatibleException
     {
-	setDataType("");
-    }
-
-    public void setData(String data)
-    {
-	setDataType(data);
+	data = false;
     }
 
     public void setData(Object data) throws FieldNotCompatibleException
     {
-	if (data instanceof String)
-	    setDataType((String) data);
-	else if (data instanceof Number)
-	    setDataType(data + "");
+	if (data instanceof Boolean)
+	    setDataType((Boolean) data);
 	else
 	    throw new FieldNotCompatibleException(getShortName(), data);
     }

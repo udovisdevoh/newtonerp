@@ -13,7 +13,7 @@ import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.BaseAction;
-import newtonERP.orm.field.FieldDateTime;
+import newtonERP.orm.field.Type.FieldDateTime;
 import newtonERP.viewers.viewerData.GridCaseData;
 import newtonERP.viewers.viewerData.GridViewerData;
 

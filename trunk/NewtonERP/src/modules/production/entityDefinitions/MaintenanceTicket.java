@@ -6,11 +6,11 @@ import modules.humanResources.entityDefinitions.Employee;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.field.Field;
-import newtonERP.orm.field.FieldDateTime;
-import newtonERP.orm.field.FieldInt;
-import newtonERP.orm.field.FieldString;
-import newtonERP.orm.field.FieldText;
 import newtonERP.orm.field.Fields;
+import newtonERP.orm.field.Type.FieldDateTime;
+import newtonERP.orm.field.Type.FieldInt;
+import newtonERP.orm.field.Type.FieldString;
+import newtonERP.orm.field.Type.FieldText;
 
 /**
  * A new maintenance work order to do because of a broken machine

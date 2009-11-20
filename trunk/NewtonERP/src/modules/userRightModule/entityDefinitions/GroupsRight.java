@@ -9,8 +9,8 @@ import newtonERP.module.exception.InvalidOperatorException;
 import newtonERP.orm.Orm;
 import newtonERP.orm.exceptions.OrmException;
 import newtonERP.orm.field.Field;
-import newtonERP.orm.field.FieldInt;
 import newtonERP.orm.field.Fields;
+import newtonERP.orm.field.Type.FieldInt;
 
 /**
  * Entity defenition representing a group right for the users

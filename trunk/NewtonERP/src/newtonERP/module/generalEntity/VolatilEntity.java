@@ -2,9 +2,9 @@ package newtonERP.module.generalEntity;
 
 import newtonERP.module.AbstractEntity;
 import newtonERP.orm.field.Field;
-import newtonERP.orm.field.FieldString;
 import newtonERP.orm.field.Fields;
 import newtonERP.orm.field.VolatileFields;
+import newtonERP.orm.field.Type.FieldString;
 
 /**
  * @author CloutierJo

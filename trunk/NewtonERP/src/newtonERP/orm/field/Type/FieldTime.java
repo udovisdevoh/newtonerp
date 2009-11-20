@@ -1,4 +1,4 @@
-package newtonERP.orm.field;
+package newtonERP.orm.field.Type;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
