@@ -51,4 +51,36 @@ public class FieldEntity extends AbstractOrmEntity
 
 	return new Fields(fieldList);
     }
+
+    /**
+     * @return retourne un vrai field
+     * @throws Exception si création fail
+     */
+    public Field<?> getFieldInstance() throws Exception
+    {
+	String name = getDataString("name");
+	String visibleName = getDataString("visibleName");
+	String type = getFieldTypeEntity().getDataString("systemName");
+	Boolean readOnly = (Boolean) getData("readOnly");
+	Boolean hidden = (Boolean) getData("hidden");
+	Boolean naturalKey = (Boolean) getData("naturalKey");
+	Boolean dynamicField = (Boolean) getData("dynamicField");
+
+	Field<?> field = (Field<?>) Class.forName("orm.field.Type." + type)
+		.newInstance();
+
+	field.setShortName(name);
+	field.setVisibleName(visibleName);
+	field.setHidden(hidden);
+	field.setNaturalKey(naturalKey);
+	field.setReadOnly(readOnly);
+	field.setDynamicField(dynamicField);
+
+	return field;
+    }
+
+    private FieldTypeEntity getFieldTypeEntity() throws Exception
+    {
+	return (FieldTypeEntity) getSingleAccessor("FieldTypeEntity");
+    }
 }
