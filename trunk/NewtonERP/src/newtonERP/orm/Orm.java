@@ -195,6 +195,8 @@ public class Orm
 	{
 	    // Retrieve key
 	    Field<?> field = (Field) dataIterator.next();
+	    // todo: on doit gere les champs calcule ici aussi... mais je ne
+	    // veut pas trop jouer dans ce code kovalev tu peu t'en occupe
 
 	    // If it's the end or not we add the key to the query with the
 	    // right string ("," or not) and the value
@@ -446,7 +448,7 @@ public class Orm
 
 	    for (Field<?> field : entity.getFields().getFields())
 	    {
-		if (field.getData() != null)
+		if (field.getCalcul() == null && field.getData() != null)
 		{
 		    whereClause += field.getShortName() + " "
 			    + field.getOperator() + " '"
@@ -490,7 +492,7 @@ public class Orm
 
 	for (Field<?> field : searchEntity.getFields().getFields())
 	{
-	    if (field.getData() != null)
+	    if (field.getCalcul() == null && field.getData() != null)
 	    {
 		sqlQuery += field.getShortName() + " " + field.getOperator()
 			+ " '" + field.getDataString(true) + "'";
@@ -519,7 +521,8 @@ public class Orm
 	{
 	    // Retrieve key
 	    Field<?> data = dataIterator.next();
-	    if (!data.getShortName().matches("PK.*") && data.getData() != null)
+	    if (!data.getShortName().matches("PK.*")
+		    && data.getCalcul() == null && data.getData() != null)
 	    {
 		sqlQuery += data.getShortName() + "='"
 			+ data.getDataString(true) + "', ";
@@ -566,7 +569,11 @@ public class Orm
 			// If it is a primary because it matches PK, else we
 			// check the datatypes and match them with a datatype
 			// good for the database
-			if (field.getShortName().matches("PK.*"))
+			if (field.getCalcul() == null)
+			{
+			    // do not do anything
+			}
+			else if (field.getShortName().matches("PK.*"))
 			{
 			    sqlQuery += field.getShortName()
 				    + " INTEGER PRIMARY KEY AUTOINCREMENT, ";

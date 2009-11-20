@@ -52,10 +52,13 @@ public class EntityCreator
 		// We add each column to the hashtable plus it's value
 		for (Field<?> field : fields)
 		{
-		    String key = field.getShortName();
-		    Object value = rs.getObject(field.getShortName());
-		    if (value != null)// Lorsqu'un champ est null
-			parameters.put(key, value);
+		    if (field.getCalcul() == null)
+		    {
+			String key = field.getShortName();
+			Object value = rs.getObject(field.getShortName());
+			if (value != null)// Lorsqu'un champ est null
+			    parameters.put(key, value);
+		    }
 		}
 
 		// We format the data into the newly created entity

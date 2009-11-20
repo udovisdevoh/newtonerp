@@ -20,6 +20,8 @@ public abstract class Field<T>
     private Boolean isNaturalKey = false;
     private Boolean isDynamicField = false;
     private FieldValidator<T> validator;
+    private FieldCalcule<T> calcul = null;
+    private Fields fieldsRef;
 
     /**
      * default constructor
@@ -124,6 +126,9 @@ public abstract class Field<T>
      */
     public String getDataString(Boolean forOrm)
     {
+
+	if (calcul != null)
+	    return calcul.calculate(fieldsRef).toString();
 	if (data == null)
 	    return "";
 	if (forOrm)
@@ -136,6 +141,8 @@ public abstract class Field<T>
      */
     public T getData()
     {
+	if (calcul != null)
+	    return calcul.calculate(fieldsRef);
 	return data;
     }
 
@@ -261,6 +268,39 @@ public abstract class Field<T>
     public FieldValidator<T> getValidator()
     {
 	return validator;
+    }
+
+    /**
+     * @param calcul the calcul to set
+     */
+    public void setCalcul(FieldCalcule<T> calcul)
+    {
+	readOnly = true;
+	this.calcul = calcul;
+    }
+
+    /**
+     * @return the calcul
+     */
+    public FieldCalcule<T> getCalcul()
+    {
+	return calcul;
+    }
+
+    /**
+     * @param fieldsRef the fieldsRef to set
+     */
+    public void setFieldsRef(Fields fieldsRef)
+    {
+	this.fieldsRef = fieldsRef;
+    }
+
+    /**
+     * @return the fieldsRef
+     */
+    public Fields getFieldsRef()
+    {
+	return fieldsRef;
     }
 
     /*

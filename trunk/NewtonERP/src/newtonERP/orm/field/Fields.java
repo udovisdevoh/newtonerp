@@ -41,6 +41,7 @@ public class Fields implements Iterable<Field<?>>
 	    if (field.getShortName().matches("PK.*"))
 		field.setReadOnly(true);
 	    fieldsDataMap.put(field.getShortName(), field);
+	    field.setFieldsRef(this);
 	}
     }
 
