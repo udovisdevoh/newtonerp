@@ -98,39 +98,50 @@ public class EntitySourceCodeBuilder
     {
 	String sourceCode = "";
 	for (FieldEntity fieldEntity : entityEntity)
-	    sourceCode += getFieldCode(fieldEntity);
+	    sourceCode += getFieldCode(fieldEntity, entityEntity);
 	return sourceCode;
     }
 
-    private static String getFieldCode(FieldEntity fieldEntity)
-	    throws Exception
+    private static String getFieldCode(FieldEntity fieldEntity,
+	    EntityEntity entityEntity) throws Exception
     {
 	String sourceCode = "";
+	String variableName = getSystemName(fieldEntity);
+	if (variableName.equals(getPrimaryKeyName(entityEntity)))
+	    variableName = "getPrimaryKeyName()";
+	else
+	    variableName = "\"" + variableName + "\"";
 
 	sourceCode += "\n";
 	sourceCode += "        " + getFieldType(fieldEntity) + " "
-		+ getSystemName(fieldEntity) + " = new "
+		+ getSystemName(fieldEntity).toLowerCase() + " = new "
 		+ getFieldType(fieldEntity) + "(\""
-		+ getVisibleName(fieldEntity) + "\", \""
-		+ getSystemName(fieldEntity) + "\");\n";
+		+ getVisibleName(fieldEntity) + "\", " + variableName + ");\n";
 
 	if (isNaturalKey(fieldEntity))
-	    sourceCode += "        " + getSystemName(fieldEntity)
+	    sourceCode += "        " + getSystemName(fieldEntity).toLowerCase()
 		    + ".setNaturalKey(true);\n";
 	if (isHidden(fieldEntity))
-	    sourceCode += "        " + getSystemName(fieldEntity)
+	    sourceCode += "        " + getSystemName(fieldEntity).toLowerCase()
 		    + ".setHidden(true);\n";
 	if (isReadOnly(fieldEntity))
-	    sourceCode += "        " + getSystemName(fieldEntity)
+	    sourceCode += "        " + getSystemName(fieldEntity).toLowerCase()
 		    + ".setReadOnly(true);\n";
 	if (isDynamicField(fieldEntity))
-	    sourceCode += "        " + getSystemName(fieldEntity)
+	    sourceCode += "        " + getSystemName(fieldEntity).toLowerCase()
 		    + ".setDynamicField(true);\n";
 
-	sourceCode += "        fieldList.add(" + getSystemName(fieldEntity)
-		+ ");\n";
+	sourceCode += "        fieldList.add("
+		+ getSystemName(fieldEntity).toLowerCase() + ");\n";
 
 	return sourceCode;
+    }
+
+    private static String getPrimaryKeyName(EntityEntity entityEntity)
+    {
+	String name = getSystemName(entityEntity);
+	name = name.substring(0, 1).toLowerCase() + name.substring(1);
+	return "PK" + name + "ID";
     }
 
     private static boolean isDynamicField(FieldEntity fieldEntity)
