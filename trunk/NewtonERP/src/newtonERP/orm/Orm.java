@@ -183,7 +183,7 @@ public class Orm
      * @throws Exception si insertion fail
      */
     @SuppressWarnings("unchecked")
-    public static int insert(AbstractOrmEntity newEntity) throws Exception
+    public static int insert_temp(AbstractOrmEntity newEntity) throws Exception
     {
 	String sqlQuery = "INSERT INTO " + prefix + newEntity.getSystemName()
 		+ " (";
@@ -195,11 +195,6 @@ public class Orm
 	{
 	    // Retrieve key
 	    Field<?> field = (Field) dataIterator.next();
-	    // todo: on doit gere les champs calcule ici aussi... mais je ne
-	    // veut pas trop jouer dans ce code kovalev tu peu t'en occupe
-
-	    // If it's the end or not we add the key to the query with the
-	    // right string ("," or not) and the value
 	    if (!dataIterator.hasNext())
 	    {
 		if (field.getCalcul() == null)
@@ -254,6 +249,72 @@ public class Orm
 	}
 
 	sqlQuery += valuesQuery;
+
+	// TODO: Remove the next line once this will be properly debugged
+	System.out.println("SQL query produced : " + sqlQuery);
+
+	ResultSet rs = sgbd.execute(sqlQuery, OrmActions.INSERT);
+
+	try
+	{
+	    return rs.getInt(1);
+	} catch (SQLException e)
+	{
+	    // s'il n'y a pas de cle primaire dans cette table, on ne throw donc
+	    // pas cette exception
+	    return 0;
+	}
+    }
+
+    /**
+     * Method used to insert an entity in the databse based into the entity
+     * passed in parameter
+     * 
+     * @param newEntity the entity to add
+     * @return le id de clé primaire ajoutée
+     * @throws OrmException an exception that can occur in the orm
+     */
+    public static int insert(AbstractOrmEntity newEntity) throws OrmException
+    {
+	String sqlQuery = "INSERT INTO " + prefix + newEntity.getSystemName()
+		+ "( ";
+
+	Iterator<?> keyIterator = newEntity.getFields().iterator();
+
+	while (keyIterator.hasNext())
+	{
+	    Field<?> field = (Field<?>) keyIterator.next();
+
+	    if (!field.getShortName().matches("PK.*"))
+	    {
+		if (field.getCalcul() == null && field.getData() != null)
+		{
+		    sqlQuery += "'" + field.getShortName() + "', ";
+		}
+	    }
+
+	}
+
+	sqlQuery = sqlQuery.substring(0, sqlQuery.length() - 2);
+	sqlQuery += ") VALUES (";
+
+	Iterator<?> dataIterator = newEntity.getFields().iterator();
+
+	while (dataIterator.hasNext())
+	{
+	    Field<?> field = (Field<?>) dataIterator.next();
+
+	    if (!field.getShortName().matches("PK.*"))
+	    {
+		if (field.getCalcul() == null && field.getData() != null)
+		{
+		    sqlQuery += "'" + field.getDataString(true) + "', ";
+		}
+	    }
+	}
+
+	sqlQuery = sqlQuery.substring(0, sqlQuery.length() - 2);
+	sqlQuery += ");";
 
 	// TODO: Remove the next line once this will be properly debugged
 	System.out.println("SQL query produced : " + sqlQuery);
