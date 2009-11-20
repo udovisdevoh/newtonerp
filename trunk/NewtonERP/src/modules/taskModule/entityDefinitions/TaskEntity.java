@@ -42,6 +42,7 @@ public class TaskEntity extends AbstractOrmEntity
 	Vector<Field<?>> fieldList = new Vector<Field<?>>();
 	fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
 	fieldList.add(new FieldBool("Est active", "isActive"));
+	fieldList.add(new FieldBool("Recherche directe", "straightSearch"));
 	fieldList.add(specification);
 	fieldList.add(effet);
 	return new Fields(fieldList);
