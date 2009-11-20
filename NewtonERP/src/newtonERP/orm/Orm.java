@@ -202,11 +202,23 @@ public class Orm
 	    // right string ("," or not) and the value
 	    if (!dataIterator.hasNext())
 	    {
-		if (!field.getShortName().matches("PK.*")
-			&& field.getData() != null)
+		if (field.getCalcul() == null)
 		{
-		    sqlQuery += "'" + field.getShortName() + "') ";
-		    valuesQuery += "'" + field.getDataString(true) + "') ";
+		    if (!field.getShortName().matches("PK.*")
+			    && field.getData() != null)
+		    {
+			sqlQuery += "'" + field.getShortName() + "') ";
+			valuesQuery += "'" + field.getDataString(true) + "') ";
+		    }
+		    else
+		    {
+			sqlQuery = sqlQuery.substring(0, sqlQuery.length() - 2);
+			sqlQuery += ")";
+
+			valuesQuery = valuesQuery.substring(0, valuesQuery
+				.length() - 2);
+			valuesQuery += ");";
+		    }
 		}
 		else
 		{
@@ -220,11 +232,23 @@ public class Orm
 	    }
 	    else
 	    {
-		if (!field.getShortName().matches("PK.*")
-			&& field.getData() != null)
+		if (field.getCalcul() == null)
 		{
-		    sqlQuery += "'" + field.getShortName() + "', ";
-		    valuesQuery += "'" + field.getDataString(true) + "', ";
+		    if (!field.getShortName().matches("PK.*")
+			    && field.getData() != null)
+		    {
+			sqlQuery += "'" + field.getShortName() + "', ";
+			valuesQuery += "'" + field.getDataString(true) + "', ";
+		    }
+		}
+		else
+		{
+		    sqlQuery = sqlQuery.substring(0, sqlQuery.length() - 2);
+		    sqlQuery += ")";
+
+		    valuesQuery = valuesQuery.substring(0,
+			    valuesQuery.length() - 2);
+		    valuesQuery += ");";
 		}
 	    }
 	}
@@ -575,12 +599,11 @@ public class Orm
 			// c'est quoi tu veut faire. La je l'ai enlevé, anyway
 			// ca sert a rien de faire un if avec aucun traitement
 			// non?
-			// if (field.getCalcul() == null)
-			// {
-			// do not do anything
-			// }
-			/* else */
-			if (field.getShortName().matches("PK.*"))
+			if (field.getCalcul() != null)
+			{
+			    // do not do anything
+			}
+			else if (field.getShortName().matches("PK.*"))
 			{
 			    sqlQuery += field.getShortName()
 				    + " INTEGER PRIMARY KEY AUTOINCREMENT, ";
