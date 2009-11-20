@@ -38,7 +38,7 @@ public class EntitySourceCodeBuilder
 	sourceCode += "\n";
 	sourceCode += "/**\n";
 	sourceCode += " * " + getVisibleName(entityEntity) + "\n";
-	sourceCode += " * @author NewtonERP code generator\n";
+	sourceCode += " * @author NewtonERP code generator - Guillaume Lacasse\n";
 	sourceCode += " */\n";
 	sourceCode += "public class " + getSystemName(entityEntity)
 		+ " extends AbstractOrmEntity\n";
