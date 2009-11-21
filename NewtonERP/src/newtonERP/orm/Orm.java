@@ -56,6 +56,10 @@ public class Orm
 
 	if (field instanceof FieldDouble)
 	{
+	    // J'ai ajouté " " avant le field.getShortName() sinon on 2 fois de
+	    // suite le field.getShortName()
+	    // autre chose: je ne sais pas à quoi sert le fait de le mettre 2
+	    // fois -Guillaume
 	    sqlQuery += " " + field.getShortName() + " DOUBLE PRECISION;";
 	}
 	else if (field instanceof FieldString || field instanceof FieldDateTime)
