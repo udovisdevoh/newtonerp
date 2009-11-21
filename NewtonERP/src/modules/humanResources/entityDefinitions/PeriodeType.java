@@ -9,8 +9,8 @@ import newtonERP.orm.field.type.FieldInt;
 import newtonERP.orm.field.type.FieldString;
 
 /**
- * Représente un département dans une compagnie
- * @author Guillaume
+ * Représente un type de periode dans une horaire
+ * @author CloutierJo
  */
 public class PeriodeType extends AbstractOrmEntity
 {
