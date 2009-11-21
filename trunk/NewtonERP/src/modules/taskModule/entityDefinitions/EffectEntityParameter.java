@@ -5,7 +5,7 @@ import java.util.Vector;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.Fields;
-import newtonERP.orm.field.Type.FieldInt;
+import newtonERP.orm.field.type.FieldInt;
 
 /**
  * Entité intermédiaire entre effect et parameter

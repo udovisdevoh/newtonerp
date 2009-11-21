@@ -6,9 +6,9 @@ import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.Fields;
-import newtonERP.orm.field.Type.FieldCurrency;
-import newtonERP.orm.field.Type.FieldInt;
-import newtonERP.orm.field.Type.FieldString;
+import newtonERP.orm.field.type.FieldCurrency;
+import newtonERP.orm.field.type.FieldInt;
+import newtonERP.orm.field.type.FieldString;
 
 /**
  * Entité BankAccount du module finances: représente les comptes bancaires

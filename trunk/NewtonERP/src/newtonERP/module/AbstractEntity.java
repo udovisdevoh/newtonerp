@@ -7,7 +7,7 @@ import newtonERP.module.exception.EntityException;
 import newtonERP.module.generalEntity.ListOfValue;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.Fields;
-import newtonERP.orm.field.Type.FieldBool;
+import newtonERP.orm.field.type.FieldBool;
 
 /**
  * @author r3lemaypa, r3lacasgu, CloutierJo

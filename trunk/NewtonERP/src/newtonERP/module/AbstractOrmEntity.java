@@ -16,7 +16,7 @@ import newtonERP.orm.associations.PluralAccessorManager;
 import newtonERP.orm.exceptions.OrmException;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.Fields;
-import newtonERP.orm.field.Type.FieldCurrency;
+import newtonERP.orm.field.type.FieldCurrency;
 import newtonERP.viewers.secondStep.MoneyViewer;
 import newtonERP.viewers.viewerData.BaseViewerData;
 import newtonERP.viewers.viewerData.ListViewerData;

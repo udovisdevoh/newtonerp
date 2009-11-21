@@ -10,8 +10,8 @@ import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.Module;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.Fields;
-import newtonERP.orm.field.Type.FieldInt;
-import newtonERP.orm.field.Type.FieldString;
+import newtonERP.orm.field.type.FieldInt;
+import newtonERP.orm.field.type.FieldString;
 import newtonERP.viewers.viewerData.ListViewerData;
 
 /**

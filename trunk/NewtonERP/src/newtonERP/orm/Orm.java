@@ -15,11 +15,11 @@ import newtonERP.module.exception.ModuleException;
 import newtonERP.orm.exceptions.OrmException;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.Fields;
-import newtonERP.orm.field.Type.FieldBool;
-import newtonERP.orm.field.Type.FieldDateTime;
-import newtonERP.orm.field.Type.FieldDouble;
-import newtonERP.orm.field.Type.FieldInt;
-import newtonERP.orm.field.Type.FieldString;
+import newtonERP.orm.field.type.FieldBool;
+import newtonERP.orm.field.type.FieldDateTime;
+import newtonERP.orm.field.type.FieldDouble;
+import newtonERP.orm.field.type.FieldInt;
+import newtonERP.orm.field.type.FieldString;
 import newtonERP.orm.sgbd.SgbdSqlite;
 import newtonERP.orm.sgbd.Sgbdable;
 

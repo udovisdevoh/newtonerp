@@ -4,7 +4,7 @@ import newtonERP.module.AbstractEntity;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.Fields;
 import newtonERP.orm.field.VolatileFields;
-import newtonERP.orm.field.Type.FieldString;
+import newtonERP.orm.field.type.FieldString;
 
 /**
  * @author CloutierJo

@@ -1,4 +1,4 @@
-package newtonERP.orm.field.Type;
+package newtonERP.orm.field.type;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;

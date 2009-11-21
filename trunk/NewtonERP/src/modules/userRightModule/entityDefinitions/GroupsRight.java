@@ -10,7 +10,7 @@ import newtonERP.orm.Orm;
 import newtonERP.orm.exceptions.OrmException;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.Fields;
-import newtonERP.orm.field.Type.FieldInt;
+import newtonERP.orm.field.type.FieldInt;
 
 /**
  * Entity defenition representing a group right for the users

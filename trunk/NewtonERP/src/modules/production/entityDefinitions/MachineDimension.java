@@ -5,9 +5,9 @@ import java.util.Vector;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.Fields;
-import newtonERP.orm.field.Type.FieldDouble;
-import newtonERP.orm.field.Type.FieldInt;
-import newtonERP.orm.field.Type.FieldString;
+import newtonERP.orm.field.type.FieldDouble;
+import newtonERP.orm.field.type.FieldInt;
+import newtonERP.orm.field.type.FieldString;
 
 /**
  * A machinery dimension. Warning : May disappear in further refactoring
