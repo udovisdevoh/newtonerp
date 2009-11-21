@@ -2,7 +2,6 @@ package modules.taskModule;
 
 import java.util.Vector;
 
-import modules.taskModule.entityDefinitions.AccessorEntity;
 import modules.taskModule.entityDefinitions.ActionEntity;
 import modules.taskModule.entityDefinitions.EffectEntity;
 import modules.taskModule.entityDefinitions.EntityEntity;
@@ -67,6 +66,9 @@ public class TaskModule extends Module
 	initEmployeeNewUserTask();
 	initInvoiceLineTask();
 	initInvoiceTaxLineTask();
+
+	// TODO : UNCOMMENT FOR TESTING NULL POINTER EXCEPTION ISSUE
+	// initNewSupplierTransactionTask();
     }
 
     private static void initInvoiceLineTask() throws Exception
@@ -110,6 +112,51 @@ public class TaskModule extends Module
 	task.newE();
     }
 
+    private static void initNewSupplierTransactionTask() throws Exception
+    {
+	// A CHAQUE FACTURE CREE ON FAIT UN NEW SUPPLIER TRANSACTION
+	ModuleEntity customerVendor = new ModuleEntity();
+	customerVendor.setData("systemName", "CustomerVendor");
+	customerVendor = (ModuleEntity) Orm.selectUnique(customerVendor);
+
+	ModuleEntity finances = new ModuleEntity();
+	finances.setData("systemName", "Finances");
+	finances = (ModuleEntity) Orm.selectUnique(finances);
+
+	EntityEntity invoice = new EntityEntity();
+	invoice.setData("systemName", "Invoice");
+	invoice.assign(customerVendor);
+	invoice = (EntityEntity) Orm.selectUnique(invoice);
+
+	SearchEntity searchEntity = new SearchEntity();
+	searchEntity.setData("name", "Pour chaque Invoice");
+	searchEntity.assign(invoice);
+	searchEntity.newE();
+
+	ActionEntity action = new ActionEntity();
+	action.setData("systemName", "NewSupplierTransaction");
+	action.assign(finances);
+	action = (ActionEntity) Orm.selectUnique(action);
+
+	EffectEntity effet = new EffectEntity();
+	effet.setData("name", "On fait une new SupplierTransaction");
+	effet.assign(searchEntity);
+	effet.assign(action);
+	effet.newE();
+
+	Specification specification = new Specification();
+	specification.setData("name", "Lorsque nouveau Invoice");
+	specification.assign(searchEntity);
+	specification.newE();
+
+	TaskEntity task = new TaskEntity();
+	task.setData("isActive", true);
+	task.setData("straightSearch", true);
+	task.assign(effet);
+	task.assign(specification);
+	task.newE();
+    }
+
     private static void initInvoiceTaxLineTask() throws Exception
     {
 	// CALCUL AUTOMATIQUE DE FACTURE A PARTIR D'UN TAXLINE
@@ -123,33 +170,33 @@ public class TaskModule extends Module
 	invoiceTaxLineEntity = (EntityEntity) Orm
 		.selectUnique(invoiceTaxLineEntity);
 
-	SearchEntity searchEntity = new SearchEntity();
-	searchEntity.setData("name", "Pour chaque TaxLine");
-	searchEntity.assign(invoiceTaxLineEntity);
-	searchEntity.newE();
+	SearchEntity searchEntity1 = new SearchEntity();
+	searchEntity1.setData("name", "Pour chaque TaxLine");
+	searchEntity1.assign(invoiceTaxLineEntity);
+	searchEntity1.newE();
 
 	ActionEntity action = new ActionEntity();
 	action.setData("systemName", "GetAndCalculateAssociatedInvoiceFromTax");
 	action.assign(customerVendor);
 	action = (ActionEntity) Orm.selectUnique(action);
 
-	EffectEntity effet = new EffectEntity();
-	effet.setData("name", "On calcule la facture pour chaque TaxLine");
-	effet.assign(searchEntity);
-	effet.assign(action);
-	effet.newE();
+	EffectEntity effet1 = new EffectEntity();
+	effet1.setData("name", "On calcule la facture pour chaque TaxLine");
+	effet1.assign(searchEntity1);
+	effet1.assign(action);
+	effet1.newE();
 
-	Specification specification = new Specification();
-	specification.setData("name", "Lorsqu'une tax line a été écrite");
-	specification.assign(searchEntity);
-	specification.newE();
+	Specification specification1 = new Specification();
+	specification1.setData("name", "Lorsqu'une tax line a été écrite");
+	specification1.assign(searchEntity1);
+	specification1.newE();
 
-	TaskEntity task = new TaskEntity();
-	task.setData("isActive", true);
-	task.setData("straightSearch", true);
-	task.assign(specification);
-	task.assign(effet);
-	task.newE();
+	TaskEntity task1 = new TaskEntity();
+	task1.setData("isActive", true);
+	task1.setData("straightSearch", true);
+	task1.assign(specification1);
+	task1.assign(effet1);
+	task1.newE();
     }
 
     private static void initEmployeeNewUserTask() throws Exception
@@ -213,7 +260,6 @@ public class TaskModule extends Module
 
 	TaskEntity task = new TaskEntity();
 	task.setData("isActive", false);
-	task.setData("straightSearch", false);
 	task.setData(specification.getForeignKeyName(), specification
 		.getPrimaryKeyValue());
 	task.setData(effect.getForeignKeyName(), effect.getPrimaryKeyValue());
@@ -348,22 +394,7 @@ public class TaskModule extends Module
 		entityEntity.newE();
 
 		initFieldEntitiesForEntityEntity(entityEntity, realEntity);
-		initAccessorEntityListForEntityEntity(entityEntity, realEntity
-			.getAccessorNameList());
 	    }
-	}
-    }
-
-    private static void initAccessorEntityListForEntityEntity(
-	    EntityEntity entityEntity, Vector<String> accessorNameList)
-	    throws Exception
-    {
-	for (String accessorName : accessorNameList)
-	{
-	    AccessorEntity accessorEntity = new AccessorEntity();
-	    accessorEntity.assign(entityEntity);
-	    accessorEntity.setData("foreignEntityName", accessorName);
-	    accessorEntity.newE();
 	}
     }
 
@@ -373,12 +404,12 @@ public class TaskModule extends Module
     {
 	realEntity.initFields();
 
-	for (Field<?> field : realEntity.getFields())
+	for (Field field : realEntity.getFields())
 	    initFieldEntity(field, entityEntity);
     }
 
-    private static void initFieldEntity(Field<?> field,
-	    EntityEntity entityEntity) throws Exception
+    private static void initFieldEntity(Field field, EntityEntity entityEntity)
+	    throws Exception
     {
 	FieldTypeEntity fieldType = getOrCreateFieldType(field);
 	FieldEntity fieldEntity = new FieldEntity();
@@ -387,13 +418,12 @@ public class TaskModule extends Module
 	fieldEntity.setData("readOnly", field.isReadOnly());
 	fieldEntity.setData("hidden", field.isHidden());
 	fieldEntity.setData("naturalKey", field.isNaturalKey());
-	fieldEntity.setData("dynamicField", field.isDynamicField());
 	fieldEntity.assign(fieldType);
 	fieldEntity.assign(entityEntity);
 	fieldEntity.newE();
     }
 
-    private static FieldTypeEntity getOrCreateFieldType(Field<?> field)
+    private static FieldTypeEntity getOrCreateFieldType(Field field)
 	    throws Exception
     {
 	FieldTypeEntity fieldType = new FieldTypeEntity();
