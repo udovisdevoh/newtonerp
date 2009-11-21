@@ -10,7 +10,7 @@ import newtonERP.orm.field.type.FieldString;
 
 /**
  * Représente un département dans une compagnie
- * @author Guillaume
+ * @author Guillaume, CloutierJo
  */
 public class Department extends AbstractOrmEntity
 {

@@ -6,7 +6,6 @@ import modules.humanResources.entityDefinitions.Employee;
 import modules.humanResources.entityDefinitions.EmployeeType;
 import modules.humanResources.entityDefinitions.PeriodeType;
 import modules.humanResources.entityDefinitions.SalaryType;
-import modules.humanResources.entityDefinitions.Schedule;
 import modules.userRightModule.entityDefinitions.User;
 import newtonERP.module.BaseAction;
 import newtonERP.module.Module;
@@ -29,14 +28,6 @@ public class HumanResources extends Module
 		new Employee()));
 	addGlobalActionMenuItem("Départements", new BaseAction("GetList",
 		new Department()));
-	addGlobalActionMenuItem("Horaire", new BaseAction("GetList",
-		new Schedule()));
-	addGlobalActionMenuItem("Type d'employé", new BaseAction("GetList",
-		new EmployeeType()));
-	addGlobalActionMenuItem("Type de salaire", new BaseAction("GetList",
-		new SalaryType()));
-	addGlobalActionMenuItem("Type de période", new BaseAction("GetList",
-		new PeriodeType()));
 	addGlobalActionMenuItem("Voir l'horaire", new GetOneTimeTable());
 
 	setVisibleName("Ressources humaines");

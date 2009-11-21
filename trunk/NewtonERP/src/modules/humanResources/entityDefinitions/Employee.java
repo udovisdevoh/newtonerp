@@ -15,7 +15,7 @@ import newtonERP.orm.field.type.FieldString;
 
 /**
  * Représente un entité d'employé
- * @author Guillaume
+ * @author Guillaume, CloutierJo
  */
 public class Employee extends AbstractOrmEntity
 {

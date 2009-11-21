@@ -14,8 +14,8 @@ import newtonERP.orm.field.type.FieldInt;
 import newtonERP.viewers.viewerData.PromptViewerData;
 
 /**
- * Représente un département dans une compagnie
- * @author Guillaume
+ * Représente l'horaire
+ * @author CloutierJo
  */
 public class Schedule extends AbstractOrmEntity
 {

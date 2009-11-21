@@ -9,8 +9,8 @@ import newtonERP.orm.field.type.FieldInt;
 import newtonERP.orm.field.type.FieldString;
 
 /**
- * Représente un département dans une compagnie
- * @author Guillaume
+ * Représente le type d'employer
+ * @author CloutierJo
  */
 public class EmployeeType extends AbstractOrmEntity
 {
