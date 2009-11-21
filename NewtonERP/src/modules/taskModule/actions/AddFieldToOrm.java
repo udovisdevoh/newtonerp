@@ -8,6 +8,7 @@ import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.Orm;
+import newtonERP.orm.field.Field;
 import newtonERP.viewers.viewerData.BaseViewerData;
 
 /**
@@ -16,6 +17,13 @@ import newtonERP.viewers.viewerData.BaseViewerData;
  */
 public class AddFieldToOrm extends AbstractAction
 {
+    /**
+     * @throws Exception si création fail
+     */
+    public AddFieldToOrm() throws Exception
+    {
+	super(new FieldEntity());
+    }
 
     @Override
     public BaseViewerData doAction(AbstractEntity sourceFieldEntity,
@@ -25,10 +33,12 @@ public class AddFieldToOrm extends AbstractAction
 		.selectUnique((AbstractOrmEntity) sourceFieldEntity);
 
 	EntityEntity entityEntity = (EntityEntity) fieldEntity
-		.getSingleAccessor("EntityEntity");
+		.getSingleAccessor(new EntityEntity().getForeignKeyName());
 
-	Orm.addColumnToTable(entityEntity.getEntityDefinition(), fieldEntity
-		.getFieldInstance());
+	AbstractOrmEntity entity = entityEntity.getEntityDefinition();
+	Field<?> field = fieldEntity.getFieldInstance();
+
+	Orm.addColumnToTable(entity, field);
 
 	return fieldEntity.editUI(parameters);
     }

@@ -56,15 +56,15 @@ public class Orm
 
 	if (field instanceof FieldDouble)
 	{
-	    sqlQuery += field.getShortName() + " DOUBLE PRECISION;";
+	    sqlQuery += " " + field.getShortName() + " DOUBLE PRECISION;";
 	}
 	else if (field instanceof FieldString || field instanceof FieldDateTime)
 	{
-	    sqlQuery += field.getShortName() + " STRING;";
+	    sqlQuery += " " + field.getShortName() + " STRING;";
 	}
 	else if (field instanceof FieldBool || field instanceof FieldInt)
 	{
-	    sqlQuery += field.getShortName() + " INTEGER;";
+	    sqlQuery += " " + field.getShortName() + " INTEGER;";
 	}
 
 	// TODO: Remove the next line when it will be properly debugged

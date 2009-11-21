@@ -1,14 +1,24 @@
 package modules.taskModule.entityDefinitions;
 
+import java.util.Hashtable;
 import java.util.Vector;
 
+import modules.taskModule.actions.AddFieldToOrm;
+import newtonERP.common.ActionLink;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.Fields;
 import newtonERP.orm.field.type.FieldBool;
+import newtonERP.orm.field.type.FieldCurrency;
+import newtonERP.orm.field.type.FieldDate;
+import newtonERP.orm.field.type.FieldDateTime;
+import newtonERP.orm.field.type.FieldDouble;
 import newtonERP.orm.field.type.FieldInt;
 import newtonERP.orm.field.type.FieldString;
+import newtonERP.orm.field.type.FieldText;
+import newtonERP.orm.field.type.FieldTime;
+import newtonERP.viewers.viewerData.ListViewerData;
 
 /**
  * Représente un champ
@@ -52,25 +62,57 @@ public class FieldEntity extends AbstractOrmEntity
 	return new Fields(fieldList);
     }
 
+    @Override
+    public ListViewerData getList(Hashtable<String, String> parameters)
+	    throws Exception
+    {
+	parameters.put(getPrimaryKeyName(), "&");
+
+	ListViewerData entityList = super.getList(parameters);
+	entityList.addSpecificActionButtonList(new ActionLink(
+		"Mettre dans Orm", new AddFieldToOrm(), parameters));
+	return entityList;
+    }
+
     /**
      * @return retourne un vrai field
      * @throws Exception si création fail
      */
     public Field<?> getFieldInstance() throws Exception
     {
+	FieldTypeEntity fieldTypeEntity = getFieldTypeEntity();
+
 	String name = getDataString("name");
 	String visibleName = getDataString("visibleName");
-	String type = getFieldTypeEntity().getDataString("systemName");
+	String type = fieldTypeEntity.getDataString("systemName");
 	Boolean readOnly = (Boolean) getData("readOnly");
 	Boolean hidden = (Boolean) getData("hidden");
 	Boolean naturalKey = (Boolean) getData("naturalKey");
 	Boolean dynamicField = (Boolean) getData("dynamicField");
 
-	Field<?> field = (Field<?>) Class.forName("orm.field.type." + type)
-		.newInstance();
+	// je n'utilise pas Class.forName() mais on pourrait l'utiliser
+	Field<?> field;
+	if (type.equals("FieldBool"))
+	    field = new FieldBool(visibleName, name);
+	else if (type.equals("FieldCurrency"))
+	    field = new FieldCurrency(visibleName, name);
+	else if (type.equals("FieldDate"))
+	    field = new FieldDate(visibleName, name);
+	else if (type.equals("FieldDateTime"))
+	    field = new FieldDateTime(visibleName, name);
+	else if (type.equals("FieldDouble"))
+	    field = new FieldDouble(visibleName, name);
+	else if (type.equals("FieldInt"))
+	    field = new FieldInt(visibleName, name);
+	else if (type.equals("FieldString"))
+	    field = new FieldString(visibleName, name);
+	else if (type.equals("FieldText"))
+	    field = new FieldText(visibleName, name);
+	else if (type.equals("FieldTime"))
+	    field = new FieldTime(visibleName, name);
+	else
+	    field = new FieldString(visibleName, name);
 
-	field.setShortName(name);
-	field.setVisibleName(visibleName);
 	field.setHidden(hidden);
 	field.setNaturalKey(naturalKey);
 	field.setReadOnly(readOnly);
@@ -81,6 +123,7 @@ public class FieldEntity extends AbstractOrmEntity
 
     private FieldTypeEntity getFieldTypeEntity() throws Exception
     {
-	return (FieldTypeEntity) getSingleAccessor("FieldTypeEntity");
+	return (FieldTypeEntity) getSingleAccessor(new FieldTypeEntity()
+		.getForeignKeyName());
     }
 }
