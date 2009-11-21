@@ -66,7 +66,7 @@ public class FieldEntity extends AbstractOrmEntity
 	Boolean naturalKey = (Boolean) getData("naturalKey");
 	Boolean dynamicField = (Boolean) getData("dynamicField");
 
-	Field<?> field = (Field<?>) Class.forName("orm.field.Type." + type)
+	Field<?> field = (Field<?>) Class.forName("orm.field.type." + type)
 		.newInstance();
 
 	field.setShortName(name);
