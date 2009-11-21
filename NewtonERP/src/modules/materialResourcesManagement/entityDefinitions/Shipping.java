@@ -7,9 +7,9 @@ import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.Fields;
-import newtonERP.orm.field.Type.FieldDate;
-import newtonERP.orm.field.Type.FieldInt;
-import newtonERP.orm.field.Type.FieldText;
+import newtonERP.orm.field.type.FieldDate;
+import newtonERP.orm.field.type.FieldInt;
+import newtonERP.orm.field.type.FieldText;
 
 /**
  * A delivery when a new Invoice (Customer or Vendor) has been generated

@@ -6,8 +6,8 @@ import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.Fields;
-import newtonERP.orm.field.Type.FieldInt;
-import newtonERP.orm.field.Type.FieldText;
+import newtonERP.orm.field.type.FieldInt;
+import newtonERP.orm.field.type.FieldText;
 
 /**
  * A general training

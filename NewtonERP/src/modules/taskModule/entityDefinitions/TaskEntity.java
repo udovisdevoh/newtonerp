@@ -7,8 +7,8 @@ import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.Fields;
-import newtonERP.orm.field.Type.FieldBool;
-import newtonERP.orm.field.Type.FieldInt;
+import newtonERP.orm.field.type.FieldBool;
+import newtonERP.orm.field.type.FieldInt;
 
 /**
  * entité représentant une task

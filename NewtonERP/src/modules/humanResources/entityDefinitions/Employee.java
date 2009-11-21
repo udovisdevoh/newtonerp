@@ -9,9 +9,9 @@ import newtonERP.orm.field.Field;
 import newtonERP.orm.field.FieldCalcule;
 import newtonERP.orm.field.FieldValidator;
 import newtonERP.orm.field.Fields;
-import newtonERP.orm.field.Type.FieldCurrency;
-import newtonERP.orm.field.Type.FieldInt;
-import newtonERP.orm.field.Type.FieldString;
+import newtonERP.orm.field.type.FieldCurrency;
+import newtonERP.orm.field.type.FieldInt;
+import newtonERP.orm.field.type.FieldString;
 
 /**
  * Représente un entité d'employé

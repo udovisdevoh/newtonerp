@@ -1,4 +1,4 @@
-package newtonERP.orm.field.Type;
+package newtonERP.orm.field.type;
 
 import newtonERP.module.exception.InvalidOperatorException;
 
