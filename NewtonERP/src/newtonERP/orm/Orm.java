@@ -46,20 +46,17 @@ public class Orm
      * 
      * @param entity the entity containing the new field
      * @param field the field to add
+     * @return ?
      * @throws OrmException an exception that can occur in the orm
      */
-    public static void addColumnToTable(AbstractOrmEntity entity, Field<?> field)
-	    throws OrmException
+    public static ResultSet addColumnToTable(AbstractOrmEntity entity,
+	    Field<?> field) throws OrmException
     {
 	String sqlQuery = "ALTER TABLE " + prefix + entity.getSystemName()
-		+ " ADD COLUMN " + field.getShortName();
+		+ " ADD COLUMN ";
 
 	if (field instanceof FieldDouble)
 	{
-	    // J'ai ajouté " " avant le field.getShortName() sinon on 2 fois de
-	    // suite le field.getShortName()
-	    // autre chose: je ne sais pas à quoi sert le fait de le mettre 2
-	    // fois -Guillaume
 	    sqlQuery += " " + field.getShortName() + " DOUBLE PRECISION;";
 	}
 	else if (field instanceof FieldString || field instanceof FieldDateTime)
@@ -74,7 +71,7 @@ public class Orm
 	// TODO: Remove the next line when it will be properly debugged
 	System.out.println("SQL query produced : " + sqlQuery);
 
-	sgbd.execute(sqlQuery, OrmActions.OTHER);
+	return sgbd.execute(sqlQuery, OrmActions.OTHER);
     }
 
     /**
