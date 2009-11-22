@@ -41,6 +41,12 @@ public class DebitFromBankAccount extends AbstractAction
 	if (bill <= (balance + marginBalance))
 	{
 	    balance -= bill;// débitage
+	    if (balance < 0)
+	    {
+		marginBalance += balance;
+		bankAccount.setData("marginBalance", marginBalance);
+		balance = 0.0;
+	    }
 	    bankAccount.setData("balance", balance);
 	    bankAccount.save();
 	    return new AlertEntity("Paiement effectué");

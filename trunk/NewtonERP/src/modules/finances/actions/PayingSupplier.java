@@ -20,7 +20,6 @@ import newtonERP.orm.Orm;
  */
 public class PayingSupplier extends AbstractAction
 {
-
     /**
      * constructeur
      * @throws Exception si création fail
