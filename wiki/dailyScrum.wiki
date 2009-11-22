@@ -863,7 +863,9 @@ par exemple, si on delete un Group, alors les GroupRight WHERE GroupID = ce grou
 
 ==Jonathan Hallee==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
-  * ...livré...
+  * refait le insert de l'orm
+  * regler bug dans le alter table
+  * fait la task demandée par pascal (pas optimisée par contre)
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
   * ...à livrer...
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
