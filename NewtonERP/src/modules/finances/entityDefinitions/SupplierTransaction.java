@@ -34,13 +34,15 @@ public class SupplierTransaction extends AbstractOrmEntity
 	AccessorManager.addAccessor(this, new Merchant());
 	AccessorManager.addAccessor(this, new Invoice());
 	AccessorManager.addAccessor(this, new StateType());
+	AccessorManager.addAccessor(this, new BankAccount());
 	setVisibleName("Transaction Fournisseur");
     }
 
     @Override
     public Fields initFields() throws Exception
     {
-	FieldInt primaryKey = new FieldInt("Numéro", getPrimaryKeyName());
+	FieldInt primaryKey = new FieldInt("Numéro Transaction",
+		getPrimaryKeyName());
 	primaryKey.setNaturalKey(true);
 
 	FieldCurrency balance = new FieldCurrency("Solde", "balance");
@@ -60,6 +62,8 @@ public class SupplierTransaction extends AbstractOrmEntity
 		.add(new FieldInt("État", new StateType().getForeignKeyName()));
 	fieldsInit.add(new FieldInt("Numéro de fournisseur", new Merchant()
 		.getForeignKeyName()));
+	fieldsInit.add(new FieldInt("Payer à partir du compte:",
+		new BankAccount().getForeignKeyName()));
 
 	return new Fields(fieldsInit);
     }

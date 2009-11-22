@@ -7,9 +7,10 @@ import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
 
 /**
- * Action NewSupplierTransaction:représente l'action de créer une nouvelle
+ * Action NewSupplierTransaction: représente l'action de créer une nouvelle
  * transaction de fournisseur à partir d'une facture de fournisseur.
  * 
+ * Cera "callé" lors de la création d'une nouvelle Invoice fournisseur.
  * @author Pascal Lemay
  */
 public class NewSupplierTransaction extends AbstractAction
