@@ -58,7 +58,7 @@ public class Invoice extends AbstractOrmEntity
 	FieldCurrency fieldCalc = new FieldCurrency("Grand total", "grandTotal");
 	fieldCalc.setCalcul(new FieldCalcule<Double>()
 	{
-	    public Double calculate(Fields entityFields)
+	    public Double calcul(Fields entityFields)
 	    {
 		return (Double) entityFields.getField("total").getData()
 			+ (Double) entityFields.getField("taxTotal").getData();

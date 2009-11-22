@@ -46,7 +46,7 @@ public class Employee extends AbstractOrmEntity
 	FieldInt fieldNAS = new FieldInt("Numéro d'assurance social", "NAS");
 	fieldNAS.setValidator(new FieldValidator<Integer>()
 	{
-	    public boolean validate(Integer value)
+	    public boolean valide(Integer value)
 	    {
 		return value.toString().length() == 9;
 	    }
@@ -73,7 +73,7 @@ public class Employee extends AbstractOrmEntity
 	FieldInt fieldCalc = new FieldInt("calcule", "calcul");
 	fieldCalc.setCalcul(new FieldCalcule<Integer>()
 	{
-	    public Integer calculate(Fields entityFields)
+	    public Integer calcul(Fields entityFields)
 	    {
 		return (Integer) entityFields.getField("nbVacancyDays")
 			.getData()
