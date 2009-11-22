@@ -15,7 +15,6 @@ import newtonERP.orm.Orm;
 /**
  * Action PayingSupplier: représente l'action de payer le compte correspondant.
  * 
- * ps pas terminé
  * @author Pascal Lemay
  */
 public class PayingSupplier extends AbstractAction
@@ -33,7 +32,6 @@ public class PayingSupplier extends AbstractAction
 	    Hashtable<String, String> parameters) throws Exception
     {
 	SupplierTransaction trans = (SupplierTransaction) entity;
-
 	SupplierTransaction searchT = new SupplierTransaction();
 	searchT.setData(trans.getPrimaryKeyName(), trans.getPrimaryKeyValue());
 	// La transaction
@@ -58,7 +56,7 @@ public class PayingSupplier extends AbstractAction
 	if (alert.getMessage().equals("Paiement effectué"))
 	{
 	    transaction.setData("paymentDate", new GregorianCalendar());
-	    transaction.setData(new StateType().getForeignKeyName(), 1);
+	    transaction.setData(new StateType().getForeignKeyName(), 2);
 	    transaction.save();
 	    return transaction.getList();
 	}

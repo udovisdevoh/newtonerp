@@ -14,7 +14,7 @@ import newtonERP.orm.Orm;
 
 /**
  * Action PayingService: représente l'action de payer le compte correspondant.
- * ps pas terminé
+ * 
  * @author Pascal Lemay
  */
 public class PayingService extends AbstractAction
@@ -32,7 +32,6 @@ public class PayingService extends AbstractAction
 	    Hashtable<String, String> parameters) throws Exception
     {
 	ServiceTransaction trans = (ServiceTransaction) entity;
-
 	ServiceTransaction searchT = new ServiceTransaction();
 	searchT.setData(trans.getPrimaryKeyName(), trans.getPrimaryKeyValue());
 	// La transaction
@@ -58,7 +57,7 @@ public class PayingService extends AbstractAction
 	if (alert.getMessage().equals("Paiement effectué"))
 	{
 	    transaction.setData("paymentDate", new GregorianCalendar());
-	    transaction.setData(new StateType().getForeignKeyName(), 1);
+	    transaction.setData(new StateType().getForeignKeyName(), 2);
 	    transaction.save();
 	    return transaction.getList();
 	}
