@@ -33,15 +33,18 @@ public class PayingSupplier extends AbstractAction
     public AbstractEntity doAction(AbstractEntity entity,
 	    Hashtable<String, String> parameters) throws Exception
     {
+	SupplierTransaction trans = (SupplierTransaction) entity;
 
-	SupplierTransaction transaction = (SupplierTransaction) entity;
+	SupplierTransaction searchT = new SupplierTransaction();
+	searchT.setData(trans.getPrimaryKeyName(), trans.getPrimaryKeyValue());
+	AbstractOrmEntity transaction = Orm.selectUnique(searchT);
 
-	Double bill = (Double) transaction.getList(parameters).getEntity().get(
-		0).getData("balance");
+	Double bill = (Double) transaction.getData("balance");
 	String billParam = String.valueOf(bill);
 
 	BankAccount searchEntity = new BankAccount();
-	searchEntity.setData("folio", "2148");// tempo
+	searchEntity.setData(new BankAccount().getPrimaryKeyName(), transaction
+		.getData(new BankAccount().getForeignKeyName()));
 	AbstractOrmEntity bankAccount = Orm.selectUnique(searchEntity);
 
 	Hashtable<String, String> actionParameters = new Hashtable<String, String>();

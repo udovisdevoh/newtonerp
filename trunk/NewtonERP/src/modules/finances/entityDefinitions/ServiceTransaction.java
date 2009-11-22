@@ -33,6 +33,7 @@ public class ServiceTransaction extends AbstractOrmEntity
 	super();
 	AccessorManager.addAccessor(this, new ServiceProvider());
 	AccessorManager.addAccessor(this, new StateType());
+	AccessorManager.addAccessor(this, new BankAccount());
 	setVisibleName("Transaction de services");
     }
 
@@ -40,19 +41,23 @@ public class ServiceTransaction extends AbstractOrmEntity
     public Fields initFields() throws Exception
     {
 	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
-	FieldInt primaryKey = new FieldInt("Numéro", getPrimaryKeyName());
+	FieldInt primaryKey = new FieldInt("Numéro Transaction",
+		getPrimaryKeyName());
 	primaryKey.setNaturalKey(true);
 	fieldsInit.add(primaryKey);
 	FieldString service = new FieldString("Service", "service");
-	service.setNaturalKey(true);
+	// service.setNaturalKey(true); //on peut avoir plusieurs transaction
+	// pour le même service
 	fieldsInit.add(service);
 	fieldsInit.add(new FieldDate("Échéance", "deadline"));
 	fieldsInit.add(new FieldDate("Date de paiement", "paymentDate"));
 	fieldsInit.add(new FieldCurrency("Solde", "balance"));
 	fieldsInit
 		.add(new FieldInt("État", new StateType().getForeignKeyName()));
-	fieldsInit.add(new FieldInt("Numéro de Fournisseur",
-		new ServiceProvider().getForeignKeyName()));
+	fieldsInit.add(new FieldInt("Nom du Fournisseur", new ServiceProvider()
+		.getForeignKeyName()));
+	fieldsInit.add(new FieldInt("Folio pour paiement:", new BankAccount()
+		.getForeignKeyName()));
 
 	return new Fields(fieldsInit);
     }

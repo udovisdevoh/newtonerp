@@ -40,8 +40,7 @@ public class BankAccount extends AbstractOrmEntity
 	fieldsInit.add(new FieldCurrency("Solde", "balance"));
 	fieldsInit.add(new FieldCurrency("Marge Disponible", "marginBalance"));
 	fieldsInit.add(new FieldCurrency("Marge", "margin"));
-	fieldsInit.add(new FieldInt("Numéro de Banque", new Bank()
-		.getForeignKeyName()));
+	fieldsInit.add(new FieldInt("Transit", new Bank().getForeignKeyName()));
 
 	return new Fields(fieldsInit);
     }
