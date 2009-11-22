@@ -66,9 +66,7 @@ public class TaskModule extends Module
 	initEmployeeNewUserTask();
 	initInvoiceLineTask();
 	initInvoiceTaxLineTask();
-
-	// TODO : UNCOMMENT FOR TESTING NULL POINTER EXCEPTION ISSUE
-	// initNewSupplierTransactionTask();
+	initNewSupplierTransactionTask();
     }
 
     private static void initInvoiceLineTask() throws Exception
