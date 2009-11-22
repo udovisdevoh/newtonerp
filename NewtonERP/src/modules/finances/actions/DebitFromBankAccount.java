@@ -33,7 +33,7 @@ public class DebitFromBankAccount extends AbstractAction
 	BankAccount bankAccount = (BankAccount) entity;
 	// Montant de transaction
 	Double bill = Double.parseDouble(parameters.get("bill"));
-	// Solde du compte
+	// Solde du compte de banque
 	Double balance = (Double) bankAccount.getData("balance");
 	// Disponible sur marge
 	Double marginBalance = (Double) bankAccount.getData("marginBalance");
