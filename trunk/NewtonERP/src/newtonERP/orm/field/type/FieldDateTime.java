@@ -50,7 +50,7 @@ public class FieldDateTime extends Field<GregorianCalendar>
     {
 	if (data == null)
 	    return null;
-	String retVal = dateFormatter.format(data.getTime());
+	String retVal = dateFormatter.format(super.getData().getTime());
 	if (forOrm)
 	    return addSlash(retVal);
 	return retVal;

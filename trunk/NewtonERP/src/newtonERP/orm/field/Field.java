@@ -65,7 +65,7 @@ public abstract class Field<T>
 	setOperator("=");
 	setValidator(new FieldValidator<T>()
 	{
-	    public boolean validate(T value)
+	    public boolean valide(T value)
 	    {
 		return true;
 	    }
@@ -128,7 +128,7 @@ public abstract class Field<T>
     {
 
 	if (calcul != null)
-	    return calcul.calculate(fieldsRef).toString();
+	    data = calcul.calculate(fieldsRef);
 	if (data == null)
 	    return "";
 	if (forOrm)

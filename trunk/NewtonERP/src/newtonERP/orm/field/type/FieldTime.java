@@ -56,6 +56,6 @@ public class FieldTime extends FieldDateTime
 	    return super.getDataString(forOrm);
 	if (data == null)
 	    return null;
-	return dateFormatter.format(data.getTime());
+	return dateFormatter.format(super.getData().getTime());
     }
 }

@@ -9,13 +9,25 @@ public abstract class FieldValidator<T>
 {
     private String errorMessage = "";
 
+    protected abstract boolean valide(T value);
+
     /**
      * valide la donne entre, si la donnee n'Est pas valide un peu recupere la
      * raison de non validite par getErrorMessage
      * @param value valeur a valide
      * @return true si la value est valide false sinon
      */
-    public abstract boolean validate(T value);
+    public boolean validate(T value)
+    {
+	try
+	{
+	    return valide(value);
+	} catch (NullPointerException e)
+	{
+	    setErrorMessage("une valeur obligatoir n'a pas été emplis");
+	    return false;
+	}
+    }
 
     /**
      * @param errorMessage the errorMessage to set
