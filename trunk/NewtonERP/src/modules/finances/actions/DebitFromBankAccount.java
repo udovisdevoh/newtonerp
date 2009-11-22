@@ -12,7 +12,6 @@ import newtonERP.module.generalEntity.AlertEntity;
  * représente l'action de débiter le montant d'une transaction à payer, du
  * compte de banque correspondant.
  * 
- * ps pas terminé
  * 
  * @author Pascal Lemay
  */

@@ -62,8 +62,8 @@ public class SupplierTransaction extends AbstractOrmEntity
 		.add(new FieldInt("État", new StateType().getForeignKeyName()));
 	fieldsInit.add(new FieldInt("Numéro de fournisseur", new Merchant()
 		.getForeignKeyName()));
-	fieldsInit.add(new FieldInt("Payer à partir du compte:",
-		new BankAccount().getForeignKeyName()));
+	fieldsInit.add(new FieldInt("Compte pour paiement", new BankAccount()
+		.getForeignKeyName()));
 
 	return new Fields(fieldsInit);
     }

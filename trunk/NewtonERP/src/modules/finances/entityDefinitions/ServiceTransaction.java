@@ -56,7 +56,7 @@ public class ServiceTransaction extends AbstractOrmEntity
 		.add(new FieldInt("État", new StateType().getForeignKeyName()));
 	fieldsInit.add(new FieldInt("Nom du Fournisseur", new ServiceProvider()
 		.getForeignKeyName()));
-	fieldsInit.add(new FieldInt("Folio pour paiement:", new BankAccount()
+	fieldsInit.add(new FieldInt("Compte pour paiement", new BankAccount()
 		.getForeignKeyName()));
 
 	return new Fields(fieldsInit);

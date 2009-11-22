@@ -58,11 +58,11 @@ public class Finances extends Module
 	StateType stateType;
 
 	stateType = new StateType();
-	stateType.setData("name", "Paye");
+	stateType.setData("name", "Non-paye");
 	stateType.newE();
 
 	stateType = new StateType();
-	stateType.setData("name", "Non-paye");
+	stateType.setData("name", "Paye");
 	stateType.newE();
     }
 }
