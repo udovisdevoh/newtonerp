@@ -39,17 +39,15 @@ public class PayingSupplier extends AbstractAction
 	searchT.setData(trans.getPrimaryKeyName(), trans.getPrimaryKeyValue());
 	AbstractOrmEntity transaction = Orm.selectUnique(searchT);
 
-	Double bill = (Double) transaction.getData("balance");
-	String billParam = String.valueOf(bill);
+	String bill = String.valueOf(transaction.getData("balance"));
 
-	BankAccount searchEntity = new BankAccount();
-	searchEntity.setData(new BankAccount().getPrimaryKeyName(), transaction
+	BankAccount searchBank = new BankAccount();
+	searchBank.setData(new BankAccount().getPrimaryKeyName(), transaction
 		.getData(new BankAccount().getForeignKeyName()));
-	AbstractOrmEntity bankAccount = Orm.selectUnique(searchEntity);
+	AbstractOrmEntity bankAccount = Orm.selectUnique(searchBank);
 
 	Hashtable<String, String> actionParameters = new Hashtable<String, String>();
-	actionParameters.put("bill", billParam);
-
+	actionParameters.put("bill", bill);
 	AlertEntity alert = (AlertEntity) new DebitFromBankAccount().doAction(
 		bankAccount, actionParameters);
 
