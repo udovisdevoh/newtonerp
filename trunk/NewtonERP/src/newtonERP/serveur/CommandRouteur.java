@@ -85,8 +85,8 @@ public class CommandRouteur
 	// On avertit le task manager et on retourne une entité provenant du
 	// task manager
 	// si une tâche a été faite
-	AbstractEntity taskManagerRetView = TaskManager
-		.executeTasks(entityName);
+	AbstractEntity taskManagerRetView = TaskManager.executeTasks(
+		entityName, parameter);
 	if (taskManagerRetView != null)
 	    retView = taskManagerRetView;
 

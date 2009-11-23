@@ -1,5 +1,6 @@
 package modules.taskModule.entityDefinitions;
 
+import java.util.Hashtable;
 import java.util.Vector;
 
 import newtonERP.module.AbstractEntity;
@@ -49,12 +50,16 @@ public class TaskEntity extends AbstractOrmEntity
     }
 
     /**
+     * @param entityParameters paramètres de l'entité
+     * @param isStraightSearch si c'est une recherche directe
      * @return true si la spécification de la tâche est satisfaite
      * @throws Exception si vérification fail
      */
-    public boolean isSatisfied() throws Exception
+    public boolean isSatisfied(Hashtable<String, String> entityParameters,
+	    boolean isStraightSearch) throws Exception
     {
-	return getSpecification().isSatisfied();
+	return getSpecification().isSatisfied(entityParameters,
+		isStraightSearch);
     }
 
     private Specification getSpecification() throws Exception
@@ -65,12 +70,15 @@ public class TaskEntity extends AbstractOrmEntity
 
     /**
      * Execute l'effet de la tâche
+     * @param entityParameters paramètres de l'entité
+     * @param isStraightSearch si c'est une recherche directe
      * @return entité viewable, résultat de la tâche
      * @throws Exception si execution fail
      */
-    public AbstractEntity execute() throws Exception
+    public AbstractEntity execute(Hashtable<String, String> entityParameters,
+	    boolean isStraightSearch) throws Exception
     {
-	return getEffect().execute();
+	return getEffect().execute(entityParameters, isStraightSearch);
     }
 
     private EffectEntity getEffect() throws Exception
@@ -85,5 +93,13 @@ public class TaskEntity extends AbstractOrmEntity
     public boolean isActive()
     {
 	return (Boolean) (getData("isActive"));
+    }
+
+    /**
+     * @return si c'est une recherche directe
+     */
+    public boolean isStraightSearch()
+    {
+	return (Boolean) (getData("straightSearch"));
     }
 }
