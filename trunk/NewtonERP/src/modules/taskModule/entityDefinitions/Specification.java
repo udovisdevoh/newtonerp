@@ -57,6 +57,9 @@ public class Specification extends AbstractOrmEntity
 	{
 	    if (!entityParameters.containsKey(searchEntity.getPrimaryKeyName()))
 		return false;
+	    else if (entityParameters.get(searchEntity.getPrimaryKeyName())
+		    .equals("&"))
+		return false;
 
 	    searchEntity.setData(searchEntity.getPrimaryKeyName(),
 		    entityParameters.get(searchEntity.getPrimaryKeyName()));
