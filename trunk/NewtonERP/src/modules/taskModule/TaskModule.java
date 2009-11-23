@@ -67,18 +67,58 @@ public class TaskModule extends Module
 	initInvoiceLineTask();
 	initInvoiceTaxLineTask();
 	initNewSupplierTransactionTask();
+	intiDynamicFieldTask();
+    }
+
+    private static void intiDynamicFieldTask() throws Exception
+    {
+	EntityEntity fieldEntity = new EntityEntity();
+	fieldEntity.setData("systemName", "FieldEntity");
+	fieldEntity = (EntityEntity) Orm.selectUnique(fieldEntity);
+
+	SearchCriteriaOperator equals = new SearchCriteriaOperator();
+	equals.setData("name", "=");
+	equals = (SearchCriteriaOperator) Orm.selectUnique(equals);
+
+	SearchEntity searchEntity = new SearchEntity();
+	searchEntity.setData("name", "Pour field dynamique écrit");
+	searchEntity.assign(fieldEntity);
+	searchEntity.newE();
+
+	SearchCriteria searchCriteria = new SearchCriteria();
+	searchCriteria.setData("key", "dynamicField");
+	searchCriteria.assign(searchEntity);
+	searchCriteria.setData("value", "true");
+	searchCriteria.assign(equals);
+	searchCriteria.newE();
+
+	Specification specification = new Specification();
+	specification.setData("name", "Lorsqu'un field dynamique est écrit");
+	specification.assign(searchEntity);
+	specification.newE();
+
+	ActionEntity action = new ActionEntity();
+	action.setData("systemName", "AddFieldToOrm");
+	action = (ActionEntity) Orm.selectUnique(action);
+
+	EffectEntity effet = new EffectEntity();
+	effet.setData("name", "On ajoute ce field dans l'Orm");
+	effet.assign(searchEntity);
+	effet.assign(action);
+	effet.newE();
+
+	TaskEntity task = new TaskEntity();
+	task.setData("isActive", true);
+	task.setData("straightSearch", true);
+	task.assign(effet);
+	task.assign(specification);
+	task.newE();
     }
 
     private static void initInvoiceLineTask() throws Exception
     {
-	// CALCUL AUTOMATIQUE DE FACTURE A PARTIR D'UN INVOICELINE
-	ModuleEntity customerVendor = new ModuleEntity();
-	customerVendor.setData("systemName", "CustomerVendor");
-	customerVendor = (ModuleEntity) Orm.selectUnique(customerVendor);
-
 	EntityEntity invoiceLineEntity = new EntityEntity();
 	invoiceLineEntity.setData("systemName", "InvoiceLine");
-	invoiceLineEntity.assign(customerVendor);
 	invoiceLineEntity = (EntityEntity) Orm.selectUnique(invoiceLineEntity);
 
 	SearchEntity searchEntity = new SearchEntity();
@@ -88,7 +128,6 @@ public class TaskModule extends Module
 
 	ActionEntity action = new ActionEntity();
 	action.setData("systemName", "GetAndCalculateAssociatedInvoice");
-	action.assign(customerVendor);
 	action = (ActionEntity) Orm.selectUnique(action);
 
 	EffectEntity effet = new EffectEntity();
@@ -113,17 +152,12 @@ public class TaskModule extends Module
     private static void initNewSupplierTransactionTask() throws Exception
     {
 	// A CHAQUE FACTURE CREE ON FAIT UN NEW SUPPLIER TRANSACTION
-	ModuleEntity customerVendor = new ModuleEntity();
-	customerVendor.setData("systemName", "CustomerVendor");
-	customerVendor = (ModuleEntity) Orm.selectUnique(customerVendor);
-
 	ModuleEntity finances = new ModuleEntity();
 	finances.setData("systemName", "Finances");
 	finances = (ModuleEntity) Orm.selectUnique(finances);
 
 	EntityEntity invoice = new EntityEntity();
 	invoice.setData("systemName", "Invoice");
-	invoice.assign(customerVendor);
 	invoice = (EntityEntity) Orm.selectUnique(invoice);
 
 	SearchEntity searchEntity = new SearchEntity();
@@ -158,13 +192,8 @@ public class TaskModule extends Module
     private static void initInvoiceTaxLineTask() throws Exception
     {
 	// CALCUL AUTOMATIQUE DE FACTURE A PARTIR D'UN TAXLINE
-	ModuleEntity customerVendor = new ModuleEntity();
-	customerVendor.setData("systemName", "CustomerVendor");
-	customerVendor = (ModuleEntity) Orm.selectUnique(customerVendor);
-
 	EntityEntity invoiceTaxLineEntity = new EntityEntity();
 	invoiceTaxLineEntity.setData("systemName", "InvoiceTaxLine");
-	invoiceTaxLineEntity.assign(customerVendor);
 	invoiceTaxLineEntity = (EntityEntity) Orm
 		.selectUnique(invoiceTaxLineEntity);
 
@@ -175,7 +204,6 @@ public class TaskModule extends Module
 
 	ActionEntity action = new ActionEntity();
 	action.setData("systemName", "GetAndCalculateAssociatedInvoiceFromTax");
-	action.assign(customerVendor);
 	action = (ActionEntity) Orm.selectUnique(action);
 
 	EffectEntity effet1 = new EffectEntity();
@@ -258,6 +286,7 @@ public class TaskModule extends Module
 
 	TaskEntity task = new TaskEntity();
 	task.setData("isActive", false);
+	task.setData("straightSearch", false);
 	task.setData(specification.getForeignKeyName(), specification
 		.getPrimaryKeyValue());
 	task.setData(effect.getForeignKeyName(), effect.getPrimaryKeyValue());
@@ -396,6 +425,7 @@ public class TaskModule extends Module
 	}
     }
 
+    @SuppressWarnings("unchecked")
     private static void initFieldEntitiesForEntityEntity(
 	    EntityEntity entityEntity, AbstractOrmEntity realEntity)
 	    throws Exception
@@ -406,6 +436,7 @@ public class TaskModule extends Module
 	    initFieldEntity(field, entityEntity);
     }
 
+    @SuppressWarnings("unchecked")
     private static void initFieldEntity(Field field, EntityEntity entityEntity)
 	    throws Exception
     {
@@ -421,6 +452,7 @@ public class TaskModule extends Module
 	fieldEntity.newE();
     }
 
+    @SuppressWarnings("unchecked")
     private static FieldTypeEntity getOrCreateFieldType(Field field)
 	    throws Exception
     {
