@@ -207,6 +207,13 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	    promptData.addNormalMessage("Changements accomplis");
 	}
 
+	// On doit ajouter les paramètres spécifiés par défaut lors de la
+	// création de l'entité.
+	if (parameters != null)
+	    for (String key : getFields().getKeyList())
+		if (parameters.get(key) != null)
+		    setData(key, parameters.get(key));
+
 	promptData.setData(retEntity);
 	promptData.setButtonAction(new ActionLink("Enregistrer",
 		new BaseAction("Edit", this)));

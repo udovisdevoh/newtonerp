@@ -5,6 +5,7 @@ import java.util.Vector;
 
 import modules.taskModule.actions.AddFieldToOrm;
 import newtonERP.common.ActionLink;
+import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.field.Field;
@@ -60,6 +61,15 @@ public class FieldEntity extends AbstractOrmEntity
 	fieldList.add(dynamicField);
 
 	return new Fields(fieldList);
+    }
+
+    @Override
+    public AbstractEntity newUI(Hashtable<String, String> parameters)
+	    throws Exception
+    {
+	getFields().setDefaultValue(false);
+	parameters.put("dynamicField", "true");
+	return editUI(parameters);
     }
 
     @Override
