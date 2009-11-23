@@ -875,8 +875,9 @@ par exemple, si on delete un Group, alors les GroupRight WHERE GroupID = ce grou
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
   * Ajouté task pour appeler action d'ajout de colonnes pour field dynamique
   * Action qui call l'Orm pour ajouter des colonnes aux tables
+  * Implémenté TaskManager: straight search
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
-  * TaskManager: straight search
+  * TaskManager: straight search doit bien marcher avec "new"
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
   * besoin d'un viewer Sqlite qui affiche les nouvelles colonnes
 
