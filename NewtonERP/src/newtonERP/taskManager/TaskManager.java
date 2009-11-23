@@ -1,6 +1,7 @@
 package newtonERP.taskManager;
 
 import java.util.Collection;
+import java.util.Hashtable;
 import java.util.Vector;
 
 import modules.taskModule.entityDefinitions.EntityEntity;
@@ -24,22 +25,24 @@ public class TaskManager
     /**
      * @param entity Entité pour laquelle on doit effecter des tâches s'il y a
      *            lieu
+     * @param entityParameters paramètres de l'entité
      * @return entité viewable de retour
      * @throws Exception si exécution fail
      */
-    public static AbstractEntity executeTasks(AbstractOrmEntity entity)
-	    throws Exception
+    public static AbstractEntity executeTasks(AbstractOrmEntity entity,
+	    Hashtable<String, String> entityParameters) throws Exception
     {
-	return executeTasks(entity.getSystemName());
+	return executeTasks(entity.getSystemName(), entityParameters);
     }
 
     /**
      * @param entityName nom de l'entité
+     * @param entityParameters paramètres de l'entité
      * @return enitité visible de retour
      * @throws Exception si exécution fail
      */
-    public static AbstractEntity executeTasks(String entityName)
-	    throws Exception
+    public static AbstractEntity executeTasks(String entityName,
+	    Hashtable<String, String> entityParameters) throws Exception
     {
 	if (entityName == null)
 	    return null;
@@ -52,8 +55,9 @@ public class TaskManager
 	Collection<TaskEntity> concernedTaskList = getConcernedTaskList(entityName);
 	for (TaskEntity task : concernedTaskList)
 	    if (task.isActive())
-		if (task.isSatisfied())
-		    retEntity = task.execute();
+		if (task.isSatisfied(entityParameters, task.isStraightSearch()))
+		    retEntity = task.execute(entityParameters, task
+			    .isStraightSearch());
 
 	return retEntity;
     }
@@ -81,31 +85,6 @@ public class TaskManager
 	}
 
 	return taskModuleEntityDefinitionNameList;
-    }
-
-    /**
-     * On exécute tous les tâches possibles
-     * @throws Exception si exécution fail
-     */
-    public static void executeAllTasks() throws Exception
-    {
-	Collection<TaskEntity> concernedTaskList = getTaskList();
-	for (TaskEntity task : concernedTaskList)
-	    if (task.isActive())
-		if (task.isSatisfied())
-		    task.execute();
-
-    }
-
-    private static Collection<TaskEntity> getTaskList() throws Exception
-    {
-	Vector<AbstractOrmEntity> result = Orm.select(new TaskEntity());
-	Vector<TaskEntity> taskList = new Vector<TaskEntity>();
-
-	for (AbstractOrmEntity entity : result)
-	    taskList.add((TaskEntity) entity);
-
-	return taskList;
     }
 
     private static Collection<TaskEntity> getConcernedTaskList(String entityName)
@@ -204,12 +183,13 @@ public class TaskManager
     /**
      * @param searchEntities entités pour lesquelles on doit possiblement
      *            effectuer des tâches
+     * @param entityParameters paramètres de l'entité
      * @throws Exception si exécution fail
      */
-    public static void executeTasks(Vector<AbstractOrmEntity> searchEntities)
-	    throws Exception
+    public static void executeTasks(Vector<AbstractOrmEntity> searchEntities,
+	    Hashtable<String, String> entityParameters) throws Exception
     {
 	if (searchEntities.size() > 0)
-	    executeTasks(searchEntities.get(0));
+	    executeTasks(searchEntities.get(0), entityParameters);
     }
 }

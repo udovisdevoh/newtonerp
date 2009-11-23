@@ -1,5 +1,6 @@
 package modules.taskModule.entityDefinitions;
 
+import java.util.Hashtable;
 import java.util.Vector;
 
 import newtonERP.module.AbstractOrmEntity;
@@ -39,10 +40,13 @@ public class Specification extends AbstractOrmEntity
     }
 
     /**
+     * @param entityParameters paramètres de l'entité
+     * @param isStraightSearch si c'est une recherche directe
      * @return true si la spécification est satisfaite
      * @throws Exception si test fail
      */
-    public boolean isSatisfied() throws Exception
+    public boolean isSatisfied(Hashtable<String, String> entityParameters,
+	    boolean isStraightSearch) throws Exception
     {
 	System.out
 		.println("Vérification à savoir si une spécification est satisfaite");
