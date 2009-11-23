@@ -53,6 +53,15 @@ public class Specification extends AbstractOrmEntity
 
 	AbstractOrmEntity searchEntity = getSearchEntity();
 
+	if (isStraightSearch)
+	{
+	    if (!entityParameters.containsKey(searchEntity.getPrimaryKeyName()))
+		return false;
+
+	    searchEntity.setData(searchEntity.getPrimaryKeyName(),
+		    entityParameters.get(searchEntity.getPrimaryKeyName()));
+	}
+
 	Vector<AbstractOrmEntity> result = Orm.select(searchEntity);
 
 	if (result.size() > 0)
