@@ -61,7 +61,8 @@ public class EffectEntity extends AbstractOrmEntity
 
 	System.out.println("Exécution d'une tâche");
 	AbstractAction action = getAction();
-	Vector<AbstractOrmEntity> entityList = getAffectedEntityList();
+	Vector<AbstractOrmEntity> entityList = getAffectedEntityList(
+		entityParameters, isStraightSearch);
 	for (AbstractOrmEntity entity : entityList)
 	{
 	    if (action instanceof BaseAction)
@@ -91,9 +92,16 @@ public class EffectEntity extends AbstractOrmEntity
 	throw new Exception("Base Entity type not found");
     }
 
-    private Vector<AbstractOrmEntity> getAffectedEntityList() throws Exception
+    private Vector<AbstractOrmEntity> getAffectedEntityList(
+	    Hashtable<String, String> entityParameters, boolean isStraightSearch)
+	    throws Exception
     {
 	AbstractOrmEntity searchEntity = getSearchEntity();
+
+	if (isStraightSearch)
+	    searchEntity.setData(searchEntity.getPrimaryKeyName(),
+		    entityParameters.get(searchEntity.getPrimaryKeyName()));
+
 	return Orm.select(searchEntity);
     }
 
