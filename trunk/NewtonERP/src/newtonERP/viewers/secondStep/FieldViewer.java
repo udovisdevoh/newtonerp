@@ -101,10 +101,25 @@ public class FieldViewer
 	    noIsChecked = " checked=\"checked\"";
 	}
 
-	html += "oui: <input type=\"radio\" name=\"" + field.getShortName()
-		+ "\" value=\"true\"" + yesIsChecked + " />";
-	html += " | non: <input type=\"radio\" name=\"" + field.getShortName()
-		+ "\" value=\"false\"" + noIsChecked + " />";
+	if (field.isHidden())
+	{
+	    html += "<input type=\"hidden\" name=\"" + field.getShortName()
+		    + "\" value=\"" + field.getData() + "\">";
+	}
+	else if (field.isReadOnly())
+	{
+	    html += "<input type=\"hidden\" name=\"" + field.getShortName()
+		    + "\" value=\"" + field.getData() + "\">"
+		    + field.getDataString();
+	}
+	else
+	{
+	    html += "oui: <input type=\"radio\" name=\"" + field.getShortName()
+		    + "\" value=\"true\"" + yesIsChecked + " />";
+	    html += " | non: <input type=\"radio\" name=\""
+		    + field.getShortName() + "\" value=\"false\"" + noIsChecked
+		    + " />";
+	}
 
 	return html;
     }

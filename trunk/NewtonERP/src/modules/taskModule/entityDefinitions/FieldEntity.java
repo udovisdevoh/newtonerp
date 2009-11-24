@@ -58,6 +58,7 @@ public class FieldEntity extends AbstractOrmEntity
 
 	FieldBool dynamicField = new FieldBool("Champ dynamique",
 		"dynamicField");
+	dynamicField.setReadOnly(true);
 	fieldList.add(dynamicField);
 
 	return new Fields(fieldList);
