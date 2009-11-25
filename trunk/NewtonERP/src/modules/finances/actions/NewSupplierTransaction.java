@@ -8,12 +8,13 @@ import modules.finances.entityDefinitions.StateType;
 import modules.finances.entityDefinitions.SupplierTransaction;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
+import newtonERP.module.generalEntity.StaticTextEntity;
 
 /**
  * Action NewSupplierTransaction: représente l'action de créer une nouvelle
  * transaction de fournisseur à partir d'une facture de fournisseur.
  * 
- * Cera "callé" lors de la création d'une nouvelle Invoice fournisseur.
+ * Sera "callé" lors de la création d'une nouvelle Invoice fournisseur.
  * @author Pascal Lemay
  */
 public class NewSupplierTransaction extends AbstractAction
@@ -30,7 +31,6 @@ public class NewSupplierTransaction extends AbstractAction
     public AbstractEntity doAction(AbstractEntity entity,
 	    Hashtable<String, String> parameters) throws Exception
     {
-	// System.out.println("Works");
 	Invoice invoice = (Invoice) entity;
 	SupplierTransaction transaction = new SupplierTransaction();
 
@@ -48,6 +48,6 @@ public class NewSupplierTransaction extends AbstractAction
 
 	type.get().get(0).assign(transaction);
 
-	return null;
+	return new StaticTextEntity("Transaction ajoutée");
     }
 }
