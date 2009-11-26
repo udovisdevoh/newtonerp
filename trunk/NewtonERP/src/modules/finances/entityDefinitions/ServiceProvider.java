@@ -14,7 +14,7 @@ import newtonERP.orm.field.type.FieldString;
  * Entité ServiceProvider du module finances: représente les coordonnées des
  * fournisseurs de services (internet, électricité...)
  * 
- * Pour avoir les info à l'extérieur de ServiceProviderAccount
+ * Pour avoir les info à l'extérieur de ServiceTransaction
  * 
  * @author Pascal Lemay
  */
@@ -37,6 +37,9 @@ public class ServiceProvider extends AbstractOrmEntity
 	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
 	fieldsInit.add(new FieldInt("Numéro", getPrimaryKeyName()));
 	fieldsInit.add(new FieldString("Nom", "name"));
+	FieldString service = new FieldString("Service", "service");
+	fieldsInit.add(service);
+
 	fieldsInit.add(new FieldInt("Adresse", new Address()
 		.getForeignKeyName()));
 
