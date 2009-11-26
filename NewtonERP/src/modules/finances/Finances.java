@@ -109,6 +109,7 @@ public class Finances extends Module
 	bankAccount.setData("marginBalance", 0.00);
 	bankAccount.setData("margin", 0.00);
 	bankAccount.setData(new Bank().getForeignKeyName(), 1);
+	bankAccount.newE();
 
 	service = new ServiceProvider();
 	service.setData("name", "Geek Team inc");
