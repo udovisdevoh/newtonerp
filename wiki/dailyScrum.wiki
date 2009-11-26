@@ -859,7 +859,7 @@ par exemple, si on delete un Group, alors les GroupRight WHERE GroupID = ce grou
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
   * ...problème, besoin d'aide, qui aidera...
 
-=25/11/2009=
+=26/11/2009=
 
 ==Jonathan Hallee==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
@@ -868,53 +868,6 @@ par exemple, si on delete un Group, alors les GroupRight WHERE GroupID = ce grou
   * fait la task demandée par pascal (pas optimisée par contre)
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
   * module gestion ressources matérielles, work orders avec les produits, generes automatiquement
- ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
-  * ...problème, besoin d'aide, qui aidera...
-
-==Guillaume Lacasse==
- ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
-  * Voir prochain scrum, jour de grève
- ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
-  * Voir prochain scrum, jour de grève
- ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
-  * Voir prochain scrum, jour de grève
-
-==Pascal Lemay==
- ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
-  * Actions de gestion :
-  * PayingService
-  * PayingSupplier
-  * DebitFromBankAccount
-  * NewSupplierTransaction
- ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
-  * Actions liées aux paiement des employés (à voir avec jo.C)
-  * Task pour générer les talons de paye
- ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
-  * Pour actions de paiement,j'ai du rechercher moi même la transaction par l'orm pour
-  * avoir le 'data' car je n'y avais pas accès par l'entité reçu en paramètre.
-==Gabriel Therrien==
- ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
-  * ...livré...
- ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
-  * ...à livrer...
- ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
-  * ...problème, besoin d'aide, qui aidera...
-
-==Jonatan Cloutier==
- ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
-  * ...livré...
- ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
-  * ...à livrer...
- ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
-  * ...problème, besoin d'aide, qui aidera...
-
-=26/11/2009=
-
-==Jonathan Hallee==
- ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
-  * ...livré...
- ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
-  * ...à livrer...
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
   * ...problème, besoin d'aide, qui aidera...
 
@@ -932,12 +885,17 @@ par exemple, si on delete un Group, alors les GroupRight WHERE GroupID = ce grou
 
 ==Pascal Lemay==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
-  * ...livré...
+  * Actions de gestion :
+  * PayingService
+  * PayingSupplier
+  * DebitFromBankAccount
+  * NewSupplierTransaction
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
-  * ...à livrer...
+  * Actions liées aux paiement des employés (à voir avec jo.C)
+  * Task pour générer les talons de paye
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
-  * ...problème, besoin d'aide, qui aidera...
-
+  * Pour actions de paiement,j'ai du rechercher moi même la transaction par l'orm pour
+  * avoir le 'data' car je n'y avais pas accès par l'entité reçu en paramètre.
 ==Gabriel Therrien==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
   * ...livré...
