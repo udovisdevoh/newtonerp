@@ -873,15 +873,11 @@ par exemple, si on delete un Group, alors les GroupRight WHERE GroupID = ce grou
 
 ==Guillaume Lacasse==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
-  * Ajouté task pour appeler action d'ajout de colonnes pour field dynamique
-  * Action qui call l'Orm pour ajouter des colonnes aux tables
-  * Implémenté TaskManager: straight search
-  * bool readonly: field dynamic false si généré, true si créé manuellement
-  * field viewer: field bool: prise en charge de field hidden et readonly
+  * Voir prochain scrum, jour de grève
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
-  * TaskManager: straight search doit bien marcher avec "new"
+  * Voir prochain scrum, jour de grève
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
-  * besoin d'un viewer Sqlite qui affiche les nouvelles colonnes
+  * Voir prochain scrum, jour de grève
 
 ==Pascal Lemay==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
@@ -924,11 +920,15 @@ par exemple, si on delete un Group, alors les GroupRight WHERE GroupID = ce grou
 
 ==Guillaume Lacasse==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
-  * ...livré...
+  * Ajouté task pour appeler action d'ajout de colonnes pour field dynamique
+  * Action qui call l'Orm pour ajouter des colonnes aux tables
+  * Implémenté TaskManager: straight search
+  * bool readonly: field dynamic false si généré, true si créé manuellement
+  * field viewer: field bool: prise en charge de field hidden et readonly
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
-  * ...à livrer...
+  * TaskManager: straight search doit bien marcher avec "new"
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
-  * ...problème, besoin d'aide, qui aidera...
+  * besoin d'un viewer Sqlite qui affiche les nouvelles colonnes
 
 ==Pascal Lemay==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
