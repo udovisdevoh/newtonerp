@@ -61,6 +61,7 @@ public class Finances extends Module
 	StateType stateType;
 	Address address;
 	Bank bank;
+	BankAccount bankAccount;
 	ServiceProvider service;
 
 	stateType = new StateType();
@@ -81,6 +82,11 @@ public class Finances extends Module
 	address.setData(new State().getForeignKeyName(), 1);
 	address.newE();
 
+	// Country country = new Country();
+	// country.setData("name", "Japon");
+	// country = (Country) Orm.selectUnique(country);
+	// address.assign(country);
+
 	address = new Address();
 	address.setData("streetName", "Saint-Laurent");
 	address.setData("streetNumber", 303);
@@ -92,10 +98,17 @@ public class Finances extends Module
 	address.newE();
 
 	bank = new Bank();
-	bank.setData("name", "Banque de Montréal");
+	bank.setData("name", "Dummy Bank");
 	bank.setData("transit", "4001");
 	bank.setData(new Address().getForeignKeyName(), 1);
 	bank.newE();
+
+	bankAccount = new BankAccount();
+	bankAccount.setData("folio", 2148);
+	bankAccount.setData("balance", 0.00);
+	bankAccount.setData("marginBalance", 0.00);
+	bankAccount.setData("margin", 0.00);
+	bankAccount.setData(new Bank().getForeignKeyName(), 1);
 
 	service = new ServiceProvider();
 	service.setData("name", "Geek Team inc");

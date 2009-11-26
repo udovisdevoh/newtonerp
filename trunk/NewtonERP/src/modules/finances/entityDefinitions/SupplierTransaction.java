@@ -53,15 +53,19 @@ public class SupplierTransaction extends AbstractOrmEntity
 
 	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
 	fieldsInit.add(primaryKey);
+
 	fieldsInit.add(new FieldInt("Facture", new Invoice()
 		.getForeignKeyName()));
 	fieldsInit.add(deadLine);
+
 	fieldsInit.add(new FieldDate("Date de paiement", "paymentDate"));
 	fieldsInit.add(balance);
 	fieldsInit
 		.add(new FieldInt("État", new StateType().getForeignKeyName()));
+
 	fieldsInit.add(new FieldInt("Numéro de fournisseur", new Merchant()
 		.getForeignKeyName()));
+
 	fieldsInit.add(new FieldInt("Compte pour paiement", new BankAccount()
 		.getForeignKeyName()));
 

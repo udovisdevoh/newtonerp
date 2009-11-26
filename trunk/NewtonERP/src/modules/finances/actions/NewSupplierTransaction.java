@@ -1,9 +1,11 @@
 package modules.finances.actions;
 
+import java.util.GregorianCalendar;
 import java.util.Hashtable;
 
 import modules.customerVendor.entityDefinitions.Invoice;
 import modules.customerVendor.entityDefinitions.Merchant;
+import modules.finances.entityDefinitions.BankAccount;
 import modules.finances.entityDefinitions.StateType;
 import modules.finances.entityDefinitions.SupplierTransaction;
 import newtonERP.module.AbstractAction;
@@ -34,11 +36,20 @@ public class NewSupplierTransaction extends AbstractAction
 	SupplierTransaction transaction = new SupplierTransaction();
 
 	transaction.setData("balance", invoice.getData("total"));
+
 	transaction.setData("deadline", invoice.getData("date"));
+
+	transaction.setData("paymentDate", new GregorianCalendar());
+
+	transaction.setData(new StateType().getForeignKeyName(), 1);
+
 	transaction.setData(invoice.getForeignKeyName(), invoice
 		.getPrimaryKeyValue());
+
 	transaction.setData(new Merchant().getForeignKeyName(), invoice
 		.getData(new Merchant().getForeignKeyName()));
+
+	transaction.setData(new BankAccount().getForeignKeyName(), 1);
 
 	transaction.newE();
 
