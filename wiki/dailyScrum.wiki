@@ -854,8 +854,10 @@ par exemple, si on delete un Group, alors les GroupRight WHERE GroupID = ce grou
 
 ==Jonatan Cloutier==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
-  * ...livré...
+  * généralisation de field
+  * début de validateur et de champ calculé
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
+  * terminé les validateur et de champ calculé
   * commencer le taskViewer
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
   * ...problème, besoin d'aide, qui aidera...
@@ -903,16 +905,20 @@ par exemple, si on delete un Group, alors les GroupRight WHERE GroupID = ce grou
   * avoir le 'data' car je n'y avais pas accès par l'entité reçu en paramètre.
 ==Gabriel Therrien==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
-  * ...livré...
+  *  
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
-  * ...à livrer...
+  * finir le module de marketing
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
-  * ...problème, besoin d'aide, qui aidera...
+  * les task et les actions
 
 ==Jonatan Cloutier==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
-  * ...livré...
+  * finalisé les validateur et de champ calculé
+  * optimisation du grid Viewer
+  * début d'intégration des field dynamique
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
-  * finir le module de marketing
+  * terminé d'intégré les field dynamique
+  * les task viewer
+  * beaucoups d'autre point sur ma task list (a venir)
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
   * les task et les actions
