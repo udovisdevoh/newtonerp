@@ -8,7 +8,6 @@ import modules.finances.entityDefinitions.StateType;
 import modules.finances.entityDefinitions.SupplierTransaction;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
-import newtonERP.module.generalEntity.StaticTextEntity;
 
 /**
  * Action NewSupplierTransaction: représente l'action de créer une nouvelle
@@ -48,6 +47,7 @@ public class NewSupplierTransaction extends AbstractAction
 
 	type.get().get(0).assign(transaction);
 
-	return new StaticTextEntity("Transaction ajoutée");
+	// Laisser a null pour pouvoir modifier la facture
+	return null;
     }
 }
