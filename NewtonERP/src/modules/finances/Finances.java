@@ -1,5 +1,8 @@
 package modules.finances;
 
+import modules.common.entityDefinitions.Address;
+import modules.common.entityDefinitions.Country;
+import modules.common.entityDefinitions.State;
 import modules.finances.actions.DisplayUnpaidServices;
 import modules.finances.entityDefinitions.Bank;
 import modules.finances.entityDefinitions.BankAccount;
@@ -56,6 +59,9 @@ public class Finances extends Module
 	super.initDB();
 
 	StateType stateType;
+	Address address;
+	Bank bank;
+	ServiceProvider service;
 
 	stateType = new StateType();
 	stateType.setData("name", "Non-paye");
@@ -64,5 +70,37 @@ public class Finances extends Module
 	stateType = new StateType();
 	stateType.setData("name", "Paye");
 	stateType.newE();
+
+	address = new Address();
+	address.setData("streetName", "Clark");
+	address.setData("streetNumber", 201);
+	address.setData("city", "Montréal");
+	address.setData("telephoneNumber", "514-564-1379");
+	address.setData("postalCode", "H8Y9T5");
+	address.setData(new Country().getForeignKeyName(), 1);
+	address.setData(new State().getForeignKeyName(), 1);
+	address.newE();
+
+	address = new Address();
+	address.setData("streetName", "Saint-Laurent");
+	address.setData("streetNumber", 303);
+	address.setData("city", "Montréal");
+	address.setData("telephoneNumber", "514-789-1379");
+	address.setData("postalCode", "H8Y9T5");
+	address.setData(new Country().getForeignKeyName(), 1);
+	address.setData(new State().getForeignKeyName(), 1);
+	address.newE();
+
+	bank = new Bank();
+	bank.setData("name", "Banque de Montréal");
+	bank.setData("transit", "4001");
+	bank.setData(new Address().getForeignKeyName(), 1);
+	bank.newE();
+
+	service = new ServiceProvider();
+	service.setData("name", "Geek Team inc");
+	service.setData("service", "Internet");
+	service.setData(new Address().getForeignKeyName(), 2);
+	service.newE();
     }
 }

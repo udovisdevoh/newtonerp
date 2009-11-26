@@ -12,7 +12,6 @@ import newtonERP.orm.field.Fields;
 import newtonERP.orm.field.type.FieldCurrency;
 import newtonERP.orm.field.type.FieldDate;
 import newtonERP.orm.field.type.FieldInt;
-import newtonERP.orm.field.type.FieldString;
 import newtonERP.viewers.viewerData.ListViewerData;
 
 /**
@@ -45,10 +44,6 @@ public class ServiceTransaction extends AbstractOrmEntity
 		getPrimaryKeyName());
 	primaryKey.setNaturalKey(true);
 	fieldsInit.add(primaryKey);
-	FieldString service = new FieldString("Service", "service");
-	// service.setNaturalKey(true); //on peut avoir plusieurs transaction
-	// pour le même service
-	fieldsInit.add(service);
 	fieldsInit.add(new FieldDate("Échéance", "deadline"));
 	fieldsInit.add(new FieldDate("Date de paiement", "paymentDate"));
 	fieldsInit.add(new FieldCurrency("Solde", "balance"));
