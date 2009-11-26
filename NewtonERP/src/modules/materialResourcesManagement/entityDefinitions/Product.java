@@ -5,6 +5,7 @@ import java.util.Vector;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.Fields;
+import newtonERP.orm.field.type.FieldBool;
 import newtonERP.orm.field.type.FieldCurrency;
 import newtonERP.orm.field.type.FieldInt;
 import newtonERP.orm.field.type.FieldString;
@@ -41,6 +42,7 @@ public class Product extends AbstractOrmEntity
 	fieldsInit.add(new FieldInt("Maximum en stock", "maxInStock"));
 	fieldsInit.add(new FieldCurrency("Prix d'achat", "purchasingPrice"));
 	fieldsInit.add(new FieldCurrency("Prix de vente", "sellingPrice"));
+	fieldsInit.add(new FieldBool("Est produit", "isProduced"));
 	return new Fields(fieldsInit);
     }
 

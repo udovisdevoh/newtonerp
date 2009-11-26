@@ -68,6 +68,7 @@ public class TaskModule extends Module
 	initInvoiceTaxLineTask();
 	initNewSupplierTransactionTask();
 	intiDynamicFieldTask();
+	initWorkOrderTask();
     }
 
     private static void intiDynamicFieldTask() throws Exception
@@ -178,6 +179,45 @@ public class TaskModule extends Module
 
 	Specification specification = new Specification();
 	specification.setData("name", "Lorsque nouveau Invoice");
+	specification.assign(searchEntity);
+	specification.newE();
+
+	TaskEntity task = new TaskEntity();
+	task.setData("isActive", true);
+	task.setData("straightSearch", true);
+	task.assign(effet);
+	task.assign(specification);
+	task.newE();
+    }
+
+    private static void initWorkOrderTask() throws Exception
+    {
+	ModuleEntity mrmngmt = new ModuleEntity();
+	mrmngmt.setData("systemName", "MaterialResourcesManagement");
+	mrmngmt = (ModuleEntity) Orm.selectUnique(mrmngmt);
+
+	EntityEntity product = new EntityEntity();
+	product.setData("systemName", "Product");
+	product = (EntityEntity) Orm.selectUnique(product);
+
+	SearchEntity searchEntity = new SearchEntity();
+	searchEntity.setData("name", "Pour chaque Product");
+	searchEntity.assign(product);
+	searchEntity.newE();
+
+	ActionEntity action = new ActionEntity();
+	action.setData("systemName", "CheckForWorkOrders");
+	action.assign(mrmngmt);
+	action = (ActionEntity) Orm.selectUnique(action);
+
+	EffectEntity effet = new EffectEntity();
+	effet.setData("name", "On fait CheckForWorkOrders");
+	effet.assign(searchEntity);
+	effet.assign(action);
+	effet.newE();
+
+	Specification specification = new Specification();
+	specification.setData("name", "Lorsque nouveau produit");
 	specification.assign(searchEntity);
 	specification.newE();
 

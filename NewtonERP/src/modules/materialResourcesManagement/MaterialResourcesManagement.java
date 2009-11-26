@@ -3,15 +3,17 @@ package modules.materialResourcesManagement;
 import java.util.GregorianCalendar;
 
 import modules.customerVendor.entityDefinitions.Invoice;
-import modules.materialResourcesManagement.entityDefinitions.LocationLatitude;
 import modules.materialResourcesManagement.entityDefinitions.Location;
-import modules.materialResourcesManagement.entityDefinitions.LocationStatus;
+import modules.materialResourcesManagement.entityDefinitions.LocationLatitude;
 import modules.materialResourcesManagement.entityDefinitions.LocationLongitude;
+import modules.materialResourcesManagement.entityDefinitions.LocationStatus;
 import modules.materialResourcesManagement.entityDefinitions.Product;
 import modules.materialResourcesManagement.entityDefinitions.Shipper;
 import modules.materialResourcesManagement.entityDefinitions.Shipping;
 import modules.materialResourcesManagement.entityDefinitions.ShippingType;
 import modules.materialResourcesManagement.entityDefinitions.Warehouse;
+import modules.materialResourcesManagement.entityDefinitions.WorkOrder;
+import modules.materialResourcesManagement.entityDefinitions.WorkOrderStatus;
 import newtonERP.module.BaseAction;
 import newtonERP.module.Module;
 
@@ -50,6 +52,10 @@ public class MaterialResourcesManagement extends Module
 		new LocationLatitude()));
 	addGlobalActionMenuItem("Longitudes", new BaseAction("GetList",
 		new LocationLongitude()));
+	addGlobalActionMenuItem("Ordres de travail", new BaseAction("GetList",
+		new WorkOrder()));
+	addGlobalActionMenuItem("Status d'ordres de travail", new BaseAction(
+		"GetList", new WorkOrderStatus()));
 	setVisibleName("Ressources matérielles");
     }
 
@@ -94,6 +100,7 @@ public class MaterialResourcesManagement extends Module
 	product.setData("purchasingPrice", 12.99);
 	product.setData("maxInStock", 4346);
 	product.setData("sellingPrice", 24.69);
+	product.setData("isProduced", false);
 	product.newE();
 
 	Product product1 = new Product();
@@ -105,6 +112,7 @@ public class MaterialResourcesManagement extends Module
 	product1.setData("purchasingPrice", 2.99);
 	product1.setData("maxInStock", 3246);
 	product1.setData("sellingPrice", 3.99);
+	product1.setData("isProduced", true);
 	product1.newE();
 
 	Product product2 = new Product();
@@ -116,6 +124,7 @@ public class MaterialResourcesManagement extends Module
 	product2.setData("purchasingPrice", 10.99);
 	product2.setData("maxInStock", 1346);
 	product2.setData("sellingPrice", 12.99);
+	product2.setData("isProduced", false);
 	product2.newE();
 
 	Product product3 = new Product();
@@ -127,6 +136,7 @@ public class MaterialResourcesManagement extends Module
 	product3.setData("purchasingPrice", 109.99);
 	product3.setData("maxInStock", 6632);
 	product3.setData("sellingPrice", 129.99);
+	product3.setData("isProduced", false);
 	product3.newE();
 
 	Warehouse warehouse = new Warehouse();
@@ -209,5 +219,13 @@ public class MaterialResourcesManagement extends Module
 	shipping.setData("shippingComment", "Be extra careful");
 	shipping.setData(new Location().getForeignKeyName(), 1);
 	shipping.newE();
+
+	WorkOrderStatus wos = new WorkOrderStatus();
+	wos.setData("status", "Nouveau");
+	wos.newE();
+
+	WorkOrderStatus wos1 = new WorkOrderStatus();
+	wos1.setData("status", "Fermée");
+	wos1.newE();
     }
 }
