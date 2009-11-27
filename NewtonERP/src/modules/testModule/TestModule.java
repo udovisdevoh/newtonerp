@@ -18,5 +18,6 @@ public class TestModule extends Module
 	super();
 	setDefaultAction(new TestAction());
 	setVisibleName("Module test");
+	setVisible(false);
     }
 }

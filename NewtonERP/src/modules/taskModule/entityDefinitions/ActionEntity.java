@@ -8,6 +8,7 @@ import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.BaseAction;
 import newtonERP.module.Module;
+import newtonERP.module.exception.ActionNotFoundException;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.Fields;
@@ -95,8 +96,10 @@ public class ActionEntity extends AbstractOrmEntity
     /**
      * @param entity entité
      * @return base action correspondant à la définition d'entité
+     * @throws ActionNotFoundException remonte
      */
     public BaseAction getBaseAction(AbstractOrmEntity entity)
+	    throws ActionNotFoundException
     {
 	return new BaseAction(getActionName(), entity);
     }

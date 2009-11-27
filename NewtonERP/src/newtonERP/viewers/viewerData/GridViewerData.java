@@ -1,5 +1,6 @@
 package newtonERP.viewers.viewerData;
 
+import java.util.Iterator;
 import java.util.Vector;
 
 import newtonERP.common.ActionLink;
@@ -99,6 +100,20 @@ public class GridViewerData extends BaseViewerData
     public void addSpecificActionButtonList(ActionLink actionLink)
     {
 	specificActionButtonList.add(actionLink);
+    }
+
+    /**
+     * @param SpecificActionName the globalActionName to remove
+     */
+    public void removeSpecificActions(ActionLink SpecificActionName)
+    {
+	for (Iterator<ActionLink> sActionIT = specificActionButtonList
+		.iterator(); sActionIT.hasNext();)
+	{
+	    ActionLink gAction = sActionIT.next();
+	    if (gAction.getName().equals(SpecificActionName))
+		sActionIT.remove();
+	}
     }
 
     /**

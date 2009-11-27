@@ -87,6 +87,8 @@ public abstract class Module
 
     private NaturalMap<String, AbstractAction> defaultBehaviorMenu;
 
+    private boolean visible = true;
+
     private static Hashtable<String, Hashtable<String, AbstractOrmEntity>> entityCache = new Hashtable<String, Hashtable<String, AbstractOrmEntity>>();
     private static Hashtable<String, Hashtable<String, AbstractAction>> ActionCache = new Hashtable<String, Hashtable<String, AbstractAction>>();
 
@@ -537,6 +539,22 @@ public abstract class Module
 	    }
 	}
 	return defaultBehaviorMenu;
+    }
+
+    /**
+     * @return the visible
+     */
+    public boolean isVisible()
+    {
+	return visible;
+    }
+
+    /**
+     * @param visible the visible to set
+     */
+    public void setVisible(boolean visible)
+    {
+	this.visible = visible;
     }
 
     /**
