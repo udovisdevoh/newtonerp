@@ -188,7 +188,8 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	}
 	retEntity.setCurrentAction(new BaseAction("Edit", this));
 
-	if (parameters != null && parameters.containsKey("submit"))
+	if (parameters != null && parameters.containsKey("submit")
+		&& !fields.isErrorState())
 	{
 	    if (getPrimaryKeyValue() == 0)
 	    {
@@ -220,6 +221,10 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	promptData.setBackLink(new ActionLink("Voir Liste", new BaseAction(
 		"GetList", this)));
 	promptData.setTitle(retEntity.getVisibleName());
+	for (Field<?> fld : getFields())
+	{
+	    promptData.addAlertMessage(fld.getErrorMessage());
+	}
 
 	return promptData;
     }

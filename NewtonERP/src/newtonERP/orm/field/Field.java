@@ -153,6 +153,8 @@ public abstract class Field<T>
     {
 	if (validator.validate(data))
 	    this.data = data;
+	else
+	    fieldsRef.setErrorState(true);
     }
 
     /**
@@ -314,7 +316,7 @@ public abstract class Field<T>
 	    return true;
 	if (obj == null)
 	    return false;
-	if (!(obj instanceof Field))
+	if (!(obj instanceof Field<?>))
 	    return false;
 	Field<?> other = (Field<?>) obj;
 	if (data == null)
@@ -324,12 +326,47 @@ public abstract class Field<T>
 	}
 	else if (!data.equals(other.data))
 	    return false;
+	if (hidden == null)
+	{
+	    if (other.hidden != null)
+		return false;
+	}
+	else if (!hidden.equals(other.hidden))
+	    return false;
+	if (isDynamicField == null)
+	{
+	    if (other.isDynamicField != null)
+		return false;
+	}
+	else if (!isDynamicField.equals(other.isDynamicField))
+	    return false;
+	if (isNaturalKey == null)
+	{
+	    if (other.isNaturalKey != null)
+		return false;
+	}
+	else if (!isNaturalKey.equals(other.isNaturalKey))
+	    return false;
 	if (name == null)
 	{
 	    if (other.name != null)
 		return false;
 	}
 	else if (!name.equals(other.name))
+	    return false;
+	if (operator == null)
+	{
+	    if (other.operator != null)
+		return false;
+	}
+	else if (!operator.equals(other.operator))
+	    return false;
+	if (readOnly == null)
+	{
+	    if (other.readOnly != null)
+		return false;
+	}
+	else if (!readOnly.equals(other.readOnly))
 	    return false;
 	if (shortName == null)
 	{
@@ -339,6 +376,14 @@ public abstract class Field<T>
 	else if (!shortName.equals(other.shortName))
 	    return false;
 	return true;
+    }
+
+    /**
+     * @return les message d'erreur
+     */
+    public String getErrorMessage()
+    {
+	return validator.getErrorMessage();
     }
 
     /**

@@ -48,7 +48,12 @@ public class Employee extends AbstractOrmEntity
 	{
 	    public boolean valide(Integer value)
 	    {
-		return value.toString().length() == 9;
+		if (value.toString().length() == 9)
+		{
+		    return true;
+		}
+		setErrorMessage("les NAS doit avoir 9 numéro");
+		return false;
 	    }
 	});
 	fieldsData.add(fieldNAS);

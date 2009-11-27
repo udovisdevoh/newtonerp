@@ -97,7 +97,9 @@ public class GetOneTimeTable extends AbstractAction
 		param
 			.put("timeStart", dateTimeFormatter.format(date
 				.getTime()));
-
+		date.add(Calendar.HOUR, 1);
+		param.put("timeStop", dateTimeFormatter.format(date.getTime()));
+		date.add(Calendar.HOUR, -1);
 		cases[j][i] = new GridCaseData(strData, new BaseAction("New",
 			new Schedule()), param);
 
