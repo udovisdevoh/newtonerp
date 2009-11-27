@@ -45,6 +45,8 @@ public class FieldCurrency extends FieldDouble
     {
 	if (forOrm)
 	    return super.getDataString(forOrm);
+	if (data == null)
+	    return "";
 	return df.format(super.getData());
     }
 

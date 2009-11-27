@@ -350,9 +350,11 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	{
 	    String fullClassName = getClass().getName();
 
-	    String[] wordList = fullClassName.split("\\.");
+	    int firstDot = fullClassName.indexOf('.');
+	    int secondDot = fullClassName.indexOf('.', firstDot + 1);
 
-	    String modulePackageName = wordList[wordList.length - 3];
+	    String modulePackageName = fullClassName.substring(firstDot + 1,
+		    secondDot);
 
 	    String moduleName = ("" + modulePackageName.charAt(0))
 		    .toUpperCase()

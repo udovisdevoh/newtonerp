@@ -67,14 +67,14 @@ public class GridViewer
 	GridCaseData[][] data = gridData.getCases();
 	GridCaseData[] leftHeader = gridData.getLeftHeader();
 	String caseContent;
-
-	String html = "";
+	StringBuilder html = new StringBuilder(); // optimisation du string
+	// append
 
 	for (int i = 0; i < data.length; i++)
 	{
-	    html += "\n<tr>";
+	    html.append("\n<tr>");
 	    if (i < leftHeader.length)
-		html += "<th>" + getCase(leftHeader[i]) + "</th>";
+		html.append("<th>" + getCase(leftHeader[i]) + "</th>");
 
 	    for (int j = 0; j < data[i].length; j++)
 	    {
@@ -103,23 +103,23 @@ public class GridViewer
 			color = " background-color:"
 				+ ColorViewer.getColor(caseContent) + ";";
 
-		    html += "<td class='gridCell" + moneyStyleModifier + "' "
-			    + rowspan + "style='" + color
-			    + "text-align:center;'>" + caseContent + "</td>";
+		    html.append("<td class='gridCell" + moneyStyleModifier
+			    + "' " + rowspan + "style='" + color
+			    + "text-align:center;'>" + caseContent + "</td>");
 		}
 	    }
 	    if (gridData instanceof ListViewerData)
-		html += getSpecificButton(gridData
+		html.append(getSpecificButton(gridData
 			.getSpecificActionButtonList(),
-			((ListViewerData) gridData).getEntity().get(i));
+			((ListViewerData) gridData).getEntity().get(i)));
 	    else
-		html += getSpecificButton(gridData
-			.getSpecificActionButtonList(), null);
+		html.append(getSpecificButton(gridData
+			.getSpecificActionButtonList(), null));
 
-	    html += "</tr>";
+	    html.append("</tr>");
 	}
 
-	return html;
+	return html.toString();
     }
 
     private static String getSpecificButton(Vector<ActionLink> actionLinks,

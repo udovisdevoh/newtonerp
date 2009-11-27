@@ -620,13 +620,9 @@ public class Orm
 
     /**
      * Creates the non-existent table from the modules in the database
-     * 
-     * @throws ModuleException an exception coming either from the module or the
-     *             query wrongly builded
-     * @throws OrmException an exception that can occur in the orm
+     * @throws Exception remonte
      */
-    public static void createNonExistentTables() throws ModuleException,
-	    OrmException
+    public static void createNonExistentTables() throws Exception
     {
 	Hashtable<String, String> modules = ListModule.getAllModules();
 

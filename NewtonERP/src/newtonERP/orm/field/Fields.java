@@ -236,4 +236,16 @@ public class Fields implements Iterable<Field<?>>
 		return true;
 	return false;
     }
+
+    /**
+     * remet les valeur a null
+     * @throws Exception remonte
+     */
+    public void reset() throws Exception
+    {
+	for (Field<?> field : fieldsDataVector)
+	{
+	    field.reset();
+	}
+    }
 }

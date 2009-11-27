@@ -10,7 +10,7 @@ import java.util.Hashtable;
  */
 public class ActionModule
 {
-    static Hashtable<Class<?>, Class<?>> actionModule = new Hashtable<Class<?>, Class<?>>();
+    static Hashtable<Class<?>, Module> actionModule = new Hashtable<Class<?>, Module>();
 
     /**
      * permet d'obtenir le module proprietaire a partir de l'action
@@ -20,7 +20,7 @@ public class ActionModule
      */
     public static Module getModule(AbstractAction action) throws Exception
     {
-	return (Module) actionModule.get(action.getClass()).newInstance();
+	return actionModule.get(action.getClass());
     }
 
     /**
@@ -30,6 +30,6 @@ public class ActionModule
      */
     public static void addActionModule(AbstractAction action, Module module)
     {
-	actionModule.put(action.getClass(), module.getClass());
+	actionModule.put(action.getClass(), module);
     }
 }

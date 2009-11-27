@@ -22,7 +22,9 @@ import newtonERP.module.exception.ModuleNotFoundException;
  */
 public class ListModule
 {
+    // todo: jumelé les 2 hashtable
     private static Hashtable<String, String> allModules = new Hashtable<String, String>();
+    private static Hashtable<String, Module> modulesCache = new Hashtable<String, Module>();
 
     /**
      * ajoute un module a la liste
@@ -64,13 +66,19 @@ public class ListModule
      * 
      * @param moduleName nom du module
      * @return le module
+     * @throws Exception remonte
      * @throws ModuleNotFoundException si le module n'existe pas
-     * @throws ModuleException le module n'est pas conforme
      */
-    public static Module getModule(String moduleName) throws ModuleException
+    public static Module getModule(String moduleName) throws Exception
     {
-	Object mod = null;
+	if (modulesCache.containsKey(moduleName))
+	{
+	    Module tmpMod = modulesCache.get(moduleName);
+	    tmpMod.resetState();
+	    return tmpMod;
+	}
 
+	Object mod = null;
 	try
 	{
 	    mod = Class.forName(allModules.get(moduleName)).newInstance();
@@ -91,7 +99,7 @@ public class ListModule
 	    e.printStackTrace(); // TODO add stackTrace to new exception
 	    throw new ModuleNotFoundException(moduleName);
 	}
-
+	modulesCache.put(moduleName, (Module) mod);
 	return (Module) mod;
     }
 
