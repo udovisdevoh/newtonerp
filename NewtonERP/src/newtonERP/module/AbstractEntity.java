@@ -2,11 +2,15 @@ package newtonERP.module;
 
 import java.util.HashSet;
 import java.util.Hashtable;
+import java.util.Vector;
 
+import modules.taskModule.entityDefinitions.EntityEntity;
+import modules.taskModule.entityDefinitions.FieldEntity;
 import newtonERP.module.exception.EntityException;
 import newtonERP.module.generalEntity.ListOfValue;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.Fields;
+import newtonERP.orm.field.VolatileFields;
 import newtonERP.orm.field.type.FieldBool;
 
 /**
@@ -27,7 +31,38 @@ public abstract class AbstractEntity
      */
     public AbstractEntity() throws Exception
     {
-	fields = initFields();
+	fields = preInitFields();
+    }
+
+    protected Fields preInitFields() throws Exception
+    {
+	Vector<Field<?>> fieldsData = new Vector<Field<?>>();
+	Fields originalField = initFields();
+
+	fieldsData.addAll(originalField.getFields());
+
+	try
+	{
+	    EntityEntity entitySearch = new EntityEntity();
+	    entitySearch.setData("systemName", getSystemName());
+	    entitySearch = (EntityEntity) entitySearch.get().get(0);
+	    FieldEntity search = new FieldEntity();
+	    search.setData(entitySearch.getForeignKeyName(), entitySearch
+		    .getPrimaryKeyValue());
+	    search.setData("dynamicField", true);
+
+	    Vector<AbstractOrmEntity> dataField = search.get();
+	    fieldsData.addAll(initFieldsFromDb(dataField));
+	} catch (Exception e)
+	{
+	    // ne rien faire ici, n'arrive que dans le cas du premier build de
+	    // la DB et c'Est normale ou d'un entity nonOrmilizer
+	}
+
+	if (originalField instanceof VolatileFields)
+	    return new VolatileFields(fieldsData);
+	return new Fields(fieldsData);
+
     }
 
     /**
@@ -40,6 +75,21 @@ public abstract class AbstractEntity
     public Fields initFields() throws Exception
     {
 	return new Fields();
+    }
+
+    private Vector<Field<?>> initFieldsFromDb(
+	    Vector<AbstractOrmEntity> dataField) throws Exception
+    {
+	FieldEntity field;
+	Vector<Field<?>> fieldsData = new Vector<Field<?>>();
+
+	for (AbstractOrmEntity abstractField : dataField)
+	{
+	    field = (FieldEntity) abstractField;
+	    fieldsData.add(field.getFieldInstance());
+	}
+
+	return fieldsData;
     }
 
     /*
