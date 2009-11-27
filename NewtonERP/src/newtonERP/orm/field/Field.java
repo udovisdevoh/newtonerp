@@ -308,7 +308,6 @@ public abstract class Field<T>
      * 
      * @see java.lang.Object#equals(java.lang.Object)
      */
-    @SuppressWarnings("unchecked")
     public boolean equals(Object obj)
     {
 	if (this == obj)
