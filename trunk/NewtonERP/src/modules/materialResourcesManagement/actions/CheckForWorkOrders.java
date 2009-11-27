@@ -2,12 +2,14 @@ package modules.materialResourcesManagement.actions;
 
 import java.util.GregorianCalendar;
 import java.util.Hashtable;
+import java.util.Vector;
 
 import modules.materialResourcesManagement.entityDefinitions.Product;
 import modules.materialResourcesManagement.entityDefinitions.WorkOrder;
 import modules.materialResourcesManagement.entityDefinitions.WorkOrderStatus;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
+import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.Orm;
 
 /**
@@ -31,29 +33,67 @@ public class CheckForWorkOrders extends AbstractAction
     public AbstractEntity doAction(AbstractEntity entity,
 	    Hashtable<String, String> parameters) throws Exception
     {
-	/*
-	 * FIXME: Refaire la calcul du work order. ce n'est pas le bon
-	 */
 	Product searchProduct = (Product) entity;
 	Product product = (Product) Orm.selectUnique(searchProduct);
 
-	if (product.getData("isProduced").equals(true))
+	WorkOrder searchWo = new WorkOrder();
+	searchWo.setData(new Product().getForeignKeyName(), product
+		.getPrimaryKeyValue());
+
+	if (Orm.select(searchWo).size() == 0)
 	{
-	    if ((Integer) product.getData("quantityInStock") < (Integer) product
-		    .getData("reorderPoint"))
+	    if (product.getData("isProduced").equals(true))
+	    {
+		if (((Integer) product.getData("quantityInStock") - (Integer) product
+			.getData("reorderPoint")) <= 0)
+		{
+		    WorkOrder wo = new WorkOrder();
+		    wo.setData(new Product().getForeignKeyName(), product
+			    .getPrimaryKeyValue());
+		    wo.setData("quantity", (Integer) product
+			    .getData("maxInStock")
+			    - (Integer) product.getData("quantityInStock"));
+		    wo.setData("creationDate", new GregorianCalendar());
+
+		    WorkOrderStatus wos = new WorkOrderStatus();
+		    wos.setData("status", "Nouveau");
+
+		    WorkOrderStatus usedWos = (WorkOrderStatus) Orm
+			    .selectUnique(wos);
+
+		    wo.setData(new WorkOrderStatus().getForeignKeyName(),
+			    usedWos.getPrimaryKeyValue());
+		    wo.newE();
+		}
+	    }
+	}
+	else
+	{
+	    int inProduction = 0;
+	    Vector<AbstractOrmEntity> wos = Orm.select(searchWo);
+
+	    for (AbstractOrmEntity workOrder : wos)
+	    {
+		inProduction += (Integer) workOrder.getData("quantity");
+	    }
+
+	    int toProduce = (Integer) product.getData("reorderPoint")
+		    - (inProduction + (Integer) product
+			    .getData("quantityInStock"));
+
+	    if (toProduce > 0)
 	    {
 		WorkOrder wo = new WorkOrder();
 		wo.setData(new Product().getForeignKeyName(), product
 			.getPrimaryKeyValue());
-		wo.setData("quantity", (Integer) product.getData("maxInStock")
-			- (Integer) product.getData("quantityInStock"));
+		wo.setData("quantity", toProduce);
 		wo.setData("creationDate", new GregorianCalendar());
 
-		WorkOrderStatus wos = new WorkOrderStatus();
-		wos.setData("status", "Nouveau");
+		WorkOrderStatus wos1 = new WorkOrderStatus();
+		wos1.setData("status", "Nouveau");
 
 		WorkOrderStatus usedWos = (WorkOrderStatus) Orm
-			.selectUnique(wos);
+			.selectUnique(wos1);
 
 		wo.setData(new WorkOrderStatus().getForeignKeyName(), usedWos
 			.getPrimaryKeyValue());
