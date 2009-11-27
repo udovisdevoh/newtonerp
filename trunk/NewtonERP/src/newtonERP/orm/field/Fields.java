@@ -19,6 +19,7 @@ public class Fields implements Iterable<Field<?>>
 
     Hashtable<String, Field<?>> fieldsDataMap;
     Collection<Field<?>> fieldsDataVector;
+    boolean ErrorState = false;
 
     /**
      * constructeur vide, permet de construire un Fields sans aucun champ
@@ -238,11 +239,28 @@ public class Fields implements Iterable<Field<?>>
     }
 
     /**
+     * @return the errorState
+     */
+    public boolean isErrorState()
+    {
+	return ErrorState;
+    }
+
+    /**
+     * @param errorState the errorState to set
+     */
+    public void setErrorState(boolean errorState)
+    {
+	ErrorState = errorState;
+    }
+
+    /**
      * remet les valeur a null
      * @throws Exception remonte
      */
     public void reset() throws Exception
     {
+	ErrorState = false;
 	for (Field<?> field : fieldsDataVector)
 	{
 	    field.reset();

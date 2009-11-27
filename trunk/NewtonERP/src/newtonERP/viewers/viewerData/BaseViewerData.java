@@ -88,7 +88,8 @@ public class BaseViewerData extends AbstractEntity
      */
     public final void addAlertMessage(String message)
     {
-	alertMessageList.add(message);
+	if (message.length() > 0)
+	    alertMessageList.add(message);
     }
 
     /**
