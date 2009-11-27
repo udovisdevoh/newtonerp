@@ -872,7 +872,7 @@ par exemple, si on delete un Group, alors les GroupRight WHERE GroupID = ce grou
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
   * module gestion ressources matérielles, work orders avec les produits, generes automatiquement
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
-  * ...problème, besoin d'aide, qui aidera...
+  * N/A
 
 ==Guillaume Lacasse==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
@@ -922,3 +922,45 @@ par exemple, si on delete un Group, alors les GroupRight WHERE GroupID = ce grou
   * beaucoups d'autre point sur ma task list (a venir)
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
   * les task et les actions
+
+=02/12/2009=
+
+==Jonathan Hallee==
+ ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
+  * ...livré...
+ ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
+  * ...à livrer...
+ ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
+  * ...problème, besoin d'aide, qui aidera...
+
+==Guillaume Lacasse==
+ ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
+  * ...livré...
+ ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
+  * ...à livrer...
+ ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
+  * ...problème, besoin d'aide, qui aidera...
+
+==Pascal Lemay==
+ ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
+  * ...livré...
+ ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
+  * ...à livrer...
+ ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
+  * ...problème, besoin d'aide, qui aidera...
+
+==Gabriel Therrien==
+ ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
+  * ...livré...
+ ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
+  * ...à livrer...
+ ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
+  * ...problème, besoin d'aide, qui aidera...
+
+==Jonatan Cloutier==
+ ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
+  * ...livré...
+ ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
+  * ...à livrer...
+ ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
+  * ...problème, besoin d'aide, qui aidera...
