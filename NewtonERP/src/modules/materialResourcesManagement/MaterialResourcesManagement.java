@@ -110,7 +110,7 @@ public class MaterialResourcesManagement extends Module
 	product1.setData("reorderPoint", 8000);
 	product1.setData("reservedStock", 59);
 	product1.setData("purchasingPrice", 2.99);
-	product1.setData("maxInStock", 3246);
+	product1.setData("maxInStock", 10000);
 	product1.setData("sellingPrice", 3.99);
 	product1.setData("isProduced", true);
 	product1.newE();
