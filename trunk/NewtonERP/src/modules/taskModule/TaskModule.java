@@ -69,6 +69,7 @@ public class TaskModule extends Module
 	initNewSupplierTransactionTask();
 	intiDynamicFieldTask();
 	initWorkOrderTask();
+	initWorkOrderClosingTask();
     }
 
     private static void intiDynamicFieldTask() throws Exception
@@ -218,6 +219,46 @@ public class TaskModule extends Module
 
 	Specification specification = new Specification();
 	specification.setData("name", "Lorsque nouveau produit");
+	specification.assign(searchEntity);
+	specification.newE();
+
+	TaskEntity task = new TaskEntity();
+	task.setData("isActive", true);
+	task.setData("straightSearch", true);
+	task.assign(effet);
+	task.assign(specification);
+	task.newE();
+    }
+
+    private static void initWorkOrderClosingTask() throws Exception
+    {
+
+	ModuleEntity mrmngmt = new ModuleEntity();
+	mrmngmt.setData("systemName", "MaterialResourcesManagement");
+	mrmngmt = (ModuleEntity) Orm.selectUnique(mrmngmt);
+
+	EntityEntity wo = new EntityEntity();
+	wo.setData("systemName", "WorkOrder");
+	wo = (EntityEntity) Orm.selectUnique(wo);
+
+	SearchEntity searchEntity = new SearchEntity();
+	searchEntity.setData("name", "Pour chaque WorkOrder");
+	searchEntity.assign(wo);
+	searchEntity.newE();
+
+	ActionEntity action = new ActionEntity();
+	action.setData("systemName", "CloseWorkOrder");
+	action.assign(mrmngmt);
+	action = (ActionEntity) Orm.selectUnique(action);
+
+	EffectEntity effet = new EffectEntity();
+	effet.setData("name", "On fait CloseWorkOrder");
+	effet.assign(searchEntity);
+	effet.assign(action);
+	effet.newE();
+
+	Specification specification = new Specification();
+	specification.setData("name", "Lorsque edit / new WorkOrder");
 	specification.assign(searchEntity);
 	specification.newE();
 
