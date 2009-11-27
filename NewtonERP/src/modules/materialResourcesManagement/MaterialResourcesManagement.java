@@ -224,6 +224,10 @@ public class MaterialResourcesManagement extends Module
 	wos.setData("status", "Nouveau");
 	wos.newE();
 
+	WorkOrderStatus wos2 = new WorkOrderStatus();
+	wos2.setData("status", "En fermeture");
+	wos2.newE();
+
 	WorkOrderStatus wos1 = new WorkOrderStatus();
 	wos1.setData("status", "Fermée");
 	wos1.newE();
