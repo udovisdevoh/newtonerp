@@ -82,11 +82,6 @@ public class Finances extends Module
 	address.setData(new State().getForeignKeyName(), 1);
 	address.newE();
 
-	// Country country = new Country();
-	// country.setData("name", "Japon");
-	// country = (Country) Orm.selectUnique(country);
-	// address.assign(country);
-
 	address = new Address();
 	address.setData("streetName", "Saint-Laurent");
 	address.setData("streetNumber", 303);
