@@ -17,7 +17,7 @@ public class GetAndCalculateAssociatedOffer extends AbstractAction
 {
 
     /**
-     * 
+     * @throws Exception a general exception
      */
     public GetAndCalculateAssociatedOffer() throws Exception
     {
@@ -31,6 +31,7 @@ public class GetAndCalculateAssociatedOffer extends AbstractAction
 	LineOffer lineOffer = (LineOffer) entity;
 	offre.setData(offre.getPrimaryKeyName(), lineOffer.getData(new Offer()
 		.getForeignKeyName()));
+	@SuppressWarnings("unused")
 	Offer returnedOffer = (Offer) Orm.selectUnique(offre);
 
 	return null;
