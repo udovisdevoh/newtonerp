@@ -5,7 +5,7 @@ import java.util.Vector;
 
 import modules.customerVendor.entityDefinitions.Invoice;
 import modules.customerVendor.entityDefinitions.Merchant;
-import modules.finances.actions.PayingService;
+import modules.finances.actions.PayingSupplier;
 import newtonERP.common.ActionLink;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.associations.AccessorManager;
@@ -76,7 +76,7 @@ public class SupplierTransaction extends AbstractOrmEntity
     public final ListViewerData getList(Hashtable<String, String> parameters)
 	    throws Exception
     {
-	PayingService paying = new PayingService();
+	PayingSupplier paying = new PayingSupplier();
 	paying.setOwnedByModul(getCurrentModule());
 
 	Hashtable<String, String> actionParameters = new Hashtable<String, String>();
