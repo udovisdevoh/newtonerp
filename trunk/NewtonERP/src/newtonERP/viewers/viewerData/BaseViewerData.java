@@ -1,5 +1,6 @@
 package newtonERP.viewers.viewerData;
 
+import java.util.Iterator;
 import java.util.Vector;
 
 import newtonERP.common.ActionLink;
@@ -65,6 +66,20 @@ public class BaseViewerData extends AbstractEntity
     public void addGlobalActions(ActionLink globalAction)
     {
 	globalActions.add(globalAction);
+    }
+
+    /**
+     * @param globalActionName the globalActionName to remove
+     */
+    public void removeGlobalActions(ActionLink globalActionName)
+    {
+	for (Iterator<ActionLink> gActionIT = globalActions.iterator(); gActionIT
+		.hasNext();)
+	{
+	    ActionLink gAction = gActionIT.next();
+	    if (gAction.getName().equals(globalActionName))
+		gActionIT.remove();
+	}
     }
 
     /**

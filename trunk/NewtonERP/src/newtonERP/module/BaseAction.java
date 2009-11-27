@@ -4,6 +4,9 @@
 package newtonERP.module;
 
 import java.util.Hashtable;
+import java.util.Vector;
+
+import newtonERP.module.exception.ActionNotFoundException;
 
 /**
  * @author CloutierJo
@@ -14,13 +17,28 @@ public class BaseAction extends AbstractAction
 
     private String actionName;
     private AbstractOrmEntity entity;
+    static Vector<String> validActionName;
+
+    {
+	validActionName = new Vector<String>();
+	validActionName.add("New");
+	validActionName.add("Edit");
+	validActionName.add("Delete");
+	validActionName.add("Get");
+	validActionName.add("GetList");
+    }
 
     /**
      * @param actionName nom de l'Action (Get, Edit New Delete)
      * @param entity l'entity a utiliser
+     * @throws ActionNotFoundException si l'actionName fournie n'Est pas un nom
+     *             d'Action valide
      */
     public BaseAction(String actionName, AbstractOrmEntity entity)
+	    throws ActionNotFoundException
     {
+	if (!validActionName.contains(actionName))
+	    throw new ActionNotFoundException("BaseAction:" + actionName);
 	this.actionName = actionName;
 	this.entity = entity;
     }

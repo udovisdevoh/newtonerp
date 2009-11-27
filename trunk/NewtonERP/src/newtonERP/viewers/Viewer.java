@@ -171,7 +171,7 @@ public abstract class Viewer
 		    menuModuleHtml += "\">" + globalActionName + "</a></li>";
 		}
 	    }
-	    else
+	    else if (module.isVisible())
 	    {
 		menuModuleHtml += "<li><a href=\"" + Servlet.makeLink(module)
 			+ "\">" + module.getVisibleName() + "</a><ul>";
