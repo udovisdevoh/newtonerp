@@ -72,6 +72,8 @@ public class Orm
 	System.out.println("SQL query produced : " + sqlQuery);
 
 	return sgbd.execute(sqlQuery, OrmActions.OTHER);
+
+	// todo: mettre une valeur par defaut dans la colone ajoute
     }
 
     /**

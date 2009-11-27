@@ -24,6 +24,14 @@ public class FieldTypeEntity extends AbstractOrmEntity
 
     }
 
+    protected Fields preInitFields() throws Exception
+    {
+	// always build the field from initField and not from DB, thats mean
+	// that we cannot add a dynamic Field, this should not be done anywhere
+	// else
+	return initFields();
+    }
+
     @Override
     public Fields initFields() throws Exception
     {
