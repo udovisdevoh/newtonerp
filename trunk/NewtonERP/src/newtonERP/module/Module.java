@@ -79,16 +79,16 @@ public abstract class Module
 
     // Sert a stocker les actions pouvant etre appelees
     protected Hashtable<String, AbstractAction> actionList;
-
     private NaturalMap<String, AbstractAction> globalActionList;
 
     private String defaultAction;
-
     private String defaultEntity;
-
     private String visibleName;
 
     private NaturalMap<String, AbstractAction> defaultBehaviorMenu;
+
+    private static Hashtable<String, Hashtable<String, AbstractOrmEntity>> entityCache = new Hashtable<String, Hashtable<String, AbstractOrmEntity>>();
+    private static Hashtable<String, Hashtable<String, AbstractAction>> ActionCache = new Hashtable<String, Hashtable<String, AbstractAction>>();
 
     /**
      * constructeur par default
@@ -98,6 +98,7 @@ public abstract class Module
     public Module() throws Exception
     {
 	entityDefinitionList = new Hashtable<String, AbstractOrmEntity>();
+
 	actionList = new Hashtable<String, AbstractAction>();
 	initAction();
 	initEntityDefinition();
@@ -152,23 +153,31 @@ public abstract class Module
      */
     protected void initAction() throws Exception
     {
-	String packageName = getClass().getPackage().getName()
-		.replace('.', '/');
-
-	File folder = new File("src/" + packageName + "/actions");
-	File[] listOfFiles = folder.listFiles();
-
-	for (int i = 0; i < listOfFiles.length; i++)
+	if (!ActionCache.containsKey(getSystemName()))
 	{
-	    if (listOfFiles[i].getName().endsWith(".java"))
+	    String packageName = getClass().getPackage().getName().replace('.',
+		    '/');
+
+	    File folder = new File("src/" + packageName + "/actions");
+	    File[] listOfFiles = folder.listFiles();
+
+	    for (int i = 0; i < listOfFiles.length; i++)
 	    {
-		String className = getClass().getPackage().getName()
-			+ ".actions."
-			+ listOfFiles[i].getName().split("\\.java")[0];
-		AbstractAction act = (AbstractAction) Class.forName(className)
-			.newInstance();
-		addAction(act);
+		if (listOfFiles[i].getName().endsWith(".java"))
+		{
+		    String className = getClass().getPackage().getName()
+			    + ".actions."
+			    + listOfFiles[i].getName().split("\\.java")[0];
+		    AbstractAction act = (AbstractAction) Class.forName(
+			    className).newInstance();
+		    addAction(act);
+		}
 	    }
+	    ActionCache.put(getSystemName(), actionList);
+	}
+	else
+	{
+	    actionList = ActionCache.get(getSystemName());
 	}
     }
 
@@ -178,25 +187,38 @@ public abstract class Module
      */
     protected void initEntityDefinition() throws Exception
     {
-	String packageName = getClass().getPackage().getName()
-		.replace('.', '/');
-
-	File folder = new File("src/" + packageName + "/entityDefinitions");
-	File[] listOfFiles = folder.listFiles();
-
-	for (int i = 0; i < listOfFiles.length; i++)
+	if (!entityCache.containsKey(getSystemName()))
 	{
-	    if (listOfFiles[i].getName().endsWith(".java"))
+	    String packageName = getClass().getPackage().getName().replace('.',
+		    '/');
+
+	    File folder = new File("src/" + packageName + "/entityDefinitions");
+	    File[] listOfFiles = folder.listFiles();
+
+	    for (int i = 0; i < listOfFiles.length; i++)
 	    {
-		String className = getClass().getPackage().getName()
-			+ ".entityDefinitions."
-			+ listOfFiles[i].getName().split("\\.java")[0];
+		if (listOfFiles[i].getName().endsWith(".java"))
+		{
+		    String className = getClass().getPackage().getName()
+			    + ".entityDefinitions."
+			    + listOfFiles[i].getName().split("\\.java")[0];
 
-		Class<?> entityClass = Class.forName(className);
+		    Class<?> entityClass = Class.forName(className);
 
-		AbstractEntity def = (AbstractEntity) entityClass.newInstance();
-		if (def instanceof AbstractOrmEntity)
-		    addDefinitionEntity((AbstractOrmEntity) def);
+		    AbstractEntity def = (AbstractEntity) entityClass
+			    .newInstance();
+		    if (def instanceof AbstractOrmEntity)
+			addDefinitionEntity((AbstractOrmEntity) def);
+		}
+	    }
+	    entityCache.put(getSystemName(), entityDefinitionList);
+	}
+	else
+	{
+	    entityDefinitionList = entityCache.get(getSystemName());
+	    for (AbstractEntity entity : entityDefinitionList.values())
+	    {
+		entity.reset();
 	    }
 	}
     }
@@ -343,7 +365,8 @@ public abstract class Module
     public final AbstractEntity doAction(String actionName, String entityName,
 	    Hashtable<String, String> parameters) throws Exception
     {
-	AbstractOrmEntity entity = getEntityDefinition(entityName);
+	AbstractOrmEntity entity = getEntityDefinition(entityName).getClass()
+		.newInstance();
 	entity.getFields().setFromHashTable(parameters);
 	if (actionName.equals("New"))
 	    return entity.newUI(parameters);
@@ -514,5 +537,23 @@ public abstract class Module
 	    }
 	}
 	return defaultBehaviorMenu;
+    }
+
+    /**
+     * reset les cache de module
+     */
+    public static void resetCache()
+    {
+	ActionCache.clear();
+	entityCache.clear();
+    }
+
+    /**
+     * remet a l'etats initial l'objet
+     * @throws Exception remonte
+     */
+    public void resetState() throws Exception
+    {
+	initEntityDefinition();
     }
 }

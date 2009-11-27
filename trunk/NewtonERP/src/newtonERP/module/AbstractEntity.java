@@ -246,4 +246,13 @@ public abstract class AbstractEntity
 	    return true;
 	return false;
     }
+
+    /**
+     * remet l'etat de l'entity a ses valeur initial
+     * @throws Exception remonte
+     */
+    public void reset() throws Exception
+    {
+	fields.reset();
+    }
 }

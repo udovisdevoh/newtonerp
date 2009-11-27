@@ -21,7 +21,7 @@ public abstract class Field<T>
     private Boolean isDynamicField = false;
     private FieldValidator<T> validator;
     private FieldCalcule<T> calcul = null;
-    private Fields fieldsRef;
+    private Fields fieldsRef = null;
 
     /**
      * default constructor
@@ -340,5 +340,14 @@ public abstract class Field<T>
 	else if (!shortName.equals(other.shortName))
 	    return false;
 	return true;
+    }
+
+    /**
+     * remet la valeur a null
+     * @throws Exception remonte
+     */
+    public void reset()
+    {
+	data = null;
     }
 }
