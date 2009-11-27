@@ -33,11 +33,20 @@ public class CheckForWorkOrders extends AbstractAction
     public AbstractEntity doAction(AbstractEntity entity,
 	    Hashtable<String, String> parameters) throws Exception
     {
+	// The product
 	Product searchProduct = (Product) entity;
 	Product product = (Product) Orm.selectUnique(searchProduct);
 
+	// The Nouveau work order status
+	WorkOrderStatus wos = new WorkOrderStatus();
+	wos.setData("status", "Nouveau");
+	WorkOrderStatus usedWos = (WorkOrderStatus) Orm.selectUnique(wos);
+
+	// The search work order
 	WorkOrder searchWo = new WorkOrder();
 	searchWo.setData(new Product().getForeignKeyName(), product
+		.getPrimaryKeyValue());
+	searchWo.setData(new WorkOrderStatus().getForeignKeyName(), usedWos
 		.getPrimaryKeyValue());
 
 	if (Orm.select(searchWo).size() == 0)
@@ -54,13 +63,6 @@ public class CheckForWorkOrders extends AbstractAction
 			    .getData("maxInStock")
 			    - (Integer) product.getData("quantityInStock"));
 		    wo.setData("creationDate", new GregorianCalendar());
-
-		    WorkOrderStatus wos = new WorkOrderStatus();
-		    wos.setData("status", "Nouveau");
-
-		    WorkOrderStatus usedWos = (WorkOrderStatus) Orm
-			    .selectUnique(wos);
-
 		    wo.setData(new WorkOrderStatus().getForeignKeyName(),
 			    usedWos.getPrimaryKeyValue());
 		    wo.newE();
@@ -70,9 +72,9 @@ public class CheckForWorkOrders extends AbstractAction
 	else
 	{
 	    int inProduction = 0;
-	    Vector<AbstractOrmEntity> wos = Orm.select(searchWo);
+	    Vector<AbstractOrmEntity> workOrders = Orm.select(searchWo);
 
-	    for (AbstractOrmEntity workOrder : wos)
+	    for (AbstractOrmEntity workOrder : workOrders)
 	    {
 		inProduction += (Integer) workOrder.getData("quantity");
 	    }
@@ -88,19 +90,11 @@ public class CheckForWorkOrders extends AbstractAction
 			.getPrimaryKeyValue());
 		wo.setData("quantity", toProduce);
 		wo.setData("creationDate", new GregorianCalendar());
-
-		WorkOrderStatus wos1 = new WorkOrderStatus();
-		wos1.setData("status", "Nouveau");
-
-		WorkOrderStatus usedWos = (WorkOrderStatus) Orm
-			.selectUnique(wos1);
-
 		wo.setData(new WorkOrderStatus().getForeignKeyName(), usedWos
 			.getPrimaryKeyValue());
 		wo.newE();
 	    }
 	}
-
 	return null;
     }
 }
