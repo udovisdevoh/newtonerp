@@ -24,6 +24,25 @@ public class TaskManager
 
     /**
      * @param entity entité pour laquelle on veut exécuter les tâches
+     * @param primaryKeyValue valeur de clef primaire
+     * @return retour de l'action d'une tâche exécutée (s'il y a lieu)
+     * @throws Exception si exécution fail
+     */
+    public static AbstractEntity executeTasks(AbstractOrmEntity entity,
+	    int primaryKeyValue) throws Exception
+    {
+	Hashtable<String, String> entityParameters = new Hashtable<String, String>();
+
+	if (entity.getFields().containsFieldName(entity.getPrimaryKeyName()))
+	    if (primaryKeyValue != 0)
+		entityParameters.put(entity.getPrimaryKeyName(), Integer
+			.toString(primaryKeyValue));
+
+	return executeTasks(entity, entityParameters);
+    }
+
+    /**
+     * @param entity entité pour laquelle on veut exécuter les tâches
      * @return retour de l'action d'une tâche exécutée (s'il y a lieu)
      * @throws Exception si exécution des tâche fail
      */

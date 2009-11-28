@@ -22,6 +22,7 @@ import newtonERP.orm.field.type.FieldInt;
 import newtonERP.orm.field.type.FieldString;
 import newtonERP.orm.sgbd.SgbdSqlite;
 import newtonERP.orm.sgbd.Sgbdable;
+import newtonERP.taskManager.TaskManager;
 
 /**
  * Basic class for the orm. It is used to put the objects in the databse using
@@ -275,9 +276,9 @@ public class Orm
      * 
      * @param newEntity the entity to add
      * @return le id de clé primaire ajoutée
-     * @throws OrmException an exception that can occur in the orm
+     * @throws Exception si ça fail
      */
-    public static int insert(AbstractOrmEntity newEntity) throws OrmException
+    public static int insert(AbstractOrmEntity newEntity) throws Exception
     {
 	String sqlQuery = "INSERT INTO " + prefix + newEntity.getSystemName()
 		+ "( ";
@@ -324,15 +325,22 @@ public class Orm
 
 	ResultSet rs = sgbd.execute(sqlQuery, OrmActions.INSERT);
 
+	int primaryKeyValue;
 	try
 	{
-	    return rs.getInt(1);
+	    primaryKeyValue = rs.getInt(1);
+
 	} catch (SQLException e)
 	{
 	    // s'il n'y a pas de cle primaire dans cette table, on ne throw donc
 	    // pas cette exception
-	    return 0;
+	    primaryKeyValue = 0;
 	}
+
+	if (primaryKeyValue != 0)
+	    TaskManager.executeTasks(newEntity, primaryKeyValue);
+
+	return primaryKeyValue;
     }
 
     /**
