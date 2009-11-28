@@ -29,7 +29,6 @@ public class LineOffer extends AbstractOrmEntity
     @Override
     public Fields initFields() throws Exception
     {
-
 	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
 	fieldsInit.add(new FieldInt("Numéro", getPrimaryKeyName()));
 	fieldsInit.add(new FieldInt("Offre", new Offer().getForeignKeyName()));

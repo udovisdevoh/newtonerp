@@ -32,6 +32,8 @@ public class Offer extends AbstractOrmEntity
 	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
 	fieldsInit.add(new FieldInt("Numéro", getPrimaryKeyName()));
 	fieldsInit.add(new FieldString("Nom De l'offre", "Offre"));
+	// Gab: est-ce ce field que tu veux rendre read-only? car tu le met
+	// readonly et ça marche
 	FieldCurrency currencyField = new FieldCurrency("Prix", "Price");
 	currencyField.setReadOnly(true);
 	fieldsInit.add(currencyField);
