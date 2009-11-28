@@ -22,6 +22,7 @@ public class Offer extends AbstractOrmEntity
     public Offer() throws Exception
     {
 	super();
+	// Le nom visible de LineOffer était le même
 	setVisibleName("Offre");
     }
 
