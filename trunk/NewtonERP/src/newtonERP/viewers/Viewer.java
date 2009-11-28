@@ -154,30 +154,34 @@ public abstract class Viewer
 	    modNameFromIterator = keys.next();
 
 	    Module module = ListModule.getModule(modNameFromIterator);
-
-	    if (modNameFromIterator.equals(moduleName))
+	    if (module.isVisible())
 	    {
-		menuModuleHtml += "<li><span class=\"selectedLink\">"
-			+ module.getVisibleName() + "</span><ul>";
-
-		for (String globalActionName : module
-			.getGlobalActionMenuOrReturnDefaultBehavior()
-			.getKeyList())
+		if (modNameFromIterator.equals(moduleName))
 		{
-		    menuModuleHtml += "<li><a href=\"";
-		    menuModuleHtml += Servlet.makeLink(module, module
-			    .getGlobalActionMenuOrReturnDefaultBehavior().get(
-				    globalActionName));
-		    menuModuleHtml += "\">" + globalActionName + "</a></li>";
-		}
-	    }
-	    else if (module.isVisible())
-	    {
-		menuModuleHtml += "<li><a href=\"" + Servlet.makeLink(module)
-			+ "\">" + module.getVisibleName() + "</a><ul>";
-	    }
+		    menuModuleHtml += "<li><span class=\"selectedLink\">"
+			    + module.getVisibleName() + "</span><ul>";
 
-	    menuModuleHtml += "</ul></li>";
+		    for (String globalActionName : module
+			    .getGlobalActionMenuOrReturnDefaultBehavior()
+			    .getKeyList())
+		    {
+			menuModuleHtml += "<li><a href=\"";
+			menuModuleHtml += Servlet.makeLink(module, module
+				.getGlobalActionMenuOrReturnDefaultBehavior()
+				.get(globalActionName));
+			menuModuleHtml += "\">" + globalActionName
+				+ "</a></li>";
+		    }
+		}
+		else
+		{
+		    menuModuleHtml += "<li><a href=\""
+			    + Servlet.makeLink(module) + "\">"
+			    + module.getVisibleName() + "</a><ul>";
+		}
+
+		menuModuleHtml += "</ul></li>";
+	    }
 	}
 	menuModuleHtml += "</ul>";
 
