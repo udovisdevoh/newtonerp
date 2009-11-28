@@ -88,6 +88,9 @@ public class FieldEntity extends AbstractOrmEntity
 	parameters.put(getPrimaryKeyName(), "&");
 
 	ListViewerData entityList = super.getList(parameters);
+
+	entityList.removeSpecificActions("Effacer");
+
 	entityList.addSpecificActionButtonList(new ActionLink(
 		"Mettre dans Orm", new AddFieldToOrm(), parameters));
 	return entityList;
@@ -144,5 +147,19 @@ public class FieldEntity extends AbstractOrmEntity
     {
 	return (FieldTypeEntity) getSingleAccessor(new FieldTypeEntity()
 		.getForeignKeyName());
+    }
+
+    /**
+     * BaseAction Delete, on ne veut pas deleter de Field
+     * 
+     * @param parameters parametre suplementaire
+     * @return todo: qu'Est-ce que l'on devrai retourné en general?
+     * @throws Exception remonte
+     */
+    @Override
+    public AbstractEntity deleteUI(Hashtable<String, String> parameters)
+	    throws Exception
+    {
+	return getList();
     }
 }

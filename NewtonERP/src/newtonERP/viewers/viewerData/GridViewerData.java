@@ -103,6 +103,20 @@ public class GridViewerData extends BaseViewerData
     }
 
     /**
+     * @param specificActionName the globalActionName to remove
+     */
+    public void removeSpecificActions(String specificActionName)
+    {
+	for (Iterator<ActionLink> sActionIT = specificActionButtonList
+		.iterator(); sActionIT.hasNext();)
+	{
+	    ActionLink gAction = sActionIT.next();
+	    if (gAction.getName().equals(specificActionName))
+		sActionIT.remove();
+	}
+    }
+
+    /**
      * @param SpecificActionName the globalActionName to remove
      */
     public void removeSpecificActions(ActionLink SpecificActionName)
@@ -111,7 +125,12 @@ public class GridViewerData extends BaseViewerData
 		.iterator(); sActionIT.hasNext();)
 	{
 	    ActionLink gAction = sActionIT.next();
-	    if (gAction.getName().equals(SpecificActionName))
+	    if (gAction.getName().equals(SpecificActionName)) // Es-tu sur que
+		// tu veux
+		// comparer le
+		// string du
+		// getName avec un
+		// ActionLink?
 		sActionIT.remove();
 	}
     }
