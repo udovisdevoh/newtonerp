@@ -23,6 +23,25 @@ public class TaskManager
     private static Vector<String> taskModuleEntityDefinitionNameList;
 
     /**
+     * @param entity entité pour laquelle on veut exécuter les tâches
+     * @return retour de l'action d'une tâche exécutée (s'il y a lieu)
+     * @throws Exception si exécution des tâche fail
+     */
+    public static AbstractEntity executeTasks(AbstractOrmEntity entity)
+	    throws Exception
+    {
+	Hashtable<String, String> entityParameters = new Hashtable<String, String>();
+
+	if (entity.getFields().containsFieldName(entity.getPrimaryKeyName()))
+	    if (entity.getPrimaryKeyValue() != null)
+		if (entity.getPrimaryKeyValue() != 0)
+		    entityParameters.put(entity.getPrimaryKeyName(), entity
+			    .getPrimaryKeyValue().toString());
+
+	return executeTasks(entity, entityParameters);
+    }
+
+    /**
      * @param entity Entité pour laquelle on doit effecter des tâches s'il y a
      *            lieu
      * @param entityParameters paramètres de l'entité
