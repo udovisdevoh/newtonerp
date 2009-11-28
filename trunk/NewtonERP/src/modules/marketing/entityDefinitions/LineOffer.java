@@ -22,7 +22,7 @@ public class LineOffer extends AbstractOrmEntity
     public LineOffer() throws Exception
     {
 	super();
-	setVisibleName("Offre");
+	setVisibleName("Élément d'offre");
 	AccessorManager.addAccessor(this, new Offer());
     }
 
