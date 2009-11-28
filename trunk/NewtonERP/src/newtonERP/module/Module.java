@@ -14,62 +14,9 @@ import newtonERP.module.exception.ModuleException;
 import newtonERP.orm.Orm;
 
 /**
+ * Abstract class representing an abstract module
+ * 
  * @author Pascal Lemay
- * 
- *         Abstract class representing an abstract module
- * 
- *         HOW TO CREATE A MODULE IN NEWTONERP BY R3HALLEJO
- * 
- *         ***SETTING UP THE ENVIRONMENT PRIOR TO CREATING THE ENTITIES***
- *         Create your package under src/modules/name_of_your_module
- * 
- *         Under this package you have to create a package named actions, and
- *         another called entityDefinitions. --> This is case sensitive so be
- *         careful please!
- * 
- *         Next, at the root of your module package you have to create a class
- *         having like name the name of your module. In that class you will have
- *         to create the default constructor that will be calling super(); -->
- *         Beware to add the "extends Module" in your class header.
- * 
- *         ****CREATING THE ENTITIES OF YOUR MODULE (DATABASE ENTITIES)****
- *         Please add the javadoc of your class with the "@author" tag and a
- *         short description of that class
- * 
- *         Here is a couple of things you have to know. First, carefully think
- *         about your class name because it will be the table name in the
- *         database (But I mean think about it). Next, your newly created class
- *         has to extend "extends AbstractOrmEntity". Add uninplemented methods.
- * 
- *         First thing to do whe you have added the uninplemented method is to
- *         code the "initFields" method that has been implemented. Here you have
- *         to initialize your fields. The field name meaning the viewable name
- *         and the shortName is the name that will be used internally.
- * 
- *         Here is what it should like from the beginning (Only an example):
- * 
- * <pre>
- *         public class GroupsRight extends AbstractOrmEntity
- *         {
- *             @Override
- *             public Fields initFields()
- *             {
- *	           Vector<Field<?>> fields = new Vector<Field<?>>();
- *	           fields.add(new FieldInt("numéro de groupe", "groupsID"));
- *	           fields.add(new FieldInt("numéro de droit", "rightID"));
- *	           return new Fields(fields);
- *             }
- *         }
- * </pre>
- * 
- *         Using primary keys. Please not that primary keys are always an ID for
- *         that entity. Meaning this is always and automatically a unique auto
- *         increment integer in the database and for that to be your primary key
- *         has to start with "PK" (Case senstive!)
- * 
- *         *****************************************************************
- * 
- * 
  */
 public abstract class Module
 {

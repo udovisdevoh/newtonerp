@@ -3,19 +3,16 @@ package modules.production.entityDefinitions;
 import java.util.Vector;
 
 import newtonERP.module.AbstractOrmEntity;
-import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.Fields;
 import newtonERP.orm.field.type.FieldInt;
 import newtonERP.orm.field.type.FieldString;
-import newtonERP.orm.field.type.FieldText;
 
 /**
- * A production project
- * 
  * @author r3hallejo
+ * 
  */
-public class Project extends AbstractOrmEntity
+public class ProductionProjectType extends AbstractOrmEntity
 {
 
     /**
@@ -23,11 +20,10 @@ public class Project extends AbstractOrmEntity
      * 
      * @throws Exception a general exception
      */
-    public Project() throws Exception
+    public ProductionProjectType() throws Exception
     {
 	super();
-	setVisibleName("Projets");
-	AccessorManager.addAccessor(this, new ProjectType());
+	setVisibleName("Type de projet");
     }
 
     @Override
@@ -35,10 +31,8 @@ public class Project extends AbstractOrmEntity
     {
 	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
 	fieldsInit.add(new FieldInt("Numero", getPrimaryKeyName()));
-	fieldsInit.add(new FieldString("Nom du projet", "projectName"));
-	fieldsInit.add(new FieldInt("Type du projet", new ProjectType()
-		.getForeignKeyName()));
-	fieldsInit.add(new FieldText("Description", "description", true));
+	fieldsInit.add(new FieldString("Type", "type"));
 	return new Fields(fieldsInit);
     }
+
 }

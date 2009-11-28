@@ -79,7 +79,7 @@ public class CheckForWorkOrders extends AbstractAction
 		inProduction += (Integer) workOrder.getData("quantity");
 	    }
 
-	    int toProduce = (Integer) product.getData("reorderPoint")
+	    int toProduce = (Integer) product.getData("maxInStock")
 		    - (inProduction + (Integer) product
 			    .getData("quantityInStock"));
 
