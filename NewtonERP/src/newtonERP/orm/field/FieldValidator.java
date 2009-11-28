@@ -7,7 +7,7 @@ package newtonERP.orm.field;
  */
 public abstract class FieldValidator<T>
 {
-    private String errorMessage = "une erreur inconnue c'est produit";
+    private String errorMessage = "une erreur inconnue s'est produite";
 
     protected abstract boolean valide(T value);
 
