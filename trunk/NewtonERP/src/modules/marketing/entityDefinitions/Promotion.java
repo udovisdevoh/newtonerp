@@ -40,6 +40,8 @@ public class Promotion extends AbstractOrmEntity
 		"startDate"));
 	fieldsInit.add(new FieldDate("Date de la fin de la promotion",
 		"endingDate"));
+	// Gab: est-ce ce field que tu veux rendre read-only? car tu ne le met
+	// pas readonly
 	fieldsInit.add(new FieldCurrency("Budjet accordé", "budget"));
 	fieldsInit.add(new FieldText("Notes de la modalité", "modality"));
 	fieldsInit
