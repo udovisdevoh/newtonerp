@@ -13,8 +13,8 @@ import modules.production.entityDefinitions.MachineDimension;
 import modules.production.entityDefinitions.MachineStatus;
 import modules.production.entityDefinitions.MaintenanceStatusType;
 import modules.production.entityDefinitions.MaintenanceTicket;
-import modules.production.entityDefinitions.Project;
-import modules.production.entityDefinitions.ProjectType;
+import modules.production.entityDefinitions.ProductionProject;
+import modules.production.entityDefinitions.ProductionProjectType;
 import modules.production.entityDefinitions.Training;
 import modules.production.entityDefinitions.TrainingType;
 import newtonERP.module.BaseAction;
@@ -47,9 +47,9 @@ public class Production extends Module
 	addGlobalActionMenuItem("Status de machines", new BaseAction("GetList",
 		new MachineStatus()));
 	addGlobalActionMenuItem("Projets", new BaseAction("GetList",
-		new Project()));
+		new ProductionProject()));
 	addGlobalActionMenuItem("Types de projets", new BaseAction("GetList",
-		new ProjectType()));
+		new ProductionProjectType()));
 	addGlobalActionMenuItem("Formations", new BaseAction("GetList",
 		new Training()));
 	addGlobalActionMenuItem("Types de formations", new BaseAction(
@@ -125,19 +125,19 @@ public class Production extends Module
 	ticket.setData("comment", "");
 	ticket.newE();
 
-	ProjectType type5 = new ProjectType();
+	ProductionProjectType type5 = new ProductionProjectType();
 	type5.setData("type", "");
 	type5.newE();
 
-	ProjectType type = new ProjectType();
+	ProductionProjectType type = new ProductionProjectType();
 	type.setData("type", "Ajout");
 	type.newE();
 
-	ProjectType type1 = new ProjectType();
+	ProductionProjectType type1 = new ProductionProjectType();
 	type1.setData("type", "Mise à jour");
 	type1.newE();
 
-	ProjectType type2 = new ProjectType();
+	ProductionProjectType type2 = new ProductionProjectType();
 	type2.setData("type", "Suppression");
 	type2.newE();
 
@@ -149,15 +149,15 @@ public class Production extends Module
 	type4.setData("name", "Logiciel");
 	type4.newE();
 
-	Project projet1 = new Project();
+	ProductionProject projet1 = new ProductionProject();
 	projet1.setData("projectName", "Nous");
-	projet1.setData(new ProjectType().getForeignKeyName(), 1);
+	projet1.setData(new ProductionProjectType().getForeignKeyName(), 1);
 	projet1.setData("description", "");
 	projet1.newE();
 
-	Project projet = new Project();
+	ProductionProject projet = new ProductionProject();
 	projet.setData("projectName", "Ajout ligne production 2");
-	projet.setData(new ProjectType().getForeignKeyName(), 1);
+	projet.setData(new ProductionProjectType().getForeignKeyName(), 1);
 	projet
 		.setData(
 			"description",
@@ -165,7 +165,7 @@ public class Production extends Module
 	projet.newE();
 
 	Training formation = new Training();
-	formation.setData(new Project().getForeignKeyName(), 1);
+	formation.setData(new ProductionProject().getForeignKeyName(), 1);
 	formation.setData(new TrainingType().getForeignKeyName(), 1);
 	formation.setData("description", "Formation requise pour la presse 2");
 	formation.newE();

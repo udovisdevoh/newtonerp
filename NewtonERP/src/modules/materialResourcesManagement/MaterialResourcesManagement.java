@@ -10,6 +10,7 @@ import modules.materialResourcesManagement.entityDefinitions.LocationStatus;
 import modules.materialResourcesManagement.entityDefinitions.Product;
 import modules.materialResourcesManagement.entityDefinitions.Shipper;
 import modules.materialResourcesManagement.entityDefinitions.Shipping;
+import modules.materialResourcesManagement.entityDefinitions.ShippingStatus;
 import modules.materialResourcesManagement.entityDefinitions.ShippingType;
 import modules.materialResourcesManagement.entityDefinitions.Warehouse;
 import modules.materialResourcesManagement.entityDefinitions.WorkOrder;
@@ -40,18 +41,16 @@ public class MaterialResourcesManagement extends Module
 		new Product()));
 	addGlobalActionMenuItem("Livraison", new BaseAction("GetList",
 		new Shipping()));
+	addGlobalActionMenuItem("Status de livraisons", new BaseAction(
+		"GetList", new ShippingStatus()));
 	addGlobalActionMenuItem("Type de livraisons", new BaseAction("GetList",
 		new ShippingType()));
 	addGlobalActionMenuItem("Expéditeurs", new BaseAction("GetList",
 		new Shipper()));
 	addGlobalActionMenuItem("Locations", new BaseAction("GetList",
 		new Location()));
-	addGlobalActionMenuItem("Type de locations", new BaseAction("GetList",
-		new LocationStatus()));
-	addGlobalActionMenuItem("Latitudes", new BaseAction("GetList",
-		new LocationLatitude()));
-	addGlobalActionMenuItem("Longitudes", new BaseAction("GetList",
-		new LocationLongitude()));
+	addGlobalActionMenuItem("Status de locations", new BaseAction(
+		"GetList", new LocationStatus()));
 	addGlobalActionMenuItem("Ordres de travail", new BaseAction("GetList",
 		new WorkOrder()));
 	addGlobalActionMenuItem("Status d'ordres de travail", new BaseAction(
@@ -90,6 +89,18 @@ public class MaterialResourcesManagement extends Module
 	ShippingType shippingType2 = new ShippingType();
 	shippingType2.setData("shippingType", "Livraison express");
 	shippingType2.newE();
+
+	ShippingStatus status = new ShippingStatus();
+	status.setData("status", "Nouveau");
+	status.newE();
+
+	ShippingStatus status2 = new ShippingStatus();
+	status2.setData("status", "En cours");
+	status2.newE();
+
+	ShippingStatus status1 = new ShippingStatus();
+	status1.setData("status", "Fermée");
+	status1.newE();
 
 	Product product = new Product();
 	product.setData("code", "A9648");
@@ -218,6 +229,7 @@ public class MaterialResourcesManagement extends Module
 	shipping.setData(new Shipper().getForeignKeyName(), 1);
 	shipping.setData("shippingComment", "Be extra careful");
 	shipping.setData(new Location().getForeignKeyName(), 1);
+	shipping.setData(new ShippingStatus().getForeignKeyName(), 1);
 	shipping.newE();
 
 	WorkOrderStatus wos = new WorkOrderStatus();

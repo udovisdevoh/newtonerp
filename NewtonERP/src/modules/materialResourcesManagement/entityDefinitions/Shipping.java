@@ -31,6 +31,7 @@ public class Shipping extends AbstractOrmEntity
 	AccessorManager.addAccessor(this, new Invoice());
 	AccessorManager.addAccessor(this, new Shipper());
 	AccessorManager.addAccessor(this, new Location());
+	AccessorManager.addAccessor(this, new ShippingStatus());
     }
 
     @Override
@@ -49,6 +50,8 @@ public class Shipping extends AbstractOrmEntity
 		.getForeignKeyName()));
 	fieldsInit.add(new FieldText("Commentaire", "shippingComment", false));
 	fieldsInit.add(new FieldInt("Location", new Location()
+		.getForeignKeyName()));
+	fieldsInit.add(new FieldInt("Status", new ShippingStatus()
 		.getForeignKeyName()));
 	return new Fields(fieldsInit);
     }

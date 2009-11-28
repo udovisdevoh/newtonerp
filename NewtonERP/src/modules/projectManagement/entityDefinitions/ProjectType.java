@@ -1,4 +1,4 @@
-package modules.production.entityDefinitions;
+package modules.projectManagement.entityDefinitions;
 
 import java.util.Vector;
 
@@ -9,15 +9,13 @@ import newtonERP.orm.field.type.FieldInt;
 import newtonERP.orm.field.type.FieldString;
 
 /**
- * @author r3hallejo
+ * A project type
  * 
+ * @author r3hallejo
  */
 public class ProjectType extends AbstractOrmEntity
 {
-
     /**
-     * Default constructor
-     * 
      * @throws Exception a general exception
      */
     public ProjectType() throws Exception
@@ -34,5 +32,4 @@ public class ProjectType extends AbstractOrmEntity
 	fieldsInit.add(new FieldString("Type", "type"));
 	return new Fields(fieldsInit);
     }
-
 }

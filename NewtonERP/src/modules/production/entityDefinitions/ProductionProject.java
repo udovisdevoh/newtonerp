@@ -7,26 +7,27 @@ import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.Fields;
 import newtonERP.orm.field.type.FieldInt;
+import newtonERP.orm.field.type.FieldString;
 import newtonERP.orm.field.type.FieldText;
 
 /**
- * A general training
+ * A production project
  * 
  * @author r3hallejo
  */
-public class Training extends AbstractOrmEntity
+public class ProductionProject extends AbstractOrmEntity
 {
+
     /**
      * Default constructor
      * 
      * @throws Exception a general exception
      */
-    public Training() throws Exception
+    public ProductionProject() throws Exception
     {
 	super();
-	setVisibleName("Formation");
-	AccessorManager.addAccessor(this, new TrainingType());
-	AccessorManager.addAccessor(this, new ProductionProject());
+	setVisibleName("Projets");
+	AccessorManager.addAccessor(this, new ProductionProjectType());
     }
 
     @Override
@@ -34,9 +35,8 @@ public class Training extends AbstractOrmEntity
     {
 	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
 	fieldsInit.add(new FieldInt("Numero", getPrimaryKeyName()));
-	fieldsInit.add(new FieldInt("Projet associé", new ProductionProject()
-		.getForeignKeyName()));
-	fieldsInit.add(new FieldInt("Type de formation", new TrainingType()
+	fieldsInit.add(new FieldString("Nom du projet", "projectName"));
+	fieldsInit.add(new FieldInt("Type du projet", new ProductionProjectType()
 		.getForeignKeyName()));
 	fieldsInit.add(new FieldText("Description", "description", true));
 	return new Fields(fieldsInit);

@@ -37,7 +37,7 @@ public class CloseWorkOrder extends AbstractAction
 	WorkOrderStatus retWoStatus = (WorkOrderStatus) Orm
 		.selectUnique(workOrderStatus);
 
-	// Le woStatus en fermeture
+	// Le woStatus fermée
 	WorkOrderStatus workOrderStatus1 = new WorkOrderStatus();
 	workOrderStatus1.setData("status", "Fermée");
 	WorkOrderStatus retWoStatusClosed = (WorkOrderStatus) Orm
