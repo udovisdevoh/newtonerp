@@ -12,7 +12,7 @@ import newtonERP.module.generalEntity.AlertEntity;
 import newtonERP.orm.Orm;
 
 /**
- * Action PayingEmployee: représente l'action de payer les employés
+ * Action PayingEmployees: représente l'action de payer les employés
  * correspondants au ID passés en paramètres.
  * 
  * Pourra être callé par task également
@@ -54,7 +54,7 @@ public class PayingEmployees extends AbstractAction
 	if (unpaid != 0)
 	    return new AlertEntity(
 		    String.valueOf(unpaid)
-			    + " employés n'ont pu être payés faute de fond\n vérifiez le compte correspondant au paiement");
+			    + " employé(s) non payé(s) faute de fond\n vérifiez le compte correspondant au paiement");
 
 	return new AlertEntity(null);
     }

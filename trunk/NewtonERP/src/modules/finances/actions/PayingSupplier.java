@@ -32,10 +32,13 @@ public class PayingSupplier extends AbstractAction
 	    Hashtable<String, String> parameters) throws Exception
     {
 	SupplierTransaction trans = (SupplierTransaction) entity;
-	SupplierTransaction searchT = new SupplierTransaction();
-	searchT.setData(trans.getPrimaryKeyName(), trans.getPrimaryKeyValue());
+	/*
+	 * SupplierTransaction searchT = new SupplierTransaction();
+	 * searchT.setData(trans.getPrimaryKeyName(),
+	 * trans.getPrimaryKeyValue());
+	 */
 	// La transaction
-	AbstractOrmEntity transaction = Orm.selectUnique(searchT);
+	AbstractOrmEntity transaction = Orm.selectUnique(trans);
 	// Le solde
 	String bill = String.valueOf(transaction.getData("balance"));
 
@@ -61,6 +64,5 @@ public class PayingSupplier extends AbstractAction
 	    return transaction.getList();
 	}
 	return alert;
-
     }
 }

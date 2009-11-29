@@ -32,9 +32,6 @@ public class PayingEmployee extends AbstractAction
 	    Hashtable<String, String> parameters) throws Exception
     {
 	PayableEmployee emp = (PayableEmployee) entity;
-	// PayableEmployee searchE = new PayableEmployee();
-	// searchE.setData(employee.getPrimaryKeyName(), employee
-	// .getPrimaryKeyValue());
 	AbstractOrmEntity employee = Orm.selectUnique(emp);
 
 	BankAccount searchBank = new BankAccount();
