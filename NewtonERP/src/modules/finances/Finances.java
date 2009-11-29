@@ -7,7 +7,9 @@ import modules.finances.actions.DisplayUnpaidServices;
 import modules.finances.actions.TestCallPayingEmployees;
 import modules.finances.entityDefinitions.Bank;
 import modules.finances.entityDefinitions.BankAccount;
+import modules.finances.entityDefinitions.FederalWageBracket;
 import modules.finances.entityDefinitions.PayableEmployee;
+import modules.finances.entityDefinitions.ProvincialWageBracket;
 import modules.finances.entityDefinitions.ServiceProvider;
 import modules.finances.entityDefinitions.ServiceTransaction;
 import modules.finances.entityDefinitions.StateType;
@@ -49,12 +51,19 @@ public class Finances extends Module
 
 	addGlobalActionMenuItem("Types d'états", new BaseAction("GetList",
 		new StateType()));
+
+	addGlobalActionMenuItem("Impôt Fed/Salaire", new BaseAction("GetList",
+		new FederalWageBracket()));
+
+	addGlobalActionMenuItem("Impôt Prov/Salaire", new BaseAction("GetList",
+		new ProvincialWageBracket()));
+
+	addGlobalActionMenuItem("Services à payer", new DisplayUnpaidServices());
+
 	// tempo//////////////////////////////////////////////////////////
 	addGlobalActionMenuItem("Employee à payer", new BaseAction("GetList",
 		new PayableEmployee()));
 	// //////////////////////////////////
-
-	addGlobalActionMenuItem("Services à payer", new DisplayUnpaidServices());
 
 	// test
 	addGlobalActionMenuItem("Test payer employés",

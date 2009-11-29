@@ -55,12 +55,16 @@ public class CreateUpdatePayableEmployee extends AbstractAction
 		    .parseInt(dateBegin[0]),
 		    Integer.parseInt(dateBegin[1]) - 1, Integer
 			    .parseInt(dateBegin[2])));
+
 	    employee.setData("end", new GregorianCalendar(Integer
 		    .parseInt(dateEnd[0]), Integer.parseInt(dateEnd[1]) - 1,
 		    Integer.parseInt(dateEnd[2])));
+
 	    employee.setData("paymentDate", new GregorianCalendar(0, 0, 0));
+
 	    employee.setData("balance", Double.parseDouble(parameters
 		    .get("key?")));
+
 	    employee.setData(new StateType().getForeignKeyName(), 1);
 	    employee.save();
 	}
@@ -68,21 +72,27 @@ public class CreateUpdatePayableEmployee extends AbstractAction
 	// create
 	{
 	    PayableEmployee newEmployee = new PayableEmployee();
+
 	    newEmployee.setData(new Employee().getForeignKeyName(), emp
 		    .getPrimaryKeyValue());
+
 	    newEmployee.setData("beginning", new GregorianCalendar(Integer
 		    .parseInt(dateBegin[0]),
 		    Integer.parseInt(dateBegin[1]) - 1, Integer
 			    .parseInt(dateBegin[2])));
+
 	    newEmployee.setData("end", new GregorianCalendar(Integer
 		    .parseInt(dateEnd[0]), Integer.parseInt(dateEnd[1]) - 1,
 		    Integer.parseInt(dateEnd[2])));
+
 	    newEmployee.setData("paymentDate", new GregorianCalendar(0, 0, 0));
+
 	    newEmployee.setData("balance", Double.parseDouble(parameters
 		    .get("key?")));
-	    newEmployee.setData(new StateType().getForeignKeyName(), 1);
-	    newEmployee.setData(new BankAccount().getForeignKeyName(), 1);
 
+	    newEmployee.setData(new StateType().getForeignKeyName(), 1);
+
+	    newEmployee.setData(new BankAccount().getForeignKeyName(), 1);
 	    newEmployee.newE();
 	}
 
