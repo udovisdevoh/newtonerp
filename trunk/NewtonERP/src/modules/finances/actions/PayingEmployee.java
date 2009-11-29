@@ -4,7 +4,7 @@ import java.util.GregorianCalendar;
 import java.util.Hashtable;
 
 import modules.finances.entityDefinitions.BankAccount;
-import modules.finances.entityDefinitions.ServiceTransaction;
+import modules.finances.entityDefinitions.PayableEmployee;
 import modules.finances.entityDefinitions.StateType;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
@@ -13,43 +13,40 @@ import newtonERP.module.generalEntity.AlertEntity;
 import newtonERP.orm.Orm;
 
 /**
- * Action PayingService: représente l'action de payer le compte correspondant.
+ * Action PayingEmployee: représente l'action de payer l'employé correspondant.
  * 
  * @author Pascal Lemay
  */
-public class PayingService extends AbstractAction
+public class PayingEmployee extends AbstractAction
 {
     /**
      * constructeur
      * @throws Exception si création fail
      */
-    public PayingService() throws Exception
+    public PayingEmployee() throws Exception
     {
-	super(new ServiceTransaction());
+	super(new PayableEmployee());
     }
 
     public AbstractEntity doAction(AbstractEntity entity,
 	    Hashtable<String, String> parameters) throws Exception
     {
-	ServiceTransaction trans = (ServiceTransaction) entity;
-	/*
-	 * ServiceTransaction searchT = new ServiceTransaction();
-	 * searchT.setData(trans.getPrimaryKeyName(),
-	 * trans.getPrimaryKeyValue());
-	 */
-
-	// La transaction
-	AbstractOrmEntity transaction = Orm.selectUnique(trans);
-	// Le solde
-	String bill = String.valueOf(transaction.getData("balance"));
+	PayableEmployee emp = (PayableEmployee) entity;
+	// PayableEmployee searchE = new PayableEmployee();
+	// searchE.setData(employee.getPrimaryKeyName(), employee
+	// .getPrimaryKeyValue());
+	AbstractOrmEntity employee = Orm.selectUnique(emp);
 
 	BankAccount searchBank = new BankAccount();
-	searchBank.setData(new BankAccount().getPrimaryKeyName(), transaction
+	searchBank.setData(new BankAccount().getPrimaryKeyName(), employee
 		.getData(new BankAccount().getForeignKeyName()));
+
+	// Le montant de la paie
+	String bill = String.valueOf(employee.getData("balance"));
 	// Le compte de banque pour paiement
 	AbstractOrmEntity bankAccount = Orm.selectUnique(searchBank);
 
-	// Le solde comme paramètre
+	// Le montant comme paramètre
 	Hashtable<String, String> actionParameters = new Hashtable<String, String>();
 	actionParameters.put("bill", bill);
 
@@ -60,10 +57,10 @@ public class PayingService extends AbstractAction
 
 	if (alert.getMessage().equals("Paiement effectué"))
 	{
-	    transaction.setData("paymentDate", new GregorianCalendar());
-	    transaction.setData(new StateType().getForeignKeyName(), 2);
-	    transaction.save();
-	    return transaction.getList();
+	    employee.setData("paymentDate", new GregorianCalendar());
+	    employee.setData(new StateType().getForeignKeyName(), 2);
+	    employee.save();
+	    return null;
 	}
 	return alert;
 

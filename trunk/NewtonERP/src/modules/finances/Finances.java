@@ -6,6 +6,7 @@ import modules.common.entityDefinitions.State;
 import modules.finances.actions.DisplayUnpaidServices;
 import modules.finances.entityDefinitions.Bank;
 import modules.finances.entityDefinitions.BankAccount;
+import modules.finances.entityDefinitions.PayableEmployee;
 import modules.finances.entityDefinitions.ServiceProvider;
 import modules.finances.entityDefinitions.ServiceTransaction;
 import modules.finances.entityDefinitions.StateType;
@@ -47,6 +48,10 @@ public class Finances extends Module
 
 	addGlobalActionMenuItem("Types d'états", new BaseAction("GetList",
 		new StateType()));
+	// tempo//////////////////////////////////////////////////////////
+	addGlobalActionMenuItem("Employee à payer", new BaseAction("GetList",
+		new PayableEmployee()));
+	// //////////////////////////////////
 
 	addGlobalActionMenuItem("Services à payer", new DisplayUnpaidServices());
 
@@ -73,10 +78,10 @@ public class Finances extends Module
 	stateType.newE();
 
 	address = new Address();
-	address.setData("streetName", "Clark");
+	address.setData("streetName", "Dummy");
 	address.setData("streetNumber", 201);
 	address.setData("city", "Montréal");
-	address.setData("telephoneNumber", "514-564-1379");
+	address.setData("telephoneNumber", "514-000-0000");
 	address.setData("postalCode", "H8Y9T5");
 	address.setData(new Country().getForeignKeyName(), 1);
 	address.setData(new State().getForeignKeyName(), 1);
@@ -94,12 +99,12 @@ public class Finances extends Module
 
 	bank = new Bank();
 	bank.setData("name", "Dummy Bank");
-	bank.setData("transit", "4001");
+	bank.setData("transit", "0000");
 	bank.setData(new Address().getForeignKeyName(), 1);
 	bank.newE();
 
 	bankAccount = new BankAccount();
-	bankAccount.setData("folio", 2148);
+	bankAccount.setData("folio", "0001");
 	bankAccount.setData("balance", 0.00);
 	bankAccount.setData("marginBalance", 0.00);
 	bankAccount.setData("margin", 0.00);
