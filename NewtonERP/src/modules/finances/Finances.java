@@ -4,6 +4,7 @@ import modules.common.entityDefinitions.Address;
 import modules.common.entityDefinitions.Country;
 import modules.common.entityDefinitions.State;
 import modules.finances.actions.DisplayUnpaidServices;
+import modules.finances.actions.TestCallPayingEmployees;
 import modules.finances.entityDefinitions.Bank;
 import modules.finances.entityDefinitions.BankAccount;
 import modules.finances.entityDefinitions.PayableEmployee;
@@ -54,6 +55,10 @@ public class Finances extends Module
 	// //////////////////////////////////
 
 	addGlobalActionMenuItem("Services à payer", new DisplayUnpaidServices());
+
+	// test
+	addGlobalActionMenuItem("Test payer employés",
+		new TestCallPayingEmployees());
 
 	setVisibleName("Finances");
 
