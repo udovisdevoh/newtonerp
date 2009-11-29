@@ -130,5 +130,33 @@ public class Finances extends Module
 	service.setData("service", "Internet");
 	service.setData(new Address().getForeignKeyName(), 2);
 	service.newE();
+
+	// ---laisser ça là ou je vous en calisse une
+	// Données pour impôt 2009
+	FederalWageBracket fwb = new FederalWageBracket();
+	fwb.setData("minBracket", 0.0);
+	fwb.setData("maxBracket", 40726.0);
+	fwb.setData("ajustment", 0.0);
+	fwb.setData("tax", 15.0);
+	fwb.newE();
+
+	fwb.setData("minBracket", 40726.0);
+	fwb.setData("maxBracket", 81452.0);
+	fwb.setData("ajustment", 6109.0);
+	fwb.setData("tax", 22.0);
+	fwb.newE();
+
+	fwb.setData("minBracket", 81452.0);
+	fwb.setData("maxBracket", 126264.0);
+	fwb.setData("ajustment", 15069.0);
+	fwb.setData("tax", 26.0);
+	fwb.newE();
+
+	fwb.setData("minBracket", 126264.0);
+	fwb.setData("maxBracket", 99999999.0);
+	fwb.setData("ajustment", 26720.0);
+	fwb.setData("tax", 29.0);
+	fwb.newE();
+	// -----------------------------------------------------------
     }
 }

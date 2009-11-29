@@ -95,7 +95,6 @@ public class CreateUpdatePayableEmployee extends AbstractAction
 	    newEmployee.setData(new BankAccount().getForeignKeyName(), 1);
 	    newEmployee.newE();
 	}
-
 	return null;
     }
 }
