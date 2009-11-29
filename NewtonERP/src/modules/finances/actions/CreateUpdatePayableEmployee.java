@@ -33,6 +33,7 @@ public class CreateUpdatePayableEmployee extends AbstractAction
 	super(null);
     }
 
+    // noms de clés du hashtable pas déterminés, à voir avec jo.C
     public AbstractEntity doAction(AbstractEntity entity,
 	    Hashtable<String, String> parameters) throws Exception
     {
