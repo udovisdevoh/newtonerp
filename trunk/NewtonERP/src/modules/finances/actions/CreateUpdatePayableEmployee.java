@@ -38,18 +38,27 @@ public class CreateUpdatePayableEmployee extends AbstractAction
 	    Hashtable<String, String> parameters) throws Exception
     {
 	Employee emp = (Employee) entity;
-	PayableEmployee newEmployee;
 
 	PayableEmployee searchEmp = new PayableEmployee();
 	searchEmp.setData(emp.getForeignKeyName(), emp.getData(emp
 		.getForeignKeyName()));
 	AbstractOrmEntity employee = Orm.selectUnique(searchEmp);
 
+	// keys pas encore déterminées, à voir avec jo.C
+	// je doit recevoir en param date en string comme:Ex:2001-01-01
+	String[] dateBegin = parameters.get("key?").split("-");
+	String[] dateEnd = parameters.get("key?").split("-");
+
 	if (employee != null)// update
 	{
-	    employee.setData("begin", new GregorianCalendar());// parameters.get("key?");
-	    employee.setData("end", new GregorianCalendar());// parameters.get("key?");
-	    employee.setData("paymentDate", new GregorianCalendar());
+	    employee.setData("beginning", new GregorianCalendar(Integer
+		    .parseInt(dateBegin[0]),
+		    Integer.parseInt(dateBegin[1]) - 1, Integer
+			    .parseInt(dateBegin[2])));
+	    employee.setData("end", new GregorianCalendar(Integer
+		    .parseInt(dateEnd[0]), Integer.parseInt(dateEnd[1]) - 1,
+		    Integer.parseInt(dateEnd[2])));
+	    employee.setData("paymentDate", new GregorianCalendar(0, 0, 0));
 	    employee.setData("balance", Double.parseDouble(parameters
 		    .get("key?")));
 	    employee.setData(new StateType().getForeignKeyName(), 1);
@@ -58,12 +67,17 @@ public class CreateUpdatePayableEmployee extends AbstractAction
 	else
 	// create
 	{
-	    newEmployee = new PayableEmployee();
+	    PayableEmployee newEmployee = new PayableEmployee();
 	    newEmployee.setData(new Employee().getForeignKeyName(), emp
 		    .getPrimaryKeyValue());
-	    newEmployee.setData("begin", new GregorianCalendar());// parameters.get("key?");
-	    newEmployee.setData("end", new GregorianCalendar());// parameters.get("key?");
-	    newEmployee.setData("paymentDate", new GregorianCalendar());
+	    newEmployee.setData("beginning", new GregorianCalendar(Integer
+		    .parseInt(dateBegin[0]),
+		    Integer.parseInt(dateBegin[1]) - 1, Integer
+			    .parseInt(dateBegin[2])));
+	    newEmployee.setData("end", new GregorianCalendar(Integer
+		    .parseInt(dateEnd[0]), Integer.parseInt(dateEnd[1]) - 1,
+		    Integer.parseInt(dateEnd[2])));
+	    newEmployee.setData("paymentDate", new GregorianCalendar(0, 0, 0));
 	    newEmployee.setData("balance", Double.parseDouble(parameters
 		    .get("key?")));
 	    newEmployee.setData(new StateType().getForeignKeyName(), 1);
