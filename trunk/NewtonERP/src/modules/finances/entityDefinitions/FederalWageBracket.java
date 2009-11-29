@@ -27,6 +27,7 @@ public class FederalWageBracket extends AbstractOrmEntity
     public FederalWageBracket() throws Exception
     {
 	super();
+	setVisibleName("Tanches Salariales/Impôt Fédéral");
     }
 
     @Override
