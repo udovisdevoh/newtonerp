@@ -31,6 +31,9 @@ public class TestCallPayingEmployees extends AbstractAction
 	h.put("key1", "1");
 	h.put("key2", "3");
 	AlertEntity a = (AlertEntity) new PayingEmployees().doAction(null, h);
+	if (a != null)
+	    return a;
+
 	return new PayableEmployee().getList();
 
     }
