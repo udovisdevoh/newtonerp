@@ -100,7 +100,8 @@ public class GridViewer
 		String moneyStyleModifier = "";
 		if (data[i][j] != null)
 		{
-		    if (i > 0 && !data[i][j].equals(data[i - 1][j]))
+		    if (i == 0 || (i > 0 && !data[i][j].equals(data[i - 1][j]))
+			    || !gridData.isSpanSimilar())
 		    {
 			for (k = i; k < data.length
 				&& data[i][j].equals(data[k][j])

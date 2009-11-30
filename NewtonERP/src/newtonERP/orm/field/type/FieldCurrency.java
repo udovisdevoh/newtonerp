@@ -54,6 +54,7 @@ public class FieldCurrency extends FieldDouble
     {
 	data = data.replaceAll("\\s", "");
 	data = data.replaceAll("\\$", "");
+	data = data.replaceAll("\\.", ",");
 	data += " $";
 	this.data = df.parse(data).doubleValue();
     }
