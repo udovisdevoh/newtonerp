@@ -32,6 +32,7 @@ public class PayingEmployee extends AbstractAction
 	    Hashtable<String, String> parameters) throws Exception
     {
 	PayableEmployee emp = (PayableEmployee) entity;
+	// new CalculateFederalTax().doAction(emp, null);
 	AbstractOrmEntity employee = Orm.selectUnique(emp);
 
 	BankAccount searchBank = new BankAccount();
@@ -39,7 +40,11 @@ public class PayingEmployee extends AbstractAction
 		.getData(new BankAccount().getForeignKeyName()));
 
 	// Le montant de la paie
-	String bill = String.valueOf(employee.getData("balance"));
+	Double gain = (Double) employee.getData("gains");
+	Double fedTax = (Double) employee.getData("fedTax");
+	Double provTax = (Double) employee.getData("provTax");
+	Double total = gain - fedTax - provTax;
+	String bill = String.valueOf(total);
 	// Le compte de banque pour paiement
 	AbstractOrmEntity bankAccount = Orm.selectUnique(searchBank);
 

@@ -62,6 +62,9 @@ public class CreateUpdatePayableEmployee extends AbstractAction
 
 	    employee.setData("paymentDate", new GregorianCalendar(0, 0, 0));
 
+	    employee.setData("gains", Double
+		    .parseDouble(parameters.get("key?")));
+
 	    employee.setData("balance", Double.parseDouble(parameters
 		    .get("key?")));
 
@@ -86,6 +89,13 @@ public class CreateUpdatePayableEmployee extends AbstractAction
 		    Integer.parseInt(dateEnd[2])));
 
 	    newEmployee.setData("paymentDate", new GregorianCalendar(0, 0, 0));
+
+	    newEmployee.setData("fedTax", 0.0);
+
+	    newEmployee.setData("provTax", 0.0);
+
+	    newEmployee.setData("gains", Double.parseDouble(parameters
+		    .get("key?")));
 
 	    newEmployee.setData("balance", Double.parseDouble(parameters
 		    .get("key?")));
