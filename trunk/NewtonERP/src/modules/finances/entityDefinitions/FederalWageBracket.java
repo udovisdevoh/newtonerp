@@ -27,7 +27,7 @@ public class FederalWageBracket extends AbstractOrmEntity
     public FederalWageBracket() throws Exception
     {
 	super();
-	setVisibleName("Tanches Salariales/Impôt Fédéral");
+	setVisibleName("Tranches Salariales/Impôt Fédéral");
     }
 
     @Override
@@ -40,6 +40,8 @@ public class FederalWageBracket extends AbstractOrmEntity
 
 	fieldsInit.add(new FieldCurrency("Minimum de tranche", "minBracket"));
 	fieldsInit.add(new FieldCurrency("Maximum de tranche", "maxBracket"));
+
+	// Le field Montant d'ajustement sera éventuellement un field calculé
 	fieldsInit.add(new FieldCurrency("Montant d'ajustement", "ajustment"));
 	fieldsInit.add(new FieldDouble("Impôt %", "tax"));
 

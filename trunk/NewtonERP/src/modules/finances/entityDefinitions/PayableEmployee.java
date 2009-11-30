@@ -3,6 +3,7 @@ package modules.finances.entityDefinitions;
 import java.util.Hashtable;
 import java.util.Vector;
 
+import modules.finances.actions.CalculateFederalTax;
 import modules.finances.actions.PayingEmployee;
 import modules.humanResources.entityDefinitions.Employee;
 import newtonERP.common.ActionLink;
@@ -16,8 +17,8 @@ import newtonERP.orm.field.type.FieldInt;
 import newtonERP.viewers.viewerData.ListViewerData;
 
 /**
- * Entité PayableEmployee du module finances: représente les employes à payer et
- * les montants payables à ceux-ci.
+ * Entité PayableEmployee du module finances: représente les employes à payer
+ * pour la période de paye courante et les montants payables à ceux-ci.
  * 
  * Sert également de donnée pour générer talon de paye...à venir
  * 
@@ -53,20 +54,19 @@ public class PayableEmployee extends AbstractOrmEntity
 	fieldsInit.add(new FieldDate("Fin de période", "end"));
 
 	fieldsInit.add(new FieldDate("Date de paiement", "paymentDate"));
-
-	fieldsInit.add(new FieldCurrency("Montant à payer", "balance"));
-
+	fieldsInit.add(new FieldCurrency("Impôt Fedéral.", "fedTax"));
+	fieldsInit.add(new FieldCurrency("Impôt Provincial.", "provTax"));
+	fieldsInit.add(new FieldCurrency("Gains", "gains"));
+	fieldsInit.add(new FieldCurrency("Paie nette", "balance"));
 	fieldsInit
 		.add(new FieldInt("État", new StateType().getForeignKeyName()));
-
 	fieldsInit.add(new FieldInt("Compte pour paiement", new BankAccount()
 		.getForeignKeyName()));
 
 	return new Fields(fieldsInit);
     }
 
-    // To pay a single employee...with PayingEmployee--------------------------
-    // tempo, à voir si ce bouton restera là
+    // tempo, à voir si ces boutons resteront là
     @Override
     public final ListViewerData getList(Hashtable<String, String> parameters)
 	    throws Exception
@@ -74,12 +74,17 @@ public class PayableEmployee extends AbstractOrmEntity
 	PayingEmployee paying = new PayingEmployee();
 	paying.setOwnedByModul(getCurrentModule());
 
+	CalculateFederalTax calcul = new CalculateFederalTax();//
+	calcul.setOwnedByModul(getCurrentModule());//
+
 	Hashtable<String, String> actionParameters = new Hashtable<String, String>();
 	actionParameters.put(getPrimaryKeyName(), "&");
 
 	ListViewerData list = super.getList(parameters);
 
 	list.addSpecificActionButtonList(new ActionLink("Payer", paying,
+		actionParameters));
+	list.addSpecificActionButtonList(new ActionLink("Impôt/Fed", calcul,
 		actionParameters));
 
 	return list;
