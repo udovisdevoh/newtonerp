@@ -951,7 +951,7 @@ par exemple, si on delete un Group, alors les GroupRight WHERE GroupID = ce grou
   * Actions et entités liées au paiement d'employés:
   * Entités: PayableEmployee,FederalWageBracket,ProvincialalWageBracket 
   * Actions: PayingEmployee, PayingEmployees,
-  *          CreateUpdatePayableEmployee,CalculateFederalTax
+             CreateUpdatePayableEmployee,CalculateFederalTax
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
   * ...à livrer...
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
