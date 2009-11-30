@@ -949,11 +949,9 @@ par exemple, si on delete un Group, alors les GroupRight WHERE GroupID = ce grou
 ==Pascal Lemay==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
   * Actions et entités liées au paiement d'employés:
-  * PayableEmployee, 
-  * PayingEmployee, 
-  * PayingEmployees,
-  * CreateUpdatePayableEmployee,
-  * CalculateFederalTax
+  * Entités: PayableEmployee,FederalWageBracket,ProvincialalWageBracket 
+  * Actions: PayingEmployee, PayingEmployees,
+  *          CreateUpdatePayableEmployee,CalculateFederalTax
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
   * ...à livrer...
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
