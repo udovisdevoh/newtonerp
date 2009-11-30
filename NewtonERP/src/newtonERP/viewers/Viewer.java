@@ -12,6 +12,7 @@ import newtonERP.viewers.firstStep.AlertViewer;
 import newtonERP.viewers.firstStep.BaseViewer;
 import newtonERP.viewers.firstStep.ForwardViewer;
 import newtonERP.viewers.firstStep.GridViewer;
+import newtonERP.viewers.firstStep.ImgViewer;
 import newtonERP.viewers.firstStep.PromptViewer;
 import newtonERP.viewers.firstStep.StaticTextViewer;
 import newtonERP.viewers.viewables.AlertViewable;
@@ -19,6 +20,7 @@ import newtonERP.viewers.viewables.ForwardViewable;
 import newtonERP.viewers.viewables.StaticTextViewable;
 import newtonERP.viewers.viewerData.BaseViewerData;
 import newtonERP.viewers.viewerData.GridViewerData;
+import newtonERP.viewers.viewerData.ImgViewerData;
 import newtonERP.viewers.viewerData.PromptViewerData;
 
 /**
@@ -55,6 +57,8 @@ public abstract class Viewer
 		    .getHtmlCode((StaticTextViewable) entity);
 	else if (entity instanceof GridViewerData)
 	    viewerHtml += GridViewer.getHtmlCode((GridViewerData) entity);
+	else if (entity instanceof ImgViewerData)
+	    viewerHtml += ImgViewer.getHtmlCode((ImgViewerData) entity);
 	else if (entity == null)
 	    viewerHtml += "<!-- page vide -->";
 	else

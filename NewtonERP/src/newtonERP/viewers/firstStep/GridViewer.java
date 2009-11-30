@@ -50,13 +50,29 @@ public class GridViewer
 	String html = "";
 	// todo: change by th in css
 	String isHeader = " class='ListViewerTableHeader'";
-
+	int k = 0;
+	String colspan;
 	html += "\n<tr>";
 	if (hasLeftHeader)
 	    html += "<th></th>";
-	for (GridCaseData hCase : headerCase)
-	    html += "<th" + isHeader + ">" + getCase(hCase) + "</th>";
+	for (int i = 0; i < headerCase.length; i++)
+	{
+	    colspan = "";
+	    if (headerCase[i] != null)
+	    {
+		for (k = i; k < headerCase.length
+			&& headerCase[i].equals(headerCase[k]); k++)
+		{
+		    if (k != i)
+			headerCase[k] = null;
+		}
+		if (k - i > 1)
+		    colspan = " colspan='" + (k - i) + "'";
 
+		html += "<th" + isHeader + colspan + ">"
+			+ getCase(headerCase[i]) + "</th>";
+	    }
+	}
 	html += "</tr>";
 	return html;
     }
@@ -84,29 +100,34 @@ public class GridViewer
 		String moneyStyleModifier = "";
 		if (data[i][j] != null)
 		{
-		    for (k = i; k < data.length
-			    && data[i][j].equals(data[k][j])
-			    && gridData.isSpanSimilar(); k++)
+		    if (i > 0 && !data[i][j].equals(data[i - 1][j]))
 		    {
-			if (k != i)
-			    data[k][j] = null;
+			for (k = i; k < data.length
+				&& data[i][j].equals(data[k][j])
+				&& gridData.isSpanSimilar(); k++)
+			{
+			    // nothing to do...
+			}
+			if (k - i > 1)
+			    rowspan = " rowspan='" + (k - i) + "'";
+
+			caseContent = getCase(data[i][j]);
+
+			if (caseContent.endsWith("$"))
+			    moneyStyleModifier = " moneyStyleModifier";
+
+			if (gridData.isColor())
+			    color = " background-color:"
+				    + ColorViewer.getColor(caseContent) + ";";
+
+			html.append("<td class='gridCell" + moneyStyleModifier
+				+ "' " + rowspan + "style='" + color
+				+ "text-align:center;'>" + caseContent
+				+ "</td>");
 		    }
-		    if (k - i > 1)
-			rowspan = " rowspan='" + (k - i) + "'";
-
-		    caseContent = getCase(data[i][j]);
-
-		    if (caseContent.endsWith("$"))
-			moneyStyleModifier = " moneyStyleModifier";
-
-		    if (gridData.isColor())
-			color = " background-color:"
-				+ ColorViewer.getColor(caseContent) + ";";
-
-		    html.append("<td class='gridCell" + moneyStyleModifier
-			    + "' " + rowspan + "style='" + color
-			    + "text-align:center;'>" + caseContent + "</td>");
 		}
+		else
+		    html.append("<td></td>");
 	    }
 	    if (gridData instanceof ListViewerData)
 		html.append(getSpecificButton(gridData

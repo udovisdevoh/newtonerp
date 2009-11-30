@@ -1,5 +1,6 @@
 package modules.humanResources;
 
+import modules.humanResources.actions.GetManyTimeTable;
 import modules.humanResources.actions.GetOneTimeTable;
 import modules.humanResources.entityDefinitions.Department;
 import modules.humanResources.entityDefinitions.Employee;
@@ -29,6 +30,7 @@ public class HumanResources extends Module
 	addGlobalActionMenuItem("Départements", new BaseAction("GetList",
 		new Department()));
 	addGlobalActionMenuItem("Voir l'horaire", new GetOneTimeTable());
+	addGlobalActionMenuItem("Voir les horaires", new GetManyTimeTable());
 
 	setVisibleName("Ressources humaines");
     }
