@@ -903,6 +903,7 @@ par exemple, si on delete un Group, alors les GroupRight WHERE GroupID = ce grou
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
   * Pour actions de paiement,j'ai du rechercher moi même la transaction par l'orm pour
   * avoir le 'data' car je n'y avais pas accès par l'entité reçu en paramètre.
+
 ==Gabriel Therrien==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
   *  
@@ -947,7 +948,12 @@ par exemple, si on delete un Group, alors les GroupRight WHERE GroupID = ce grou
 
 ==Pascal Lemay==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
-  * ...livré...
+  * Actions et entités liées au paiement d'employés:
+  * PayableEmployee, 
+  * PayingEmployee, 
+  * PayingEmployees,
+  * CreateUpdatePayableEmployee,
+  * CalculateFederalTax
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
   * ...à livrer...
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
