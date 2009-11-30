@@ -2,6 +2,7 @@ package modules.taskModule;
 
 import java.util.Vector;
 
+import modules.taskModule.actions.DbGraph;
 import modules.taskModule.entityDefinitions.ActionEntity;
 import modules.taskModule.entityDefinitions.EffectEntity;
 import modules.taskModule.entityDefinitions.EntityEntity;
@@ -50,6 +51,7 @@ public class TaskModule extends Module
 		"GetList", new SearchCriteria()));
 	addGlobalActionMenuItem("Paramètres", new BaseAction("GetList",
 		new Parameter()));
+	addGlobalActionMenuItem("voir le shema de DB", new DbGraph());
     }
 
     public void initDB() throws Exception
