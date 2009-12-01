@@ -42,4 +42,25 @@ public class SourceCodeBuilder
     {
 	return ActionSourceCodeBuilder.build(actionEntity);
     }
+
+    /**
+     * @param moduleEntity module entity
+     * @return source class file name
+     * @throws Exception si ça fail
+     */
+    public static String buildModuleClassFileName(ModuleEntity moduleEntity)
+	    throws Exception
+    {
+	return ModuleSourceCodeBuilder.buildClassFileName(moduleEntity);
+    }
+
+    /**
+     * @param moduleEntity module entity
+     * @throws Exception si ça fail
+     */
+    public static void createDirectoryForModule(ModuleEntity moduleEntity)
+	    throws Exception
+    {
+	ModuleSourceCodeBuilder.createDirectory(moduleEntity);
+    }
 }

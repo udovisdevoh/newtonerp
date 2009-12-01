@@ -3,6 +3,7 @@ package modules.taskModule.entityDefinitions;
 import java.util.Hashtable;
 import java.util.Vector;
 
+import modules.taskModule.actions.GenerateSourceCode;
 import modules.taskModule.actions.ViewModuleSource;
 import newtonERP.common.ActionLink;
 import newtonERP.common.ListModule;
@@ -71,8 +72,12 @@ public class ModuleEntity extends AbstractOrmEntity
 	parameters.put(getPrimaryKeyName(), "&");
 
 	ListViewerData entityList = super.getList(parameters);
-	entityList.addSpecificActionButtonList(new ActionLink(
-		"Générer code source", new ViewModuleSource(), parameters));
+	entityList.addSpecificActionButtonList(new ActionLink("Voir source",
+		new ViewModuleSource(), parameters));
+
+	entityList.addSpecificActionButtonList(new ActionLink("Générer source",
+		new GenerateSourceCode(), parameters));
+
 	return entityList;
     }
 }
