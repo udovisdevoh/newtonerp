@@ -1,7 +1,10 @@
 package newtonERP.sourceCodeBuilder;
 
+import java.io.File;
+
 import modules.taskModule.entityDefinitions.ModuleEntity;
 import newtonERP.orm.Orm;
+import newtonERP.orm.exceptions.OrmException;
 
 /**
  * Cette classe sert à construire le code source de module
@@ -65,5 +68,38 @@ public class ModuleSourceCodeBuilder
     private static String getSystemName(ModuleEntity moduleEntity)
     {
 	return moduleEntity.getDataString("systemName");
+    }
+
+    /**
+     * @param moduleEntity module entity
+     * @return source class file name
+     * @throws Exception si ça fail
+     */
+    public static String buildClassFileName(ModuleEntity moduleEntity)
+	    throws Exception
+    {
+	String packagePath = getPackagePath(moduleEntity);
+
+	moduleEntity = (ModuleEntity) Orm.selectUnique(moduleEntity);
+	return packagePath + "/" + getSystemName(moduleEntity) + ".java";
+    }
+
+    private static String getPackagePath(ModuleEntity moduleEntity)
+	    throws OrmException
+    {
+	moduleEntity = (ModuleEntity) Orm.selectUnique(moduleEntity);
+	return "./src/modules/" + getPackageName(moduleEntity);
+    }
+
+    /**
+     * @param moduleEntity module entity
+     * @throws Exception si ça fail
+     */
+    public static void createDirectory(ModuleEntity moduleEntity)
+	    throws Exception
+    {
+	String packagePath = getPackagePath(moduleEntity);
+	File file = new File(packagePath);
+	file.mkdir();
     }
 }
