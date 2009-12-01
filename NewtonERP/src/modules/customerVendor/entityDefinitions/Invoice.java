@@ -4,7 +4,6 @@ import java.util.Hashtable;
 import java.util.Vector;
 
 import modules.customerVendor.actions.CalculateInvoiceTotal;
-import modules.customerVendor.actions.UpdateProductQuantity;
 import newtonERP.common.ActionLink;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.associations.AccessorManager;
@@ -85,9 +84,6 @@ public class Invoice extends AbstractOrmEntity
 	ListViewerData entityList = super.getList(parameters);
 	entityList.addSpecificActionButtonList(new ActionLink(
 		"Calculer facture", new CalculateInvoiceTotal(),
-		actionParameters));
-	entityList.addSpecificActionButtonList(new ActionLink(
-		"Mettre a jour produits", new UpdateProductQuantity(),
 		actionParameters));
 
 	return entityList;

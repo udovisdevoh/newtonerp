@@ -2,9 +2,10 @@ package modules.materialResourcesManagement.actions;
 
 import java.util.Hashtable;
 
-import modules.customerVendor.actions.UpdateProductQuantityInReservedStock;
+import modules.customerVendor.actions.AddProductQuantityInReservedStock;
 import modules.customerVendor.entityDefinitions.Invoice;
 import modules.materialResourcesManagement.entityDefinitions.Shipping;
+import modules.materialResourcesManagement.entityDefinitions.ShippingStatus;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
 import newtonERP.orm.Orm;
@@ -34,8 +35,17 @@ public class OpenShipping extends AbstractAction
 	    Hashtable<String, String> parameters) throws Exception
     {
 	// We retreive the shipping
-	Shipping searchShipping = (Shipping) entity;
-	Shipping retShipping = (Shipping) Orm.selectUnique(searchShipping);
+	Shipping retShipping = (Shipping) entity;
+
+	ShippingStatus searchStatus = new ShippingStatus();
+	searchStatus.setData("status", "En cours");
+	ShippingStatus statusEnCours = (ShippingStatus) Orm
+		.selectUnique(searchStatus);
+
+	// We change his status for "En cours"
+	retShipping.setData(new ShippingStatus().getForeignKeyName(),
+		statusEnCours.getPrimaryKeyValue());
+	retShipping.save();
 
 	// We retreive the invoice related to the shipping
 	Invoice searchInvoice = new Invoice();
@@ -43,7 +53,7 @@ public class OpenShipping extends AbstractAction
 		.getData(new Invoice().getForeignKeyName()));
 	Invoice retInvoice = (Invoice) Orm.selectUnique(searchInvoice);
 
-	new UpdateProductQuantityInReservedStock().doAction(retInvoice, null);
+	new AddProductQuantityInReservedStock().doAction(retInvoice, null);
 
 	return null;
     }

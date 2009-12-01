@@ -2,9 +2,13 @@ package modules.materialResourcesManagement.actions;
 
 import java.util.Hashtable;
 
+import modules.customerVendor.actions.RemoveProductQuantityFromReservedStock;
+import modules.customerVendor.entityDefinitions.Invoice;
 import modules.materialResourcesManagement.entityDefinitions.Shipping;
+import modules.materialResourcesManagement.entityDefinitions.ShippingStatus;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
+import newtonERP.orm.Orm;
 
 /**
  * Closes a shipping by remove the quantities from the stock of the warehouse
@@ -27,7 +31,26 @@ public class CloseShipping extends AbstractAction
     public AbstractEntity doAction(AbstractEntity entity,
 	    Hashtable<String, String> parameters) throws Exception
     {
-	// TODO : To be completed
+	// The shipping
+	Shipping retShipping = (Shipping) entity;
+
+	// The "en cours de fermeture" status
+	ShippingStatus searchStatus = new ShippingStatus();
+	searchStatus.setData("status", "Fermé");
+	ShippingStatus statusFerme = (ShippingStatus) Orm
+		.selectUnique(searchStatus);
+
+	retShipping.setData(new ShippingStatus().getForeignKeyName(),
+		statusFerme.getPrimaryKeyValue());
+	retShipping.save();
+
+	Invoice searchInvoice = new Invoice();
+	searchInvoice.setData(searchInvoice.getPrimaryKeyName(), retShipping
+		.getData(new Invoice().getForeignKeyName()));
+	Invoice retInvoice = (Invoice) Orm.selectUnique(searchInvoice);
+
+	new RemoveProductQuantityFromReservedStock().doAction(retInvoice, null);
+
 	return null;
     }
 }

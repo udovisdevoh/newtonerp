@@ -25,7 +25,6 @@ import newtonERP.module.Module;
  */
 public class MaterialResourcesManagement extends Module
 {
-
     /**
      * Default constructor
      * 
@@ -99,17 +98,29 @@ public class MaterialResourcesManagement extends Module
 	status2.newE();
 
 	ShippingStatus status1 = new ShippingStatus();
-	status1.setData("status", "Fermée");
+	status1.setData("status", "Fermé");
 	status1.newE();
+
+	ShippingStatus status3 = new ShippingStatus();
+	status3.setData("status", "En cours de fermeture");
+	status3.newE();
+
+	ShippingStatus status4 = new ShippingStatus();
+	status4.setData("status", "En cours d'annulation");
+	status4.newE();
+
+	ShippingStatus status5 = new ShippingStatus();
+	status5.setData("status", "Annulé");
+	status5.newE();
 
 	Product product = new Product();
 	product.setData("code", "A9648");
 	product.setData("name", "Tuile plafond 4x8");
 	product.setData("quantityInStock", 1000);
 	product.setData("reorderPoint", 500);
-	product.setData("reservedStock", 200);
+	product.setData("reservedStock", 0);
 	product.setData("purchasingPrice", "12,99");
-	product.setData("maxInStock", 4346);
+	product.setData("maxInStock", 2000);
 	product.setData("sellingPrice", "24,69");
 	product.setData("isProduced", false);
 	product.newE();
@@ -119,7 +130,7 @@ public class MaterialResourcesManagement extends Module
 	product1.setData("name", "Boite");
 	product1.setData("quantityInStock", 10000);
 	product1.setData("reorderPoint", 8000);
-	product1.setData("reservedStock", 59);
+	product1.setData("reservedStock", 0);
 	product1.setData("purchasingPrice", "2,99");
 	product1.setData("maxInStock", 10000);
 	product1.setData("sellingPrice", "3,99");
@@ -129,11 +140,11 @@ public class MaterialResourcesManagement extends Module
 	Product product2 = new Product();
 	product2.setData("code", "A89B4");
 	product2.setData("name", "Colle contact 2L");
-	product2.setData("quantityInStock", 3);
-	product2.setData("reorderPoint", 0);
+	product2.setData("quantityInStock", 40);
+	product2.setData("reorderPoint", 10);
 	product2.setData("reservedStock", 0);
 	product2.setData("purchasingPrice", "10,99");
-	product2.setData("maxInStock", 1346);
+	product2.setData("maxInStock", 50);
 	product2.setData("sellingPrice", "12,99");
 	product2.setData("isProduced", false);
 	product2.newE();
@@ -143,9 +154,9 @@ public class MaterialResourcesManagement extends Module
 	product3.setData("name", "Ecran LCD 17");
 	product3.setData("quantityInStock", 50);
 	product3.setData("reorderPoint", 20);
-	product3.setData("reservedStock", 2);
+	product3.setData("reservedStock", 0);
 	product3.setData("purchasingPrice", "10,99");
-	product3.setData("maxInStock", 6632);
+	product3.setData("maxInStock", 60);
 	product3.setData("sellingPrice", "129,99");
 	product3.setData("isProduced", false);
 	product3.newE();
