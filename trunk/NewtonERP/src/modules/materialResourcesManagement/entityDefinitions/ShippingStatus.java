@@ -3,9 +3,7 @@ package modules.materialResourcesManagement.entityDefinitions;
 import java.util.Hashtable;
 import java.util.Vector;
 
-import newtonERP.common.ActionLink;
 import newtonERP.module.AbstractOrmEntity;
-import newtonERP.module.BaseAction;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.Fields;
 import newtonERP.orm.field.type.FieldInt;
@@ -47,8 +45,7 @@ public class ShippingStatus extends AbstractOrmEntity
 	actionParameters.put(getPrimaryKeyName(), "&");
 
 	ListViewerData entityList = super.getList(parameters);
-	entityList.removeGlobalActions(new ActionLink(new BaseAction("Delete",
-		new ShippingStatus())));
+	entityList.removeSpecificActions("Effacer");
 
 	return entityList;
     }
