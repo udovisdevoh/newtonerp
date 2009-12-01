@@ -931,7 +931,11 @@ par exemple, si on delete un Group, alors les GroupRight WHERE GroupID = ce grou
   * work orders se crée automatiquement
   * work orders se ferment et ajoutent les produits en db
   * tasks reliées au work orders faites
-  * ajouter un shipping status en vue d'une task que lorsque on crée le shipping ca enleve les qty d eproduct en db
+  * ajouter un shipping status
+  * Action OpenShipping
+  * Action CloseShipping
+  * Ajouter les tasks reliées
+enleve les qty d eproduct en db
   * debut de project management (module de business)
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
   * ...à livrer...
