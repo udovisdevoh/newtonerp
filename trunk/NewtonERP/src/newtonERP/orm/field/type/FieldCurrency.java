@@ -43,8 +43,11 @@ public class FieldCurrency extends FieldDouble
 
     public String getDataString(Boolean forOrm)
     {
+
 	if (forOrm)
 	    return super.getDataString(forOrm);
+	if (getCalcul() != null)
+	    data = super.getData();
 	if (data == null)
 	    return "";
 	return df.format(super.getData());

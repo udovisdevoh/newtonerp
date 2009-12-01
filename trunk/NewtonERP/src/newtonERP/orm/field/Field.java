@@ -126,7 +126,6 @@ public abstract class Field<T>
      */
     public String getDataString(Boolean forOrm)
     {
-
 	if (calcul != null)
 	    data = calcul.calculate(fieldsRef);
 	if (data == null)

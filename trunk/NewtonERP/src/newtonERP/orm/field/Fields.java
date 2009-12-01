@@ -74,10 +74,11 @@ public class Fields implements Iterable<Field<?>>
     {
 	try
 	{
-	    if (data instanceof String)
-		fieldsDataMap.get(shortName).setData((String) data);
-	    else
-		fieldsDataMap.get(shortName).setData(data);
+	    if (fieldsDataMap.get(shortName).getCalcul() == null)
+		if (data instanceof String)
+		    fieldsDataMap.get(shortName).setData((String) data);
+		else
+		    fieldsDataMap.get(shortName).setData(data);
 	} catch (NullPointerException e)
 	{
 	    throw new FieldNotFoundException(shortName);
