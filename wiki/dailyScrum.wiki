@@ -935,7 +935,6 @@ par exemple, si on delete un Group, alors les GroupRight WHERE GroupID = ce grou
   * Action OpenShipping
   * Action CloseShipping
   * Ajouter les tasks reliées
-enleve les qty d eproduct en db
   * debut de project management (module de business)
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
   * ...à livrer...
