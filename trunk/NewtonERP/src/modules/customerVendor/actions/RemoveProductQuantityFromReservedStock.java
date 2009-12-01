@@ -12,21 +12,18 @@ import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.Orm;
 
 /**
- * Takes the product quantities in the invoice, puts them in the reserved stock
- * and removes them from the quantity in stock. In the event of a delete or if a
- * client decides to cancel his invoice we will just take the reserved stock and
- * put it in the quantityInStock
+ * The title says it all...
  * 
  * @author r3hallejo
  */
-public class UpdateProductQuantityInReservedStock extends AbstractAction
+public class RemoveProductQuantityFromReservedStock extends AbstractAction
 {
     /**
      * Default constructor
      * 
      * @throws Exception a general exception
      */
-    public UpdateProductQuantityInReservedStock() throws Exception
+    public RemoveProductQuantityFromReservedStock() throws Exception
     {
 	super(new Invoice());
     }
@@ -35,7 +32,7 @@ public class UpdateProductQuantityInReservedStock extends AbstractAction
     public AbstractEntity doAction(AbstractEntity entity,
 	    Hashtable<String, String> parameters) throws Exception
     {
-	// The invoice
+	// The retreived invoice
 	Invoice retInvoice = (Invoice) entity;
 
 	// The related invoiceLines
@@ -46,22 +43,18 @@ public class UpdateProductQuantityInReservedStock extends AbstractAction
 
 	for (AbstractOrmEntity line : invoiceLines)
 	{
-	    // Get the related product to that invoiceLine
+	    // The related product
 	    Product searchProduct = new Product();
 	    searchProduct.setData(searchProduct.getPrimaryKeyName(), line
 		    .getData(new Product().getForeignKeyName()));
 	    Product retProduct = (Product) Orm.selectUnique(searchProduct);
 
-	    // Now we put the quantity from the invoiceLine into the reserved
-	    // stock of the product and removes that same quantity from the
-	    // quantityInStock of that product
-	    retProduct.setData("quantityInStock", (Integer) retProduct
-		    .getData("quantityInStock")
-		    - (Integer) line.getData("quantity"));
-
+	    // Now we do productReservedStock - lineQuantity
 	    retProduct.setData("reservedStock", (Integer) retProduct
 		    .getData("reservedStock")
-		    + (Integer) line.getData("quantity"));
+		    - (Integer) line.getData("quantity"));
+
+	    retProduct.save();
 	}
 
 	return null;

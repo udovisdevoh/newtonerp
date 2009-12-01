@@ -51,7 +51,7 @@ public class TaskModule extends Module
 		"GetList", new SearchCriteria()));
 	addGlobalActionMenuItem("Paramètres", new BaseAction("GetList",
 		new Parameter()));
-	addGlobalActionMenuItem("voir le shema de DB", new DbGraph());
+	addGlobalActionMenuItem("Voir le shcéma de DB", new DbGraph());
     }
 
     public void initDB() throws Exception
@@ -59,10 +59,10 @@ public class TaskModule extends Module
 	super.initDB();
 	initActionsAndEntities();
 	initSearchCriteriaOperators();
-	initTestTasks();
+	initTasks();
     }
 
-    private static void initTestTasks() throws Exception
+    private static void initTasks() throws Exception
     {
 	// NOS TÂCHES AUTOMATISÉES
 	initEmployeeNewUserTask();
@@ -72,6 +72,8 @@ public class TaskModule extends Module
 	intiDynamicFieldTask();
 	initWorkOrderTask();
 	initWorkOrderClosingTask();
+	initShippingTask();
+	initInvoiceTask();
     }
 
     private static void intiDynamicFieldTask() throws Exception
@@ -142,6 +144,74 @@ public class TaskModule extends Module
 
 	Specification specification = new Specification();
 	specification.setData("name", "Lorsqu'une invoice line a été écrite");
+	specification.assign(searchEntity);
+	specification.newE();
+
+	TaskEntity task = new TaskEntity();
+	task.setData("isActive", true);
+	task.setData("straightSearch", true);
+	task.assign(effet);
+	task.assign(specification);
+	task.newE();
+    }
+
+    private static void initInvoiceTask() throws Exception
+    {
+	EntityEntity invoiceLineEntity = new EntityEntity();
+	invoiceLineEntity.setData("systemName", "Invoice");
+	invoiceLineEntity = (EntityEntity) Orm.selectUnique(invoiceLineEntity);
+
+	SearchEntity searchEntity = new SearchEntity();
+	searchEntity.setData("name", "Pour chaque Invoice");
+	searchEntity.assign(invoiceLineEntity);
+	searchEntity.newE();
+
+	ActionEntity action = new ActionEntity();
+	action.setData("systemName", "ValidateInvoice");
+	action = (ActionEntity) Orm.selectUnique(action);
+
+	EffectEntity effet = new EffectEntity();
+	effet.setData("name", "On valide la facture");
+	effet.assign(searchEntity);
+	effet.assign(action);
+	effet.newE();
+
+	Specification specification = new Specification();
+	specification.setData("name", "Lorsqu'une invoice a été écrite");
+	specification.assign(searchEntity);
+	specification.newE();
+
+	TaskEntity task = new TaskEntity();
+	task.setData("isActive", true);
+	task.setData("straightSearch", true);
+	task.assign(effet);
+	task.assign(specification);
+	task.newE();
+    }
+
+    private static void initShippingTask() throws Exception
+    {
+	EntityEntity shippingEntity = new EntityEntity();
+	shippingEntity.setData("systemName", "Shipping");
+	shippingEntity = (EntityEntity) Orm.selectUnique(shippingEntity);
+
+	SearchEntity searchEntity = new SearchEntity();
+	searchEntity.setData("name", "Pour chaque Shipping");
+	searchEntity.assign(shippingEntity);
+	searchEntity.newE();
+
+	ActionEntity action = new ActionEntity();
+	action.setData("systemName", "DispatchShippingActions");
+	action = (ActionEntity) Orm.selectUnique(action);
+
+	EffectEntity effet = new EffectEntity();
+	effet.setData("name", "On dispatch les actions reliées");
+	effet.assign(searchEntity);
+	effet.assign(action);
+	effet.newE();
+
+	Specification specification = new Specification();
+	specification.setData("name", "Lorsqu'un shipping a été écrit");
 	specification.assign(searchEntity);
 	specification.newE();
 

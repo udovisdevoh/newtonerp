@@ -83,6 +83,7 @@ public class CustomerVendor extends Module
 	invoice.setData(new Merchant().getForeignKeyName(), 2);
 	invoice.setData("date", new GregorianCalendar());
 	invoice.setData("taxTotal", 0);
+	invoice.setData("grandTotal", 0);
 	invoice.setData(new InvoiceStatus().getForeignKeyName(), 3);
 	invoice.setData("isForCustomer", true);
 	invoice.setData("isForSupplier", false);
