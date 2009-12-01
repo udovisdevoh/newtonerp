@@ -947,8 +947,10 @@ par exemple, si on delete un Group, alors les GroupRight WHERE GroupID = ce grou
 devrait marcher correctement.
   * AddFieldToOrm Prise en charge des cas ou champ déjà dans DB
   * Fait en sorte que delete d'entité de field impossible (c'est ce qu'on veut)
+  * Code generator: stub de code d'action: complet
+  * Remis entité d'accesseurs qui avaient accidentellement été enlevés.
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
-  * ...à livrer...
+  * Softcodage de module doit être fonctionnel et montrable en présentation
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
   * ...problème, besoin d'aide, qui aidera...
 
