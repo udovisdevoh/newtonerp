@@ -71,7 +71,7 @@ public class BaseViewerData extends AbstractEntity
     /**
      * @param globalActionName the globalActionName to remove
      */
-    public void removeGlobalActions(ActionLink globalActionName)
+    public void removeGlobalActions(String globalActionName)
     {
 	for (Iterator<ActionLink> gActionIT = globalActions.iterator(); gActionIT
 		.hasNext();)
