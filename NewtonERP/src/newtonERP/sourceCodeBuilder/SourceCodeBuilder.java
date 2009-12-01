@@ -35,8 +35,10 @@ public class SourceCodeBuilder
     /**
      * @param actionEntity entité de l'action
      * @return code source de l'action
+     * @throws Exception si construction fail
      */
     public static String buildActionSourceCode(ActionEntity actionEntity)
+	    throws Exception
     {
 	return ActionSourceCodeBuilder.build(actionEntity);
     }
