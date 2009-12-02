@@ -4,6 +4,7 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Vector;
 
+import modules.taskModule.actions.GenerateEntityCode;
 import modules.taskModule.actions.ViewEntitySource;
 import newtonERP.common.ActionLink;
 import newtonERP.module.AbstractEntity;
@@ -81,8 +82,10 @@ public class EntityEntity extends AbstractOrmEntity implements
 	parameters.put(getPrimaryKeyName(), "&");
 
 	ListViewerData entityList = super.getList(parameters);
-	entityList.addSpecificActionButtonList(new ActionLink(
-		"Générer code source", new ViewEntitySource(), parameters));
+	entityList.addSpecificActionButtonList(new ActionLink("Voir source",
+		new ViewEntitySource(), parameters));
+	entityList.addSpecificActionButtonList(new ActionLink("Générer source",
+		new GenerateEntityCode(), parameters));
 	return entityList;
     }
 
@@ -102,7 +105,11 @@ public class EntityEntity extends AbstractOrmEntity implements
 	return getDataString("systemName");
     }
 
-    private ModuleEntity getModuleEntity() throws Exception
+    /**
+     * @return entité du module
+     * @throws Exception si ça fail
+     */
+    public ModuleEntity getModuleEntity() throws Exception
     {
 	return (ModuleEntity) getSingleAccessor(new ModuleEntity()
 		.getForeignKeyName());
