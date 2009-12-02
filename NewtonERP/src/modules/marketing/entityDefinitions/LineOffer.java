@@ -8,6 +8,7 @@ import newtonERP.orm.field.Field;
 import newtonERP.orm.field.Fields;
 import newtonERP.orm.field.type.FieldCurrency;
 import newtonERP.orm.field.type.FieldInt;
+import newtonERP.orm.field.type.FieldText;
 
 /**
  * Entité d'une promotion
@@ -31,8 +32,11 @@ public class LineOffer extends AbstractOrmEntity
     {
 	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
 	fieldsInit.add(new FieldInt("Numéro", getPrimaryKeyName()));
-	fieldsInit.add(new FieldInt("Offre", new Offer().getForeignKeyName()));
+	FieldInt offre = new FieldInt("Offre", new Offer().getForeignKeyName());
+	fieldsInit.add(offre);
+	offre.setNaturalKey(true);
 	FieldCurrency currencyField = new FieldCurrency("Prix", "Price");
+	fieldsInit.add(new FieldText("Détails", "details", false));
 	// currencyField.setReadOnly(true);
 	fieldsInit.add(currencyField);
 	return new Fields(fieldsInit);

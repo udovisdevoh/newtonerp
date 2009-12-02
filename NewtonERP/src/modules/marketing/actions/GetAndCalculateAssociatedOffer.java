@@ -9,7 +9,7 @@ import newtonERP.module.AbstractEntity;
 import newtonERP.orm.Orm;
 
 /**
- * trouve les lignes
+ * trouve les lignes unused
  * @author Gabriel Therrien
  * 
  */
@@ -31,9 +31,8 @@ public class GetAndCalculateAssociatedOffer extends AbstractAction
 	LineOffer lineOffer = (LineOffer) entity;
 	offre.setData(offre.getPrimaryKeyName(), lineOffer.getData(new Offer()
 		.getForeignKeyName()));
-	@SuppressWarnings("unused")
 	Offer returnedOffer = (Offer) Orm.selectUnique(offre);
 
-	return null;
+	return returnedOffer;
     }
 }
