@@ -65,7 +65,7 @@ public abstract class Field<T>
 	setOperator("=");
 	setValidator(new FieldValidator<T>()
 	{
-	    public boolean valide(T value)
+	    public boolean valide(T value, Fields entityFields)
 	    {
 		return true;
 	    }
@@ -150,7 +150,7 @@ public abstract class Field<T>
      */
     protected void setDataType(T data)
     {
-	if (validator.isValide(data))
+	if (validator.isValide(data, fieldsRef))
 	    this.data = data;
 	else
 	    fieldsRef.setErrorState(true);

@@ -46,7 +46,7 @@ public class Employee extends AbstractOrmEntity
 	FieldInt fieldNAS = new FieldInt("Numéro d'assurance social", "NAS");
 	fieldNAS.setValidator(new FieldValidator<Integer>()
 	{
-	    public boolean valide(Integer value)
+	    public boolean valide(Integer value, Fields entityFields)
 	    {
 		if (value.toString().length() == 9)
 		{
