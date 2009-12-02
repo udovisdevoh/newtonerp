@@ -51,7 +51,7 @@ public class FieldTime extends FieldDateTime
 	    data = tempDate;
 	} catch (Exception e)
 	{
-	    setErrorMessage("les format de donnee entré ne corespond pas avec le type de champ (Time): "
+	    setErrorMessage("Le format de donnée entrée ne correspond pas avec le type de champ (Time): "
 		    + data);
 	    System.err.println(e.getMessage());
 	}

@@ -66,7 +66,7 @@ public class FieldBool extends Field<Boolean>
 		setDataType(Boolean.parseBoolean(data));
 	} catch (Exception e)
 	{
-	    setErrorMessage("les format de donnee entré ne corespond pas avec le type de champ (boolean): "
+	    setErrorMessage("Le format de donnée entrée ne correspond pas avec le type de champ (boolean): "
 		    + data);
 	    System.err.println(e.getMessage());
 	}

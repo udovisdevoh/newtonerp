@@ -3,13 +3,11 @@ package modules.materialResourcesManagement.entityDefinitions;
 import java.util.Hashtable;
 import java.util.Vector;
 
-import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.Fields;
 import newtonERP.orm.field.type.FieldInt;
 import newtonERP.orm.field.type.FieldString;
-import newtonERP.viewers.viewerData.BaseViewerData;
 import newtonERP.viewers.viewerData.ListViewerData;
 
 /**
@@ -39,26 +37,17 @@ public class WorkOrderStatus extends AbstractOrmEntity
     }
 
     @Override
-    public BaseViewerData editUI(Hashtable<String, String> parameters)
+    public final ListViewerData getList(Hashtable<String, String> parameters)
 	    throws Exception
     {
-	/*
-	 * On ne veut pas permettre la modification de droit alors on redirige
-	 * vers GetList
-	 */
-	ListViewerData entityList = super.getList();
-	return entityList;
-    }
+	// FIXME: Does not work
+	Hashtable<String, String> actionParameters = new Hashtable<String, String>();
+	actionParameters.put(getPrimaryKeyName(), "&");
 
-    @Override
-    public AbstractEntity deleteUI(Hashtable<String, String> parameters)
-	    throws Exception
-    {
-	/*
-	 * On ne veut pas permettre l'effacement de droit alors on redirige
-	 * l'effacement vers GetList
-	 */
-	ListViewerData entityList = super.getList();
+	ListViewerData entityList = super.getList(parameters);
+	entityList.removeSpecificActions("Effacer");
+	entityList.removeSpecificActions("Modifier");
+
 	return entityList;
     }
 }

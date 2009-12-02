@@ -54,6 +54,10 @@ public class CustomerVendor extends Module
 	status11.setData("status", "Fermée");
 	status11.newE();
 
+	InvoiceStatus status13 = new InvoiceStatus();
+	status13.setData("status", "Payé");
+	status13.newE();
+
 	InvoiceStatus status12 = new InvoiceStatus();
 	status12.setData("status", "Nouveau");
 	status12.newE();
