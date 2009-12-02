@@ -42,7 +42,7 @@ public class PayingEmployees extends AbstractAction
 	for (String id : empId)
 	{
 	    searchEmp.setData(new Employee().getForeignKeyName(), Integer
-		    .parseInt(id));
+		    .parseInt(id));// non paye
 	    AbstractOrmEntity employeeToPay = Orm.selectUnique(searchEmp);
 
 	    AlertEntity alert = (AlertEntity) new PayingEmployee().doAction(

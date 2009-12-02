@@ -157,6 +157,31 @@ public class Finances extends Module
 	fwb.setData("ajustment", 26720.0);
 	fwb.setData("tax", 29.0);
 	fwb.newE();
+
+	ProvincialWageBracket pwb = new ProvincialWageBracket();
+	pwb.setData("minBracket", 0.0);
+	pwb.setData("maxBracket", 40726.0);
+	pwb.setData("ajustment", 0.0);
+	pwb.setData("tax", 11.0);
+	pwb.newE();
+
+	pwb.setData("minBracket", 40726.0);
+	pwb.setData("maxBracket", 81452.0);
+	pwb.setData("ajustment", 6109.0);
+	pwb.setData("tax", 15.0);
+	pwb.newE();
+
+	pwb.setData("minBracket", 81452.0);
+	pwb.setData("maxBracket", 126264.0);
+	pwb.setData("ajustment", 15069.0);
+	pwb.setData("tax", 19.0);
+	pwb.newE();
+
+	pwb.setData("minBracket", 126264.0);
+	pwb.setData("maxBracket", 99999999.0);
+	pwb.setData("ajustment", 26720.0);
+	pwb.setData("tax", 21.0);
+	pwb.newE();
 	// -----------------------------------------------------------
     }
 }
