@@ -20,13 +20,13 @@ import newtonERP.module.AbstractEntity;
  * ps trucs à voir avec jo.C
  * @author Pascal Lemay
  */
-public class CreateUpdatePayableEmployee extends AbstractAction
+public class CreatePayableEmployee extends AbstractAction
 {
     /**
      * constructeur
      * @throws Exception si création fail
      */
-    public CreateUpdatePayableEmployee() throws Exception
+    public CreatePayableEmployee() throws Exception
     {
 	super(new Employee());
     }
