@@ -42,7 +42,6 @@ public class InvoiceStatus extends AbstractOrmEntity
     public final ListViewerData getList(Hashtable<String, String> parameters)
 	    throws Exception
     {
-	// FIXME: Does not work
 	Hashtable<String, String> actionParameters = new Hashtable<String, String>();
 	actionParameters.put(getPrimaryKeyName(), "&");
 
