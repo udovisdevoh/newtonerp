@@ -30,7 +30,7 @@ public class Right extends AbstractOrmEntity
 
     public Fields initFields() throws InvalidOperatorException
     {
-	FieldString moduleName = new FieldString("Nom", "moduleName");
+	FieldString moduleName = new FieldString("Module", "moduleName");
 	moduleName.setNaturalKey(true);
 
 	FieldString entityName = new FieldString("Entité", "entityName");
