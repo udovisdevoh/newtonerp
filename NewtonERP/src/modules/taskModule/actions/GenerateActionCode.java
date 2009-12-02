@@ -76,6 +76,7 @@ public class GenerateActionCode extends AbstractAction
 		.getPluralAccessor(new EntityEntity().getSystemName());
 
 	Vector<String> entityNameList = new Vector<String>();
+	entityNameList.add("");
 
 	EntityEntity entityEntity;
 	for (AbstractOrmEntity entity : entityEntityList)
