@@ -34,7 +34,7 @@ public class LineOffer extends AbstractOrmEntity
 	fieldsInit.add(new FieldInt("Numéro", getPrimaryKeyName()));
 	FieldInt offre = new FieldInt("Offre", new Offer().getForeignKeyName());
 	fieldsInit.add(offre);
-	offre.setNaturalKey(true);
+	// offre.setNaturalKey(true);
 	FieldCurrency currencyField = new FieldCurrency("Prix", "Price");
 	fieldsInit.add(new FieldText("Détails", "details", false));
 	// currencyField.setReadOnly(true);
