@@ -2,6 +2,7 @@ package newtonERP.orm.field.type;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.Locale;
 
 import newtonERP.module.exception.InvalidOperatorException;
 
@@ -13,7 +14,7 @@ import newtonERP.module.exception.InvalidOperatorException;
 public class FieldCurrency extends FieldDouble
 {
     private DecimalFormat df = (DecimalFormat) NumberFormat
-	    .getCurrencyInstance();
+	    .getCurrencyInstance(Locale.CANADA_FRENCH);
 
     /**
      * constructeur minimum
