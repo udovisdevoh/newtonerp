@@ -2,12 +2,16 @@ package modules.taskModule.actions;
 
 import java.io.File;
 import java.util.Hashtable;
+import java.util.Vector;
 
 import modules.taskModule.entityDefinitions.ActionEntity;
+import modules.taskModule.entityDefinitions.EntityEntity;
 import modules.taskModule.entityDefinitions.ModuleEntity;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
+import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.Orm;
+import newtonERP.orm.associations.PluralAccessor;
 import newtonERP.sourceCodeBuilder.ActionSourceCodeBuilder;
 import newtonERP.sourceCodeBuilder.SourceCodeBuilder;
 import newtonERP.viewers.viewerData.BaseViewerData;
@@ -43,6 +47,7 @@ public class GenerateActionCode extends AbstractAction
 	    new File(getPackagePath(actionEntity)).mkdir();
 	    String sourceCode = ActionSourceCodeBuilder.build(actionEntity);
 	    GenerateSourceCode.writeClassFile(fileName, sourceCode);
+	    createRights(actionEntity);
 	    editUI.addAlertMessage("La classe de l'action a été créée.");
 	}
 	else
@@ -51,6 +56,35 @@ public class GenerateActionCode extends AbstractAction
 	}
 
 	return editUI;
+    }
+
+    private void createRights(ActionEntity actionEntity) throws Exception
+    {
+	ModuleEntity moduleEntity = actionEntity.getModuleEntity();
+	String moduleName = moduleEntity.getDataString("systemName");
+	String actionName = actionEntity.getDataString("systemName");
+	Vector<String> entityList = getEntityNameList(moduleEntity);
+	for (String entityName : entityList)
+	    GenerateEntityCode.createRightIfNotExist(moduleName, entityName,
+		    actionName);
+    }
+
+    private Vector<String> getEntityNameList(ModuleEntity moduleEntity)
+	    throws Exception
+    {
+	PluralAccessor entityEntityList = moduleEntity
+		.getPluralAccessor(new EntityEntity().getSystemName());
+
+	Vector<String> entityNameList = new Vector<String>();
+
+	EntityEntity entityEntity;
+	for (AbstractOrmEntity entity : entityEntityList)
+	{
+	    entityEntity = (EntityEntity) entity;
+	    entityNameList.add(entityEntity.getDataString("systemName"));
+	}
+
+	return entityNameList;
     }
 
     private String buildFileName(ActionEntity actionEntity) throws Exception
