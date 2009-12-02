@@ -13,9 +13,9 @@ import newtonERP.orm.Orm;
 
 /**
  * Action CalculateTaxAndSalary : représente l'action de calculer l'impôt
- * fédéral/provincial et salaire nette retenue en fonction du montant gagné
+ * fédéral/provincial et salaire nette en fonction du montant gagné
  * 
- * Called après avoir ajouté la période actuelle de paye dans PayableEmployee
+ * Called après avoir ajouté la période actuelle de paie dans PayableEmployee
  * 
  * @author Pascal Lemay
  */
