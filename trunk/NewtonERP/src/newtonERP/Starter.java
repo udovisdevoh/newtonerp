@@ -4,7 +4,6 @@ import java.net.BindException;
 
 import modules.userRightModule.actions.CreateAllRight;
 import newtonERP.common.ListModule;
-import newtonERP.logging.Logger;
 import newtonERP.orm.Orm;
 import newtonERP.orm.exceptions.OrmException;
 import newtonERP.serveur.Servlet;
@@ -37,7 +36,7 @@ public class Starter
 	    Orm.createNonExistentTables();
 	} catch (OrmException e)
 	{
-	    Logger.log(e.getMessage(), Logger.State.ERROR);
+	    e.printStackTrace();
 	}
 
 	new CreateAllRight().perform(null);
