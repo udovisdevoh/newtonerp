@@ -26,6 +26,7 @@ public class ProjectManagement extends Module
 		new Project()));
 	addGlobalActionMenuItem("Type de projets", new BaseAction("GetList",
 		new ProjectType()));
+	setVisible(false);
     }
 
     public void initDB() throws Exception
