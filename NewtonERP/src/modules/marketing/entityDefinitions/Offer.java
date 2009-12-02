@@ -1,13 +1,17 @@
 package modules.marketing.entityDefinitions;
 
+import java.util.Hashtable;
 import java.util.Vector;
 
+import modules.marketing.actions.GetAndCalculateAssociatedOffer;
+import newtonERP.common.ActionLink;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.Fields;
 import newtonERP.orm.field.type.FieldCurrency;
 import newtonERP.orm.field.type.FieldInt;
 import newtonERP.orm.field.type.FieldString;
+import newtonERP.viewers.viewerData.ListViewerData;
 
 /**
  * Entité d'une promotion
@@ -39,5 +43,19 @@ public class Offer extends AbstractOrmEntity
 	currencyField.setReadOnly(true);
 	fieldsInit.add(currencyField);
 	return new Fields(fieldsInit);
+    }
+
+    public final ListViewerData getList(Hashtable<String, String> parameters)
+	    throws Exception
+    {
+	Hashtable<String, String> actionParameters = new Hashtable<String, String>();
+	actionParameters.put(getPrimaryKeyName(), "&");
+
+	ListViewerData entityList = super.getList(parameters);
+	entityList.addSpecificActionButtonList(new ActionLink(
+		"Calculer les l'offre", new GetAndCalculateAssociatedOffer(),
+		actionParameters));
+
+	return entityList;
     }
 }
