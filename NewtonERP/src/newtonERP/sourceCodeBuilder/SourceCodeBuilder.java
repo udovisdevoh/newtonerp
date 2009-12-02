@@ -58,9 +58,20 @@ public class SourceCodeBuilder
      * @param moduleEntity module entity
      * @throws Exception si ça fail
      */
-    public static void createDirectoryForModule(ModuleEntity moduleEntity)
+    public static void createDirectoriesForModule(ModuleEntity moduleEntity)
 	    throws Exception
     {
-	ModuleSourceCodeBuilder.createDirectory(moduleEntity);
+	ModuleSourceCodeBuilder.createDirectories(moduleEntity);
+    }
+
+    /**
+     * @param moduleEntity module entity
+     * @return package path
+     * @throws Exception si ça fail
+     */
+    public static String getModulePackagePath(ModuleEntity moduleEntity)
+	    throws Exception
+    {
+	return ModuleSourceCodeBuilder.getPackagePath(moduleEntity);
     }
 }

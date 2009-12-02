@@ -9,6 +9,7 @@ import newtonERP.common.ActionLink;
 import newtonERP.common.ListModule;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.Module;
+import newtonERP.orm.associations.PluralAccessor;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.Fields;
 import newtonERP.orm.field.type.FieldInt;
@@ -79,5 +80,33 @@ public class ModuleEntity extends AbstractOrmEntity
 		new GenerateSourceCode(), parameters));
 
 	return entityList;
+    }
+
+    /**
+     * @return list of entity entity for this module
+     * @throws Exception si ça fail
+     */
+    public Vector<EntityEntity> getEntityEntityList() throws Exception
+    {
+	PluralAccessor accessor = getPluralAccessor(new EntityEntity()
+		.getSystemName());
+	Vector<EntityEntity> entityEntityList = new Vector<EntityEntity>();
+	for (AbstractOrmEntity entity : accessor)
+	    entityEntityList.add((EntityEntity) entity);
+	return entityEntityList;
+    }
+
+    /**
+     * @return list of action entity for this module
+     * @throws Exception si ça fail
+     */
+    public Vector<ActionEntity> getActionEntityList() throws Exception
+    {
+	PluralAccessor accessor = getPluralAccessor(new ActionEntity()
+		.getSystemName());
+	Vector<ActionEntity> actionEntityList = new Vector<ActionEntity>();
+	for (AbstractOrmEntity entity : accessor)
+	    actionEntityList.add((ActionEntity) entity);
+	return actionEntityList;
     }
 }

@@ -36,19 +36,27 @@ public class AddFieldToOrm extends AbstractAction
 	EntityEntity entityEntity = (EntityEntity) fieldEntity
 		.getSingleAccessor(new EntityEntity().getForeignKeyName());
 
-	AbstractOrmEntity entity = entityEntity.getEntityDefinition();
 	Field<?> field = fieldEntity.getFieldInstance();
-
 	BaseViewerData editUI = fieldEntity.editUI(parameters);
 
 	try
 	{
-	    Orm.addColumnToTable(entity, field);
-	    editUI
-		    .addNormalMessage("Le champ a été inséré dans la base de donnée");
-	} catch (OrmException e)
+	    AbstractOrmEntity entity = entityEntity.getEntityDefinition();
+
+	    try
+	    {
+		Orm.addColumnToTable(entity, field);
+		editUI
+			.addNormalMessage("Le champ a été inséré dans la base de donnée");
+	    } catch (OrmException e)
+	    {
+		editUI.addNormalMessage("Champ déjà dans la base de donnée");
+	    }
+
+	} catch (Exception e)
 	{
-	    editUI.addNormalMessage("Champ déjà dans la base de donnée");
+	    editUI
+		    .addNormalMessage("Impossible de trouver l'entité dans la base de donnée. Si c'est une nouvelle entité pas encore générée, ce message est normal.");
 	}
 
 	return editUI;
