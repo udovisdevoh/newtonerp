@@ -67,8 +67,12 @@ public class Invoice extends AbstractOrmEntity
 
 	fieldList.add(merchant);
 	fieldList.add(date);
-	fieldList.add(new FieldBool("Pour client", "isForCustomer"));
+	FieldBool isForSupplier = new FieldBool("Pour fournisseur",
+		"isForSupplier");
+	fieldList.add(isForSupplier);
 	fieldList.add(new FieldBool("Pour Fournisseur", "isForSupplier"));
+	FieldBool isForCustomer = new FieldBool("Pour client", "isForCustomer");
+	fieldList.add(isForCustomer);
 	fieldList.add(new FieldInt("Status", new InvoiceStatus()
 		.getForeignKeyName()));
 	return new Fields(fieldList);

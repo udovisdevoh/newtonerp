@@ -74,7 +74,6 @@ public class TaskModule extends Module
 	initWorkOrderTask();
 	initWorkOrderClosingTask();
 	initShippingTask();
-	initInvoiceTask();
     }
 
     private static void intiDynamicFieldTask() throws Exception
@@ -145,40 +144,6 @@ public class TaskModule extends Module
 
 	Specification specification = new Specification();
 	specification.setData("name", "Lorsqu'une invoice line a été écrite");
-	specification.assign(searchEntity);
-	specification.newE();
-
-	TaskEntity task = new TaskEntity();
-	task.setData("isActive", true);
-	task.setData("straightSearch", true);
-	task.assign(effet);
-	task.assign(specification);
-	task.newE();
-    }
-
-    private static void initInvoiceTask() throws Exception
-    {
-	EntityEntity invoiceLineEntity = new EntityEntity();
-	invoiceLineEntity.setData("systemName", "Invoice");
-	invoiceLineEntity = (EntityEntity) Orm.selectUnique(invoiceLineEntity);
-
-	SearchEntity searchEntity = new SearchEntity();
-	searchEntity.setData("name", "Pour chaque Invoice");
-	searchEntity.assign(invoiceLineEntity);
-	searchEntity.newE();
-
-	ActionEntity action = new ActionEntity();
-	action.setData("systemName", "ValidateInvoice");
-	action = (ActionEntity) Orm.selectUnique(action);
-
-	EffectEntity effet = new EffectEntity();
-	effet.setData("name", "On valide la facture");
-	effet.assign(searchEntity);
-	effet.assign(action);
-	effet.newE();
-
-	Specification specification = new Specification();
-	specification.setData("name", "Lorsqu'une invoice a été écrite");
 	specification.assign(searchEntity);
 	specification.newE();
 
