@@ -17,10 +17,10 @@ import newtonERP.orm.field.type.FieldInt;
 import newtonERP.viewers.viewerData.ListViewerData;
 
 /**
- * Entité PayableEmployee du module finances: représente les employes à payer
- * pour la période de paye courante et les montants payables à ceux-ci.
+ * Entité PayableEmployee du module finances: représente les employés/périodes
+ * de paie et les montants payables et payés.
  * 
- * Sert également de donnée pour générer talon de paye...à venir
+ * Sert également de donnée pour générer talon de paie...à venir
  * 
  * 
  * @author Pascal Lemay

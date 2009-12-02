@@ -12,7 +12,7 @@ import newtonERP.module.AbstractEntity;
 
 /**
  * Action CreatePayableEmployee: Creer un entité PayableEmployee en fonction de
- * la période de paye actuelle.
+ * la période de paie actuelle.
  * 
  * ps trucs à voir avec jo.C
  * @author Pascal Lemay
@@ -34,73 +34,43 @@ public class CreatePayableEmployee extends AbstractAction
     {
 	Employee emp = (Employee) entity;
 
-	/*
-	 * PayableEmployee searchEmp = new PayableEmployee();
-	 * searchEmp.setData(emp.getForeignKeyName(), emp.getData(emp
-	 * .getForeignKeyName())); AbstractOrmEntity employee =
-	 * Orm.selectUnique(searchEmp);
-	 */
-
 	// keys pas encore déterminées, à voir avec jo.C
 	// je doit recevoir en param date en string comme:Ex:2001-01-01
 	String[] dateBegin = parameters.get("key?").split("-");
 	String[] dateEnd = parameters.get("key?").split("-");
 
-	/*
-	 * if (employee != null)// update { employee.setData("beginning", new
-	 * GregorianCalendar(Integer .parseInt(dateBegin[0]),
-	 * Integer.parseInt(dateBegin[1]) - 1, Integer
-	 * .parseInt(dateBegin[2])));
-	 * 
-	 * employee.setData("end", new GregorianCalendar(Integer
-	 * .parseInt(dateEnd[0]), Integer.parseInt(dateEnd[1]) - 1,
-	 * Integer.parseInt(dateEnd[2])));
-	 * 
-	 * employee.setData("paymentDate", new GregorianCalendar(0, 0, 0));
-	 * 
-	 * employee.setData("gains", Double
-	 * .parseDouble(parameters.get("key?")));
-	 * 
-	 * employee.setData("balance", Double.parseDouble(parameters
-	 * .get("key?")));
-	 * 
-	 * employee.setData(new StateType().getForeignKeyName(), 1);
-	 * employee.save(); } else // create
-	 */
-	{
-	    // création PayableEmployee champs vièrges sauf date:(période de
-	    // paie actuelle)
-	    PayableEmployee newEmployee = new PayableEmployee();
+	// création PayableEmployee champs vièrges sauf date:(période de
+	// paie actuelle)
+	PayableEmployee newEmployee = new PayableEmployee();
 
-	    newEmployee.setData(new Employee().getForeignKeyName(), emp
-		    .getPrimaryKeyValue());
+	newEmployee.setData(new Employee().getForeignKeyName(), emp
+		.getPrimaryKeyValue());
 
-	    newEmployee.setData("beginning", new GregorianCalendar(Integer
-		    .parseInt(dateBegin[0]),
-		    Integer.parseInt(dateBegin[1]) - 1, Integer
-			    .parseInt(dateBegin[2])));
+	newEmployee.setData("beginning", new GregorianCalendar(Integer
+		.parseInt(dateBegin[0]), Integer.parseInt(dateBegin[1]) - 1,
+		Integer.parseInt(dateBegin[2])));
 
-	    newEmployee.setData("end", new GregorianCalendar(Integer
-		    .parseInt(dateEnd[0]), Integer.parseInt(dateEnd[1]) - 1,
-		    Integer.parseInt(dateEnd[2])));
+	newEmployee.setData("end", new GregorianCalendar(Integer
+		.parseInt(dateEnd[0]), Integer.parseInt(dateEnd[1]) - 1,
+		Integer.parseInt(dateEnd[2])));
 
-	    newEmployee.setData("paymentDate", new GregorianCalendar(0, 0, 0));
+	newEmployee.setData("paymentDate", new GregorianCalendar(0, 0, 0));
 
-	    newEmployee.setData("fedTax", 0.0);
+	newEmployee.setData("fedTax", 0.0);
 
-	    newEmployee.setData("provTax", 0.0);
+	newEmployee.setData("provTax", 0.0);
 
-	    newEmployee.setData("gains", 0.0);
+	newEmployee.setData("gains", 0.0);
 
-	    newEmployee.setData("balance", 0.0);
+	newEmployee.setData("balance", 0.0);
 
-	    newEmployee.setData(new StateType().getForeignKeyName(), 1);
+	newEmployee.setData(new StateType().getForeignKeyName(), 1);
 
-	    newEmployee.setData(new BankAccount().getForeignKeyName(), 1);
-	    newEmployee.newE();
-	    // passé au ressources humaines pour setter "gains"
-	    // new CalculatePeriodeSalary().doAction(newEmployee, null);
-	}
+	newEmployee.setData(new BankAccount().getForeignKeyName(), 1);
+	newEmployee.newE();
+	// passé au ressources humaines pour setter "gains"
+	// new CalculatePeriodeSalary().doAction(newEmployee, null);
+
 	return null;
     }
 }
