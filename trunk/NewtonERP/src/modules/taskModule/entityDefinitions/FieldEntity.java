@@ -97,7 +97,10 @@ public class FieldEntity extends AbstractOrmEntity
 	    {
 		String primaryKeyName = entityEntity.buildPrimaryKeyName();
 		if (!parameters.contains("name"))
+		{
 		    parameters.put("name", primaryKeyName);
+		    parameters.put("visibleName", "Numéro");
+		}
 	    }
 	}
 
