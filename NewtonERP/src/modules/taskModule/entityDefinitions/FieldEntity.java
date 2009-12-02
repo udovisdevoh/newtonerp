@@ -60,8 +60,10 @@ public class FieldEntity extends AbstractOrmEntity
 	fieldList.add(visibleName);
 	fieldList.add(new FieldInt("Type", new FieldTypeEntity()
 		.getForeignKeyName()));
-	fieldList.add(new FieldInt("Entité", new EntityEntity()
-		.getForeignKeyName()));
+	FieldInt entityID = new FieldInt("Entité", new EntityEntity()
+		.getForeignKeyName());
+	entityID.setReadOnly(true);
+	fieldList.add(entityID);
 	fieldList.add(new FieldBool("Lecture seule", "readOnly"));
 	fieldList.add(new FieldBool("Caché", "hidden"));
 	fieldList.add(new FieldBool("Clef naturelle", "naturalKey"));
