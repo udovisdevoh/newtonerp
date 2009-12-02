@@ -48,7 +48,7 @@ public class FieldInt extends Field<Integer>
 	    setDataType(Integer.parseInt(data));
 	} catch (Exception e)
 	{
-	    setErrorMessage("les format de donnee entré ne corespond pas avec le type de champ (entier): "
+	    setErrorMessage("Le format de donnée entrée ne correspond pas avec le type de champ (entier): "
 		    + data);
 	    System.err.println(e.getMessage());
 	}

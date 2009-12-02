@@ -66,7 +66,7 @@ public class FieldDateTime extends Field<GregorianCalendar>
 	    data = tempDate;
 	} catch (Exception e)
 	{
-	    setErrorMessage("les format de donnee entré ne corespond pas avec le type de champ (dateTime): "
+	    setErrorMessage("Le format de donnée entrée ne correspond pas avec le type de champ (dateTime): "
 		    + data);
 	    System.err.println(e.getMessage());
 	}

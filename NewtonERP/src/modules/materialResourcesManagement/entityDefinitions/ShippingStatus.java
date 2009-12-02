@@ -46,6 +46,7 @@ public class ShippingStatus extends AbstractOrmEntity
 
 	ListViewerData entityList = super.getList(parameters);
 	entityList.removeSpecificActions("Effacer");
+	entityList.removeSpecificActions("Modifier");
 
 	return entityList;
     }

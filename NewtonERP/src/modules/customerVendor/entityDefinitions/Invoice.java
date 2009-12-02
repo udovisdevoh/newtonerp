@@ -9,6 +9,7 @@ import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.FieldCalcule;
+import newtonERP.orm.field.FieldValidator;
 import newtonERP.orm.field.Fields;
 import newtonERP.orm.field.type.FieldBool;
 import newtonERP.orm.field.type.FieldCurrency;
@@ -67,11 +68,27 @@ public class Invoice extends AbstractOrmEntity
 
 	fieldList.add(merchant);
 	fieldList.add(date);
-	FieldBool isForSupplier = new FieldBool("Pour fournisseur",
-		"isForSupplier");
-	fieldList.add(isForSupplier);
 	FieldBool isForCustomer = new FieldBool("Pour client", "isForCustomer");
 	fieldList.add(isForCustomer);
+	FieldBool isForSupplier = new FieldBool("Pour fournisseur",
+		"isForSupplier");
+	isForSupplier.setValidator(new FieldValidator<Boolean>()
+	{
+	    @Override
+	    protected boolean valide(Boolean value, Fields entityFields)
+	    {
+		if (!value.equals(entityFields.getField("isForCustomer")
+			.getData()))
+		{
+		    return true;
+		}
+
+		setErrorMessage("Le type de facture ne peut être Client et Fournisseur en même temps et vice-versa");
+		return false;
+	    }
+	});
+	fieldList.add(isForSupplier);
+
 	fieldList.add(new FieldInt("Status", new InvoiceStatus()
 		.getForeignKeyName()));
 	return new Fields(fieldList);
