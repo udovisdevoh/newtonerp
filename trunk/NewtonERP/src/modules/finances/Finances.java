@@ -4,7 +4,6 @@ import modules.common.entityDefinitions.Address;
 import modules.common.entityDefinitions.Country;
 import modules.common.entityDefinitions.State;
 import modules.finances.actions.DisplayUnpaidServices;
-import modules.finances.actions.TestCallPayingEmployees;
 import modules.finances.entityDefinitions.Bank;
 import modules.finances.entityDefinitions.BankAccount;
 import modules.finances.entityDefinitions.FederalWageBracket;
@@ -65,10 +64,6 @@ public class Finances extends Module
 		new PayableEmployee()));
 	// //////////////////////////////////
 
-	// test
-	addGlobalActionMenuItem("Test payer employés",
-		new TestCallPayingEmployees());
-
 	setVisibleName("Finances");
 
     }
@@ -113,13 +108,13 @@ public class Finances extends Module
 
 	bank = new Bank();
 	bank.setData("name", "Dummy Bank");
-	bank.setData("transit", "0000");
+	bank.setData("transit", "1111");
 	bank.setData(new Address().getForeignKeyName(), 1);
 	bank.newE();
 
 	bankAccount = new BankAccount();
-	bankAccount.setData("folio", "0001");
-	bankAccount.setData("balance", 0.00);
+	bankAccount.setData("folio", "2222");
+	bankAccount.setData("balance", 100000.00);
 	bankAccount.setData("marginBalance", 0.00);
 	bankAccount.setData("margin", 0.00);
 	bankAccount.setData(new Bank().getForeignKeyName(), 1);

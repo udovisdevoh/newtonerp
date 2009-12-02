@@ -84,8 +84,8 @@ public class PayableEmployee extends AbstractOrmEntity
 
 	list.addSpecificActionButtonList(new ActionLink("Payer", paying,
 		actionParameters));
-	list.addSpecificActionButtonList(new ActionLink("Impôts", calcul,
-		actionParameters));
+	list.addSpecificActionButtonList(new ActionLink("Impôts/salaire",
+		calcul, actionParameters));
 
 	return list;
     }
