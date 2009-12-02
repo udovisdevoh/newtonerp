@@ -745,4 +745,23 @@ public class Orm
     {
 	sgbd.execute(sqlQuery, OrmActions.OTHER);
     }
+
+    /**
+     * @param entitySystemName nom système d'une entité
+     * @return true si l'entité a une table dans la base de donnée, sinon false
+     * @throws Exception si ça fail
+     */
+    public static boolean isEntityExists(String entitySystemName)
+	    throws Exception
+    {
+	String sqlQuery = "SELECT name FROM sqlite_master where name='"
+		+ prefix + entitySystemName + "'";
+
+	// TODO: Remove the next line when it will be properly debugged
+	System.out.println("SQL query produced : " + sqlQuery);
+
+	ResultSet rs = sgbd.execute(sqlQuery, OrmActions.SEARCH);
+
+	return rs.next();
+    }
 }

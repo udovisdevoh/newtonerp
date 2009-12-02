@@ -7,6 +7,7 @@ import modules.taskModule.actions.AddFieldToOrm;
 import newtonERP.common.ActionLink;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
+import newtonERP.orm.Orm;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.Fields;
@@ -19,6 +20,7 @@ import newtonERP.orm.field.type.FieldInt;
 import newtonERP.orm.field.type.FieldString;
 import newtonERP.orm.field.type.FieldText;
 import newtonERP.orm.field.type.FieldTime;
+import newtonERP.viewers.viewerData.BaseViewerData;
 import newtonERP.viewers.viewerData.ListViewerData;
 
 /**
@@ -164,6 +166,19 @@ public class FieldEntity extends AbstractOrmEntity
     public AbstractEntity deleteUI(Hashtable<String, String> parameters)
 	    throws Exception
     {
+	FieldEntity fieldEntity = (FieldEntity) Orm.selectUnique(this);
+
+	EntityEntity entityEntity = (EntityEntity) fieldEntity
+		.getSingleAccessor(new EntityEntity().getForeignKeyName());
+
+	if (Orm.isEntityExists(entityEntity.getDataString("systemName")))
+	{
+	    BaseViewerData editUI = editUI(parameters);
+	    editUI
+		    .addAlertMessage("Impossible d'effacer ce champ car l'entité à laquelle il appartient est déjà dans la base de donnée.");
+	    return editUI;
+	}
+
 	// return getList();
 	// On doit pouvoir deleter les fields s'ils font partie de nouvelles
 	// entitées pas encore générées
