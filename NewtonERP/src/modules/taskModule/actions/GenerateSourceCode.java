@@ -139,7 +139,12 @@ public class GenerateSourceCode extends AbstractAction
 	return file.exists();
     }
 
-    private void writeClassFile(String fileName, String classCode)
+    /**
+     * @param fileName file name
+     * @param classCode class code
+     * @throws Exception si ça fail
+     */
+    public static void writeClassFile(String fileName, String classCode)
 	    throws Exception
     {
 	File file = new File(fileName);
