@@ -949,6 +949,11 @@ devrait marcher correctement.
   * Fait en sorte que delete d'entité de field impossible (c'est ce qu'on veut)
   * Code generator: stub de code d'action: complet
   * Remis entité d'accesseurs qui avaient accidentellement été enlevés.
+  * Il est maintenant possible de générer le code source d'un module qui marche, ses entité et les stubs de ses actions
+  * field entity: remis deletable pour qu'on puisse effacer les fiels d'un module
+généré
+  * field entity: dynamic: pas read only pour qu'on puisse faire des field statiques
+dans modules générés
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
   * Softcodage de module doit être fonctionnel et montrable en présentation
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
