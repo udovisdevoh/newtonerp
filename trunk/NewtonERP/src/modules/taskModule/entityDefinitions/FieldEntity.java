@@ -66,7 +66,8 @@ public class FieldEntity extends AbstractOrmEntity
 
 	FieldBool dynamicField = new FieldBool("Champ dynamique",
 		"dynamicField");
-	dynamicField.setReadOnly(true);
+	// dynamicField.setReadOnly(true);On doit pouvoir mettre certains champs
+	// statiques pour génération de code d'entité
 	fieldList.add(dynamicField);
 
 	return new Fields(fieldList);
@@ -77,7 +78,8 @@ public class FieldEntity extends AbstractOrmEntity
 	    throws Exception
     {
 	getFields().setDefaultValue(false);
-	parameters.put("dynamicField", "true");
+	// parameters.put("dynamicField", "true"); On doit pouvoir aussi créer
+	// des fields statiques pour softcoder des modules
 	return editUI(parameters);
     }
 
@@ -89,7 +91,9 @@ public class FieldEntity extends AbstractOrmEntity
 
 	ListViewerData entityList = super.getList(parameters);
 
-	entityList.removeSpecificActions("Effacer");
+	// On doit pouvoir deleter les fields s'ils font partie de nouvelles
+	// entitées pas encore générées
+	// entityList.removeSpecificActions("Effacer");
 
 	entityList.addSpecificActionButtonList(new ActionLink(
 		"Mettre dans Orm", new AddFieldToOrm(), parameters));
@@ -160,6 +164,9 @@ public class FieldEntity extends AbstractOrmEntity
     public AbstractEntity deleteUI(Hashtable<String, String> parameters)
 	    throws Exception
     {
-	return getList();
+	// return getList();
+	// On doit pouvoir deleter les fields s'ils font partie de nouvelles
+	// entitées pas encore générées
+	return super.deleteUI(parameters);
     }
 }

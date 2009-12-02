@@ -30,6 +30,7 @@ public class EntitySourceCodeBuilder
 		+ ".entityDefinitions;\n";
 	sourceCode += "\n";
 	sourceCode += "import newtonERP.orm.field.*;\n";
+	sourceCode += "import newtonERP.orm.field.type.*;";
 	sourceCode += "import newtonERP.orm.associations.AccessorManager;\n";
 	sourceCode += "import newtonERP.module.AbstractOrmEntity;\n";
 	sourceCode += "import java.util.Hashtable;\n";

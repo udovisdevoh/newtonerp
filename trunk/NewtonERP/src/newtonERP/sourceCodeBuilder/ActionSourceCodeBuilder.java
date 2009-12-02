@@ -29,10 +29,6 @@ public class ActionSourceCodeBuilder
 	sourceCode += "\n";
 	sourceCode += "import java.util.Hashtable;\n";
 	sourceCode += "import java.util.Vector;\n";
-	sourceCode += "import modules." + packageName
-		+ ".entityDefinitions.EntityEntity;\n";
-	sourceCode += "import modules." + packageName
-		+ ".entityDefinitions.FieldEntity;\n";
 	sourceCode += "import newtonERP.module.AbstractAction;\n";
 	sourceCode += "import newtonERP.module.AbstractEntity;\n";
 	sourceCode += "import newtonERP.module.AbstractOrmEntity;\n";
@@ -40,6 +36,7 @@ public class ActionSourceCodeBuilder
 	sourceCode += "import newtonERP.orm.exceptions.OrmException;\n";
 	sourceCode += "import newtonERP.orm.field.Field;\n";
 	sourceCode += "import newtonERP.viewers.viewerData.BaseViewerData;\n";
+	sourceCode += "import newtonERP.module.generalEntity.StaticTextEntity;\n";
 
 	sourceCode += "\n";
 	sourceCode += "/**\n";
@@ -50,9 +47,9 @@ public class ActionSourceCodeBuilder
 		+ " extends AbstractAction\n";
 	sourceCode += "{\n";
 	sourceCode += "    @Override\n";
-	sourceCode += "    public BaseViewerData doAction(AbstractEntity sourceEntity, Hashtable<String, String> parameters) throws Exception\n";
+	sourceCode += "    public AbstractEntity doAction(AbstractEntity sourceEntity, Hashtable<String, String> parameters) throws Exception\n";
 	sourceCode += "    {\n";
-	sourceCode += "        return sourceEntity;\n";
+	sourceCode += "        return new StaticTextEntity(\"Please implement action\");\n";
 	sourceCode += "    }\n";
 	sourceCode += "}\n";
 

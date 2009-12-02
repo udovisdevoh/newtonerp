@@ -25,6 +25,8 @@ public class ModuleSourceCodeBuilder
 
 	sourceCode += "package modules." + getPackageName(moduleEntity) + ";\n";
 	sourceCode += "\n";
+	sourceCode += "import newtonERP.module.Module;\n";
+	sourceCode += "\n";
 	sourceCode += "/**\n";
 	sourceCode += " * " + getVisibleName(moduleEntity) + "\n";
 	sourceCode += " * @author NewtonERP code generator - Guillaume Lacasse\n";
@@ -84,7 +86,12 @@ public class ModuleSourceCodeBuilder
 	return packagePath + "/" + getSystemName(moduleEntity) + ".java";
     }
 
-    private static String getPackagePath(ModuleEntity moduleEntity)
+    /**
+     * @param moduleEntity module entity
+     * @return package path
+     * @throws OrmException si ça fail
+     */
+    public static String getPackagePath(ModuleEntity moduleEntity)
 	    throws OrmException
     {
 	moduleEntity = (ModuleEntity) Orm.selectUnique(moduleEntity);
@@ -95,11 +102,16 @@ public class ModuleSourceCodeBuilder
      * @param moduleEntity module entity
      * @throws Exception si ça fail
      */
-    public static void createDirectory(ModuleEntity moduleEntity)
+    public static void createDirectories(ModuleEntity moduleEntity)
 	    throws Exception
     {
+	File file;
 	String packagePath = getPackagePath(moduleEntity);
-	File file = new File(packagePath);
+	file = new File(packagePath);
+	file.mkdir();
+	file = new File(packagePath + "/actions");
+	file.mkdir();
+	file = new File(packagePath + "/entityDefinitions");
 	file.mkdir();
     }
 }
