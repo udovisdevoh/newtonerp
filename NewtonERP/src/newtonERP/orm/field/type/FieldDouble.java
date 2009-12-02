@@ -42,9 +42,17 @@ public class FieldDouble extends Field<Double>
      */
     public void setData(String data) throws Exception
     {
-	if (data == null || data.equals("null"))
-	    data = "0.0";
-	this.data = Double.parseDouble(data);
+	try
+	{
+	    if (data == null || data.equals("null"))
+		data = "0.0";
+	    this.data = Double.parseDouble(data);
+	} catch (Exception e)
+	{
+	    setErrorMessage("les format de donnee entré ne corespond pas avec le type de champ (Double): "
+		    + data);
+	    System.err.println(e.getMessage());
+	}
     }
 
     @Override

@@ -46,7 +46,7 @@ public abstract class FieldValidator<T>
     /**
      * @param errorMessage the errorMessage to set
      */
-    protected void setErrorMessage(String errorMessage)
+    public void setErrorMessage(String errorMessage)
     {
 	this.errorMessage = errorMessage;
     }

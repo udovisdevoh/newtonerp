@@ -55,13 +55,21 @@ public class FieldBool extends Field<Boolean>
      */
     public void setData(String data)
     {
-	if (data.toLowerCase().equals("on")
-		|| data.toLowerCase().equals("true"))
+	try
 	{
-	    setDataType(true);
+	    if (data.toLowerCase().equals("on")
+		    || data.toLowerCase().equals("true"))
+	    {
+		setDataType(true);
+	    }
+	    else
+		setDataType(Boolean.parseBoolean(data));
+	} catch (Exception e)
+	{
+	    setErrorMessage("les format de donnee entré ne corespond pas avec le type de champ (boolean): "
+		    + data);
+	    System.err.println(e.getMessage());
 	}
-	else
-	    setDataType(Boolean.parseBoolean(data));
     }
 
     @Override

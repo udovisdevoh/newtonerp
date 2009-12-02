@@ -44,9 +44,17 @@ public class FieldDate extends FieldDateTime
     @Override
     public void setData(String date) throws ParseException
     {
-	GregorianCalendar tempDate = new GregorianCalendar();
-	tempDate.setTime(dateFormatter.parse(date));
-	data = tempDate;
+	try
+	{
+	    GregorianCalendar tempDate = new GregorianCalendar();
+	    tempDate.setTime(dateFormatter.parse(date));
+	    data = tempDate;
+	} catch (Exception e)
+	{
+	    setErrorMessage("les format de donnee entré ne corespond pas avec le type de champ (date): "
+		    + data);
+	    System.err.println(e.getMessage());
+	}
     }
 
     @Override

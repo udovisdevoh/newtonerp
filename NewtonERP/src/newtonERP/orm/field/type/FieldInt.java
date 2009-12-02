@@ -41,9 +41,17 @@ public class FieldInt extends Field<Integer>
      */
     public void setData(String data)
     {
-	if (data == null || data.equals("null"))
-	    data = "0";
-	setDataType(Integer.parseInt(data));
+	try
+	{
+	    if (data == null || data.equals("null"))
+		data = "0";
+	    setDataType(Integer.parseInt(data));
+	} catch (Exception e)
+	{
+	    setErrorMessage("les format de donnee entré ne corespond pas avec le type de champ (entier): "
+		    + data);
+	    System.err.println(e.getMessage());
+	}
     }
 
     @Override
