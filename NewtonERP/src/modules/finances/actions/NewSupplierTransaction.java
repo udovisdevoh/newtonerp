@@ -43,49 +43,55 @@ public class NewSupplierTransaction extends AbstractAction
 	Vector<AbstractOrmEntity> retTransactions = Orm
 		.select(searchTransaction);
 
-	if (retTransactions.size() == 0)
+	if (invoice.getData("isForSupplier").equals(true))
 	{
-	    // Donc si yen a pas on en crée une nouvelle
-	    SupplierTransaction transaction = new SupplierTransaction();
+	    if (retTransactions.size() == 0)
+	    {
+		// Donc si yen a pas on en crée une nouvelle
+		SupplierTransaction transaction = new SupplierTransaction();
 
-	    transaction.setData("balance", invoice.getData("total"));
-	    transaction.setData("deadline", invoice.getData("date"));
-	    transaction.setData("paymentDate", new GregorianCalendar());
-	    transaction.setData(new StateType().getForeignKeyName(), 1);
-	    transaction.setData(invoice.getForeignKeyName(), invoice
-		    .getPrimaryKeyValue());
-	    transaction.setData(new Merchant().getForeignKeyName(), invoice
-		    .getData(new Merchant().getForeignKeyName()));
-	    transaction.setData(new BankAccount().getForeignKeyName(), 1);
+		transaction.setData("balance", invoice.getData("total"));
+		transaction.setData("deadline", invoice.getData("date"));
+		transaction.setData("paymentDate", new GregorianCalendar());
+		transaction.setData(new StateType().getForeignKeyName(), 1);
+		transaction.setData(invoice.getForeignKeyName(), invoice
+			.getPrimaryKeyValue());
+		transaction.setData(new Merchant().getForeignKeyName(), invoice
+			.getData(new Merchant().getForeignKeyName()));
+		transaction.setData(new BankAccount().getForeignKeyName(), 1);
 
-	    StateType type = new StateType();
-	    type.setData("name", "Non-paye");
-	    type.get().get(0).assign(transaction);
+		StateType type = new StateType();
+		type.setData("name", "Non-paye");
+		type.get().get(0).assign(transaction);
 
-	    transaction.newE();
-	}
-	else
-	{
-	    // On va chercher la transaction reliée
-	    SupplierTransaction relatedTransaction = (SupplierTransaction) retTransactions
-		    .get(0);
+		transaction.newE();
+	    }
+	    else
+	    {
+		// On va chercher la transaction reliée
+		SupplierTransaction relatedTransaction = (SupplierTransaction) retTransactions
+			.get(0);
 
-	    relatedTransaction.setData("balance", invoice.getData("total"));
-	    relatedTransaction.setData("deadline", invoice.getData("date"));
-	    relatedTransaction.setData("paymentDate", new GregorianCalendar());
-	    relatedTransaction.setData(new StateType().getForeignKeyName(), 1);
-	    relatedTransaction.setData(invoice.getForeignKeyName(), invoice
-		    .getPrimaryKeyValue());
-	    relatedTransaction.setData(new Merchant().getForeignKeyName(),
-		    invoice.getData(new Merchant().getForeignKeyName()));
-	    relatedTransaction
-		    .setData(new BankAccount().getForeignKeyName(), 1);
+		relatedTransaction.setData("balance", invoice.getData("total"));
+		relatedTransaction.setData("deadline", invoice.getData("date"));
+		relatedTransaction.setData("paymentDate",
+			new GregorianCalendar());
+		relatedTransaction.setData(new StateType().getForeignKeyName(),
+			1);
+		relatedTransaction.setData(invoice.getForeignKeyName(), invoice
+			.getPrimaryKeyValue());
+		relatedTransaction.setData(new Merchant().getForeignKeyName(),
+			invoice.getData(new Merchant().getForeignKeyName()));
+		relatedTransaction.setData(new BankAccount()
+			.getForeignKeyName(), 1);
 
-	    StateType type = new StateType();
-	    type.setData("name", "Non-paye");
-	    type.get().get(0).assign(relatedTransaction);
+		StateType type = new StateType();
+		type.setData("name", "Non-paye");
+		type.get().get(0).assign(relatedTransaction);
 
-	    relatedTransaction.save();
+		relatedTransaction.save();
+	    }
+
 	}
 
 	return null;
