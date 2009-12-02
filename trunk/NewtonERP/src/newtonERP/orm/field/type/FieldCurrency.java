@@ -55,10 +55,18 @@ public class FieldCurrency extends FieldDouble
 
     public void setData(String data) throws Exception
     {
-	data = data.replaceAll("\\s", "");
-	data = data.replaceAll("\\$", "");
-	data = data.replaceAll("\\.", ",");
-	data += " $";
-	this.data = df.parse(data).doubleValue();
+	try
+	{
+	    data = data.replaceAll("\\s", "");
+	    data = data.replaceAll("\\$", "");
+	    data = data.replaceAll("\\.", ",");
+	    data += " $";
+	    this.data = df.parse(data).doubleValue();
+	} catch (Exception e)
+	{
+	    setErrorMessage("les format de donnee entré ne corespond pas avec le type de champ (Currency): "
+		    + data);
+	    System.err.println(e.getMessage());
+	}
     }
 }

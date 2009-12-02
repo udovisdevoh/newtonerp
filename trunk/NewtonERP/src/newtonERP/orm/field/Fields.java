@@ -206,20 +206,6 @@ public class Fields implements Iterable<Field<?>>
     }
 
     /**
-     * @return noms des clefs des champs par ordre d'insertion
-     * @deprecated use getLongFieldNameList
-     */
-    @Deprecated
-    public Vector<String> getOrderedFieldNameList()
-    {
-	Vector<String> orderedFieldNameList = new Vector<String>();
-	for (Field<?> field : fieldsDataVector)
-	    orderedFieldNameList.add(field.getShortName());
-
-	return orderedFieldNameList;
-    }
-
-    /**
      * @param fieldName nom du champ
      * @return true si nom du champ existe dans les fields
      */

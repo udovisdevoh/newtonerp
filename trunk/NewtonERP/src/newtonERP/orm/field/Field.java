@@ -386,6 +386,14 @@ public abstract class Field<T>
     }
 
     /**
+     * @param errorMessage le message d'erreur a retourne a l'utilisateur
+     */
+    public void setErrorMessage(String errorMessage)
+    {
+	validator.setErrorMessage(errorMessage);
+    }
+
+    /**
      * remet la valeur a null
      * @throws Exception remonte
      */
