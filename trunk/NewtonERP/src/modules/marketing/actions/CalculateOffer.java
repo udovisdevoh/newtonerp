@@ -20,7 +20,6 @@ public class CalculateOffer extends AbstractAction
     public AbstractEntity doAction(AbstractEntity entity,
 	    Hashtable<String, String> parameters) throws Exception
     {
-
 	return null;
     }
 
