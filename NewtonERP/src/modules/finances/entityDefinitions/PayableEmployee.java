@@ -3,7 +3,7 @@ package modules.finances.entityDefinitions;
 import java.util.Hashtable;
 import java.util.Vector;
 
-import modules.finances.actions.CalculateFederalTax;
+import modules.finances.actions.CalculateTaxOnSalary;
 import modules.finances.actions.PayingEmployee;
 import modules.humanResources.entityDefinitions.Employee;
 import newtonERP.common.ActionLink;
@@ -74,7 +74,7 @@ public class PayableEmployee extends AbstractOrmEntity
 	PayingEmployee paying = new PayingEmployee();
 	paying.setOwnedByModul(getCurrentModule());
 
-	CalculateFederalTax calcul = new CalculateFederalTax();//
+	CalculateTaxOnSalary calcul = new CalculateTaxOnSalary();//
 	calcul.setOwnedByModul(getCurrentModule());//
 
 	Hashtable<String, String> actionParameters = new Hashtable<String, String>();
@@ -84,7 +84,7 @@ public class PayableEmployee extends AbstractOrmEntity
 
 	list.addSpecificActionButtonList(new ActionLink("Payer", paying,
 		actionParameters));
-	list.addSpecificActionButtonList(new ActionLink("Impôt/Fed", calcul,
+	list.addSpecificActionButtonList(new ActionLink("Impôts", calcul,
 		actionParameters));
 
 	return list;

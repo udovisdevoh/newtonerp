@@ -5,7 +5,7 @@ import java.util.Vector;
 
 import modules.finances.entityDefinitions.FederalWageBracket;
 import modules.finances.entityDefinitions.PayableEmployee;
-import modules.humanResources.entityDefinitions.Employee;
+import modules.finances.entityDefinitions.ProvincialWageBracket;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
@@ -14,15 +14,18 @@ import newtonERP.orm.Orm;
 /**
  * Action CalculateFederalTax : représente l'action de calculer l'impôt fédéral
  * retenue en fonction du montant...
+ * 
+ * Called après avoir ajouté la période actuelle de paye dans PayableEmployee
+ * 
  * @author Pascal Lemay
  */
-public class CalculateFederalTax extends AbstractAction
+public class CalculateTaxOnSalary extends AbstractAction
 {
     /**
      * constructeur
      * @throws Exception si création fail
      */
-    public CalculateFederalTax() throws Exception
+    public CalculateTaxOnSalary() throws Exception
     {
 	super(new PayableEmployee());
     }
@@ -35,13 +38,8 @@ public class CalculateFederalTax extends AbstractAction
 	// salaire annuel
 	Double salary = (Double) employee.getData("gains");
 
-	// type de salaire
-	Integer type = (Integer) employee.getData(new Employee()
-		.getForeignKeyName());
-
-	if (type == 1)// si salaire horaire, convertion par extension en salaire
-	    // annuel pour les calcules
-	    salary *= 26;
+	// Convertion par extension en salaire annuel pour les calcules
+	salary *= 26;
 
 	// salaire - min de la tranche actuelle
 	Double basedAmount = 0.0;
@@ -56,6 +54,8 @@ public class CalculateFederalTax extends AbstractAction
 
 	Vector<AbstractOrmEntity> fedBrackets = Orm
 		.select(new FederalWageBracket());
+	Vector<AbstractOrmEntity> provBrackets = Orm
+		.select(new ProvincialWageBracket());
 
 	for (int i = 0; i < fedBrackets.size(); i++)
 	{
@@ -76,7 +76,34 @@ public class CalculateFederalTax extends AbstractAction
 		employee.setData("fedTax", finalTaxResult);
 		employee.save();
 
-		return null; // sortie
+		i = fedBrackets.size(); // sortie
+	    }
+	}
+
+	basedAmount = 0.0;// reset pour calculer taxes provicial
+	taxResult = 0.0;
+	finalTaxResult = 0.0;
+
+	for (int i = 0; i < provBrackets.size(); i++)
+	{
+	    if (salary <= (Double) provBrackets.get(i).getData("maxBracket"))
+	    {
+
+		basedAmount = salary
+			- (Double) provBrackets.get(i).getData("minBracket");
+
+		taxResult = basedAmount
+			* ((Double) provBrackets.get(i).getData("tax") / 100.0);
+
+		finalTaxResult = taxResult
+			+ (Double) provBrackets.get(i).getData("ajustment");
+
+		finalTaxResult /= 26;
+
+		employee.setData("provTax", finalTaxResult);
+		employee.save();
+
+		i = provBrackets.size(); // sortie
 	    }
 	}
 

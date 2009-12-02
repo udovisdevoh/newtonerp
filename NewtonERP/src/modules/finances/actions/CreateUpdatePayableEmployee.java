@@ -9,8 +9,6 @@ import modules.finances.entityDefinitions.StateType;
 import modules.humanResources.entityDefinitions.Employee;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
-import newtonERP.module.AbstractOrmEntity;
-import newtonERP.orm.Orm;
 
 /**
  * Action CreateUpdatePayableEmployee: Update les valeurs en fonction de la
@@ -30,7 +28,7 @@ public class CreateUpdatePayableEmployee extends AbstractAction
      */
     public CreateUpdatePayableEmployee() throws Exception
     {
-	super(null);
+	super(new Employee());
     }
 
     // noms de clés du hashtable pas déterminés, à voir avec jo.C
@@ -39,40 +37,39 @@ public class CreateUpdatePayableEmployee extends AbstractAction
     {
 	Employee emp = (Employee) entity;
 
-	PayableEmployee searchEmp = new PayableEmployee();
-	searchEmp.setData(emp.getForeignKeyName(), emp.getData(emp
-		.getForeignKeyName()));
-	AbstractOrmEntity employee = Orm.selectUnique(searchEmp);
+	/*
+	 * PayableEmployee searchEmp = new PayableEmployee();
+	 * searchEmp.setData(emp.getForeignKeyName(), emp.getData(emp
+	 * .getForeignKeyName())); AbstractOrmEntity employee =
+	 * Orm.selectUnique(searchEmp);
+	 */
 
 	// keys pas encore déterminées, à voir avec jo.C
 	// je doit recevoir en param date en string comme:Ex:2001-01-01
 	String[] dateBegin = parameters.get("key?").split("-");
 	String[] dateEnd = parameters.get("key?").split("-");
 
-	if (employee != null)// update
-	{
-	    employee.setData("beginning", new GregorianCalendar(Integer
-		    .parseInt(dateBegin[0]),
-		    Integer.parseInt(dateBegin[1]) - 1, Integer
-			    .parseInt(dateBegin[2])));
-
-	    employee.setData("end", new GregorianCalendar(Integer
-		    .parseInt(dateEnd[0]), Integer.parseInt(dateEnd[1]) - 1,
-		    Integer.parseInt(dateEnd[2])));
-
-	    employee.setData("paymentDate", new GregorianCalendar(0, 0, 0));
-
-	    employee.setData("gains", Double
-		    .parseDouble(parameters.get("key?")));
-
-	    employee.setData("balance", Double.parseDouble(parameters
-		    .get("key?")));
-
-	    employee.setData(new StateType().getForeignKeyName(), 1);
-	    employee.save();
-	}
-	else
-	// create
+	/*
+	 * if (employee != null)// update { employee.setData("beginning", new
+	 * GregorianCalendar(Integer .parseInt(dateBegin[0]),
+	 * Integer.parseInt(dateBegin[1]) - 1, Integer
+	 * .parseInt(dateBegin[2])));
+	 * 
+	 * employee.setData("end", new GregorianCalendar(Integer
+	 * .parseInt(dateEnd[0]), Integer.parseInt(dateEnd[1]) - 1,
+	 * Integer.parseInt(dateEnd[2])));
+	 * 
+	 * employee.setData("paymentDate", new GregorianCalendar(0, 0, 0));
+	 * 
+	 * employee.setData("gains", Double
+	 * .parseDouble(parameters.get("key?")));
+	 * 
+	 * employee.setData("balance", Double.parseDouble(parameters
+	 * .get("key?")));
+	 * 
+	 * employee.setData(new StateType().getForeignKeyName(), 1);
+	 * employee.save(); } else // create
+	 */
 	{
 	    PayableEmployee newEmployee = new PayableEmployee();
 
@@ -94,16 +91,15 @@ public class CreateUpdatePayableEmployee extends AbstractAction
 
 	    newEmployee.setData("provTax", 0.0);
 
-	    newEmployee.setData("gains", Double.parseDouble(parameters
-		    .get("key?")));
+	    newEmployee.setData("gains", 0.0);
 
-	    newEmployee.setData("balance", Double.parseDouble(parameters
-		    .get("key?")));
+	    newEmployee.setData("balance", 0.0);
 
 	    newEmployee.setData(new StateType().getForeignKeyName(), 1);
 
 	    newEmployee.setData(new BankAccount().getForeignKeyName(), 1);
 	    newEmployee.newE();
+	    // new CalculatePeriodeSalary().doAction(newEmployee, null);
 	}
 	return null;
     }

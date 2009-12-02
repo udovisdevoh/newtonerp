@@ -41,7 +41,7 @@ public class ProvincialWageBracket extends AbstractOrmEntity
 	fieldsInit.add(new FieldCurrency("Minimum de tranche", "minBracket"));
 	fieldsInit.add(new FieldCurrency("Maximum de tranche", "maxBracket"));
 	fieldsInit.add(new FieldCurrency("Montant d'ajustement", "ajustment"));
-	fieldsInit.add(new FieldDouble("Impôt %", "value"));
+	fieldsInit.add(new FieldDouble("Impôt %", "tax"));
 
 	return new Fields(fieldsInit);
     }
