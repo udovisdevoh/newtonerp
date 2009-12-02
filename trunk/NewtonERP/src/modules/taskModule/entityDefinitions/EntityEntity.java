@@ -9,6 +9,7 @@ import newtonERP.common.ActionLink;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.Module;
+import newtonERP.orm.Orm;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.associations.PluralAccessor;
 import newtonERP.orm.field.Field;
@@ -126,5 +127,33 @@ public class EntityEntity extends AbstractOrmEntity implements
 	}
 
 	return fieldEntityVector.iterator();
+    }
+
+    /**
+     * @return true si l'entité d'entité a un entité de field qui correspond à
+     *         sa clef primaire
+     * @throws Exception si ça fail
+     */
+    public boolean ContainsPrimaryKeyField() throws Exception
+    {
+	String primaryKeyName = buildPrimaryKeyName();
+
+	FieldEntity primaryKeyField = new FieldEntity();
+	primaryKeyField.setData("name", primaryKeyName);
+	primaryKeyField.assign(this);
+
+	return Orm.select(primaryKeyField).size() > 0;
+    }
+
+    /**
+     * @return primary key name for real entity (not entity entity)
+     */
+    public String buildPrimaryKeyName()
+    {
+	String primaryKeyName = getDataString("systemName");
+	primaryKeyName = primaryKeyName.substring(0, 1).toLowerCase()
+		+ primaryKeyName.substring(1);
+	primaryKeyName = "PK" + primaryKeyName + "ID";
+	return primaryKeyName;
     }
 }

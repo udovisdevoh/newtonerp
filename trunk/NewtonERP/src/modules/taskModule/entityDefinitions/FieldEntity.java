@@ -84,7 +84,34 @@ public class FieldEntity extends AbstractOrmEntity
 	getFields().setDefaultValue(false);
 	// parameters.put("dynamicField", "true"); On doit pouvoir aussi créer
 	// des fields statiques pour softcoder des modules
+
+	String entityEntityAccessorName = new EntityEntity()
+		.getForeignKeyName();
+	if (parameters.containsKey(entityEntityAccessorName))
+	{
+	    String entityEntityIdString = parameters
+		    .get(entityEntityAccessorName);
+	    int entityEntityId = Integer.parseInt(entityEntityIdString);
+	    EntityEntity entityEntity = getEntityEntity(entityEntityId);
+	    if (!entityEntity.ContainsPrimaryKeyField())
+	    {
+		String primaryKeyName = entityEntity.buildPrimaryKeyName();
+		if (!parameters.contains("name"))
+		    parameters.put("name", primaryKeyName);
+	    }
+	}
+
 	return editUI(parameters);
+    }
+
+    private EntityEntity getEntityEntity(int entityPrimaryKey) throws Exception
+    {
+	EntityEntity entityEntity = new EntityEntity();
+	entityEntity
+		.setData(entityEntity.getPrimaryKeyName(), entityPrimaryKey);
+	entityEntity = (EntityEntity) Orm.selectUnique(entityEntity);
+
+	return entityEntity;
     }
 
     @Override
