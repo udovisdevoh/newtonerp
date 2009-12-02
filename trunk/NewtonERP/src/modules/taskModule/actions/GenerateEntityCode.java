@@ -67,5 +67,4 @@ public class GenerateEntityCode extends AbstractAction
 	ModuleEntity moduleEntity = entityEntity.getModuleEntity();
 	return SourceCodeBuilder.getModulePackagePath(moduleEntity);
     }
-
 }
