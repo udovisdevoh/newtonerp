@@ -61,7 +61,7 @@ public class Finances extends Module
 	addGlobalActionMenuItem("Services à payer", new DisplayUnpaidServices());
 
 	// tempo//////////////////////////////////////////////////////////
-	addGlobalActionMenuItem("Employee à payer", new BaseAction("GetList",
+	addGlobalActionMenuItem("Employee et paies", new BaseAction("GetList",
 		new PayableEmployee()));
 	// //////////////////////////////////
 

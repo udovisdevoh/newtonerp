@@ -3,7 +3,7 @@ package modules.finances.entityDefinitions;
 import java.util.Hashtable;
 import java.util.Vector;
 
-import modules.finances.actions.CalculateTaxOnSalary;
+import modules.finances.actions.CalculateTaxAndSalary;
 import modules.finances.actions.PayingEmployee;
 import modules.humanResources.entityDefinitions.Employee;
 import newtonERP.common.ActionLink;
@@ -36,7 +36,7 @@ public class PayableEmployee extends AbstractOrmEntity
 	AccessorManager.addAccessor(this, new Employee());
 	AccessorManager.addAccessor(this, new StateType());
 	AccessorManager.addAccessor(this, new BankAccount());
-	setVisibleName("Employés à payer");
+	setVisibleName("Employés et paies");
     }
 
     @Override
@@ -74,7 +74,7 @@ public class PayableEmployee extends AbstractOrmEntity
 	PayingEmployee paying = new PayingEmployee();
 	paying.setOwnedByModul(getCurrentModule());
 
-	CalculateTaxOnSalary calcul = new CalculateTaxOnSalary();//
+	CalculateTaxAndSalary calcul = new CalculateTaxAndSalary();//
 	calcul.setOwnedByModul(getCurrentModule());//
 
 	Hashtable<String, String> actionParameters = new Hashtable<String, String>();

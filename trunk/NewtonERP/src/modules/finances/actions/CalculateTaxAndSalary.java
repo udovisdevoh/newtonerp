@@ -19,13 +19,13 @@ import newtonERP.orm.Orm;
  * 
  * @author Pascal Lemay
  */
-public class CalculateTaxOnSalary extends AbstractAction
+public class CalculateTaxAndSalary extends AbstractAction
 {
     /**
      * constructeur
      * @throws Exception si création fail
      */
-    public CalculateTaxOnSalary() throws Exception
+    public CalculateTaxAndSalary() throws Exception
     {
 	super(new PayableEmployee());
     }
@@ -52,6 +52,8 @@ public class CalculateTaxOnSalary extends AbstractAction
 	// taxResult + (le montant d'adjustment : impôt sur le min)
 	Double finalTaxResult = 0.0;
 
+	Double totalTax = 0.0;// Impôt fédéral+Provincial
+
 	Vector<AbstractOrmEntity> fedBrackets = Orm
 		.select(new FederalWageBracket());
 	Vector<AbstractOrmEntity> provBrackets = Orm
@@ -73,8 +75,8 @@ public class CalculateTaxOnSalary extends AbstractAction
 
 		finalTaxResult /= 26;
 
+		totalTax += finalTaxResult;
 		employee.setData("fedTax", finalTaxResult);
-		employee.save();
 
 		i = fedBrackets.size(); // sortie
 	    }
@@ -100,13 +102,15 @@ public class CalculateTaxOnSalary extends AbstractAction
 
 		finalTaxResult /= 26;
 
+		totalTax += finalTaxResult;
 		employee.setData("provTax", finalTaxResult);
-		employee.save();
 
 		i = provBrackets.size(); // sortie
 	    }
 	}
 
+	employee.setData("balance", (salary / 26) - totalTax);
+	employee.save();
 	return null;
     }
 
