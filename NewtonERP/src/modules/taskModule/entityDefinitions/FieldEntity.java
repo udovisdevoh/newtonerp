@@ -126,6 +126,9 @@ public class FieldEntity extends AbstractOrmEntity
 	// entitées pas encore générées
 	// entityList.removeSpecificActions("Effacer");
 
+	// On doit créer un field seulement avec le [+] de son entité
+	entityList.removeGlobalActions("Nouveau " + getVisibleName());
+
 	entityList.addSpecificActionButtonList(new ActionLink(
 		"Mettre dans Orm", new AddFieldToOrm(), parameters));
 	return entityList;

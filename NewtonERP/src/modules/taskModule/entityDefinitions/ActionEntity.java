@@ -3,6 +3,7 @@ package modules.taskModule.entityDefinitions;
 import java.util.Hashtable;
 import java.util.Vector;
 
+import modules.taskModule.actions.GenerateActionCode;
 import modules.taskModule.actions.ViewActionSource;
 import newtonERP.common.ActionLink;
 import newtonERP.module.AbstractAction;
@@ -70,8 +71,14 @@ public class ActionEntity extends AbstractOrmEntity
 	parameters.put(getPrimaryKeyName(), "&");
 
 	ListViewerData entityList = super.getList(parameters);
-	entityList.addSpecificActionButtonList(new ActionLink(
-		"Générer code source", new ViewActionSource(), parameters));
+	entityList.addSpecificActionButtonList(new ActionLink("Voir source",
+		new ViewActionSource(), parameters));
+	entityList.addSpecificActionButtonList(new ActionLink("Générer source",
+		new GenerateActionCode(), parameters));
+
+	// On doit créer une action seulement avec le [+] de son module
+	entityList.removeGlobalActions("Nouveau " + getVisibleName());
+
 	return entityList;
     }
 
@@ -86,7 +93,11 @@ public class ActionEntity extends AbstractOrmEntity
 	return module.getAction(actionName);
     }
 
-    private ModuleEntity getModuleEntity() throws Exception
+    /**
+     * @return module entity
+     * @throws Exception si ça fail
+     */
+    public ModuleEntity getModuleEntity() throws Exception
     {
 	return (ModuleEntity) getSingleAccessor(new ModuleEntity()
 		.getForeignKeyName());

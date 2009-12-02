@@ -86,6 +86,10 @@ public class EntityEntity extends AbstractOrmEntity implements
 		new ViewEntitySource(), parameters));
 	entityList.addSpecificActionButtonList(new ActionLink("Générer source",
 		new GenerateEntityCode(), parameters));
+
+	// On doit créer une entité seulement avec le [+] de son module
+	entityList.removeGlobalActions("Nouveau" + getVisibleName());
+
 	return entityList;
     }
 
