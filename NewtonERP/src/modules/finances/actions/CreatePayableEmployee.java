@@ -11,11 +11,8 @@ import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
 
 /**
- * Action CreateUpdatePayableEmployee: Update les valeurs en fonction de la
- * période de paye actuelle.
- * 
- * Cette action sert également à ajouter un "PayableEmployee" si il n'existe pas
- * encore.(nouvellement engagé)
+ * Action CreatePayableEmployee: Creer un entité PayableEmployee en fonction de
+ * la période de paye actuelle.
  * 
  * ps trucs à voir avec jo.C
  * @author Pascal Lemay
@@ -71,6 +68,8 @@ public class CreatePayableEmployee extends AbstractAction
 	 * employee.save(); } else // create
 	 */
 	{
+	    // création PayableEmployee champs vièrges sauf date:(période de
+	    // paie actuelle)
 	    PayableEmployee newEmployee = new PayableEmployee();
 
 	    newEmployee.setData(new Employee().getForeignKeyName(), emp
@@ -99,6 +98,7 @@ public class CreatePayableEmployee extends AbstractAction
 
 	    newEmployee.setData(new BankAccount().getForeignKeyName(), 1);
 	    newEmployee.newE();
+	    // passé au ressources humaines pour setter "gains"
 	    // new CalculatePeriodeSalary().doAction(newEmployee, null);
 	}
 	return null;

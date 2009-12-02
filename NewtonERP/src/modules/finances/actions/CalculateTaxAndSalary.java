@@ -12,8 +12,8 @@ import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.Orm;
 
 /**
- * Action CalculateFederalTax : représente l'action de calculer l'impôt fédéral
- * retenue en fonction du montant...
+ * Action CalculateTaxAndSalary : représente l'action de calculer l'impôt
+ * fédéral/provincial et salaire nette retenue en fonction du montant gagné
  * 
  * Called après avoir ajouté la période actuelle de paye dans PayableEmployee
  * 
@@ -109,6 +109,7 @@ public class CalculateTaxAndSalary extends AbstractAction
 	    }
 	}
 
+	// salaire nette
 	employee.setData("balance", (salary / 26) - totalTax);
 	employee.save();
 	return null;

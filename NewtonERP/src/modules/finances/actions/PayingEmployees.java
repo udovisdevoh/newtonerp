@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Hashtable;
 
 import modules.finances.entityDefinitions.PayableEmployee;
+import modules.finances.entityDefinitions.StateType;
 import modules.humanResources.entityDefinitions.Employee;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
@@ -14,8 +15,6 @@ import newtonERP.orm.Orm;
 /**
  * Action PayingEmployees: représente l'action de payer les employés
  * correspondants au ID passés en paramètres.
- * 
- * Pourra être callé par task également
  * 
  * parameters data:ID des employés que l'on veut payer
  * 
@@ -42,7 +41,9 @@ public class PayingEmployees extends AbstractAction
 	for (String id : empId)
 	{
 	    searchEmp.setData(new Employee().getForeignKeyName(), Integer
-		    .parseInt(id));// non paye
+		    .parseInt(id));
+	    // non paye
+	    searchEmp.setData(new StateType().getForeignKeyName(), 1);
 	    AbstractOrmEntity employeeToPay = Orm.selectUnique(searchEmp);
 
 	    AlertEntity alert = (AlertEntity) new PayingEmployee().doAction(
