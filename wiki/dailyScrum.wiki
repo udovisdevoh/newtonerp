@@ -954,8 +954,12 @@ devrait marcher correctement.
 généré
   * field entity: dynamic: pas read only pour qu'on puisse faire des field statiques
 dans modules générés
+  * Effacement de fieldEntity: seulement possible si l'entité auquel il appartient
+n'a jamais été créé en tant que table dans la base de donnée.
+  * Rendu impossible de déplacer field, entité et action.
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
   * Softcodage de module doit être fonctionnel et montrable en présentation
+  * Création dynamique de table pour entités sans avoir à recréer DB
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
   * ...problème, besoin d'aide, qui aidera...
 
