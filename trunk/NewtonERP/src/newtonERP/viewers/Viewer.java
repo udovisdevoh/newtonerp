@@ -123,7 +123,7 @@ public abstract class Viewer
 
     private static String buildPageTitle(String moduleName, String actionName)
     {
-	String title = "NewtonERP";
+	String title = "Bee ERP";
 
 	if (moduleName != null && !moduleName.equals("null"))
 	    title += " - " + moduleName;
