@@ -47,6 +47,7 @@ public class EntityEntity extends AbstractOrmEntity implements
     {
 	FieldInt module = new FieldInt("Module", new ModuleEntity()
 		.getForeignKeyName());
+	module.setReadOnly(true);
 	module.setNaturalKey(true);
 
 	FieldString visibleName = new FieldString("Nom visible", "visibleName");
@@ -54,8 +55,8 @@ public class EntityEntity extends AbstractOrmEntity implements
 
 	Vector<Field<?>> fieldList = new Vector<Field<?>>();
 	fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
-	fieldList.add(new FieldString("Nom système", "systemName"));
 	fieldList.add(module);
+	fieldList.add(new FieldString("Nom système", "systemName"));
 	fieldList.add(visibleName);
 	return new Fields(fieldList);
     }
