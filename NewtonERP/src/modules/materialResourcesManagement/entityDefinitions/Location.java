@@ -39,8 +39,11 @@ public class Location extends AbstractOrmEntity
     {
 	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
 	fieldsInit.add(new FieldInt("Numero", getPrimaryKeyName()));
-	fieldsInit.add(new FieldInt("Status", new LocationStatus()
-		.getForeignKeyName()));
+
+	FieldInt status = new FieldInt("status", new LocationStatus()
+		.getForeignKeyName());
+	status.setNaturalKey(true);
+	fieldsInit.add(status);
 	fieldsInit.add(new FieldInt("Latitude", new LocationLatitude()
 		.getForeignKeyName()));
 	fieldsInit.add(new FieldInt("Longitude", new LocationLongitude()

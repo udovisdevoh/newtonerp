@@ -1,4 +1,4 @@
-package modules.customerVendor.actions;
+package modules.materialResourcesManagement.actions;
 
 import java.util.Hashtable;
 import java.util.Vector;
