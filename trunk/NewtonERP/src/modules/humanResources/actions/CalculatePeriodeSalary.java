@@ -3,13 +3,14 @@ package modules.humanResources.actions;
 import java.util.Hashtable;
 import java.util.Vector;
 
+import modules.finances.entityDefinitions.PayableEmployee;
+import modules.finances.entityDefinitions.PayablePeriod;
 import modules.humanResources.entityDefinitions.Employee;
-import modules.userRightModule.entityDefinitions.Groups;
-import modules.userRightModule.entityDefinitions.User;
+import modules.humanResources.entityDefinitions.Punch;
+import modules.humanResources.entityDefinitions.SalaryType;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
-import newtonERP.orm.Orm;
 
 /**
  * On cré un nouveau user pour un employé et on lui assigne
@@ -22,51 +23,47 @@ public class CalculatePeriodeSalary extends AbstractAction
      */
     public CalculatePeriodeSalary() throws Exception
     {
-	super(new Employee());
+	super(new PayableEmployee());
     }
 
     @Override
     public AbstractEntity doAction(AbstractEntity entity,
 	    Hashtable<String, String> parameters) throws Exception
     {
-	Employee employee = (Employee) entity;
+	PayableEmployee payEmp = (PayableEmployee) entity;
+	PayablePeriod payPer = (PayablePeriod) payEmp
+		.getSingleAccessor(new PayablePeriod().getForeignKeyName());
+	Employee emp = (Employee) payEmp.getSingleAccessor(new Employee()
+		.getForeignKeyName());
 
-	String userName = getUserName(employee);
-
-	User user = null;
-
-	user = tryGetExistingUser(userName);
-
-	if (user == null)
+	String salaryType = (String) emp.getSingleAccessor(
+		new SalaryType().getForeignKeyName()).getData("SalaryType");
+	double salaire = (Double) emp.getData("salary");
+	double gains = 0;
+	if (salaryType.equals("horaire"))
 	{
-	    user = new User();
-	    user.initFields();
-	    user.setData("name", userName);
-	    user.setData("password", "aaa");
-	    user.setData(new Groups().getForeignKeyName(), 1);
-	    user.newE();
+	    Vector<AbstractOrmEntity> search = new Vector<AbstractOrmEntity>();
+	    Punch punchSearch = new Punch();
+	    punchSearch.setData("in", payPer.getData("beginning"));
+	    search.add(punchSearch);
+	    punchSearch = new Punch();
+	    punchSearch.setData("in", payPer.getData("end"));
+	    search.add(punchSearch);
+
+	    Vector<AbstractOrmEntity> punchs = punchSearch.get(punchSearch);
+	    double totalTime = 0;
+	    for (AbstractOrmEntity punch : punchs)
+	    {
+		totalTime += (Double) punch.getData("diff");
+	    }
+	    gains = salaire * totalTime;
+	}
+	else if (salaryType.equals("annuel"))
+	{
+	    gains = salaire / 26;
 	}
 
-	employee.assign(user);
-	employee.save();
-
-	return employee.editUI(null);
-    }
-
-    private User tryGetExistingUser(String userName) throws Exception
-    {
-	User searchEntity = new User();
-	searchEntity.setData("name", userName);
-	Vector<AbstractOrmEntity> result = Orm.select(searchEntity);
-
-	if (result.size() > 0)
-	    return (User) result.get(0);
-	return null;
-    }
-
-    private String getUserName(Employee employee)
-    {
-	return employee.getDataString("firstName")
-		+ employee.getDataString("lastName");
+	payEmp.setData("gains", gains);
+	return payEmp;
     }
 }
