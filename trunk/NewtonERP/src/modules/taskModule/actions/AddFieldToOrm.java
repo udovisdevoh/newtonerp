@@ -46,6 +46,8 @@ public class AddFieldToOrm extends AbstractAction
 	    try
 	    {
 		Orm.addColumnToTable(entity, field);
+		Orm.createIndex(entity, field);
+
 		editUI
 			.addNormalMessage("Le champ a été inséré dans la base de donnée");
 	    } catch (OrmException e)
