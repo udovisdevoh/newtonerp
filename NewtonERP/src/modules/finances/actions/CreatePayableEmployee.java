@@ -7,6 +7,7 @@ import modules.finances.entityDefinitions.BankAccount;
 import modules.finances.entityDefinitions.PayableEmployee;
 import modules.finances.entityDefinitions.PayablePeriod;
 import modules.finances.entityDefinitions.StateType;
+import modules.humanResources.actions.CalculatePeriodeSalary;
 import modules.humanResources.entityDefinitions.Employee;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
@@ -65,8 +66,7 @@ public class CreatePayableEmployee extends AbstractAction
 	newEmployee.setData(new BankAccount().getForeignKeyName(), 1);
 	newEmployee.newE();
 	// passé au ressources humaines pour setter "gains"
-	// action pas encore codée par jo.C (je crois)
-	// new CalculatePeriodeSalary().doAction(newEmployee, null);
+	new CalculatePeriodeSalary().doAction(newEmployee, null);
 	return null;
     }
 }
