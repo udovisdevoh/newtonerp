@@ -46,7 +46,6 @@ public class AddFieldToOrm extends AbstractAction
 
 	    try
 	    {
-		DynamicFieldCache.clear(entity.getSystemName());
 		Orm.addColumnToTable(entity, field);
 		Orm.createIndex(entity, field);
 		editUI
@@ -54,6 +53,9 @@ public class AddFieldToOrm extends AbstractAction
 	    } catch (OrmException e)
 	    {
 		editUI.addNormalMessage("Champ déjà dans la base de donnée");
+	    } finally
+	    {
+		DynamicFieldCache.clear(entity.getSystemName());
 	    }
 
 	} catch (Exception e)

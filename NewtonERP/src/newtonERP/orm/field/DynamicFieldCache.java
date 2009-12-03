@@ -21,7 +21,7 @@ public class DynamicFieldCache
     {
 	Vector<AbstractOrmEntity> dataForEntity = tryGetDataForEntity(entityName);
 	if (dataForEntity != null)
-	    dataForEntity.clear();
+	    getData().remove(entityName);
     }
 
     /**
