@@ -40,7 +40,7 @@ import newtonERP.taskManager.TaskManager;
 public class Orm
 {
     private static Sgbdable sgbd = new SgbdSqlite();
-    private static String prefix = "Newton_";
+    private static String prefix = "Bee_";
 
     /**
      * Alter table
