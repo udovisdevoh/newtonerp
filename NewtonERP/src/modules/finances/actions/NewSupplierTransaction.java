@@ -50,7 +50,7 @@ public class NewSupplierTransaction extends AbstractAction
 		// Donc si yen a pas on en crée une nouvelle
 		SupplierTransaction transaction = new SupplierTransaction();
 
-		transaction.setData("balance", invoice.getData("total"));
+		transaction.setData("balance", invoice.getData("grandTotal"));
 		transaction.setData("deadline", invoice.getData("date"));
 		transaction.setData("paymentDate", new GregorianCalendar());
 		transaction.setData(new StateType().getForeignKeyName(), 1);
@@ -72,7 +72,8 @@ public class NewSupplierTransaction extends AbstractAction
 		SupplierTransaction relatedTransaction = (SupplierTransaction) retTransactions
 			.get(0);
 
-		relatedTransaction.setData("balance", invoice.getData("total"));
+		relatedTransaction.setData("balance", invoice
+			.getData("grandTotal"));
 		relatedTransaction.setData("deadline", invoice.getData("date"));
 		relatedTransaction.setData("paymentDate",
 			new GregorianCalendar());
