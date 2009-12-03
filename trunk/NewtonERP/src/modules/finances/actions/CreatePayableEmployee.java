@@ -39,7 +39,6 @@ public class CreatePayableEmployee extends AbstractAction
 	PayablePeriod searchCurrentPeriod = new PayablePeriod();
 	searchCurrentPeriod.setData("isCurrentPeriod", true);
 	AbstractOrmEntity period = Orm.selectUnique(searchCurrentPeriod);
-	Integer periodId = period.getPrimaryKeyValue();
 
 	// création PayableEmployee champs vièrges sauf date:(période de
 	// paie actuelle)
@@ -48,7 +47,8 @@ public class CreatePayableEmployee extends AbstractAction
 	newEmployee.setData(new Employee().getForeignKeyName(), emp
 		.getPrimaryKeyValue());
 
-	newEmployee.setData(new PayablePeriod().getForeignKeyName(), periodId);
+	newEmployee.setData(new PayablePeriod().getForeignKeyName(), period
+		.getPrimaryKeyValue());
 
 	newEmployee.setData("paymentDate", new GregorianCalendar(0, 0, 0));
 
@@ -65,6 +65,7 @@ public class CreatePayableEmployee extends AbstractAction
 	newEmployee.setData(new BankAccount().getForeignKeyName(), 1);
 	newEmployee.newE();
 	// passé au ressources humaines pour setter "gains"
+	// action pas encore codée par jo.C (je crois)
 	// new CalculatePeriodeSalary().doAction(newEmployee, null);
 	return null;
     }
