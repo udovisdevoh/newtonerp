@@ -8,6 +8,7 @@ import modules.taskModule.entityDefinitions.EntityEntity;
 import modules.taskModule.entityDefinitions.FieldEntity;
 import newtonERP.module.exception.EntityException;
 import newtonERP.module.generalEntity.ListOfValue;
+import newtonERP.orm.field.DynamicFieldCache;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.Fields;
 import newtonERP.orm.field.VolatileFields;
@@ -43,15 +44,22 @@ public abstract class AbstractEntity
 
 	try
 	{
-	    EntityEntity entitySearch = new EntityEntity();
-	    entitySearch.setData("systemName", getSystemName());
-	    entitySearch = (EntityEntity) entitySearch.get().get(0);
-	    FieldEntity search = new FieldEntity();
-	    search.setData(entitySearch.getForeignKeyName(), entitySearch
-		    .getPrimaryKeyValue());
-	    search.setData("dynamicField", true);
+	    Vector<AbstractOrmEntity> dataField = DynamicFieldCache
+		    .tryGetDataForEntity(getSystemName());
 
-	    Vector<AbstractOrmEntity> dataField = search.get();
+	    if (dataField == null)
+	    {
+		EntityEntity entitySearch = new EntityEntity();
+		entitySearch.setData("systemName", getSystemName());
+		entitySearch = (EntityEntity) entitySearch.get().get(0);
+		FieldEntity search = new FieldEntity();
+		search.setData(entitySearch.getForeignKeyName(), entitySearch
+			.getPrimaryKeyValue());
+		search.setData("dynamicField", true);
+		dataField = search.get();
+		DynamicFieldCache.add(dataField, getSystemName());
+	    }
+
 	    fieldsData.addAll(initFieldsFromDb(dataField));
 	} catch (Exception e)
 	{

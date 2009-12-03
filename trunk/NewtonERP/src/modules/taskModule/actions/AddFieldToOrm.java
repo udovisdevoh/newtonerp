@@ -9,6 +9,7 @@ import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.Orm;
 import newtonERP.orm.exceptions.OrmException;
+import newtonERP.orm.field.DynamicFieldCache;
 import newtonERP.orm.field.Field;
 import newtonERP.viewers.viewerData.BaseViewerData;
 
@@ -45,9 +46,9 @@ public class AddFieldToOrm extends AbstractAction
 
 	    try
 	    {
+		DynamicFieldCache.clear(entity.getSystemName());
 		Orm.addColumnToTable(entity, field);
 		Orm.createIndex(entity, field);
-
 		editUI
 			.addNormalMessage("Le champ a été inséré dans la base de donnée");
 	    } catch (OrmException e)
