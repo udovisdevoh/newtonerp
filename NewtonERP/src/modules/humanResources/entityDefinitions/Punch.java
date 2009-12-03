@@ -36,8 +36,8 @@ public class Punch extends AbstractOrmEntity
 	fieldsData.add(new FieldInt("No de Punch", getPrimaryKeyName()));
 	fieldsData.add(new FieldInt("Employer", new Employee()
 		.getForeignKeyName()));
-	fieldsData.add(new FieldDateTime("Arrivé", "in"));
-	fieldsData.add(new FieldDateTime("Départ", "out"));
+	fieldsData.add(new FieldDateTime("Arrivé", "pin"));
+	fieldsData.add(new FieldDateTime("Départ", "pout"));
 	FieldDouble diff = new FieldDouble("Durée", "diff");
 	diff.setCalcul(new FieldCalcule<Double>()
 	{
