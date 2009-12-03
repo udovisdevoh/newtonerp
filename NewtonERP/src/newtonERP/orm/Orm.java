@@ -664,6 +664,7 @@ public class Orm
 	for (AbstractOrmEntity entity : moduleEntities)
 	{
 	    createTableForEntity(entity);
+	    createIndexesForEntity(entity);
 	}
     }
 
@@ -719,6 +720,49 @@ public class Orm
 	System.out.println("Sql query produced : " + sqlQuery);
 
 	sgbd.execute(sqlQuery, OrmActions.CREATE);
+    }
+
+    private static void createIndexesForEntity(AbstractOrmEntity entity)
+	    throws Exception
+    {
+	// On cré des index pour chaque clef étrangère
+	for (String fieldName : entity.getFields().getKeyList())
+	    if ((fieldName.endsWith("ID") && !fieldName.startsWith("PK"))
+		    || fieldName.startsWith("system"))
+		createIndex(entity.getSystemName(), fieldName);
+    }
+
+    /**
+     * Sert à ajouter un index dans la table SQL de l'entité pour un field en
+     * particulier
+     * @param entity entité
+     * @param field champ
+     * @throws Exception si ça fail
+     */
+    public static void createIndex(AbstractOrmEntity entity, Field<?> field)
+	    throws Exception
+    {
+	createIndex(entity.getSystemName(), field.getSystemName());
+    }
+
+    /**
+     * Sert à ajouter un index dans la table SQL de l'entité pour un field en
+     * particulier
+     * @param entityName nom de l'entité
+     * @param fieldName nom du field
+     * @throws Exception si ça fail
+     */
+    public static void createIndex(String entityName, String fieldName)
+	    throws Exception
+    {
+	String indexName = fieldName + "_index";
+	String tableName = prefix + entityName;
+
+	String sqlQuery = "CREATE INDEX IF NOT EXISTS " + indexName + " ON "
+		+ tableName + " (" + fieldName + ")";
+
+	System.out.println("Sql query produced : " + sqlQuery);
+	sgbd.execute(sqlQuery, OrmActions.OTHER);
     }
 
     /**
