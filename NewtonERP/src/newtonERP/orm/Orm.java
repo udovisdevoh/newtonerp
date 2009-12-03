@@ -663,59 +663,62 @@ public class Orm
 	// For each entity in the list of module entities
 	for (AbstractOrmEntity entity : moduleEntities)
 	{
-	    // Be sure to create the table only if it doesn't already
-	    // exists
-	    String sqlQuery = "CREATE TABLE IF NOT EXISTS ";
-	    Collection<Field<?>> fields = ((AbstractEntity) entity).getFields()
-		    .getFields();
-
-	    sqlQuery += prefix + entity.getSystemName() + " ( ";
-
-	    // For each field into my entity
-	    for (Field<?> field : fields)
-	    {
-		// If it is a primary because it matches PK, else we
-		// check the datatypes and match them with a datatype
-		// good for the database
-		// TODO : Jo je ne comprend pas pourquoi tu fesait ca,
-		// bref ca buggait car il arrivait sur le if, ce n'était
-		// pas vrai alors il n'insérait aucun champs. Svp dire
-		// c'est quoi tu veut faire. La je l'ai enlevé, anyway
-		// ca sert a rien de faire un if avec aucun traitement
-		// non?
-		if (field.getCalcul() != null)
-		{
-		    // do not do anything
-		}
-		else if (field.getShortName().matches("PK.*"))
-		{
-		    sqlQuery += field.getShortName()
-			    + " INTEGER PRIMARY KEY AUTOINCREMENT, ";
-		}
-		else if (field instanceof FieldDouble)
-		{
-		    sqlQuery += field.getShortName() + " DOUBLE PRECISION, ";
-		}
-		else if (field instanceof FieldString
-			|| field instanceof FieldDateTime)
-		{
-		    sqlQuery += field.getShortName() + " STRING, ";
-		}
-		else if (field instanceof FieldBool
-			|| field instanceof FieldInt)
-		{
-		    sqlQuery += field.getShortName() + " INTEGER, ";
-		}
-	    }
-	    sqlQuery = sqlQuery.substring(0, sqlQuery.length() - 2) + " );";
-
-	    // TODO: Remove the next line when properly debugged
-	    System.out.println("Sql query produced : " + sqlQuery);
-
-	    sgbd.execute(sqlQuery, OrmActions.CREATE);
-
-	    sqlQuery = "";
+	    createTableForEntity(entity);
 	}
+    }
+
+    private static void createTableForEntity(AbstractOrmEntity entity)
+	    throws Exception
+    {
+	// Be sure to create the table only if it doesn't already
+	// exists
+	String sqlQuery = "CREATE TABLE IF NOT EXISTS ";
+	Collection<Field<?>> fields = ((AbstractEntity) entity).getFields()
+		.getFields();
+
+	sqlQuery += prefix + entity.getSystemName() + " ( ";
+
+	// For each field into my entity
+	for (Field<?> field : fields)
+	{
+	    // If it is a primary because it matches PK, else we
+	    // check the datatypes and match them with a datatype
+	    // good for the database
+	    // TODO : Jo je ne comprend pas pourquoi tu fesait ca,
+	    // bref ca buggait car il arrivait sur le if, ce n'était
+	    // pas vrai alors il n'insérait aucun champs. Svp dire
+	    // c'est quoi tu veut faire. La je l'ai enlevé, anyway
+	    // ca sert a rien de faire un if avec aucun traitement
+	    // non?
+	    if (field.getCalcul() != null)
+	    {
+		// do not do anything
+	    }
+	    else if (field.getShortName().matches("PK.*"))
+	    {
+		sqlQuery += field.getShortName()
+			+ " INTEGER PRIMARY KEY AUTOINCREMENT, ";
+	    }
+	    else if (field instanceof FieldDouble)
+	    {
+		sqlQuery += field.getShortName() + " DOUBLE PRECISION, ";
+	    }
+	    else if (field instanceof FieldString
+		    || field instanceof FieldDateTime)
+	    {
+		sqlQuery += field.getShortName() + " STRING, ";
+	    }
+	    else if (field instanceof FieldBool || field instanceof FieldInt)
+	    {
+		sqlQuery += field.getShortName() + " INTEGER, ";
+	    }
+	}
+	sqlQuery = sqlQuery.substring(0, sqlQuery.length() - 2) + " );";
+
+	// TODO: Remove the next line when properly debugged
+	System.out.println("Sql query produced : " + sqlQuery);
+
+	sgbd.execute(sqlQuery, OrmActions.CREATE);
     }
 
     /**
