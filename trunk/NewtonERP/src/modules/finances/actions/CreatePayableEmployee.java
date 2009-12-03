@@ -70,7 +70,6 @@ public class CreatePayableEmployee extends AbstractAction
 	newEmployee.newE();
 	// passé au ressources humaines pour setter "gains"
 	// new CalculatePeriodeSalary().doAction(newEmployee, null);
-
 	return null;
     }
 }

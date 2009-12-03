@@ -8,7 +8,9 @@ import newtonERP.module.AbstractEntity;
 import newtonERP.module.generalEntity.AlertEntity;
 
 /**
- * Action DebitFromBankAccount: called from PayingService ou PayingSupplier
+ * Action DebitFromBankAccount: called from PayingService,PayingSupplier ou
+ * PayingEmployee
+ * 
  * représente l'action de débiter le montant d'une transaction à payer, du
  * compte de banque correspondant.
  * 
