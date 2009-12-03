@@ -1029,6 +1029,9 @@ nouveaux field, actionEntity et EntityEntity doivent être créés par le bouton
 de droits pour nouvelles entitées.
   * Module de module: création automatique des droits lors de création d'action sur module existant.
   * FieldEntity: champ de clef primaire: nom visible par default lors de création de clef primaire
+  * Séparation de méthodes dans classe Orm
+  * Ajout automatique d'indexe sur clef étrangère pour accélérer les requêtes select de relation 1 à plusieurs
+  * Implémentation d'un cache spécialisé qui accélère les dynamic fields
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
   * ...à livrer...
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
