@@ -36,6 +36,7 @@ public class PayableEmployee extends AbstractOrmEntity
 	AccessorManager.addAccessor(this, new Employee());
 	AccessorManager.addAccessor(this, new StateType());
 	AccessorManager.addAccessor(this, new BankAccount());
+	AccessorManager.addAccessor(this, new PayablePeriod());
 	setVisibleName("Employés/paies");
     }
 
@@ -50,9 +51,8 @@ public class PayableEmployee extends AbstractOrmEntity
 	fieldsInit.add(new FieldInt("Employee", new Employee()
 		.getForeignKeyName()));
 	// periode de paye
-	fieldsInit.add(new FieldDate("Début de période", "beginning"));
-	fieldsInit.add(new FieldDate("Fin de période", "end"));
-
+	fieldsInit.add(new FieldInt("Période de paie", new PayablePeriod()
+		.getForeignKeyName()));
 	fieldsInit.add(new FieldDate("Date de paiement", "paymentDate"));
 	fieldsInit.add(new FieldCurrency("Impôt Fedéral.", "fedTax"));
 	fieldsInit.add(new FieldCurrency("Impôt Provincial.", "provTax"));
