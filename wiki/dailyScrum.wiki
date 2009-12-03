@@ -984,11 +984,28 @@ n'a jamais été créé en tant que table dans la base de donnée.
 
 ==Jonatan Cloutier==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
-  * ...livré...
+  * terminé d'intégré les field dynamique
+  * place automatiquement la date de fin lors de la création d'un plage horaire a
+partir d'une horaire
+  * affichage des messages d'erreur de la validation
+  * permettre de retiré des global action et des spécifique action
+  * ajouté la possibilité de masqué un module au utilisateur(attribut visible dans module)
+  * ajout d'un horaire multiple
+  * ajout d'un début très sommaire de schéma de base de donnée
+  * ajout d'un image viewer pour affiché seulement une image
+  * correction des problème de parse sur le currency field (bug 26)
+  * correction des probleme de calcul sur les currecy field (bug 28)
+  * validation de type et des cast  (parse) sur les setField
+  * affichage des message d'erreur provenant des validateur, et présence d'un message par défaut (erreur inconnue)
+  * les validateur peuvent maintenant validé en fonction de d'autre champ de l'entity
+  * révision du langage javaScript et apprentissage de l'utilisation du xml (DOM) en java
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
-  * ...à livrer...
+  * terminé le module de ressource humaine pour permettre les paye ainsi que les quelque élément manquant
+  * débuté l'export/import XML (taskViewer)
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
-  * ...problème, besoin d'aide, qui aidera...
+  * aprendre le java xml et trouvé les ressource pour l'utilisé
+  * problème de théorie des graph pour le schéma de base de donnée (a réglé si on en a le temp)
+  * difficulté a mettre en oeuvre les horaire multiple
 
 =03/12/2009=
 
