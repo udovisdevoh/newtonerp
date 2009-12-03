@@ -44,10 +44,10 @@ public class CalculatePeriodeSalary extends AbstractAction
 	{
 	    Vector<AbstractOrmEntity> search = new Vector<AbstractOrmEntity>();
 	    Punch punchSearch = new Punch();
-	    punchSearch.setData("in", payPer.getData("beginning"));
+	    punchSearch.setData("pin", payPer.getData("beginning"));
 	    search.add(punchSearch);
 	    punchSearch = new Punch();
-	    punchSearch.setData("in", payPer.getData("end"));
+	    punchSearch.setData("pin", payPer.getData("end"));
 	    search.add(punchSearch);
 
 	    Vector<AbstractOrmEntity> punchs = punchSearch.get(punchSearch);
