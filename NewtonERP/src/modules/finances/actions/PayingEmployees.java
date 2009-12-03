@@ -34,9 +34,15 @@ public class PayingEmployees extends AbstractAction
     {
 	int unpaid = 0;
 	PayableEmployee searchEmp = new PayableEmployee();
+	// employés non payés
 	searchEmp.setData(new StateType().getForeignKeyName(), 1);
 
 	Vector<AbstractOrmEntity> employeeToPay = Orm.select(searchEmp);
+
+	for (int i = 0; i < employeeToPay.size(); i++)
+	    new CalculateTaxAndSalary().doAction(employeeToPay.get(i), null);
+
+	employeeToPay = Orm.select(searchEmp);
 
 	for (int i = 0; i < employeeToPay.size(); i++)
 

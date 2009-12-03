@@ -5,10 +5,13 @@ import java.util.Hashtable;
 
 import modules.finances.entityDefinitions.BankAccount;
 import modules.finances.entityDefinitions.PayableEmployee;
+import modules.finances.entityDefinitions.PayablePeriod;
 import modules.finances.entityDefinitions.StateType;
 import modules.humanResources.entityDefinitions.Employee;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
+import newtonERP.module.AbstractOrmEntity;
+import newtonERP.orm.Orm;
 
 /**
  * Action CreatePayableEmployee: Creer un entité PayableEmployee en fonction de
@@ -33,11 +36,10 @@ public class CreatePayableEmployee extends AbstractAction
 	    Hashtable<String, String> parameters) throws Exception
     {
 	Employee emp = (Employee) entity;
-
-	// keys pas encore déterminées, à voir avec jo.C
-	// je doit recevoir en param date en string comme:Ex:2001-01-01
-	String[] dateBegin = parameters.get("key?").split("-");
-	String[] dateEnd = parameters.get("key?").split("-");
+	PayablePeriod searchCurrentPeriod = new PayablePeriod();
+	searchCurrentPeriod.setData("isCurrentPeriod", true);
+	AbstractOrmEntity period = Orm.selectUnique(searchCurrentPeriod);
+	Integer periodId = period.getPrimaryKeyValue();
 
 	// création PayableEmployee champs vièrges sauf date:(période de
 	// paie actuelle)
@@ -46,13 +48,7 @@ public class CreatePayableEmployee extends AbstractAction
 	newEmployee.setData(new Employee().getForeignKeyName(), emp
 		.getPrimaryKeyValue());
 
-	newEmployee.setData("beginning", new GregorianCalendar(Integer
-		.parseInt(dateBegin[0]), Integer.parseInt(dateBegin[1]) - 1,
-		Integer.parseInt(dateBegin[2])));
-
-	newEmployee.setData("end", new GregorianCalendar(Integer
-		.parseInt(dateEnd[0]), Integer.parseInt(dateEnd[1]) - 1,
-		Integer.parseInt(dateEnd[2])));
+	newEmployee.setData(new PayablePeriod().getForeignKeyName(), periodId);
 
 	newEmployee.setData("paymentDate", new GregorianCalendar(0, 0, 0));
 

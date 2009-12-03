@@ -1,13 +1,17 @@
 package modules.finances;
 
+import java.util.GregorianCalendar;
+
 import modules.common.entityDefinitions.Address;
 import modules.common.entityDefinitions.Country;
 import modules.common.entityDefinitions.State;
 import modules.finances.actions.DisplayUnpaidServices;
+import modules.finances.actions.PayingEmployees;
 import modules.finances.entityDefinitions.Bank;
 import modules.finances.entityDefinitions.BankAccount;
 import modules.finances.entityDefinitions.FederalWageBracket;
 import modules.finances.entityDefinitions.PayableEmployee;
+import modules.finances.entityDefinitions.PayablePeriod;
 import modules.finances.entityDefinitions.ProvincialWageBracket;
 import modules.finances.entityDefinitions.ServiceProvider;
 import modules.finances.entityDefinitions.ServiceTransaction;
@@ -63,6 +67,9 @@ public class Finances extends Module
 	addGlobalActionMenuItem("Employee et paies", new BaseAction("GetList",
 		new PayableEmployee()));
 	// //////////////////////////////////
+	addGlobalActionMenuItem("Périodes de paies", new BaseAction("GetList",
+		new PayablePeriod()));
+	addGlobalActionMenuItem("payer employés", new PayingEmployees());
 
 	setVisibleName("Finances");
 
@@ -178,5 +185,20 @@ public class Finances extends Module
 	pwb.setData("tax", 21.0);
 	pwb.newE();
 	// -----------------------------------------------------------
+
+	// Pour test
+	PayablePeriod pp = new PayablePeriod();
+	pp.setData("beginning", new GregorianCalendar(2009, 10, 22));
+	pp.setData("end", new GregorianCalendar(2009, 11, 05));
+	pp.setData("isCurrentPeriod", true);
+	pp.newE();
+	pp.setData("beginning", new GregorianCalendar(2009, 11, 06));
+	pp.setData("end", new GregorianCalendar(2009, 11, 19));
+	pp.setData("isCurrentPeriod", false);
+	pp.newE();
+	pp.setData("beginning", new GregorianCalendar(2009, 11, 20));
+	pp.setData("end", new GregorianCalendar(2010, 0, 02));
+	pp.setData("isCurrentPeriod", false);
+	pp.newE();
     }
 }
