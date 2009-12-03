@@ -36,7 +36,7 @@ public class PayableEmployee extends AbstractOrmEntity
 	AccessorManager.addAccessor(this, new Employee());
 	AccessorManager.addAccessor(this, new StateType());
 	AccessorManager.addAccessor(this, new BankAccount());
-	setVisibleName("Employés et paies");
+	setVisibleName("Employés/paies");
     }
 
     @Override

@@ -32,7 +32,10 @@ public class PayingEmployee extends AbstractAction
 	    Hashtable<String, String> parameters) throws Exception
     {
 	PayableEmployee emp = (PayableEmployee) entity;
-	PayableEmployee employee = (PayableEmployee) Orm.selectUnique(emp);
+	//
+	new CalculateTaxAndSalary().doAction(emp, null);
+	//
+	AbstractOrmEntity employee = Orm.selectUnique(emp);
 
 	BankAccount searchBank = new BankAccount();
 	searchBank.setData(new BankAccount().getPrimaryKeyName(), employee
@@ -61,6 +64,5 @@ public class PayingEmployee extends AbstractAction
 	    return null;
 	}
 	return alert;
-
     }
 }
