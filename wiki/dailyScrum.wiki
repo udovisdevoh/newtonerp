@@ -970,9 +970,12 @@ n'a jamais été créé en tant que table dans la base de donnée.
   * Actions: PayingEmployee,PayingEmployees,
   * Actions: CreateUpdatePayableEmployee,CalculateFederalTax
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
-  * ...à livrer...
+  * Entité de période de paie PayablePeriode
+  * Modifier PayableEmployee en fonction de PayablePeriode
+  * modifier CalculateFederalTax en CalculateTaxAndSalary 
+  * modifier CreateUpdatePayableEmployee -> CreatePayableEmployee (call action de jo.C)
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
-  * ...problème, besoin d'aide, qui aidera...
+  * Aucun commentaires...
 
 ==Gabriel Therrien==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
@@ -1041,7 +1044,10 @@ de droits pour nouvelles entitées.
 
 ==Pascal Lemay==
  ===1- qu'est-ce que j'ai fais (livré) depuis "hier"?===
-  * ...livré...
+  * Entité de période de paie PayablePeriode
+  * Modifier PayableEmployee en fonction de PayablePeriode
+  * modifier CalculateFederalTax en CalculateTaxAndSalary 
+  * modifier CreateUpdatePayableEmployee -> CreatePayableEmployee (call action de jo.C)
  ===2- qu'est-ce que je ferais (livré) aujourd'hui?===
   * ...à livrer...
  ===3- est-ce que j'ai eu des difficultés particulières? (besoin d'aide ?)===
