@@ -90,7 +90,7 @@ public class FieldViewer
 	String html = "";
 	String yesIsChecked, noIsChecked;
 
-	if ((Boolean) field.getData())
+	if (field.getData() != null && (Boolean) field.getData())
 	{
 	    yesIsChecked = " checked";
 	    noIsChecked = "";
