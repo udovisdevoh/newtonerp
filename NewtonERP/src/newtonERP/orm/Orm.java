@@ -11,8 +11,8 @@ import newtonERP.module.Module;
 import newtonERP.module.exception.ModuleException;
 import newtonERP.orm.exceptions.OrmException;
 import newtonERP.orm.field.Field;
+import newtonERP.orm.sgbd.AbstractSgbd;
 import newtonERP.orm.sgbd.SgbdSqlite;
-import newtonERP.orm.sgbd.Sgbdable;
 import newtonERP.taskManager.TaskManager;
 
 /**
@@ -30,7 +30,8 @@ import newtonERP.taskManager.TaskManager;
  */
 public class Orm
 {
-    private static Sgbdable sgbd = new SgbdSqlite();
+    private static AbstractSgbd sgbd = new SgbdSqlite();// On cré la référence
+							// vers le SGBD voulu
 
     /**
      * Alter table
