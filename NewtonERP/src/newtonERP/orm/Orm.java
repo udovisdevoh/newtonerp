@@ -1,25 +1,16 @@
 package newtonERP.orm;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Collection;
 import java.util.Hashtable;
-import java.util.Iterator;
 import java.util.Vector;
 
 import newtonERP.common.ListModule;
-import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.Module;
 import newtonERP.module.exception.ModuleException;
 import newtonERP.orm.exceptions.OrmException;
 import newtonERP.orm.field.Field;
-import newtonERP.orm.field.Fields;
-import newtonERP.orm.field.type.FieldBool;
-import newtonERP.orm.field.type.FieldDateTime;
-import newtonERP.orm.field.type.FieldDouble;
-import newtonERP.orm.field.type.FieldInt;
-import newtonERP.orm.field.type.FieldString;
 import newtonERP.orm.sgbd.SgbdSqlite;
 import newtonERP.orm.sgbd.Sgbdable;
 import newtonERP.taskManager.TaskManager;
@@ -40,7 +31,6 @@ import newtonERP.taskManager.TaskManager;
 public class Orm
 {
     private static Sgbdable sgbd = new SgbdSqlite();
-    private static String prefix = "Bee_";
 
     /**
      * Alter table
@@ -53,28 +43,7 @@ public class Orm
     public static ResultSet addColumnToTable(AbstractOrmEntity entity,
 	    Field<?> field) throws OrmException
     {
-	String sqlQuery = "ALTER TABLE " + prefix + entity.getSystemName()
-		+ " ADD COLUMN ";
-
-	if (field instanceof FieldDouble)
-	{
-	    sqlQuery += " " + field.getShortName() + " DOUBLE PRECISION;";
-	}
-	else if (field instanceof FieldString || field instanceof FieldDateTime)
-	{
-	    sqlQuery += " " + field.getShortName() + " STRING;";
-	}
-	else if (field instanceof FieldBool || field instanceof FieldInt)
-	{
-	    sqlQuery += " " + field.getShortName() + " INTEGER;";
-	}
-
-	// TODO: Remove the next line when it will be properly debugged
-	System.out.println("SQL query produced : " + sqlQuery);
-
-	return sgbd.execute(sqlQuery, OrmActions.OTHER);
-
-	// todo: mettre une valeur par defaut dans la colone ajoute
+	return sgbd.addColumnToTable(entity, field);
     }
 
     /**
@@ -94,18 +63,7 @@ public class Orm
 	    AbstractOrmEntity searchEntity, Vector<String> searchCriteriasParam)
 	    throws OrmException
     {
-	String sqlQuery = "SELECT * FROM " + prefix
-		+ searchEntity.getSystemName();
-
-	if (searchCriteriasParam != null)
-	    sqlQuery = buildWhereClauseForQuery(sqlQuery, searchCriteriasParam);
-
-	// TODO: Remove the next line when it will be properly debugged
-	System.out.println("SQL query produced : " + sqlQuery);
-
-	ResultSet rs = sgbd.execute(sqlQuery, OrmActions.SEARCH);
-
-	return EntityCreator.createEntitiesFromResultSet(rs, searchEntity);
+	return sgbd.select(searchEntity, searchCriteriasParam);
     }
 
     /**
@@ -122,19 +80,7 @@ public class Orm
     public static Vector<AbstractOrmEntity> select(
 	    Vector<AbstractOrmEntity> searchEntities) throws OrmException
     {
-	String sqlQuery = "SELECT * FROM " + prefix
-		+ searchEntities.get(0).getSystemName();
-
-	if (!searchEntities.isEmpty())
-	    sqlQuery += buildWhereClauseForQuery(searchEntities) + ";";
-
-	// TODO: Remove the next line when it will be properly debugged
-	System.out.println("SQL query produced : " + sqlQuery);
-
-	ResultSet rs = sgbd.execute(sqlQuery, OrmActions.SEARCH);
-
-	return EntityCreator.createEntitiesFromResultSet(rs, searchEntities
-		.get(0));
+	return sgbd.select(searchEntities);
     }
 
     /**
@@ -182,160 +128,13 @@ public class Orm
      * Method used to insert an entity in the databse based into the entity
      * passed in parameter
      * 
-     * @param newEntity the entity to be inserted
-     * @return valeur de a cle primaire
-     * @throws Exception si insertion fail
-     */
-    @SuppressWarnings("unchecked")
-    public static int insert_temp(AbstractOrmEntity newEntity) throws Exception
-    {
-	String sqlQuery = "INSERT INTO " + prefix + newEntity.getSystemName()
-		+ " (";
-	String valuesQuery = " VALUES (";
-
-	// We now iterate through the data so we can add the fields to the query
-	Iterator dataIterator = newEntity.getFields().iterator();
-	while (dataIterator.hasNext())
-	{
-	    // Retrieve key
-	    Field<?> field = (Field) dataIterator.next();
-	    if (!dataIterator.hasNext())
-	    {
-		if (field.getCalcul() == null)
-		{
-		    if (!field.getShortName().matches("PK.*")
-			    && field.getData() != null)
-		    {
-			sqlQuery += "'" + field.getShortName() + "') ";
-			valuesQuery += "'" + field.getDataString(true) + "') ";
-		    }
-		    else
-		    {
-			sqlQuery = sqlQuery.substring(0, sqlQuery.length() - 2);
-			sqlQuery += ")";
-
-			valuesQuery = valuesQuery.substring(0, valuesQuery
-				.length() - 2);
-			valuesQuery += ");";
-		    }
-		}
-		else
-		{
-		    sqlQuery = sqlQuery.substring(0, sqlQuery.length() - 2);
-		    sqlQuery += ")";
-
-		    valuesQuery = valuesQuery.substring(0,
-			    valuesQuery.length() - 2);
-		    valuesQuery += ");";
-		}
-	    }
-	    else
-	    {
-		if (field.getCalcul() == null)
-		{
-		    if (!field.getShortName().matches("PK.*")
-			    && field.getData() != null)
-		    {
-			sqlQuery += "'" + field.getShortName() + "', ";
-			valuesQuery += "'" + field.getDataString(true) + "', ";
-		    }
-		}
-		else
-		{
-		    sqlQuery = sqlQuery.substring(0, sqlQuery.length() - 2);
-		    sqlQuery += ")";
-
-		    valuesQuery = valuesQuery.substring(0,
-			    valuesQuery.length() - 2);
-		    valuesQuery += ");";
-		}
-	    }
-	}
-
-	sqlQuery += valuesQuery;
-
-	// TODO: Remove the next line once this will be properly debugged
-	System.out.println("SQL query produced : " + sqlQuery);
-
-	ResultSet rs = sgbd.execute(sqlQuery, OrmActions.INSERT);
-
-	try
-	{
-	    return rs.getInt(1);
-	} catch (SQLException e)
-	{
-	    // s'il n'y a pas de cle primaire dans cette table, on ne throw donc
-	    // pas cette exception
-	    return 0;
-	}
-    }
-
-    /**
-     * Method used to insert an entity in the databse based into the entity
-     * passed in parameter
-     * 
      * @param newEntity the entity to add
      * @return le id de clé primaire ajoutée
      * @throws Exception si ça fail
      */
     public static int insert(AbstractOrmEntity newEntity) throws Exception
     {
-	String sqlQuery = "INSERT INTO " + prefix + newEntity.getSystemName()
-		+ "( ";
-
-	Iterator<?> keyIterator = newEntity.getFields().iterator();
-
-	while (keyIterator.hasNext())
-	{
-	    Field<?> field = (Field<?>) keyIterator.next();
-
-	    if (!field.getShortName().matches("PK.*"))
-	    {
-		if (field.getCalcul() == null && field.getData() != null)
-		{
-		    sqlQuery += "'" + field.getShortName() + "', ";
-		}
-	    }
-
-	}
-
-	sqlQuery = sqlQuery.substring(0, sqlQuery.length() - 2);
-	sqlQuery += ") VALUES (";
-
-	Iterator<?> dataIterator = newEntity.getFields().iterator();
-
-	while (dataIterator.hasNext())
-	{
-	    Field<?> field = (Field<?>) dataIterator.next();
-
-	    if (!field.getShortName().matches("PK.*"))
-	    {
-		if (field.getCalcul() == null && field.getData() != null)
-		{
-		    sqlQuery += "'" + field.getDataString(true) + "', ";
-		}
-	    }
-	}
-
-	sqlQuery = sqlQuery.substring(0, sqlQuery.length() - 2);
-	sqlQuery += ");";
-
-	// TODO: Remove the next line once this will be properly debugged
-	System.out.println("SQL query produced : " + sqlQuery);
-
-	ResultSet rs = sgbd.execute(sqlQuery, OrmActions.INSERT);
-
-	int primaryKeyValue;
-	try
-	{
-	    primaryKeyValue = rs.getInt(1);
-
-	} catch (SQLException e)
-	{
-	    // s'il n'y a pas de cle primaire dans cette table, on ne throw donc
-	    // pas cette exception
-	    primaryKeyValue = 0;
-	}
+	int primaryKeyValue = sgbd.insert(newEntity);
 
 	if (primaryKeyValue != 0)
 	    TaskManager.executeTasks(newEntity, primaryKeyValue);
@@ -366,15 +165,7 @@ public class Orm
     public static void delete(AbstractOrmEntity searchEntity,
 	    Vector<String> searchCriterias) throws Exception
     {
-	String sqlQuery = "DELETE FROM " + prefix
-		+ searchEntity.getSystemName();
-
-	sqlQuery = buildWhereClauseForQuery(sqlQuery, searchCriterias);
-
-	// TODO: Remove the next line once this will be properly debugged
-	System.out.println("Sql query produced : " + sqlQuery);
-
-	sgbd.execute(sqlQuery, OrmActions.DELETE);
+	sgbd.delete(searchEntity, searchCriterias);
     }
 
     /**
@@ -389,15 +180,7 @@ public class Orm
     public static void delete(Vector<AbstractOrmEntity> searchEntities)
 	    throws Exception
     {
-	String sqlQuery = "DELETE FROM " + prefix
-		+ searchEntities.get(0).getSystemName();
-
-	sqlQuery += buildWhereClauseForQuery(searchEntities) + ";";
-
-	// TODO: Remove the next line once this will be properly debugged
-	System.out.println("Sql query produced : " + sqlQuery);
-
-	sgbd.execute(sqlQuery, OrmActions.DELETE);
+	sgbd.delete(searchEntities);
     }
 
     /**
@@ -426,17 +209,7 @@ public class Orm
     public static void update(AbstractOrmEntity entityContainingChanges,
 	    Vector<String> searchCriterias) throws Exception
     {
-	String sqlQuery = "UPDATE " + prefix
-		+ entityContainingChanges.getSystemName() + " SET ";
-
-	sqlQuery = buildSetClauseForQuery(entityContainingChanges.getFields(),
-		sqlQuery);
-	sqlQuery = buildWhereClauseForQuery(sqlQuery, searchCriterias);
-
-	// TODO: Remove this once it will be properly debugged
-	System.out.println("Sql query produced : " + sqlQuery);
-
-	sgbd.execute(sqlQuery, OrmActions.UPDATE);
+	sgbd.update(entityContainingChanges, searchCriterias);
     }
 
     /**
@@ -452,17 +225,7 @@ public class Orm
     public static void update(Vector<AbstractOrmEntity> searchEntities,
 	    AbstractOrmEntity entityContainingChanges) throws Exception
     {
-	String sqlQuery = "UPDATE " + prefix
-		+ entityContainingChanges.getSystemName() + " SET ";
-
-	sqlQuery = buildSetClauseForQuery(entityContainingChanges.getFields(),
-		sqlQuery);
-	sqlQuery += buildWhereClauseForQuery(searchEntities) + ";";
-
-	// TODO: Remove this once it will be properly debugged
-	System.out.println("Sql query produced : " + sqlQuery);
-
-	sgbd.execute(sqlQuery, OrmActions.UPDATE);
+	sgbd.update(searchEntities, entityContainingChanges);
     }
 
     /**
@@ -478,154 +241,7 @@ public class Orm
     public static void updateUnique(AbstractOrmEntity searchEntity,
 	    AbstractOrmEntity entityContainingChanges) throws Exception
     {
-	String sqlQuery = "UPDATE " + prefix
-		+ entityContainingChanges.getSystemName() + " SET ";
-
-	sqlQuery = buildSetClauseForQuery(entityContainingChanges.getFields(),
-		sqlQuery);
-	sqlQuery = buildWhereClauseForQuery(searchEntity, sqlQuery);
-
-	// TODO: Remove this once it will be properly debugged
-	System.out.println("Sql query produced : " + sqlQuery);
-
-	sgbd.execute(sqlQuery, OrmActions.UPDATE);
-    }
-
-    /**
-     * Use only for complex queries. Use buildWhereClauseForQuery instead
-     * 
-     * Method used to build the where clause for the delete, select and update
-     * methods.
-     * 
-     * @param sqlQuery the non-finished sqlQuery that has been produced
-     * @param searchCriterias the parameters of the where clause under form of
-     *            strings
-     * @return sqlQuery the sqlQuery with the where statement
-     */
-    private static String buildWhereClauseForQuery(String sqlQuery,
-	    Vector<String> searchCriterias)
-    {
-	sqlQuery += " WHERE ( ";
-
-	// We add each string to the sqlQuery
-	for (String parameter : searchCriterias)
-	    sqlQuery += parameter;
-
-	return sqlQuery + " );";
-    }
-
-    /**
-     * This is the new where builder!
-     * 
-     * Method used to build the where clause for the query
-     * 
-     * @param sqlQuery the non-finished sqlQuery
-     * @param searchEntities the entities used for the search
-     * @return the sqlQuery
-     */
-    private static String buildWhereClauseForQuery(
-	    Vector<AbstractOrmEntity> searchEntities)
-    {
-	String whereClause = "";
-	int entityPosition = 0;
-	boolean addedCriteriaToWhereCondition = false;
-	whereClause += " WHERE ";
-
-	for (AbstractOrmEntity entity : searchEntities)
-	{
-	    // Si les fields de
-	    // cette entité
-	    // ne contiennent que des null
-	    if (!entity.getFields().containsValues())
-		continue;
-
-	    entityPosition += 1;
-	    whereClause += "( ";
-
-	    for (Field<?> field : entity.getFields().getFields())
-	    {
-		if (field.getCalcul() == null && field.getData() != null)
-		{
-		    whereClause += field.getShortName() + " "
-			    + field.getOperator() + " '"
-			    + field.getDataString(true) + "'";
-
-		    whereClause += " AND ";
-		}
-	    }
-
-	    whereClause = whereClause.substring(0, whereClause.length() - 4);
-
-	    if (entity.getFields().getFields().size() < entityPosition)
-		whereClause += " OR ";
-
-	    whereClause += ")";
-	    // au moins un field était
-	    // utilisable donc on cré
-	    // un where
-	    addedCriteriaToWhereCondition = true;
-	}
-
-	if (addedCriteriaToWhereCondition)
-	    return whereClause; // On retourne la clause du where car elle n'est
-	// pas vide
-	return "";// Sinon, aucune clause where ne doit être ajoutée
-    }
-
-    /**
-     * This is the new where builder!
-     * 
-     * Method used to build the where clause for the query
-     * 
-     * @param sqlQuery the non-finished sqlQuery
-     * @param searchEntities the entities used for the search
-     * @return the sqlQuery
-     */
-    private static String buildWhereClauseForQuery(
-	    AbstractOrmEntity searchEntity, String sqlQuery)
-    {
-	sqlQuery += " WHERE ( ";
-
-	for (Field<?> field : searchEntity.getFields().getFields())
-	{
-	    if (field.getCalcul() == null && field.getData() != null)
-	    {
-		sqlQuery += field.getShortName() + " " + field.getOperator()
-			+ " '" + field.getDataString(true) + "'";
-
-		sqlQuery += " AND ";
-	    }
-	}
-
-	sqlQuery = sqlQuery.substring(0, sqlQuery.length() - 4);
-
-	return sqlQuery += ");";
-    }
-
-    /**
-     * Method used internally by the update method to build the set statement
-     * 
-     * @param fields the data from the entities
-     * @param sqlQuery the non-finished sqlQuery
-     * @return the sqlQuery
-     */
-    private static String buildSetClauseForQuery(Fields fields, String sqlQuery)
-    {
-	Iterator<Field<?>> dataIterator = fields.iterator();
-
-	while (dataIterator.hasNext())
-	{
-	    // Retrieve key
-	    Field<?> data = dataIterator.next();
-	    if (!data.getShortName().matches("PK.*")
-		    && data.getCalcul() == null && data.getData() != null)
-	    {
-		sqlQuery += data.getShortName() + "='"
-			+ data.getDataString(true) + "', ";
-	    }
-	}
-
-	return sqlQuery.substring(0, sqlQuery.length() - 2);
+	sgbd.updateUnique(searchEntity, entityContainingChanges);
     }
 
     /**
@@ -671,55 +287,7 @@ public class Orm
     private static void createTableForEntity(AbstractOrmEntity entity)
 	    throws Exception
     {
-	// Be sure to create the table only if it doesn't already
-	// exists
-	String sqlQuery = "CREATE TABLE IF NOT EXISTS ";
-	Collection<Field<?>> fields = ((AbstractEntity) entity).getFields()
-		.getFields();
-
-	sqlQuery += prefix + entity.getSystemName() + " ( ";
-
-	// For each field into my entity
-	for (Field<?> field : fields)
-	{
-	    // If it is a primary because it matches PK, else we
-	    // check the datatypes and match them with a datatype
-	    // good for the database
-	    // TODO : Jo je ne comprend pas pourquoi tu fesait ca,
-	    // bref ca buggait car il arrivait sur le if, ce n'était
-	    // pas vrai alors il n'insérait aucun champs. Svp dire
-	    // c'est quoi tu veut faire. La je l'ai enlevé, anyway
-	    // ca sert a rien de faire un if avec aucun traitement
-	    // non?
-	    if (field.getCalcul() != null)
-	    {
-		// do not do anything
-	    }
-	    else if (field.getShortName().matches("PK.*"))
-	    {
-		sqlQuery += field.getShortName()
-			+ " INTEGER PRIMARY KEY AUTOINCREMENT, ";
-	    }
-	    else if (field instanceof FieldDouble)
-	    {
-		sqlQuery += field.getShortName() + " DOUBLE PRECISION, ";
-	    }
-	    else if (field instanceof FieldString
-		    || field instanceof FieldDateTime)
-	    {
-		sqlQuery += field.getShortName() + " STRING, ";
-	    }
-	    else if (field instanceof FieldBool || field instanceof FieldInt)
-	    {
-		sqlQuery += field.getShortName() + " INTEGER, ";
-	    }
-	}
-	sqlQuery = sqlQuery.substring(0, sqlQuery.length() - 2) + " );";
-
-	// TODO: Remove the next line when properly debugged
-	System.out.println("Sql query produced : " + sqlQuery);
-
-	sgbd.execute(sqlQuery, OrmActions.CREATE);
+	sgbd.createTableForEntity(entity);
     }
 
     private static void createIndexesForEntity(AbstractOrmEntity entity)
@@ -755,14 +323,7 @@ public class Orm
     public static void createIndex(String entityName, String fieldName)
 	    throws Exception
     {
-	String indexName = fieldName + "_index";
-	String tableName = prefix + entityName;
-
-	String sqlQuery = "CREATE INDEX IF NOT EXISTS " + indexName + " ON "
-		+ tableName + " (" + fieldName + ")";
-
-	System.out.println("Sql query produced : " + sqlQuery);
-	sgbd.execute(sqlQuery, OrmActions.OTHER);
+	sgbd.createIndex(entityName, fieldName);
     }
 
     /**
@@ -804,14 +365,6 @@ public class Orm
     public static boolean isEntityExists(String entitySystemName)
 	    throws Exception
     {
-	String sqlQuery = "SELECT name FROM sqlite_master where name='"
-		+ prefix + entitySystemName + "'";
-
-	// TODO: Remove the next line when it will be properly debugged
-	System.out.println("SQL query produced : " + sqlQuery);
-
-	ResultSet rs = sgbd.execute(sqlQuery, OrmActions.SEARCH);
-
-	return rs.next();
+	return sgbd.isEntityExists(entitySystemName);
     }
 }
