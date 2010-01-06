@@ -31,7 +31,8 @@ import newtonERP.taskManager.TaskManager;
 public class Orm
 {
     private static AbstractSgbd sgbd = new SgbdSqlite();// On cré la référence
-							// vers le SGBD voulu
+
+    // vers le SGBD voulu
 
     /**
      * Alter table
@@ -64,7 +65,8 @@ public class Orm
 	    AbstractOrmEntity searchEntity, Vector<String> searchCriteriasParam)
 	    throws OrmException
     {
-	return sgbd.select(searchEntity, searchCriteriasParam);
+	return EntityCreator.createEntitiesFromResultSet(sgbd.select(
+		searchEntity, searchCriteriasParam), searchEntity);
     }
 
     /**
@@ -81,7 +83,8 @@ public class Orm
     public static Vector<AbstractOrmEntity> select(
 	    Vector<AbstractOrmEntity> searchEntities) throws OrmException
     {
-	return sgbd.select(searchEntities);
+	return EntityCreator.createEntitiesFromResultSet(sgbd
+		.select(searchEntities), searchEntities.get(0));
     }
 
     /**

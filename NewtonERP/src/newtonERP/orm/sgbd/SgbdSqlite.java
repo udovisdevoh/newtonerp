@@ -11,7 +11,6 @@ import java.util.Vector;
 
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
-import newtonERP.orm.EntityCreator;
 import newtonERP.orm.OrmActions;
 import newtonERP.orm.exceptions.OrmException;
 import newtonERP.orm.exceptions.OrmSqlException;
@@ -32,6 +31,8 @@ import newtonERP.orm.field.type.FieldString;
 public class SgbdSqlite extends AbstractSgbd
 {
     private static String prefix = "Bee_";
+
+    private static String dataBaseFileName = "test.db";
 
     private static Connection connexion;
 
@@ -80,7 +81,8 @@ public class SgbdSqlite extends AbstractSgbd
 	try
 	{
 	    Class.forName("org.sqlite.JDBC");
-	    connexion = DriverManager.getConnection("jdbc:sqlite:test.db");
+	    connexion = DriverManager.getConnection("jdbc:sqlite:"
+		    + dataBaseFileName);
 	} catch (Exception e)
 	{
 	    throw new OrmSqlException("Error connecting to the database : "
@@ -117,7 +119,7 @@ public class SgbdSqlite extends AbstractSgbd
     }
 
     @Override
-    public Vector<AbstractOrmEntity> select(AbstractOrmEntity searchEntity,
+    public ResultSet select(AbstractOrmEntity searchEntity,
 	    Vector<String> searchCriteriasParam) throws OrmException
     {
 	String sqlQuery = "SELECT * FROM " + prefix
@@ -131,7 +133,7 @@ public class SgbdSqlite extends AbstractSgbd
 
 	ResultSet rs = execute(sqlQuery, OrmActions.SEARCH);
 
-	return EntityCreator.createEntitiesFromResultSet(rs, searchEntity);
+	return rs;
     }
 
     /**
@@ -272,8 +274,8 @@ public class SgbdSqlite extends AbstractSgbd
     }
 
     @Override
-    public Vector<AbstractOrmEntity> select(
-	    Vector<AbstractOrmEntity> searchEntities) throws OrmException
+    public ResultSet select(Vector<AbstractOrmEntity> searchEntities)
+	    throws OrmException
     {
 	String sqlQuery = "SELECT * FROM " + prefix
 		+ searchEntities.get(0).getSystemName();
@@ -286,8 +288,7 @@ public class SgbdSqlite extends AbstractSgbd
 
 	ResultSet rs = execute(sqlQuery, OrmActions.SEARCH);
 
-	return EntityCreator.createEntitiesFromResultSet(rs, searchEntities
-		.get(0));
+	return rs;
     }
 
     @Override
