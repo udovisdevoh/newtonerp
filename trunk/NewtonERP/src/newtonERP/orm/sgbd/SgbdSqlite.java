@@ -29,7 +29,7 @@ import newtonERP.orm.field.type.FieldString;
  * 
  * @author r3lacasgu, r3hallejo
  */
-public class SgbdSqlite implements Sgbdable
+public class SgbdSqlite extends AbstractSgbd
 {
     private static String prefix = "Bee_";
 

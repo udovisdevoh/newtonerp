@@ -9,12 +9,10 @@ import newtonERP.orm.exceptions.OrmException;
 import newtonERP.orm.field.Field;
 
 /**
- * Interface with methods for executing the requests to be implemented in the
- * sgdb. Useful if for something we change lets say from Sqlite to Oracle
- * 
- * @author r3lacasgu, r3hallejo
+ * @author BeeERP team Représente tous les SGBD et leurs implémentations et
+ *         déclatations communes
  */
-public interface Sgbdable
+public abstract class AbstractSgbd
 {
     /**
      * Method that executes the sql query passed in paramter plus de action from
@@ -25,7 +23,7 @@ public interface Sgbdable
      * @return le resultat sous forme d'un result set
      * @throws OrmException an exception that can occur in the orm
      */
-    public ResultSet execute(String request, OrmActions action)
+    public abstract ResultSet execute(String request, OrmActions action)
 	    throws OrmException;
 
     /**
@@ -33,14 +31,14 @@ public interface Sgbdable
      * 
      * @throws OrmException an exception that can occur in the orm
      */
-    public void connect() throws OrmException;
+    public abstract void connect() throws OrmException;
 
     /**
      * Method used to disconnect from the database
      * 
      * @throws OrmException an exception that can occur in the orm
      */
-    public void disconnect() throws OrmException;
+    public abstract void disconnect() throws OrmException;
 
     /**
      * Alter table
@@ -50,8 +48,8 @@ public interface Sgbdable
      * @return ?
      * @throws OrmException an exception that can occur in the orm
      */
-    public ResultSet addColumnToTable(AbstractOrmEntity entity, Field<?> field)
-	    throws OrmException;
+    public abstract ResultSet addColumnToTable(AbstractOrmEntity entity,
+	    Field<?> field) throws OrmException;
 
     /**
      * Use only for complex queries. Use the select that takes only a vector of
@@ -66,8 +64,9 @@ public interface Sgbdable
      * @return a vector of ormizable entities
      * @throws OrmException an exception that can occur in the orm
      */
-    public Vector<AbstractOrmEntity> select(AbstractOrmEntity searchEntity,
-	    Vector<String> searchCriteriasParam) throws OrmException;
+    public abstract Vector<AbstractOrmEntity> select(
+	    AbstractOrmEntity searchEntity, Vector<String> searchCriteriasParam)
+	    throws OrmException;
 
     /**
      * Uses the new where builder
@@ -80,7 +79,7 @@ public interface Sgbdable
      * @return the entities
      * @throws OrmException an exception that can occur in the orm
      */
-    public Vector<AbstractOrmEntity> select(
+    public abstract Vector<AbstractOrmEntity> select(
 	    Vector<AbstractOrmEntity> searchEntities) throws OrmException;
 
     /**
@@ -91,7 +90,7 @@ public interface Sgbdable
      * @return le id de clé primaire ajoutée
      * @throws Exception si ça fail
      */
-    public int insert(AbstractOrmEntity newEntity) throws Exception;
+    public abstract int insert(AbstractOrmEntity newEntity) throws Exception;
 
     /**
      * Method used to delete an entity from the database
@@ -100,7 +99,7 @@ public interface Sgbdable
      * @param searchCriterias the search criterias for the where clause
      * @throws Exception si effacement fail
      */
-    public void delete(AbstractOrmEntity searchEntity,
+    public abstract void delete(AbstractOrmEntity searchEntity,
 	    Vector<String> searchCriterias) throws Exception;
 
     /**
@@ -112,7 +111,7 @@ public interface Sgbdable
      *            clause
      * @throws Exception si effacement fail
      */
-    public void delete(Vector<AbstractOrmEntity> searchEntities)
+    public abstract void delete(Vector<AbstractOrmEntity> searchEntities)
 	    throws Exception;
 
     /**
@@ -123,7 +122,7 @@ public interface Sgbdable
      * @param searchCriterias the criterias used by the update
      * @throws Exception si update fail
      */
-    public void update(AbstractOrmEntity entityContainingChanges,
+    public abstract void update(AbstractOrmEntity entityContainingChanges,
 	    Vector<String> searchCriterias) throws Exception;
 
     /**
@@ -136,7 +135,7 @@ public interface Sgbdable
      * @param entityContainingChanges the changes to apply
      * @throws Exception si update fail
      */
-    public void update(Vector<AbstractOrmEntity> searchEntities,
+    public abstract void update(Vector<AbstractOrmEntity> searchEntities,
 	    AbstractOrmEntity entityContainingChanges) throws Exception;
 
     /**
@@ -144,7 +143,8 @@ public interface Sgbdable
      * @return true si l'entité a une table dans la base de donnée, sinon false
      * @throws Exception si ça fail
      */
-    public boolean isEntityExists(String entitySystemName) throws Exception;
+    public abstract boolean isEntityExists(String entitySystemName)
+	    throws Exception;
 
     /**
      * Sert à ajouter un index dans la table SQL de l'entité pour un field en
@@ -153,7 +153,7 @@ public interface Sgbdable
      * @param fieldName nom du field
      * @throws Exception si ça fail
      */
-    public void createIndex(String entityName, String fieldName)
+    public abstract void createIndex(String entityName, String fieldName)
 	    throws Exception;
 
     /**
@@ -161,7 +161,7 @@ public interface Sgbdable
      * @param entity entité
      * @throws OrmException si ça fail
      */
-    public void createTableForEntity(AbstractOrmEntity entity)
+    public abstract void createTableForEntity(AbstractOrmEntity entity)
 	    throws OrmException;
 
     /**
@@ -174,6 +174,6 @@ public interface Sgbdable
      * @param entityContainingChanges the changes to apply
      * @throws Exception si update fail
      */
-    public void updateUnique(AbstractOrmEntity searchEntity,
+    public abstract void updateUnique(AbstractOrmEntity searchEntity,
 	    AbstractOrmEntity entityContainingChanges) throws Exception;
 }
