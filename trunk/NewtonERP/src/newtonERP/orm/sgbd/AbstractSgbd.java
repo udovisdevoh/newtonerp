@@ -64,9 +64,8 @@ public abstract class AbstractSgbd
      * @return a vector of ormizable entities
      * @throws OrmException an exception that can occur in the orm
      */
-    public abstract Vector<AbstractOrmEntity> select(
-	    AbstractOrmEntity searchEntity, Vector<String> searchCriteriasParam)
-	    throws OrmException;
+    public abstract ResultSet select(AbstractOrmEntity searchEntity,
+	    Vector<String> searchCriteriasParam) throws OrmException;
 
     /**
      * Uses the new where builder
@@ -79,8 +78,8 @@ public abstract class AbstractSgbd
      * @return the entities
      * @throws OrmException an exception that can occur in the orm
      */
-    public abstract Vector<AbstractOrmEntity> select(
-	    Vector<AbstractOrmEntity> searchEntities) throws OrmException;
+    public abstract ResultSet select(Vector<AbstractOrmEntity> searchEntities)
+	    throws OrmException;
 
     /**
      * Method used to insert an entity in the databse based into the entity
