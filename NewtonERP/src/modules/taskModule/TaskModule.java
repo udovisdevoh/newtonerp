@@ -60,7 +60,7 @@ public class TaskModule extends Module
 	super.initDB();
 	initActionsAndEntities();
 	initSearchCriteriaOperators();
-	initTasks();
+	// initTasks();
     }
 
     private static void initTasks() throws Exception
