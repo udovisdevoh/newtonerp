@@ -516,14 +516,21 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 		if (field.getShortName().toLowerCase().contains("name"))
 		    naturalKeyNameList.add(field.getShortName());
 
-	if (naturalKeyNameList.size() < 1) // 2e Comportement par default si
+	if (naturalKeyNameList.size() < 1) // 2er Comportement par default si
+	    // clef
+	    // naturelle vide
+	    for (Field<?> field : getFields())
+		if (field.getShortName().toLowerCase().contains("nom"))
+		    naturalKeyNameList.add(field.getShortName());
+
+	if (naturalKeyNameList.size() < 1) // 3e Comportement par default si
 	    // clef
 	    // naturelle vide
 	    for (Field<?> field : getFields())
 		if (!field.getShortName().equals(getPrimaryKeyName()))
 		    naturalKeyNameList.add(field.getShortName());
 
-	if (naturalKeyNameList.size() < 1)// 3e Comportement par default si clef
+	if (naturalKeyNameList.size() < 1)// 4e Comportement par default si clef
 	    // naturelle vide
 	    naturalKeyNameList.add(getPrimaryKeyName());
 
