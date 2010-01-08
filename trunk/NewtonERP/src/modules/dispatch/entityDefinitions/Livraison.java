@@ -52,6 +52,7 @@ public class Livraison extends AbstractOrmEntity
 	fieldList.add(heure);
 
 	FieldInt prioriteID = new FieldInt("Priorité", "livraisonEtatID");
+	prioriteID.setColored(true);
 	fieldList.add(prioriteID);
 	return new Fields(fieldList);
     }

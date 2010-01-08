@@ -33,6 +33,7 @@ public class Commande extends AbstractOrmEntity
 	fieldList.add(pKcommandeID);
 
 	FieldInt commandeEtatID = new FieldInt("État", "commandeEtatID");
+	commandeEtatID.setColored(true);
 	fieldList.add(commandeEtatID);
 
 	return new Fields(fieldList);
