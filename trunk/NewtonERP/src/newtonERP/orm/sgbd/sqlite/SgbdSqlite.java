@@ -426,7 +426,7 @@ public class SgbdSqlite extends AbstractSgbd
     public boolean isEntityExists(String entitySystemName) throws Exception
     {
 	String sqlQuery = "SELECT name FROM sqlite_master where name='"
-		+ prefix + entitySystemName + "'";
+		+ prefix + entitySystemName + "';";
 
 	// TODO: Remove the next line when it will be properly debugged
 	System.out.println("SQL query produced : " + sqlQuery);
@@ -444,7 +444,7 @@ public class SgbdSqlite extends AbstractSgbd
 	String tableName = prefix + entityName;
 
 	String sqlQuery = "CREATE INDEX IF NOT EXISTS " + indexName + " ON "
-		+ tableName + " (" + fieldName + ")";
+		+ tableName + " (" + fieldName + ");";
 
 	System.out.println("Sql query produced : " + sqlQuery);
 	execute(sqlQuery, OrmActions.OTHER);
@@ -529,7 +529,7 @@ public class SgbdSqlite extends AbstractSgbd
     {
 	String sqlQuery = "SELECT * FROM " + prefix
 		+ searchEntity.getSystemName() + " LIMIT " + offset + ", "
-		+ limit;
+		+ limit + ";";
 
 	if (searchCriteriasParam != null)
 	    sqlQuery = buildWhereClauseForQuery(sqlQuery, searchCriteriasParam);
@@ -545,15 +545,21 @@ public class SgbdSqlite extends AbstractSgbd
     @Override
     public int count(AbstractOrmEntity searchEntity) throws Exception
     {
-	String sqlQuery = "SELECT count(" + searchEntity.getPrimaryKeyName()
-		+ ") FROM " + prefix + searchEntity.getSystemName();
+	// Pour une raison quelconque, la fonction COUNT de SQLite empêche la
+	// transaction de se terminer
+	// Alors on utilise un count fait à bras
+
+	String sqlQuery = "SELECT " + searchEntity.getPrimaryKeyName()
+		+ " FROM " + prefix + searchEntity.getSystemName() + ";";
 
 	// TODO: Remove the next line when it will be properly debugged
 	System.out.println("SQL query produced : " + sqlQuery);
 
 	ResultSet rs = execute(sqlQuery, OrmActions.SEARCH);
 
-	int count = rs.getInt(1);
+	int count = 0;
+	while (rs.next())
+	    count++;
 
 	return count;
     }
