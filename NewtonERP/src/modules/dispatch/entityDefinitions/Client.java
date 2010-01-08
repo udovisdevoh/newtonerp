@@ -2,6 +2,7 @@ package modules.dispatch.entityDefinitions;
 
 import java.util.Vector;
 
+import modules.common.entityDefinitions.Address;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.field.Field;
@@ -24,6 +25,7 @@ public class Client extends AbstractOrmEntity
 	super();
 	setVisibleName("Client");
 	AccessorManager.addAccessor(this, new Secteur());
+	AccessorManager.addAccessor(this, new Address());
     }
 
     public Fields initFields() throws Exception
@@ -38,6 +40,10 @@ public class Client extends AbstractOrmEntity
 
 	FieldInt secteurID = new FieldInt("Secteur", "secteurID");
 	fieldList.add(secteurID);
+
+	FieldInt addressID = new FieldInt("Adresse", "addressID");
+	fieldList.add(addressID);
+
 	secteurID.setColored(true);
 	return new Fields(fieldList);
     }
