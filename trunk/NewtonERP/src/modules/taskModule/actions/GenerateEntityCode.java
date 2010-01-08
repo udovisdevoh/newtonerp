@@ -49,7 +49,7 @@ public class GenerateEntityCode extends AbstractAction
 	    String sourceCode = EntitySourceCodeBuilder.build(entityEntity);
 	    GenerateSourceCode.writeClassFile(fileName, sourceCode);
 	    createRights(entityEntity);
-	    editUI.addAlertMessage("La classe de l'entité a été créée.");
+	    editUI.addNormalMessage("La classe de l'entité a été créée.");
 	}
 	else
 	{
