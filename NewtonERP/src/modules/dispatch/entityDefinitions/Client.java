@@ -26,6 +26,7 @@ public class Client extends AbstractOrmEntity
 	setVisibleName("Client");
 	AccessorManager.addAccessor(this, new Secteur());
 	AccessorManager.addAccessor(this, new Address());
+	AccessorManager.addAccessor(this, new ClientType());
     }
 
     public Fields initFields() throws Exception
@@ -43,6 +44,10 @@ public class Client extends AbstractOrmEntity
 
 	FieldInt addressID = new FieldInt("Adresse", "addressID");
 	fieldList.add(addressID);
+
+	FieldInt clientTypeID = new FieldInt("Type", "clientTypeID");
+	clientTypeID.setColored(true);
+	fieldList.add(clientTypeID);
 
 	secteurID.setColored(true);
 	return new Fields(fieldList);

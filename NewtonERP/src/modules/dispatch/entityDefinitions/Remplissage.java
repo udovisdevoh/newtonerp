@@ -6,6 +6,7 @@ import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.Fields;
+import newtonERP.orm.field.type.FieldDateTime;
 import newtonERP.orm.field.type.FieldDouble;
 import newtonERP.orm.field.type.FieldInt;
 
@@ -34,11 +35,17 @@ public class Remplissage extends AbstractOrmEntity
 	fieldList.add(pKremplissageID);
 
 	FieldInt vehiculeID = new FieldInt("Véhicule", "vehiculeID");
+	vehiculeID.setNaturalKey(true);
 	fieldList.add(vehiculeID);
 
 	FieldDouble essence = new FieldDouble(
 		"L d`essence (70.13 pour 70,13 L):", "Essence");
 	fieldList.add(essence);
+
+	FieldDateTime heure = new FieldDateTime("Heure d'inscription", "heure");
+	heure.setNaturalKey(true);
+	heure.setReadOnly(true);
+	fieldList.add(heure);
 
 	FieldInt kilometrage = new FieldInt(
 		"Kilométrage au moment du remplissage", "Kilometrage");

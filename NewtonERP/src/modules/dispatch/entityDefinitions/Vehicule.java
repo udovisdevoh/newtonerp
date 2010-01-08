@@ -35,6 +35,7 @@ public class Vehicule extends AbstractOrmEntity
 	fieldList.add(pKvehiculeID);
 
 	FieldString description = new FieldString("Description", "Description");
+	description.setNaturalKey(true);
 	fieldList.add(description);
 
 	FieldText noteSpeciale = new FieldText("Note spéciale", "NoteSpeciale");
