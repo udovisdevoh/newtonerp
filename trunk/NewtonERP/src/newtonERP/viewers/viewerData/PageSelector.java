@@ -26,6 +26,10 @@ public class PageSelector extends AbstractEntity
     }
 
     /**
+     * @param limit limite
+     * @param offset offset
+     * @param totalRowCount nonbre total de rangée
+     * @param currentUrl url courant
      * @param rowPerPage row per page
      * @param pageCount page count
      * @throws Exception si ça fail
