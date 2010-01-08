@@ -19,12 +19,19 @@ public class PageSelectorViewer
 
 	int pageCount = pageSelector.getPageCount();
 	int limit = pageSelector.getCurrentLimit();
+	int offset = pageSelector.getCurrentOffset();
+
+	if (offset > 0)
+	    html += "<a href='" + pageSelector.getCurrentUrl() + "?limit="
+		    + limit + "&offset=" + (offset - limit) + "'>&lt;</a>";
+	else
+	    html += "&lt;";
 
 	for (int linkCounter = 0; linkCounter < pageCount; linkCounter++)
 	{
 	    int currentLinkOffset = limit * linkCounter;
 
-	    if (currentLinkOffset != pageSelector.getCurrentOffset())
+	    if (currentLinkOffset != offset)
 		html += " <a href='" + pageSelector.getCurrentUrl() + "?limit="
 			+ limit + "&offset=" + linkCounter * limit + "'>";
 	    else
@@ -32,9 +39,15 @@ public class PageSelectorViewer
 
 	    html += (linkCounter + 1);
 
-	    if (currentLinkOffset != pageSelector.getCurrentOffset())
+	    if (currentLinkOffset != offset)
 		html += "</a>";
 	}
+
+	if (offset + limit < pageSelector.getTotalRowCount())
+	    html += " <a href='" + pageSelector.getCurrentUrl() + "?limit="
+		    + limit + "&offset=" + (offset + limit) + "'>&gt;</a>";
+	else
+	    html += " &gt;";
 
 	return html;
     }

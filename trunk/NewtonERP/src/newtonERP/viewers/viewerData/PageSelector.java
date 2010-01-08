@@ -12,6 +12,7 @@ public class PageSelector extends AbstractEntity
     private int currentLimit;
     private int pageCount;
     private int currentOffset;
+    private int totalRowCount;
 
     /**
      * @throws Exception si ça fail
@@ -32,6 +33,7 @@ public class PageSelector extends AbstractEntity
     public PageSelector(int limit, int offset, int totalRowCount,
 	    String currentUrl) throws Exception
     {
+	this.totalRowCount = totalRowCount;
 	currentLimit = limit;
 	currentOffset = offset;
 	pageCount = (int) Math
@@ -57,5 +59,10 @@ public class PageSelector extends AbstractEntity
     public int getCurrentOffset()
     {
 	return currentOffset;
+    }
+
+    public int getTotalRowCount()
+    {
+	return totalRowCount;
     }
 }
