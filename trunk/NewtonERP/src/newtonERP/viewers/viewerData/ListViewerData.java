@@ -127,6 +127,7 @@ public class ListViewerData extends GridViewerData implements
 
     /**
      * @param parameters parametres d'action GetList
+     * @param limit limite par page
      * @return offset de selection de liste d'entité, -1 si aucun
      */
     public final static int BuildOffset(Hashtable<String, String> parameters,
