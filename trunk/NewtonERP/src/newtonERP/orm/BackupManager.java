@@ -13,7 +13,7 @@ public class BackupManager
     private static long desiredBackupTimeInterval = 1800000; // Chaque demie
 							     // heure
 
-    private static int maximumBackupInstanceCount = 1000;
+    private static int maximumBackupInstanceCount = 100;
 
     /**
      * @return temps actuel en ms

@@ -39,7 +39,7 @@ public class SgbdSqliteBackupManager
 
     private void deleteFile(String fileName)
     {
-	File file = new File(fileName);
+	File file = new File(backupDirectoryPath + fileName);
 	file.delete();
     }
 
