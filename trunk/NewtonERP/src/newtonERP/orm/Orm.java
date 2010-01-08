@@ -12,7 +12,7 @@ import newtonERP.module.exception.ModuleException;
 import newtonERP.orm.exceptions.OrmException;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.sgbd.AbstractSgbd;
-import newtonERP.orm.sgbd.SgbdSqlite;
+import newtonERP.orm.sgbd.sqlite.SgbdSqlite;
 import newtonERP.taskManager.TaskManager;
 
 /**
@@ -398,5 +398,19 @@ public class Orm
     public static int count(AbstractOrmEntity searchEntity) throws Exception
     {
 	return sgbd.count(searchEntity);
+    }
+
+    /**
+     * Fait un backup de la DB si l'intervale de temps est assez grande
+     */
+    public static void doBackupIfTimeIntervalAllows()
+    {
+	long currentTime = BackupManager.getCurrentTime();
+	long latestBackupTime = sgbd.getLatestBackupTime();
+	long desiredBackupTimeInterval = BackupManager
+		.getDesiredBackupIntervalTime();
+
+	if (currentTime - latestBackupTime > desiredBackupTimeInterval)
+	    sgbd.doBackup();
     }
 }
