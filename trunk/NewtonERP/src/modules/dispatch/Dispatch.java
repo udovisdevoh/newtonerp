@@ -1,5 +1,6 @@
 package modules.dispatch;
 
+import modules.dispatch.entityDefinitions.ClientType;
 import modules.dispatch.entityDefinitions.CommandeEtat;
 import modules.dispatch.entityDefinitions.LivraisonEtat;
 import modules.dispatch.entityDefinitions.Secteur;
@@ -25,9 +26,22 @@ public class Dispatch extends Module
     {
 	super.initDB();
 
+	initClientTypes();
 	initPriorityTypes();
 	initOrderStatusTypes();
 	initSectors();
+    }
+
+    private void initClientTypes() throws Exception
+    {
+	ClientType clientType;
+	clientType = new ClientType();
+	clientType.setData("Nom", "Charge");
+	clientType.newE();
+
+	clientType = new ClientType();
+	clientType.setData("Nom", "Cash");
+	clientType.newE();
     }
 
     private void initSectors() throws Exception
