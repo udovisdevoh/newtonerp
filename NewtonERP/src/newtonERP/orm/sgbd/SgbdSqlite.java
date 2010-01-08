@@ -517,4 +517,40 @@ public class SgbdSqlite extends AbstractSgbd
 
 	execute(sqlQuery, OrmActions.UPDATE);
     }
+
+    @Override
+    public ResultSet select(AbstractOrmEntity searchEntity,
+	    Vector<String> searchCriteriasParam, int limit, int offset)
+	    throws OrmException
+    {
+	String sqlQuery = "SELECT * FROM " + prefix
+		+ searchEntity.getSystemName() + " LIMIT " + offset + ", "
+		+ limit;
+
+	if (searchCriteriasParam != null)
+	    sqlQuery = buildWhereClauseForQuery(sqlQuery, searchCriteriasParam);
+
+	// TODO: Remove the next line when it will be properly debugged
+	System.out.println("SQL query produced : " + sqlQuery);
+
+	ResultSet rs = execute(sqlQuery, OrmActions.SEARCH);
+
+	return rs;
+    }
+
+    @Override
+    public int count(AbstractOrmEntity searchEntity) throws Exception
+    {
+	String sqlQuery = "SELECT count(" + searchEntity.getPrimaryKeyName()
+		+ ") FROM " + prefix + searchEntity.getSystemName();
+
+	// TODO: Remove the next line when it will be properly debugged
+	System.out.println("SQL query produced : " + sqlQuery);
+
+	ResultSet rs = execute(sqlQuery, OrmActions.SEARCH);
+
+	int count = rs.getInt(1);
+
+	return count;
+    }
 }
