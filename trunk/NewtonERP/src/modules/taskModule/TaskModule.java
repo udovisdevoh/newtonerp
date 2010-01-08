@@ -63,6 +63,7 @@ public class TaskModule extends Module
 	// initTasks();
     }
 
+    @SuppressWarnings("unused")
     private static void initTasks() throws Exception
     {
 	// NOS TÂCHES AUTOMATISÉES
