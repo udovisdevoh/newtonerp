@@ -12,6 +12,8 @@ import newtonERP.module.AbstractAction;
  */
 public class GridCaseData extends ActionLink
 {
+    private boolean isColored;
+
     /**
      * @param name valeur a affiche dans cette case
      * @param action action a effectuer lorsque clique (null par defaut)
@@ -60,5 +62,21 @@ public class GridCaseData extends ActionLink
     public AbstractAction getActionLink()
     {
 	return getAction();
+    }
+
+    /**
+     * @return si la case doit être colorée
+     */
+    public boolean isColored()
+    {
+	return isColored;
+    }
+
+    /**
+     * @param isColored si la case doit être colorée
+     */
+    public void setColored(boolean isColored)
+    {
+	this.isColored = isColored;
     }
 }

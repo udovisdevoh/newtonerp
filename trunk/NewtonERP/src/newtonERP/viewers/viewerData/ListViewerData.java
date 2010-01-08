@@ -42,17 +42,26 @@ public class ListViewerData extends GridViewerData implements
     public GridCaseData[] getHeader() throws Exception
     {
 	Vector<GridCaseData> header = new Vector<GridCaseData>();
+
+	GridCaseData gridCaseData;
+
 	for (Field<?> field : dataType.getFields())
 	{
 	    ListOfValue listOfValue = dataType.tryMatchListOfValue(field
 		    .getShortName());
 
 	    if (listOfValue != null)
-		header.add(new GridCaseData(listOfValue.getLabelName(),
+	    {
+		gridCaseData = new GridCaseData(listOfValue.getLabelName(),
 			new BaseAction("GetList", listOfValue
-				.getForeignEntityDefinition())));
+				.getForeignEntityDefinition()));
+		header.add(gridCaseData);
+	    }
 	    else if (!field.isHidden())
-		header.add(new GridCaseData(field.getName()));
+	    {
+		gridCaseData = new GridCaseData(field.getName());
+		header.add(gridCaseData);
+	    }
 	}
 	return header.toArray(new GridCaseData[0]);
     }
@@ -61,6 +70,7 @@ public class ListViewerData extends GridViewerData implements
     {
 	Vector<GridCaseData[]> dataList = new Vector<GridCaseData[]>();
 	String value;
+	GridCaseData gridCaseData;
 
 	for (AbstractOrmEntity entity : data)
 	{
@@ -81,8 +91,11 @@ public class ListViewerData extends GridViewerData implements
 		    param.put(listOfValue.getForeignEntityDefinition()
 			    .getPrimaryKeyName(), field.getDataString());
 
-		    oneData.add(new GridCaseData(value, new BaseAction("Edit",
-			    listOfValue.getForeignEntityDefinition()), param));
+		    gridCaseData = new GridCaseData(value, new BaseAction(
+			    "Edit", listOfValue.getForeignEntityDefinition()),
+			    param);
+		    gridCaseData.setColored(field.isColored());
+		    oneData.add(gridCaseData);
 		}
 		else if (!field.isHidden())
 		{
@@ -92,10 +105,16 @@ public class ListViewerData extends GridViewerData implements
 		    if (value.length() > 64)
 			value = field.getDataString().substring(0, 64)
 				+ "[...]";
-		    oneData.add(new GridCaseData(value));
+		    gridCaseData = new GridCaseData(value);
+		    gridCaseData.setColored(field.isColored());
+		    oneData.add(gridCaseData);
 		}
 		else
-		    oneData.add(new GridCaseData(value));
+		{
+		    gridCaseData = new GridCaseData(value);
+		    gridCaseData.setColored(field.isColored());
+		    oneData.add(gridCaseData);
+		}
 	    }
 	    dataList.add(oneData.toArray(new GridCaseData[0]));
 	}
