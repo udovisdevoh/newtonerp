@@ -41,26 +41,41 @@ public class PageSelector extends AbstractEntity
 	this.currentUrl = currentUrl;
     }
 
+    /**
+     * @return nombre de pages
+     */
     public int getPageCount()
     {
 	return pageCount;
     }
 
+    /**
+     * @return nombre maximum de rangée par page
+     */
     public int getCurrentLimit()
     {
 	return currentLimit;
     }
 
+    /**
+     * @return url
+     */
     public String getCurrentUrl()
     {
 	return currentUrl;
     }
 
+    /**
+     * @return offset
+     */
     public int getCurrentOffset()
     {
 	return currentOffset;
     }
 
+    /**
+     * @return nombre total de rangée
+     */
     public int getTotalRowCount()
     {
 	return totalRowCount;

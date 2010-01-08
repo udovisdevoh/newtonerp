@@ -1,7 +1,6 @@
 package newtonERP.orm.sgbd;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Vector;
 
 import newtonERP.module.AbstractOrmEntity;
@@ -201,6 +200,5 @@ public abstract class AbstractSgbd
      * @return nombre d'occurence du type de l'entité de recherche
      * @throws Exception si ça fail
      */
-    public abstract int count(AbstractOrmEntity searchEntity)
-	    throws OrmException, SQLException, Exception;
+    public abstract int count(AbstractOrmEntity searchEntity) throws Exception;
 }
