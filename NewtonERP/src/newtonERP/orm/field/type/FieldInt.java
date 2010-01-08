@@ -81,5 +81,4 @@ public class FieldInt extends Field<Integer>
 	else
 	    throw new FieldNotCompatibleException(getShortName(), data);
     }
-
 }

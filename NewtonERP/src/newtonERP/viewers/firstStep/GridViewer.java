@@ -38,12 +38,12 @@ public class GridViewer
 
 	if (gridEntity instanceof ListViewerData
 		&& ((ListViewerData) (gridEntity)).getPageSelector() != null)
+	{
 	    pageSelectorHtml = PageSelectorViewer
 		    .getHtmlCode(((ListViewerData) (gridEntity))
 			    .getPageSelector());
-
-	if (pageSelectorHtml != null)
 	    html += pageSelectorHtml;
+	}
 
 	html += "<table class='ListViewerTable' border='0' cellpadding='3' cellspacing='0'>";
 	html += getTableHeader(gridEntity.getHeader(), gridEntity
@@ -132,7 +132,7 @@ public class GridViewer
 			if (caseContent.endsWith("$"))
 			    moneyStyleModifier = " moneyStyleModifier";
 
-			if (gridData.isColor())
+			if (gridData.isColored() || data[i][j].isColored())
 			    color = " background-color:"
 				    + ColorViewer.getColor(caseContent) + ";";
 

@@ -15,7 +15,7 @@ public class GridViewerData extends BaseViewerData
     private GridCaseData[] leftHeader = new GridCaseData[0];
     private GridCaseData[][] cases = new GridCaseData[0][0];
     private Vector<ActionLink> specificActionButtonList = new Vector<ActionLink>();
-    private boolean color = false;
+    private boolean isColored = false;
     private boolean spanSimilar = false;
 
     /**
@@ -138,17 +138,17 @@ public class GridViewerData extends BaseViewerData
     /**
      * @return the color
      */
-    public boolean isColor()
+    public boolean isColored()
     {
-	return color;
+	return isColored;
     }
 
     /**
-     * @param color the color to set
+     * @param isColored the color to set
      */
-    public void setColor(boolean color)
+    public void setColored(boolean isColored)
     {
-	this.color = color;
+	this.isColored = isColored;
     }
 
     /**

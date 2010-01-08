@@ -22,6 +22,7 @@ public abstract class Field<T>
     private FieldValidator<T> validator;
     private FieldCalcule<T> calcul = null;
     private Fields fieldsRef = null;
+    private boolean isColored = false;
 
     /**
      * default constructor
@@ -400,5 +401,21 @@ public abstract class Field<T>
     public void reset()
     {
 	data = null;
+    }
+
+    /**
+     * @param isColored ajoute ou met de la couleur sur le field
+     */
+    public void setColored(boolean isColored)
+    {
+	this.isColored = isColored;
+    }
+
+    /**
+     * @return si le field est coloré
+     */
+    public boolean isColored()
+    {
+	return isColored;
     }
 }
