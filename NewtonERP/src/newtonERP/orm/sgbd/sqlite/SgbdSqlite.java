@@ -1,4 +1,4 @@
-package newtonERP.orm.sgbd;
+package newtonERP.orm.sgbd.sqlite;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,6 +11,7 @@ import java.util.Vector;
 
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
+import newtonERP.orm.BackupManager;
 import newtonERP.orm.OrmActions;
 import newtonERP.orm.exceptions.OrmException;
 import newtonERP.orm.exceptions.OrmSqlException;
@@ -21,6 +22,7 @@ import newtonERP.orm.field.type.FieldDateTime;
 import newtonERP.orm.field.type.FieldDouble;
 import newtonERP.orm.field.type.FieldInt;
 import newtonERP.orm.field.type.FieldString;
+import newtonERP.orm.sgbd.AbstractSgbd;
 
 /**
  * Class who's role is only for executing the statements that has been sent from
@@ -35,6 +37,8 @@ public class SgbdSqlite extends AbstractSgbd
     private static String dataBaseFileName = "test.db";
 
     private static Connection connexion;
+
+    private SgbdSqliteBackupManager sgbdSqliteBackupManager = new SgbdSqliteBackupManager();
 
     @Override
     public ResultSet execute(String request, OrmActions action)
@@ -552,5 +556,19 @@ public class SgbdSqlite extends AbstractSgbd
 	int count = rs.getInt(1);
 
 	return count;
+    }
+
+    @Override
+    public void doBackup()
+    {
+	System.out.println("Backup de la DB");
+	sgbdSqliteBackupManager.doBackup(dataBaseFileName, BackupManager
+		.getMaximumBackupInstanceCount());
+    }
+
+    @Override
+    public long getLatestBackupTime()
+    {
+	return sgbdSqliteBackupManager.getLatestBackupTime();
     }
 }

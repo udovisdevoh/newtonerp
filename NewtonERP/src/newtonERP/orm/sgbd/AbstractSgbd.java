@@ -201,4 +201,14 @@ public abstract class AbstractSgbd
      * @throws Exception si ça fail
      */
     public abstract int count(AbstractOrmEntity searchEntity) throws Exception;
+
+    /**
+     * Fait un backup de la DB
+     */
+    public abstract void doBackup();
+
+    /**
+     * @return timestamp en ms où le dernier backup à été fait
+     */
+    public abstract long getLatestBackupTime();
 }
