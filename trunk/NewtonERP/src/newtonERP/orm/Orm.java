@@ -371,4 +371,32 @@ public class Orm
     {
 	return sgbd.isEntityExists(entitySystemName);
     }
+
+    /**
+     * @param searchEntity entité de recherche
+     * @param searchCriteriasParam critères de recherche
+     * @param limit limite de résultats
+     * @param offset offset de début de résultats
+     * @return liste d'entités trouvées
+     * @throws OrmException si ça fail
+     */
+    public static Vector<AbstractOrmEntity> select(
+	    AbstractOrmEntity searchEntity,
+	    Vector<String> searchCriteriasParam, int limit, int offset)
+	    throws OrmException
+    {
+	return EntityCreator.createEntitiesFromResultSet(sgbd.select(
+		searchEntity, searchCriteriasParam, limit, offset),
+		searchEntity);
+    }
+
+    /**
+     * @param searchEntity entité de recherche
+     * @return nombre d'occurence du type de l'entité de recherche
+     * @throws Exception si ça fail
+     */
+    public static int count(AbstractOrmEntity searchEntity) throws Exception
+    {
+	return sgbd.count(searchEntity);
+    }
 }

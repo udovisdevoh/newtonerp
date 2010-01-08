@@ -6,7 +6,7 @@ import java.util.Vector;
 import newtonERP.common.ActionLink;
 
 /**
- * Représente un département dans une compagnie
+ * Représente les données pouvant être visible par le grid viewer
  * @author Guillaume
  */
 public class GridViewerData extends BaseViewerData

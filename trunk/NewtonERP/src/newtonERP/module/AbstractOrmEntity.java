@@ -20,6 +20,7 @@ import newtonERP.orm.field.type.FieldCurrency;
 import newtonERP.viewers.secondStep.MoneyViewer;
 import newtonERP.viewers.viewerData.BaseViewerData;
 import newtonERP.viewers.viewerData.ListViewerData;
+import newtonERP.viewers.viewerData.PageSelector;
 import newtonERP.viewers.viewerData.PromptViewerData;
 
 /**
@@ -321,7 +322,20 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	AbstractOrmEntity searchEntity = this.getClass().newInstance();
 	ListViewerData entityList = new ListViewerData(searchEntity);
 
-	resultSet = Orm.select(searchEntity, null);
+	int offset = ListViewerData.BuildOffset(parameters);
+	int limit = ListViewerData.BuildLimit(parameters,
+		getItemLimitListPerPage());
+
+	resultSet = Orm.select(searchEntity, null, limit, offset);
+
+	int totalRowCount = Orm.count(searchEntity);
+	if (limit < totalRowCount)
+	    entityList.setPageSelector(new PageSelector(limit, offset,
+		    totalRowCount, "/" + getCurrentModule().getSystemName()
+			    + "/GetList/" + getSystemName()));
+	else
+	    entityList.setPageSelector(null);
+
 	for (AbstractOrmEntity entity : resultSet)
 	    entityList.addEntity(entity);
 
@@ -342,6 +356,14 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	entityList.addSpecificActionButtonList(specAction);
 
 	return entityList;
+    }
+
+    /**
+     * @return Nombre d'item par page
+     */
+    public int getItemLimitListPerPage()
+    {
+	return 15;
     }
 
     /**

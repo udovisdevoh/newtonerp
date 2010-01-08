@@ -7,6 +7,7 @@ import newtonERP.module.AbstractEntity;
 import newtonERP.viewers.ViewerException;
 import newtonERP.viewers.secondStep.ButtonLinkViewer;
 import newtonERP.viewers.secondStep.ColorViewer;
+import newtonERP.viewers.secondStep.PageSelectorViewer;
 import newtonERP.viewers.viewerData.GridCaseData;
 import newtonERP.viewers.viewerData.GridViewerData;
 import newtonERP.viewers.viewerData.ListViewerData;
@@ -33,12 +34,26 @@ public class GridViewer
 	// TODO: modifier les class de style et mettre du style css a la place
 	// un moment donnée
 
+	String pageSelectorHtml = null;
+
+	if (gridEntity instanceof ListViewerData
+		&& ((ListViewerData) (gridEntity)).getPageSelector() != null)
+	    pageSelectorHtml = PageSelectorViewer
+		    .getHtmlCode(((ListViewerData) (gridEntity))
+			    .getPageSelector());
+
+	if (pageSelectorHtml != null)
+	    html += pageSelectorHtml;
+
 	html += "<table class='ListViewerTable' border='0' cellpadding='3' cellspacing='0'>";
 	html += getTableHeader(gridEntity.getHeader(), gridEntity
 		.getLeftHeader().length > 0);
 	html += getDataRowList(gridEntity);
 
 	html += "</table>";
+
+	if (pageSelectorHtml != null)
+	    html += pageSelectorHtml;
 
 	return html;
     }

@@ -18,6 +18,7 @@ public class ListViewerData extends GridViewerData implements
 {
     private AbstractOrmEntity dataType;
     private Vector<AbstractOrmEntity> data = new Vector<AbstractOrmEntity>();
+    private PageSelector pageSelector = null;
 
     /**
      * constructeur par defaut
@@ -122,5 +123,46 @@ public class ListViewerData extends GridViewerData implements
     public Iterator<AbstractOrmEntity> iterator()
     {
 	return data.iterator();
+    }
+
+    /**
+     * @param parameters parametres d'action GetList
+     * @return offset de selection de liste d'entité, -1 si aucun
+     */
+    public final static int BuildOffset(Hashtable<String, String> parameters)
+    {
+	if (parameters.containsKey("offset"))
+	    return Integer.parseInt(parameters.get("offset"));
+	return 0;
+    }
+
+    /**
+     * @param parameters parametres d'action GetList
+     * @param defaultValue nombre d'item par page par default
+     * @return limite de selection de liste d'entité, -1 si aucun
+     */
+    public final static int BuildLimit(Hashtable<String, String> parameters,
+	    int defaultValue)
+    {
+	if (parameters.containsKey("limit"))
+	    return Integer.parseInt(parameters.get("limit"));
+	return defaultValue;
+    }
+
+    /**
+     * @param pageSelector page selector
+     * @throws Exception si ça fail
+     */
+    public void setPageSelector(PageSelector pageSelector) throws Exception
+    {
+	this.pageSelector = pageSelector;
+    }
+
+    /**
+     * @return page selector
+     */
+    public PageSelector getPageSelector()
+    {
+	return pageSelector;
     }
 }
