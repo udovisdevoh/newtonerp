@@ -38,6 +38,7 @@ public class Client extends AbstractOrmEntity
 
 	FieldInt secteurID = new FieldInt("Secteur", "secteurID");
 	fieldList.add(secteurID);
+	secteurID.setColored(true);
 	return new Fields(fieldList);
     }
 }
