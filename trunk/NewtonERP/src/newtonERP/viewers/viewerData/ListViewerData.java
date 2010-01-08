@@ -129,11 +129,17 @@ public class ListViewerData extends GridViewerData implements
      * @param parameters parametres d'action GetList
      * @return offset de selection de liste d'entité, -1 si aucun
      */
-    public final static int BuildOffset(Hashtable<String, String> parameters)
+    public final static int BuildOffset(Hashtable<String, String> parameters,
+	    int limit)
     {
+	int offset = 0;
 	if (parameters.containsKey("offset"))
-	    return Integer.parseInt(parameters.get("offset"));
-	return 0;
+	{
+	    offset = Integer.parseInt(parameters.get("offset"));
+	    if (offset % limit != 0)
+		offset = offset / limit * limit;
+	}
+	return offset;
     }
 
     /**

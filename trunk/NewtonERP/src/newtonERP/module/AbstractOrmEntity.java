@@ -322,9 +322,10 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	AbstractOrmEntity searchEntity = this.getClass().newInstance();
 	ListViewerData entityList = new ListViewerData(searchEntity);
 
-	int offset = ListViewerData.BuildOffset(parameters);
 	int limit = ListViewerData.BuildLimit(parameters,
 		getItemLimitListPerPage());
+
+	int offset = ListViewerData.BuildOffset(parameters, limit);
 
 	resultSet = Orm.select(searchEntity, null, limit, offset);
 
