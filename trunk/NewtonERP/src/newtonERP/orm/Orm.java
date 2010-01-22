@@ -284,7 +284,22 @@ public class Orm
 	for (AbstractOrmEntity entity : moduleEntities)
 	{
 	    createTableForEntity(entity);
+	    addMissingColumnsForEntity(entity);
 	    createIndexesForEntity(entity);
+	}
+    }
+
+    private static void addMissingColumnsForEntity(AbstractOrmEntity entity)
+    {
+	for (Field<?> field : entity.getFields())
+	{
+	    try
+	    {
+		sgbd.addColumnToTable(entity, field);
+	    } catch (OrmException e)
+	    {
+		System.out.println("Champ déjà dans entité");
+	    }
 	}
     }
 
