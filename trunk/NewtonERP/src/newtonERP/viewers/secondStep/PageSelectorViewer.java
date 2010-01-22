@@ -26,13 +26,15 @@ public class PageSelectorViewer
 	int limit = pageSelector.getCurrentLimit();
 	int offset = pageSelector.getCurrentOffset();
 	String searchEntry = pageSelector.getCurrentSearchEntry();
+	String orderBy = pageSelector.getOrderBy();
 
 	searchEntry = URLEncoder.encode(searchEntry, Viewer.getEncoding());
+	orderBy = URLEncoder.encode(orderBy, Viewer.getEncoding());
 
 	if (offset > 0)
 	    html += "<a href='" + pageSelector.getCurrentUrl() + "?limit="
 		    + limit + "&offset=" + (offset - limit) + "&searchEntry="
-		    + searchEntry + "'>&lt;</a>";
+		    + searchEntry + "&orderBy=" + orderBy + "'>&lt;</a>";
 	else
 	    html += "&lt;";
 
@@ -43,7 +45,8 @@ public class PageSelectorViewer
 	    if (currentLinkOffset != offset)
 		html += " <a href='" + pageSelector.getCurrentUrl() + "?limit="
 			+ limit + "&offset=" + linkCounter * limit
-			+ "&searchEntry=" + searchEntry + "'>";
+			+ "&searchEntry=" + searchEntry + "&orderBy=" + orderBy
+			+ "'>";
 	    else
 		html += " ";
 
@@ -56,7 +59,7 @@ public class PageSelectorViewer
 	if (offset + limit < pageSelector.getTotalRowCount())
 	    html += " <a href='" + pageSelector.getCurrentUrl() + "?limit="
 		    + limit + "&offset=" + (offset + limit) + "&searchEntry="
-		    + searchEntry + "'>&gt;</a>";
+		    + searchEntry + "&orderBy=" + orderBy + "'>&gt;</a>";
 	else
 	    html += " &gt;";
 

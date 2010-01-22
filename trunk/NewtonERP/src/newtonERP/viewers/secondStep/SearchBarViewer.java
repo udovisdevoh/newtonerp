@@ -24,12 +24,19 @@ public class SearchBarViewer
 
 	html += "<form method='GET' action='" + searchBar.getTargetUrl() + "'>";
 	html += "Rercherche: <input type='text' class='textField' maxlength='128' size='48' name='searchEntry' value='"
-		+ searchEntry + "' /> ";
+		+ searchEntry + "' />";
 
-	html += "ordre: <select name='orderBy'>";
+	html += " | ordre: <select name='orderBy'>";
+
+	if (searchBar.getCurrentOrder() != null
+		&& searchBar.getCurrentOrder().length() > 0)
+	    html += "<option value='" + searchBar.getCurrentOrder() + "'>"
+		    + searchBar.getCurrentOrder() + "</option>";
+
 	for (String possibleOrderName : searchBar.getPossibleOrderNameList())
-	    html += "<option value='" + possibleOrderName + "'>"
-		    + possibleOrderName + "</option>";
+	    if (!possibleOrderName.equals(searchBar.getCurrentOrder()))
+		html += "<option value='" + possibleOrderName + "'>"
+			+ possibleOrderName + "</option>";
 	html += "</select> ";
 
 	html += "<input type='submit' value='Go' />";
