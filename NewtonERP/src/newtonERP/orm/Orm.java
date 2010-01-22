@@ -412,7 +412,19 @@ public class Orm
      */
     public static int count(AbstractOrmEntity searchEntity) throws Exception
     {
-	return sgbd.count(searchEntity);
+	return count(searchEntity, null);
+    }
+
+    /**
+     * @param searchEntity entité de recherche
+     * @param searchParameterList liste de paramètres de recherche
+     * @return nombre d'occurence du type de l'entité de recherche
+     * @throws Exception si ça fail
+     */
+    public static int count(AbstractOrmEntity searchEntity,
+	    Vector<String> searchParameterList) throws Exception
+    {
+	return sgbd.count(searchEntity, searchParameterList);
     }
 
     /**
