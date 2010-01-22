@@ -2,6 +2,7 @@ package newtonERP.viewers.secondStep;
 
 import newtonERP.common.ActionLink;
 import newtonERP.common.NaturalMap;
+import newtonERP.viewers.secondStep.colorViewer.ColorViewer;
 import newtonERP.viewers.viewables.ScrollListViewable;
 
 /**
