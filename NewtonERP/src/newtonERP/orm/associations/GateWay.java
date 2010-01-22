@@ -37,4 +37,13 @@ public class GateWay
     {
 	return externalEntity;
     }
+
+    /**
+     * @return whether the external entity's field should be in color
+     */
+    public boolean isColored()
+    {
+	return gateWayEntity.getFields().getField(
+		externalEntity.getForeignKeyName()).isColored();
+    }
 }
