@@ -7,6 +7,8 @@ import newtonERP.module.BaseAction;
 import newtonERP.module.generalEntity.FlagPool;
 import newtonERP.module.generalEntity.ListOfValue;
 import newtonERP.module.generalEntity.ScrollList;
+import newtonERP.orm.associations.GateWay;
+import newtonERP.orm.associations.GateWayManager;
 import newtonERP.orm.associations.PluralAccessor;
 import newtonERP.orm.field.Field;
 import newtonERP.serveur.Servlet;
@@ -68,6 +70,18 @@ public class PromptViewer
 	if (data instanceof AbstractOrmEntity)
 	{
 	    if (ormEntity != null)
+	    {
+		for (GateWay gateWay : ormEntity.getGateWayList())
+		{
+		    AbstractOrmEntity externalEntity = GateWayManager
+			    .getExternalEntity(gateWay, ormEntity);
+
+		    html += "\n<tr><td>" + externalEntity.getNaturalKeyName()
+			    + ": </td><td>"
+			    + externalEntity.getNaturalKeyDescription()
+			    + "</td></tr>";
+		}
+
 		for (FlagPool flagPool : ormEntity.getPositiveFlagPoolList()
 			.values())
 		{
@@ -77,6 +91,7 @@ public class PromptViewer
 			    + CheckListViewer.getHtmlCode(flagPool)
 			    + "</td></tr>";
 		}
+	    }
 
 	    html += getSingleAccessorLinkList((AbstractOrmEntity) data);
 	    html += getMultipleAccessorLinkList((AbstractOrmEntity) data);
