@@ -44,5 +44,13 @@ public class Vehicule extends AbstractOrmEntity
 	FieldInt livreurID = new FieldInt("Livreur assigné", "livreurID");
 	fieldList.add(livreurID);
 	return new Fields(fieldList);
+
+	/*
+	 * FieldInt fieldCalc = new FieldInt("calcule", "calcul");
+	 * fieldCalc.setCalcul(new FieldCalcule<Integer>() { public Integer
+	 * calcul(Fields entityFields) { return (Integer)
+	 * entityFields.getField("nbVacancyDays") .getData() - (Integer)
+	 * entityFields.getField("nbSicknessDays") .getData(); } });
+	 */
     }
 }
