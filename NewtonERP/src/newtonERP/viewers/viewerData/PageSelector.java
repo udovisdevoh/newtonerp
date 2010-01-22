@@ -91,6 +91,9 @@ public class PageSelector extends AbstractEntity
 	return totalRowCount;
     }
 
+    /**
+     * @return recherche courante
+     */
     public String getCurrentSearchEntry()
     {
 	return currentSearchEntry;

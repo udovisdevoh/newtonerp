@@ -322,20 +322,37 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	Vector<AbstractOrmEntity> resultSet;
 	AbstractOrmEntity searchEntity = this.getClass().newInstance();
 	ListViewerData entityList = new ListViewerData(searchEntity);
+	String searchEntry = parameters.get("searchEntry");
+	Vector<String> searchParameters = null;
 
 	int limit = ListViewerData.BuildLimit(parameters,
 		getItemLimitListPerPage());
 
 	int offset = ListViewerData.BuildOffset(parameters, limit);
 
-	resultSet = Orm.select(searchEntity, null, limit, offset);
+	// On ajoute les critères de recherche de la barre de recherche
+	if (searchEntry != null && searchEntry.length() > 0
+		&& !searchEntry.equals("null"))
+	{
+	    searchParameters = new Vector<String>();
+	    String currentParameter;
+	    for (Field<?> field : getFields())
+	    {
+		currentParameter = field.getShortName() + " like '%"
+			+ searchEntry + "%'";
+		if (searchParameters.size() > 0)
+		    currentParameter = "or " + currentParameter;
+		searchParameters.add(currentParameter);
+	    }
+	}
+
+	resultSet = Orm.select(searchEntity, searchParameters, limit, offset);
 
 	int totalRowCount = Orm.count(searchEntity);
 	if (limit < totalRowCount)
 	    entityList.setPageSelector(new PageSelector(limit, offset,
 		    totalRowCount, "/" + getCurrentModule().getSystemName()
-			    + "/GetList/" + getSystemName(), parameters
-			    .get("searchEntry")));
+			    + "/GetList/" + getSystemName(), searchEntry));
 	else
 	    entityList.setPageSelector(null);
 

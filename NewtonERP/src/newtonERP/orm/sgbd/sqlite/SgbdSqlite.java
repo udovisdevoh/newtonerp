@@ -268,13 +268,7 @@ public class SgbdSqlite extends AbstractSgbd
     private static String buildWhereClauseForQuery(String sqlQuery,
 	    Vector<String> searchCriterias)
     {
-	sqlQuery += " WHERE ( ";
-
-	// We add each string to the sqlQuery
-	for (String parameter : searchCriterias)
-	    sqlQuery += parameter;
-
-	return sqlQuery + " );";
+	return sqlQuery + buildWhereClause(searchCriterias) + ";";
     }
 
     @Override
@@ -528,11 +522,12 @@ public class SgbdSqlite extends AbstractSgbd
 	    throws OrmException
     {
 	String sqlQuery = "SELECT * FROM " + prefix
-		+ searchEntity.getSystemName() + " LIMIT " + offset + ", "
-		+ limit + ";";
+		+ searchEntity.getSystemName();
 
 	if (searchCriteriasParam != null)
-	    sqlQuery = buildWhereClauseForQuery(sqlQuery, searchCriteriasParam);
+	    sqlQuery += buildWhereClause(searchCriteriasParam);
+
+	sqlQuery = sqlQuery + " LIMIT " + offset + ", " + limit + ";";
 
 	// TODO: Remove the next line when it will be properly debugged
 	System.out.println("SQL query produced : " + sqlQuery);
@@ -540,6 +535,17 @@ public class SgbdSqlite extends AbstractSgbd
 	ResultSet rs = execute(sqlQuery, OrmActions.SEARCH);
 
 	return rs;
+    }
+
+    private static String buildWhereClause(Vector<String> searchCriteriasParam)
+    {
+	String whereClause = " WHERE ( ";
+
+	// We add each string to the sqlQuery
+	for (String parameter : searchCriteriasParam)
+	    whereClause += parameter + " ";
+
+	return whereClause + " )";
     }
 
     @Override
