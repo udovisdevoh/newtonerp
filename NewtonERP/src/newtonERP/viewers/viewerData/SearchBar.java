@@ -15,18 +15,22 @@ public class SearchBar extends AbstractEntity
     private String targetUrl;
     private String currentSearchEntry;
     private Vector<String> possibleOrderList;
+    private String currentOrder;
 
     /**
      * @param targetUrl url de destination de la recherche
      * @param currentSearchEntry contenu textuel courant de la rercherche
+     * @param concernedEntity entité concernée par la recherche
      * @throws Exception si ça fail
      */
     public SearchBar(String targetUrl, String currentSearchEntry,
-	    AbstractOrmEntity concernedEntity) throws Exception
+	    AbstractOrmEntity concernedEntity, String currentOrder)
+	    throws Exception
     {
 	super();
 	this.targetUrl = targetUrl;
 	this.currentSearchEntry = currentSearchEntry;
+	this.currentOrder = currentOrder;
 	possibleOrderList = buildPossibleOrderList(concernedEntity);
     }
 
@@ -60,11 +64,19 @@ public class SearchBar extends AbstractEntity
 	Vector<String> newPossibleOrderList = new Vector<String>();
 
 	for (Field<?> field : concernedEntity.getFields())
-	    newPossibleOrderList.add(field.getShortName() + " DESC");
-
-	for (Field<?> field : concernedEntity.getFields())
 	    newPossibleOrderList.add(field.getShortName() + " ASC");
 
+	for (Field<?> field : concernedEntity.getFields())
+	    newPossibleOrderList.add(field.getShortName() + " DESC");
+
 	return newPossibleOrderList;
+    }
+
+    /**
+     * @return ordre actuel
+     */
+    public String getCurrentOrder()
+    {
+	return currentOrder;
     }
 }

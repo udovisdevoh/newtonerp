@@ -325,6 +325,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	AbstractOrmEntity searchEntity = this.getClass().newInstance();
 	ListViewerData entityList = new ListViewerData(searchEntity);
 	String searchEntry = parameters.get("searchEntry");
+	String orderBy = parameters.get("orderBy");
 	Vector<String> searchParameters = null;
 
 	int limit = ListViewerData.BuildLimit(parameters,
@@ -354,13 +355,16 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	if (limit < totalRowCount)
 	    entityList.setPageSelector(new PageSelector(limit, offset,
 		    totalRowCount, "/" + getCurrentModule().getSystemName()
-			    + "/GetList/" + getSystemName(), searchEntry));
+			    + "/GetList/" + getSystemName(), searchEntry,
+		    orderBy));
 	else
 	    entityList.setPageSelector(null);
 
-	entityList.setSearchBar(new SearchBar("/"
-		+ getCurrentModule().getSystemName() + "/GetList/"
-		+ getSystemName(), parameters.get("searchEntry"), this));
+	entityList
+		.setSearchBar(new SearchBar("/"
+			+ getCurrentModule().getSystemName() + "/GetList/"
+			+ getSystemName(), parameters.get("searchEntry"), this,
+			orderBy));
 
 	for (AbstractOrmEntity entity : resultSet)
 	    entityList.addEntity(entity);

@@ -10,6 +10,7 @@ public class PageSelector extends AbstractEntity
 {
     private String currentUrl;
     private String currentSearchEntry;
+    private String orderBy;
     private int currentLimit;
     private int pageCount;
     private int currentOffset;
@@ -37,13 +38,18 @@ public class PageSelector extends AbstractEntity
      * @throws Exception si ça fail
      */
     public PageSelector(int limit, int offset, int totalRowCount,
-	    String currentUrl, String currentSearchEntry) throws Exception
+	    String currentUrl, String currentSearchEntry, String orderBy)
+	    throws Exception
     {
 	if (currentSearchEntry == null)
 	    currentSearchEntry = "";
 
+	if (orderBy == null)
+	    orderBy = "";
+
 	this.totalRowCount = totalRowCount;
 	this.currentSearchEntry = currentSearchEntry;
+	this.orderBy = orderBy;
 	currentLimit = limit;
 	currentOffset = offset;
 	pageCount = (int) Math
@@ -97,5 +103,10 @@ public class PageSelector extends AbstractEntity
     public String getCurrentSearchEntry()
     {
 	return currentSearchEntry;
+    }
+
+    public String getOrderBy()
+    {
+	return orderBy;
     }
 }
