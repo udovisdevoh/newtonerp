@@ -360,7 +360,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 
 	entityList.setSearchBar(new SearchBar("/"
 		+ getCurrentModule().getSystemName() + "/GetList/"
-		+ getSystemName(), parameters.get("searchEntry")));
+		+ getSystemName(), parameters.get("searchEntry"), this));
 
 	for (AbstractOrmEntity entity : resultSet)
 	    entityList.addEntity(entity);
