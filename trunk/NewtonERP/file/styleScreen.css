@@ -42,6 +42,8 @@ h2 /* sous-titres */
 {
 	color: black;
 	font-family: Arial, "Arial Black", "Times New Roman", Times, serif;
+	margin-bottom:3px;
+	margin-top:3px;
 }
 
 a img
@@ -309,4 +311,24 @@ td.gridCell a:hover
 	display:none;
 	visibility:hidden;
 	height:0px;
+}
+
+.searchBar
+{
+	background-image: url('/file/images/headerBackground.gif');
+	border-style:dashed;
+	border-width: 1px;
+	padding:5px;
+	margin-bottom:5px;
+}
+
+form
+{
+	margin:0px;
+}
+
+td
+{
+	padding-top:0px;
+	padding-bottom:0px;
 }

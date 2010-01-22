@@ -22,6 +22,7 @@ import newtonERP.viewers.viewerData.BaseViewerData;
 import newtonERP.viewers.viewerData.ListViewerData;
 import newtonERP.viewers.viewerData.PageSelector;
 import newtonERP.viewers.viewerData.PromptViewerData;
+import newtonERP.viewers.viewerData.SearchBar;
 
 /**
  * @author cloutierJo
@@ -333,9 +334,14 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	if (limit < totalRowCount)
 	    entityList.setPageSelector(new PageSelector(limit, offset,
 		    totalRowCount, "/" + getCurrentModule().getSystemName()
-			    + "/GetList/" + getSystemName()));
+			    + "/GetList/" + getSystemName(), parameters
+			    .get("searchEntry")));
 	else
 	    entityList.setPageSelector(null);
+
+	entityList.setSearchBar(new SearchBar("/"
+		+ getCurrentModule().getSystemName() + "/GetList/"
+		+ getSystemName(), parameters.get("searchEntry")));
 
 	for (AbstractOrmEntity entity : resultSet)
 	    entityList.addEntity(entity);

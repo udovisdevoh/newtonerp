@@ -19,6 +19,7 @@ public class ListViewerData extends GridViewerData implements
     private AbstractOrmEntity dataType;
     private Vector<AbstractOrmEntity> data = new Vector<AbstractOrmEntity>();
     private PageSelector pageSelector = null;
+    private SearchBar searchBar = null;
 
     /**
      * constructeur par defaut
@@ -176,19 +177,34 @@ public class ListViewerData extends GridViewerData implements
     }
 
     /**
-     * @param pageSelector page selector
-     * @throws Exception si ça fail
-     */
-    public void setPageSelector(PageSelector pageSelector) throws Exception
-    {
-	this.pageSelector = pageSelector;
-    }
-
-    /**
      * @return page selector
      */
     public PageSelector getPageSelector()
     {
 	return pageSelector;
+    }
+
+    /**
+     * @param pageSelector page selector
+     */
+    public void setPageSelector(PageSelector pageSelector)
+    {
+	this.pageSelector = pageSelector;
+    }
+
+    /**
+     * @return modèle de barre de recherche
+     */
+    public SearchBar getSearchBar()
+    {
+	return searchBar;
+    }
+
+    /**
+     * @param searchBar modèle de barre de recherche
+     */
+    public void setSearchBar(SearchBar searchBar)
+    {
+	this.searchBar = searchBar;
     }
 }

@@ -9,6 +9,7 @@ import newtonERP.module.AbstractEntity;
 public class PageSelector extends AbstractEntity
 {
     private String currentUrl;
+    private String currentSearchEntry;
     private int currentLimit;
     private int pageCount;
     private int currentOffset;
@@ -30,14 +31,19 @@ public class PageSelector extends AbstractEntity
      * @param offset offset
      * @param totalRowCount nonbre total de rangée
      * @param currentUrl url courant
+     * @param currentSearchEntry texte de recherche
      * @param rowPerPage row per page
      * @param pageCount page count
      * @throws Exception si ça fail
      */
     public PageSelector(int limit, int offset, int totalRowCount,
-	    String currentUrl) throws Exception
+	    String currentUrl, String currentSearchEntry) throws Exception
     {
+	if (currentSearchEntry == null)
+	    currentSearchEntry = "";
+
 	this.totalRowCount = totalRowCount;
+	this.currentSearchEntry = currentSearchEntry;
 	currentLimit = limit;
 	currentOffset = offset;
 	pageCount = (int) Math
@@ -83,5 +89,10 @@ public class PageSelector extends AbstractEntity
     public int getTotalRowCount()
     {
 	return totalRowCount;
+    }
+
+    public String getCurrentSearchEntry()
+    {
+	return currentSearchEntry;
     }
 }
