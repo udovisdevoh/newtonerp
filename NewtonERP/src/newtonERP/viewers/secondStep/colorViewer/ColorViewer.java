@@ -1,4 +1,4 @@
-package newtonERP.viewers.secondStep;
+package newtonERP.viewers.secondStep.colorViewer;
 
 import java.util.Hashtable;
 
@@ -21,6 +21,12 @@ public class ColorViewer
 	text = text.toLowerCase();
 
 	text = text.replaceAll("[^a-z0-9]", "");
+
+	String predefinedColor = ColorViewerSpecialWordList
+		.getSpecialWordColor(text);
+
+	if (predefinedColor != null)
+	    return predefinedColor;
 
 	if (getColorMap().get(text) == null)
 	    getColorMap().put(text, buildColor(text));
