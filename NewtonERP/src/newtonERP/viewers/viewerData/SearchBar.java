@@ -21,6 +21,7 @@ public class SearchBar extends AbstractEntity
      * @param targetUrl url de destination de la recherche
      * @param currentSearchEntry contenu textuel courant de la rercherche
      * @param concernedEntity entité concernée par la recherche
+     * @param currentOrder ordre actuel
      * @throws Exception si ça fail
      */
     public SearchBar(String targetUrl, String currentSearchEntry,

@@ -400,9 +400,7 @@ public class Orm
 	    Vector<String> searchCriteriasParam, int limit, int offset)
 	    throws OrmException
     {
-	return EntityCreator.createEntitiesFromResultSet(sgbd.select(
-		searchEntity, searchCriteriasParam, limit, offset),
-		searchEntity);
+	return select(searchEntity, searchCriteriasParam, limit, offset, null);
     }
 
     /**
@@ -439,5 +437,23 @@ public class Orm
 
 	if (currentTime - latestBackupTime > desiredBackupTimeInterval)
 	    sgbd.doBackup();
+    }
+
+    /**
+     * @param searchEntity
+     * @param searchParameters
+     * @param limit
+     * @param offset
+     * @param orderBy
+     * @return
+     * @throws OrmException
+     */
+    public static Vector<AbstractOrmEntity> select(
+	    AbstractOrmEntity searchEntity, Vector<String> searchParameters,
+	    int limit, int offset, String orderBy) throws OrmException
+    {
+	return EntityCreator.createEntitiesFromResultSet(sgbd.select(
+		searchEntity, searchParameters, limit, offset, orderBy),
+		searchEntity);
     }
 }

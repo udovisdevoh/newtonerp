@@ -33,6 +33,7 @@ public class PageSelector extends AbstractEntity
      * @param totalRowCount nonbre total de rangée
      * @param currentUrl url courant
      * @param currentSearchEntry texte de recherche
+     * @param orderBy ordre de tri
      * @param rowPerPage row per page
      * @param pageCount page count
      * @throws Exception si ça fail
@@ -105,6 +106,9 @@ public class PageSelector extends AbstractEntity
 	return currentSearchEntry;
     }
 
+    /**
+     * @return ordre de tri
+     */
     public String getOrderBy()
     {
 	return orderBy;

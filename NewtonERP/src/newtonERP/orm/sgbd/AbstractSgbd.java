@@ -192,8 +192,8 @@ public abstract class AbstractSgbd
      * @throws OrmException an exception that can occur in the orm
      */
     public abstract ResultSet select(AbstractOrmEntity searchEntity,
-	    Vector<String> searchCriteriasParam, int limit, int offset)
-	    throws OrmException;
+	    Vector<String> searchCriteriasParam, int limit, int offset,
+	    String orderBy) throws OrmException;
 
     /**
      * @param searchEntity entité de recherche
