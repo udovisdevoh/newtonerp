@@ -103,4 +103,15 @@ public class AccessorManager
 	return SingleAccessorManager.getSingleAccessor(abstractOrmEntity,
 		accessorName);
     }
+
+    /**
+     * @param sourceEntity entié de source
+     * @param gateWayEntity entité de passerelle
+     * @param externalEntity entié externe
+     */
+    public static void addGateWay(AbstractOrmEntity sourceEntity,
+	    AbstractOrmEntity gateWayEntity, AbstractOrmEntity externalEntity)
+    {
+	GateWayManager.addGateWay(sourceEntity, gateWayEntity, externalEntity);
+    }
 }
