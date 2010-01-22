@@ -7,6 +7,7 @@ import newtonERP.module.AbstractEntity;
 import newtonERP.viewers.ViewerException;
 import newtonERP.viewers.secondStep.ButtonLinkViewer;
 import newtonERP.viewers.secondStep.PageSelectorViewer;
+import newtonERP.viewers.secondStep.SearchBarViewer;
 import newtonERP.viewers.secondStep.colorViewer.ColorViewer;
 import newtonERP.viewers.viewerData.GridCaseData;
 import newtonERP.viewers.viewerData.GridViewerData;
@@ -35,14 +36,25 @@ public class GridViewer
 	// un moment donnée
 
 	String pageSelectorHtml = null;
+	String searchBarHtml = null;
 
-	if (gridEntity instanceof ListViewerData
-		&& ((ListViewerData) (gridEntity)).getPageSelector() != null)
+	if (gridEntity instanceof ListViewerData)
 	{
-	    pageSelectorHtml = PageSelectorViewer
-		    .getHtmlCode(((ListViewerData) (gridEntity))
-			    .getPageSelector());
-	    html += pageSelectorHtml;
+	    if (((ListViewerData) (gridEntity)).getSearchBar() != null)
+	    {
+		searchBarHtml = SearchBarViewer
+			.getHtmlCode(((ListViewerData) (gridEntity))
+				.getSearchBar());
+		html += searchBarHtml;
+	    }
+
+	    if (((ListViewerData) (gridEntity)).getPageSelector() != null)
+	    {
+		pageSelectorHtml = PageSelectorViewer
+			.getHtmlCode(((ListViewerData) (gridEntity))
+				.getPageSelector());
+		html += pageSelectorHtml;
+	    }
 	}
 
 	html += "<table class='ListViewerTable' border='0' cellpadding='3' cellspacing='0'>";

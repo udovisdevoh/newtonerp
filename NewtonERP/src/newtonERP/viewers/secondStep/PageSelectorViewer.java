@@ -1,5 +1,8 @@
 package newtonERP.viewers.secondStep;
 
+import java.net.URLEncoder;
+
+import newtonERP.viewers.Viewer;
 import newtonERP.viewers.viewerData.PageSelector;
 
 /**
@@ -12,18 +15,24 @@ public class PageSelectorViewer
     /**
      * @param pageSelector selecteur de page
      * @return code html
+     * @throws Exception si ça fail
      */
     public static String getHtmlCode(PageSelector pageSelector)
+	    throws Exception
     {
 	String html = "";
 
 	int pageCount = pageSelector.getPageCount();
 	int limit = pageSelector.getCurrentLimit();
 	int offset = pageSelector.getCurrentOffset();
+	String searchEntry = pageSelector.getCurrentSearchEntry();
+
+	searchEntry = URLEncoder.encode(searchEntry, Viewer.getEncoding());
 
 	if (offset > 0)
 	    html += "<a href='" + pageSelector.getCurrentUrl() + "?limit="
-		    + limit + "&offset=" + (offset - limit) + "'>&lt;</a>";
+		    + limit + "&offset=" + (offset - limit) + "&searchEntry="
+		    + searchEntry + "'>&lt;</a>";
 	else
 	    html += "&lt;";
 
@@ -33,7 +42,8 @@ public class PageSelectorViewer
 
 	    if (currentLinkOffset != offset)
 		html += " <a href='" + pageSelector.getCurrentUrl() + "?limit="
-			+ limit + "&offset=" + linkCounter * limit + "'>";
+			+ limit + "&offset=" + linkCounter * limit
+			+ "&searchEntry=" + searchEntry + "'>";
 	    else
 		html += " ";
 
@@ -45,7 +55,8 @@ public class PageSelectorViewer
 
 	if (offset + limit < pageSelector.getTotalRowCount())
 	    html += " <a href='" + pageSelector.getCurrentUrl() + "?limit="
-		    + limit + "&offset=" + (offset + limit) + "'>&gt;</a>";
+		    + limit + "&offset=" + (offset + limit) + "&searchEntry="
+		    + searchEntry + "'>&gt;</a>";
 	else
 	    html += " &gt;";
 

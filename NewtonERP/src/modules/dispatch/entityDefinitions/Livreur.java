@@ -33,9 +33,6 @@ public class Livreur extends AbstractOrmEntity
 
 	FieldString nom = new FieldString("Nom", "Nom");
 	fieldList.add(nom);
-
-	FieldString mofo = new FieldString("Mofo", "Mofo");
-	fieldList.add(mofo);
 	return new Fields(fieldList);
     }
 }

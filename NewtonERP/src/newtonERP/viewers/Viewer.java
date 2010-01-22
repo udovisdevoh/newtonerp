@@ -29,6 +29,8 @@ import newtonERP.viewers.viewerData.PromptViewerData;
  */
 public abstract class Viewer
 {
+    private static final String defaultEncoding = "iso-8859-1";
+
     /**
      * Gets the html code by calling the same method in the right viewer
      * 
@@ -90,7 +92,8 @@ public abstract class Viewer
 		+ "<head><title>"
 		+ pageTitle
 		+ "</title>"
-		+ "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-1\" />";
+		+ "<meta http-equiv=\"Content-Type\" content=\"text/html; charset="
+		+ Viewer.getEncoding() + "\" />";
 
 	// css******************************************************************
 	header += "<link rel=\"stylesheet\" type=\"text/css\" title=\"base\" href=\"/file/styleScreen.css\" media=\"screen\" />";
@@ -205,5 +208,13 @@ public abstract class Viewer
     {
 	String footer = "</div><div id=\"footer\"><p>Copyright © \"G.Lacasse, J.Cloutier, J.Hallée, P.Lemay, G.Therrien\" 2009, tous droits réservés</p></div></body></html>";
 	return footer;
+    }
+
+    /**
+     * @return encodage de charset
+     */
+    public static String getEncoding()
+    {
+	return defaultEncoding;
     }
 }
