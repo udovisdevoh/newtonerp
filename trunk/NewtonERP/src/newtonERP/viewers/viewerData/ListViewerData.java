@@ -7,6 +7,8 @@ import java.util.Vector;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.BaseAction;
 import newtonERP.module.generalEntity.ListOfValue;
+import newtonERP.orm.associations.GateWay;
+import newtonERP.orm.associations.GateWayManager;
 import newtonERP.orm.field.Field;
 
 /**
@@ -64,6 +66,14 @@ public class ListViewerData extends GridViewerData implements
 		header.add(gridCaseData);
 	    }
 	}
+
+	for (GateWay gateWay : dataType.getGateWayList())
+	{
+	    gridCaseData = new GridCaseData(gateWay.getExternalEntity()
+		    .getNaturalKeyName());
+	    header.add(gridCaseData);
+	}
+
 	return header.toArray(new GridCaseData[0]);
     }
 
@@ -117,6 +127,24 @@ public class ListViewerData extends GridViewerData implements
 		    oneData.add(gridCaseData);
 		}
 	    }
+
+	    for (GateWay gateWay : entity.getGateWayList())
+	    {
+		AbstractOrmEntity foreignEntity = GateWayManager
+			.getExternalEntity(gateWay, entity);
+		String naturalKeyValue = foreignEntity
+			.getNaturalKeyDescription();
+
+		Hashtable<String, String> param = new Hashtable<String, String>();
+		param.put(foreignEntity.getPrimaryKeyName(), foreignEntity
+			.getPrimaryKeyValue().toString());
+
+		gridCaseData = new GridCaseData(naturalKeyValue,
+			new BaseAction("Edit", foreignEntity), param);
+		gridCaseData.setColored(gateWay.isColored());
+		oneData.add(gridCaseData);
+	    }
+
 	    dataList.add(oneData.toArray(new GridCaseData[0]));
 	}
 	return dataList.toArray(new GridCaseData[0][0]);
