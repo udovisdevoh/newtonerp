@@ -349,7 +349,8 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	    }
 	}
 
-	resultSet = Orm.select(searchEntity, searchParameters, limit, offset);
+	resultSet = Orm.select(searchEntity, searchParameters, limit, offset,
+		orderBy);
 
 	int totalRowCount = Orm.count(searchEntity, searchParameters);
 	if (limit < totalRowCount)

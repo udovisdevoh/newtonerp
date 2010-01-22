@@ -518,14 +518,17 @@ public class SgbdSqlite extends AbstractSgbd
 
     @Override
     public ResultSet select(AbstractOrmEntity searchEntity,
-	    Vector<String> searchCriteriasParam, int limit, int offset)
-	    throws OrmException
+	    Vector<String> searchCriteriasParam, int limit, int offset,
+	    String orderBy) throws OrmException
     {
 	String sqlQuery = "SELECT * FROM " + prefix
 		+ searchEntity.getSystemName();
 
 	if (searchCriteriasParam != null)
 	    sqlQuery += buildWhereClause(searchCriteriasParam);
+
+	if (orderBy != null)
+	    sqlQuery += " ORDER BY " + orderBy;
 
 	sqlQuery = sqlQuery + " LIMIT " + offset + ", " + limit + ";";
 
