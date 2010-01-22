@@ -527,7 +527,7 @@ public class SgbdSqlite extends AbstractSgbd
 	if (searchCriteriasParam != null)
 	    sqlQuery += buildWhereClause(searchCriteriasParam);
 
-	if (orderBy != null)
+	if (orderBy != null && orderBy.length() > 0)
 	    sqlQuery += " ORDER BY " + orderBy;
 
 	sqlQuery = sqlQuery + " LIMIT " + offset + ", " + limit + ";";

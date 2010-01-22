@@ -440,13 +440,13 @@ public class Orm
     }
 
     /**
-     * @param searchEntity
-     * @param searchParameters
-     * @param limit
-     * @param offset
-     * @param orderBy
-     * @return
-     * @throws OrmException
+     * @param searchEntity entité
+     * @param searchParameters critère de recherche
+     * @param limit limite
+     * @param offset offset
+     * @param orderBy ordre
+     * @return liste d'entité
+     * @throws OrmException si ça fail
      */
     public static Vector<AbstractOrmEntity> select(
 	    AbstractOrmEntity searchEntity, Vector<String> searchParameters,
