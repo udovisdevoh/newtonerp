@@ -549,14 +549,20 @@ public class SgbdSqlite extends AbstractSgbd
     }
 
     @Override
-    public int count(AbstractOrmEntity searchEntity) throws Exception
+    public int count(AbstractOrmEntity searchEntity,
+	    Vector<String> searchParameterList) throws Exception
     {
 	// Pour une raison quelconque, la fonction COUNT de SQLite empêche la
 	// transaction de se terminer
 	// Alors on utilise un count fait à bras
 
 	String sqlQuery = "SELECT " + searchEntity.getPrimaryKeyName()
-		+ " FROM " + prefix + searchEntity.getSystemName() + ";";
+		+ " FROM " + prefix + searchEntity.getSystemName();
+
+	if (searchParameterList != null)
+	    sqlQuery += buildWhereClause(searchParameterList);
+
+	sqlQuery += ";";
 
 	// TODO: Remove the next line when it will be properly debugged
 	System.out.println("SQL query produced : " + sqlQuery);

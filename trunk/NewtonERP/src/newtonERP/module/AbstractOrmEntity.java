@@ -348,7 +348,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 
 	resultSet = Orm.select(searchEntity, searchParameters, limit, offset);
 
-	int totalRowCount = Orm.count(searchEntity);
+	int totalRowCount = Orm.count(searchEntity, searchParameters);
 	if (limit < totalRowCount)
 	    entityList.setPageSelector(new PageSelector(limit, offset,
 		    totalRowCount, "/" + getCurrentModule().getSystemName()

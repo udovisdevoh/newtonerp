@@ -200,7 +200,19 @@ public abstract class AbstractSgbd
      * @return nombre d'occurence du type de l'entité de recherche
      * @throws Exception si ça fail
      */
-    public abstract int count(AbstractOrmEntity searchEntity) throws Exception;
+    public int count(AbstractOrmEntity searchEntity) throws Exception
+    {
+	return count(searchEntity, null);
+    }
+
+    /**
+     * @param searchEntity entité de recherche
+     * @param searchParameterList paramêtres de recherche
+     * @return nombre d'occurence du type de l'entité de recherche
+     * @throws Exception si ça fail
+     */
+    public abstract int count(AbstractOrmEntity searchEntity,
+	    Vector<String> searchParameterList) throws Exception;
 
     /**
      * Fait un backup de la DB
