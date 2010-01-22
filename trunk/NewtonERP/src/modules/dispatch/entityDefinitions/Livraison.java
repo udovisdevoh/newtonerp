@@ -26,6 +26,8 @@ public class Livraison extends AbstractOrmEntity
 	AccessorManager.addAccessor(this, new Route());
 	AccessorManager.addAccessor(this, new Client());
 	AccessorManager.addAccessor(this, new LivraisonEtat());
+	// AccessorManager.addGateWay(this, new Client(), new ClientType());
+	AccessorManager.addGateWay(this, new Client(), new Secteur());
     }
 
     public Fields initFields() throws Exception

@@ -11,6 +11,7 @@ import newtonERP.module.generalEntity.ListOfValue;
 import newtonERP.orm.Orm;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.associations.FlagPoolManager;
+import newtonERP.orm.associations.GateWay;
 import newtonERP.orm.associations.PluralAccessor;
 import newtonERP.orm.associations.PluralAccessorManager;
 import newtonERP.orm.exceptions.OrmException;
@@ -33,6 +34,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
     private String visibleName;
     private TreeMap<String, PluralAccessor> pluralAccessorList;
     private TreeMap<String, AbstractOrmEntity> singleAccessorList;
+    private Vector<GateWay> gateWayList;
     private Vector<String> accessorNameList;
 
     /**
@@ -818,5 +820,15 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	if (accessorNameList == null)
 	    accessorNameList = new Vector<String>();
 	return accessorNameList;
+    }
+
+    /**
+     * @return liste des gateways (accesseurs passant par un autre)
+     */
+    public Vector<GateWay> getGateWayList()
+    {
+	if (gateWayList == null)
+	    gateWayList = new Vector<GateWay>();
+	return gateWayList;
     }
 }
