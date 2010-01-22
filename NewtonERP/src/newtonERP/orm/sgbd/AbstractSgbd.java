@@ -188,6 +188,7 @@ public abstract class AbstractSgbd
      * @param searchCriteriasParam the search criterias formatted into strings
      * @param limit limite de résultat
      * @param offset offset du début des résultats
+     * @param orderBy ordre facultatif
      * @return a vector of ormizable entities
      * @throws OrmException an exception that can occur in the orm
      */

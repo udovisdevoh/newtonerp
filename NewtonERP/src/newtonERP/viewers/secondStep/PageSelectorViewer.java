@@ -32,11 +32,19 @@ public class PageSelectorViewer
 	orderBy = URLEncoder.encode(orderBy, Viewer.getEncoding());
 
 	if (offset > 0)
-	    html += "<a href='" + pageSelector.getCurrentUrl() + "?limit="
-		    + limit + "&offset=" + (offset - limit) + "&searchEntry="
-		    + searchEntry + "&orderBy=" + orderBy + "'>&lt;</a>";
+	    html += "<a href='"
+		    + pageSelector.getCurrentUrl()
+		    + "?limit="
+		    + limit
+		    + "&offset="
+		    + (offset - limit)
+		    + "&searchEntry="
+		    + searchEntry
+		    + "&orderBy="
+		    + orderBy
+		    + "'><img src='/file/images/blueLeftArrow.gif' alt='gauche' style='border:0px' /></a>";
 	else
-	    html += "&lt;";
+	    html += "<img src='/file/images/blackLeftArrow.gif' alt='gauche' />";
 
 	for (int linkCounter = 0; linkCounter < pageCount; linkCounter++)
 	{
@@ -57,11 +65,19 @@ public class PageSelectorViewer
 	}
 
 	if (offset + limit < pageSelector.getTotalRowCount())
-	    html += " <a href='" + pageSelector.getCurrentUrl() + "?limit="
-		    + limit + "&offset=" + (offset + limit) + "&searchEntry="
-		    + searchEntry + "&orderBy=" + orderBy + "'>&gt;</a>";
+	    html += " <a href='"
+		    + pageSelector.getCurrentUrl()
+		    + "?limit="
+		    + limit
+		    + "&offset="
+		    + (offset + limit)
+		    + "&searchEntry="
+		    + searchEntry
+		    + "&orderBy="
+		    + orderBy
+		    + "'><img src='/file/images/blueRightArrow.gif' alt='droit' style='border:0px' /></a>";
 	else
-	    html += " &gt;";
+	    html += " <img src='/file/images/blackRightArrow.gif' alt='droit' />";
 
 	return html;
     }
