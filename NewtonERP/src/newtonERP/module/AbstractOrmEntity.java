@@ -361,11 +361,10 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	else
 	    entityList.setPageSelector(null);
 
-	entityList
-		.setSearchBar(new SearchBar("/"
-			+ getCurrentModule().getSystemName() + "/GetList/"
-			+ getSystemName(), parameters.get("searchEntry"), this,
-			orderBy));
+	entityList.setSearchBar(new SearchBar("/"
+		+ getCurrentModule().getSystemName() + "/GetList/"
+		+ getSystemName(), parameters.get("searchEntry"), this,
+		orderBy, limit, offset));
 
 	for (AbstractOrmEntity entity : resultSet)
 	    entityList.addEntity(entity);
