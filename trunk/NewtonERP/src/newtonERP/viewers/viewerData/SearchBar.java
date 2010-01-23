@@ -14,6 +14,8 @@ public class SearchBar extends AbstractEntity
 {
     private String targetUrl;
     private String currentSearchEntry;
+    private int limit;
+    private int offset;
     private Vector<String> possibleOrderList;
     private String currentOrder;
 
@@ -22,16 +24,20 @@ public class SearchBar extends AbstractEntity
      * @param currentSearchEntry contenu textuel courant de la rercherche
      * @param concernedEntity entité concernée par la recherche
      * @param currentOrder ordre actuel
+     * @param limit limite de recherche
+     * @param offset offset de recherche
      * @throws Exception si ça fail
      */
     public SearchBar(String targetUrl, String currentSearchEntry,
-	    AbstractOrmEntity concernedEntity, String currentOrder)
-	    throws Exception
+	    AbstractOrmEntity concernedEntity, String currentOrder, int limit,
+	    int offset) throws Exception
     {
 	super();
 	this.targetUrl = targetUrl;
 	this.currentSearchEntry = currentSearchEntry;
 	this.currentOrder = currentOrder;
+	this.limit = limit;
+	this.offset = offset;
 	possibleOrderList = buildPossibleOrderList(concernedEntity);
     }
 
@@ -79,5 +85,21 @@ public class SearchBar extends AbstractEntity
     public String getCurrentOrder()
     {
 	return currentOrder;
+    }
+
+    /**
+     * @return search offset
+     */
+    public int getOffset()
+    {
+	return offset;
+    }
+
+    /**
+     * @return search limit
+     */
+    public int getLimit()
+    {
+	return limit;
     }
 }

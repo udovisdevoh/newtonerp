@@ -39,6 +39,14 @@ public class SearchBarViewer
 			+ possibleOrderName + "</option>";
 	html += "</select> ";
 
+	if (searchBar.getOffset() != 0)
+	    html += "<input type='hidden' name='offset' value='"
+		    + searchBar.getOffset() + "' />";
+
+	if (searchBar.getLimit() != 0)
+	    html += "<input type='hidden' name='limit' value='"
+		    + searchBar.getLimit() + "' />";
+
 	html += "<input type='submit' value='Go' />";
 
 	html += "</form>";
