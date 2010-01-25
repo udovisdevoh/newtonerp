@@ -73,13 +73,22 @@ public class PromptViewer
 	    {
 		for (GateWay gateWay : ormEntity.getGateWayList())
 		{
-		    AbstractOrmEntity externalEntity = GateWayManager
-			    .getExternalEntity(gateWay, ormEntity);
+		    try
+		    {
+			AbstractOrmEntity externalEntity = GateWayManager
+				.getExternalEntity(gateWay, ormEntity);
 
-		    html += "\n<tr><td>" + externalEntity.getNaturalKeyName()
-			    + ": </td><td>"
-			    + externalEntity.getNaturalKeyDescription()
-			    + "</td></tr>";
+			html += "\n<tr><td>"
+				+ externalEntity.getNaturalKeyName()
+				+ ": </td><td>"
+				+ externalEntity.getNaturalKeyDescription()
+				+ "</td></tr>";
+		    } catch (Exception e)
+		    {
+			// Catch vide lorsqu'on essaie de passer par une entité
+			// qui n'existe pas encore pour accéder à un accesseur
+			// secondaire
+		    }
 		}
 
 		for (FlagPool flagPool : ormEntity.getPositiveFlagPoolList()
