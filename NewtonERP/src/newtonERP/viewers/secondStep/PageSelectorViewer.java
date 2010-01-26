@@ -36,11 +36,11 @@ public class PageSelectorViewer
 		    + pageSelector.getCurrentUrl()
 		    + "?limit="
 		    + limit
-		    + "&offset="
+		    + "&amp;offset="
 		    + (offset - limit)
-		    + "&searchEntry="
+		    + "&amp;searchEntry="
 		    + searchEntry
-		    + "&orderBy="
+		    + "&amp;orderBy="
 		    + orderBy
 		    + "'><img src='/file/images/blueLeftArrow.gif' alt='gauche' style='border:0px' /></a>";
 	else
@@ -52,9 +52,9 @@ public class PageSelectorViewer
 
 	    if (currentLinkOffset != offset)
 		html += " <a href='" + pageSelector.getCurrentUrl() + "?limit="
-			+ limit + "&offset=" + linkCounter * limit
-			+ "&searchEntry=" + searchEntry + "&orderBy=" + orderBy
-			+ "'>";
+			+ limit + "&amp;offset=" + linkCounter * limit
+			+ "&amp;searchEntry=" + searchEntry + "&amp;orderBy="
+			+ orderBy + "'>";
 	    else
 		html += " ";
 
@@ -69,11 +69,11 @@ public class PageSelectorViewer
 		    + pageSelector.getCurrentUrl()
 		    + "?limit="
 		    + limit
-		    + "&offset="
+		    + "&amp;offset="
 		    + (offset + limit)
-		    + "&searchEntry="
+		    + "&amp;searchEntry="
 		    + searchEntry
-		    + "&orderBy="
+		    + "&amp;orderBy="
 		    + orderBy
 		    + "'><img src='/file/images/blueRightArrow.gif' alt='droit' style='border:0px' /></a>";
 	else

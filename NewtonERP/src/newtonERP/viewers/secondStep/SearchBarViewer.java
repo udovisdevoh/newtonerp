@@ -16,13 +16,12 @@ public class SearchBarViewer
     {
 	String html = "";
 
-	html += "<div class='searchBar'>";
-
 	String searchEntry = searchBar.getCurrentSearchEntry();
 	if (searchEntry == null)
 	    searchEntry = "";
 
-	html += "<form method='GET' action='" + searchBar.getTargetUrl() + "'>";
+	html += "<form method='get' action='" + searchBar.getTargetUrl() + "'>";
+	html += "<div class='searchBar'>";
 	html += "Rercherche: <input type='text' class='textField' maxlength='128' size='48' name='searchEntry' value='"
 		+ searchEntry + "' />";
 
@@ -48,10 +47,8 @@ public class SearchBarViewer
 		    + searchBar.getLimit() + "' />";
 
 	html += "<input type='submit' value='Go' />";
-
-	html += "</form>";
-
 	html += "</div>";
+	html += "</form>";
 
 	return html;
     }

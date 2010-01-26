@@ -79,7 +79,6 @@ public class BaseViewer
 
     private static String getPrintButton()
     {
-
-	return "<form class='submitButton'><input class='submitButton' type='button' value='Imprimer' onclick='window.print();return false;'/></form>";
+	return "<ins><form class='submitButton' action='.\\'><div><input class='submitButton' type='submit' value='Imprimer' onclick='window.print();return false;'/></div></form></ins>";
     }
 }

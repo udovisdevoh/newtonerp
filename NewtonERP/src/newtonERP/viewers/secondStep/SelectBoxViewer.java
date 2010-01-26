@@ -63,8 +63,6 @@ public class SelectBoxViewer
 	    html += "</select>";
 	}
 
-	html += "</td>";
-
 	return html;
     }
 }
