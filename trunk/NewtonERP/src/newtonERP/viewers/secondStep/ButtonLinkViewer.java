@@ -31,7 +31,11 @@ public class ButtonLinkViewer
 		    .getSystemName(), ((AbstractOrmEntity) entity)
 		    .getNaturalKeyDescription());
 
+	html += "<ins>";
+
 	html += "<form method='get' action='" + actionLink.getUrl() + "'>";
+
+	html += "<div>";
 
 	Hashtable<String, String> param = actionLink.getParameters(entity);
 	for (String key : param.keySet())
@@ -42,7 +46,11 @@ public class ButtonLinkViewer
 	html += "<input class='submitButton' type='submit' " + onClickConfirm
 		+ " value=\"" + actionLink.getName() + "\" />";
 
+	html += "</div>";
+
 	html += "</form>";
+
+	html += "</ins>";
 
 	return html;
     }
