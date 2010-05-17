@@ -1,4 +1,4 @@
-#labels ANALYSE
+#labels ANALYSE,Deprecated
 L'ORM _(fait par nous-même car on ne peut pas utiliser d'orm, servira à rendre plus rapide l'ajout de modules de business logic)_
 
 Nécessite  pour fonctionner une table listant les plugins (modules)
