@@ -1,4 +1,4 @@
-#labels ANALYSE
+#labels ANALYSE,Deprecated
     * Architecture Naked Objects
           * Le "business logic" totalement indépendant de la base de données et du module de présentation
           * Le module de présentation sert à voir dynamique les fonctionnalités du programme.
