@@ -1,4 +1,4 @@
-#labels PLANNING
+#labels PLANNING,Deprecated
 Voici le tableau de priorité tel qu'établis en classe.
 le temps donné est en heure pour une personne nous avons donc de disponible pour chaque sprint 5*15h= 75h, évidement de cela il faut soustraire un certain temps d'administration et de débuggage/imprévue
 
