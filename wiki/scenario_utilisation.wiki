@@ -1,4 +1,4 @@
-#labels CASUSAGE
+#labels CASUSAGE,Deprecated
 {{{
 : 
 Démarrage du serveur
