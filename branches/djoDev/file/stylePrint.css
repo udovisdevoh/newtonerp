@@ -1,0 +1,165 @@
+h1
+{
+	display:none;
+	visibility:hidden;
+	height:0px;
+}
+
+td.moneyStyleModifier
+{
+	text-align:right;
+	white-space:nowrap;
+}
+
+body
+{
+	font-family: Arial;
+	margin:0px;
+}
+
+.element_menu
+{
+	display:none;
+	visibility:hidden;
+	height:0px;
+	line-height:0px;
+}
+
+a
+{
+	color:#000;
+	text-decoration:none;
+}
+
+input
+{
+	border-width:0px;
+	border-style: none;
+	background-color:#FFF;
+	color:#000;
+	scrollbar-base-color:White;
+	border-color:#FFF;
+}
+
+.topMenu
+{
+	display:none;
+	visibility:hidden;
+	height:0px;
+}
+
+div.scrollableDivPair
+{
+	border-style:none;
+	border-width:0px;
+}
+
+table
+{
+	border-collapse:collapse;
+}
+
+table .ListViewerTableHeader
+{
+	border-style:solid;
+	border-width:1px;
+	border-color:#FFF;
+	background-color:#444;
+	color:#FFF;
+	font-weight:bold;
+}
+
+table td
+{
+	border-style:solid;
+	border-width:1px;
+	border-color:#000;
+}
+
+.submitButton
+{
+	display:none;
+	visibility:hidden;
+}
+
+.scrollableDivPair ul
+{
+	margin:0px;
+	padding:0px;
+}
+
+.scrollableDivPair li
+{
+	margin:0px;
+	padding:0px;
+	margin-left:20px;
+	list-style-type:square;
+}
+
+select
+{
+	border: none;
+	background-color:#FFF;
+}
+
+option
+{
+	border: none;
+	background-color:#FFF;
+}
+
+.backLink
+{
+	display:none;
+	visibility:hidden;
+	height:0px;
+}
+
+.checkList
+{
+	display:none;
+	visibility:hidden;
+	height:0px;
+}
+
+.errorMessage
+{
+	display:none;
+	visibility:hidden;
+	height:0px;
+}
+
+.normalMessage
+{
+	display:none;
+	visibility:hidden;
+	height:0px;
+}
+
+textarea
+{
+	display:none;
+	visibility:hidden;
+	height:0px;
+}
+
+.buttonLink
+{
+	display:none;
+	visibility:hidden;
+	height:0px;
+}
+
+img
+{
+	display:none;
+	visibility:hidden;
+	height:0px;
+}
+
+.searchBar
+{
+	display:none;
+	visibility:hidden;
+	height:0px;
+}

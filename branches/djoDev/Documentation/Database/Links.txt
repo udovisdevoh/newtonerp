@@ -1,0 +1,5 @@
+http://www.java2s.com/Code/Java/JPA/CreateYourOwnTableForTableGenerator.htm
+
+La JPA - Java Persistence API
+
+http://java.sun.com/javaee/5/docs/tutorial/doc/bnbpz.html

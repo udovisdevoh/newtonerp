@@ -1,0 +1,3 @@
+http://en.wikipedia.org/wiki/Naked_objects
+http://www.nakedobjects.org/home/no_for_java_intro.shtml
+http://www.nakedobjects.net/tutorial/index.shtml

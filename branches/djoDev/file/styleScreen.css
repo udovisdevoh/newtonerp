@@ -1,0 +1,334 @@
+body /*mise en page pour tout le corp*/
+{
+	width: 100%;
+	margin: auto;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	/*background-color: #ecf1f5;*/
+	background-image: url('/file/images/bodyBackGround.png');
+	background-repeat:repeat-x;
+	background-color: #FFF;
+	font-family: Arial;
+	font-size: 14px;
+	margin:0px;
+}
+
+#header
+{
+	width: 100%
+	margin-left:-10px;
+	/*height: 75px;*/
+	/*background-color: #d3d8e1;*/
+	color: black;
+	font-family: Arial, "Arial Black", "Times New Roman", Times, serif;
+	border: 1px solid black;
+	margin-bottom: 5px;
+	padding-left:10px;
+	/*background-image: url('/file/images/windowBackground.png');*/
+	background-image: url('/file/images/headerBackground.gif');
+	background-color: #FFF;
+	background-repeat: repeat-x;
+	border-style:dashed;
+
+}
+
+h1 /* Gros titres */
+{
+	color: black;
+	font-family: Arial, "Arial Black", "Times New Roman", Times, serif;
+}
+
+h2 /* sous-titres */
+{
+	color: black;
+	font-family: Arial, "Arial Black", "Times New Roman", Times, serif;
+	margin-bottom:3px;
+	margin-top:3px;
+}
+
+a img
+{
+	border-width:0px;
+}
+
+.element_menu
+{
+	float: left; /* Le menu flottant à gauche */
+	width: 170px;
+	/*background-color: #d3d8e1;*/
+	border-width: 1px;
+	padding: 10px;
+	background-image: url('/file/images/menuBackground.png');
+	line-height:18px;
+	border-style:dashed;
+}
+
+.element_menu h3 /* Tous les titres de sous-menus */ 
+{
+	color: black;
+	font-family: Arial, "Arial Black", "Times New Roman", Times, serif;
+	text-align: center;
+}
+
+.element_menu ul /* Listes à puces de sous-menu */
+{
+	padding: 0px;
+	padding-left: 20px;
+	margin: 0px;
+	margin-bottom: 5px;
+}
+
+.element_menu a /* Tous les liens se trouvant dans un menu */
+{
+	color: #0081d7;
+}
+
+.element_menu .selectedLink 
+{
+	color: #080;
+}
+
+.element_menu a:hover
+{
+	color: red;
+}
+
+a /* Tous les liens */
+{
+	color: #0081d7;
+}
+
+a:hover 
+{
+	color: red;
+}
+
+.textField
+{
+	background-image: url('images/field.gif');
+	margin-bottom:3px;
+	border-color:#9ca3c0;
+	border-style:solid;
+	border-width:1px;
+	padding:2px;
+}
+
+select
+{
+	background-image: url('images/field.gif');
+	margin-bottom:3px;
+	border-color:#9ca3c0;
+	border-style:solid;
+	border-width:1px;
+	padding:2px;
+}
+
+textarea.textField
+{
+	width:400px;
+	height:140px;
+}
+
+textarea.textFieldLong
+{
+	background-image: url('images/field.gif');
+	margin-bottom:3px;
+	border-color:#9ca3c0;
+	border-style:solid;
+	border-width:1px;
+	padding:2px;
+	width:796px;
+	height:596px;
+}
+
+.errorMessage
+{
+	color: #F00;
+	font-weight:bold;
+}
+
+.normalMessage
+{
+	color: #0A0;
+	font-weight:bold;
+}
+
+.checkBoxAtomicElement td 
+{
+	border-style: solid;
+	border-width: 2px;
+	border-color: #fbfcfd #a3aebf #a3aebf #fbfcfd;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	padding: 3px;
+	padding-right: 6px;
+}
+
+#body
+{
+	margin-left: 200px;
+	padding: 10px;
+	margin-bottom:10px;
+	color: black;
+	background-color: #d3d8e1;
+	border: 1px solid black;
+	background-image: url('/file/images/windowBackground.png');
+	border-style:dashed;
+}
+
+.buttonLink
+{
+	margin: 0 3em;	
+}
+	
+.ListViewerTable td 
+{
+	background-color: #FFF;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #DDD #AAA #AAA #DDD;
+	background-attachment: fixed;
+	height:32px;
+}
+
+.ListViewerTable th
+{
+	text-align: center;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #39405d #61989f #61989f #39405d;
+	font-weight:bold;
+	background-color: #86a0b6;
+	background-image: url('/file/images/tableHeaderBackground.gif');
+	color: #efefef;
+	height:32px;
+}
+
+th a
+{
+	color:#FFA;
+}
+
+.ListViewerTable td.ListViewerTableHeader
+{
+	text-align: center;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #39405d #61989f #61989f #39405d;
+	font-weight:bold;
+	background-color: #86a0b6;
+	background-image: url('/file/images/tableHeaderBackground.gif');
+	color: #efefef;
+	height:32px;
+}
+
+#footer
+{
+	text-align: center;
+	color: black;
+	border-width: 1px;
+	background-image: url('/file/images/headerBackground.gif');
+	background-color: #FFF;
+	border-style:dashed;
+	margin-left:200px;
+}
+
+div.scrollableDivPair
+{
+	border-color:#88A;
+	border-width:2px;border-style:dotted;
+	height:100px;
+	padding:4px;
+	background-image: url('images/motionBackground.gif');
+	overflow-y:scroll;
+}
+
+.scrollableDivPair ul
+{
+	margin:0px;
+	padding:0px;
+}
+
+.scrollableDivPair li
+{
+	margin:0px;
+	padding:0px;
+	margin-left:20px;
+	list-style-type:square;
+}
+
+td.moneyStyleModifier
+{
+	text-align:right;
+	white-space:nowrap;
+}
+
+a.linkPairTarget
+{
+	font-style: italic;
+	color: #22A3f9;
+}
+
+a.linkPairTarget:hover
+{
+	font-style: italic;
+	color: #F00;
+}
+
+td.gridCell a
+{
+	color:#000;
+}
+
+td.gridCell a:hover
+{
+	color:#F00;
+}
+
+.topMenu
+{
+	text-align:right;
+}
+
+.topMenu a
+{
+	color: #0081d7;
+}
+
+.topMenu a:hover
+{
+	color: red;
+}
+
+.backLink
+{
+	margin-top:0px;
+	position:relative;
+}
+
+.printableText
+{
+	display:none;
+	visibility:hidden;
+	height:0px;
+}
+
+.searchBar
+{
+	background-image: url('/file/images/headerBackground.gif');
+	border-style:dashed;
+	border-width: 1px;
+	padding:5px;
+	margin-bottom:5px;
+}
+
+form
+{
+	margin:0px;
+}
+
+td
+{
+	padding-top:0px;
+	padding-bottom:0px;
+}
