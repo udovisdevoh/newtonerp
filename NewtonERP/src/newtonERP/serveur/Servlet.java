@@ -114,9 +114,8 @@ public class Servlet extends ServletHandler
 	moduleName = buildModuleName(target);
 	if (moduleName == null || moduleName.trim().length() == 0)
 	{
-	    moduleName = "UserRightModule";
-	    actionName = "Login";// override default car login peut être ou ne
-	    // pas être default
+	    moduleName = ConfigManager.getDefaultModuleName();
+	    actionName = ConfigManager.getDefaultActionName();
 	}
 
 	entityName = buildEntityName(target);

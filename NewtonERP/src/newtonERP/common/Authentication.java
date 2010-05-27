@@ -1,5 +1,7 @@
 package newtonERP.common;
 
+import modules.userRightModule.entityDefinitions.User;
+
 /**
  * @author Guillaume Lacasse Cette classe sert à authentifier un user de manière
  *         hardcodée OU par session HTTP Le but de cette classe est d'être gérée
@@ -15,6 +17,18 @@ public class Authentication
     public static String getCurrentUserName()
     {
 	return currentUserName;
+    }
+
+    /**
+     * @return Entité représentant l'utilisateur courant
+     * @throws Exception si ça fail
+     */
+    public static User getCurrentUser() throws Exception
+    {
+	User user = new User();
+	user.setData("name", getCurrentUserName());
+	user = (User) user.get().get(0);
+	return user;
     }
 
     /**

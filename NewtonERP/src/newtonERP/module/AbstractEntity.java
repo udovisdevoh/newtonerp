@@ -25,6 +25,7 @@ public abstract class AbstractEntity
     private static HashSet<ListOfValue> negativeListOfValueList;
     protected Module currentModule;
     private AbstractAction currentAction;
+    private String detailedDescription = null;
 
     /**
      * construit une entity ne comportant aucun champ
@@ -312,5 +313,21 @@ public abstract class AbstractEntity
     public void reset() throws Exception
     {
 	fields.reset();
+    }
+
+    /**
+     * @return description détaillée facultative
+     */
+    public String getDetailedDescription()
+    {
+	return detailedDescription;
+    }
+
+    /**
+     * @param detailedDescription description détaillée facultative
+     */
+    public void setDetailedDescription(String detailedDescription)
+    {
+	this.detailedDescription = detailedDescription;
     }
 }

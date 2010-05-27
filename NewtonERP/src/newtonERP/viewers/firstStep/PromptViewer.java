@@ -14,6 +14,7 @@ import newtonERP.orm.field.Field;
 import newtonERP.serveur.Servlet;
 import newtonERP.viewers.secondStep.CheckListViewer;
 import newtonERP.viewers.secondStep.FieldViewer;
+import newtonERP.viewers.secondStep.LinkViewer;
 import newtonERP.viewers.secondStep.ScrollListViewer;
 import newtonERP.viewers.secondStep.SelectBoxViewer;
 import newtonERP.viewers.viewerData.PromptViewerData;
@@ -48,6 +49,8 @@ public class PromptViewer
 
 	for (Field<?> field : promptData.getData().getFields())
 	{
+	    if (promptData.isReadOnly())
+		field.setReadOnly(true);
 
 	    ListOfValue listOfValue = promptData.getData().tryMatchListOfValue(
 		    field.getShortName());
@@ -102,13 +105,35 @@ public class PromptViewer
 		}
 	    }
 
-	    html += getSingleAccessorLinkList((AbstractOrmEntity) data);
-	    html += getMultipleAccessorLinkList((AbstractOrmEntity) data);
+	    if (promptData.getComplementaryInfoLineList().size() > 0)
+	    {
+		html += "<tr><td colspan=\"2\"><ul>";
+		html += "<div class=\"checkList\">";
+
+		html += "<h3>Information complémentaire</h3>";
+
+		for (String complementaryInfo : promptData
+			.getComplementaryInfoLineList())
+		{
+		    html += "<li>" + complementaryInfo + "</li>";
+		}
+
+		html += "</div>";
+
+		html += "</ul></td></tr>";
+	    }
+
+	    html += getSingleAccessorLinkList((AbstractOrmEntity) data,
+		    promptData.isReadOnly());
+	    html += getMultipleAccessorLinkList((AbstractOrmEntity) data,
+		    promptData.isReadOnly());
 	}
 
-	html += "<tr><td colspan=\"2\" align=\"center\" class=\"submitButton\">"
-		+ "<input class=\"submitButton\" type=\"submit\" name=\"submit\" value=\""
-		+ promptData.getButtonAction().getName() + "\" />";
+	html += "<tr><td colspan=\"2\" align=\"center\" class=\"submitButton\">";
+
+	if (!promptData.isReadOnly())
+	    html += "<input class=\"submitButton\" type=\"submit\" name=\"submit\" value=\""
+		    + promptData.getButtonAction().getName() + "\" />";
 
 	html += "</td></tr>";
 	html += "</table>";
@@ -118,14 +143,21 @@ public class PromptViewer
 	return html;
     }
 
-    private static String getMultipleAccessorLinkList(AbstractOrmEntity entity)
-	    throws Exception
+    private static String getMultipleAccessorLinkList(AbstractOrmEntity entity,
+	    boolean isReadOnly) throws Exception
     {
 	String html = "";
 
 	PluralAccessor pluralAccessor;
 
 	ScrollList scrollList;
+
+	String actionName;
+
+	if (isReadOnly)
+	    actionName = "Get";
+	else
+	    actionName = "Edit";
 
 	for (String accessorName : entity.getPluralAccessorList().keySet())
 	{
@@ -138,10 +170,14 @@ public class PromptViewer
 		    .getInternalEntityDefinition().getVisibleName()
 		    + "(s)");
 
-	    scrollList.setTitleUrl(Servlet.makeLink(pluralAccessor
-		    .getInternalEntityDefinition().getCurrentModule(),
-		    new BaseAction("GetList", pluralAccessor
-			    .getInternalEntityDefinition())));
+	    ActionLink titleActionLink = new ActionLink("", new BaseAction(
+		    "GetList", pluralAccessor.getInternalEntityDefinition()));
+	    String titleUrlLinkHtml = LinkViewer.getHtmlCode(titleActionLink);
+
+	    if (titleUrlLinkHtml.length() > 0)
+		scrollList.setTitleUrl(titleActionLink.getUrl());
+	    else
+		scrollList.setTitleUrl(null);
 
 	    for (AbstractOrmEntity currentForeignEntity : pluralAccessor)
 	    {
@@ -149,7 +185,7 @@ public class PromptViewer
 		scrollList.addLink(currentForeignEntity
 			.getNaturalKeyDescription(), Servlet.makeLink(
 			currentForeignEntity.getCurrentModule(),
-			new BaseAction("Edit", currentForeignEntity))
+			new BaseAction(actionName, currentForeignEntity))
 			+ "?"
 			+ currentForeignEntity.getPrimaryKeyName()
 			+ "="
@@ -160,13 +196,16 @@ public class PromptViewer
 		    .containsFieldName(entity.getForeignKeyName())
 		    && entity.getPrimaryKeyValue() != 0)
 	    {
-		ActionLink newItemActionLink = new ActionLink(
-			"<img src='/file/images/plusIcon.gif' alt='Nouveau' style='display:block;margin-left:3px;margin-top:2px' />",
-			new BaseAction("New", pluralAccessor
-				.getInternalEntityDefinition()));
-		newItemActionLink.addParameters(entity.getForeignKeyName(),
-			entity.getPrimaryKeyValue().toString());
-		scrollList.addActionLink(newItemActionLink);
+		if (!isReadOnly)
+		{
+		    ActionLink newItemActionLink = new ActionLink(
+			    "<img src='/file/images/plusIcon.gif' alt='Nouveau' style='display:block;margin-left:3px;margin-top:2px' />",
+			    new BaseAction("New", pluralAccessor
+				    .getInternalEntityDefinition()));
+		    newItemActionLink.addParameters(entity.getForeignKeyName(),
+			    entity.getPrimaryKeyValue().toString());
+		    scrollList.addActionLink(newItemActionLink);
+		}
 	    }
 
 	    html += "<tr><td style=\"column-span: all;\" colspan=\"100%\">"
@@ -177,10 +216,17 @@ public class PromptViewer
 	return html;
     }
 
-    private static String getSingleAccessorLinkList(AbstractOrmEntity entity)
-	    throws Exception
+    private static String getSingleAccessorLinkList(AbstractOrmEntity entity,
+	    boolean isReadOnly) throws Exception
     {
 	String html = "";
+
+	String actionName;
+
+	if (isReadOnly)
+	    actionName = "Get";
+	else
+	    actionName = "Edit";
 
 	ScrollList scrollList = new ScrollList("Est associé à");
 
@@ -194,7 +240,8 @@ public class PromptViewer
 	    String entityLinkName = foreignEntity.getNaturalKeyDescription();
 
 	    String entityUrl = Servlet.makeLink(foreignEntity
-		    .getCurrentModule(), new BaseAction("Edit", foreignEntity))
+		    .getCurrentModule(), new BaseAction(actionName,
+		    foreignEntity))
 		    + "?"
 		    + foreignEntity.getPrimaryKeyName()
 		    + "="

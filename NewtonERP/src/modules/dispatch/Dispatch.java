@@ -20,6 +20,7 @@ public class Dispatch extends Module
     {
 	super();
 	setVisibleName("Dispatch");
+	setVisible(false);
     }
 
     public void initDB() throws Exception

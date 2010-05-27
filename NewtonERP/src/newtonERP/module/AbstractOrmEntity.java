@@ -14,7 +14,6 @@ import newtonERP.orm.associations.FlagPoolManager;
 import newtonERP.orm.associations.GateWay;
 import newtonERP.orm.associations.PluralAccessor;
 import newtonERP.orm.associations.PluralAccessorManager;
-import newtonERP.orm.exceptions.OrmException;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.Fields;
 import newtonERP.orm.field.type.FieldCurrency;
@@ -75,7 +74,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
     {
 	getFields().setDefaultValue(false);
 
-	return editUI(parameters);
+	return editUI(parameters, false);
     }
 
     /**
@@ -172,6 +171,21 @@ public abstract class AbstractOrmEntity extends AbstractEntity
     public BaseViewerData editUI(Hashtable<String, String> parameters)
 	    throws Exception
     {
+	return editUI(parameters, false);
+    }
+
+    /**
+     * BaseAction Edit
+     * 
+     * @param parameters parametre suplementaire
+     * @param isReadOnly si on est en mode readOnly: true, sinon, false
+     *            (default: false)
+     * @return todo: qu'Est-ce que l'on devrai retourné en general?
+     * @throws Exception remonte
+     */
+    public BaseViewerData editUI(Hashtable<String, String> parameters,
+	    boolean isReadOnly) throws Exception
+    {
 	PromptViewerData promptData = new PromptViewerData();
 
 	AbstractOrmEntity retEntity;
@@ -193,7 +207,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	retEntity.setCurrentAction(new BaseAction("Edit", this));
 
 	if (parameters != null && parameters.containsKey("submit")
-		&& !fields.isErrorState())
+		&& !fields.isErrorState() && !isReadOnly)
 	{
 	    if (getPrimaryKeyValue() == 0)
 	    {
@@ -207,8 +221,8 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	    FlagPoolManager.applyFlagPoolChanges(this,
 		    getPositiveFlagPoolList().values(), parameters);
 
-	    retEntity = (AbstractOrmEntity) ((PromptViewerData) editUI(new Hashtable<String, String>()))
-		    .getData();
+	    retEntity = (AbstractOrmEntity) ((PromptViewerData) editUI(
+		    new Hashtable<String, String>(), isReadOnly)).getData();
 	    promptData.addNormalMessage("Changements accomplis");
 	}
 
@@ -229,6 +243,8 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	{
 	    promptData.addAlertMessage(fld.getErrorMessage());
 	}
+
+	promptData.setReadOnly(isReadOnly);
 
 	return promptData;
     }
@@ -300,8 +316,9 @@ public abstract class AbstractOrmEntity extends AbstractEntity
     public AbstractEntity getUI(Hashtable<String, String> parameters)
 	    throws Exception
     {
-	return editUI(parameters); // TODO: rendre readOnly, néscéssaire pour
-	// une gestion de droit sufisante
+	return editUI(parameters, true); // TODO: rendre readOnly, néscéssaire
+	// pour
+	// une gestion de droit suffisante
     }
 
     /**
@@ -318,6 +335,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      * @return une liste d'entité de ce type
      * @throws Exception lorsque la requête d'obtention de liste échoue
      */
+    @SuppressWarnings("null")
     public ListViewerData getList(Hashtable<String, String> parameters)
 	    throws Exception
     {
@@ -348,6 +366,23 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 		searchParameters.add(currentParameter);
 	    }
 	}
+
+	for (String fieldName : searchEntity.getFields().getKeyList())
+	{
+	    if (searchParameters == null)
+		searchParameters = new Vector<String>();
+	    String currentParameter;
+	    if (parameters.containsKey(fieldName)
+		    && !parameters.get(fieldName).equals("&"))
+
+	    {
+		currentParameter = fieldName + " = "
+			+ parameters.get(fieldName);
+		searchParameters.add(currentParameter);
+	    }
+	}
+	if (searchParameters.size() == 0)
+	    searchParameters = null;
 
 	resultSet = Orm.select(searchEntity, searchParameters, limit, offset,
 		orderBy);
@@ -445,9 +480,9 @@ public abstract class AbstractOrmEntity extends AbstractEntity
     /**
      * fais un get sur un criter simple exprimé par l'entity this
      * @return the selected entities
-     * @throws OrmException remonte
+     * @throws Exception remonte
      */
-    public final Vector<AbstractOrmEntity> get() throws OrmException
+    public final Vector<AbstractOrmEntity> get() throws Exception
     {
 	return get(this);
     }
@@ -455,10 +490,10 @@ public abstract class AbstractOrmEntity extends AbstractEntity
     /**
      * @param entity the search entity
      * @return the selected entities
-     * @throws OrmException remonte
+     * @throws Exception remonte
      */
     public final Vector<AbstractOrmEntity> get(AbstractOrmEntity entity)
-	    throws OrmException
+	    throws Exception
     {
 	Vector<AbstractOrmEntity> entities = new Vector<AbstractOrmEntity>();
 	entities.add(entity);
@@ -469,10 +504,10 @@ public abstract class AbstractOrmEntity extends AbstractEntity
      * @param entities the entities from which we are going to select our data
      *            (where clause)
      * @return the selected entities
-     * @throws OrmException remonte
+     * @throws Exception remonte
      */
     public final Vector<AbstractOrmEntity> get(
-	    Vector<AbstractOrmEntity> entities) throws OrmException
+	    Vector<AbstractOrmEntity> entities) throws Exception
     {
 	Vector<AbstractOrmEntity> retEntities = null;
 	retEntities = Orm.select(entities);

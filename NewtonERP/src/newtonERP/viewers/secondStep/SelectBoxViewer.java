@@ -26,9 +26,15 @@ public class SelectBoxViewer
     {
 	String html = "";
 
-	html += LinkViewer.getHtmlCode(new ActionLink(entity.getLabelName(),
-		new BaseAction("GetList", ((ListOfValue) entity)
-			.getForeignEntityDefinition())));
+	String getListLinkHtml = LinkViewer.getHtmlCode(new ActionLink(entity
+		.getLabelName(), new BaseAction("GetList",
+		((ListOfValue) entity).getForeignEntityDefinition())));
+
+	if (getListLinkHtml.length() < 2)
+	    getListLinkHtml = entity.getLabelName();
+
+	html += getListLinkHtml;
+
 	html += ": </td><td>";
 
 	NaturalMap<String, String> elements = entity.getElements();

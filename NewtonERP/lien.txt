@@ -1,3 +1,1 @@
-http://localhost:47098/UserRightModule/Edit/User?PKuserID=1
-http://localhost:47098/UserRightModule/GetUserList
-http://localhost:47098/UserRightModule/GetRightList
+http://localhost:47098

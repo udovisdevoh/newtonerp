@@ -41,6 +41,17 @@ public class BaseAction extends AbstractAction
 	    throw new ActionNotFoundException("BaseAction:" + actionName);
 	this.actionName = actionName;
 	this.entity = entity;
+
+	if (actionName == "New")
+	    setDetailedDescription("Créer un(e) nouveau(lle)");
+	else if (actionName == "Edit")
+	    setDetailedDescription("Effectuer une modification sur");
+	else if (actionName == "Delete")
+	    setDetailedDescription("Effacer de manière permanente");
+	else if (actionName == "Get")
+	    setDetailedDescription("Afficher les informations sur (le/la)");
+	else if (actionName == "GetList")
+	    setDetailedDescription("Obtenir une liste des");
     }
 
     /**

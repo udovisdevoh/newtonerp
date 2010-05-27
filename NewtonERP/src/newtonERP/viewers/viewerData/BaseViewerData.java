@@ -18,6 +18,7 @@ public class BaseViewerData extends AbstractEntity
     private Vector<String> alertMessageList = new Vector<String>();
     private Vector<String> normalMessageList = new Vector<String>();
     private ActionLink backLink;
+    private Vector<String> complementaryInfoLineList;
 
     /**
      * constructeur vide
@@ -147,4 +148,22 @@ public class BaseViewerData extends AbstractEntity
 	this.backLink = backLink;
     }
 
+    /**
+     * @param complementaryInfoLine ligne d'information complémentaire à ajouter
+     */
+    public void addComplementaryInfoLine(String complementaryInfoLine)
+    {
+	// TODO Auto-generated method stub
+	getComplementaryInfoLineList().add(complementaryInfoLine);
+    }
+
+    /**
+     * @return liste des lignes d'information complémentaire
+     */
+    public Vector<String> getComplementaryInfoLineList()
+    {
+	if (complementaryInfoLineList == null)
+	    complementaryInfoLineList = new Vector<String>();
+	return complementaryInfoLineList;
+    }
 }
