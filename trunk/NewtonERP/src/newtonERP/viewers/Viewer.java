@@ -29,7 +29,7 @@ import newtonERP.viewers.viewerData.PromptViewerData;
  */
 public abstract class Viewer
 {
-    private static final String defaultEncoding = "UTF-8";
+    private static final String defaultEncoding = "iso-8859-1";
 
     /**
      * Gets the html code by calling the same method in the right viewer
