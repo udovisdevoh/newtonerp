@@ -8,6 +8,7 @@ import java.util.Vector;
 import modules.userRightModule.entityDefinitions.Groups;
 import modules.userRightModule.entityDefinitions.GroupsRight;
 import modules.userRightModule.entityDefinitions.Right;
+import newtonERP.common.ActionLink;
 import newtonERP.common.NaturalMap;
 import newtonERP.module.exception.ActionNotFoundException;
 import newtonERP.module.exception.ModuleException;
@@ -31,6 +32,8 @@ public abstract class Module
     private String defaultAction;
     private String defaultEntity;
     private String visibleName;
+
+    private Vector<ActionLink> globalActionButtonList = null;
 
     private NaturalMap<String, AbstractAction> defaultBehaviorMenu;
 
@@ -322,11 +325,11 @@ public abstract class Module
 	if (actionName.equals("Delete"))
 	    return entity.deleteUI(parameters);
 	if (actionName.equals("Edit"))
-	    return entity.editUI(parameters);
+	    return entity.editUI(parameters, false);
 	if (actionName.equals("GetList"))
 	    return entity.getList(parameters);
 	if (actionName.equals("Get"))
-	    return entity.getUI(parameters);
+	    return entity.editUI(parameters, true);
 
 	throw new ActionNotFoundException("l'action " + actionName
 		+ "de l'entity" + entityName + "n'existe pas");
@@ -350,6 +353,24 @@ public abstract class Module
     public final void addGlobalActionMenuItem(String name, AbstractAction action)
     {
 	getGlobalActionMenu().put(name, action);
+    }
+
+    /**
+     * @param actionLink bouton à ajouter
+     */
+    public void addGlobalActionButton(ActionLink actionLink)
+    {
+	getGlobalActionButtonList().add(actionLink);
+    }
+
+    /**
+     * @return liste des boutons du module
+     */
+    public Vector<ActionLink> getGlobalActionButtonList()
+    {
+	if (globalActionButtonList == null)
+	    globalActionButtonList = new Vector<ActionLink>();
+	return globalActionButtonList;
     }
 
     /**

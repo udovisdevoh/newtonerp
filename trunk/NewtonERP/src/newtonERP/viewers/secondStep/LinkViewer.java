@@ -1,6 +1,8 @@
 package newtonERP.viewers.secondStep;
 
+import modules.userRightModule.UserRightModule;
 import newtonERP.common.ActionLink;
+import newtonERP.common.ListModule;
 
 /**
  * Sert à formatter de l'argent
@@ -9,6 +11,8 @@ import newtonERP.common.ActionLink;
  */
 public class LinkViewer
 {
+    private static int currentBalloonDivId = 0;
+
     /**
      * @param actionLink representation du lien a effectuer
      * @return bouton de lien
@@ -17,6 +21,8 @@ public class LinkViewer
     public static String getHtmlCode(ActionLink actionLink) throws Exception
     {
 	// String onClickConfirm = "";
+
+	int balloonDivId = getNextBalloonDivId();
 
 	/*
 	 * todo: a remettre des que les viewer son plus generaliser que
@@ -27,11 +33,31 @@ public class LinkViewer
 	 */
 
 	String html = "";
-	html += " <a href='" + actionLink.getUrlParam() + "'>";
-	html += actionLink.getName() + "</a> ";
+
+	if (isPermissionAllowed(actionLink))
+	{
+	    html += " <a href='"
+		    + actionLink.getUrlParam()
+		    + "' onmouseover='document.getElementById(\"balloon"
+		    + balloonDivId
+		    + "\").style.visibility=\"visible\"' onmouseout='document.getElementById(\"balloon"
+		    + balloonDivId + "\").style.visibility=\"hidden\"'>";
+	    html += actionLink.getName() + "</a> ";
+
+	    html += HelpViewer.getHtmlCode(actionLink, balloonDivId);
+	}
 
 	return html;
 
+    }
+
+    /**
+     * @return prochain ID de bulle d'aide
+     */
+    public static int getNextBalloonDivId()
+    {
+	currentBalloonDivId++;
+	return currentBalloonDivId;
     }
 
     @SuppressWarnings("unused")
@@ -50,5 +76,14 @@ public class LinkViewer
 	html += "\"";
 
 	return html;
+    }
+
+    private static boolean isPermissionAllowed(ActionLink actionLink)
+	    throws Exception
+    {
+	UserRightModule userRightModule = (UserRightModule) ListModule
+		.getModule("UserRightModule");
+
+	return userRightModule.isPermissionAllowed(actionLink);
     }
 }

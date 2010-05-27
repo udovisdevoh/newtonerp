@@ -6,6 +6,7 @@ import modules.userRightModule.actions.CreateAllRight;
 import newtonERP.common.ListModule;
 import newtonERP.orm.Orm;
 import newtonERP.orm.exceptions.OrmException;
+import newtonERP.serveur.ConfigManager;
 import newtonERP.serveur.Servlet;
 
 import org.mortbay.jetty.Server;
@@ -42,7 +43,7 @@ public class Starter
 	new CreateAllRight().perform(null);
 
 	// lance le serveur web
-	server = new Server(47098);
+	server = new Server(ConfigManager.getPort());
 	server.setGracefulShutdown(2000);
 	server.setStopAtShutdown(true);
 	Context context = new Context(server, "/", Context.SESSIONS);

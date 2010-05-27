@@ -22,6 +22,8 @@ public class PageSelectorViewer
     {
 	String html = "";
 
+	html += "<div class=\"PageSelector\">";
+
 	int pageCount = pageSelector.getPageCount();
 	int limit = pageSelector.getCurrentLimit();
 	int offset = pageSelector.getCurrentOffset();
@@ -78,6 +80,8 @@ public class PageSelectorViewer
 		    + "'><img src='/file/images/blueRightArrow.gif' alt='droit' style='border:0px' /></a>";
 	else
 	    html += " <img src='/file/images/blackRightArrow.gif' alt='droit' />";
+
+	html += "</div>";
 
 	return html;
     }

@@ -6,10 +6,16 @@ import modules.userRightModule.entityDefinitions.Groups;
 import modules.userRightModule.entityDefinitions.GroupsRight;
 import modules.userRightModule.entityDefinitions.Right;
 import modules.userRightModule.entityDefinitions.User;
+import newtonERP.common.ActionLink;
+import newtonERP.common.Authentication;
+import newtonERP.module.AbstractAction;
+import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.BaseAction;
 import newtonERP.module.Module;
 import newtonERP.orm.Orm;
+import newtonERP.orm.associations.AccessorManager;
+import newtonERP.serveur.ConfigManager;
 
 /**
  * @author Gabriel Therrien, Guillaume Lacasse, CloutierJo
@@ -92,8 +98,8 @@ public class UserRightModule extends Module
 
 	// cree le user Admin
 	user = new User();
-	user.setData("name", "admin");
-	user.setData("password", "aaa");
+	user.setData("name", ConfigManager.getDefaultUserName());
+	user.setData("password", ConfigManager.getDefaultPassWord());
 	user.setData("groupsID", groupsID);
 	user.newE();
 
@@ -113,5 +119,152 @@ public class UserRightModule extends Module
 	    groupsRight.setData("rightID", rightID);
 	    groupsRight.newE();
 	}
+    }
+
+    /**
+     * @param groupName nom du groupe
+     * @param actionName nom de l'action
+     * @param entityName nom de l'entité
+     * @throws Exception si ça fail
+     */
+    public void addGroupsRight(String groupName, String actionName,
+	    String entityName) throws Exception
+    {
+	Groups groups = (Groups) Orm.getOrCreateEntity(new Groups(),
+		"groupName", groupName);
+	Right right = (Right) Orm.getOrCreateEntity(new Right(), "actionName",
+		actionName, "entityName", entityName);
+
+	Orm.getOrCreateEntity(new GroupsRight(), groups.getForeignKeyName(),
+		groups.getPrimaryKeyValue().toString(), right
+			.getForeignKeyName(), right.getPrimaryKeyValue()
+			.toString());
+    }
+
+    /**
+     * @param groupName group's name
+     * @param rightActionName right's name
+     * @throws Exception si ça fail
+     */
+    public void addGroupsRight(String groupName, String rightActionName)
+	    throws Exception
+    {
+	Groups groups = (Groups) Orm.getOrCreateEntity(new Groups(),
+		"groupName", groupName);
+	Right right = (Right) Orm.getOrCreateEntity(new Right(), "actionName",
+		rightActionName);
+
+	Orm.getOrCreateEntity(new GroupsRight(), groups.getForeignKeyName(),
+		groups.getPrimaryKeyValue().toString(), right
+			.getForeignKeyName(), right.getPrimaryKeyValue()
+			.toString());
+    }
+
+    /**
+     * @param groupName group's name
+     * @param rightActionName right's name
+     * @throws Exception si ça fail
+     */
+    public void removeGroupsRight(String groupName, String rightActionName)
+	    throws Exception
+    {
+	Groups groups = (Groups) Orm.getOrCreateEntity(new Groups(),
+		"groupName", groupName);
+	Right right = (Right) Orm.getOrCreateEntity(new Right(), "actionName",
+		rightActionName);
+
+	Orm.delete(new GroupsRight(), groups.getForeignKeyName(), groups
+		.getPrimaryKeyValue().toString(), right.getForeignKeyName(),
+		right.getPrimaryKeyValue().toString());
+    }
+
+    /**
+     * @param actionLink un actionLink
+     * @return vrai si les permission sont présentement accordées, sinon, faux
+     * @throws Exception si ça fail
+     */
+    public boolean isPermissionAllowed(ActionLink actionLink) throws Exception
+    {
+	String userName = Authentication.getCurrentUserName();
+	Groups groups = tryGetGroupsForUser(userName);
+	String entityName;
+	AbstractEntity entity;
+
+	if (groups == null)
+	    return false;
+
+	AbstractAction action = actionLink.getAction();
+	String actionName = action.getSystemName();
+
+	if (action instanceof BaseAction)
+	    entity = ((BaseAction) action).getEntity();
+	else
+	    entity = action.getEntityUsable();
+
+	if (entity == null)
+	    entityName = "";
+	else
+	    entityName = entity.getSystemName();
+
+	Right right = tryGetRight(actionName, entityName);
+
+	if (right == null)
+	    right = tryGetRight(actionName);
+
+	return isGroupsRightExists(groups.getPrimaryKeyValue(), right
+		.getPrimaryKeyValue());
+    }
+
+    private Right tryGetRight(String actionName) throws Exception
+    {
+	Right right = new Right();
+	right.setData("actionName", actionName);
+
+	Vector<AbstractOrmEntity> rightList = right.get();
+	if (rightList.size() > 0)
+	    return (Right) rightList.get(0);
+	return null;
+    }
+
+    private Right tryGetRight(String actionName, String entityName)
+	    throws Exception
+    {
+	Right right = new Right();
+	right.setData("actionName", actionName);
+	right.setData("entityName", entityName);
+
+	Vector<AbstractOrmEntity> rightList = right.get();
+	if (rightList.size() > 0)
+	    return (Right) rightList.get(0);
+	return null;
+    }
+
+    private Groups tryGetGroupsForUser(String userName) throws Exception
+    {
+	User user = new User();
+	user.setData("name", userName);
+
+	Vector<AbstractOrmEntity> userList = user.get();
+
+	if (userList.size() < 1)
+	    return null;
+
+	user = (User) userList.get(0);
+
+	Groups groups = (Groups) AccessorManager.getSingleAccessor(user,
+		"groupsID");
+
+	return groups;
+    }
+
+    private boolean isGroupsRightExists(Integer groupsID, Integer rightID)
+	    throws Exception
+    {
+	GroupsRight groupsRight = new GroupsRight();
+	groupsRight.setData("groupsID", groupsID);
+	groupsRight.setData("rightID", rightID);
+
+	Vector<AbstractOrmEntity> entityList = groupsRight.get();
+	return entityList.size() > 0;
     }
 }

@@ -15,9 +15,9 @@ import newtonERP.module.generalEntity.ListOfValue;
  */
 public class PromptViewerData extends BaseViewerData
 {
-
     private ActionLink buttonAction;
     private AbstractEntity data;
+    private boolean isReadOnly;
 
     /**
      * default constructor
@@ -125,4 +125,20 @@ public class PromptViewerData extends BaseViewerData
 	return null;
     }
 
+    /**
+     * @param isReadOnly si entité est présentement readonly dans le contexte
+     *            actuel
+     */
+    public void setReadOnly(boolean isReadOnly)
+    {
+	this.isReadOnly = isReadOnly;
+    }
+
+    /**
+     * @return si entité est présentement readonly
+     */
+    public boolean isReadOnly()
+    {
+	return isReadOnly;
+    }
 }

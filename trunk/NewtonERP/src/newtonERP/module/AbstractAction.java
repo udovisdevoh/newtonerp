@@ -10,6 +10,7 @@ import java.util.Hashtable;
 public abstract class AbstractAction
 {
     private AbstractEntity entityUsable;
+    private String detailedDescription = null;
 
     protected AbstractAction()
     {
@@ -123,4 +124,19 @@ public abstract class AbstractAction
 	return this.getClass().getSimpleName();
     }
 
+    /**
+     * @return description détaillée facultative
+     */
+    public String getDetailedDescription()
+    {
+	return detailedDescription;
+    }
+
+    /**
+     * @param detailedDescription description détaillée facultative
+     */
+    public void setDetailedDescription(String detailedDescription)
+    {
+	this.detailedDescription = detailedDescription;
+    }
 }

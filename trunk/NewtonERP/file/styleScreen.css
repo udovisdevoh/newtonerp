@@ -1,16 +1,13 @@
 body /*mise en page pour tout le corp*/
 {
 	width: 100%;
-	margin: auto;
-	margin-top: 5px;
-	margin-bottom: 5px;
 	/*background-color: #ecf1f5;*/
 	background-image: url('/file/images/bodyBackGround.png');
 	background-repeat:repeat-x;
 	background-color: #FFF;
 	font-family: Arial;
 	font-size: 14px;
-	margin:0px;
+	margin:-1px;
 }
 
 #header
@@ -331,4 +328,15 @@ td
 {
 	padding-top:0px;
 	padding-bottom:0px;
+}
+
+.HelpBalloon
+{
+	position:absolute;
+	visibility:hidden;
+	background-color:#FFF;
+	border-style:dashed;
+	border-width:1px;
+	border-color:#88F;
+	padding:5px;
 }
