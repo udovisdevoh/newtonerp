@@ -18,27 +18,27 @@ import newtonERP.orm.field.type.FieldText;
 public class ProductionProject extends AbstractOrmEntity
 {
 
-    /**
-     * Default constructor
-     * 
-     * @throws Exception a general exception
-     */
-    public ProductionProject() throws Exception
-    {
-	super();
-	setVisibleName("Projets");
-	AccessorManager.addAccessor(this, new ProductionProjectType());
-    }
+	/**
+	 * Default constructor
+	 * 
+	 * @throws Exception a general exception
+	 */
+	public ProductionProject() throws Exception
+	{
+		super();
+		setVisibleName("Projets");
+		AccessorManager.addAccessor(this, new ProductionProjectType());
+	}
 
-    @Override
-    public Fields initFields() throws Exception
-    {
-	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
-	fieldsInit.add(new FieldInt("Numero", getPrimaryKeyName()));
-	fieldsInit.add(new FieldString("Nom du projet", "projectName"));
-	fieldsInit.add(new FieldInt("Type du projet", new ProductionProjectType()
-		.getForeignKeyName()));
-	fieldsInit.add(new FieldText("Description", "description", true));
-	return new Fields(fieldsInit);
-    }
+	@Override
+	public Fields initFields() throws Exception
+	{
+		Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
+		fieldsInit.add(new FieldInt("Numero", getPrimaryKeyName()));
+		fieldsInit.add(new FieldString("Nom du projet", "projectName"));
+		fieldsInit.add(new FieldInt("Type du projet",
+				new ProductionProjectType().getForeignKeyName()));
+		fieldsInit.add(new FieldText("Description", "description", true));
+		return new Fields(fieldsInit);
+	}
 }

@@ -15,24 +15,24 @@ import newtonERP.orm.field.type.FieldString;
 public class ProductionProjectType extends AbstractOrmEntity
 {
 
-    /**
-     * Default constructor
-     * 
-     * @throws Exception a general exception
-     */
-    public ProductionProjectType() throws Exception
-    {
-	super();
-	setVisibleName("Type de projet");
-    }
+	/**
+	 * Default constructor
+	 * 
+	 * @throws Exception a general exception
+	 */
+	public ProductionProjectType() throws Exception
+	{
+		super();
+		setVisibleName("Type de projet");
+	}
 
-    @Override
-    public Fields initFields() throws Exception
-    {
-	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
-	fieldsInit.add(new FieldInt("Numero", getPrimaryKeyName()));
-	fieldsInit.add(new FieldString("Type", "type"));
-	return new Fields(fieldsInit);
-    }
+	@Override
+	public Fields initFields() throws Exception
+	{
+		Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
+		fieldsInit.add(new FieldInt("Numero", getPrimaryKeyName()));
+		fieldsInit.add(new FieldString("Type", "type"));
+		return new Fields(fieldsInit);
+	}
 
 }

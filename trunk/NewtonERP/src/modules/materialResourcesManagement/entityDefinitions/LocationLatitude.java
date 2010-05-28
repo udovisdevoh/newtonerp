@@ -16,28 +16,28 @@ import newtonERP.orm.field.type.FieldInt;
 public class LocationLatitude extends AbstractOrmEntity
 {
 
-    /**
-     * Default constructor
-     * 
-     * @throws Exception a general exception
-     */
-    public LocationLatitude() throws Exception
-    {
-	super();
-    }
+	/**
+	 * Default constructor
+	 * 
+	 * @throws Exception a general exception
+	 */
+	public LocationLatitude() throws Exception
+	{
+		super();
+	}
 
-    @Override
-    public Fields initFields() throws Exception
-    {
-	FieldInt degrees = new FieldInt("Degrés", "degrees");
-	FieldInt minutes = new FieldInt("Minutes", "minutes");
-	FieldDouble seconds = new FieldDouble("Secondes", "seconds");
+	@Override
+	public Fields initFields() throws Exception
+	{
+		FieldInt degrees = new FieldInt("Degrés", "degrees");
+		FieldInt minutes = new FieldInt("Minutes", "minutes");
+		FieldDouble seconds = new FieldDouble("Secondes", "seconds");
 
-	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
-	fieldsInit.add(new FieldInt("Numero", getPrimaryKeyName()));
-	fieldsInit.add(degrees);
-	fieldsInit.add(minutes);
-	fieldsInit.add(seconds);
-	return new Fields(fieldsInit);
-    }
+		Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
+		fieldsInit.add(new FieldInt("Numero", getPrimaryKeyName()));
+		fieldsInit.add(degrees);
+		fieldsInit.add(minutes);
+		fieldsInit.add(seconds);
+		return new Fields(fieldsInit);
+	}
 }

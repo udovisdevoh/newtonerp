@@ -14,25 +14,25 @@ import newtonERP.orm.field.type.FieldString;
  */
 public class WallType extends AbstractOrmEntity
 {
-    /**
-     * constructor
-     * @throws Exception remonte
-     */
-    public WallType() throws Exception
-    {
-	super();
-	setVisibleName("Emplacement du muret");
-    }
+	/**
+	 * constructor
+	 * @throws Exception remonte
+	 */
+	public WallType() throws Exception
+	{
+		super();
+		setVisibleName("Emplacement du muret");
+	}
 
-    public Fields initFields() throws Exception
-    {
-	Vector<Field<?>> fieldList = new Vector<Field<?>>();
+	public Fields initFields() throws Exception
+	{
+		Vector<Field<?>> fieldList = new Vector<Field<?>>();
 
-	FieldInt pKwallTypeID = new FieldInt("Numéro", getPrimaryKeyName());
-	fieldList.add(pKwallTypeID);
+		FieldInt pKwallTypeID = new FieldInt("Numéro", getPrimaryKeyName());
+		fieldList.add(pKwallTypeID);
 
-	FieldString name = new FieldString("Description", "Name");
-	fieldList.add(name);
-	return new Fields(fieldList);
-    }
+		FieldString name = new FieldString("Description", "Name");
+		fieldList.add(name);
+		return new Fields(fieldList);
+	}
 }

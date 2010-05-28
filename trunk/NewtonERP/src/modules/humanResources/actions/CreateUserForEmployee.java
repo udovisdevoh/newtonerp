@@ -17,56 +17,56 @@ import newtonERP.orm.Orm;
  */
 public class CreateUserForEmployee extends AbstractAction
 {
-    /**
-     * @throws Exception si création fail
-     */
-    public CreateUserForEmployee() throws Exception
-    {
-	super(new Employee());
-    }
-
-    @Override
-    public AbstractEntity doAction(AbstractEntity entity,
-	    Hashtable<String, String> parameters) throws Exception
-    {
-	Employee employee = (Employee) entity;
-
-	String userName = getUserName(employee);
-
-	User user = null;
-
-	user = tryGetExistingUser(userName);
-
-	if (user == null)
+	/**
+	 * @throws Exception si création fail
+	 */
+	public CreateUserForEmployee() throws Exception
 	{
-	    user = new User();
-	    user.initFields();
-	    user.setData("name", userName);
-	    user.setData("password", "aaa");
-	    user.setData(new Groups().getForeignKeyName(), 1);
-	    user.newE();
+		super(new Employee());
 	}
 
-	employee.assign(user);
-	employee.save();
+	@Override
+	public AbstractEntity doAction(AbstractEntity entity,
+			Hashtable<String, String> parameters) throws Exception
+	{
+		Employee employee = (Employee) entity;
 
-	return employee.editUI(null);
-    }
+		String userName = getUserName(employee);
 
-    private User tryGetExistingUser(String userName) throws Exception
-    {
-	User searchEntity = new User();
-	searchEntity.setData("name", userName);
-	Vector<AbstractOrmEntity> result = Orm.select(searchEntity);
+		User user = null;
 
-	if (result.size() > 0)
-	    return (User) result.get(0);
-	return null;
-    }
+		user = tryGetExistingUser(userName);
 
-    private String getUserName(Employee employee)
-    {
-	return employee.getDataString("firstName")
-		+ employee.getDataString("lastName");
-    }
+		if (user == null)
+		{
+			user = new User();
+			user.initFields();
+			user.setData("name", userName);
+			user.setData("password", "aaa");
+			user.setData(new Groups().getForeignKeyName(), 1);
+			user.newE();
+		}
+
+		employee.assign(user);
+		employee.save();
+
+		return employee.editUI(null);
+	}
+
+	private User tryGetExistingUser(String userName) throws Exception
+	{
+		User searchEntity = new User();
+		searchEntity.setData("name", userName);
+		Vector<AbstractOrmEntity> result = Orm.select(searchEntity);
+
+		if (result.size() > 0)
+			return (User) result.get(0);
+		return null;
+	}
+
+	private String getUserName(Employee employee)
+	{
+		return employee.getDataString("firstName")
+				+ employee.getDataString("lastName");
+	}
 }

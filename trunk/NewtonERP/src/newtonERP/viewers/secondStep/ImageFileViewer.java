@@ -8,14 +8,14 @@ import newtonERP.module.generalEntity.ImageFile;
  */
 public class ImageFileViewer
 {
-    /**
-     * @param imageFile image en HTML
-     * @return html avec image dedans
-     */
-    public static String getHtmlCode(ImageFile imageFile)
-    {
-	return "<img src=\"" + imageFile.getUrl() + "\" alt=\""
-		+ imageFile.getAlt() + "\" />";
-    }
+	/**
+	 * @param imageFile image en HTML
+	 * @return html avec image dedans
+	 */
+	public static String getHtmlCode(ImageFile imageFile)
+	{
+		return "<img src=\"" + imageFile.getUrl() + "\" alt=\""
+				+ imageFile.getAlt() + "\" />";
+	}
 
 }

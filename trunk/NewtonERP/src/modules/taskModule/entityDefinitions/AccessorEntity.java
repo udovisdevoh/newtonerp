@@ -15,24 +15,24 @@ import newtonERP.orm.field.type.FieldString;
  */
 public class AccessorEntity extends AbstractOrmEntity
 {
-    /**
-     * @throws Exception si création fail
-     */
-    public AccessorEntity() throws Exception
-    {
-	super();
-	setVisibleName("Accesseur");
-	AccessorManager.addAccessor(this, new EntityEntity());
-    }
+	/**
+	 * @throws Exception si création fail
+	 */
+	public AccessorEntity() throws Exception
+	{
+		super();
+		setVisibleName("Accesseur");
+		AccessorManager.addAccessor(this, new EntityEntity());
+	}
 
-    @Override
-    public Fields initFields() throws Exception
-    {
-	Vector<Field<?>> fieldList = new Vector<Field<?>>();
-	fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
-	fieldList.add(new FieldInt("Entité parent", new EntityEntity()
-		.getForeignKeyName()));
-	fieldList.add(new FieldString("Entité étrangère", "foreignEntityName"));
-	return new Fields(fieldList);
-    }
+	@Override
+	public Fields initFields() throws Exception
+	{
+		Vector<Field<?>> fieldList = new Vector<Field<?>>();
+		fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
+		fieldList.add(new FieldInt("Entité parent", new EntityEntity()
+				.getForeignKeyName()));
+		fieldList.add(new FieldString("Entité étrangère", "foreignEntityName"));
+		return new Fields(fieldList);
+	}
 }

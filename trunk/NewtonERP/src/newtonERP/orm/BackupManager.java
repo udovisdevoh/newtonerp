@@ -8,35 +8,35 @@ import java.util.GregorianCalendar;
  */
 public class BackupManager
 {
-    private static GregorianCalendar gregorianCalendar = new GregorianCalendar();
+	private static GregorianCalendar gregorianCalendar = new GregorianCalendar();
 
-    private static long desiredBackupTimeInterval = 1800000; // Chaque demie
-							     // heure
+	private static long desiredBackupTimeInterval = 1800000; // Chaque demie
+	// heure
 
-    private static int maximumBackupInstanceCount = 100;
+	private static int maximumBackupInstanceCount = 100;
 
-    /**
-     * @return temps actuel en ms
-     */
-    public static long getCurrentTime()
-    {
-	gregorianCalendar = new GregorianCalendar();
-	return gregorianCalendar.getTime().getTime();
-    }
+	/**
+	 * @return temps actuel en ms
+	 */
+	public static long getCurrentTime()
+	{
+		gregorianCalendar = new GregorianCalendar();
+		return gregorianCalendar.getTime().getTime();
+	}
 
-    /**
-     * @return interval désirée pour backup en ms
-     */
-    public static long getDesiredBackupIntervalTime()
-    {
-	return desiredBackupTimeInterval;
-    }
+	/**
+	 * @return interval désirée pour backup en ms
+	 */
+	public static long getDesiredBackupIntervalTime()
+	{
+		return desiredBackupTimeInterval;
+	}
 
-    /**
-     * @return nombre maximum d'instance de backup
-     */
-    public static int getMaximumBackupInstanceCount()
-    {
-	return maximumBackupInstanceCount;
-    }
+	/**
+	 * @return nombre maximum d'instance de backup
+	 */
+	public static int getMaximumBackupInstanceCount()
+	{
+		return maximumBackupInstanceCount;
+	}
 }

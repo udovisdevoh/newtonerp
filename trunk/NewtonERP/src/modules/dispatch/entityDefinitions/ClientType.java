@@ -14,25 +14,25 @@ import newtonERP.orm.field.type.FieldString;
  */
 public class ClientType extends AbstractOrmEntity
 {
-    /**
-     * constructor
-     * @throws Exception remonte
-     */
-    public ClientType() throws Exception
-    {
-	super();
-	setVisibleName("Type de client");
-    }
+	/**
+	 * constructor
+	 * @throws Exception remonte
+	 */
+	public ClientType() throws Exception
+	{
+		super();
+		setVisibleName("Type de client");
+	}
 
-    public Fields initFields() throws Exception
-    {
-	Vector<Field<?>> fieldList = new Vector<Field<?>>();
+	public Fields initFields() throws Exception
+	{
+		Vector<Field<?>> fieldList = new Vector<Field<?>>();
 
-	FieldInt pKclientTypeID = new FieldInt("Numéro", getPrimaryKeyName());
-	fieldList.add(pKclientTypeID);
+		FieldInt pKclientTypeID = new FieldInt("Numéro", getPrimaryKeyName());
+		fieldList.add(pKclientTypeID);
 
-	FieldString nom = new FieldString("Nom", "Nom");
-	fieldList.add(nom);
-	return new Fields(fieldList);
-    }
+		FieldString nom = new FieldString("Nom", "Nom");
+		fieldList.add(nom);
+		return new Fields(fieldList);
+	}
 }

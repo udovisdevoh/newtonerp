@@ -13,21 +13,21 @@ import newtonERP.module.generalEntity.StaticTextEntity;
  */
 public class Logout extends AbstractAction
 {
-    /**
-     * Constructeur
-     */
-    public Logout()
-    {
-	setDetailedDescription("fermer votre session de manière sécuritaire");
-    }
+	/**
+	 * Constructeur
+	 */
+	public Logout()
+	{
+		setDetailedDescription("fermer votre session de manière sécuritaire");
+	}
 
-    @Override
-    public AbstractEntity doAction(AbstractEntity entity,
-	    Hashtable<String, String> parameters) throws Exception
-    {
-	Authentication.setCurrentUserName(null);
+	@Override
+	public AbstractEntity doAction(AbstractEntity entity,
+			Hashtable<String, String> parameters) throws Exception
+	{
+		Authentication.setCurrentUserName(null);
 
-	return new StaticTextEntity("Au revoir!");
-    }
+		return new StaticTextEntity("Au revoir!");
+	}
 
 }

@@ -15,22 +15,22 @@ import newtonERP.orm.field.type.FieldString;
 public class StateType extends AbstractOrmEntity
 {
 
-    /**
-     * @throws Exception si création fail
-     */
-    public StateType() throws Exception
-    {
-	super();
-	// addNaturalKey("name");
-	setVisibleName("Type d'état");
-    }
+	/**
+	 * @throws Exception si création fail
+	 */
+	public StateType() throws Exception
+	{
+		super();
+		// addNaturalKey("name");
+		setVisibleName("Type d'état");
+	}
 
-    @Override
-    public Fields initFields() throws Exception
-    {
-	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
-	fieldsInit.add(new FieldInt("Numéro", getPrimaryKeyName()));
-	fieldsInit.add(new FieldString("Description", "name"));
-	return new Fields(fieldsInit);
-    }
+	@Override
+	public Fields initFields() throws Exception
+	{
+		Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
+		fieldsInit.add(new FieldInt("Numéro", getPrimaryKeyName()));
+		fieldsInit.add(new FieldString("Description", "name"));
+		return new Fields(fieldsInit);
+	}
 }

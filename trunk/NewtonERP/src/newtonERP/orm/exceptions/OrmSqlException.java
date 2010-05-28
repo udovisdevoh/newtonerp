@@ -8,11 +8,11 @@ package newtonERP.orm.exceptions;
  */
 public class OrmSqlException extends OrmException
 {
-    /**
-     * @param message the message of the exception
-     */
-    public OrmSqlException(String message)
-    {
-	super(message);
-    }
+	/**
+	 * @param message the message of the exception
+	 */
+	public OrmSqlException(String message)
+	{
+		super(message);
+	}
 }

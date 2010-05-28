@@ -19,7 +19,7 @@ public class SgbdSqliteBackupManager
 {
 	private static long latestBackupTime;
 
-    private static String backupDirectoryPath = "./sqliteDbBackup/";
+	private static String backupDirectoryPath = "./sqliteDbBackup/";
 
 	/**
 	 * @param originalFileName fichier de DB original

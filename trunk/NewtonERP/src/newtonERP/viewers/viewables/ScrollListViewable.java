@@ -13,28 +13,28 @@ import newtonERP.common.NaturalMap;
  */
 public interface ScrollListViewable
 {
-    /**
-     * @return le titre de la liste
-     */
-    public String getTitle();
+	/**
+	 * @return le titre de la liste
+	 */
+	public String getTitle();
 
-    /**
-     * @return liste des liens dans la liste (clef: nom visible, valeur: url)
-     */
-    public TreeMap<String, String> getLinkList();
+	/**
+	 * @return liste des liens dans la liste (clef: nom visible, valeur: url)
+	 */
+	public TreeMap<String, String> getLinkList();
 
-    /**
-     * @return liste de groupe de liens
-     */
-    public Vector<NaturalMap<String, String>> getLinkGroupList();
+	/**
+	 * @return liste de groupe de liens
+	 */
+	public Vector<NaturalMap<String, String>> getLinkGroupList();
 
-    /**
-     * @return url du titre si c'est un lien
-     */
-    public String getTitleUrl();
+	/**
+	 * @return url du titre si c'est un lien
+	 */
+	public String getTitleUrl();
 
-    /**
-     * @return liste des actionLink
-     */
-    public Vector<ActionLink> getActionLinkList();
+	/**
+	 * @return liste des actionLink
+	 */
+	public Vector<ActionLink> getActionLinkList();
 }

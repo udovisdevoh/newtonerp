@@ -21,66 +21,66 @@ import newtonERP.orm.field.Field;
  */
 public class Login extends AbstractAction
 {
-    /**
-     * constructeur
-     * @throws Exception si création fail
-     */
-    public Login() throws Exception
-    {
-	super(new User()); // Travaille avec des users
-	setDetailedDescription("Vous connecter");
-    }
-
-    public AbstractEntity doAction(AbstractEntity entity,
-	    Hashtable<String, String> parameters) throws Exception
-    {
-	String currentLoginName = parameters.get("name");
-	if (currentLoginName == null)
-	    currentLoginName = "";
-
-	Form loginForm = new Form(new UserRightModule(), new Login());
-	loginForm.addField("Utilisateur", "name", currentLoginName);
-	Field<?> tmpPwd = new User().getFields().getField("password");
-	tmpPwd.setDefaultValue();
-	loginForm.addField(tmpPwd);
-	loginForm.setTitle("Identification");
-	loginForm.setButtonAction(new ActionLink("Entrer", this));
-
-	if (parameters.containsKey("submit"))
+	/**
+	 * constructeur
+	 * @throws Exception si création fail
+	 */
+	public Login() throws Exception
 	{
-	    Vector<AbstractOrmEntity> userList = ((AbstractOrmEntity) (entity))
-		    .get((AbstractOrmEntity) (entity));
+		super(new User()); // Travaille avec des users
+		setDetailedDescription("Vous connecter");
+	}
 
-	    if (userList.size() > 0 && userList.get(0).getData("name") != null)
-	    {
-		if (IsGroupValid((User) (userList.get(0))))
+	public AbstractEntity doAction(AbstractEntity entity,
+			Hashtable<String, String> parameters) throws Exception
+	{
+		String currentLoginName = parameters.get("name");
+		if (currentLoginName == null)
+			currentLoginName = "";
+
+		Form loginForm = new Form(new UserRightModule(), new Login());
+		loginForm.addField("Utilisateur", "name", currentLoginName);
+		Field<?> tmpPwd = new User().getFields().getField("password");
+		tmpPwd.setDefaultValue();
+		loginForm.addField(tmpPwd);
+		loginForm.setTitle("Identification");
+		loginForm.setButtonAction(new ActionLink("Entrer", this));
+
+		if (parameters.containsKey("submit"))
 		{
-		    Authentication.setCurrentUserName(entity
-			    .getDataString("name"));
-		    return new StaticTextEntity("Bienvenue "
-			    + userList.get(0).getData("name"));
+			Vector<AbstractOrmEntity> userList = ((AbstractOrmEntity) (entity))
+					.get((AbstractOrmEntity) (entity));
+
+			if (userList.size() > 0 && userList.get(0).getData("name") != null)
+			{
+				if (IsGroupValid((User) (userList.get(0))))
+				{
+					Authentication.setCurrentUserName(entity
+							.getDataString("name"));
+					return new StaticTextEntity("Bienvenue "
+							+ userList.get(0).getData("name"));
+				}
+
+				loginForm.addAlertMessage("Groupe invalide ou corrompu");
+			}
+			loginForm.addAlertMessage("Nom ou mot de passe invalide");
 		}
 
-		loginForm.addAlertMessage("Groupe invalide ou corrompu");
-	    }
-	    loginForm.addAlertMessage("Nom ou mot de passe invalide");
+		return loginForm;
 	}
 
-	return loginForm;
-    }
-
-    private boolean IsGroupValid(User user)
-    {
-	AbstractOrmEntity groups;
-	try
+	private boolean IsGroupValid(User user)
 	{
-	    groups = user.getGroupsEntity();
-	} catch (Exception e)
-	{
-	    return false;
+		AbstractOrmEntity groups;
+		try
+		{
+			groups = user.getGroupsEntity();
+		} catch (Exception e)
+		{
+			return false;
+		}
+		if (groups == null)
+			return false;
+		return true;
 	}
-	if (groups == null)
-	    return false;
-	return true;
-    }
 }

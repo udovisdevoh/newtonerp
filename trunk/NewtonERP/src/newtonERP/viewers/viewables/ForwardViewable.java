@@ -6,8 +6,8 @@ package newtonERP.viewers.viewables;
  */
 public interface ForwardViewable
 {
-    /**
-     * @return the forwarding url
-     */
-    public String getForwardingUrl();
+	/**
+	 * @return the forwarding url
+	 */
+	public String getForwardingUrl();
 }

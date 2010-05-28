@@ -18,30 +18,30 @@ import newtonERP.orm.Orm;
 public class GetAndCalculateAssociatedOffer extends AbstractAction
 {
 
-    /**
-     * @throws Exception a general exception
-     */
-    public GetAndCalculateAssociatedOffer() throws Exception
-    {
-	super(new Offer());
-    }
-
-    public AbstractEntity doAction(AbstractEntity entity,
-	    Hashtable<String, String> parameters) throws Exception
-    {
-	double total = 0;
-	Offer offre = (Offer) entity;
-	LineOffer rechercheur = new LineOffer();
-	rechercheur.setData(new Offer().getForeignKeyName(), offre
-		.getPrimaryKeyValue());
-	Vector<AbstractOrmEntity> lignesDoffre = Orm.select(rechercheur);
-	for (int i = 0; i < lignesDoffre.size(); i++)
+	/**
+	 * @throws Exception a general exception
+	 */
+	public GetAndCalculateAssociatedOffer() throws Exception
 	{
-	    total += (Double) ((LineOffer) lignesDoffre.elementAt(i))
-		    .getData("Price");
+		super(new Offer());
 	}
-	offre.setData("Price", total);
-	offre.save();
-	return null;
-    }
+
+	public AbstractEntity doAction(AbstractEntity entity,
+			Hashtable<String, String> parameters) throws Exception
+	{
+		double total = 0;
+		Offer offre = (Offer) entity;
+		LineOffer rechercheur = new LineOffer();
+		rechercheur.setData(new Offer().getForeignKeyName(), offre
+				.getPrimaryKeyValue());
+		Vector<AbstractOrmEntity> lignesDoffre = Orm.select(rechercheur);
+		for (int i = 0; i < lignesDoffre.size(); i++)
+		{
+			total += (Double) ((LineOffer) lignesDoffre.elementAt(i))
+					.getData("Price");
+		}
+		offre.setData("Price", total);
+		offre.save();
+		return null;
+	}
 }

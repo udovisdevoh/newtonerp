@@ -16,24 +16,24 @@ import newtonERP.orm.field.type.FieldString;
 public class Shipper extends AbstractOrmEntity
 {
 
-    /**
-     * Default constructor
-     * 
-     * @throws Exception a general exception
-     */
-    public Shipper() throws Exception
-    {
-	super();
-	setVisibleName("Expéditeur");
-    }
+	/**
+	 * Default constructor
+	 * 
+	 * @throws Exception a general exception
+	 */
+	public Shipper() throws Exception
+	{
+		super();
+		setVisibleName("Expéditeur");
+	}
 
-    @Override
-    public Fields initFields() throws Exception
-    {
-	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
-	fieldsInit.add(new FieldInt("Numero de l'expéditeur",
-		getPrimaryKeyName()));
-	fieldsInit.add(new FieldString("Nom de l'expéditeur", "shipperName"));
-	return new Fields(fieldsInit);
-    }
+	@Override
+	public Fields initFields() throws Exception
+	{
+		Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
+		fieldsInit.add(new FieldInt("Numero de l'expéditeur",
+				getPrimaryKeyName()));
+		fieldsInit.add(new FieldString("Nom de l'expéditeur", "shipperName"));
+		return new Fields(fieldsInit);
+	}
 }

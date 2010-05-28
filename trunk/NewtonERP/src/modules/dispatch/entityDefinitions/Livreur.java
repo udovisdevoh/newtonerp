@@ -14,25 +14,25 @@ import newtonERP.orm.field.type.FieldString;
  */
 public class Livreur extends AbstractOrmEntity
 {
-    /**
-     * constructor
-     * @throws Exception remonte
-     */
-    public Livreur() throws Exception
-    {
-	super();
-	setVisibleName("Livreur");
-    }
+	/**
+	 * constructor
+	 * @throws Exception remonte
+	 */
+	public Livreur() throws Exception
+	{
+		super();
+		setVisibleName("Livreur");
+	}
 
-    public Fields initFields() throws Exception
-    {
-	Vector<Field<?>> fieldList = new Vector<Field<?>>();
+	public Fields initFields() throws Exception
+	{
+		Vector<Field<?>> fieldList = new Vector<Field<?>>();
 
-	FieldInt pKlivreurID = new FieldInt("Numéro", getPrimaryKeyName());
-	fieldList.add(pKlivreurID);
+		FieldInt pKlivreurID = new FieldInt("Numéro", getPrimaryKeyName());
+		fieldList.add(pKlivreurID);
 
-	FieldString nom = new FieldString("Nom", "Nom");
-	fieldList.add(nom);
-	return new Fields(fieldList);
-    }
+		FieldString nom = new FieldString("Nom", "Nom");
+		fieldList.add(nom);
+		return new Fields(fieldList);
+	}
 }

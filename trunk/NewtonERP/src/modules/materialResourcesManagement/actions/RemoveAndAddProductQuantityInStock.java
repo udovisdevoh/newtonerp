@@ -20,44 +20,44 @@ import newtonERP.orm.Orm;
  */
 public class RemoveAndAddProductQuantityInStock extends AbstractAction
 {
-    @Override
-    public AbstractEntity doAction(AbstractEntity entity,
-	    Hashtable<String, String> parameters) throws Exception
-    {
-	Shipping retShipping = (Shipping) entity;
-
-	Invoice searchInvoice = new Invoice();
-	searchInvoice.setData(searchInvoice.getPrimaryKeyName(), retShipping
-		.getData(new Invoice().getForeignKeyName()));
-	Invoice retInvoice = (Invoice) Orm.selectUnique(searchInvoice);
-
-	InvoiceLine searchInvoiceLine = new InvoiceLine();
-	searchInvoiceLine.setData(new Invoice().getForeignKeyName(), retInvoice
-		.getPrimaryKeyValue());
-
-	Vector<AbstractOrmEntity> invoiceLines = Orm.select(searchInvoiceLine);
-
-	for (AbstractOrmEntity line : invoiceLines)
+	@Override
+	public AbstractEntity doAction(AbstractEntity entity,
+			Hashtable<String, String> parameters) throws Exception
 	{
-	    // The related product
-	    Product searchProduct = new Product();
-	    searchProduct.setData(searchProduct.getPrimaryKeyName(), line
-		    .getData(new Product().getForeignKeyName()));
-	    Product retProduct = (Product) Orm.selectUnique(searchProduct);
+		Shipping retShipping = (Shipping) entity;
 
-	    // We remove the line quantity from the reservedStock of the product
-	    // and adds it to the quantity in stock
-	    retProduct.setData("reservedStock", (Integer) retProduct
-		    .getData("reservedStock")
-		    - (Integer) line.getData("quantity"));
+		Invoice searchInvoice = new Invoice();
+		searchInvoice.setData(searchInvoice.getPrimaryKeyName(), retShipping
+				.getData(new Invoice().getForeignKeyName()));
+		Invoice retInvoice = (Invoice) Orm.selectUnique(searchInvoice);
 
-	    retProduct.setData("quantityInStock", (Integer) retProduct
-		    .getData("quantityInStock")
-		    + (Integer) line.getData("quantity"));
+		InvoiceLine searchInvoiceLine = new InvoiceLine();
+		searchInvoiceLine.setData(new Invoice().getForeignKeyName(), retInvoice
+				.getPrimaryKeyValue());
 
-	    retProduct.save();
+		Vector<AbstractOrmEntity> invoiceLines = Orm.select(searchInvoiceLine);
+
+		for (AbstractOrmEntity line : invoiceLines)
+		{
+			// The related product
+			Product searchProduct = new Product();
+			searchProduct.setData(searchProduct.getPrimaryKeyName(), line
+					.getData(new Product().getForeignKeyName()));
+			Product retProduct = (Product) Orm.selectUnique(searchProduct);
+
+			// We remove the line quantity from the reservedStock of the product
+			// and adds it to the quantity in stock
+			retProduct.setData("reservedStock", (Integer) retProduct
+					.getData("reservedStock")
+					- (Integer) line.getData("quantity"));
+
+			retProduct.setData("quantityInStock", (Integer) retProduct
+					.getData("quantityInStock")
+					+ (Integer) line.getData("quantity"));
+
+			retProduct.save();
+		}
+
+		return null;
 	}
-
-	return null;
-    }
 }

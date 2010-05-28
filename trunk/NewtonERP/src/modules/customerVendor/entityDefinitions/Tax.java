@@ -17,28 +17,28 @@ import newtonERP.orm.field.type.FieldString;
  */
 public class Tax extends AbstractOrmEntity
 {
-    /**
-     * Default constructor
-     * 
-     * @throws Exception a general exception
-     */
-    public Tax() throws Exception
-    {
-	super();
-	setVisibleName("Taxes");
-    }
+	/**
+	 * Default constructor
+	 * 
+	 * @throws Exception a general exception
+	 */
+	public Tax() throws Exception
+	{
+		super();
+		setVisibleName("Taxes");
+	}
 
-    @Override
-    public Fields initFields() throws Exception
-    {
-	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
-	fieldsInit.add(new FieldInt("Numero", getPrimaryKeyName()));
-	fieldsInit.add(new FieldString("Nom", "name"));
-	fieldsInit.add(new FieldString("Code", "code"));
-	fieldsInit.add(new FieldDouble("Valeur en %", "value"));
-	fieldsInit.add(new FieldBool("Type Fédéral", "isFederalTax"));
-	fieldsInit.add(new FieldBool("Type Provincial", "isStateTax"));
-	return new Fields(fieldsInit);
-    }
+	@Override
+	public Fields initFields() throws Exception
+	{
+		Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
+		fieldsInit.add(new FieldInt("Numero", getPrimaryKeyName()));
+		fieldsInit.add(new FieldString("Nom", "name"));
+		fieldsInit.add(new FieldString("Code", "code"));
+		fieldsInit.add(new FieldDouble("Valeur en %", "value"));
+		fieldsInit.add(new FieldBool("Type Fédéral", "isFederalTax"));
+		fieldsInit.add(new FieldBool("Type Provincial", "isStateTax"));
+		return new Fields(fieldsInit);
+	}
 
 }

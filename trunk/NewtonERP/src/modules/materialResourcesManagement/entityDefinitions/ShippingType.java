@@ -16,26 +16,26 @@ import newtonERP.orm.field.type.FieldString;
 public class ShippingType extends AbstractOrmEntity
 {
 
-    /**
-     * Default constructor
-     * 
-     * @throws Exception a general exception
-     */
-    public ShippingType() throws Exception
-    {
-	super();
-	setVisibleName("Type de livraison");
-    }
+	/**
+	 * Default constructor
+	 * 
+	 * @throws Exception a general exception
+	 */
+	public ShippingType() throws Exception
+	{
+		super();
+		setVisibleName("Type de livraison");
+	}
 
-    @Override
-    public Fields initFields() throws Exception
-    {
-	FieldString shippingType = new FieldString("Type", "shippingType");
-	shippingType.setNaturalKey(true);
+	@Override
+	public Fields initFields() throws Exception
+	{
+		FieldString shippingType = new FieldString("Type", "shippingType");
+		shippingType.setNaturalKey(true);
 
-	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
-	fieldsInit.add(new FieldInt("Numero du type", getPrimaryKeyName()));
-	fieldsInit.add(shippingType);
-	return new Fields(fieldsInit);
-    }
+		Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
+		fieldsInit.add(new FieldInt("Numero du type", getPrimaryKeyName()));
+		fieldsInit.add(shippingType);
+		return new Fields(fieldsInit);
+	}
 }

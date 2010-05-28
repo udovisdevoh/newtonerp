@@ -8,32 +8,32 @@ import java.util.Hashtable;
  */
 public class ColorViewerSpecialWordList
 {
-    private static Hashtable<String, String> specialWordColorList;
+	private static Hashtable<String, String> specialWordColorList;
 
-    /**
-     * @param key string key
-     * @return color
-     */
-    public static String getSpecialWordColor(String key)
-    {
-	key = key.toLowerCase().trim();
+	/**
+	 * @param key string key
+	 * @return color
+	 */
+	public static String getSpecialWordColor(String key)
+	{
+		key = key.toLowerCase().trim();
 
-	return getSpecialWordColorList().get(key);
-    }
+		return getSpecialWordColorList().get(key);
+	}
 
-    private static Hashtable<String, String> getSpecialWordColorList()
-    {
-	if (specialWordColorList == null)
-	    specialWordColorList = buildSpecialWordColorList();
+	private static Hashtable<String, String> getSpecialWordColorList()
+	{
+		if (specialWordColorList == null)
+			specialWordColorList = buildSpecialWordColorList();
 
-	return specialWordColorList;
-    }
+		return specialWordColorList;
+	}
 
-    private static Hashtable<String, String> buildSpecialWordColorList()
-    {
-	Hashtable<String, String> newSpecialWordColorList = new Hashtable<String, String>();
-	newSpecialWordColorList.put("rush", "#F88");
-	newSpecialWordColorList.put("cash", "#F88");
-	return newSpecialWordColorList;
-    }
+	private static Hashtable<String, String> buildSpecialWordColorList()
+	{
+		Hashtable<String, String> newSpecialWordColorList = new Hashtable<String, String>();
+		newSpecialWordColorList.put("rush", "#F88");
+		newSpecialWordColorList.put("cash", "#F88");
+		return newSpecialWordColorList;
+	}
 }

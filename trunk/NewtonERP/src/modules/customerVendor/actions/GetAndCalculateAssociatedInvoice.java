@@ -15,31 +15,31 @@ import newtonERP.orm.Orm;
  */
 public class GetAndCalculateAssociatedInvoice extends AbstractAction
 {
-    /**
-     * Default constructor
-     * 
-     * @throws Exception a general exception
-     */
-    public GetAndCalculateAssociatedInvoice() throws Exception
-    {
-	super(new InvoiceLine());
-    }
+	/**
+	 * Default constructor
+	 * 
+	 * @throws Exception a general exception
+	 */
+	public GetAndCalculateAssociatedInvoice() throws Exception
+	{
+		super(new InvoiceLine());
+	}
 
-    @Override
-    public AbstractEntity doAction(AbstractEntity entity,
-	    Hashtable<String, String> parameters) throws Exception
-    {
-	InvoiceLine actionInvoiceLine = (InvoiceLine) entity;
-	Invoice searchInvoice = new Invoice();
+	@Override
+	public AbstractEntity doAction(AbstractEntity entity,
+			Hashtable<String, String> parameters) throws Exception
+	{
+		InvoiceLine actionInvoiceLine = (InvoiceLine) entity;
+		Invoice searchInvoice = new Invoice();
 
-	searchInvoice.setData(searchInvoice.getPrimaryKeyName(),
-		actionInvoiceLine.getData(new Invoice().getForeignKeyName()));
+		searchInvoice.setData(searchInvoice.getPrimaryKeyName(),
+				actionInvoiceLine.getData(new Invoice().getForeignKeyName()));
 
-	Invoice foundInvoice = (Invoice) Orm.selectUnique(searchInvoice);
+		Invoice foundInvoice = (Invoice) Orm.selectUnique(searchInvoice);
 
-	new CalculateInvoiceTotal().doAction(foundInvoice, null);
+		new CalculateInvoiceTotal().doAction(foundInvoice, null);
 
-	return null;
-    }
+		return null;
+	}
 
 }

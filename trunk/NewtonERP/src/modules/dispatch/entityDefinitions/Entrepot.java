@@ -16,34 +16,34 @@ import newtonERP.orm.field.type.FieldString;
  */
 public class Entrepot extends AbstractOrmEntity
 {
-    /**
-     * constructor
-     * @throws Exception remonte
-     */
-    public Entrepot() throws Exception
-    {
-	super();
-	setVisibleName("Entrepôt");
-	AccessorManager.addAccessor(this, new Secteur());
-	AccessorManager.addAccessor(this, new Address());
-    }
+	/**
+	 * constructor
+	 * @throws Exception remonte
+	 */
+	public Entrepot() throws Exception
+	{
+		super();
+		setVisibleName("Entrepôt");
+		AccessorManager.addAccessor(this, new Secteur());
+		AccessorManager.addAccessor(this, new Address());
+	}
 
-    public Fields initFields() throws Exception
-    {
-	Vector<Field<?>> fieldList = new Vector<Field<?>>();
+	public Fields initFields() throws Exception
+	{
+		Vector<Field<?>> fieldList = new Vector<Field<?>>();
 
-	FieldInt pKentrepotID = new FieldInt("Numéro", getPrimaryKeyName());
-	fieldList.add(pKentrepotID);
+		FieldInt pKentrepotID = new FieldInt("Numéro", getPrimaryKeyName());
+		fieldList.add(pKentrepotID);
 
-	FieldString nom = new FieldString("Nom", "Nom");
-	fieldList.add(nom);
+		FieldString nom = new FieldString("Nom", "Nom");
+		fieldList.add(nom);
 
-	FieldInt secteurID = new FieldInt("Secteur", "secteurID");
-	fieldList.add(secteurID);
+		FieldInt secteurID = new FieldInt("Secteur", "secteurID");
+		fieldList.add(secteurID);
 
-	FieldInt addressID = new FieldInt("Adresse", "addressID");
-	fieldList.add(addressID);
+		FieldInt addressID = new FieldInt("Adresse", "addressID");
+		fieldList.add(addressID);
 
-	return new Fields(fieldList);
-    }
+		return new Fields(fieldList);
+	}
 }

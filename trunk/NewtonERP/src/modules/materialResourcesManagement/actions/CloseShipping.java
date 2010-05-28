@@ -16,40 +16,40 @@ import newtonERP.orm.Orm;
  */
 public class CloseShipping extends AbstractAction
 {
-    /**
-     * Default constructor
-     * 
-     * @throws Exception a general exception
-     */
-    public CloseShipping() throws Exception
-    {
-	super(new Shipping());
-    }
+	/**
+	 * Default constructor
+	 * 
+	 * @throws Exception a general exception
+	 */
+	public CloseShipping() throws Exception
+	{
+		super(new Shipping());
+	}
 
-    @Override
-    public AbstractEntity doAction(AbstractEntity entity,
-	    Hashtable<String, String> parameters) throws Exception
-    {
-	// The shipping
-	Shipping retShipping = (Shipping) entity;
+	@Override
+	public AbstractEntity doAction(AbstractEntity entity,
+			Hashtable<String, String> parameters) throws Exception
+	{
+		// The shipping
+		Shipping retShipping = (Shipping) entity;
 
-	// The "en cours de fermeture" status
-	ShippingStatus searchStatus = new ShippingStatus();
-	searchStatus.setData("status", "Fermé");
-	ShippingStatus statusFerme = (ShippingStatus) Orm
-		.selectUnique(searchStatus);
+		// The "en cours de fermeture" status
+		ShippingStatus searchStatus = new ShippingStatus();
+		searchStatus.setData("status", "Fermé");
+		ShippingStatus statusFerme = (ShippingStatus) Orm
+				.selectUnique(searchStatus);
 
-	retShipping.setData(new ShippingStatus().getForeignKeyName(),
-		statusFerme.getPrimaryKeyValue());
-	retShipping.save();
+		retShipping.setData(new ShippingStatus().getForeignKeyName(),
+				statusFerme.getPrimaryKeyValue());
+		retShipping.save();
 
-	Invoice searchInvoice = new Invoice();
-	searchInvoice.setData(searchInvoice.getPrimaryKeyName(), retShipping
-		.getData(new Invoice().getForeignKeyName()));
-	Invoice retInvoice = (Invoice) Orm.selectUnique(searchInvoice);
+		Invoice searchInvoice = new Invoice();
+		searchInvoice.setData(searchInvoice.getPrimaryKeyName(), retShipping
+				.getData(new Invoice().getForeignKeyName()));
+		Invoice retInvoice = (Invoice) Orm.selectUnique(searchInvoice);
 
-	new RemoveProductQuantityFromReservedStock().doAction(retInvoice, null);
+		new RemoveProductQuantityFromReservedStock().doAction(retInvoice, null);
 
-	return null;
-    }
+		return null;
+	}
 }

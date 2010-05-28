@@ -7,13 +7,13 @@ package newtonERP.module.exception;
  */
 public class InvalidOperatorException extends ModuleException
 {
-    /**
-     * Default constructor
-     * 
-     * @param message the message
-     */
-    public InvalidOperatorException(String message)
-    {
-	super(message);
-    }
+	/**
+	 * Default constructor
+	 * 
+	 * @param message the message
+	 */
+	public InvalidOperatorException(String message)
+	{
+		super(message);
+	}
 }

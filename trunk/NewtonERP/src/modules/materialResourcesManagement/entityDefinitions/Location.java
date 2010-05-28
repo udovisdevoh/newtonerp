@@ -21,33 +21,33 @@ import newtonERP.orm.field.type.FieldInt;
 public class Location extends AbstractOrmEntity
 {
 
-    /**
-     * Default constructor
-     * 
-     * @throws Exception a general exception
-     */
-    public Location() throws Exception
-    {
-	super();
-	AccessorManager.addAccessor(this, new LocationStatus());
-	AccessorManager.addAccessor(this, new LocationLatitude());
-	AccessorManager.addAccessor(this, new LocationLongitude());
-    }
+	/**
+	 * Default constructor
+	 * 
+	 * @throws Exception a general exception
+	 */
+	public Location() throws Exception
+	{
+		super();
+		AccessorManager.addAccessor(this, new LocationStatus());
+		AccessorManager.addAccessor(this, new LocationLatitude());
+		AccessorManager.addAccessor(this, new LocationLongitude());
+	}
 
-    @Override
-    public Fields initFields() throws Exception
-    {
-	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
-	fieldsInit.add(new FieldInt("Numero", getPrimaryKeyName()));
+	@Override
+	public Fields initFields() throws Exception
+	{
+		Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
+		fieldsInit.add(new FieldInt("Numero", getPrimaryKeyName()));
 
-	FieldInt status = new FieldInt("status", new LocationStatus()
-		.getForeignKeyName());
-	status.setNaturalKey(true);
-	fieldsInit.add(status);
-	fieldsInit.add(new FieldInt("Latitude", new LocationLatitude()
-		.getForeignKeyName()));
-	fieldsInit.add(new FieldInt("Longitude", new LocationLongitude()
-		.getForeignKeyName()));
-	return new Fields(fieldsInit);
-    }
+		FieldInt status = new FieldInt("status", new LocationStatus()
+				.getForeignKeyName());
+		status.setNaturalKey(true);
+		fieldsInit.add(status);
+		fieldsInit.add(new FieldInt("Latitude", new LocationLatitude()
+				.getForeignKeyName()));
+		fieldsInit.add(new FieldInt("Longitude", new LocationLongitude()
+				.getForeignKeyName()));
+		return new Fields(fieldsInit);
+	}
 }

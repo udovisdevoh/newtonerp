@@ -14,25 +14,25 @@ import newtonERP.orm.field.type.FieldString;
  */
 public class Piece extends AbstractOrmEntity
 {
-    /**
-     * constructor
-     * @throws Exception remonte
-     */
-    public Piece() throws Exception
-    {
-	super();
-	setVisibleName("Pièce");
-    }
+	/**
+	 * constructor
+	 * @throws Exception remonte
+	 */
+	public Piece() throws Exception
+	{
+		super();
+		setVisibleName("Pièce");
+	}
 
-    public Fields initFields() throws Exception
-    {
-	Vector<Field<?>> fieldList = new Vector<Field<?>>();
+	public Fields initFields() throws Exception
+	{
+		Vector<Field<?>> fieldList = new Vector<Field<?>>();
 
-	FieldInt pKpieceID = new FieldInt("Numéro", getPrimaryKeyName());
-	fieldList.add(pKpieceID);
+		FieldInt pKpieceID = new FieldInt("Numéro", getPrimaryKeyName());
+		fieldList.add(pKpieceID);
 
-	FieldString description = new FieldString("Description", "Description");
-	fieldList.add(description);
-	return new Fields(fieldList);
-    }
+		FieldString description = new FieldString("Description", "Description");
+		fieldList.add(description);
+		return new Fields(fieldList);
+	}
 }

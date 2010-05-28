@@ -25,87 +25,87 @@ import newtonERP.viewers.viewerData.ListViewerData;
 public class Invoice extends AbstractOrmEntity
 {
 
-    /**
-     * @throws Exception si création fail
-     */
-    public Invoice() throws Exception
-    {
-	super();
-	AccessorManager.addAccessor(this, new Merchant());
-	AccessorManager.addAccessor(this, new InvoiceStatus());
-	setVisibleName("Facture");
-    }
-
-    public Fields initFields() throws Exception
-    {
-	FieldInt primaryKey = new FieldInt("Numéro", getPrimaryKeyName());
-	primaryKey.setNaturalKey(true);
-
-	FieldInt merchant = new FieldInt("Nom du client", new Merchant()
-		.getForeignKeyName());
-	merchant.setNaturalKey(true);
-
-	FieldDate date = new FieldDate("Date", "date");
-	date.setNaturalKey(true);
-
-	Vector<Field<?>> fieldList = new Vector<Field<?>>();
-	fieldList.add(primaryKey);
-	FieldCurrency total = new FieldCurrency("Total", "total");
-	fieldList.add(total);
-	FieldCurrency taxTotal = new FieldCurrency("Total taxes", "taxTotal");
-	fieldList.add(taxTotal);
-
-	FieldCurrency fieldCalc = new FieldCurrency("Grand total", "grandTotal");
-	fieldCalc.setCalcul(new FieldCalcule<Double>()
+	/**
+	 * @throws Exception si création fail
+	 */
+	public Invoice() throws Exception
 	{
-	    public Double calcul(Fields entityFields)
-	    {
-		return (Double) entityFields.getField("total").getData()
-			+ (Double) entityFields.getField("taxTotal").getData();
-	    }
-	});
-	fieldList.add(fieldCalc);
+		super();
+		AccessorManager.addAccessor(this, new Merchant());
+		AccessorManager.addAccessor(this, new InvoiceStatus());
+		setVisibleName("Facture");
+	}
 
-	fieldList.add(merchant);
-	fieldList.add(date);
-	FieldBool isForCustomer = new FieldBool("Pour client", "isForCustomer");
-	fieldList.add(isForCustomer);
-	FieldBool isForSupplier = new FieldBool("Pour fournisseur",
-		"isForSupplier");
-	isForSupplier.setValidator(new FieldValidator<Boolean>()
+	public Fields initFields() throws Exception
 	{
-	    @Override
-	    protected boolean valide(Boolean value, Fields entityFields)
-	    {
-		if (!value.equals(entityFields.getField("isForCustomer")
-			.getData()))
+		FieldInt primaryKey = new FieldInt("Numéro", getPrimaryKeyName());
+		primaryKey.setNaturalKey(true);
+
+		FieldInt merchant = new FieldInt("Nom du client", new Merchant()
+				.getForeignKeyName());
+		merchant.setNaturalKey(true);
+
+		FieldDate date = new FieldDate("Date", "date");
+		date.setNaturalKey(true);
+
+		Vector<Field<?>> fieldList = new Vector<Field<?>>();
+		fieldList.add(primaryKey);
+		FieldCurrency total = new FieldCurrency("Total", "total");
+		fieldList.add(total);
+		FieldCurrency taxTotal = new FieldCurrency("Total taxes", "taxTotal");
+		fieldList.add(taxTotal);
+
+		FieldCurrency fieldCalc = new FieldCurrency("Grand total", "grandTotal");
+		fieldCalc.setCalcul(new FieldCalcule<Double>()
 		{
-		    return true;
-		}
+			public Double calcul(Fields entityFields)
+			{
+				return (Double) entityFields.getField("total").getData()
+						+ (Double) entityFields.getField("taxTotal").getData();
+			}
+		});
+		fieldList.add(fieldCalc);
 
-		setErrorMessage("Le type de facture ne peut être Client et Fournisseur en même temps et vice-versa");
-		return false;
-	    }
-	});
-	fieldList.add(isForSupplier);
+		fieldList.add(merchant);
+		fieldList.add(date);
+		FieldBool isForCustomer = new FieldBool("Pour client", "isForCustomer");
+		fieldList.add(isForCustomer);
+		FieldBool isForSupplier = new FieldBool("Pour fournisseur",
+				"isForSupplier");
+		isForSupplier.setValidator(new FieldValidator<Boolean>()
+		{
+			@Override
+			protected boolean valide(Boolean value, Fields entityFields)
+			{
+				if (!value.equals(entityFields.getField("isForCustomer")
+						.getData()))
+				{
+					return true;
+				}
 
-	fieldList.add(new FieldInt("Status", new InvoiceStatus()
-		.getForeignKeyName()));
-	return new Fields(fieldList);
-    }
+				setErrorMessage("Le type de facture ne peut être Client et Fournisseur en même temps et vice-versa");
+				return false;
+			}
+		});
+		fieldList.add(isForSupplier);
 
-    @Override
-    public final ListViewerData getList(Hashtable<String, String> parameters)
-	    throws Exception
-    {
-	Hashtable<String, String> actionParameters = new Hashtable<String, String>();
-	actionParameters.put(getPrimaryKeyName(), "&");
+		fieldList.add(new FieldInt("Status", new InvoiceStatus()
+				.getForeignKeyName()));
+		return new Fields(fieldList);
+	}
 
-	ListViewerData entityList = super.getList(parameters);
-	entityList.addSpecificActionButtonList(new ActionLink(
-		"Calculer facture", new CalculateInvoiceTotal(),
-		actionParameters));
+	@Override
+	public final ListViewerData getList(Hashtable<String, String> parameters)
+			throws Exception
+	{
+		Hashtable<String, String> actionParameters = new Hashtable<String, String>();
+		actionParameters.put(getPrimaryKeyName(), "&");
 
-	return entityList;
-    }
+		ListViewerData entityList = super.getList(parameters);
+		entityList.addSpecificActionButtonList(new ActionLink(
+				"Calculer facture", new CalculateInvoiceTotal(),
+				actionParameters));
+
+		return entityList;
+	}
 }

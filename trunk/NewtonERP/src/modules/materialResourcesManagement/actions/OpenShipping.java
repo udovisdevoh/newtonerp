@@ -19,41 +19,41 @@ import newtonERP.orm.Orm;
  */
 public class OpenShipping extends AbstractAction
 {
-    /**
-     * Default constructor
-     * 
-     * @throws Exception a general exception
-     */
-    public OpenShipping() throws Exception
-    {
-	super(new Shipping());
-    }
+	/**
+	 * Default constructor
+	 * 
+	 * @throws Exception a general exception
+	 */
+	public OpenShipping() throws Exception
+	{
+		super(new Shipping());
+	}
 
-    @Override
-    public AbstractEntity doAction(AbstractEntity entity,
-	    Hashtable<String, String> parameters) throws Exception
-    {
-	// We retreive the shipping
-	Shipping retShipping = (Shipping) entity;
+	@Override
+	public AbstractEntity doAction(AbstractEntity entity,
+			Hashtable<String, String> parameters) throws Exception
+	{
+		// We retreive the shipping
+		Shipping retShipping = (Shipping) entity;
 
-	ShippingStatus searchStatus = new ShippingStatus();
-	searchStatus.setData("status", "En cours");
-	ShippingStatus statusEnCours = (ShippingStatus) Orm
-		.selectUnique(searchStatus);
+		ShippingStatus searchStatus = new ShippingStatus();
+		searchStatus.setData("status", "En cours");
+		ShippingStatus statusEnCours = (ShippingStatus) Orm
+				.selectUnique(searchStatus);
 
-	// We change his status for "En cours"
-	retShipping.setData(new ShippingStatus().getForeignKeyName(),
-		statusEnCours.getPrimaryKeyValue());
-	retShipping.save();
+		// We change his status for "En cours"
+		retShipping.setData(new ShippingStatus().getForeignKeyName(),
+				statusEnCours.getPrimaryKeyValue());
+		retShipping.save();
 
-	// We retreive the invoice related to the shipping
-	Invoice searchInvoice = new Invoice();
-	searchInvoice.setData(searchInvoice.getPrimaryKeyName(), retShipping
-		.getData(new Invoice().getForeignKeyName()));
-	Invoice retInvoice = (Invoice) Orm.selectUnique(searchInvoice);
+		// We retreive the invoice related to the shipping
+		Invoice searchInvoice = new Invoice();
+		searchInvoice.setData(searchInvoice.getPrimaryKeyName(), retShipping
+				.getData(new Invoice().getForeignKeyName()));
+		Invoice retInvoice = (Invoice) Orm.selectUnique(searchInvoice);
 
-	new AddProductQuantityInReservedStock().doAction(retInvoice, null);
+		new AddProductQuantityInReservedStock().doAction(retInvoice, null);
 
-	return null;
-    }
+		return null;
+	}
 }

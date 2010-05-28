@@ -13,81 +13,81 @@ import newtonERP.orm.Orm;
  */
 public class SingleAccessorManager
 {
-    /**
-     * @param entity entité source
-     * @return liste des accessors plusieurs à plusieurs pour l'entité source
-     * @throws Exception exceptions si obtention fail
-     */
-    public static final TreeMap<String, AbstractOrmEntity> getSingleAccessorList(
-	    AbstractOrmEntity entity) throws Exception
-    {
-	TreeMap<String, AbstractOrmEntity> singleAccessorList = new TreeMap<String, AbstractOrmEntity>();
-
-	AbstractOrmEntity foreignEntityDefinition, realForeignEntity;
-
-	ListOfValue listOfValue;
-
-	for (String listOfValueName : entity.getPositiveListOfValueList()
-		.keySet())
+	/**
+	 * @param entity entité source
+	 * @return liste des accessors plusieurs à plusieurs pour l'entité source
+	 * @throws Exception exceptions si obtention fail
+	 */
+	public static final TreeMap<String, AbstractOrmEntity> getSingleAccessorList(
+			AbstractOrmEntity entity) throws Exception
 	{
-	    listOfValue = entity.getPositiveListOfValueList().get(
-		    listOfValueName);
-	    foreignEntityDefinition = listOfValue.getForeignEntityDefinition();
+		TreeMap<String, AbstractOrmEntity> singleAccessorList = new TreeMap<String, AbstractOrmEntity>();
 
-	    realForeignEntity = getForeignEntity(entity,
-		    foreignEntityDefinition);
+		AbstractOrmEntity foreignEntityDefinition, realForeignEntity;
 
-	    if (realForeignEntity != null)
-		singleAccessorList.put(realForeignEntity.getSystemName(),
-			realForeignEntity);
+		ListOfValue listOfValue;
+
+		for (String listOfValueName : entity.getPositiveListOfValueList()
+				.keySet())
+		{
+			listOfValue = entity.getPositiveListOfValueList().get(
+					listOfValueName);
+			foreignEntityDefinition = listOfValue.getForeignEntityDefinition();
+
+			realForeignEntity = getForeignEntity(entity,
+					foreignEntityDefinition);
+
+			if (realForeignEntity != null)
+				singleAccessorList.put(realForeignEntity.getSystemName(),
+						realForeignEntity);
+		}
+
+		return singleAccessorList;
 	}
 
-	return singleAccessorList;
-    }
-
-    private static AbstractOrmEntity getForeignEntity(
-	    AbstractOrmEntity sourceEntity,
-	    AbstractOrmEntity foreignEntityDefinition) throws Exception
-    {
-	foreignEntityDefinition.setData(foreignEntityDefinition
-		.getPrimaryKeyName(), sourceEntity
-		.getData(foreignEntityDefinition.getForeignKeyName()));
-
-	Vector<AbstractOrmEntity> resultSet = Orm
-		.select(foreignEntityDefinition);
-
-	if (resultSet.size() > 0)
-	    return resultSet.get(0);
-
-	return null;
-    }
-
-    /**
-     * @param abstractOrmEntity entité
-     * @param listOfValueName nom de l'accessor
-     * @return accessor singulier
-     * @throws Exception si obtention fail
-     */
-    public static AbstractOrmEntity getSingleAccessor(
-	    AbstractOrmEntity abstractOrmEntity, String listOfValueName)
-	    throws Exception
-    {
-	AbstractOrmEntity foreignEntityDefinition, realForeignEntity;
-
-	ListOfValue listOfValue = abstractOrmEntity
-		.tryMatchListOfValue(listOfValueName);
-
-	if (listOfValue != null)
+	private static AbstractOrmEntity getForeignEntity(
+			AbstractOrmEntity sourceEntity,
+			AbstractOrmEntity foreignEntityDefinition) throws Exception
 	{
-	    listOfValue = abstractOrmEntity.getPositiveListOfValueList().get(
-		    listOfValueName);
-	    foreignEntityDefinition = listOfValue.getForeignEntityDefinition();
+		foreignEntityDefinition.setData(foreignEntityDefinition
+				.getPrimaryKeyName(), sourceEntity
+				.getData(foreignEntityDefinition.getForeignKeyName()));
 
-	    realForeignEntity = getForeignEntity(abstractOrmEntity,
-		    foreignEntityDefinition);
+		Vector<AbstractOrmEntity> resultSet = Orm
+				.select(foreignEntityDefinition);
 
-	    return realForeignEntity;
+		if (resultSet.size() > 0)
+			return resultSet.get(0);
+
+		return null;
 	}
-	return null;
-    }
+
+	/**
+	 * @param abstractOrmEntity entité
+	 * @param listOfValueName nom de l'accessor
+	 * @return accessor singulier
+	 * @throws Exception si obtention fail
+	 */
+	public static AbstractOrmEntity getSingleAccessor(
+			AbstractOrmEntity abstractOrmEntity, String listOfValueName)
+			throws Exception
+	{
+		AbstractOrmEntity foreignEntityDefinition, realForeignEntity;
+
+		ListOfValue listOfValue = abstractOrmEntity
+				.tryMatchListOfValue(listOfValueName);
+
+		if (listOfValue != null)
+		{
+			listOfValue = abstractOrmEntity.getPositiveListOfValueList().get(
+					listOfValueName);
+			foreignEntityDefinition = listOfValue.getForeignEntityDefinition();
+
+			realForeignEntity = getForeignEntity(abstractOrmEntity,
+					foreignEntityDefinition);
+
+			return realForeignEntity;
+		}
+		return null;
+	}
 }

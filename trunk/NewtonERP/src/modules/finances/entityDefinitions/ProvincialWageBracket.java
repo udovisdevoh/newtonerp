@@ -21,29 +21,29 @@ import newtonERP.orm.field.type.FieldInt;
  */
 public class ProvincialWageBracket extends AbstractOrmEntity
 {
-    /**
-     * @throws Exception if creation fails
-     */
-    public ProvincialWageBracket() throws Exception
-    {
-	super();
-	setVisibleName("Tanches Salariales/Impôt Provincial");
-    }
+	/**
+	 * @throws Exception if creation fails
+	 */
+	public ProvincialWageBracket() throws Exception
+	{
+		super();
+		setVisibleName("Tanches Salariales/Impôt Provincial");
+	}
 
-    @Override
-    public Fields initFields() throws Exception
-    {
-	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
-	FieldInt primaryKey = new FieldInt("Numéro", getPrimaryKeyName());
-	primaryKey.setNaturalKey(true);
-	fieldsInit.add(primaryKey);
+	@Override
+	public Fields initFields() throws Exception
+	{
+		Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
+		FieldInt primaryKey = new FieldInt("Numéro", getPrimaryKeyName());
+		primaryKey.setNaturalKey(true);
+		fieldsInit.add(primaryKey);
 
-	fieldsInit.add(new FieldCurrency("Minimum de tranche", "minBracket"));
-	fieldsInit.add(new FieldCurrency("Maximum de tranche", "maxBracket"));
-	fieldsInit.add(new FieldCurrency("Montant d'ajustement", "ajustment"));
-	fieldsInit.add(new FieldDouble("Impôt %", "tax"));
+		fieldsInit.add(new FieldCurrency("Minimum de tranche", "minBracket"));
+		fieldsInit.add(new FieldCurrency("Maximum de tranche", "maxBracket"));
+		fieldsInit.add(new FieldCurrency("Montant d'ajustement", "ajustment"));
+		fieldsInit.add(new FieldDouble("Impôt %", "tax"));
 
-	return new Fields(fieldsInit);
-    }
+		return new Fields(fieldsInit);
+	}
 
 }

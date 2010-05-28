@@ -20,74 +20,74 @@ import newtonERP.orm.Orm;
  */
 public class CalculateInvoiceTotal extends AbstractAction
 {
-    /**
-     * Default constructor
-     * 
-     * @throws Exception a general exception
-     */
-    public CalculateInvoiceTotal() throws Exception
-    {
-	super(new Invoice());
-    }
-
-    @Override
-    public AbstractEntity doAction(AbstractEntity entity,
-	    Hashtable<String, String> parameters) throws Exception
-    {
-	Vector<Tax> taxContainer = new Vector<Tax>();
-	Invoice actionInvoice = (Invoice) entity;
-	Double totalInvoice = (Double) entity.getData("total");
-	Double taxTotal = (Double) entity.getData("taxTotal");
-
-	taxTotal = 0.0;
-	totalInvoice = 0.0;
-
-	// INVOICE LINES
-	InvoiceLine invoiceLine = new InvoiceLine();
-	invoiceLine.setData(new Invoice().getForeignKeyName(), actionInvoice
-		.getPrimaryKeyValue());
-	Vector<AbstractOrmEntity> invoiceLines = Orm.select(invoiceLine);
-
-	for (AbstractOrmEntity line : invoiceLines)
+	/**
+	 * Default constructor
+	 * 
+	 * @throws Exception a general exception
+	 */
+	public CalculateInvoiceTotal() throws Exception
 	{
-	    totalInvoice += ((Double) ((InvoiceLine) line).getData("unitPrice") * (Integer) line
-		    .getData("quantity"));
+		super(new Invoice());
 	}
 
-	actionInvoice.setData("total", totalInvoice);
-
-	InvoiceTaxLine invoiceTaxLine = new InvoiceTaxLine();
-	invoiceTaxLine.setData(new Invoice().getForeignKeyName(), actionInvoice
-		.getPrimaryKeyValue());
-	Vector<AbstractOrmEntity> invoiceTaxLines = Orm.select(invoiceTaxLine);
-
-	// TAX LINES
-	for (AbstractOrmEntity tax : invoiceTaxLines)
+	@Override
+	public AbstractEntity doAction(AbstractEntity entity,
+			Hashtable<String, String> parameters) throws Exception
 	{
-	    Tax taxe = new Tax();
-	    taxe.setData(new Tax().getPrimaryKeyName(), tax.getData(new Tax()
-		    .getForeignKeyName()));
+		Vector<Tax> taxContainer = new Vector<Tax>();
+		Invoice actionInvoice = (Invoice) entity;
+		Double totalInvoice = (Double) entity.getData("total");
+		Double taxTotal = (Double) entity.getData("taxTotal");
 
-	    Tax myTax = (Tax) Orm.selectUnique(taxe);
+		taxTotal = 0.0;
+		totalInvoice = 0.0;
 
-	    taxContainer.add(myTax);
+		// INVOICE LINES
+		InvoiceLine invoiceLine = new InvoiceLine();
+		invoiceLine.setData(new Invoice().getForeignKeyName(), actionInvoice
+				.getPrimaryKeyValue());
+		Vector<AbstractOrmEntity> invoiceLines = Orm.select(invoiceLine);
+
+		for (AbstractOrmEntity line : invoiceLines)
+		{
+			totalInvoice += ((Double) ((InvoiceLine) line).getData("unitPrice") * (Integer) line
+					.getData("quantity"));
+		}
+
+		actionInvoice.setData("total", totalInvoice);
+
+		InvoiceTaxLine invoiceTaxLine = new InvoiceTaxLine();
+		invoiceTaxLine.setData(new Invoice().getForeignKeyName(), actionInvoice
+				.getPrimaryKeyValue());
+		Vector<AbstractOrmEntity> invoiceTaxLines = Orm.select(invoiceTaxLine);
+
+		// TAX LINES
+		for (AbstractOrmEntity tax : invoiceTaxLines)
+		{
+			Tax taxe = new Tax();
+			taxe.setData(new Tax().getPrimaryKeyName(), tax.getData(new Tax()
+					.getForeignKeyName()));
+
+			Tax myTax = (Tax) Orm.selectUnique(taxe);
+
+			taxContainer.add(myTax);
+		}
+
+		for (int i = 0; i < taxContainer.size(); i++)
+		{
+			if (taxContainer.get(i).getData("isStateTax").equals(true))
+				Collections.swap(taxContainer, i, 1);
+		}
+
+		for (Tax myTax : taxContainer)
+		{
+			taxTotal += totalInvoice * ((Double) myTax.getData("value") / 100);
+			totalInvoice += taxTotal;
+		}
+
+		actionInvoice.setData("taxTotal", taxTotal);
+		actionInvoice.save();
+
+		return new Invoice().getList();
 	}
-
-	for (int i = 0; i < taxContainer.size(); i++)
-	{
-	    if (taxContainer.get(i).getData("isStateTax").equals(true))
-		Collections.swap(taxContainer, i, 1);
-	}
-
-	for (Tax myTax : taxContainer)
-	{
-	    taxTotal += totalInvoice * ((Double) myTax.getData("value") / 100);
-	    totalInvoice += taxTotal;
-	}
-
-	actionInvoice.setData("taxTotal", taxTotal);
-	actionInvoice.save();
-
-	return new Invoice().getList();
-    }
 }

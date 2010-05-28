@@ -14,26 +14,26 @@ import newtonERP.orm.field.type.FieldString;
  */
 public class CompanyDomain extends AbstractOrmEntity
 {
-    /**
-     * constructor
-     * @throws Exception remonte
-     */
-    public CompanyDomain() throws Exception
-    {
-	super();
-	setVisibleName("Domaine");
-	setDetailedDescription("champ d'activité d'un exposant");
-    }
+	/**
+	 * constructor
+	 * @throws Exception remonte
+	 */
+	public CompanyDomain() throws Exception
+	{
+		super();
+		setVisibleName("Domaine");
+		setDetailedDescription("champ d'activité d'un exposant");
+	}
 
-    public Fields initFields() throws Exception
-    {
-	Vector<Field<?>> fieldList = new Vector<Field<?>>();
+	public Fields initFields() throws Exception
+	{
+		Vector<Field<?>> fieldList = new Vector<Field<?>>();
 
-	FieldInt pKcompanyDomainID = new FieldInt("Numéro", getPrimaryKeyName());
-	fieldList.add(pKcompanyDomainID);
+		FieldInt pKcompanyDomainID = new FieldInt("Numéro", getPrimaryKeyName());
+		fieldList.add(pKcompanyDomainID);
 
-	FieldString name = new FieldString("Description", "Name");
-	fieldList.add(name);
-	return new Fields(fieldList);
-    }
+		FieldString name = new FieldString("Description", "Name");
+		fieldList.add(name);
+		return new Fields(fieldList);
+	}
 }

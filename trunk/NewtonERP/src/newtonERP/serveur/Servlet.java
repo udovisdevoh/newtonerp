@@ -115,8 +115,8 @@ public class Servlet extends ServletHandler
 		moduleName = buildModuleName(target);
 		if (moduleName == null || moduleName.trim().length() == 0)
 		{
-	    moduleName = ConfigManager.getDefaultModuleName();
-	    actionName = ConfigManager.getDefaultActionName();
+			moduleName = ConfigManager.getDefaultModuleName();
+			actionName = ConfigManager.getDefaultActionName();
 		}
 
 		entityName = buildEntityName(target);

@@ -20,68 +20,68 @@ import newtonERP.viewers.viewerData.PromptViewerData;
  */
 public class EditShoppingCart extends AbstractAction
 {
-    /**
-     * Créer instance d'action
-     */
-    public EditShoppingCart()
-    {
-	setDetailedDescription("Acheter des produits");
-    }
-
-    @Override
-    public AbstractEntity doAction(AbstractEntity entity,
-	    Hashtable<String, String> parameters) throws Exception
-    {
-	KioskInvoice currentActiveTransaction = getCurrentActiveTransaction();
-
-	BaseViewerData baseViewerData = currentActiveTransaction
-		.editUI(parameters);
-
-	PromptViewerData promptViewerData = (PromptViewerData) baseViewerData;
-
-	promptViewerData.getData().getFields().getField("isPaid").setReadOnly(
-		true);
-
-	promptViewerData.getData().getFields().getField("kioskCustomerID")
-		.setReadOnly(true);
-
-	promptViewerData.setTitle("Panier d'achat");
-
-	return baseViewerData;
-    }
-
-    private KioskInvoice getCurrentActiveTransaction() throws Exception
-    {
-	User currentUser = Authentication.getCurrentUser();
-
-	PluralAccessor customerList = currentUser
-		.getPluralAccessor("KioskCustomer");
-
-	KioskCustomer kioskCustomer = (KioskCustomer) customerList.get(0);
-
-	PluralAccessor invoiceList = kioskCustomer
-		.getPluralAccessor("KioskInvoice");
-
-	KioskInvoice selectedInvoice = null;
-	for (AbstractOrmEntity invoice : invoiceList)
+	/**
+	 * Créer instance d'action
+	 */
+	public EditShoppingCart()
 	{
-	    FieldBool isPaid = (FieldBool) invoice.getFields().getField(
-		    "isPaid");
-	    if (isPaid.getData() == null || isPaid.getData() != true)
-	    {
-		selectedInvoice = (KioskInvoice) invoice;
-	    }
+		setDetailedDescription("Acheter des produits");
 	}
 
-	if (selectedInvoice == null)
+	@Override
+	public AbstractEntity doAction(AbstractEntity entity,
+			Hashtable<String, String> parameters) throws Exception
 	{
-	    selectedInvoice = new KioskInvoice();
-	    selectedInvoice.assign(kioskCustomer);
-	    selectedInvoice.setData("isPaid", false);
-	    selectedInvoice.newE();
+		KioskInvoice currentActiveTransaction = getCurrentActiveTransaction();
+
+		BaseViewerData baseViewerData = currentActiveTransaction
+				.editUI(parameters);
+
+		PromptViewerData promptViewerData = (PromptViewerData) baseViewerData;
+
+		promptViewerData.getData().getFields().getField("isPaid").setReadOnly(
+				true);
+
+		promptViewerData.getData().getFields().getField("kioskCustomerID")
+				.setReadOnly(true);
+
+		promptViewerData.setTitle("Panier d'achat");
+
+		return baseViewerData;
 	}
 
-	return selectedInvoice;
-    }
+	private KioskInvoice getCurrentActiveTransaction() throws Exception
+	{
+		User currentUser = Authentication.getCurrentUser();
+
+		PluralAccessor customerList = currentUser
+				.getPluralAccessor("KioskCustomer");
+
+		KioskCustomer kioskCustomer = (KioskCustomer) customerList.get(0);
+
+		PluralAccessor invoiceList = kioskCustomer
+				.getPluralAccessor("KioskInvoice");
+
+		KioskInvoice selectedInvoice = null;
+		for (AbstractOrmEntity invoice : invoiceList)
+		{
+			FieldBool isPaid = (FieldBool) invoice.getFields().getField(
+					"isPaid");
+			if (isPaid.getData() == null || isPaid.getData() != true)
+			{
+				selectedInvoice = (KioskInvoice) invoice;
+			}
+		}
+
+		if (selectedInvoice == null)
+		{
+			selectedInvoice = new KioskInvoice();
+			selectedInvoice.assign(kioskCustomer);
+			selectedInvoice.setData("isPaid", false);
+			selectedInvoice.newE();
+		}
+
+		return selectedInvoice;
+	}
 
 }

@@ -14,25 +14,25 @@ import newtonERP.orm.field.type.FieldString;
  */
 public class LivraisonEtat extends AbstractOrmEntity
 {
-    /**
-     * constructor
-     * @throws Exception remonte
-     */
-    public LivraisonEtat() throws Exception
-    {
-	super();
-	setVisibleName("État de livraison");
-    }
+	/**
+	 * constructor
+	 * @throws Exception remonte
+	 */
+	public LivraisonEtat() throws Exception
+	{
+		super();
+		setVisibleName("État de livraison");
+	}
 
-    public Fields initFields() throws Exception
-    {
-	Vector<Field<?>> fieldList = new Vector<Field<?>>();
+	public Fields initFields() throws Exception
+	{
+		Vector<Field<?>> fieldList = new Vector<Field<?>>();
 
-	FieldInt pKprioriteID = new FieldInt("Numéro", getPrimaryKeyName());
-	fieldList.add(pKprioriteID);
+		FieldInt pKprioriteID = new FieldInt("Numéro", getPrimaryKeyName());
+		fieldList.add(pKprioriteID);
 
-	FieldString nom = new FieldString("Description", "Description");
-	fieldList.add(nom);
-	return new Fields(fieldList);
-    }
+		FieldString nom = new FieldString("Description", "Description");
+		fieldList.add(nom);
+		return new Fields(fieldList);
+	}
 }

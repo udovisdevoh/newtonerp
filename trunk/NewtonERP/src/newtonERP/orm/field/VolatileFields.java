@@ -10,28 +10,28 @@ import java.util.Vector;
  */
 public class VolatileFields extends Fields
 {
-    /**
-     * default constructor
-     */
-    public VolatileFields()
-    {
-	super();
-    }
+	/**
+	 * default constructor
+	 */
+	public VolatileFields()
+	{
+		super();
+	}
 
-    /**
-     * @param fields une liste de champ a inclure dans le Fields
-     */
-    public VolatileFields(Vector<Field<?>> fields)
-    {
-	super(fields);
-    }
+	/**
+	 * @param fields une liste de champ a inclure dans le Fields
+	 */
+	public VolatileFields(Vector<Field<?>> fields)
+	{
+		super(fields);
+	}
 
-    /**
-     * @param field field à ajouter ou remplacer s'il existe
-     */
-    public void add(Field<?> field)
-    {
-	fieldsDataMap.put(field.getShortName(), field);
-	fieldsDataVector.add(field);
-    }
+	/**
+	 * @param field field à ajouter ou remplacer s'il existe
+	 */
+	public void add(Field<?> field)
+	{
+		fieldsDataMap.put(field.getShortName(), field);
+		fieldsDataVector.add(field);
+	}
 }

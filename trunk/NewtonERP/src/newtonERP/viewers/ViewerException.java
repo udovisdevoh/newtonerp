@@ -6,13 +6,13 @@ package newtonERP.viewers;
  */
 public class ViewerException extends Exception
 {
-    /**
-     * Default constructor for the exception
-     * 
-     * @param message the message of exception
-     */
-    public ViewerException(String message)
-    {
-	super(message);
-    }
+	/**
+	 * Default constructor for the exception
+	 * 
+	 * @param message the message of exception
+	 */
+	public ViewerException(String message)
+	{
+		super(message);
+	}
 }

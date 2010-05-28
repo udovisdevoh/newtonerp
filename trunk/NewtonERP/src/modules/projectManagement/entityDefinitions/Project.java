@@ -16,26 +16,26 @@ import newtonERP.orm.field.type.FieldString;
  */
 public class Project extends AbstractOrmEntity
 {
-    /**
-     * Default constructor
-     * 
-     * @throws Exception a general exception
-     */
-    public Project() throws Exception
-    {
-	super();
-	setVisibleName("Projets");
-	AccessorManager.addAccessor(this, new ProjectType());
-    }
+	/**
+	 * Default constructor
+	 * 
+	 * @throws Exception a general exception
+	 */
+	public Project() throws Exception
+	{
+		super();
+		setVisibleName("Projets");
+		AccessorManager.addAccessor(this, new ProjectType());
+	}
 
-    @Override
-    public Fields initFields() throws Exception
-    {
-	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
-	fieldsInit.add(new FieldInt("Numero", getPrimaryKeyName()));
-	fieldsInit.add(new FieldString("Nom", "name"));
-	fieldsInit.add(new FieldInt("Type de projet", new ProjectType()
-		.getForeignKeyName()));
-	return new Fields(fieldsInit);
-    }
+	@Override
+	public Fields initFields() throws Exception
+	{
+		Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
+		fieldsInit.add(new FieldInt("Numero", getPrimaryKeyName()));
+		fieldsInit.add(new FieldString("Nom", "name"));
+		fieldsInit.add(new FieldInt("Type de projet", new ProjectType()
+				.getForeignKeyName()));
+		return new Fields(fieldsInit);
+	}
 }

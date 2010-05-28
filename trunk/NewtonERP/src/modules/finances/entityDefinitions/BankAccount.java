@@ -18,30 +18,30 @@ import newtonERP.orm.field.type.FieldString;
  */
 public class BankAccount extends AbstractOrmEntity
 {
-    /**
-     * @throws Exception if creation fails
-     */
-    public BankAccount() throws Exception
-    {
-	super();
-	AccessorManager.addAccessor(this, new Bank());
-	setVisibleName("Comptes Bancaires");
-    }
+	/**
+	 * @throws Exception if creation fails
+	 */
+	public BankAccount() throws Exception
+	{
+		super();
+		AccessorManager.addAccessor(this, new Bank());
+		setVisibleName("Comptes Bancaires");
+	}
 
-    @Override
-    public Fields initFields() throws Exception
-    {
-	FieldString folio = new FieldString("Folio", "folio");
-	folio.setNaturalKey(true);
+	@Override
+	public Fields initFields() throws Exception
+	{
+		FieldString folio = new FieldString("Folio", "folio");
+		folio.setNaturalKey(true);
 
-	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
-	fieldsInit.add(new FieldInt("Numéro", getPrimaryKeyName()));
-	fieldsInit.add(folio);
-	fieldsInit.add(new FieldCurrency("Solde", "balance"));
-	fieldsInit.add(new FieldCurrency("Marge Disponible", "marginBalance"));
-	fieldsInit.add(new FieldCurrency("Marge", "margin"));
-	fieldsInit.add(new FieldInt("Transit", new Bank().getForeignKeyName()));
+		Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
+		fieldsInit.add(new FieldInt("Numéro", getPrimaryKeyName()));
+		fieldsInit.add(folio);
+		fieldsInit.add(new FieldCurrency("Solde", "balance"));
+		fieldsInit.add(new FieldCurrency("Marge Disponible", "marginBalance"));
+		fieldsInit.add(new FieldCurrency("Marge", "margin"));
+		fieldsInit.add(new FieldInt("Transit", new Bank().getForeignKeyName()));
 
-	return new Fields(fieldsInit);
-    }
+		return new Fields(fieldsInit);
+	}
 }

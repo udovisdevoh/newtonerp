@@ -13,14 +13,14 @@ import newtonERP.module.AbstractEntity;
 public class CalculateOffer extends AbstractAction
 {
 
-    /**
+	/**
      * 
      */
 
-    public AbstractEntity doAction(AbstractEntity entity,
-	    Hashtable<String, String> parameters) throws Exception
-    {
-	return null;
-    }
+	public AbstractEntity doAction(AbstractEntity entity,
+			Hashtable<String, String> parameters) throws Exception
+	{
+		return null;
+	}
 
 }

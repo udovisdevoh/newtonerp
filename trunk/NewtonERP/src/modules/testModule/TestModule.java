@@ -9,15 +9,15 @@ import newtonERP.module.Module;
  */
 public class TestModule extends Module
 {
-    /**
-     * constructeur
-     * @throws Exception remonte
-     */
-    public TestModule() throws Exception
-    {
-	super();
-	setDefaultAction(new TestAction());
-	setVisibleName("Module test");
-	setVisible(false);
-    }
+	/**
+	 * constructeur
+	 * @throws Exception remonte
+	 */
+	public TestModule() throws Exception
+	{
+		super();
+		setDefaultAction(new TestAction());
+		setVisibleName("Module test");
+		setVisible(false);
+	}
 }

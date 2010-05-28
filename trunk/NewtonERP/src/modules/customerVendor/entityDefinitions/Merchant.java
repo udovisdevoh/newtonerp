@@ -17,24 +17,24 @@ import newtonERP.orm.field.type.FieldString;
  */
 public class Merchant extends AbstractOrmEntity
 {
-    /**
-     * @throws Exception si création fail
-     */
-    public Merchant() throws Exception
-    {
-	super();
-	setVisibleName("Client/Fournisseur");
-	AccessorManager.addAccessor(this, new Address());
-    }
+	/**
+	 * @throws Exception si création fail
+	 */
+	public Merchant() throws Exception
+	{
+		super();
+		setVisibleName("Client/Fournisseur");
+		AccessorManager.addAccessor(this, new Address());
+	}
 
-    @Override
-    public Fields initFields() throws Exception
-    {
-	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
-	fieldsInit.add(new FieldInt("Numéro", getPrimaryKeyName()));
-	fieldsInit.add(new FieldString("Nom", "name"));
-	fieldsInit.add(new FieldInt("Adresse", new Address()
-		.getForeignKeyName()));
-	return new Fields(fieldsInit);
-    }
+	@Override
+	public Fields initFields() throws Exception
+	{
+		Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
+		fieldsInit.add(new FieldInt("Numéro", getPrimaryKeyName()));
+		fieldsInit.add(new FieldString("Nom", "name"));
+		fieldsInit.add(new FieldInt("Adresse", new Address()
+				.getForeignKeyName()));
+		return new Fields(fieldsInit);
+	}
 }

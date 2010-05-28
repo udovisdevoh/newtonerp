@@ -17,132 +17,132 @@ import newtonERP.viewers.viewables.FloorViewable;
  */
 public class FloorViewerData extends AbstractEntity implements FloorViewable
 {
-    private int columnCount = 0;
+	private int columnCount = 0;
 
-    private int rowCount = 0;
+	private int rowCount = 0;
 
-    private Boolean[][] corridorMask;
+	private Boolean[][] corridorMask;
 
-    private String[][] zoneNameMap;
+	private String[][] zoneNameMap;
 
-    private Zone[][] zoneMap = null;
+	private Zone[][] zoneMap = null;
 
-    private Floor sourceFloor = null;
+	private Floor sourceFloor = null;
 
-    private HashSet<String> wallHash;
+	private HashSet<String> wallHash;
 
-    private static Vector<String> lazyWallTypeNameList = null;
+	private static Vector<String> lazyWallTypeNameList = null;
 
-    /**
-     * @throws Exception si ça fail
-     */
-    public FloorViewerData() throws Exception
-    {
-	super();
-	wallHash = new HashSet<String>();
-    }
-
-    /**
-     * @param sourceFloor source floor
-     * @throws Exception si ça fail
-     */
-    public FloorViewerData(Floor sourceFloor) throws Exception
-    {
-	super();
-	this.sourceFloor = sourceFloor;
-	wallHash = new HashSet<String>();
-
-	sourceFloor = (Floor) sourceFloor.get().get(0);
-
-	columnCount = sourceFloor.getColumnCount();
-	rowCount = sourceFloor.getRowCount();
-	corridorMask = new Boolean[columnCount][rowCount];
-	zoneNameMap = new String[columnCount][rowCount];
-	zoneMap = new Zone[columnCount][rowCount];
-
-	for (int x = 0; x < columnCount; x++)
+	/**
+	 * @throws Exception si ça fail
+	 */
+	public FloorViewerData() throws Exception
 	{
-	    for (int y = 0; y < rowCount; y++)
-	    {
-		corridorMask[x][y] = sourceFloor.isCorridorAt(x, y);
-
-		Zone zone = sourceFloor.getZoneAt(x, y);
-
-		if (zone == null)
-		    zoneNameMap[x][y] = "-";
-		else
-		    zoneNameMap[x][y] = zone.getKioskName();
-
-		zoneMap[x][y] = zone;
-
-		if (zone == null)
-		    continue;
-
-		for (String wallTypeName : getWallTypeNameList())
-		    if (zone.isMuretAt(wallTypeName, x, y))
-			wallHash.add(wallTypeName + "-" + x + "-" + y);
-	    }
+		super();
+		wallHash = new HashSet<String>();
 	}
-    }
 
-    private Vector<String> getWallTypeNameList() throws Exception
-    {
-	if (lazyWallTypeNameList == null)
+	/**
+	 * @param sourceFloor source floor
+	 * @throws Exception si ça fail
+	 */
+	public FloorViewerData(Floor sourceFloor) throws Exception
 	{
-	    lazyWallTypeNameList = new Vector<String>();
+		super();
+		this.sourceFloor = sourceFloor;
+		wallHash = new HashSet<String>();
 
-	    WallType wallType = new WallType();
+		sourceFloor = (Floor) sourceFloor.get().get(0);
 
-	    Vector<AbstractOrmEntity> entityList = wallType.get();
+		columnCount = sourceFloor.getColumnCount();
+		rowCount = sourceFloor.getRowCount();
+		corridorMask = new Boolean[columnCount][rowCount];
+		zoneNameMap = new String[columnCount][rowCount];
+		zoneMap = new Zone[columnCount][rowCount];
 
-	    for (AbstractOrmEntity entity : entityList)
-		lazyWallTypeNameList.add((entity.getDataString("Name")));
+		for (int x = 0; x < columnCount; x++)
+		{
+			for (int y = 0; y < rowCount; y++)
+			{
+				corridorMask[x][y] = sourceFloor.isCorridorAt(x, y);
+
+				Zone zone = sourceFloor.getZoneAt(x, y);
+
+				if (zone == null)
+					zoneNameMap[x][y] = "-";
+				else
+					zoneNameMap[x][y] = zone.getKioskName();
+
+				zoneMap[x][y] = zone;
+
+				if (zone == null)
+					continue;
+
+				for (String wallTypeName : getWallTypeNameList())
+					if (zone.isMuretAt(wallTypeName, x, y))
+						wallHash.add(wallTypeName + "-" + x + "-" + y);
+			}
+		}
 	}
-	return lazyWallTypeNameList;
-    }
 
-    @Override
-    public int getColumnCount()
-    {
-	return columnCount;
-    }
+	private Vector<String> getWallTypeNameList() throws Exception
+	{
+		if (lazyWallTypeNameList == null)
+		{
+			lazyWallTypeNameList = new Vector<String>();
 
-    @Override
-    public int getRowCount()
-    {
-	return rowCount;
-    }
+			WallType wallType = new WallType();
 
-    @Override
-    public boolean isCorridorAt(int x, int y)
-    {
-	if (corridorMask == null)
-	    return false;
+			Vector<AbstractOrmEntity> entityList = wallType.get();
 
-	return corridorMask[x][y];
-    }
+			for (AbstractOrmEntity entity : entityList)
+				lazyWallTypeNameList.add((entity.getDataString("Name")));
+		}
+		return lazyWallTypeNameList;
+	}
 
-    @Override
-    public String tryGetZoneNameAt(int x, int y) throws Exception
-    {
-	if (zoneNameMap == null)
-	    return "-";
-	return zoneNameMap[x][y];
-    }
+	@Override
+	public int getColumnCount()
+	{
+		return columnCount;
+	}
 
-    @Override
-    public Vector<ActionLink> getActionLinkListAt(int x, int y)
-	    throws Exception
-    {
-	if (sourceFloor == null)
-	    return new Vector<ActionLink>();
+	@Override
+	public int getRowCount()
+	{
+		return rowCount;
+	}
 
-	return sourceFloor.getActionLinkListAt(x, y);
-    }
+	@Override
+	public boolean isCorridorAt(int x, int y)
+	{
+		if (corridorMask == null)
+			return false;
 
-    @Override
-    public boolean isWallAt(String wallName, int x, int y)
-    {
-	return wallHash.contains(wallName + "-" + x + "-" + y);
-    }
+		return corridorMask[x][y];
+	}
+
+	@Override
+	public String tryGetZoneNameAt(int x, int y) throws Exception
+	{
+		if (zoneNameMap == null)
+			return "-";
+		return zoneNameMap[x][y];
+	}
+
+	@Override
+	public Vector<ActionLink> getActionLinkListAt(int x, int y)
+			throws Exception
+	{
+		if (sourceFloor == null)
+			return new Vector<ActionLink>();
+
+		return sourceFloor.getActionLinkListAt(x, y);
+	}
+
+	@Override
+	public boolean isWallAt(String wallName, int x, int y)
+	{
+		return wallHash.contains(wallName + "-" + x + "-" + y);
+	}
 }

@@ -14,21 +14,21 @@ import newtonERP.orm.field.type.FieldInt;
 public class EffectEntityParameter extends AbstractOrmEntity
 {
 
-    /**
-     * @throws Exception si création fail
-     */
-    public EffectEntityParameter() throws Exception
-    {
-	super();
-	setVisibleName("Paramètre d'éffet");
-    }
+	/**
+	 * @throws Exception si création fail
+	 */
+	public EffectEntityParameter() throws Exception
+	{
+		super();
+		setVisibleName("Paramètre d'éffet");
+	}
 
-    @Override
-    public Fields initFields() throws Exception
-    {
-	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
-	fieldsInit.add(new FieldInt("Effet", "effectEntityID"));
-	fieldsInit.add(new FieldInt("Paramètre", "parameterID"));
-	return new Fields(fieldsInit);
-    }
+	@Override
+	public Fields initFields() throws Exception
+	{
+		Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
+		fieldsInit.add(new FieldInt("Effet", "effectEntityID"));
+		fieldsInit.add(new FieldInt("Paramètre", "parameterID"));
+		return new Fields(fieldsInit);
+	}
 }

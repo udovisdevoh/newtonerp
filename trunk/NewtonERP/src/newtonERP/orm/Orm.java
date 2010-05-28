@@ -32,8 +32,8 @@ import newtonERP.taskManager.TaskManager;
  */
 public class Orm
 {
-    @Deprecated
-    private static AbstractSgbd sgbd = null;
+	@Deprecated
+	private static AbstractSgbd sgbd = null;
 
 	// vers le SGBD voulu
 
@@ -43,26 +43,26 @@ public class Orm
 	 * @param entity the entity containing the new field
 	 * @param field the field to add
 	 * @return ?
-     * @throws Exception si ça fail
+	 * @throws Exception si ça fail
 	 */
 	public static ResultSet addColumnToTable(AbstractOrmEntity entity,
-	    Field<?> field) throws Exception
-    {
-	return getSgbd().addColumnToTable(entity, field);
-    }
-
-    private static AbstractSgbd getSgbd() throws Exception
-    {
-	if (sgbd == null)
-	    sgbd = buildSgbd();
-	return sgbd;
-    }
-
-    private static AbstractSgbd buildSgbd() throws Exception
+			Field<?> field) throws Exception
 	{
-	if (ConfigManager.getDbmsName().equals("sqlite"))
-	    return new SgbdSqlite();// On cré la référence
-	throw new Exception("Invalid DBMS type");
+		return getSgbd().addColumnToTable(entity, field);
+	}
+
+	private static AbstractSgbd getSgbd() throws Exception
+	{
+		if (sgbd == null)
+			sgbd = buildSgbd();
+		return sgbd;
+	}
+
+	private static AbstractSgbd buildSgbd() throws Exception
+	{
+		if (ConfigManager.getDbmsName().equals("sqlite"))
+			return new SgbdSqlite();// On cré la référence
+		throw new Exception("Invalid DBMS type");
 	}
 
 	/**
@@ -76,13 +76,13 @@ public class Orm
 	 * @param searchEntity the entity that has to be researched
 	 * @param searchCriteriasParam the search criterias formatted into strings
 	 * @return a vector of ormizable entities
-     * @throws Exception si ça fail
+	 * @throws Exception si ça fail
 	 */
 	public static Vector<AbstractOrmEntity> select(
 			AbstractOrmEntity searchEntity, Vector<String> searchCriteriasParam)
-	    throws Exception
+			throws Exception
 	{
-	return EntityCreator.createEntitiesFromResultSet(getSgbd().select(
+		return EntityCreator.createEntitiesFromResultSet(getSgbd().select(
 				searchEntity, searchCriteriasParam), searchEntity);
 	}
 
@@ -95,22 +95,22 @@ public class Orm
 	 * 
 	 * @param searchEntities the entities from which we will perform the search
 	 * @return the entities
-     * @throws Exception si ça fail
+	 * @throws Exception si ça fail
 	 */
 	public static Vector<AbstractOrmEntity> select(
-	    Vector<AbstractOrmEntity> searchEntities) throws Exception
+			Vector<AbstractOrmEntity> searchEntities) throws Exception
 	{
-	return EntityCreator.createEntitiesFromResultSet(getSgbd().select(
-		searchEntities), searchEntities.get(0));
+		return EntityCreator.createEntitiesFromResultSet(getSgbd().select(
+				searchEntities), searchEntities.get(0));
 	}
 
 	/**
 	 * @param searchEntity the single search entity
 	 * @return the entities that have been selected in the db
-     * @throws Exception si ça fail
+	 * @throws Exception si ça fail
 	 */
 	public static Vector<AbstractOrmEntity> select(
-	    AbstractOrmEntity searchEntity) throws Exception
+			AbstractOrmEntity searchEntity) throws Exception
 	{
 		Vector<AbstractOrmEntity> searchEntities = new Vector<AbstractOrmEntity>();
 		searchEntities.add(searchEntity);
@@ -123,10 +123,10 @@ public class Orm
 	 * 
 	 * @param searchEntity the entity from which we will perform our search
 	 * @return the first entity from the result set
-     * @throws Exception si ça fail
+	 * @throws Exception si ça fail
 	 */
 	public static AbstractOrmEntity selectUnique(AbstractOrmEntity searchEntity)
-	    throws Exception
+			throws Exception
 	{
 		return select(searchEntity).get(0);
 	}
@@ -137,10 +137,10 @@ public class Orm
 	 * 
 	 * @param searchEntities the entity from which we will perform our search
 	 * @return the first entity from the result set
-     * @throws Exception si ça fail
+	 * @throws Exception si ça fail
 	 */
 	public static AbstractOrmEntity selectUnique(
-	    Vector<AbstractOrmEntity> searchEntities) throws Exception
+			Vector<AbstractOrmEntity> searchEntities) throws Exception
 	{
 		return select(searchEntities).get(0);
 	}
@@ -155,7 +155,7 @@ public class Orm
 	 */
 	public static int insert(AbstractOrmEntity newEntity) throws Exception
 	{
-	int primaryKeyValue = getSgbd().insert(newEntity);
+		int primaryKeyValue = getSgbd().insert(newEntity);
 
 		if (primaryKeyValue != 0)
 			TaskManager.executeTasks(newEntity, primaryKeyValue);
@@ -186,7 +186,7 @@ public class Orm
 	public static void delete(AbstractOrmEntity searchEntity,
 			Vector<String> searchCriterias) throws Exception
 	{
-	getSgbd().delete(searchEntity, searchCriterias);
+		getSgbd().delete(searchEntity, searchCriterias);
 	}
 
 	/**
@@ -201,7 +201,7 @@ public class Orm
 	public static void delete(Vector<AbstractOrmEntity> searchEntities)
 			throws Exception
 	{
-	getSgbd().delete(searchEntities);
+		getSgbd().delete(searchEntities);
 	}
 
 	/**
@@ -230,7 +230,7 @@ public class Orm
 	public static void update(AbstractOrmEntity entityContainingChanges,
 			Vector<String> searchCriterias) throws Exception
 	{
-	getSgbd().update(entityContainingChanges, searchCriterias);
+		getSgbd().update(entityContainingChanges, searchCriterias);
 	}
 
 	/**
@@ -246,7 +246,7 @@ public class Orm
 	public static void update(Vector<AbstractOrmEntity> searchEntities,
 			AbstractOrmEntity entityContainingChanges) throws Exception
 	{
-	getSgbd().update(searchEntities, entityContainingChanges);
+		getSgbd().update(searchEntities, entityContainingChanges);
 	}
 
 	/**
@@ -262,7 +262,7 @@ public class Orm
 	public static void updateUnique(AbstractOrmEntity searchEntity,
 			AbstractOrmEntity entityContainingChanges) throws Exception
 	{
-	getSgbd().updateUnique(searchEntity, entityContainingChanges);
+		getSgbd().updateUnique(searchEntity, entityContainingChanges);
 	}
 
 	/**
@@ -307,13 +307,13 @@ public class Orm
 	}
 
 	private static void addMissingColumnsForEntity(AbstractOrmEntity entity)
-	    throws Exception
+			throws Exception
 	{
 		for (Field<?> field : entity.getFields())
 		{
 			try
 			{
-		getSgbd().addColumnToTable(entity, field);
+				getSgbd().addColumnToTable(entity, field);
 			} catch (OrmException e)
 			{
 				Logger.warning("[ORM] Champ déjà dans entité");
@@ -324,7 +324,7 @@ public class Orm
 	private static void createTableForEntity(AbstractOrmEntity entity)
 			throws Exception
 	{
-	getSgbd().createTableForEntity(entity);
+		getSgbd().createTableForEntity(entity);
 	}
 
 	private static void createIndexesForEntity(AbstractOrmEntity entity)
@@ -360,25 +360,25 @@ public class Orm
 	public static void createIndex(String entityName, String fieldName)
 			throws Exception
 	{
-	getSgbd().createIndex(entityName, fieldName);
+		getSgbd().createIndex(entityName, fieldName);
 	}
 
 	/**
 	 * Used to initialize the connection
-     * @throws Exception si ça fail
+	 * @throws Exception si ça fail
 	 */
-    public static void connect() throws Exception
+	public static void connect() throws Exception
 	{
-	getSgbd().connect();
+		getSgbd().connect();
 	}
 
 	/**
 	 * Used to disconnect from the db
-     * @throws Exception si ça fail
+	 * @throws Exception si ça fail
 	 */
-    public static void disconnect() throws Exception
+	public static void disconnect() throws Exception
 	{
-	getSgbd().disconnect();
+		getSgbd().disconnect();
 	}
 
 	/**
@@ -389,7 +389,7 @@ public class Orm
 	 */
 	public static void executeCustomQuery(String sqlQuery) throws Exception
 	{
-	getSgbd().execute(sqlQuery, OrmActions.OTHER);
+		getSgbd().execute(sqlQuery, OrmActions.OTHER);
 	}
 
 	/**
@@ -400,7 +400,7 @@ public class Orm
 	public static boolean isEntityExists(String entitySystemName)
 			throws Exception
 	{
-	return getSgbd().isEntityExists(entitySystemName);
+		return getSgbd().isEntityExists(entitySystemName);
 	}
 
 	/**
@@ -409,12 +409,12 @@ public class Orm
 	 * @param limit limite de résultats
 	 * @param offset offset de début de résultats
 	 * @return liste d'entités trouvées
-     * @throws Exception si ça fail
+	 * @throws Exception si ça fail
 	 */
 	public static Vector<AbstractOrmEntity> select(
 			AbstractOrmEntity searchEntity,
 			Vector<String> searchCriteriasParam, int limit, int offset)
-	    throws Exception
+			throws Exception
 	{
 		return select(searchEntity, searchCriteriasParam, limit, offset, null);
 	}
@@ -438,22 +438,22 @@ public class Orm
 	public static int count(AbstractOrmEntity searchEntity,
 			Vector<String> searchParameterList) throws Exception
 	{
-	return getSgbd().count(searchEntity, searchParameterList);
+		return getSgbd().count(searchEntity, searchParameterList);
 	}
 
 	/**
 	 * Fait un backup de la DB si l'intervale de temps est assez grande
-     * @throws Exception si ça fail
+	 * @throws Exception si ça fail
 	 */
-    public static void doBackupIfTimeIntervalAllows() throws Exception
+	public static void doBackupIfTimeIntervalAllows() throws Exception
 	{
 		long currentTime = BackupManager.getCurrentTime();
-	long latestBackupTime = getSgbd().getLatestBackupTime();
+		long latestBackupTime = getSgbd().getLatestBackupTime();
 		long desiredBackupTimeInterval = BackupManager
 				.getDesiredBackupIntervalTime();
 
 		if (currentTime - latestBackupTime > desiredBackupTimeInterval)
-	    getSgbd().doBackup();
+			getSgbd().doBackup();
 	}
 
 	/**
@@ -463,92 +463,92 @@ public class Orm
 	 * @param offset offset
 	 * @param orderBy ordre
 	 * @return liste d'entité
-     * @throws Exception si ça fail
+	 * @throws Exception si ça fail
 	 */
 	public static Vector<AbstractOrmEntity> select(
 			AbstractOrmEntity searchEntity, Vector<String> searchParameters,
-	    int limit, int offset, String orderBy) throws Exception
+			int limit, int offset, String orderBy) throws Exception
 	{
-	return EntityCreator.createEntitiesFromResultSet(getSgbd().select(
+		return EntityCreator.createEntitiesFromResultSet(getSgbd().select(
 				searchEntity, searchParameters, limit, offset, orderBy),
 				searchEntity);
 	}
 
-    /**
-     * @param entityAsType entity as a type reference or empty entity to fill
-     *            data from orm
-     * @param fieldName key
-     * @param fieldValue value
-     * @return new entity or found entity
-     * @throws Exception si c¸a fail
-     */
-    public static AbstractOrmEntity getOrCreateEntity(
-	    AbstractOrmEntity entityAsType, String fieldName, String fieldValue)
-	    throws Exception
-    {
-	entityAsType.setData(fieldName, fieldValue);
-
-	Vector<AbstractOrmEntity> entityList = entityAsType.get();
-
-	if (entityList.size() > 0)
+	/**
+	 * @param entityAsType entity as a type reference or empty entity to fill
+	 *            data from orm
+	 * @param fieldName key
+	 * @param fieldValue value
+	 * @return new entity or found entity
+	 * @throws Exception si c¸a fail
+	 */
+	public static AbstractOrmEntity getOrCreateEntity(
+			AbstractOrmEntity entityAsType, String fieldName, String fieldValue)
+			throws Exception
 	{
-	    return entityList.get(0);
+		entityAsType.setData(fieldName, fieldValue);
+
+		Vector<AbstractOrmEntity> entityList = entityAsType.get();
+
+		if (entityList.size() > 0)
+		{
+			return entityList.get(0);
+		}
+
+		entityAsType.newE();
+		return entityAsType;
 	}
 
-	entityAsType.newE();
-	return entityAsType;
-    }
-
-    /**
-     * @param entityAsType entity as a type reference or empty entity to fill
-     * @param fieldName1 key1
-     * @param fieldValue1 value2
-     * @param fieldName2 key2
-     * @param fieldValue2 value2
-     * @return new entity or found entity
-     * @throws Exception si c¸a fail
-     */
-    public static AbstractOrmEntity getOrCreateEntity(
-	    AbstractOrmEntity entityAsType, String fieldName1,
-	    String fieldValue1, String fieldName2, String fieldValue2)
-	    throws Exception
-    {
-	entityAsType.setData(fieldName1, fieldValue1);
-	entityAsType.setData(fieldName2, fieldValue2);
-
-	Vector<AbstractOrmEntity> entityList = entityAsType.get();
-
-	if (entityList.size() > 0)
+	/**
+	 * @param entityAsType entity as a type reference or empty entity to fill
+	 * @param fieldName1 key1
+	 * @param fieldValue1 value2
+	 * @param fieldName2 key2
+	 * @param fieldValue2 value2
+	 * @return new entity or found entity
+	 * @throws Exception si c¸a fail
+	 */
+	public static AbstractOrmEntity getOrCreateEntity(
+			AbstractOrmEntity entityAsType, String fieldName1,
+			String fieldValue1, String fieldName2, String fieldValue2)
+			throws Exception
 	{
-	    return entityList.get(0);
+		entityAsType.setData(fieldName1, fieldValue1);
+		entityAsType.setData(fieldName2, fieldValue2);
+
+		Vector<AbstractOrmEntity> entityList = entityAsType.get();
+
+		if (entityList.size() > 0)
+		{
+			return entityList.get(0);
+		}
+
+		entityAsType.newE();
+		return entityAsType;
 	}
 
-	entityAsType.newE();
-	return entityAsType;
-    }
-
-    /**
-     * @param entityAsType entité en tant que référence de type ou entité vide
-     *            pour ajouter des champs
-     * @param fieldName1 key1
-     * @param fieldValue1 value1
-     * @param fieldName2 key2
-     * @param fieldValue2 value2
-     * @throws Exception si ça fail
-     */
-    public static void delete(AbstractOrmEntity entityAsType,
-	    String fieldName1, String fieldValue1, String fieldName2,
-	    String fieldValue2) throws Exception
-    {
-	entityAsType.setData(fieldName1, fieldValue1);
-	entityAsType.setData(fieldName2, fieldValue2);
-
-	Vector<AbstractOrmEntity> entityList = entityAsType.get();
-
-	if (entityList.size() > 0)
+	/**
+	 * @param entityAsType entité en tant que référence de type ou entité vide
+	 *            pour ajouter des champs
+	 * @param fieldName1 key1
+	 * @param fieldValue1 value1
+	 * @param fieldName2 key2
+	 * @param fieldValue2 value2
+	 * @throws Exception si ça fail
+	 */
+	public static void delete(AbstractOrmEntity entityAsType,
+			String fieldName1, String fieldValue1, String fieldName2,
+			String fieldValue2) throws Exception
 	{
-	    entityList.get(0).delete();
-	}
+		entityAsType.setData(fieldName1, fieldValue1);
+		entityAsType.setData(fieldName2, fieldValue2);
 
-    }
+		Vector<AbstractOrmEntity> entityList = entityAsType.get();
+
+		if (entityList.size() > 0)
+		{
+			entityList.get(0).delete();
+		}
+
+	}
 }

@@ -15,43 +15,43 @@ import newtonERP.orm.associations.PluralAccessor;
  */
 public class PayInvoice extends AbstractAction
 {
-    /**
-     * @throws Exception is ça fail
-     */
-    public PayInvoice() throws Exception
-    {
-	super(new KioskInvoice());
-	setDetailedDescription("Effectuer le paiement d'une");
-    }
-
-    @Override
-    public AbstractEntity doAction(AbstractEntity entity,
-	    Hashtable<String, String> parameters) throws Exception
-    {
-	KioskInvoice invoice = (KioskInvoice) entity;
-	invoice = (KioskInvoice) invoice.get().get(0);
-	invoice.setData("isPaid", true);
-	invoice.save();
-
-	activateZones(invoice);
-
-	return invoice.getUI(parameters);
-    }
-
-    private void activateZones(KioskInvoice invoice) throws Exception
-    {
-	PluralAccessor invoiceItemList = invoice
-		.getPluralAccessor("KioskInvoiceItem");
-
-	for (AbstractOrmEntity invoiceItem : invoiceItemList)
+	/**
+	 * @throws Exception is ça fail
+	 */
+	public PayInvoice() throws Exception
 	{
-	    PluralAccessor zoneList = invoiceItem.getPluralAccessor("Zone");
-
-	    for (AbstractOrmEntity zone : zoneList)
-	    {
-		zone.setData("isActive", true);
-		zone.save();
-	    }
+		super(new KioskInvoice());
+		setDetailedDescription("Effectuer le paiement d'une");
 	}
-    }
+
+	@Override
+	public AbstractEntity doAction(AbstractEntity entity,
+			Hashtable<String, String> parameters) throws Exception
+	{
+		KioskInvoice invoice = (KioskInvoice) entity;
+		invoice = (KioskInvoice) invoice.get().get(0);
+		invoice.setData("isPaid", true);
+		invoice.save();
+
+		activateZones(invoice);
+
+		return invoice.getUI(parameters);
+	}
+
+	private void activateZones(KioskInvoice invoice) throws Exception
+	{
+		PluralAccessor invoiceItemList = invoice
+				.getPluralAccessor("KioskInvoiceItem");
+
+		for (AbstractOrmEntity invoiceItem : invoiceItemList)
+		{
+			PluralAccessor zoneList = invoiceItem.getPluralAccessor("Zone");
+
+			for (AbstractOrmEntity zone : zoneList)
+			{
+				zone.setData("isActive", true);
+				zone.save();
+			}
+		}
+	}
 }

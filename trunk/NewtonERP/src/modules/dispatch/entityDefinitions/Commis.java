@@ -14,25 +14,25 @@ import newtonERP.orm.field.type.FieldString;
  */
 public class Commis extends AbstractOrmEntity
 {
-    /**
-     * constructor
-     * @throws Exception remonte
-     */
-    public Commis() throws Exception
-    {
-	super();
-	setVisibleName("Commis");
-    }
+	/**
+	 * constructor
+	 * @throws Exception remonte
+	 */
+	public Commis() throws Exception
+	{
+		super();
+		setVisibleName("Commis");
+	}
 
-    public Fields initFields() throws Exception
-    {
-	Vector<Field<?>> fieldList = new Vector<Field<?>>();
+	public Fields initFields() throws Exception
+	{
+		Vector<Field<?>> fieldList = new Vector<Field<?>>();
 
-	FieldInt pKcommisID = new FieldInt("Numéro", getPrimaryKeyName());
-	fieldList.add(pKcommisID);
+		FieldInt pKcommisID = new FieldInt("Numéro", getPrimaryKeyName());
+		fieldList.add(pKcommisID);
 
-	FieldString nom = new FieldString("Nom", "Nom");
-	fieldList.add(nom);
-	return new Fields(fieldList);
-    }
+		FieldString nom = new FieldString("Nom", "Nom");
+		fieldList.add(nom);
+		return new Fields(fieldList);
+	}
 }

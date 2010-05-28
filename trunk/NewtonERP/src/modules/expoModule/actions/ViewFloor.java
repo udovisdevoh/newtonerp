@@ -13,21 +13,21 @@ import newtonERP.viewers.viewerData.FloorViewerData;
  */
 public class ViewFloor extends AbstractAction
 {
-    /**
-     * @throws Exception si ça fail
-     */
-    public ViewFloor() throws Exception
-    {
-	super(new Floor());
-	setDetailedDescription("Afficher le plancher d'exposition");
-    }
+	/**
+	 * @throws Exception si ça fail
+	 */
+	public ViewFloor() throws Exception
+	{
+		super(new Floor());
+		setDetailedDescription("Afficher le plancher d'exposition");
+	}
 
-    @Override
-    public FloorViewerData doAction(AbstractEntity entity,
-	    Hashtable<String, String> parameters) throws Exception
-    {
-	Floor floor = (Floor) entity;
-	FloorViewerData floorViewerData = new FloorViewerData(floor);
-	return floorViewerData;
-    }
+	@Override
+	public FloorViewerData doAction(AbstractEntity entity,
+			Hashtable<String, String> parameters) throws Exception
+	{
+		Floor floor = (Floor) entity;
+		FloorViewerData floorViewerData = new FloorViewerData(floor);
+		return floorViewerData;
+	}
 }

@@ -7,13 +7,13 @@ package newtonERP.module.exception;
  */
 public class ModuleNotFoundException extends ModuleException
 {
-    /**
-     * Constructeur par default pour cette exception
-     * 
-     * @param moduleName nom du module
-     */
-    public ModuleNotFoundException(String moduleName)
-    {
-	super(moduleName + " module doesn't exist");
-    }
+	/**
+	 * Constructeur par default pour cette exception
+	 * 
+	 * @param moduleName nom du module
+	 */
+	public ModuleNotFoundException(String moduleName)
+	{
+		super(moduleName + " module doesn't exist");
+	}
 }

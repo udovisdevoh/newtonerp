@@ -8,14 +8,14 @@ import newtonERP.common.NaturalMap;
  */
 public interface SelectBoxViewable
 {
-    /**
-     * @return the elements of the select box
-     * @throws Exception an exception that can occur in the orm
-     */
-    public NaturalMap<String, String> getElements() throws Exception;
+	/**
+	 * @return the elements of the select box
+	 * @throws Exception an exception that can occur in the orm
+	 */
+	public NaturalMap<String, String> getElements() throws Exception;
 
-    /**
-     * @return the label name
-     */
-    public String getLabelName();
+	/**
+	 * @return the label name
+	 */
+	public String getLabelName();
 }

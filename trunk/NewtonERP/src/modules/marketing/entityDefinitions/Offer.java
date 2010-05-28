@@ -20,42 +20,42 @@ import newtonERP.viewers.viewerData.ListViewerData;
  */
 public class Offer extends AbstractOrmEntity
 {
-    /**
-     * @throws Exception si création fail
-     */
-    public Offer() throws Exception
-    {
-	super();
-	// Le nom visible de LineOffer était le même
-	setVisibleName("Offre");
-    }
+	/**
+	 * @throws Exception si création fail
+	 */
+	public Offer() throws Exception
+	{
+		super();
+		// Le nom visible de LineOffer était le même
+		setVisibleName("Offre");
+	}
 
-    @Override
-    public Fields initFields() throws Exception
-    {
+	@Override
+	public Fields initFields() throws Exception
+	{
 
-	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
-	fieldsInit.add(new FieldInt("Numéro", getPrimaryKeyName()));
-	fieldsInit.add(new FieldString("Nom De l'offre", "Offre"));
-	// Gab: est-ce ce field que tu veux rendre read-only? car tu le met
-	// readonly et ça marche
-	FieldCurrency currencyField = new FieldCurrency("Prix", "Price");
-	currencyField.setReadOnly(true);
-	fieldsInit.add(currencyField);
-	return new Fields(fieldsInit);
-    }
+		Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
+		fieldsInit.add(new FieldInt("Numéro", getPrimaryKeyName()));
+		fieldsInit.add(new FieldString("Nom De l'offre", "Offre"));
+		// Gab: est-ce ce field que tu veux rendre read-only? car tu le met
+		// readonly et ça marche
+		FieldCurrency currencyField = new FieldCurrency("Prix", "Price");
+		currencyField.setReadOnly(true);
+		fieldsInit.add(currencyField);
+		return new Fields(fieldsInit);
+	}
 
-    public final ListViewerData getList(Hashtable<String, String> parameters)
-	    throws Exception
-    {
-	Hashtable<String, String> actionParameters = new Hashtable<String, String>();
-	actionParameters.put(getPrimaryKeyName(), "&");
+	public final ListViewerData getList(Hashtable<String, String> parameters)
+			throws Exception
+	{
+		Hashtable<String, String> actionParameters = new Hashtable<String, String>();
+		actionParameters.put(getPrimaryKeyName(), "&");
 
-	ListViewerData entityList = super.getList(parameters);
-	entityList.addSpecificActionButtonList(new ActionLink(
-		"Calculer les l'offre", new GetAndCalculateAssociatedOffer(),
-		actionParameters));
+		ListViewerData entityList = super.getList(parameters);
+		entityList.addSpecificActionButtonList(new ActionLink(
+				"Calculer les l'offre", new GetAndCalculateAssociatedOffer(),
+				actionParameters));
 
-	return entityList;
-    }
+		return entityList;
+	}
 }

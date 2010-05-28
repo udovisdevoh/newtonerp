@@ -17,28 +17,28 @@ import newtonERP.orm.field.type.FieldText;
  */
 public class LineOffer extends AbstractOrmEntity
 {
-    /**
-     * @throws Exception si création fail
-     */
-    public LineOffer() throws Exception
-    {
-	super();
-	setVisibleName("Élément d'offre");
-	AccessorManager.addAccessor(this, new Offer());
-    }
+	/**
+	 * @throws Exception si création fail
+	 */
+	public LineOffer() throws Exception
+	{
+		super();
+		setVisibleName("Élément d'offre");
+		AccessorManager.addAccessor(this, new Offer());
+	}
 
-    @Override
-    public Fields initFields() throws Exception
-    {
-	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
-	fieldsInit.add(new FieldInt("Numéro", getPrimaryKeyName()));
-	FieldInt offre = new FieldInt("Offre", new Offer().getForeignKeyName());
-	fieldsInit.add(offre);
-	// offre.setNaturalKey(true);
-	FieldCurrency currencyField = new FieldCurrency("Prix", "Price");
-	fieldsInit.add(new FieldText("Détails", "details", false));
-	// currencyField.setReadOnly(true);
-	fieldsInit.add(currencyField);
-	return new Fields(fieldsInit);
-    }
+	@Override
+	public Fields initFields() throws Exception
+	{
+		Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
+		fieldsInit.add(new FieldInt("Numéro", getPrimaryKeyName()));
+		FieldInt offre = new FieldInt("Offre", new Offer().getForeignKeyName());
+		fieldsInit.add(offre);
+		// offre.setNaturalKey(true);
+		FieldCurrency currencyField = new FieldCurrency("Prix", "Price");
+		fieldsInit.add(new FieldText("Détails", "details", false));
+		// currencyField.setReadOnly(true);
+		fieldsInit.add(currencyField);
+		return new Fields(fieldsInit);
+	}
 }
