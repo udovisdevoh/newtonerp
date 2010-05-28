@@ -19,41 +19,41 @@ import newtonERP.module.generalEntity.AlertEntity;
  */
 public class DebitFromBankAccount extends AbstractAction
 {
-    /**
-     * constructeur
-     * @throws Exception si création fail
-     */
-    public DebitFromBankAccount() throws Exception
-    {
-	super(new BankAccount());
-    }
-
-    public AbstractEntity doAction(AbstractEntity entity,
-	    Hashtable<String, String> parameters) throws Exception
-    {
-	BankAccount bankAccount = (BankAccount) entity;
-	// Montant de transaction
-	Double bill = Double.parseDouble(parameters.get("bill"));
-	// Solde du compte de banque
-	Double balance = (Double) bankAccount.getData("balance");
-	// Disponible sur marge
-	Double marginBalance = (Double) bankAccount.getData("marginBalance");
-
-	if (bill <= (balance + marginBalance))
+	/**
+	 * constructeur
+	 * @throws Exception si création fail
+	 */
+	public DebitFromBankAccount() throws Exception
 	{
-	    balance -= bill;// débitage
-	    if (balance < 0)
-	    {
-		marginBalance += balance;
-		bankAccount.setData("marginBalance", marginBalance);
-		balance = 0.0;
-	    }
-	    bankAccount.setData("balance", balance);
-	    bankAccount.save();
-	    return new AlertEntity("Paiement effectué");
+		super(new BankAccount());
 	}
 
-	return new AlertEntity("Paiement impossible, fond insuffisant");
-    }
+	public AbstractEntity doAction(AbstractEntity entity,
+			Hashtable<String, String> parameters) throws Exception
+	{
+		BankAccount bankAccount = (BankAccount) entity;
+		// Montant de transaction
+		Double bill = Double.parseDouble(parameters.get("bill"));
+		// Solde du compte de banque
+		Double balance = (Double) bankAccount.getData("balance");
+		// Disponible sur marge
+		Double marginBalance = (Double) bankAccount.getData("marginBalance");
+
+		if (bill <= (balance + marginBalance))
+		{
+			balance -= bill;// débitage
+			if (balance < 0)
+			{
+				marginBalance += balance;
+				bankAccount.setData("marginBalance", marginBalance);
+				balance = 0.0;
+			}
+			bankAccount.setData("balance", balance);
+			bankAccount.save();
+			return new AlertEntity("Paiement effectué");
+		}
+
+		return new AlertEntity("Paiement impossible, fond insuffisant");
+	}
 
 }

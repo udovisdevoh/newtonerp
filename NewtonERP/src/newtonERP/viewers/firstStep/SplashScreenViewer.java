@@ -13,26 +13,26 @@ import newtonERP.viewers.secondStep.LinkViewer;
 public class SplashScreenViewer
 {
 
-    /**
-     * @param entity splash screen à voir
-     * @return html du splash screen
-     * @throws Exception si ça fail
-     */
-    public static String getHtmlCode(SplashScreen entity) throws Exception
-    {
-	String htmlCode = "";
-	for (ImageFile imageFile : entity.getImageFileList())
-	    htmlCode += ImageFileViewer.getHtmlCode(imageFile);
-
-	htmlCode += "<ul>";
-	for (ActionLink link : entity.getActionLinkList())
+	/**
+	 * @param entity splash screen à voir
+	 * @return html du splash screen
+	 * @throws Exception si ça fail
+	 */
+	public static String getHtmlCode(SplashScreen entity) throws Exception
 	{
-	    String currentLinkHtml = LinkViewer.getHtmlCode(link);
-	    if (currentLinkHtml.length() > 0)
-		htmlCode += "<li>" + currentLinkHtml + "</li>";
-	}
-	htmlCode += "</ul>";
+		String htmlCode = "";
+		for (ImageFile imageFile : entity.getImageFileList())
+			htmlCode += ImageFileViewer.getHtmlCode(imageFile);
 
-	return htmlCode;
-    }
+		htmlCode += "<ul>";
+		for (ActionLink link : entity.getActionLinkList())
+		{
+			String currentLinkHtml = LinkViewer.getHtmlCode(link);
+			if (currentLinkHtml.length() > 0)
+				htmlCode += "<li>" + currentLinkHtml + "</li>";
+		}
+		htmlCode += "</ul>";
+
+		return htmlCode;
+	}
 }

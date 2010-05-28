@@ -7,12 +7,12 @@ package newtonERP.orm.exceptions;
  */
 public class OrmEntityCreationException extends OrmException
 {
-    /**
-     * @param message the message of the exception
-     */
-    public OrmEntityCreationException(String message)
-    {
-	super(message);
-    }
+	/**
+	 * @param message the message of the exception
+	 */
+	public OrmEntityCreationException(String message)
+	{
+		super(message);
+	}
 
 }

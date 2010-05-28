@@ -15,25 +15,25 @@ import newtonERP.orm.field.type.FieldString;
 public class EmployeeType extends AbstractOrmEntity
 {
 
-    /**
-     * @throws Exception si création fails
-     */
-    public EmployeeType() throws Exception
-    {
-	super();
-	setVisibleName("Type d'employé");
-    }
+	/**
+	 * @throws Exception si création fails
+	 */
+	public EmployeeType() throws Exception
+	{
+		super();
+		setVisibleName("Type d'employé");
+	}
 
-    @Override
-    public Fields initFields() throws Exception
-    {
-	FieldString employeeType = new FieldString("type", "EmployeeType");
-	employeeType.setNaturalKey(true);
+	@Override
+	public Fields initFields() throws Exception
+	{
+		FieldString employeeType = new FieldString("type", "EmployeeType");
+		employeeType.setNaturalKey(true);
 
-	Vector<Field<?>> fieldsData = new Vector<Field<?>>();
-	fieldsData.add(new FieldInt("Numéro de type", getPrimaryKeyName()));
-	fieldsData.add(employeeType);
-	return new Fields(fieldsData);
-    }
+		Vector<Field<?>> fieldsData = new Vector<Field<?>>();
+		fieldsData.add(new FieldInt("Numéro de type", getPrimaryKeyName()));
+		fieldsData.add(employeeType);
+		return new Fields(fieldsData);
+	}
 
 }

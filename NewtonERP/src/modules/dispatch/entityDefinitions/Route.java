@@ -14,26 +14,26 @@ import newtonERP.orm.field.type.FieldInt;
  */
 public class Route extends AbstractOrmEntity
 {
-    /**
-     * constructor
-     * @throws Exception remonte
-     */
-    public Route() throws Exception
-    {
-	super();
-	setVisibleName("Route");
-	AccessorManager.addAccessor(this, new Livreur());
-    }
+	/**
+	 * constructor
+	 * @throws Exception remonte
+	 */
+	public Route() throws Exception
+	{
+		super();
+		setVisibleName("Route");
+		AccessorManager.addAccessor(this, new Livreur());
+	}
 
-    public Fields initFields() throws Exception
-    {
-	Vector<Field<?>> fieldList = new Vector<Field<?>>();
+	public Fields initFields() throws Exception
+	{
+		Vector<Field<?>> fieldList = new Vector<Field<?>>();
 
-	FieldInt pKrouteID = new FieldInt("Numéro", getPrimaryKeyName());
-	fieldList.add(pKrouteID);
+		FieldInt pKrouteID = new FieldInt("Numéro", getPrimaryKeyName());
+		fieldList.add(pKrouteID);
 
-	FieldInt livreurID = new FieldInt("Livreur assigné", "livreurID");
-	fieldList.add(livreurID);
-	return new Fields(fieldList);
-    }
+		FieldInt livreurID = new FieldInt("Livreur assigné", "livreurID");
+		fieldList.add(livreurID);
+		return new Fields(fieldList);
+	}
 }

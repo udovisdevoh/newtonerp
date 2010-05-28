@@ -7,13 +7,13 @@ package newtonERP.module.exception;
  */
 public class ModuleException extends Exception
 {
-    /**
-     * Default constructor for the module exception
-     * 
-     * @param message the message
-     */
-    public ModuleException(String message)
-    {
-	super(message);
-    }
+	/**
+	 * Default constructor for the module exception
+	 * 
+	 * @param message the message
+	 */
+	public ModuleException(String message)
+	{
+		super(message);
+	}
 }

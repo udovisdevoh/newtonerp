@@ -16,24 +16,24 @@ import newtonERP.orm.field.type.FieldString;
 public class TrainingType extends AbstractOrmEntity
 {
 
-    /**
-     * Default constructor
-     * 
-     * @throws Exception a general exception
-     */
-    public TrainingType() throws Exception
-    {
-	super();
-	// TODO Auto-generated constructor stub
-    }
+	/**
+	 * Default constructor
+	 * 
+	 * @throws Exception a general exception
+	 */
+	public TrainingType() throws Exception
+	{
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
-    @Override
-    public Fields initFields() throws Exception
-    {
-	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
-	fieldsInit.add(new FieldInt("Numero", getPrimaryKeyName()));
-	fieldsInit.add(new FieldString("Nom", "name"));
-	return new Fields(fieldsInit);
-    }
+	@Override
+	public Fields initFields() throws Exception
+	{
+		Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
+		fieldsInit.add(new FieldInt("Numero", getPrimaryKeyName()));
+		fieldsInit.add(new FieldString("Nom", "name"));
+		return new Fields(fieldsInit);
+	}
 
 }

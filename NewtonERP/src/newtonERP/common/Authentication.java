@@ -22,18 +22,18 @@ public class Authentication
 	}
 
 	/**
-     * @return Entité représentant l'utilisateur courant
-     * @throws Exception si ça fail
-     */
-    public static User getCurrentUser() throws Exception
-    {
-	User user = new User();
-	user.setData("name", getCurrentUserName());
-	user = (User) user.get().get(0);
-	return user;
-    }
+	 * @return Entité représentant l'utilisateur courant
+	 * @throws Exception si ça fail
+	 */
+	public static User getCurrentUser() throws Exception
+	{
+		User user = new User();
+		user.setData("name", getCurrentUserName());
+		user = (User) user.get().get(0);
+		return user;
+	}
 
-    /**
+	/**
 	 * @param currentUserName Utilisateur présentement loggé par session HTTP
 	 */
 	public static void setCurrentUserName(String currentUserName)

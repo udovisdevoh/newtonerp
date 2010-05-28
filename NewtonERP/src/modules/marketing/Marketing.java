@@ -13,19 +13,19 @@ import newtonERP.module.Module;
 public class Marketing extends Module
 {
 
-    /**
-     * @throws Exception si le contructeur ne fontionne pas
-     */
-    public Marketing() throws Exception
-    {
-	super();
-	setDefaultAction(new BaseAction("GetList", new Promotion()));
-	addGlobalActionMenuItem("Promotion", new BaseAction("GetList",
-		new Promotion()));
-	addGlobalActionMenuItem("Secteur", new BaseAction("GetList",
-		new Sector()));
-	addGlobalActionMenuItem("Offre", new BaseAction("GetList", new Offer()));
-	setVisibleName("Publicité");
+	/**
+	 * @throws Exception si le contructeur ne fontionne pas
+	 */
+	public Marketing() throws Exception
+	{
+		super();
+		setDefaultAction(new BaseAction("GetList", new Promotion()));
+		addGlobalActionMenuItem("Promotion", new BaseAction("GetList",
+				new Promotion()));
+		addGlobalActionMenuItem("Secteur", new BaseAction("GetList",
+				new Sector()));
+		addGlobalActionMenuItem("Offre", new BaseAction("GetList", new Offer()));
+		setVisibleName("Publicité");
 
-    }
+	}
 }

@@ -11,70 +11,70 @@ import newtonERP.module.BaseAction;
 public class HelpViewer
 {
 
-    /**
-     * @param actionLink lien d'action
-     * @param helpDivId id DOM du div d'aide
-     * @return retourne le code HTML
-     */
-    public static String getHtmlCode(ActionLink actionLink, int helpDivId)
-    {
-	String html = "<div class=\"HelpBalloon\" id=\"balloon" + helpDivId
-		+ "\">";
-
-	html += "Cliquez ici pour ";
-
-	String actionName = getActionName(actionLink);
-	String entityName = getEntityName(actionLink);
-
-	html += actionName;
-
-	for (String word : entityName.split(" "))
+	/**
+	 * @param actionLink lien d'action
+	 * @param helpDivId id DOM du div d'aide
+	 * @return retourne le code HTML
+	 */
+	public static String getHtmlCode(ActionLink actionLink, int helpDivId)
 	{
-	    if (!actionName.trim().toLowerCase().contains(
-		    word.toLowerCase().trim()))
-		html += " " + word;
+		String html = "<div class=\"HelpBalloon\" id=\"balloon" + helpDivId
+				+ "\">";
+
+		html += "Cliquez ici pour ";
+
+		String actionName = getActionName(actionLink);
+		String entityName = getEntityName(actionLink);
+
+		html += actionName;
+
+		for (String word : entityName.split(" "))
+		{
+			if (!actionName.trim().toLowerCase().contains(
+					word.toLowerCase().trim()))
+				html += " " + word;
+		}
+
+		html += "</div>";
+
+		return html;
 	}
 
-	html += "</div>";
-
-	return html;
-    }
-
-    private static String getActionName(ActionLink actionLink)
-    {
-	if (actionLink.getAction().getDetailedDescription() != null)
-	    return actionLink.getAction().getDetailedDescription();
-
-	return actionLink.getName();
-    }
-
-    private static String getEntityName(ActionLink actionLink)
-    {
-
-	if (actionLink.getAction() instanceof BaseAction)
+	private static String getActionName(ActionLink actionLink)
 	{
-	    BaseAction baseAction = (BaseAction) actionLink.getAction();
+		if (actionLink.getAction().getDetailedDescription() != null)
+			return actionLink.getAction().getDetailedDescription();
 
-	    if (baseAction.getEntity().getDetailedDescription() != null)
-		return baseAction.getEntity().getDetailedDescription();
-
-	    return baseAction.getEntity().getVisibleName();
+		return actionLink.getName();
 	}
-	else if (actionLink.getAction().getEntityUsable() != null)
+
+	private static String getEntityName(ActionLink actionLink)
 	{
 
-	    if (actionLink.getAction().getEntityUsable() instanceof AbstractOrmEntity)
-	    {
-		AbstractOrmEntity abstractOrmEntity = (AbstractOrmEntity) actionLink
-			.getAction().getEntityUsable();
+		if (actionLink.getAction() instanceof BaseAction)
+		{
+			BaseAction baseAction = (BaseAction) actionLink.getAction();
 
-		if (abstractOrmEntity.getDetailedDescription() != null)
-		    return abstractOrmEntity.getDetailedDescription();
+			if (baseAction.getEntity().getDetailedDescription() != null)
+				return baseAction.getEntity().getDetailedDescription();
 
-		return abstractOrmEntity.getVisibleName();
-	    }
-	    return actionLink.getAction().getEntityUsable().getSystemName();
+			return baseAction.getEntity().getVisibleName();
+		}
+		else if (actionLink.getAction().getEntityUsable() != null)
+		{
+
+			if (actionLink.getAction().getEntityUsable() instanceof AbstractOrmEntity)
+			{
+				AbstractOrmEntity abstractOrmEntity = (AbstractOrmEntity) actionLink
+						.getAction().getEntityUsable();
+
+				if (abstractOrmEntity.getDetailedDescription() != null)
+					return abstractOrmEntity.getDetailedDescription();
+
+				return abstractOrmEntity.getVisibleName();
+			}
+			return actionLink.getAction().getEntityUsable().getSystemName();
+		}
+		return "";
 	}
-	return "";
-    }
 }

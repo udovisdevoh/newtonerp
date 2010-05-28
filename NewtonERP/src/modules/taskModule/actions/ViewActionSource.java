@@ -14,21 +14,21 @@ import newtonERP.sourceCodeBuilder.SourceCodeBuilder;
  */
 public class ViewActionSource extends AbstractAction
 {
-    /**
-     * @throws Exception si création fail
-     */
-    public ViewActionSource() throws Exception
-    {
-	super(new ActionEntity());
-    }
+	/**
+	 * @throws Exception si création fail
+	 */
+	public ViewActionSource() throws Exception
+	{
+		super(new ActionEntity());
+	}
 
-    @Override
-    public AbstractEntity doAction(AbstractEntity entity,
-	    Hashtable<String, String> parameters) throws Exception
-    {
-	ActionEntity actionEntity = (ActionEntity) entity;
-	return new StaticTextEntity(SourceCodeBuilder
-		.buildActionSourceCode(actionEntity));
-    }
+	@Override
+	public AbstractEntity doAction(AbstractEntity entity,
+			Hashtable<String, String> parameters) throws Exception
+	{
+		ActionEntity actionEntity = (ActionEntity) entity;
+		return new StaticTextEntity(SourceCodeBuilder
+				.buildActionSourceCode(actionEntity));
+	}
 
 }

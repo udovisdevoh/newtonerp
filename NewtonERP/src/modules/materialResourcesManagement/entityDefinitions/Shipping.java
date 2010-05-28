@@ -18,41 +18,41 @@ import newtonERP.orm.field.type.FieldText;
  */
 public class Shipping extends AbstractOrmEntity
 {
-    /**
-     * Default constructor
-     * 
-     * @throws Exception a general exception
-     */
-    public Shipping() throws Exception
-    {
-	super();
-	setVisibleName("Livraison");
-	AccessorManager.addAccessor(this, new ShippingType());
-	AccessorManager.addAccessor(this, new Invoice());
-	AccessorManager.addAccessor(this, new Shipper());
-	AccessorManager.addAccessor(this, new Location());
-	AccessorManager.addAccessor(this, new ShippingStatus());
-    }
+	/**
+	 * Default constructor
+	 * 
+	 * @throws Exception a general exception
+	 */
+	public Shipping() throws Exception
+	{
+		super();
+		setVisibleName("Livraison");
+		AccessorManager.addAccessor(this, new ShippingType());
+		AccessorManager.addAccessor(this, new Invoice());
+		AccessorManager.addAccessor(this, new Shipper());
+		AccessorManager.addAccessor(this, new Location());
+		AccessorManager.addAccessor(this, new ShippingStatus());
+	}
 
-    @Override
-    public Fields initFields() throws Exception
-    {
-	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
-	fieldsInit
-		.add(new FieldInt("Numero de livraison", getPrimaryKeyName()));
-	fieldsInit.add(new FieldInt("Facture associée", new Invoice()
-		.getForeignKeyName()));
-	fieldsInit.add(new FieldInt("Type de livraison", new ShippingType()
-		.getForeignKeyName()));
-	fieldsInit.add(new FieldDate("Date estimée de livraison",
-		"estimatedShippingDate"));
-	fieldsInit.add(new FieldInt("Expéditeur", new Shipper()
-		.getForeignKeyName()));
-	fieldsInit.add(new FieldText("Commentaire", "shippingComment", false));
-	fieldsInit.add(new FieldInt("Location", new Location()
-		.getForeignKeyName()));
-	fieldsInit.add(new FieldInt("Status", new ShippingStatus()
-		.getForeignKeyName()));
-	return new Fields(fieldsInit);
-    }
+	@Override
+	public Fields initFields() throws Exception
+	{
+		Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
+		fieldsInit
+				.add(new FieldInt("Numero de livraison", getPrimaryKeyName()));
+		fieldsInit.add(new FieldInt("Facture associée", new Invoice()
+				.getForeignKeyName()));
+		fieldsInit.add(new FieldInt("Type de livraison", new ShippingType()
+				.getForeignKeyName()));
+		fieldsInit.add(new FieldDate("Date estimée de livraison",
+				"estimatedShippingDate"));
+		fieldsInit.add(new FieldInt("Expéditeur", new Shipper()
+				.getForeignKeyName()));
+		fieldsInit.add(new FieldText("Commentaire", "shippingComment", false));
+		fieldsInit.add(new FieldInt("Location", new Location()
+				.getForeignKeyName()));
+		fieldsInit.add(new FieldInt("Status", new ShippingStatus()
+				.getForeignKeyName()));
+		return new Fields(fieldsInit);
+	}
 }

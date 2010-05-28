@@ -22,91 +22,91 @@ import newtonERP.viewers.viewerData.ListViewerData;
  */
 public class ModuleEntity extends AbstractOrmEntity
 {
-    /**
-     * @throws Exception si création fail
-     */
-    public ModuleEntity() throws Exception
-    {
-	super();
-	setVisibleName("Module");
-    }
+	/**
+	 * @throws Exception si création fail
+	 */
+	public ModuleEntity() throws Exception
+	{
+		super();
+		setVisibleName("Module");
+	}
 
-    protected Fields preInitFields() throws Exception
-    {
-	// always build the field from initField and not from DB, thats mean
-	// that we cannot add a dynamic Field, this should not be done anywhere
-	// else
-	return initFields();
-    }
+	protected Fields preInitFields() throws Exception
+	{
+		// always build the field from initField and not from DB, thats mean
+		// that we cannot add a dynamic Field, this should not be done anywhere
+		// else
+		return initFields();
+	}
 
-    @Override
-    public Fields initFields() throws Exception
-    {
-	FieldString visibleName = new FieldString("Nom visible", "visibleName");
-	visibleName.setNaturalKey(true);
+	@Override
+	public Fields initFields() throws Exception
+	{
+		FieldString visibleName = new FieldString("Nom visible", "visibleName");
+		visibleName.setNaturalKey(true);
 
-	Vector<Field<?>> fieldList = new Vector<Field<?>>();
-	fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
-	fieldList.add(new FieldString("Nom système", "systemName"));
-	fieldList.add(visibleName);
-	return new Fields(fieldList);
-    }
+		Vector<Field<?>> fieldList = new Vector<Field<?>>();
+		fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
+		fieldList.add(new FieldString("Nom système", "systemName"));
+		fieldList.add(visibleName);
+		return new Fields(fieldList);
+	}
 
-    /**
-     * @return vrai module
-     * @throws Exception si obtention fail
-     */
-    public Module getModule() throws Exception
-    {
-	return ListModule.getModule(getModuleName());
-    }
+	/**
+	 * @return vrai module
+	 * @throws Exception si obtention fail
+	 */
+	public Module getModule() throws Exception
+	{
+		return ListModule.getModule(getModuleName());
+	}
 
-    private String getModuleName()
-    {
-	return getDataString("systemName");
-    }
+	private String getModuleName()
+	{
+		return getDataString("systemName");
+	}
 
-    @Override
-    public ListViewerData getList(Hashtable<String, String> parameters)
-	    throws Exception
-    {
-	parameters.put(getPrimaryKeyName(), "&");
+	@Override
+	public ListViewerData getList(Hashtable<String, String> parameters)
+			throws Exception
+	{
+		parameters.put(getPrimaryKeyName(), "&");
 
-	ListViewerData entityList = super.getList(parameters);
-	entityList.addSpecificActionButtonList(new ActionLink("Voir source",
-		new ViewModuleSource(), parameters));
+		ListViewerData entityList = super.getList(parameters);
+		entityList.addSpecificActionButtonList(new ActionLink("Voir source",
+				new ViewModuleSource(), parameters));
 
-	entityList.addSpecificActionButtonList(new ActionLink("Générer source",
-		new GenerateSourceCode(), parameters));
+		entityList.addSpecificActionButtonList(new ActionLink("Générer source",
+				new GenerateSourceCode(), parameters));
 
-	return entityList;
-    }
+		return entityList;
+	}
 
-    /**
-     * @return list of entity entity for this module
-     * @throws Exception si ça fail
-     */
-    public Vector<EntityEntity> getEntityEntityList() throws Exception
-    {
-	PluralAccessor accessor = getPluralAccessor(new EntityEntity()
-		.getSystemName());
-	Vector<EntityEntity> entityEntityList = new Vector<EntityEntity>();
-	for (AbstractOrmEntity entity : accessor)
-	    entityEntityList.add((EntityEntity) entity);
-	return entityEntityList;
-    }
+	/**
+	 * @return list of entity entity for this module
+	 * @throws Exception si ça fail
+	 */
+	public Vector<EntityEntity> getEntityEntityList() throws Exception
+	{
+		PluralAccessor accessor = getPluralAccessor(new EntityEntity()
+				.getSystemName());
+		Vector<EntityEntity> entityEntityList = new Vector<EntityEntity>();
+		for (AbstractOrmEntity entity : accessor)
+			entityEntityList.add((EntityEntity) entity);
+		return entityEntityList;
+	}
 
-    /**
-     * @return list of action entity for this module
-     * @throws Exception si ça fail
-     */
-    public Vector<ActionEntity> getActionEntityList() throws Exception
-    {
-	PluralAccessor accessor = getPluralAccessor(new ActionEntity()
-		.getSystemName());
-	Vector<ActionEntity> actionEntityList = new Vector<ActionEntity>();
-	for (AbstractOrmEntity entity : accessor)
-	    actionEntityList.add((ActionEntity) entity);
-	return actionEntityList;
-    }
+	/**
+	 * @return list of action entity for this module
+	 * @throws Exception si ça fail
+	 */
+	public Vector<ActionEntity> getActionEntityList() throws Exception
+	{
+		PluralAccessor accessor = getPluralAccessor(new ActionEntity()
+				.getSystemName());
+		Vector<ActionEntity> actionEntityList = new Vector<ActionEntity>();
+		for (AbstractOrmEntity entity : accessor)
+			actionEntityList.add((ActionEntity) entity);
+		return actionEntityList;
+	}
 }

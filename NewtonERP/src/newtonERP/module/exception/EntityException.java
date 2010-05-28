@@ -8,13 +8,13 @@ package newtonERP.module.exception;
  */
 public class EntityException extends Exception
 {
-    /**
-     * Default constructor for the entity exception
-     * 
-     * @param message the message
-     */
-    public EntityException(String message)
-    {
-	super(message);
-    }
+	/**
+	 * Default constructor for the entity exception
+	 * 
+	 * @param message the message
+	 */
+	public EntityException(String message)
+	{
+		super(message);
+	}
 }

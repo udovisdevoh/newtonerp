@@ -24,247 +24,247 @@ import newtonERP.serveur.ConfigManager;
  */
 public class UserRightModule extends Module
 {
-    /**
-     * Default constructor for the user right module initializing himself. Adds
-     * the actions and the entity defenitions
-     * @throws Exception remonte
-     */
-    public UserRightModule() throws Exception
-    {
-	super();
-	setDefaultAction(new BaseAction("GetList", new User()));
-	addGlobalActionMenuItem("Utilisateurs", new BaseAction("GetList",
-		new User()));
-	addGlobalActionMenuItem("Liste des droits", new BaseAction("GetList",
-		new Right()));
-	addGlobalActionMenuItem("Groupes", new BaseAction("GetList",
-		new Groups()));
-	setVisibleName("Gestion de droits");
-    }
-
-    public void initDB() throws Exception
-    {
-	Groups groups;
-	User user;
-	int rightID, groupsID;
-	Right right;
-	GroupsRight groupsRight;
-	Vector<String> search;
-
-	// ***************** unlogged User ****************
-	// cree le groupe
-	groups = new Groups();
-	groups.setData("groupName", "unLogedGroup");
-	groups.newE();
-
-	// retrouve le groupsID
-	search = new Vector<String>();
-	search.clear();
-	search.add("groupName=" + "'unLogedGroup'");
-	groupsID = (Integer) ((Groups) Orm.select(groups, search).get(0))
-		.getData(groups.getPrimaryKeyName());
-
-	// cree le user unLogedUser
-	user = new User();
-	user.setData("name", "unLogedUser");
-	user.setData("password", "");
-	user.setData("groupsID", groupsID);
-	Orm.insert(user);
-
-	// retrouve les rightID
-
-	right = new Right();
-	right.getFields().getField("moduleName").setData(getSystemName());
-	right.getFields().getField("actionName").setData("Login");
-	right = (Right) right.get(right).get(0);
-	rightID = (Integer) right.getData(right.getPrimaryKeyName());
-
-	// cree le GroupsRight
-	groupsRight = new GroupsRight();
-	groupsRight.setData("groupsID", groupsID);
-	groupsRight.setData("rightID", rightID);
-	groupsRight.newE();
-
-	// cree le groupe
-	groups = new Groups();
-	groups.setData("groupName", "admin");
-	groups.newE();
-
-	// retrouve le groupsID
-	search = new Vector<String>();
-	search.add("groupName=" + "'admin'");
-	groupsID = (Integer) ((Groups) Orm.select(groups, search).get(0))
-		.getData(groups.getPrimaryKeyName());
-
-	// cree le user Admin
-	user = new User();
-	user.setData("name", ConfigManager.getDefaultUserName());
-	user.setData("password", ConfigManager.getDefaultPassWord());
-	user.setData("groupsID", groupsID);
-	user.newE();
-
-	groupsRight = new GroupsRight();
-
-	// retrouve les rightID
-	search.clear();
-	search.add("moduleName='" + getSystemName() + "'");
-
-	for (AbstractOrmEntity currentRight : Orm.select(new Right(), search))
+	/**
+	 * Default constructor for the user right module initializing himself. Adds
+	 * the actions and the entity defenitions
+	 * @throws Exception remonte
+	 */
+	public UserRightModule() throws Exception
 	{
-	    rightID = (Integer) ((Right) currentRight).getData(currentRight
-		    .getPrimaryKeyName());
-
-	    // cree le GroupsRight
-	    groupsRight.setData("groupsID", groupsID);
-	    groupsRight.setData("rightID", rightID);
-	    groupsRight.newE();
+		super();
+		setDefaultAction(new BaseAction("GetList", new User()));
+		addGlobalActionMenuItem("Utilisateurs", new BaseAction("GetList",
+				new User()));
+		addGlobalActionMenuItem("Liste des droits", new BaseAction("GetList",
+				new Right()));
+		addGlobalActionMenuItem("Groupes", new BaseAction("GetList",
+				new Groups()));
+		setVisibleName("Gestion de droits");
 	}
-    }
 
-    /**
-     * @param groupName nom du groupe
-     * @param actionName nom de l'action
-     * @param entityName nom de l'entité
-     * @throws Exception si ça fail
-     */
-    public void addGroupsRight(String groupName, String actionName,
-	    String entityName) throws Exception
-    {
-	Groups groups = (Groups) Orm.getOrCreateEntity(new Groups(),
-		"groupName", groupName);
-	Right right = (Right) Orm.getOrCreateEntity(new Right(), "actionName",
-		actionName, "entityName", entityName);
+	public void initDB() throws Exception
+	{
+		Groups groups;
+		User user;
+		int rightID, groupsID;
+		Right right;
+		GroupsRight groupsRight;
+		Vector<String> search;
 
-	Orm.getOrCreateEntity(new GroupsRight(), groups.getForeignKeyName(),
-		groups.getPrimaryKeyValue().toString(), right
-			.getForeignKeyName(), right.getPrimaryKeyValue()
-			.toString());
-    }
+		// ***************** unlogged User ****************
+		// cree le groupe
+		groups = new Groups();
+		groups.setData("groupName", "unLogedGroup");
+		groups.newE();
 
-    /**
-     * @param groupName group's name
-     * @param rightActionName right's name
-     * @throws Exception si ça fail
-     */
-    public void addGroupsRight(String groupName, String rightActionName)
-	    throws Exception
-    {
-	Groups groups = (Groups) Orm.getOrCreateEntity(new Groups(),
-		"groupName", groupName);
-	Right right = (Right) Orm.getOrCreateEntity(new Right(), "actionName",
-		rightActionName);
+		// retrouve le groupsID
+		search = new Vector<String>();
+		search.clear();
+		search.add("groupName=" + "'unLogedGroup'");
+		groupsID = (Integer) ((Groups) Orm.select(groups, search).get(0))
+				.getData(groups.getPrimaryKeyName());
 
-	Orm.getOrCreateEntity(new GroupsRight(), groups.getForeignKeyName(),
-		groups.getPrimaryKeyValue().toString(), right
-			.getForeignKeyName(), right.getPrimaryKeyValue()
-			.toString());
-    }
+		// cree le user unLogedUser
+		user = new User();
+		user.setData("name", "unLogedUser");
+		user.setData("password", "");
+		user.setData("groupsID", groupsID);
+		Orm.insert(user);
 
-    /**
-     * @param groupName group's name
-     * @param rightActionName right's name
-     * @throws Exception si ça fail
-     */
-    public void removeGroupsRight(String groupName, String rightActionName)
-	    throws Exception
-    {
-	Groups groups = (Groups) Orm.getOrCreateEntity(new Groups(),
-		"groupName", groupName);
-	Right right = (Right) Orm.getOrCreateEntity(new Right(), "actionName",
-		rightActionName);
+		// retrouve les rightID
 
-	Orm.delete(new GroupsRight(), groups.getForeignKeyName(), groups
-		.getPrimaryKeyValue().toString(), right.getForeignKeyName(),
-		right.getPrimaryKeyValue().toString());
-    }
+		right = new Right();
+		right.getFields().getField("moduleName").setData(getSystemName());
+		right.getFields().getField("actionName").setData("Login");
+		right = (Right) right.get(right).get(0);
+		rightID = (Integer) right.getData(right.getPrimaryKeyName());
 
-    /**
-     * @param actionLink un actionLink
-     * @return vrai si les permission sont présentement accordées, sinon, faux
-     * @throws Exception si ça fail
-     */
-    public boolean isPermissionAllowed(ActionLink actionLink) throws Exception
-    {
-	String userName = Authentication.getCurrentUserName();
-	Groups groups = tryGetGroupsForUser(userName);
-	String entityName;
-	AbstractEntity entity;
+		// cree le GroupsRight
+		groupsRight = new GroupsRight();
+		groupsRight.setData("groupsID", groupsID);
+		groupsRight.setData("rightID", rightID);
+		groupsRight.newE();
 
-	if (groups == null)
-	    return false;
+		// cree le groupe
+		groups = new Groups();
+		groups.setData("groupName", "admin");
+		groups.newE();
 
-	AbstractAction action = actionLink.getAction();
-	String actionName = action.getSystemName();
+		// retrouve le groupsID
+		search = new Vector<String>();
+		search.add("groupName=" + "'admin'");
+		groupsID = (Integer) ((Groups) Orm.select(groups, search).get(0))
+				.getData(groups.getPrimaryKeyName());
 
-	if (action instanceof BaseAction)
-	    entity = ((BaseAction) action).getEntity();
-	else
-	    entity = action.getEntityUsable();
+		// cree le user Admin
+		user = new User();
+		user.setData("name", ConfigManager.getDefaultUserName());
+		user.setData("password", ConfigManager.getDefaultPassWord());
+		user.setData("groupsID", groupsID);
+		user.newE();
 
-	if (entity == null)
-	    entityName = "";
-	else
-	    entityName = entity.getSystemName();
+		groupsRight = new GroupsRight();
 
-	Right right = tryGetRight(actionName, entityName);
+		// retrouve les rightID
+		search.clear();
+		search.add("moduleName='" + getSystemName() + "'");
 
-	if (right == null)
-	    right = tryGetRight(actionName);
+		for (AbstractOrmEntity currentRight : Orm.select(new Right(), search))
+		{
+			rightID = (Integer) ((Right) currentRight).getData(currentRight
+					.getPrimaryKeyName());
 
-	return isGroupsRightExists(groups.getPrimaryKeyValue(), right
-		.getPrimaryKeyValue());
-    }
+			// cree le GroupsRight
+			groupsRight.setData("groupsID", groupsID);
+			groupsRight.setData("rightID", rightID);
+			groupsRight.newE();
+		}
+	}
 
-    private Right tryGetRight(String actionName) throws Exception
-    {
-	Right right = new Right();
-	right.setData("actionName", actionName);
+	/**
+	 * @param groupName nom du groupe
+	 * @param actionName nom de l'action
+	 * @param entityName nom de l'entité
+	 * @throws Exception si ça fail
+	 */
+	public void addGroupsRight(String groupName, String actionName,
+			String entityName) throws Exception
+	{
+		Groups groups = (Groups) Orm.getOrCreateEntity(new Groups(),
+				"groupName", groupName);
+		Right right = (Right) Orm.getOrCreateEntity(new Right(), "actionName",
+				actionName, "entityName", entityName);
 
-	Vector<AbstractOrmEntity> rightList = right.get();
-	if (rightList.size() > 0)
-	    return (Right) rightList.get(0);
-	return null;
-    }
+		Orm.getOrCreateEntity(new GroupsRight(), groups.getForeignKeyName(),
+				groups.getPrimaryKeyValue().toString(), right
+						.getForeignKeyName(), right.getPrimaryKeyValue()
+						.toString());
+	}
 
-    private Right tryGetRight(String actionName, String entityName)
-	    throws Exception
-    {
-	Right right = new Right();
-	right.setData("actionName", actionName);
-	right.setData("entityName", entityName);
+	/**
+	 * @param groupName group's name
+	 * @param rightActionName right's name
+	 * @throws Exception si ça fail
+	 */
+	public void addGroupsRight(String groupName, String rightActionName)
+			throws Exception
+	{
+		Groups groups = (Groups) Orm.getOrCreateEntity(new Groups(),
+				"groupName", groupName);
+		Right right = (Right) Orm.getOrCreateEntity(new Right(), "actionName",
+				rightActionName);
 
-	Vector<AbstractOrmEntity> rightList = right.get();
-	if (rightList.size() > 0)
-	    return (Right) rightList.get(0);
-	return null;
-    }
+		Orm.getOrCreateEntity(new GroupsRight(), groups.getForeignKeyName(),
+				groups.getPrimaryKeyValue().toString(), right
+						.getForeignKeyName(), right.getPrimaryKeyValue()
+						.toString());
+	}
 
-    private Groups tryGetGroupsForUser(String userName) throws Exception
-    {
-	User user = new User();
-	user.setData("name", userName);
+	/**
+	 * @param groupName group's name
+	 * @param rightActionName right's name
+	 * @throws Exception si ça fail
+	 */
+	public void removeGroupsRight(String groupName, String rightActionName)
+			throws Exception
+	{
+		Groups groups = (Groups) Orm.getOrCreateEntity(new Groups(),
+				"groupName", groupName);
+		Right right = (Right) Orm.getOrCreateEntity(new Right(), "actionName",
+				rightActionName);
 
-	Vector<AbstractOrmEntity> userList = user.get();
+		Orm.delete(new GroupsRight(), groups.getForeignKeyName(), groups
+				.getPrimaryKeyValue().toString(), right.getForeignKeyName(),
+				right.getPrimaryKeyValue().toString());
+	}
 
-	if (userList.size() < 1)
-	    return null;
+	/**
+	 * @param actionLink un actionLink
+	 * @return vrai si les permission sont présentement accordées, sinon, faux
+	 * @throws Exception si ça fail
+	 */
+	public boolean isPermissionAllowed(ActionLink actionLink) throws Exception
+	{
+		String userName = Authentication.getCurrentUserName();
+		Groups groups = tryGetGroupsForUser(userName);
+		String entityName;
+		AbstractEntity entity;
 
-	user = (User) userList.get(0);
+		if (groups == null)
+			return false;
 
-	Groups groups = (Groups) AccessorManager.getSingleAccessor(user,
-		"groupsID");
+		AbstractAction action = actionLink.getAction();
+		String actionName = action.getSystemName();
 
-	return groups;
-    }
+		if (action instanceof BaseAction)
+			entity = ((BaseAction) action).getEntity();
+		else
+			entity = action.getEntityUsable();
 
-    private boolean isGroupsRightExists(Integer groupsID, Integer rightID)
-	    throws Exception
-    {
-	GroupsRight groupsRight = new GroupsRight();
-	groupsRight.setData("groupsID", groupsID);
-	groupsRight.setData("rightID", rightID);
+		if (entity == null)
+			entityName = "";
+		else
+			entityName = entity.getSystemName();
 
-	Vector<AbstractOrmEntity> entityList = groupsRight.get();
-	return entityList.size() > 0;
-    }
+		Right right = tryGetRight(actionName, entityName);
+
+		if (right == null)
+			right = tryGetRight(actionName);
+
+		return isGroupsRightExists(groups.getPrimaryKeyValue(), right
+				.getPrimaryKeyValue());
+	}
+
+	private Right tryGetRight(String actionName) throws Exception
+	{
+		Right right = new Right();
+		right.setData("actionName", actionName);
+
+		Vector<AbstractOrmEntity> rightList = right.get();
+		if (rightList.size() > 0)
+			return (Right) rightList.get(0);
+		return null;
+	}
+
+	private Right tryGetRight(String actionName, String entityName)
+			throws Exception
+	{
+		Right right = new Right();
+		right.setData("actionName", actionName);
+		right.setData("entityName", entityName);
+
+		Vector<AbstractOrmEntity> rightList = right.get();
+		if (rightList.size() > 0)
+			return (Right) rightList.get(0);
+		return null;
+	}
+
+	private Groups tryGetGroupsForUser(String userName) throws Exception
+	{
+		User user = new User();
+		user.setData("name", userName);
+
+		Vector<AbstractOrmEntity> userList = user.get();
+
+		if (userList.size() < 1)
+			return null;
+
+		user = (User) userList.get(0);
+
+		Groups groups = (Groups) AccessorManager.getSingleAccessor(user,
+				"groupsID");
+
+		return groups;
+	}
+
+	private boolean isGroupsRightExists(Integer groupsID, Integer rightID)
+			throws Exception
+	{
+		GroupsRight groupsRight = new GroupsRight();
+		groupsRight.setData("groupsID", groupsID);
+		groupsRight.setData("rightID", rightID);
+
+		Vector<AbstractOrmEntity> entityList = groupsRight.get();
+		return entityList.size() > 0;
+	}
 }

@@ -21,29 +21,29 @@ import newtonERP.orm.field.type.FieldString;
 
 public class ServiceProvider extends AbstractOrmEntity
 {
-    /**
-     * @throws Exception if creation fails
-     */
-    public ServiceProvider() throws Exception
-    {
-	super();
-	setVisibleName("Fournisseurs de services");
-	AccessorManager.addAccessor(this, new Address());
-    }
+	/**
+	 * @throws Exception if creation fails
+	 */
+	public ServiceProvider() throws Exception
+	{
+		super();
+		setVisibleName("Fournisseurs de services");
+		AccessorManager.addAccessor(this, new Address());
+	}
 
-    @Override
-    public Fields initFields() throws Exception
-    {
-	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
-	fieldsInit.add(new FieldInt("Numéro", getPrimaryKeyName()));
-	fieldsInit.add(new FieldString("Nom", "name"));
-	FieldString service = new FieldString("Service", "service");
-	fieldsInit.add(service);
+	@Override
+	public Fields initFields() throws Exception
+	{
+		Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
+		fieldsInit.add(new FieldInt("Numéro", getPrimaryKeyName()));
+		fieldsInit.add(new FieldString("Nom", "name"));
+		FieldString service = new FieldString("Service", "service");
+		fieldsInit.add(service);
 
-	fieldsInit.add(new FieldInt("Adresse", new Address()
-		.getForeignKeyName()));
+		fieldsInit.add(new FieldInt("Adresse", new Address()
+				.getForeignKeyName()));
 
-	return new Fields(fieldsInit);
-    }
+		return new Fields(fieldsInit);
+	}
 
 }

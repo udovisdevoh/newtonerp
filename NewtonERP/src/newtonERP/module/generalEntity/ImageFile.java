@@ -8,35 +8,35 @@ import newtonERP.module.AbstractEntity;
  */
 public class ImageFile extends AbstractEntity
 {
-    private String alt;
+	private String alt;
 
-    private String url;
+	private String url;
 
-    /**
-     * @param alt nom de l'image
-     * @param url url de l'image
-     * @throws Exception si ça fail
-     */
-    public ImageFile(String alt, String url) throws Exception
-    {
-	super();
-	this.alt = alt;
-	this.url = url;
-    }
+	/**
+	 * @param alt nom de l'image
+	 * @param url url de l'image
+	 * @throws Exception si ça fail
+	 */
+	public ImageFile(String alt, String url) throws Exception
+	{
+		super();
+		this.alt = alt;
+		this.url = url;
+	}
 
-    /**
-     * @return url de l'image
-     */
-    public String getUrl()
-    {
-	return url;
-    }
+	/**
+	 * @return url de l'image
+	 */
+	public String getUrl()
+	{
+		return url;
+	}
 
-    /**
-     * @return description de l'image
-     */
-    public String getAlt()
-    {
-	return alt;
-    }
+	/**
+	 * @return description de l'image
+	 */
+	public String getAlt()
+	{
+		return alt;
+	}
 }

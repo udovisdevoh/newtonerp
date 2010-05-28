@@ -16,41 +16,41 @@ import newtonERP.orm.field.type.FieldString;
  */
 public class Option extends AbstractOrmEntity
 {
-    /**
-     * constructor
-     * @throws Exception remonte
-     */
-    public Option() throws Exception
-    {
-	super();
-	setVisibleName("Option");
-	setDetailedDescription("option de zone de kiosque");
-    }
+	/**
+	 * constructor
+	 * @throws Exception remonte
+	 */
+	public Option() throws Exception
+	{
+		super();
+		setVisibleName("Option");
+		setDetailedDescription("option de zone de kiosque");
+	}
 
-    public Fields initFields() throws Exception
-    {
-	Vector<Field<?>> fieldList = new Vector<Field<?>>();
+	public Fields initFields() throws Exception
+	{
+		Vector<Field<?>> fieldList = new Vector<Field<?>>();
 
-	FieldInt pKoptionID = new FieldInt("Numéro", getPrimaryKeyName());
-	fieldList.add(pKoptionID);
+		FieldInt pKoptionID = new FieldInt("Numéro", getPrimaryKeyName());
+		fieldList.add(pKoptionID);
 
-	FieldString name = new FieldString("Description", "name");
-	name.setNaturalKey(true);
-	fieldList.add(name);
+		FieldString name = new FieldString("Description", "name");
+		name.setNaturalKey(true);
+		fieldList.add(name);
 
-	FieldCurrency prix = new FieldCurrency("Prix", "price");
-	prix.setNaturalKey(true);
-	fieldList.add(prix);
-	return new Fields(fieldList);
-    }
+		FieldCurrency prix = new FieldCurrency("Prix", "price");
+		prix.setNaturalKey(true);
+		fieldList.add(prix);
+		return new Fields(fieldList);
+	}
 
-    /**
-     * @return prix de l'option
-     */
-    public double getPrice()
-    {
-	FieldDouble fieldDoublePrice = (FieldDouble) getFields().getField(
-		"price");
-	return fieldDoublePrice.getData();
-    }
+	/**
+	 * @return prix de l'option
+	 */
+	public double getPrice()
+	{
+		FieldDouble fieldDoublePrice = (FieldDouble) getFields().getField(
+				"price");
+		return fieldDoublePrice.getData();
+	}
 }

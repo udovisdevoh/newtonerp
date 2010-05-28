@@ -8,13 +8,13 @@ import java.util.Hashtable;
  */
 public interface BandDiagramViewable
 {
-    /**
-     * @return modèle de donnée du diagramme
-     */
-    Hashtable<String, Double> getDiagramInfo();
+	/**
+	 * @return modèle de donnée du diagramme
+	 */
+	Hashtable<String, Double> getDiagramInfo();
 
-    /**
-     * @return valeur maximum du diagramme
-     */
-    double getMaximumValue();
+	/**
+	 * @return valeur maximum du diagramme
+	 */
+	double getMaximumValue();
 }

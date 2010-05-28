@@ -17,34 +17,34 @@ import newtonERP.viewers.viewerData.ListViewerData;
  */
 public class ViewMyInvoices extends AbstractAction
 {
-    /**
-     * Créer instance d'action
-     */
-    public ViewMyInvoices()
-    {
-	setDetailedDescription("Voir vos transactions et payer");
-    }
+	/**
+	 * Créer instance d'action
+	 */
+	public ViewMyInvoices()
+	{
+		setDetailedDescription("Voir vos transactions et payer");
+	}
 
-    @Override
-    public AbstractEntity doAction(AbstractEntity entity,
-	    Hashtable<String, String> parameters) throws Exception
-    {
-	User currentUser = Authentication.getCurrentUser();
+	@Override
+	public AbstractEntity doAction(AbstractEntity entity,
+			Hashtable<String, String> parameters) throws Exception
+	{
+		User currentUser = Authentication.getCurrentUser();
 
-	PluralAccessor customerList = currentUser
-		.getPluralAccessor("KioskCustomer");
+		PluralAccessor customerList = currentUser
+				.getPluralAccessor("KioskCustomer");
 
-	KioskCustomer kioskCustomer = (KioskCustomer) customerList.get(0);
+		KioskCustomer kioskCustomer = (KioskCustomer) customerList.get(0);
 
-	KioskInvoice kioskInvoice = new KioskInvoice();
+		KioskInvoice kioskInvoice = new KioskInvoice();
 
-	parameters.put(kioskInvoice.getPrimaryKeyName(), "&");
+		parameters.put(kioskInvoice.getPrimaryKeyName(), "&");
 
-	parameters.put(kioskCustomer.getForeignKeyName(), kioskCustomer
-		.getPrimaryKeyValue().toString());
+		parameters.put(kioskCustomer.getForeignKeyName(), kioskCustomer
+				.getPrimaryKeyValue().toString());
 
-	ListViewerData entityList = kioskInvoice.getList(parameters);
+		ListViewerData entityList = kioskInvoice.getList(parameters);
 
-	return entityList;
-    }
+		return entityList;
+	}
 }

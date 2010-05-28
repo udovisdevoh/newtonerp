@@ -18,28 +18,28 @@ import newtonERP.orm.field.type.FieldString;
  */
 public class Bank extends AbstractOrmEntity
 {
-    /**
-     * @throws Exception if creation fails
-     */
-    public Bank() throws Exception
-    {
-	super();
-	setVisibleName("Banques");
-	AccessorManager.addAccessor(this, new Address());
-    }
+	/**
+	 * @throws Exception if creation fails
+	 */
+	public Bank() throws Exception
+	{
+		super();
+		setVisibleName("Banques");
+		AccessorManager.addAccessor(this, new Address());
+	}
 
-    @Override
-    public Fields initFields() throws Exception
-    {
-	FieldInt transit = new FieldInt("Transit", "transit");
-	transit.setNaturalKey(true);
+	@Override
+	public Fields initFields() throws Exception
+	{
+		FieldInt transit = new FieldInt("Transit", "transit");
+		transit.setNaturalKey(true);
 
-	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
-	fieldsInit.add(new FieldInt("Numéro", getPrimaryKeyName()));
-	fieldsInit.add(new FieldString("Nom", "name"));
-	fieldsInit.add(transit);
-	fieldsInit.add(new FieldInt("Adresse", new Address()
-		.getForeignKeyName()));
-	return new Fields(fieldsInit);
-    }
+		Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
+		fieldsInit.add(new FieldInt("Numéro", getPrimaryKeyName()));
+		fieldsInit.add(new FieldString("Nom", "name"));
+		fieldsInit.add(transit);
+		fieldsInit.add(new FieldInt("Adresse", new Address()
+				.getForeignKeyName()));
+		return new Fields(fieldsInit);
+	}
 }

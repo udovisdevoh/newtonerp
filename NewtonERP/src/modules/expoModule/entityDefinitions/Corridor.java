@@ -15,36 +15,36 @@ import newtonERP.orm.field.type.FieldInt;
  */
 public class Corridor extends AbstractOrmEntity
 {
-    /**
-     * @throws Exception si ça fail
-     */
-    public Corridor() throws Exception
-    {
-	super();
-	setVisibleName("Corridor");
-	AccessorManager.addAccessor(this, new Floor());
-	setDetailedDescription("corridor de kiosque");
-    }
+	/**
+	 * @throws Exception si ça fail
+	 */
+	public Corridor() throws Exception
+	{
+		super();
+		setVisibleName("Corridor");
+		AccessorManager.addAccessor(this, new Floor());
+		setDetailedDescription("corridor de kiosque");
+	}
 
-    @Override
-    public Fields initFields() throws Exception
-    {
-	Vector<Field<?>> fieldList = new Vector<Field<?>>();
+	@Override
+	public Fields initFields() throws Exception
+	{
+		Vector<Field<?>> fieldList = new Vector<Field<?>>();
 
-	FieldInt corridorId = new FieldInt("Numéro", getPrimaryKeyName());
-	fieldList.add(corridorId);
+		FieldInt corridorId = new FieldInt("Numéro", getPrimaryKeyName());
+		fieldList.add(corridorId);
 
-	FieldInt position = new FieldInt("Position", "Position");
-	position.setNaturalKey(true);
-	fieldList.add(position);
+		FieldInt position = new FieldInt("Position", "Position");
+		position.setNaturalKey(true);
+		fieldList.add(position);
 
-	FieldBool isVertical = new FieldBool("Si vertical", "IsVertical");
-	isVertical.setNaturalKey(true);
-	fieldList.add(isVertical);
+		FieldBool isVertical = new FieldBool("Si vertical", "IsVertical");
+		isVertical.setNaturalKey(true);
+		fieldList.add(isVertical);
 
-	FieldInt floorID = new FieldInt("Plancher", "floorID");
-	fieldList.add(floorID);
-	return new Fields(fieldList);
-    }
+		FieldInt floorID = new FieldInt("Plancher", "floorID");
+		fieldList.add(floorID);
+		return new Fields(fieldList);
+	}
 
 }

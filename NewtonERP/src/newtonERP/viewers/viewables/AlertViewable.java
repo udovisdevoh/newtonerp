@@ -6,8 +6,8 @@ package newtonERP.viewers.viewables;
  */
 public interface AlertViewable
 {
-    /**
-     * @return the alert message
-     */
-    public String getMessage();
+	/**
+	 * @return the alert message
+	 */
+	public String getMessage();
 }

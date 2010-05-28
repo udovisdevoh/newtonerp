@@ -15,23 +15,23 @@ import newtonERP.orm.field.type.FieldString;
  */
 public class EquipmentType extends AbstractOrmEntity
 {
-    /**
-     * Default constructor
-     * 
-     * @throws Exception a general exception
-     */
-    public EquipmentType() throws Exception
-    {
-	setVisibleName("Type d'équipements");
-    }
+	/**
+	 * Default constructor
+	 * 
+	 * @throws Exception a general exception
+	 */
+	public EquipmentType() throws Exception
+	{
+		setVisibleName("Type d'équipements");
+	}
 
-    @Override
-    public Fields initFields() throws Exception
-    {
-	Vector<Field<?>> fieldList = new Vector<Field<?>>();
-	fieldList.add(new FieldInt("Numero", getPrimaryKeyName()));
-	fieldList.add(new FieldString("Nom", "name"));
-	return new Fields(fieldList);
-    }
+	@Override
+	public Fields initFields() throws Exception
+	{
+		Vector<Field<?>> fieldList = new Vector<Field<?>>();
+		fieldList.add(new FieldInt("Numero", getPrimaryKeyName()));
+		fieldList.add(new FieldString("Nom", "name"));
+		return new Fields(fieldList);
+	}
 
 }

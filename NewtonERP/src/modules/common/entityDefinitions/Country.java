@@ -16,25 +16,25 @@ import newtonERP.orm.field.type.FieldString;
 public class Country extends AbstractOrmEntity
 {
 
-    /**
-     * @throws Exception a general exception
-     */
-    public Country() throws Exception
-    {
-	super();
-	setVisibleName("Pays");
-    }
+	/**
+	 * @throws Exception a general exception
+	 */
+	public Country() throws Exception
+	{
+		super();
+		setVisibleName("Pays");
+	}
 
-    @Override
-    public Fields initFields() throws Exception
-    {
-	FieldString name = new FieldString("Nom", "name");
-	name.setNaturalKey(true);
+	@Override
+	public Fields initFields() throws Exception
+	{
+		FieldString name = new FieldString("Nom", "name");
+		name.setNaturalKey(true);
 
-	Vector<Field<?>> fieldList = new Vector<Field<?>>();
-	fieldList.add(new FieldInt("Numero de pays", getPrimaryKeyName()));
-	fieldList.add(name);
-	return new Fields(fieldList);
-    }
+		Vector<Field<?>> fieldList = new Vector<Field<?>>();
+		fieldList.add(new FieldInt("Numero de pays", getPrimaryKeyName()));
+		fieldList.add(name);
+		return new Fields(fieldList);
+	}
 
 }

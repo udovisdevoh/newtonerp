@@ -15,22 +15,22 @@ import newtonERP.orm.field.type.FieldString;
  */
 public class Sector extends AbstractOrmEntity
 {
-    /**
-     * @throws Exception si création fail
-     */
-    public Sector() throws Exception
-    {
-	super();
-	setVisibleName("Secteurs");
+	/**
+	 * @throws Exception si création fail
+	 */
+	public Sector() throws Exception
+	{
+		super();
+		setVisibleName("Secteurs");
 
-    }
+	}
 
-    @Override
-    public Fields initFields() throws Exception
-    {
-	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
-	fieldsInit.add(new FieldInt("Numéro", getPrimaryKeyName()));
-	fieldsInit.add(new FieldString("Nom du Secteur", "sector"));
-	return new Fields(fieldsInit);
-    }
+	@Override
+	public Fields initFields() throws Exception
+	{
+		Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
+		fieldsInit.add(new FieldInt("Numéro", getPrimaryKeyName()));
+		fieldsInit.add(new FieldString("Nom du Secteur", "sector"));
+		return new Fields(fieldsInit);
+	}
 }

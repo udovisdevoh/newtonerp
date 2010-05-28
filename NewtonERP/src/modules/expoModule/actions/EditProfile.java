@@ -18,45 +18,45 @@ import newtonERP.viewers.viewerData.PromptViewerData;
  */
 public class EditProfile extends AbstractAction
 {
-    /**
-     * Créer instance d'action
-     */
-    public EditProfile()
-    {
-	setDetailedDescription("Modifier les informations de son profil");
-    }
-
-    @Override
-    public AbstractEntity doAction(AbstractEntity entity,
-	    Hashtable<String, String> parameters) throws Exception
-    {
-	User currentUser = Authentication.getCurrentUser();
-
-	PluralAccessor customerList = currentUser
-		.getPluralAccessor("KioskCustomer");
-
-	KioskCustomer kioskCustomer = (KioskCustomer) customerList.get(0);
-
-	if (parameters.containsKey(kioskCustomer.getPrimaryKeyName()))
+	/**
+	 * Créer instance d'action
+	 */
+	public EditProfile()
 	{
-	    for (String key : kioskCustomer.getFields().getKeyList())
-		if (parameters.get(key) != null)
-		    kioskCustomer.setData(key, parameters.get(key));
+		setDetailedDescription("Modifier les informations de son profil");
 	}
 
-	parameters.put(kioskCustomer.getPrimaryKeyName(), kioskCustomer
-		.getPrimaryKeyValue().toString());
+	@Override
+	public AbstractEntity doAction(AbstractEntity entity,
+			Hashtable<String, String> parameters) throws Exception
+	{
+		User currentUser = Authentication.getCurrentUser();
 
-	BaseViewerData baseEdit = kioskCustomer.editUI(parameters);
-	baseEdit.setCurrentAction(this);
+		PluralAccessor customerList = currentUser
+				.getPluralAccessor("KioskCustomer");
 
-	PromptViewerData promptEdit = (PromptViewerData) baseEdit;
+		KioskCustomer kioskCustomer = (KioskCustomer) customerList.get(0);
 
-	promptEdit.setButtonAction(new ActionLink("Modifier son profil", this));
+		if (parameters.containsKey(kioskCustomer.getPrimaryKeyName()))
+		{
+			for (String key : kioskCustomer.getFields().getKeyList())
+				if (parameters.get(key) != null)
+					kioskCustomer.setData(key, parameters.get(key));
+		}
 
-	promptEdit.getData().getFields().getField("internetConnectionTypeID")
-		.setReadOnly(true);
+		parameters.put(kioskCustomer.getPrimaryKeyName(), kioskCustomer
+				.getPrimaryKeyValue().toString());
 
-	return promptEdit;
-    }
+		BaseViewerData baseEdit = kioskCustomer.editUI(parameters);
+		baseEdit.setCurrentAction(this);
+
+		PromptViewerData promptEdit = (PromptViewerData) baseEdit;
+
+		promptEdit.setButtonAction(new ActionLink("Modifier son profil", this));
+
+		promptEdit.getData().getFields().getField("internetConnectionTypeID")
+				.setReadOnly(true);
+
+		return promptEdit;
+	}
 }

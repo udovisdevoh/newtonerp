@@ -8,12 +8,12 @@ import newtonERP.viewers.viewerData.ImgViewerData;
  */
 public class ImgViewer
 {
-    /**
-     * @param entity l'ImgViewerData
-     * @return html d'une image
-     */
-    public static String getHtmlCode(ImgViewerData entity)
-    {
-	return "<img src='" + entity.getFilePath() + "' />";
-    }
+	/**
+	 * @param entity l'ImgViewerData
+	 * @return html d'une image
+	 */
+	public static String getHtmlCode(ImgViewerData entity)
+	{
+		return "<img src='" + entity.getFilePath() + "' />";
+	}
 }

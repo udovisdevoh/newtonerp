@@ -15,39 +15,39 @@ import newtonERP.orm.field.type.FieldString;
  */
 public class Groups extends AbstractOrmEntity
 {
-    /**
-     * @throws Exception Cré un Groups
-     */
-    public Groups() throws Exception
-    {
-	super();
-	AccessorManager.addAccessor(this, new Right());
-	setVisibleName("Groupe");
-    }
+	/**
+	 * @throws Exception Cré un Groups
+	 */
+	public Groups() throws Exception
+	{
+		super();
+		AccessorManager.addAccessor(this, new Right());
+		setVisibleName("Groupe");
+	}
 
-    public Fields initFields() throws Exception
-    {
-	FieldString groupName = new FieldString("Nom", "groupName");
-	groupName.setNaturalKey(true);
+	public Fields initFields() throws Exception
+	{
+		FieldString groupName = new FieldString("Nom", "groupName");
+		groupName.setNaturalKey(true);
 
-	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
-	fieldsInit.add(new FieldInt("Numéro", getPrimaryKeyName()));
-	fieldsInit.add(groupName);
-	return new Fields(fieldsInit);
-    }
+		Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
+		fieldsInit.add(new FieldInt("Numéro", getPrimaryKeyName()));
+		fieldsInit.add(groupName);
+		return new Fields(fieldsInit);
+	}
 
-    /**
-     * Searches the rights for this group by the groupsID and then returns this
-     * list
-     * 
-     * @return rightResult the right list
-     * @throws Exception remonte
-     */
-    public Vector<Right> getRightList() throws Exception
-    {
-	Vector<Right> rightList = new Vector<Right>();
-	for (AbstractOrmEntity entity : getPluralAccessor("Right"))
-	    rightList.add((Right) entity);
-	return rightList;
-    }
+	/**
+	 * Searches the rights for this group by the groupsID and then returns this
+	 * list
+	 * 
+	 * @return rightResult the right list
+	 * @throws Exception remonte
+	 */
+	public Vector<Right> getRightList() throws Exception
+	{
+		Vector<Right> rightList = new Vector<Right>();
+		for (AbstractOrmEntity entity : getPluralAccessor("Right"))
+			rightList.add((Right) entity);
+		return rightList;
+	}
 }

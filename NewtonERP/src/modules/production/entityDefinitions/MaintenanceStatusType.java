@@ -15,24 +15,24 @@ import newtonERP.orm.field.type.FieldString;
  */
 public class MaintenanceStatusType extends AbstractOrmEntity
 {
-    /**
-     * Default constructor
-     * 
-     * @throws Exception a general exception
-     */
-    public MaintenanceStatusType() throws Exception
-    {
-	super();
-	setVisibleName("Status possible");
-    }
+	/**
+	 * Default constructor
+	 * 
+	 * @throws Exception a general exception
+	 */
+	public MaintenanceStatusType() throws Exception
+	{
+		super();
+		setVisibleName("Status possible");
+	}
 
-    @Override
-    public Fields initFields() throws Exception
-    {
-	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
-	fieldsInit.add(new FieldInt("Numero du status", getPrimaryKeyName()));
-	fieldsInit.add(new FieldString("Status", "status"));
-	return new Fields(fieldsInit);
-    }
+	@Override
+	public Fields initFields() throws Exception
+	{
+		Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
+		fieldsInit.add(new FieldInt("Numero du status", getPrimaryKeyName()));
+		fieldsInit.add(new FieldString("Status", "status"));
+		return new Fields(fieldsInit);
+	}
 
 }

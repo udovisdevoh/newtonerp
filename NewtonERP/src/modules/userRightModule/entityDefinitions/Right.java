@@ -19,64 +19,64 @@ import newtonERP.viewers.viewerData.ListViewerData;
  */
 public class Right extends AbstractOrmEntity
 {
-    /**
-     * @throws Exception si création fail
-     */
-    public Right() throws Exception
-    {
-	super();
-	setVisibleName("Droit");
-    }
-
-    public Fields initFields() throws InvalidOperatorException
-    {
-	FieldString moduleName = new FieldString("Module", "moduleName");
-	moduleName.setNaturalKey(true);
-
-	FieldString entityName = new FieldString("Entité", "entityName");
-	entityName.setNaturalKey(true);
-
-	FieldString actionName = new FieldString("Action", "actionName");
-	actionName.setNaturalKey(true);
-
-	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
-	fieldsInit.add(new FieldInt("Numéro", getPrimaryKeyName()));
-	fieldsInit.add(moduleName);
-	fieldsInit.add(entityName);
-	fieldsInit.add(actionName);
-
-	return new Fields(fieldsInit);
-    }
-
-    @Override
-    public AbstractEntity deleteUI(Hashtable<String, String> parameters)
-	    throws Exception
-    {
-	/*
-	 * On ne veut pas permettre l'effacement de droit alors on redirige
-	 * l'effacement vers GetList
+	/**
+	 * @throws Exception si création fail
 	 */
-	ListViewerData entityList = super.getList();
-	return entityList;
-    }
+	public Right() throws Exception
+	{
+		super();
+		setVisibleName("Droit");
+	}
 
-    @Override
-    public BaseViewerData editUI(Hashtable<String, String> parameters)
-	    throws Exception
-    {
-	/*
-	 * On ne veut pas permettre la modification de droit alors on redirige
-	 * vers GetList
-	 */
-	ListViewerData entityList = super.getList();
-	return entityList;
-    }
+	public Fields initFields() throws InvalidOperatorException
+	{
+		FieldString moduleName = new FieldString("Module", "moduleName");
+		moduleName.setNaturalKey(true);
 
-    @Override
-    public final ListViewerData getList(Hashtable<String, String> parameters)
-	    throws Exception
-    {
-	ListViewerData entityList = super.getList(parameters);
-	return entityList;
-    }
+		FieldString entityName = new FieldString("Entité", "entityName");
+		entityName.setNaturalKey(true);
+
+		FieldString actionName = new FieldString("Action", "actionName");
+		actionName.setNaturalKey(true);
+
+		Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
+		fieldsInit.add(new FieldInt("Numéro", getPrimaryKeyName()));
+		fieldsInit.add(moduleName);
+		fieldsInit.add(entityName);
+		fieldsInit.add(actionName);
+
+		return new Fields(fieldsInit);
+	}
+
+	@Override
+	public AbstractEntity deleteUI(Hashtable<String, String> parameters)
+			throws Exception
+	{
+		/*
+		 * On ne veut pas permettre l'effacement de droit alors on redirige
+		 * l'effacement vers GetList
+		 */
+		ListViewerData entityList = super.getList();
+		return entityList;
+	}
+
+	@Override
+	public BaseViewerData editUI(Hashtable<String, String> parameters)
+			throws Exception
+	{
+		/*
+		 * On ne veut pas permettre la modification de droit alors on redirige
+		 * vers GetList
+		 */
+		ListViewerData entityList = super.getList();
+		return entityList;
+	}
+
+	@Override
+	public final ListViewerData getList(Hashtable<String, String> parameters)
+			throws Exception
+	{
+		ListViewerData entityList = super.getList(parameters);
+		return entityList;
+	}
 }

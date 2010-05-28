@@ -44,7 +44,7 @@ public class Starter
 		new CreateAllRight().perform(null);
 
 		// lance le serveur web
-	server = new Server(ConfigManager.getPort());
+		server = new Server(ConfigManager.getPort());
 		server.setGracefulShutdown(2000);
 		server.setStopAtShutdown(true);
 		Context context = new Context(server, "/", Context.SESSIONS);

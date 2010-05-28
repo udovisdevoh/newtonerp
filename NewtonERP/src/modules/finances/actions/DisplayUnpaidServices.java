@@ -20,36 +20,36 @@ import newtonERP.viewers.viewerData.ListViewerData;
 
 public class DisplayUnpaidServices extends AbstractAction
 {
-    /**
-     * constructeur
-     * @throws Exception si création fail
-     */
-    public DisplayUnpaidServices() throws Exception
-    {
-	super(null);
-    }
+	/**
+	 * constructeur
+	 * @throws Exception si création fail
+	 */
+	public DisplayUnpaidServices() throws Exception
+	{
+		super(null);
+	}
 
-    public AbstractEntity doAction(AbstractEntity entity,
-	    Hashtable<String, String> parameters) throws Exception
-    {
-	ServiceTransaction account = new ServiceTransaction();
-	ListViewerData list = new ListViewerData(account);
+	public AbstractEntity doAction(AbstractEntity entity,
+			Hashtable<String, String> parameters) throws Exception
+	{
+		ServiceTransaction account = new ServiceTransaction();
+		ListViewerData list = new ListViewerData(account);
 
-	StateType searchEntity = new StateType();
+		StateType searchEntity = new StateType();
 
-	searchEntity.setData(searchEntity.getPrimaryKeyName(), 1);
-	Vector<AbstractOrmEntity> types = Orm.select(searchEntity);
+		searchEntity.setData(searchEntity.getPrimaryKeyName(), 1);
+		Vector<AbstractOrmEntity> types = Orm.select(searchEntity);
 
-	ListViewerData accounts = account.getList();
-	for (AbstractOrmEntity ent : accounts)
-	    if (ent.getData("stateTypeID").equals(
-		    types.get(0).getPrimaryKeyValue()))
-		list.addEntity(ent);
+		ListViewerData accounts = account.getList();
+		for (AbstractOrmEntity ent : accounts)
+			if (ent.getData("stateTypeID").equals(
+					types.get(0).getPrimaryKeyValue()))
+				list.addEntity(ent);
 
-	list.setCurrentModule(getOwnedByModule());
-	list.setTitle("Liste des comptes non-payés");
+		list.setCurrentModule(getOwnedByModule());
+		list.setTitle("Liste des comptes non-payés");
 
-	return list;
-    }
+		return list;
+	}
 
 }

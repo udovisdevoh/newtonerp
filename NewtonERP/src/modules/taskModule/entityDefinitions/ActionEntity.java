@@ -25,100 +25,100 @@ import newtonERP.viewers.viewerData.ListViewerData;
  */
 public class ActionEntity extends AbstractOrmEntity
 {
-    /**
-     * @throws Exception si création fail
-     */
-    public ActionEntity() throws Exception
-    {
-	super();
-	setVisibleName("Action");
-	AccessorManager.addAccessor(this, new ModuleEntity());
-    }
-
-    @Override
-    public Fields initFields() throws Exception
-    {
-	FieldInt moduleEntity = new FieldInt("Module", new ModuleEntity()
-		.getForeignKeyName());
-	moduleEntity.setReadOnly(true);
-
-	FieldString systemName = new FieldString("Nom système", "systemName");
-	systemName.setNaturalKey(true);
-
-	Vector<Field<?>> fieldList = new Vector<Field<?>>();
-	fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
-	fieldList.add(systemName);
-	fieldList.add(moduleEntity);
-	return new Fields(fieldList);
-    }
-
-    @Override
-    public AbstractEntity deleteUI(Hashtable<String, String> parameters)
-	    throws Exception
-    {
-	/*
-	 * On ne veut pas permettre l'effacement d'action alors on redirige
-	 * l'effacement vers GetList
+	/**
+	 * @throws Exception si création fail
 	 */
-	ListViewerData entityList = super.getList();
-	return entityList;
-    }
+	public ActionEntity() throws Exception
+	{
+		super();
+		setVisibleName("Action");
+		AccessorManager.addAccessor(this, new ModuleEntity());
+	}
 
-    @Override
-    public final ListViewerData getList(Hashtable<String, String> parameters)
-	    throws Exception
-    {
-	parameters.put(getPrimaryKeyName(), "&");
+	@Override
+	public Fields initFields() throws Exception
+	{
+		FieldInt moduleEntity = new FieldInt("Module", new ModuleEntity()
+				.getForeignKeyName());
+		moduleEntity.setReadOnly(true);
 
-	ListViewerData entityList = super.getList(parameters);
-	entityList.addSpecificActionButtonList(new ActionLink("Voir source",
-		new ViewActionSource(), parameters));
-	entityList.addSpecificActionButtonList(new ActionLink("Générer source",
-		new GenerateActionCode(), parameters));
+		FieldString systemName = new FieldString("Nom système", "systemName");
+		systemName.setNaturalKey(true);
 
-	// On doit créer une action seulement avec le [+] de son module
-	entityList.removeGlobalActions("Nouveau " + getVisibleName());
+		Vector<Field<?>> fieldList = new Vector<Field<?>>();
+		fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
+		fieldList.add(systemName);
+		fieldList.add(moduleEntity);
+		return new Fields(fieldList);
+	}
 
-	return entityList;
-    }
+	@Override
+	public AbstractEntity deleteUI(Hashtable<String, String> parameters)
+			throws Exception
+	{
+		/*
+		 * On ne veut pas permettre l'effacement d'action alors on redirige
+		 * l'effacement vers GetList
+		 */
+		ListViewerData entityList = super.getList();
+		return entityList;
+	}
 
-    /**
-     * @return retourne une instance de vrai action selon l'entité d'action
-     * @throws Exception si obtention fail
-     */
-    public AbstractAction getAction() throws Exception
-    {
-	String actionName = getActionName();
-	Module module = getModuleEntity().getModule();
-	return module.getAction(actionName);
-    }
+	@Override
+	public final ListViewerData getList(Hashtable<String, String> parameters)
+			throws Exception
+	{
+		parameters.put(getPrimaryKeyName(), "&");
 
-    /**
-     * @return module entity
-     * @throws Exception si ça fail
-     */
-    public ModuleEntity getModuleEntity() throws Exception
-    {
-	return (ModuleEntity) getSingleAccessor(new ModuleEntity()
-		.getForeignKeyName());
-    }
+		ListViewerData entityList = super.getList(parameters);
+		entityList.addSpecificActionButtonList(new ActionLink("Voir source",
+				new ViewActionSource(), parameters));
+		entityList.addSpecificActionButtonList(new ActionLink("Générer source",
+				new GenerateActionCode(), parameters));
 
-    /**
-     * @return nom de l'action
-     */
-    public String getActionName()
-    {
-	return getDataString("systemName");
-    }
+		// On doit créer une action seulement avec le [+] de son module
+		entityList.removeGlobalActions("Nouveau " + getVisibleName());
 
-    /**
-     * @param entity entité
-     * @return base action correspondant à la définition d'entité
-     * @throws ActionNotFoundException remonte
-     */
-    public BaseAction getBaseAction(AbstractOrmEntity entity)
-	    throws ActionNotFoundException
-    {
-	return new BaseAction(getActionName(), entity);
-    }
+		return entityList;
+	}
+
+	/**
+	 * @return retourne une instance de vrai action selon l'entité d'action
+	 * @throws Exception si obtention fail
+	 */
+	public AbstractAction getAction() throws Exception
+	{
+		String actionName = getActionName();
+		Module module = getModuleEntity().getModule();
+		return module.getAction(actionName);
+	}
+
+	/**
+	 * @return module entity
+	 * @throws Exception si ça fail
+	 */
+	public ModuleEntity getModuleEntity() throws Exception
+	{
+		return (ModuleEntity) getSingleAccessor(new ModuleEntity()
+				.getForeignKeyName());
+	}
+
+	/**
+	 * @return nom de l'action
+	 */
+	public String getActionName()
+	{
+		return getDataString("systemName");
+	}
+
+	/**
+	 * @param entity entité
+	 * @return base action correspondant à la définition d'entité
+	 * @throws ActionNotFoundException remonte
+	 */
+	public BaseAction getBaseAction(AbstractOrmEntity entity)
+			throws ActionNotFoundException
+	{
+		return new BaseAction(getActionName(), entity);
+	}
 }

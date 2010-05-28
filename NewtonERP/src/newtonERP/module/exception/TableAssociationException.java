@@ -6,11 +6,11 @@ package newtonERP.module.exception;
  */
 public class TableAssociationException extends Exception
 {
-    /**
-     * @param message message de l'esception
-     */
-    public TableAssociationException(String message)
-    {
-	super(message);
-    }
+	/**
+	 * @param message message de l'esception
+	 */
+	public TableAssociationException(String message)
+	{
+		super(message);
+	}
 }

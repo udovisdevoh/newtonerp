@@ -21,79 +21,79 @@ import newtonERP.orm.Orm;
  */
 public class AddProductQuantityInReservedStock extends AbstractAction
 {
-    /**
-     * Default constructor
-     * 
-     * @throws Exception a general exception
-     */
-    public AddProductQuantityInReservedStock() throws Exception
-    {
-	super(new Invoice());
-    }
-
-    @Override
-    public AbstractEntity doAction(AbstractEntity entity,
-	    Hashtable<String, String> parameters) throws Exception
-    {
-	// The invoice
-	Invoice retInvoice = (Invoice) entity;
-
-	// The related invoiceLines
-	InvoiceLine searchInvoiceLine = new InvoiceLine();
-	searchInvoiceLine.setData(new Invoice().getForeignKeyName(), retInvoice
-		.getPrimaryKeyValue());
-	Vector<AbstractOrmEntity> invoiceLines = Orm.select(searchInvoiceLine);
-
-	if (isUpdatable(invoiceLines))
+	/**
+	 * Default constructor
+	 * 
+	 * @throws Exception a general exception
+	 */
+	public AddProductQuantityInReservedStock() throws Exception
 	{
-	    for (AbstractOrmEntity line : invoiceLines)
-	    {
-		// Get the related product to that invoiceLine
-		Product searchProduct = new Product();
-		searchProduct.setData(searchProduct.getPrimaryKeyName(), line
-			.getData(new Product().getForeignKeyName()));
-		Product retProduct = (Product) Orm.selectUnique(searchProduct);
-
-		// Now we put the quantity from the invoiceLine into the
-		// reserved
-		// stock of the product and removes that same quantity from the
-		// quantityInStock of that product
-		retProduct.setData("quantityInStock", (Integer) retProduct
-			.getData("quantityInStock")
-			- (Integer) line.getData("quantity"));
-
-		retProduct.setData("reservedStock", (Integer) retProduct
-			.getData("reservedStock")
-			+ (Integer) line.getData("quantity"));
-
-		retProduct.save();
-	    }
-	}
-	else
-	{
-	    // TODO : Put an alert message on the shipping?
+		super(new Invoice());
 	}
 
-	return null;
-    }
-
-    private boolean isUpdatable(Vector<AbstractOrmEntity> invoiceLines)
-	    throws Exception
-    {
-	boolean isUpdatable = true;
-
-	for (AbstractOrmEntity line : invoiceLines)
+	@Override
+	public AbstractEntity doAction(AbstractEntity entity,
+			Hashtable<String, String> parameters) throws Exception
 	{
-	    Product searchProduct = new Product();
-	    searchProduct.setData(searchProduct.getPrimaryKeyName(), line
-		    .getData(new Product().getForeignKeyName()));
-	    Product retProduct = (Product) Orm.selectUnique(searchProduct);
+		// The invoice
+		Invoice retInvoice = (Invoice) entity;
 
-	    if ((Integer) retProduct.getData("quantityInStock")
-		    - (Integer) line.getData("quantity") < 0)
-		isUpdatable = false;
+		// The related invoiceLines
+		InvoiceLine searchInvoiceLine = new InvoiceLine();
+		searchInvoiceLine.setData(new Invoice().getForeignKeyName(), retInvoice
+				.getPrimaryKeyValue());
+		Vector<AbstractOrmEntity> invoiceLines = Orm.select(searchInvoiceLine);
+
+		if (isUpdatable(invoiceLines))
+		{
+			for (AbstractOrmEntity line : invoiceLines)
+			{
+				// Get the related product to that invoiceLine
+				Product searchProduct = new Product();
+				searchProduct.setData(searchProduct.getPrimaryKeyName(), line
+						.getData(new Product().getForeignKeyName()));
+				Product retProduct = (Product) Orm.selectUnique(searchProduct);
+
+				// Now we put the quantity from the invoiceLine into the
+				// reserved
+				// stock of the product and removes that same quantity from the
+				// quantityInStock of that product
+				retProduct.setData("quantityInStock", (Integer) retProduct
+						.getData("quantityInStock")
+						- (Integer) line.getData("quantity"));
+
+				retProduct.setData("reservedStock", (Integer) retProduct
+						.getData("reservedStock")
+						+ (Integer) line.getData("quantity"));
+
+				retProduct.save();
+			}
+		}
+		else
+		{
+			// TODO : Put an alert message on the shipping?
+		}
+
+		return null;
 	}
 
-	return isUpdatable;
-    }
+	private boolean isUpdatable(Vector<AbstractOrmEntity> invoiceLines)
+			throws Exception
+	{
+		boolean isUpdatable = true;
+
+		for (AbstractOrmEntity line : invoiceLines)
+		{
+			Product searchProduct = new Product();
+			searchProduct.setData(searchProduct.getPrimaryKeyName(), line
+					.getData(new Product().getForeignKeyName()));
+			Product retProduct = (Product) Orm.selectUnique(searchProduct);
+
+			if ((Integer) retProduct.getData("quantityInStock")
+					- (Integer) line.getData("quantity") < 0)
+				isUpdatable = false;
+		}
+
+		return isUpdatable;
+	}
 }

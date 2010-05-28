@@ -8,22 +8,22 @@ package newtonERP.orm.field;
 public abstract class FieldCalcule<T>
 {
 
-    protected abstract T calcul(Fields entityFields) throws Exception;
+	protected abstract T calcul(Fields entityFields) throws Exception;
 
-    /**
-     * calcule a executer
-     * @param entityFields fields actuelle servant normalement au calcul
-     * @return valeur calculer
-     */
-    public T calculate(Fields entityFields)
-    {
-	try
+	/**
+	 * calcule a executer
+	 * @param entityFields fields actuelle servant normalement au calcul
+	 * @return valeur calculer
+	 */
+	public T calculate(Fields entityFields)
 	{
-	    return calcul(entityFields);
-	} catch (Exception e)
-	{
-	    e.printStackTrace();
-	    return null;
+		try
+		{
+			return calcul(entityFields);
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+			return null;
+		}
 	}
-    }
 }

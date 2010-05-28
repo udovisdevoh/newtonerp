@@ -17,28 +17,28 @@ import newtonERP.orm.field.type.FieldInt;
  */
 public class PayablePeriod extends AbstractOrmEntity
 {
-    /**
-     * @throws Exception if creation fails
-     */
-    public PayablePeriod() throws Exception
-    {
-	super();
-	setVisibleName("Périodes de paies");
-    }
+	/**
+	 * @throws Exception if creation fails
+	 */
+	public PayablePeriod() throws Exception
+	{
+		super();
+		setVisibleName("Périodes de paies");
+	}
 
-    @Override
-    public Fields initFields() throws Exception
-    {
-	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
-	FieldInt primaryKey = new FieldInt("Numéro", getPrimaryKeyName());
-	primaryKey.setNaturalKey(true);
-	fieldsInit.add(primaryKey);
+	@Override
+	public Fields initFields() throws Exception
+	{
+		Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
+		FieldInt primaryKey = new FieldInt("Numéro", getPrimaryKeyName());
+		primaryKey.setNaturalKey(true);
+		fieldsInit.add(primaryKey);
 
-	fieldsInit.add(new FieldDate("Début de période", "beginning"));
-	fieldsInit.add(new FieldDate("Fin de période", "end"));
-	fieldsInit.add(new FieldBool("Période actuelle", "isCurrentPeriod"));
+		fieldsInit.add(new FieldDate("Début de période", "beginning"));
+		fieldsInit.add(new FieldDate("Fin de période", "end"));
+		fieldsInit.add(new FieldBool("Période actuelle", "isCurrentPeriod"));
 
-	return new Fields(fieldsInit);
-    }
+		return new Fields(fieldsInit);
+	}
 
 }

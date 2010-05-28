@@ -16,29 +16,29 @@ import newtonERP.orm.field.type.FieldText;
  */
 public class Training extends AbstractOrmEntity
 {
-    /**
-     * Default constructor
-     * 
-     * @throws Exception a general exception
-     */
-    public Training() throws Exception
-    {
-	super();
-	setVisibleName("Formation");
-	AccessorManager.addAccessor(this, new TrainingType());
-	AccessorManager.addAccessor(this, new ProductionProject());
-    }
+	/**
+	 * Default constructor
+	 * 
+	 * @throws Exception a general exception
+	 */
+	public Training() throws Exception
+	{
+		super();
+		setVisibleName("Formation");
+		AccessorManager.addAccessor(this, new TrainingType());
+		AccessorManager.addAccessor(this, new ProductionProject());
+	}
 
-    @Override
-    public Fields initFields() throws Exception
-    {
-	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
-	fieldsInit.add(new FieldInt("Numero", getPrimaryKeyName()));
-	fieldsInit.add(new FieldInt("Projet associé", new ProductionProject()
-		.getForeignKeyName()));
-	fieldsInit.add(new FieldInt("Type de formation", new TrainingType()
-		.getForeignKeyName()));
-	fieldsInit.add(new FieldText("Description", "description", true));
-	return new Fields(fieldsInit);
-    }
+	@Override
+	public Fields initFields() throws Exception
+	{
+		Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
+		fieldsInit.add(new FieldInt("Numero", getPrimaryKeyName()));
+		fieldsInit.add(new FieldInt("Projet associé", new ProductionProject()
+				.getForeignKeyName()));
+		fieldsInit.add(new FieldInt("Type de formation", new TrainingType()
+				.getForeignKeyName()));
+		fieldsInit.add(new FieldText("Description", "description", true));
+		return new Fields(fieldsInit);
+	}
 }

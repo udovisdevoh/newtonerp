@@ -14,26 +14,26 @@ import newtonERP.orm.field.type.FieldString;
  */
 public class CommandeEtat extends AbstractOrmEntity
 {
-    /**
-     * constructor
-     * @throws Exception remonte
-     */
-    public CommandeEtat() throws Exception
-    {
-	super();
-	setVisibleName("État de commande");
-    }
+	/**
+	 * constructor
+	 * @throws Exception remonte
+	 */
+	public CommandeEtat() throws Exception
+	{
+		super();
+		setVisibleName("État de commande");
+	}
 
-    public Fields initFields() throws Exception
-    {
-	Vector<Field<?>> fieldList = new Vector<Field<?>>();
+	public Fields initFields() throws Exception
+	{
+		Vector<Field<?>> fieldList = new Vector<Field<?>>();
 
-	FieldInt pKcommandeEtatID = new FieldInt("Numéro", getPrimaryKeyName());
-	fieldList.add(pKcommandeEtatID);
+		FieldInt pKcommandeEtatID = new FieldInt("Numéro", getPrimaryKeyName());
+		fieldList.add(pKcommandeEtatID);
 
-	FieldString nom = new FieldString("Description", "Description");
-	nom.setNaturalKey(true);
-	fieldList.add(nom);
-	return new Fields(fieldList);
-    }
+		FieldString nom = new FieldString("Description", "Description");
+		nom.setNaturalKey(true);
+		fieldList.add(nom);
+		return new Fields(fieldList);
+	}
 }

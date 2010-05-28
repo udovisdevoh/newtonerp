@@ -6,8 +6,8 @@ package newtonERP.viewers.viewables;
  */
 public interface StaticTextViewable
 {
-    /**
-     * @return the text of the entity
-     */
-    public String getText();
+	/**
+	 * @return the text of the entity
+	 */
+	public String getText();
 }

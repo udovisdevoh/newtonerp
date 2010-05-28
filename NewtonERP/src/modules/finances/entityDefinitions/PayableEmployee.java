@@ -27,68 +27,68 @@ import newtonERP.viewers.viewerData.ListViewerData;
  */
 public class PayableEmployee extends AbstractOrmEntity
 {
-    /**
-     * @throws Exception if creation fails
-     */
-    public PayableEmployee() throws Exception
-    {
-	super();
-	AccessorManager.addAccessor(this, new Employee());
-	AccessorManager.addAccessor(this, new StateType());
-	AccessorManager.addAccessor(this, new BankAccount());
-	AccessorManager.addAccessor(this, new PayablePeriod());
-	setVisibleName("Employés/paies");
-    }
+	/**
+	 * @throws Exception if creation fails
+	 */
+	public PayableEmployee() throws Exception
+	{
+		super();
+		AccessorManager.addAccessor(this, new Employee());
+		AccessorManager.addAccessor(this, new StateType());
+		AccessorManager.addAccessor(this, new BankAccount());
+		AccessorManager.addAccessor(this, new PayablePeriod());
+		setVisibleName("Employés/paies");
+	}
 
-    @Override
-    public Fields initFields() throws Exception
-    {
-	Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
-	FieldInt primaryKey = new FieldInt("Numéro", getPrimaryKeyName());
-	primaryKey.setNaturalKey(true);
-	fieldsInit.add(primaryKey);
+	@Override
+	public Fields initFields() throws Exception
+	{
+		Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
+		FieldInt primaryKey = new FieldInt("Numéro", getPrimaryKeyName());
+		primaryKey.setNaturalKey(true);
+		fieldsInit.add(primaryKey);
 
-	fieldsInit.add(new FieldInt("Employee", new Employee()
-		.getForeignKeyName()));
-	// periode de paye
-	fieldsInit.add(new FieldInt("Période de paie", new PayablePeriod()
-		.getForeignKeyName()));
-	fieldsInit.add(new FieldDate("Date de paiement", "paymentDate"));
-	fieldsInit.add(new FieldCurrency("Impôt Fedéral.", "fedTax"));
-	fieldsInit.add(new FieldCurrency("Impôt Provincial.", "provTax"));
-	fieldsInit.add(new FieldCurrency("Gains", "gains"));
-	fieldsInit.add(new FieldCurrency("Paie nette", "balance"));
-	fieldsInit
-		.add(new FieldInt("État", new StateType().getForeignKeyName()));
-	fieldsInit.add(new FieldInt("Compte pour paiement", new BankAccount()
-		.getForeignKeyName()));
+		fieldsInit.add(new FieldInt("Employee", new Employee()
+				.getForeignKeyName()));
+		// periode de paye
+		fieldsInit.add(new FieldInt("Période de paie", new PayablePeriod()
+				.getForeignKeyName()));
+		fieldsInit.add(new FieldDate("Date de paiement", "paymentDate"));
+		fieldsInit.add(new FieldCurrency("Impôt Fedéral.", "fedTax"));
+		fieldsInit.add(new FieldCurrency("Impôt Provincial.", "provTax"));
+		fieldsInit.add(new FieldCurrency("Gains", "gains"));
+		fieldsInit.add(new FieldCurrency("Paie nette", "balance"));
+		fieldsInit
+				.add(new FieldInt("État", new StateType().getForeignKeyName()));
+		fieldsInit.add(new FieldInt("Compte pour paiement", new BankAccount()
+				.getForeignKeyName()));
 
-	return new Fields(fieldsInit);
-    }
+		return new Fields(fieldsInit);
+	}
 
-    // tempo, à voir si ces boutons resteront là
-    @Override
-    public final ListViewerData getList(Hashtable<String, String> parameters)
-	    throws Exception
-    {
-	PayingEmployee paying = new PayingEmployee();
-	paying.setOwnedByModul(getCurrentModule());
+	// tempo, à voir si ces boutons resteront là
+	@Override
+	public final ListViewerData getList(Hashtable<String, String> parameters)
+			throws Exception
+	{
+		PayingEmployee paying = new PayingEmployee();
+		paying.setOwnedByModul(getCurrentModule());
 
-	CalculateTaxAndSalary calcul = new CalculateTaxAndSalary();//
-	calcul.setOwnedByModul(getCurrentModule());//
+		CalculateTaxAndSalary calcul = new CalculateTaxAndSalary();//
+		calcul.setOwnedByModul(getCurrentModule());//
 
-	Hashtable<String, String> actionParameters = new Hashtable<String, String>();
-	actionParameters.put(getPrimaryKeyName(), "&");
+		Hashtable<String, String> actionParameters = new Hashtable<String, String>();
+		actionParameters.put(getPrimaryKeyName(), "&");
 
-	ListViewerData list = super.getList(parameters);
+		ListViewerData list = super.getList(parameters);
 
-	list.addSpecificActionButtonList(new ActionLink("Payer", paying,
-		actionParameters));
-	list.addSpecificActionButtonList(new ActionLink("Impôts/salaire",
-		calcul, actionParameters));
+		list.addSpecificActionButtonList(new ActionLink("Payer", paying,
+				actionParameters));
+		list.addSpecificActionButtonList(new ActionLink("Impôts/salaire",
+				calcul, actionParameters));
 
-	return list;
-    }
-    // ------------------------------------------------------------------
+		return list;
+	}
+	// ------------------------------------------------------------------
 
 }

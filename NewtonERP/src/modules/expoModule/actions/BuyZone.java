@@ -23,83 +23,83 @@ import newtonERP.orm.field.type.FieldBool;
  */
 public class BuyZone extends AbstractAction
 {
-    /**
-     * @throws Exception is ça fail
-     */
-    public BuyZone() throws Exception
-    {
-	super(new Zone());
-	setDetailedDescription("Achetter une");
-    }
-
-    @Override
-    public AbstractEntity doAction(AbstractEntity entity,
-	    Hashtable<String, String> parameters) throws Exception
-    {
-	KioskInvoice currentActiveTransaction = getCurrentActiveTransaction();
-	currentActiveTransaction.save();
-
-	Option option = new Option();
-	option.setData("name", "Zone");
-	option = (Option) option.get().get(0);
-
-	KioskInvoiceItem invoiceItem = new KioskInvoiceItem();
-	invoiceItem.assign(option);
-	invoiceItem.assign(currentActiveTransaction);
-	invoiceItem.setData("amount", 1);
-	invoiceItem.newE();
-
-	Floor floor = new Floor();
-	floor.setData(floor.getPrimaryKeyName(), parameters.get(floor
-		.getPrimaryKeyName()));
-	floor = (Floor) floor.get().get(0);
-
-	Zone zone = new Zone();
-	zone.setData("PositionX", parameters.get("PositionX"));
-	zone.setData("PositionY", parameters.get("PositionY"));
-	zone.setData("isActive", false);
-	zone.assign(invoiceItem);
-	zone.assign(floor);
-	zone.newE();
-
-	// EditShoppingCart editShoppingCart = new EditShoppingCart();
-	// return editShoppingCart.doAction(entity, parameters);
-
-	return new ForwardEntity("/ExpoModule/EditShoppingCart");
-    }
-
-    private KioskInvoice getCurrentActiveTransaction() throws Exception
-    {
-	User currentUser = Authentication.getCurrentUser();
-
-	PluralAccessor customerList = currentUser
-		.getPluralAccessor("KioskCustomer");
-
-	KioskCustomer kioskCustomer = (KioskCustomer) customerList.get(0);
-
-	PluralAccessor invoiceList = kioskCustomer
-		.getPluralAccessor("KioskInvoice");
-
-	KioskInvoice selectedInvoice = null;
-	for (AbstractOrmEntity invoice : invoiceList)
+	/**
+	 * @throws Exception is ça fail
+	 */
+	public BuyZone() throws Exception
 	{
-	    FieldBool isPaid = (FieldBool) invoice.getFields().getField(
-		    "isPaid");
-	    if (isPaid.getData() == null || isPaid.getData() != true)
-	    {
-		selectedInvoice = (KioskInvoice) invoice;
-	    }
+		super(new Zone());
+		setDetailedDescription("Achetter une");
 	}
 
-	if (selectedInvoice == null)
+	@Override
+	public AbstractEntity doAction(AbstractEntity entity,
+			Hashtable<String, String> parameters) throws Exception
 	{
-	    selectedInvoice = new KioskInvoice();
-	    selectedInvoice.assign(kioskCustomer);
-	    selectedInvoice.setData("isPaid", false);
-	    selectedInvoice.newE();
+		KioskInvoice currentActiveTransaction = getCurrentActiveTransaction();
+		currentActiveTransaction.save();
+
+		Option option = new Option();
+		option.setData("name", "Zone");
+		option = (Option) option.get().get(0);
+
+		KioskInvoiceItem invoiceItem = new KioskInvoiceItem();
+		invoiceItem.assign(option);
+		invoiceItem.assign(currentActiveTransaction);
+		invoiceItem.setData("amount", 1);
+		invoiceItem.newE();
+
+		Floor floor = new Floor();
+		floor.setData(floor.getPrimaryKeyName(), parameters.get(floor
+				.getPrimaryKeyName()));
+		floor = (Floor) floor.get().get(0);
+
+		Zone zone = new Zone();
+		zone.setData("PositionX", parameters.get("PositionX"));
+		zone.setData("PositionY", parameters.get("PositionY"));
+		zone.setData("isActive", false);
+		zone.assign(invoiceItem);
+		zone.assign(floor);
+		zone.newE();
+
+		// EditShoppingCart editShoppingCart = new EditShoppingCart();
+		// return editShoppingCart.doAction(entity, parameters);
+
+		return new ForwardEntity("/ExpoModule/EditShoppingCart");
 	}
 
-	return selectedInvoice;
-    }
+	private KioskInvoice getCurrentActiveTransaction() throws Exception
+	{
+		User currentUser = Authentication.getCurrentUser();
+
+		PluralAccessor customerList = currentUser
+				.getPluralAccessor("KioskCustomer");
+
+		KioskCustomer kioskCustomer = (KioskCustomer) customerList.get(0);
+
+		PluralAccessor invoiceList = kioskCustomer
+				.getPluralAccessor("KioskInvoice");
+
+		KioskInvoice selectedInvoice = null;
+		for (AbstractOrmEntity invoice : invoiceList)
+		{
+			FieldBool isPaid = (FieldBool) invoice.getFields().getField(
+					"isPaid");
+			if (isPaid.getData() == null || isPaid.getData() != true)
+			{
+				selectedInvoice = (KioskInvoice) invoice;
+			}
+		}
+
+		if (selectedInvoice == null)
+		{
+			selectedInvoice = new KioskInvoice();
+			selectedInvoice.assign(kioskCustomer);
+			selectedInvoice.setData("isPaid", false);
+			selectedInvoice.newE();
+		}
+
+		return selectedInvoice;
+	}
 
 }
