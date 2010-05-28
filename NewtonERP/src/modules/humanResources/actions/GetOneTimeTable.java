@@ -149,7 +149,7 @@ public class GetOneTimeTable extends AbstractAction
 	parameters.put("startDate", dateFormatter.format(date.getTime()));
 	tt.addGlobalActions(new ActionLink("Suivant &gt;", this, parameters));
 
-	tt.setColor(true);
+	tt.setColored(true);
 	tt.setSpanSimilar(true);
 
 	return tt;

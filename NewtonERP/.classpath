@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src"/>
+	<classpathentry excluding="unitTest/" kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="Librairies/sqlitejdbc-v056.jar"/>
 	<classpathentry kind="lib" path="Librairies/jetty6.1.21/jetty-6.1.21.jar">
@@ -18,6 +18,5 @@
 			<attribute name="javadoc_location" value="http://jetty.mortbay.org/jetty/jetty-6/apidocs/"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

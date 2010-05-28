@@ -9,7 +9,6 @@ import java.util.GregorianCalendar;
 /**
  * @author r3hallejo
  * 
- * 
  *         Class used to log system messages into an external log for purposes
  *         of viewing errors, information messages, warnings and much more that
  *         has happen on a later time.
@@ -27,83 +26,160 @@ import java.util.GregorianCalendar;
 public class Logger
 {
 
-    private static FileWriter fstream;
-    private static BufferedWriter out;
-    private static GregorianCalendar gc = new GregorianCalendar();
-    private static SimpleDateFormat sdf = new SimpleDateFormat(
-	    "k:mm:ss yyyy.MM.dd");
-
-    /**
-     * @author r3hallejo
-     * 
-     *         States the logger can have
-     */
-    public enum State
-    {
-	/**
-	 * An information message
-	 */
-	INFO,
+	private static FileWriter fstream = null;
+	private static BufferedWriter out = null;
+	private static GregorianCalendar gc = new GregorianCalendar();
+	private static SimpleDateFormat sdf = new SimpleDateFormat(
+			"k:mm:ss yyyy.MM.dd");
 
 	/**
-	 * A warning message
+	 * States the logger can have
 	 */
-	WARNING,
+	public enum State
+	{
+		/**
+		 * An debug message
+		 */
+		DEBUG,
+
+		/**
+		 * An information message
+		 */
+		INFO,
+
+		/**
+		 * A warning message
+		 */
+		WARNING,
+
+		/**
+		 * An error message
+		 */
+		ERROR;
+	}
 
 	/**
-	 * An error message
+	 * initialize the loging system if not already done
 	 */
-	ERROR;
-    }
-
-    /**
-     * Used to log a message, passing a message and the desired state
-     * 
-     * @param message the message
-     * @param state the state
-     */
-    public static void log(String message, State state)
-    {
-	try
+	public static void init()
 	{
-	    fstream = new FileWriter("logs.txt", true);
-	    out = new BufferedWriter(fstream);
-	} catch (IOException e)
-	{
-	    e.printStackTrace();
+		try
+		{
+			if (out == null)
+			{
+				if (fstream != null)
+				{
+					fstream.close();
+					fstream = null;
+				}
+				fstream = new FileWriter("logs.txt", true);
+				out = new BufferedWriter(fstream);
+			}
+		} catch (IOException e)
+		{
+			e.printStackTrace(); // we do not want the logging system to crash
+			// the app
+		}
 	}
 
-	try
+	/**
+	 * properly close all File writer
+	 */
+	public static void close()
 	{
-	    switch (state)
-	    {
-	    default:
-	    case INFO:
-		out.write('\n' + "[INFO " + sdf.format(gc.getTime()) + "] "
-			+ message);
-		break;
-	    case WARNING:
-		out.write('\n' + "[WARNING " + sdf.format(gc.getTime()) + "] "
-			+ message);
-		break;
-	    case ERROR:
-		out.write('\n' + "[ERROR " + sdf.format(gc.getTime()) + "] "
-			+ message);
-		break;
-	    }
-	} catch (IOException e)
-	{
-	    e.printStackTrace();
+		try
+		{
+			out.close();
+		} catch (IOException e)
+		{
+			e.printStackTrace(); // we do not want the logging system to crash
+			// the app
+		}
 	}
 
-	try
+	/**
+	 * Used to log a message, passing a message and the desired state
+	 * 
+	 * @param message the message
+	 * @param state the state
+	 */
+	public static void log(String message, State state)
 	{
-	    out.close();
-	} catch (IOException e)
-	{
-	    e.printStackTrace();
+		String strState;
+		init();
+
+		switch (state)
+		{
+		case DEBUG:
+			strState = "DEBUG";
+			break;
+		default:
+		case INFO:
+			strState = "INFO";
+			break;
+		case WARNING:
+			strState = "WARNING";
+			break;
+		case ERROR:
+			strState = "ERROR";
+			break;
+		}
+		message = "[" + strState + "] " + sdf.format(gc.getTime()) + message;
+		try
+		{
+			out.write('\n' + message);
+		} catch (IOException e)
+		{
+			e.printStackTrace(); // we do not want the logging system to crash
+			// the app
+		}
+		switch (state)
+		{
+		case DEBUG:
+		case INFO:
+			System.out.println(message);
+			break;
+		case WARNING:
+		case ERROR:
+		default:
+			System.err.println(message);
+			break;
+		}
 	}
 
-	System.out.println(message);
-    }
+	/**
+	 * helper function to log a Debug message
+	 * @param message the message
+	 */
+	public static void debug(String message)
+	{
+		log(message, State.DEBUG);
+	}
+
+	/**
+	 * helper function to log an Info message
+	 * @param message the message
+	 */
+	public static void info(String message)
+	{
+		log(message, State.INFO);
+	}
+
+	/**
+	 * helper function to log a Warning message
+	 * @param message the message
+	 */
+	public static void warning(String message)
+	{
+		log(message, State.WARNING);
+	}
+
+	/**
+	 * helper function to log an Error message
+	 * @param message the message
+	 */
+	public static void error(String message)
+	{
+		log(message, State.ERROR);
+	}
 }

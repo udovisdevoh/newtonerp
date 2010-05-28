@@ -4,6 +4,7 @@ import java.net.BindException;
 
 import modules.userRightModule.actions.CreateAllRight;
 import newtonERP.common.ListModule;
+import newtonERP.logging.Logger;
 import newtonERP.orm.Orm;
 import newtonERP.orm.exceptions.OrmException;
 import newtonERP.serveur.ConfigManager;
@@ -19,73 +20,74 @@ import org.mortbay.jetty.servlet.Context;
  */
 public class Starter
 {
-    private static Server server;
+	private static Server server;
 
-    /**
-     * lance l'aplication et effectue toute les action d'initialisation
-     * 
-     * @param args aucun
-     * @throws Exception -
-     */
-    public static void main(String[] args) throws Exception
-    {
-	ListModule.initAllModule();
-
-	try
+	/**
+	 * lance l'aplication et effectue toute les action d'initialisation
+	 * 
+	 * @param args aucun
+	 * @throws Exception -
+	 */
+	public static void main(String[] args) throws Exception
 	{
-	    Orm.connect();
-	    Orm.createNonExistentTables();
-	} catch (OrmException e)
-	{
-	    e.printStackTrace();
-	}
+		ListModule.initAllModule();
 
-	new CreateAllRight().perform(null);
+		try
+		{
+			Orm.connect();
+			Orm.createNonExistentTables();
+		} catch (OrmException e)
+		{
+			e.printStackTrace();
+		}
 
-	// lance le serveur web
+		new CreateAllRight().perform(null);
+
+		// lance le serveur web
 	server = new Server(ConfigManager.getPort());
-	server.setGracefulShutdown(2000);
-	server.setStopAtShutdown(true);
-	Context context = new Context(server, "/", Context.SESSIONS);
-	context.setServletHandler(new Servlet());
+		server.setGracefulShutdown(2000);
+		server.setStopAtShutdown(true);
+		Context context = new Context(server, "/", Context.SESSIONS);
+		context.setServletHandler(new Servlet());
 
-	try
-	{
-	    server.start();
-	    doWeExit();
-	} catch (BindException e)
-	{
-	    System.err.println("      *****serveur déja partie********");
-	    shutdown();
+		try
+		{
+			server.start();
+			doWeExit();
+		} catch (BindException e)
+		{
+			Logger.error("      *****serveur déja partie********");
+			shutdown();
+		}
 	}
-    }
 
-    /**
-     * methode qui est apeller a la fermetur de l'aplication
-     * 
-     * @throws Exception -
-     */
-    public static void shutdown() throws Exception
-    {
-	server.stop();
-    }
-
-    /**
-     * boucle qui demande si l'on ferme le serveur
-     * 
-     * @throws Exception
-     */
-    private static void doWeExit() throws Exception
-    {
-	boolean exit = false;
-	while (!exit)
+	/**
+	 * methode qui est apeller a la fermetur de l'aplication
+	 * 
+	 * @throws Exception -
+	 */
+	public static void shutdown() throws Exception
 	{
-	    System.out.println("Voulez-vous quitter? (o)");
-	    if (System.in.read() == 'o')
-	    {
-		exit = true;
-		shutdown();
-	    }
+		server.stop();
+		Logger.close();
 	}
-    }
+
+	/**
+	 * boucle qui demande si l'on ferme le serveur
+	 * 
+	 * @throws Exception
+	 */
+	private static void doWeExit() throws Exception
+	{
+		boolean exit = false;
+		while (!exit)
+		{
+			System.out.println("Voulez-vous quitter? (o)");
+			if (System.in.read() == 'o')
+			{
+				exit = true;
+				shutdown();
+			}
+		}
+	}
 }
