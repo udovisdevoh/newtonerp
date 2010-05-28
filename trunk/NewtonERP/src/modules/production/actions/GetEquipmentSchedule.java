@@ -146,7 +146,7 @@ public class GetEquipmentSchedule extends AbstractAction
 	scheduleView.addGlobalActions(new ActionLink("Suivant &gt;", this,
 		parameters));
 
-	scheduleView.setColor(true);
+	scheduleView.setColored(true);
 	scheduleView.setSpanSimilar(true);
 
 	return scheduleView;
