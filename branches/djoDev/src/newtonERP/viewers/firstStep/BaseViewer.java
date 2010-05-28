@@ -2,6 +2,7 @@ package newtonERP.viewers.firstStep;
 
 import newtonERP.common.ActionLink;
 import newtonERP.viewers.secondStep.ButtonLinkViewer;
+import newtonERP.viewers.secondStep.LinkViewer;
 import newtonERP.viewers.viewerData.BaseViewerData;
 
 /**
@@ -22,9 +23,11 @@ public class BaseViewer
     {
 	String html = "";
 	if (entity.getBackLink() != null)
-	    html += "<p class='backLink'><a class='backLink' href='"
-		    + entity.getBackLink().getUrlParam() + "'> &lt; "
-		    + entity.getBackLink().getName() + "</a></p>";
+	{
+	    html += "<p class='backLink'>";
+	    html += LinkViewer.getHtmlCode(entity.getBackLink());
+	    html += "</p>";
+	}
 
 	html += "<h2>" + entity.getTitle() + "</h2>";
 

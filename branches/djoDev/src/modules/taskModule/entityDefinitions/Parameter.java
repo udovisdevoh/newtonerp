@@ -21,7 +21,7 @@ public class Parameter extends AbstractOrmEntity
     public Parameter() throws Exception
     {
 	super();
-	setVisibleName("Paramêtre générique");
+	setVisibleName("Paramètre générique");
     }
 
     @Override

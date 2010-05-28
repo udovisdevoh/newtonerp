@@ -13,6 +13,13 @@ import newtonERP.module.generalEntity.StaticTextEntity;
  */
 public class Logout extends AbstractAction
 {
+    /**
+     * Constructeur
+     */
+    public Logout()
+    {
+	setDetailedDescription("fermer votre session de manière sécuritaire");
+    }
 
     @Override
     public AbstractEntity doAction(AbstractEntity entity,

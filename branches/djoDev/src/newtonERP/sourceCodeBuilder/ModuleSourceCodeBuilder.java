@@ -4,7 +4,6 @@ import java.io.File;
 
 import modules.taskModule.entityDefinitions.ModuleEntity;
 import newtonERP.orm.Orm;
-import newtonERP.orm.exceptions.OrmException;
 
 /**
  * Cette classe sert à construire le code source de module
@@ -89,10 +88,10 @@ public class ModuleSourceCodeBuilder
     /**
      * @param moduleEntity module entity
      * @return package path
-     * @throws OrmException si ça fail
+     * @throws Exception si ça fail
      */
     public static String getPackagePath(ModuleEntity moduleEntity)
-	    throws OrmException
+	    throws Exception
     {
 	moduleEntity = (ModuleEntity) Orm.selectUnique(moduleEntity);
 	return "./src/modules/" + getPackageName(moduleEntity);

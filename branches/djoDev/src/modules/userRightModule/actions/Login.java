@@ -28,6 +28,7 @@ public class Login extends AbstractAction
     public Login() throws Exception
     {
 	super(new User()); // Travaille avec des users
+	setDetailedDescription("Vous connecter");
     }
 
     public AbstractEntity doAction(AbstractEntity entity,

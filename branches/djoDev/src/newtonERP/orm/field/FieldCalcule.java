@@ -8,7 +8,7 @@ package newtonERP.orm.field;
 public abstract class FieldCalcule<T>
 {
 
-    protected abstract T calcul(Fields entityFields);
+    protected abstract T calcul(Fields entityFields) throws Exception;
 
     /**
      * calcule a executer
@@ -20,8 +20,9 @@ public abstract class FieldCalcule<T>
 	try
 	{
 	    return calcul(entityFields);
-	} catch (NullPointerException e)
+	} catch (Exception e)
 	{
+	    e.printStackTrace();
 	    return null;
 	}
     }

@@ -3,19 +3,32 @@ package newtonERP.viewers;
 import java.util.Hashtable;
 import java.util.Iterator;
 
+import modules.userRightModule.actions.Login;
+import modules.userRightModule.actions.Logout;
+import newtonERP.common.ActionLink;
 import newtonERP.common.Authentication;
 import newtonERP.common.ListModule;
+import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.Module;
+import newtonERP.module.generalEntity.SplashScreen;
+import newtonERP.serveur.ConfigManager;
 import newtonERP.serveur.Servlet;
 import newtonERP.viewers.firstStep.AlertViewer;
+import newtonERP.viewers.firstStep.BandDiagramViewer;
 import newtonERP.viewers.firstStep.BaseViewer;
+import newtonERP.viewers.firstStep.FloorViewer;
 import newtonERP.viewers.firstStep.ForwardViewer;
 import newtonERP.viewers.firstStep.GridViewer;
 import newtonERP.viewers.firstStep.ImgViewer;
 import newtonERP.viewers.firstStep.PromptViewer;
+import newtonERP.viewers.firstStep.SplashScreenViewer;
 import newtonERP.viewers.firstStep.StaticTextViewer;
+import newtonERP.viewers.secondStep.ButtonLinkViewer;
+import newtonERP.viewers.secondStep.LinkViewer;
 import newtonERP.viewers.viewables.AlertViewable;
+import newtonERP.viewers.viewables.BandDiagramViewable;
+import newtonERP.viewers.viewables.FloorViewable;
 import newtonERP.viewers.viewables.ForwardViewable;
 import newtonERP.viewers.viewables.StaticTextViewable;
 import newtonERP.viewers.viewerData.BaseViewerData;
@@ -29,7 +42,7 @@ import newtonERP.viewers.viewerData.PromptViewerData;
  */
 public abstract class Viewer
 {
-    private static final String defaultEncoding = "UTF-8";
+    private static final String defaultEncoding = "iso-8859-1";
 
     /**
      * Gets the html code by calling the same method in the right viewer
@@ -48,7 +61,9 @@ public abstract class Viewer
 	if (entity instanceof BaseViewerData)
 	    viewerHtml += BaseViewer.getTopHtmlCode((BaseViewerData) entity);
 
-	if (entity instanceof PromptViewerData)
+	if (entity instanceof FloorViewable)
+	    viewerHtml += FloorViewer.getHtmlCode((FloorViewable) entity);
+	else if (entity instanceof PromptViewerData)
 	    viewerHtml += PromptViewer.getHtmlCode((PromptViewerData) entity);
 	else if (entity instanceof ForwardViewable)
 	    viewerHtml += ForwardViewer.getHtmlCode((ForwardViewable) entity);
@@ -61,6 +76,11 @@ public abstract class Viewer
 	    viewerHtml += GridViewer.getHtmlCode((GridViewerData) entity);
 	else if (entity instanceof ImgViewerData)
 	    viewerHtml += ImgViewer.getHtmlCode((ImgViewerData) entity);
+	else if (entity instanceof SplashScreen)
+	    viewerHtml += SplashScreenViewer.getHtmlCode((SplashScreen) entity);
+	else if (entity instanceof BandDiagramViewable)
+	    viewerHtml += BandDiagramViewer
+		    .getHtmlCode((BandDiagramViewable) entity);
 	else if (entity == null)
 	    viewerHtml += "<!-- page vide -->";
 	else
@@ -81,8 +101,10 @@ public abstract class Viewer
      * @param actionName the action name
      * 
      * @return html
+     * @throws Exception si ça fail
      */
     public static String getHeader(String moduleName, String actionName)
+	    throws Exception
     {
 	String pageTitle = buildPageTitle(moduleName, actionName);
 
@@ -96,27 +118,38 @@ public abstract class Viewer
 		+ Viewer.getEncoding() + "\" />";
 
 	// css******************************************************************
-	header += "<link rel=\"stylesheet\" type=\"text/css\" title=\"base\" href=\"/file/styleScreen.css\" media=\"screen\" />";
-	header += "<link rel=\"stylesheet\" type=\"text/css\" title=\"base\" href=\"/file/stylePrint.css\" media=\"print\" />";
-	header += "</head><body><div id=\"header\"><h1>" + pageTitle
-		+ "</h1></div>";
+	header += "<link rel=\"stylesheet\" type=\"text/css\" title=\"base\" href=\""
+		+ ConfigManager.getStyleFileScreen() + "\" media=\"screen\" />";
+	header += "<link rel=\"stylesheet\" type=\"text/css\" title=\"base\" href=\""
+		+ ConfigManager.getStyleFilePrint() + "\" media=\"print\" />";
+	header += "</head><body>";
+
+	if (ConfigManager.isDisplayTopTitle())
+	    header += "<div id=\"header\"><h1>" + pageTitle + "</h1></div>";
 
 	return header;
     }
 
-    private static String buildTopMenu()
+    private static String buildTopMenu() throws Exception
     {
 	String html = "";
 
 	html += "<div class=\"topMenu\">";
 
 	if (Authentication.getCurrentUserName().equals("unLogedUser"))
-	    html += "<a href=\"/\">Login</a>";
+	{
+	    // html += "<a href=\"" + new ActionLink. + "\">Login</a>";
+	    ActionLink actionLink = new ActionLink("Login", new Login());
+	    html += LinkViewer.getHtmlCode(actionLink);
+	}
 	else
 	{
 	    html += Authentication.getCurrentUserName();
 
-	    html += " | <a href=\"/UserRightModule/Logout\">Logout</a>";
+	    html += " | ";
+
+	    ActionLink actionLink = new ActionLink("Logout", new Logout());
+	    html += LinkViewer.getHtmlCode(actionLink);
 	}
 
 	html += "</div>";
@@ -125,8 +158,9 @@ public abstract class Viewer
     }
 
     private static String buildPageTitle(String moduleName, String actionName)
+	    throws Exception
     {
-	String title = "Bee ERP";
+	String title = ConfigManager.getDisplayName();
 
 	if (moduleName != null && !moduleName.equals("null"))
 	    title += " - " + moduleName;
@@ -172,12 +206,27 @@ public abstract class Viewer
 			    .getGlobalActionMenuOrReturnDefaultBehavior()
 			    .getKeyList())
 		    {
-			menuModuleHtml += "<li><a href=\"";
-			menuModuleHtml += Servlet.makeLink(module, module
+			AbstractAction defaultAction = module
 				.getGlobalActionMenuOrReturnDefaultBehavior()
-				.get(globalActionName));
-			menuModuleHtml += "\">" + globalActionName
-				+ "</a></li>";
+				.get(globalActionName);
+
+			String currentLinkHtml = LinkViewer
+				.getHtmlCode(new ActionLink(globalActionName,
+					defaultAction));
+
+			if (currentLinkHtml.length() > 0)
+			    menuModuleHtml += "<li>" + currentLinkHtml
+				    + "</li>";
+		    }
+
+		    for (ActionLink button : module.getGlobalActionButtonList())
+		    {
+			String currentLinkHtml = ButtonLinkViewer
+				.getHtmlCode(button);
+			if (currentLinkHtml != null
+				&& currentLinkHtml.length() > 0)
+			    menuModuleHtml += "<li>" + currentLinkHtml
+				    + "</li>";
 		    }
 		}
 		else
