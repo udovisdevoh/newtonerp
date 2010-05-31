@@ -42,6 +42,8 @@ public class ConfigManager
 
 	private static Boolean isDisplayHeader = null;
 
+	private static String modulesPath = null;
+
 	/**
 	 * @return le port (possiblement 80 ou autre) pour le portail web de
 	 *         l'application
@@ -245,5 +247,28 @@ public class ConfigManager
 			isDisplayHeader = loadIsDisplayTitle();
 
 		return isDisplayHeader;
+	}
+
+	/**
+	 * @param modulesPath the modulesPath to set
+	 * @return value of modulesPath
+	 * @throws Exception si ça fail
+	 */
+	public static String loadModulesPath() throws Exception
+	{
+		NodeList nodeList = getDocument().getElementsByTagName("modulesPath");
+		Node node = nodeList.item(0);
+		return node.getFirstChild().getNodeValue();
+	}
+
+	/**
+	 * @return the modulesPath
+	 * @throws Exception si ça fail
+	 */
+	public static String getModulesPath() throws Exception
+	{
+		if (modulesPath == null)
+			ConfigManager.modulesPath = loadModulesPath();
+		return modulesPath;
 	}
 }

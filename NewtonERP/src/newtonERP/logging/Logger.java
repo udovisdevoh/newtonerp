@@ -124,7 +124,8 @@ public class Logger
 			strState = "ERROR";
 			break;
 		}
-		message = "[" + strState + "] " + sdf.format(gc.getTime()) + message;
+		message = sdf.format(gc.getTime()) + " [" + strState + "]  \t"
+				+ message;
 		try
 		{
 			out.write('\n' + message);
