@@ -14,4 +14,5 @@
 	<style-print>/file/stylePrint.css</style-print>
 	<show-top-title>false</show-top-title>
 	<port>47098</port>
+	<modulesPath>/home/djo/workspace/NewtonERPsvn/src/</modulesPath>
 </config>

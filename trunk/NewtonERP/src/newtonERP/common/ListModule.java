@@ -4,11 +4,14 @@
 package newtonERP.common;
 
 import java.io.File;
+import java.net.URL;
+import java.net.URLClassLoader;
 import java.util.Hashtable;
 
 import newtonERP.module.Module;
 import newtonERP.module.exception.ModuleException;
 import newtonERP.module.exception.ModuleNotFoundException;
+import newtonERP.serveur.ConfigManager;
 
 /**
  * pour créé le jar il faut, en ligne de commande, allé dans le dossier du
@@ -81,7 +84,12 @@ public class ListModule
 		Object mod = null;
 		try
 		{
-			mod = Class.forName(allModules.get(moduleName)).newInstance();
+			URL urls[] = new URL[1];
+			urls[0] = new URL("file:" + ConfigManager.getModulesPath());
+			URLClassLoader urlClassLoader = new URLClassLoader(urls);
+
+			mod = urlClassLoader.loadClass(allModules.get(moduleName))
+					.newInstance();
 			if (!(mod instanceof Module))
 			{
 				throw new ModuleNotFoundException(moduleName);
@@ -97,10 +105,11 @@ public class ListModule
 
 	/**
 	 * initialise la liste de module
+	 * @throws Exception si sa fail
 	 */
-	public static void initAllModule()
+	public static void initAllModule() throws Exception
 	{
-		File folder = new File("src/modules");
+		File folder = new File(ConfigManager.getModulesPath() + "modules");
 		File[] listOfFiles = folder.listFiles();
 
 		for (int i = 0; i < listOfFiles.length; i++)
