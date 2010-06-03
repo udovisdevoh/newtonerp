@@ -2,7 +2,6 @@ package newtonERP.orm;
 
 import java.sql.ResultSet;
 import java.util.Collection;
-import java.util.Hashtable;
 import java.util.Vector;
 
 import newtonERP.common.ListModule;
@@ -271,9 +270,7 @@ public class Orm
 	 */
 	public static void createNonExistentTables() throws Exception
 	{
-		Hashtable<String, String> modules = ListModule.getAllModules();
-
-		for (String key : modules.keySet())
+		for (String key : ListModule.getAllModules())
 		{
 			try
 			{
