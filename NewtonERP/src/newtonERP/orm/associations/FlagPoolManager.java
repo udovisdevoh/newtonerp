@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Hashtable;
 import java.util.Vector;
 
+import newtonERP.common.ModuleLoader;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.generalEntity.FlagPool;
 import newtonERP.orm.Orm;
@@ -125,8 +126,8 @@ public class FlagPoolManager
 
 		intermediateEntityName = classPath + "." + intermediateEntityName;
 
-		AbstractOrmEntity intermediateEntityDefinition = (AbstractOrmEntity) Class
-				.forName(intermediateEntityName).newInstance();
+		AbstractOrmEntity intermediateEntityDefinition = (AbstractOrmEntity) ModuleLoader
+				.loadClass(intermediateEntityName).newInstance();
 
 		intermediateEntityDefinition.initFields();
 

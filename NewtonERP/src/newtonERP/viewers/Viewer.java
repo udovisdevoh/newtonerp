@@ -1,6 +1,5 @@
 package newtonERP.viewers;
 
-import java.util.Hashtable;
 import java.util.Iterator;
 
 import modules.userRightModule.actions.Login;
@@ -179,8 +178,7 @@ public abstract class Viewer
 	 */
 	public static String getLeftMenu(String moduleName) throws Exception
 	{
-		Hashtable<String, String> mod = ListModule.getAllModules();
-		Iterator<String> keys = mod.keySet().iterator();
+		Iterator<String> keys = ListModule.getAllModules().iterator();
 
 		String menuModuleHtml = "";
 

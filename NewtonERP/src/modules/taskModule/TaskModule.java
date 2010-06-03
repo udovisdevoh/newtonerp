@@ -507,7 +507,7 @@ public class TaskModule extends Module
 
 		Module module = null;
 		Vector<String> allModule;
-		allModule = new Vector<String>(ListModule.getAllModules().keySet());
+		allModule = new Vector<String>(ListModule.getAllModules());
 		// on s'assure d'avoir créé le userRightModule en premier
 		for (String moduleName : allModule)
 		{

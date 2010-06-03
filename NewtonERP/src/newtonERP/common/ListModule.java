@@ -4,9 +4,9 @@
 package newtonERP.common;
 
 import java.io.File;
-import java.net.URL;
-import java.net.URLClassLoader;
 import java.util.Hashtable;
+import java.util.Set;
+import java.util.Vector;
 
 import newtonERP.module.Module;
 import newtonERP.module.exception.ModuleException;
@@ -26,22 +26,19 @@ import newtonERP.serveur.ConfigManager;
 public class ListModule
 {
 	// todo: jumelé les 2 hashtable
-	private static Hashtable<String, String> allModules = new Hashtable<String, String>();
-	private static Hashtable<String, Module> modulesCache = new Hashtable<String, Module>();
+	private static Hashtable<String, FileModule> allModules = new Hashtable<String, FileModule>();
 
 	/**
 	 * ajoute un module a la liste
 	 * 
 	 * @param moduleName le nom du module a ajoute
+	 * @param path
 	 * 
 	 */
-	public static void addModule(String moduleName)
+	public static void addModule(String moduleName, String path)
 	{
-		String name = moduleName.substring(1);
-		String firstChar = moduleName.substring(0, 1);
-		allModules.put(firstChar.toUpperCase() + name, "modules."
-				+ firstChar.toLowerCase() + name + "."
-				+ firstChar.toUpperCase() + name);
+		FileModule fileMod = new FileModule(moduleName, path);
+		allModules.put(fileMod.getName(), fileMod);
 	}
 
 	/**
@@ -59,9 +56,9 @@ public class ListModule
 	 * 
 	 * @return liste de tout les modules
 	 */
-	public static Hashtable<String, String> getAllModules()
+	public static Set<String> getAllModules()
 	{
-		return allModules;
+		return allModules.keySet();
 	}
 
 	/**
@@ -74,33 +71,38 @@ public class ListModule
 	 */
 	public static Module getModule(String moduleName) throws Exception
 	{
-		if (modulesCache.containsKey(moduleName))
+		Module tmpMod = allModules.get(moduleName).getCache();
+		if (tmpMod != null)
 		{
-			Module tmpMod = modulesCache.get(moduleName);
-			tmpMod.resetState();
+			tmpMod = allModules.get(moduleName).getCache();
+			tmpMod.initEntityDefinition(allModules.get(moduleName)
+					.getFilePath());
 			return tmpMod;
 		}
 
 		Object mod = null;
 		try
 		{
-			URL urls[] = new URL[1];
-			urls[0] = new URL("file:" + ConfigManager.getModulesPath());
-			URLClassLoader urlClassLoader = new URLClassLoader(urls);
-
-			mod = urlClassLoader.loadClass(allModules.get(moduleName))
+			System.out.println(moduleName);
+			mod = ModuleLoader.loadClass(
+					allModules.get(moduleName).getPackagePathName())
 					.newInstance();
-			if (!(mod instanceof Module))
-			{
-				throw new ModuleNotFoundException(moduleName);
-			}
 		} catch (Exception e)
 		{
 			e.printStackTrace(); // TODO add stackTrace to new exception
 			throw new ModuleException(moduleName);
 		}
-		modulesCache.put(moduleName, (Module) mod);
-		return (Module) mod;
+		if (!(mod instanceof Module))
+		{
+			throw new ModuleNotFoundException(moduleName);
+		}
+		tmpMod = (Module) mod;
+
+		tmpMod.initAction(allModules.get(moduleName).getFilePath());
+		tmpMod.initEntityDefinition(allModules.get(moduleName).getFilePath());
+
+		allModules.get(moduleName).setCache(tmpMod);
+		return tmpMod;
 	}
 
 	/**
@@ -109,15 +111,24 @@ public class ListModule
 	 */
 	public static void initAllModule() throws Exception
 	{
-		File folder = new File(ConfigManager.getModulesPath() + "modules");
-		File[] listOfFiles = folder.listFiles();
-
-		for (int i = 0; i < listOfFiles.length; i++)
+		Vector<String> paths = new Vector<String>();
+		paths.add(ConfigManager.getModulesPath() + "modules");
+		paths.add("./bin/modules");
+		File folder;
+		File[] listOfFiles;
+		for (String path : paths)
 		{
-			if (listOfFiles[i].isDirectory()
-					&& !listOfFiles[i].getName().equals(".svn"))
+			folder = new File(path);
+			listOfFiles = folder.listFiles();
+
+			for (int i = 0; i < listOfFiles.length; i++)
 			{
-				addModule(listOfFiles[i].getName());
+				if (listOfFiles[i].isDirectory()
+						&& !listOfFiles[i].getName().equals(".svn"))
+				{
+					addModule(listOfFiles[i].getName(), path + "/"
+							+ listOfFiles[i].getName());
+				}
 			}
 		}
 	}

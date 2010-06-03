@@ -29,7 +29,7 @@ public class CreateAllRight extends AbstractAction
 	{
 		Module module = null;
 		Vector<String> allModule;
-		allModule = new Vector<String>(ListModule.getAllModules().keySet());
+		allModule = new Vector<String>(ListModule.getAllModules());
 		allModule.remove("UserRightModule");
 		allModule.remove("TaskModule");
 		// on s'assure d'avoir créé le userRightModule en premier et le task

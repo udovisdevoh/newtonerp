@@ -9,6 +9,7 @@ import modules.userRightModule.entityDefinitions.Groups;
 import modules.userRightModule.entityDefinitions.GroupsRight;
 import modules.userRightModule.entityDefinitions.Right;
 import newtonERP.common.ActionLink;
+import newtonERP.common.ModuleLoader;
 import newtonERP.common.NaturalMap;
 import newtonERP.module.exception.ActionNotFoundException;
 import newtonERP.module.exception.ModuleException;
@@ -52,8 +53,6 @@ public abstract class Module
 		entityDefinitionList = new Hashtable<String, AbstractOrmEntity>();
 
 		actionList = new Hashtable<String, AbstractAction>();
-		initAction();
-		initEntityDefinition();
 	}
 
 	protected final void setDefaultAction(AbstractAction action)
@@ -91,37 +90,29 @@ public abstract class Module
 		return defaultAction;
 	}
 
-	private final void addAction(AbstractAction action)
-	{
-		actionList.put(action.getSystemName(), action);
-		action.setOwnedByModul(this);
-	}
-
 	/**
 	 * initialise la liste d'action du module
 	 * @throws Exception remonte
 	 * 
 	 * @throws ActionNotFoundException
 	 */
-	protected void initAction() throws Exception
+	public void initAction(String path) throws Exception
 	{
 		if (!ActionCache.containsKey(getSystemName()))
 		{
-			String packageName = getClass().getPackage().getName().replace('.',
-					'/');
-
-			File folder = new File("src/" + packageName + "/actions");
+			File folder = new File(path + "/actions");
 			File[] listOfFiles = folder.listFiles();
 
 			for (int i = 0; i < listOfFiles.length; i++)
 			{
-				if (listOfFiles[i].getName().endsWith(".java"))
+				if (listOfFiles[i].getName().endsWith(".class")
+						&& !listOfFiles[i].getName().contains("$"))
 				{
 					String className = getClass().getPackage().getName()
 							+ ".actions."
-							+ listOfFiles[i].getName().split("\\.java")[0];
-					AbstractAction act = (AbstractAction) Class.forName(
-							className).newInstance();
+							+ listOfFiles[i].getName().split("\\.class")[0];
+					AbstractAction act = (AbstractAction) ModuleLoader
+							.loadClass(className).newInstance();
 					addAction(act);
 				}
 			}
@@ -137,26 +128,22 @@ public abstract class Module
 	 * initialise la liste de definition d'entite du module
 	 * @throws Exception remonte
 	 */
-	protected void initEntityDefinition() throws Exception
+	public void initEntityDefinition(String path) throws Exception
 	{
 		if (!entityCache.containsKey(getSystemName()))
 		{
-			String packageName = getClass().getPackage().getName().replace('.',
-					'/');
-
-			File folder = new File("src/" + packageName + "/entityDefinitions");
+			File folder = new File(path + "/entityDefinitions");
 			File[] listOfFiles = folder.listFiles();
 
 			for (int i = 0; i < listOfFiles.length; i++)
 			{
-				if (listOfFiles[i].getName().endsWith(".java"))
+				if (listOfFiles[i].getName().endsWith(".class")
+						&& !listOfFiles[i].getName().contains("$"))
 				{
 					String className = getClass().getPackage().getName()
 							+ ".entityDefinitions."
-							+ listOfFiles[i].getName().split("\\.java")[0];
-
-					Class<?> entityClass = Class.forName(className);
-
+							+ listOfFiles[i].getName().split("\\.class")[0];
+					Class<?> entityClass = ModuleLoader.loadClass(className);
 					AbstractEntity def = (AbstractEntity) entityClass
 							.newInstance();
 					if (def instanceof AbstractOrmEntity)
@@ -173,6 +160,12 @@ public abstract class Module
 				entity.reset();
 			}
 		}
+	}
+
+	private final void addAction(AbstractAction action)
+	{
+		actionList.put(action.getSystemName(), action);
+		action.setOwnedByModul(this);
 	}
 
 	private final void addDefinitionEntity(AbstractOrmEntity definitinEntity)
@@ -532,14 +525,5 @@ public abstract class Module
 	{
 		ActionCache.clear();
 		entityCache.clear();
-	}
-
-	/**
-	 * remet a l'etats initial l'objet
-	 * @throws Exception remonte
-	 */
-	public void resetState() throws Exception
-	{
-		initEntityDefinition();
 	}
 }
