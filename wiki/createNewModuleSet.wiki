@@ -1,0 +1,17 @@
+#labels howto
+== création du module set ==
+ # faire un checkout de '/trunk/modules/base'
+ # dans eclipse, sur le projet base faire clic droit/team/Branch or tag
+ # dans le champ URL s'assuré d'etre dans un sous dossier de '/trunk/modules/' puis ajouté le nom du dossier/projet que vous voulez créé (de préférence sous un dossier a votre nom ex: '/trunk/modules/djo/contractManagement') il est important que se dossier n'existe pas encore
+ # suivant
+ # suivant
+ # entré un commentaire de commit et coché la case 'switch working copy to branch/tag
+ # finish
+
+== post config ==
+ # renommé le projet a votre choix (clic droit sur le projet /refactor/rename) ne pas tenir conte des erreur
+ # mettre le serveur newtonERP dans le build path (clic droit sur le projet/propriété/java build path/project/add/sélectionné votre projet contenant le serveur NewtonERP)
+ # ajouté la référence au serveur (clic droit sur le projet/propriété/project references/sélectionné votre projet contenant le serveur NewtonERP)
+ # commit
+
+maintenant vous pouvez modifier le projet a votre souhait en partant du sampleModule présent dans votre nouveau projet
