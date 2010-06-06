@@ -4,7 +4,7 @@
 == création du module set ==
  # faire un checkout de '/trunk/modules/base'
  # dans eclipse, sur le projet base faire clic droit/team/Branch or tag
- # dans le champ URL s'assuré d'etre dans un sous dossier de '/trunk/modules/' puis ajouté le nom du dossier/projet que vous voulez créé (de préférence sous un dossier a votre nom ex: '/trunk/modules/djo/contractManagement') il est important que se dossier n'existe pas encore
+ # dans le champ URL s'assuré d'être dans un sous dossier de '/trunk/modules/' puis ajouté le nom du dossier/projet que vous voulez créé (de préférence sous un dossier a votre nom ex: '/trunk/modules/djo/contractManagement') il est important que se dossier n'existe pas encore
  # suivant
  # suivant
  # entré un commentaire de commit et coché la case 'switch working copy to branch/tag
@@ -17,3 +17,7 @@
  # commit
 
 maintenant vous pouvez modifier le projet a votre souhait en partant du sampleModule présent dans votre nouveau projet
+
+pour testé ou exécute votre module set il faut exécute le serveur NewtonERP il ne faut jamais essayer de lancé directement les modules ou le module set (il n'y a aucun main anyway...)
+
+note: cette procédure fonctionne bien a cause de la gestion des branche de SVN il pourrais y avoir des problème si utilisé sur un autre système de gestion de version
