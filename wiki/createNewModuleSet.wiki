@@ -1,4 +1,6 @@
 #labels howto
+# how to create a new module set 
+
 == création du module set ==
  # faire un checkout de '/trunk/modules/base'
  # dans eclipse, sur le projet base faire clic droit/team/Branch or tag
