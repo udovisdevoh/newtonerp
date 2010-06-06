@@ -15,6 +15,7 @@
  # mettre le serveur newtonERP dans le build path (clic droit sur le projet/propriété/java build path/project/add/sélectionné votre projet contenant le serveur NewtonERP)
  # ajouté la référence au serveur (clic droit sur le projet/propriété/project references/sélectionné votre projet contenant le serveur NewtonERP)
  # commit
+ # dans le fichier config.xml dur serveur modifier le modulesPath pour pointé vers le dossier bin qui est sous votre projet ex:[...]/workspace/ContractManagement/bin/ )
 
 maintenant vous pouvez modifier le projet a votre souhait en partant du sampleModule présent dans votre nouveau projet
 
