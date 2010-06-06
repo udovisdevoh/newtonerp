@@ -1,5 +1,5 @@
+#summary how to create a new module set
 #labels howto
-# how to create a new module set 
 
 == création du module set ==
  # faire un checkout de '/trunk/modules/base'
