@@ -3,6 +3,7 @@
 	<name>ContractManagement</name>
 	<comment></comment>
 	<projects>
+		<project>NewtonERP</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
