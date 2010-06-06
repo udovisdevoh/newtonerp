@@ -92,9 +92,9 @@ public abstract class Module
 
 	/**
 	 * initialise la liste d'action du module
-	 * @throws Exception remonte
 	 * 
-	 * @throws ActionNotFoundException
+	 * @param path path to the module contening the action
+	 * @throws Exception remonte
 	 */
 	public void initAction(String path) throws Exception
 	{
@@ -126,6 +126,8 @@ public abstract class Module
 
 	/**
 	 * initialise la liste de definition d'entite du module
+	 * 
+	 * @param path path to the module contening the action
 	 * @throws Exception remonte
 	 */
 	public void initEntityDefinition(String path) throws Exception

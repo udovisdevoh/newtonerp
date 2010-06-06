@@ -28,9 +28,8 @@ public class Logger
 
 	private static FileWriter fstream = null;
 	private static BufferedWriter out = null;
-	private static GregorianCalendar gc = new GregorianCalendar();
 	private static SimpleDateFormat sdf = new SimpleDateFormat(
-			"k:mm:ss yyyy.MM.dd");
+			"kk:mm:ss yyyy.MM.dd");
 
 	/**
 	 * States the logger can have
@@ -124,8 +123,8 @@ public class Logger
 			strState = "ERROR";
 			break;
 		}
-		message = sdf.format(gc.getTime()) + " [" + strState + "]  \t"
-				+ message;
+		message = sdf.format(new GregorianCalendar().getTime()) + " ["
+				+ strState + "]  \t" + message;
 		try
 		{
 			out.write('\n' + message);
