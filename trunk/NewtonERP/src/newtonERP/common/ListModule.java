@@ -32,7 +32,7 @@ public class ListModule
 	 * ajoute un module a la liste
 	 * 
 	 * @param moduleName le nom du module a ajoute
-	 * @param path
+	 * @param path system path to the module
 	 * 
 	 */
 	public static void addModule(String moduleName, String path)
@@ -83,7 +83,6 @@ public class ListModule
 		Object mod = null;
 		try
 		{
-			System.out.println(moduleName);
 			mod = ModuleLoader.loadClass(
 					allModules.get(moduleName).getPackagePathName())
 					.newInstance();

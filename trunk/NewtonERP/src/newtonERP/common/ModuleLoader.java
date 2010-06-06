@@ -34,7 +34,6 @@ public class ModuleLoader
 	{
 		if (loader == null)
 			initialise();
-		System.out.println(className);
 		return loader.loadClass(className);
 	}
 

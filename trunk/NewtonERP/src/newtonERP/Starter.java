@@ -31,7 +31,6 @@ public class Starter
 	public static void main(String[] args) throws Exception
 	{
 		ListModule.initAllModule();
-		System.out.println(ListModule.getAllModules());
 
 		try
 		{
