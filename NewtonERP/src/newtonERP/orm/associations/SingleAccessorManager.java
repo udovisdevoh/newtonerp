@@ -16,10 +16,9 @@ public class SingleAccessorManager
 	/**
 	 * @param entity entité source
 	 * @return liste des accessors plusieurs à plusieurs pour l'entité source
-	 * @throws Exception exceptions si obtention fail
 	 */
 	public static final TreeMap<String, AbstractOrmEntity> getSingleAccessorList(
-			AbstractOrmEntity entity) throws Exception
+			AbstractOrmEntity entity)
 	{
 		TreeMap<String, AbstractOrmEntity> singleAccessorList = new TreeMap<String, AbstractOrmEntity>();
 
@@ -47,7 +46,7 @@ public class SingleAccessorManager
 
 	private static AbstractOrmEntity getForeignEntity(
 			AbstractOrmEntity sourceEntity,
-			AbstractOrmEntity foreignEntityDefinition) throws Exception
+			AbstractOrmEntity foreignEntityDefinition)
 	{
 		foreignEntityDefinition.setData(foreignEntityDefinition
 				.getPrimaryKeyName(), sourceEntity
@@ -66,11 +65,10 @@ public class SingleAccessorManager
 	 * @param abstractOrmEntity entité
 	 * @param listOfValueName nom de l'accessor
 	 * @return accessor singulier
-	 * @throws Exception si obtention fail
 	 */
 	public static AbstractOrmEntity getSingleAccessor(
 			AbstractOrmEntity abstractOrmEntity, String listOfValueName)
-			throws Exception
+
 	{
 		AbstractOrmEntity foreignEntityDefinition, realForeignEntity;
 

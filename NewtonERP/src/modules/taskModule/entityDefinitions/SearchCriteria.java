@@ -17,9 +17,8 @@ import newtonERP.orm.field.type.FieldText;
 public class SearchCriteria extends AbstractOrmEntity
 {
 	/**
-	 * @throws Exception si création fail
 	 */
-	public SearchCriteria() throws Exception
+	public SearchCriteria()
 	{
 		super();
 		setVisibleName("Critère de rercherche");
@@ -28,7 +27,7 @@ public class SearchCriteria extends AbstractOrmEntity
 	}
 
 	@Override
-	public Fields initFields() throws Exception
+	public Fields initFields()
 	{
 		FieldString key = new FieldString("Nom de clef", "key");
 		key.setNaturalKey(true);
@@ -67,15 +66,14 @@ public class SearchCriteria extends AbstractOrmEntity
 	}
 
 	/**
-	 * @return opérateur en string
-	 * @throws Exception si optention fail
+	 * @return opérateur en string @ si optention fail
 	 */
-	public String getOperator() throws Exception
+	public String getOperator()
 	{
 		return getOperatorEntity().getOperator();
 	}
 
-	private SearchCriteriaOperator getOperatorEntity() throws Exception
+	private SearchCriteriaOperator getOperatorEntity()
 	{
 		return (SearchCriteriaOperator) getSingleAccessor(new SearchCriteriaOperator()
 				.getForeignKeyName());

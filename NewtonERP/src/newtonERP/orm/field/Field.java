@@ -1,7 +1,5 @@
 package newtonERP.orm.field;
 
-import newtonERP.module.exception.FieldNotCompatibleException;
-import newtonERP.module.exception.InvalidOperatorException;
 
 /**
  * Super class for entity fields used in the modules
@@ -40,9 +38,8 @@ public abstract class Field<T>
 	 * @param data donne du champ
 	 * @param name nom du champ qui sera visible par l'utilisateur
 	 * @param shortName nom du champ qui sera utiliser a l'interne
-	 * @throws InvalidOperatorException remonte
 	 */
-	public Field(String name, String shortName) throws InvalidOperatorException
+	public Field(String name, String shortName)
 	{
 		this(name, shortName, null);
 	}
@@ -53,10 +50,9 @@ public abstract class Field<T>
 	 * @param name nom du champ qui sera visible par l'utilisateur
 	 * @param shortName nom du champ qui sera utiliser a l'interne
 	 * @param data donne du champ
-	 * @throws InvalidOperatorException remonte
 	 */
 	public Field(String name, String shortName, T data)
-			throws InvalidOperatorException
+
 	{
 
 		this.name = name;
@@ -75,25 +71,20 @@ public abstract class Field<T>
 
 	/**
 	 * @param data the data to set
-	 * @throws Exception remonte
 	 */
-	public abstract void setData(String data) throws Exception;
+	public abstract void setData(String data);
 
 	/**
 	 * Validation on operators will be done in the fields types
 	 * 
 	 * @param operator the operator to set in the field
-	 * @throws InvalidOperatorException if an operator is wrong for the data
-	 *             type
 	 */
-	public abstract void setOperator(String operator)
-			throws InvalidOperatorException;
+	public abstract void setOperator(String operator);
 
 	/**
 	 * definie la valeur par defaut (devrais etre une valeur null)
-	 * @throws FieldNotCompatibleException remonte
 	 */
-	public abstract void setDefaultValue() throws FieldNotCompatibleException;
+	public abstract void setDefaultValue();
 
 	/**
 	 * @return the name
@@ -159,10 +150,8 @@ public abstract class Field<T>
 
 	/**
 	 * @param data the data to set
-	 * @throws FieldNotCompatibleException remonte
 	 */
-	public abstract void setData(Object data)
-			throws FieldNotCompatibleException;
+	public abstract void setData(Object data);
 
 	/**
 	 * @return the operator
@@ -396,7 +385,6 @@ public abstract class Field<T>
 
 	/**
 	 * remet la valeur a null
-	 * @throws Exception remonte
 	 */
 	public void reset()
 	{

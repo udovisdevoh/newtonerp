@@ -26,9 +26,8 @@ public class ListViewerData extends GridViewerData implements
 	/**
 	 * constructeur par defaut
 	 * @param dataType type d'entity a etre liste
-	 * @throws Exception remonte
 	 */
-	public ListViewerData(AbstractOrmEntity dataType) throws Exception
+	public ListViewerData(AbstractOrmEntity dataType)
 	{
 		super();
 		this.dataType = dataType;
@@ -42,7 +41,7 @@ public class ListViewerData extends GridViewerData implements
 		return data;
 	}
 
-	public GridCaseData[] getHeader() throws Exception
+	public GridCaseData[] getHeader()
 	{
 		Vector<GridCaseData> header = new Vector<GridCaseData>();
 
@@ -77,7 +76,7 @@ public class ListViewerData extends GridViewerData implements
 		return header.toArray(new GridCaseData[0]);
 	}
 
-	public GridCaseData[][] getCases() throws Exception
+	public GridCaseData[][] getCases()
 	{
 		Vector<GridCaseData[]> dataList = new Vector<GridCaseData[]>();
 		String value;

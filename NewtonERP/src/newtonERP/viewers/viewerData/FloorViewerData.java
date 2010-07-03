@@ -3,9 +3,6 @@ package newtonERP.viewers.viewerData;
 import java.util.HashSet;
 import java.util.Vector;
 
-import modules.expoModule.entityDefinitions.Floor;
-import modules.expoModule.entityDefinitions.WallType;
-import modules.expoModule.entityDefinitions.Zone;
 import newtonERP.common.ActionLink;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
@@ -34,9 +31,8 @@ public class FloorViewerData extends AbstractEntity implements FloorViewable
 	private static Vector<String> lazyWallTypeNameList = null;
 
 	/**
-	 * @throws Exception si ça fail
 	 */
-	public FloorViewerData() throws Exception
+	public FloorViewerData()
 	{
 		super();
 		wallHash = new HashSet<String>();
@@ -44,9 +40,8 @@ public class FloorViewerData extends AbstractEntity implements FloorViewable
 
 	/**
 	 * @param sourceFloor source floor
-	 * @throws Exception si ça fail
 	 */
-	public FloorViewerData(Floor sourceFloor) throws Exception
+	public FloorViewerData(Floor sourceFloor)
 	{
 		super();
 		this.sourceFloor = sourceFloor;
@@ -85,7 +80,7 @@ public class FloorViewerData extends AbstractEntity implements FloorViewable
 		}
 	}
 
-	private Vector<String> getWallTypeNameList() throws Exception
+	private Vector<String> getWallTypeNameList()
 	{
 		if (lazyWallTypeNameList == null)
 		{
@@ -123,7 +118,7 @@ public class FloorViewerData extends AbstractEntity implements FloorViewable
 	}
 
 	@Override
-	public String tryGetZoneNameAt(int x, int y) throws Exception
+	public String tryGetZoneNameAt(int x, int y)
 	{
 		if (zoneNameMap == null)
 			return "-";
@@ -132,7 +127,7 @@ public class FloorViewerData extends AbstractEntity implements FloorViewable
 
 	@Override
 	public Vector<ActionLink> getActionLinkListAt(int x, int y)
-			throws Exception
+
 	{
 		if (sourceFloor == null)
 			return new Vector<ActionLink>();

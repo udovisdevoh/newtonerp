@@ -15,16 +15,15 @@ import newtonERP.sourceCodeBuilder.SourceCodeBuilder;
 public class ViewModuleSource extends AbstractAction
 {
 	/**
-	 * @throws Exception si création fail
 	 */
-	public ViewModuleSource() throws Exception
+	public ViewModuleSource()
 	{
 		super(new ModuleEntity());
 	}
 
 	@Override
 	public StaticTextEntity doAction(AbstractEntity entity,
-			Hashtable<String, String> parameters) throws Exception
+			Hashtable<String, String> parameters)
 	{
 		ModuleEntity moduleEntity = (ModuleEntity) entity;
 		return new StaticTextEntity(SourceCodeBuilder

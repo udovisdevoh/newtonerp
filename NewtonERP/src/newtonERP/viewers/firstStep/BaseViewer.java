@@ -17,9 +17,8 @@ public class BaseViewer
 	 * donne le code html des element de base du haut
 	 * @param entity l'entity cntenant ces information
 	 * @return le code html
-	 * @throws Exception remonte
 	 */
-	public static String getTopHtmlCode(BaseViewerData entity) throws Exception
+	public static String getTopHtmlCode(BaseViewerData entity)
 	{
 		String html = "";
 		if (entity.getBackLink() != null)
@@ -58,10 +57,9 @@ public class BaseViewer
 	 * donne le code html des element de base du bas
 	 * @param entity l'entity cntenant ces information
 	 * @return le code html
-	 * @throws Exception remonte
 	 */
 	public static String getBottomHtmlCode(BaseViewerData entity)
-			throws Exception
+
 	{
 		String html = "";
 		html += "<p>";

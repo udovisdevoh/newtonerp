@@ -16,10 +16,9 @@ public class BandDiagramViewerData extends AbstractEntity implements
 
 	/**
 	 * @param diagramInfo information interne du diagramme
-	 * @throws Exception si ça fail
 	 */
 	public BandDiagramViewerData(Hashtable<String, Double> diagramInfo)
-			throws Exception
+
 	{
 		super();
 		this.diagramInfo = diagramInfo;

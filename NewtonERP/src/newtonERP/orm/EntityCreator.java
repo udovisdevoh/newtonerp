@@ -8,7 +8,6 @@ import java.util.Vector;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.exceptions.OrmEntityCreationException;
-import newtonERP.orm.exceptions.OrmException;
 import newtonERP.orm.field.Field;
 
 /**
@@ -26,10 +25,9 @@ public class EntityCreator
 	 * @param rs the result set from which we will create our entities
 	 * @param searchEntity the entities from which we searched
 	 * @return a vector of ormizable entities
-	 * @throws OrmException an exception that can occur in the orm
 	 */
 	public static Vector<AbstractOrmEntity> createEntitiesFromResultSet(
-			ResultSet rs, AbstractOrmEntity searchEntity) throws OrmException
+			ResultSet rs, AbstractOrmEntity searchEntity)
 	{
 		Vector<AbstractOrmEntity> returnedEntities = new Vector<AbstractOrmEntity>();
 

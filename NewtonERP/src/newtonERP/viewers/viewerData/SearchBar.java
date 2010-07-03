@@ -26,11 +26,10 @@ public class SearchBar extends AbstractEntity
 	 * @param currentOrder ordre actuel
 	 * @param limit limite de recherche
 	 * @param offset offset de recherche
-	 * @throws Exception si ça fail
 	 */
 	public SearchBar(String targetUrl, String currentSearchEntry,
 			AbstractOrmEntity concernedEntity, String currentOrder, int limit,
-			int offset) throws Exception
+			int offset)
 	{
 		super();
 		this.targetUrl = targetUrl;

@@ -17,9 +17,8 @@ import newtonERP.orm.field.type.FieldText;
 public class SearchEntity extends AbstractOrmEntity
 {
 	/**
-	 * @throws Exception si création fail
 	 */
-	public SearchEntity() throws Exception
+	public SearchEntity()
 	{
 		super();
 		setVisibleName("Entité de recherche");
@@ -27,7 +26,7 @@ public class SearchEntity extends AbstractOrmEntity
 	}
 
 	@Override
-	public Fields initFields() throws Exception
+	public Fields initFields()
 	{
 		Vector<Field<?>> fieldList = new Vector<Field<?>>();
 		fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
@@ -38,10 +37,9 @@ public class SearchEntity extends AbstractOrmEntity
 	}
 
 	/**
-	 * @return vraie entité de recherche
-	 * @throws Exception si obtention fail
+	 * @return vraie entité de recherche @ si obtention fail
 	 */
-	public AbstractOrmEntity getEntity() throws Exception
+	public AbstractOrmEntity getEntity()
 	{
 		EntityEntity entityEntity = (EntityEntity) getSingleAccessor(new EntityEntity()
 				.getForeignKeyName());
@@ -56,7 +54,7 @@ public class SearchEntity extends AbstractOrmEntity
 		return entity;
 	}
 
-	private Vector<SearchCriteria> getSearchCriteriaList() throws Exception
+	private Vector<SearchCriteria> getSearchCriteriaList()
 	{
 		PluralAccessor searchCriteriaList = getPluralAccessor("SearchCriteria");
 		Vector<SearchCriteria> searchCriteriaVector = new Vector<SearchCriteria>();
@@ -66,7 +64,7 @@ public class SearchEntity extends AbstractOrmEntity
 	}
 
 	private void addSearchCriteria(AbstractOrmEntity entity,
-			SearchCriteria searchCriteria) throws Exception
+			SearchCriteria searchCriteria)
 	{
 		String key = searchCriteria.getKey();
 		String value = searchCriteria.getValue();

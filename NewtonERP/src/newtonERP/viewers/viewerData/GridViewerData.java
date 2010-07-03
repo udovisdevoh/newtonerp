@@ -19,18 +19,17 @@ public class GridViewerData extends BaseViewerData
 	private boolean spanSimilar = false;
 
 	/**
-	 * @throws Exception si création fails
+	 * s
 	 */
-	public GridViewerData() throws Exception
+	public GridViewerData()
 	{
 		super();
 	}
 
 	/**
 	 * @return the header
-	 * @throws Exception remonte
 	 */
-	public GridCaseData[] getHeader() throws Exception
+	public GridCaseData[] getHeader()
 	{
 		return header;
 	}
@@ -61,9 +60,8 @@ public class GridViewerData extends BaseViewerData
 
 	/**
 	 * @return the cases
-	 * @throws Exception remonte
 	 */
-	public GridCaseData[][] getCases() throws Exception
+	public GridCaseData[][] getCases()
 	{
 		return cases;
 	}

@@ -15,9 +15,8 @@ public class ImageFile extends AbstractEntity
 	/**
 	 * @param alt nom de l'image
 	 * @param url url de l'image
-	 * @throws Exception si ça fail
 	 */
-	public ImageFile(String alt, String url) throws Exception
+	public ImageFile(String alt, String url)
 	{
 		super();
 		this.alt = alt;

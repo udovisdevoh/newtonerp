@@ -18,9 +18,8 @@ public class FieldViewer
 	/**
 	 * @param field field a afficher
 	 * @return les code html
-	 * @throws Exception remonte
 	 */
-	public static String getHtmlCode(Field<?> field) throws Exception
+	public static String getHtmlCode(Field<?> field)
 	{
 		String html;
 		if (field instanceof FieldBool)

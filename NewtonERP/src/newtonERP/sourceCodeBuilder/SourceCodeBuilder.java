@@ -13,10 +13,9 @@ public class SourceCodeBuilder
 	/**
 	 * @param moduleEntity entité du module
 	 * @return code source
-	 * @throws Exception si construction fail
 	 */
 	public static String buildModuleSourceCode(ModuleEntity moduleEntity)
-			throws Exception
+
 	{
 		return ModuleSourceCodeBuilder.build(moduleEntity);
 	}
@@ -24,10 +23,9 @@ public class SourceCodeBuilder
 	/**
 	 * @param entityEntity entité pour laquelle on veut le code source
 	 * @return code source d'une entité
-	 * @throws Exception si construction fail
 	 */
 	public static String buildEntitySourceCode(EntityEntity entityEntity)
-			throws Exception
+
 	{
 		return EntitySourceCodeBuilder.build(entityEntity);
 	}
@@ -35,10 +33,9 @@ public class SourceCodeBuilder
 	/**
 	 * @param actionEntity entité de l'action
 	 * @return code source de l'action
-	 * @throws Exception si construction fail
 	 */
 	public static String buildActionSourceCode(ActionEntity actionEntity)
-			throws Exception
+
 	{
 		return ActionSourceCodeBuilder.build(actionEntity);
 	}
@@ -46,20 +43,18 @@ public class SourceCodeBuilder
 	/**
 	 * @param moduleEntity module entity
 	 * @return source class file name
-	 * @throws Exception si ça fail
 	 */
 	public static String buildModuleClassFileName(ModuleEntity moduleEntity)
-			throws Exception
+
 	{
 		return ModuleSourceCodeBuilder.buildClassFileName(moduleEntity);
 	}
 
 	/**
 	 * @param moduleEntity module entity
-	 * @throws Exception si ça fail
 	 */
 	public static void createDirectoriesForModule(ModuleEntity moduleEntity)
-			throws Exception
+
 	{
 		ModuleSourceCodeBuilder.createDirectories(moduleEntity);
 	}
@@ -67,10 +62,9 @@ public class SourceCodeBuilder
 	/**
 	 * @param moduleEntity module entity
 	 * @return package path
-	 * @throws Exception si ça fail
 	 */
 	public static String getModulePackagePath(ModuleEntity moduleEntity)
-			throws Exception
+
 	{
 		return ModuleSourceCodeBuilder.getPackagePath(moduleEntity);
 	}

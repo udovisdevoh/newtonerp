@@ -17,10 +17,9 @@ public class AccessorManager
 	 * 
 	 * @param sourceEntity the source entity
 	 * @param foreignEntityDefinition entity of the foreign entity
-	 * @throws Exception a general exception
 	 */
 	public static void addAccessor(AbstractOrmEntity sourceEntity,
-			AbstractOrmEntity foreignEntityDefinition) throws Exception
+			AbstractOrmEntity foreignEntityDefinition)
 	{
 		try
 		{
@@ -49,10 +48,9 @@ public class AccessorManager
 	/**
 	 * @param sourceEntity the source entity
 	 * @param foreignEntityDefinition entity of the foreign entity
-	 * @throws Exception a general exception
 	 */
 	public static final void addFlagPool(AbstractOrmEntity sourceEntity,
-			AbstractOrmEntity foreignEntityDefinition) throws Exception
+			AbstractOrmEntity foreignEntityDefinition)
 	{
 		FlagPoolManager.addFlagPool(sourceEntity, foreignEntityDefinition);
 	}
@@ -60,10 +58,9 @@ public class AccessorManager
 	/**
 	 * @param entity Entité source
 	 * @param foreignEntity Entité cible
-	 * @throws Exception a general exception
 	 */
 	public static final void addListOfValue(AbstractOrmEntity entity,
-			AbstractOrmEntity foreignEntity) throws Exception
+			AbstractOrmEntity foreignEntity)
 	{
 		ListOfValueManager.addListOfValue(entity, foreignEntity);
 	}
@@ -71,10 +68,9 @@ public class AccessorManager
 	/**
 	 * @param abstractOrmEntity entité source
 	 * @return liste des accessors plusieurs à plusieurs pour l'entité source
-	 * @throws Exception si obtention de la liste d'accessor fail
 	 */
 	public static final TreeMap<String, PluralAccessor> getPluralAccessorList(
-			AbstractOrmEntity abstractOrmEntity) throws Exception
+			AbstractOrmEntity abstractOrmEntity)
 	{
 		return PluralAccessorManager.getPluralAccessorList(abstractOrmEntity);
 	}
@@ -82,10 +78,9 @@ public class AccessorManager
 	/**
 	 * @param abstractOrmEntity entité source
 	 * @return liste des accessors 1 à 1 et plusieurs à 1 pour l'entité source
-	 * @throws Exception si obtention fail
 	 */
 	public static final TreeMap<String, AbstractOrmEntity> getSingleAccessorList(
-			AbstractOrmEntity abstractOrmEntity) throws Exception
+			AbstractOrmEntity abstractOrmEntity)
 	{
 		return SingleAccessorManager.getSingleAccessorList(abstractOrmEntity);
 	}
@@ -94,11 +89,10 @@ public class AccessorManager
 	 * @param abstractOrmEntity entité
 	 * @param accessorName nom de l'accessor
 	 * @return accessor
-	 * @throws Exception si obtention fail
 	 */
 	public static AbstractOrmEntity getSingleAccessor(
 			AbstractOrmEntity abstractOrmEntity, String accessorName)
-			throws Exception
+
 	{
 		return SingleAccessorManager.getSingleAccessor(abstractOrmEntity,
 				accessorName);

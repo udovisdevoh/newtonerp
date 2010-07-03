@@ -27,9 +27,8 @@ public interface PromptViewable
 
 	/**
 	 * @return the current module
-	 * @throws Exception lorsque l'obtention du module courant échoue
 	 */
-	public Module getCurrentModule() throws Exception;
+	public Module getCurrentModule();
 
 	/**
 	 * @param fieldKeyName the field key name
@@ -56,9 +55,8 @@ public interface PromptViewable
 
 	/**
 	 * @return url facultatif de retour vers autre page
-	 * @throws Exception si obtention fail
 	 */
-	public String getBackLinkUrl() throws Exception;
+	public String getBackLinkUrl();
 
 	/**
 	 * @return nom du url facultatif de retour

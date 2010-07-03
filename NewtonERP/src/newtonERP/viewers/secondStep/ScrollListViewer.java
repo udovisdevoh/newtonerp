@@ -14,10 +14,9 @@ public class ScrollListViewer
 	/**
 	 * @param entity liste à afficher
 	 * @return code HTML
-	 * @throws Exception si obtention fail
 	 */
 	public static String getHtmlContent(ScrollListViewable entity)
-			throws Exception
+
 	{
 		String html = "";
 

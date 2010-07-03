@@ -23,9 +23,8 @@ public class Authentication
 
 	/**
 	 * @return Entité représentant l'utilisateur courant
-	 * @throws Exception si ça fail
 	 */
-	public static User getCurrentUser() throws Exception
+	public static User getCurrentUser()
 	{
 		User user = new User();
 		user.setData("name", getCurrentUserName());

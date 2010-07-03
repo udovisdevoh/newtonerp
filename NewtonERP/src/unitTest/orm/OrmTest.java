@@ -15,7 +15,7 @@ public class OrmTest extends TestCase
      * 
      * @see junit.framework.TestCase#setUp()
      */
-    protected void setUp() throws Exception
+    protected void setUp()
     {
 	super.setUp();
     }
@@ -25,17 +25,16 @@ public class OrmTest extends TestCase
      * 
      * @see junit.framework.TestCase#tearDown()
      */
-    protected void tearDown() throws Exception
+    protected void tearDown()
     {
 	super.tearDown();
     }
 
     /**
      * Tests if the select doesn't return null
-     * @throws OrmException
      */
     /*
-     * public void testSelectNotNull() throws OrmException { Vector<String>
+     * public void testSelectNotNull() { Vector<String>
      * searchCriterias = new Vector<String>();
      * searchCriterias.add("Newton_name like %marcel%");
      * 

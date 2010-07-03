@@ -24,9 +24,8 @@ import newtonERP.orm.field.type.FieldText;
 public class EffectEntity extends AbstractOrmEntity
 {
 	/**
-	 * @throws Exception si création fail
 	 */
-	public EffectEntity() throws Exception
+	public EffectEntity()
 	{
 		super();
 		setVisibleName("Effet");
@@ -36,7 +35,7 @@ public class EffectEntity extends AbstractOrmEntity
 	}
 
 	@Override
-	public Fields initFields() throws Exception
+	public Fields initFields()
 	{
 		Vector<Field<?>> fieldList = new Vector<Field<?>>();
 		fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
@@ -52,11 +51,10 @@ public class EffectEntity extends AbstractOrmEntity
 	 * Exécute l'effet d'une tâche
 	 * @param entityParameters paramètres de l'entité
 	 * @param isStraightSearch si c'est une recherche
-	 * @return entité viewable en tant que résultat de la tâche
-	 * @throws Exception si exécution fail
+	 * @return entité viewable en tant que résultat de la tâche 
 	 */
 	public AbstractEntity execute(Hashtable<String, String> entityParameters,
-			boolean isStraightSearch) throws Exception
+			boolean isStraightSearch)
 	{
 		AbstractEntity returnEntity = null;
 
@@ -78,7 +76,7 @@ public class EffectEntity extends AbstractOrmEntity
 
 	private AbstractEntity doBaseAction(BaseAction baseAction,
 			AbstractOrmEntity entity, Hashtable<String, String> parameters)
-			throws Exception
+
 	{
 		if (baseAction.getSystemName().equals("Get"))
 			return entity.getUI(parameters);
@@ -90,12 +88,12 @@ public class EffectEntity extends AbstractOrmEntity
 			return entity.getList(parameters);
 		else if (baseAction.getSystemName().equals("GetList"))
 			return entity.editUI(parameters);
-		throw new Exception("Base Entity type not found");
+		throw new RuntimeException("Base Entity type not found");
 	}
 
 	private Vector<AbstractOrmEntity> getAffectedEntityList(
 			Hashtable<String, String> entityParameters, boolean isStraightSearch)
-			throws Exception
+
 	{
 		AbstractOrmEntity searchEntity = getSearchEntity();
 
@@ -106,7 +104,7 @@ public class EffectEntity extends AbstractOrmEntity
 		return Orm.select(searchEntity);
 	}
 
-	private AbstractOrmEntity getSearchEntity() throws Exception
+	private AbstractOrmEntity getSearchEntity()
 	{
 		SearchEntity searchEntity = (SearchEntity) getSingleAccessor(new SearchEntity()
 				.getForeignKeyName());
@@ -115,13 +113,13 @@ public class EffectEntity extends AbstractOrmEntity
 	}
 
 	private Hashtable<String, String> getParameters(AbstractOrmEntity entity)
-			throws Exception
+
 	{
 		Hashtable<String, String> rawParameters = getRawParameters();
 		return parseDynamicParameters(rawParameters, entity);
 	}
 
-	private Hashtable<String, String> getRawParameters() throws Exception
+	private Hashtable<String, String> getRawParameters()
 	{
 		Hashtable<String, String> rawParameters = new Hashtable<String, String>();
 
@@ -162,7 +160,7 @@ public class EffectEntity extends AbstractOrmEntity
 				entity.getDataString(variable));
 	}
 
-	private AbstractAction getAction() throws Exception
+	private AbstractAction getAction()
 	{
 		ActionEntity actionEntity = getActionEntity();
 
@@ -171,7 +169,7 @@ public class EffectEntity extends AbstractOrmEntity
 		return actionEntity.getAction();
 	}
 
-	private ActionEntity getActionEntity() throws Exception
+	private ActionEntity getActionEntity()
 	{
 		return (ActionEntity) getSingleAccessor(new ActionEntity()
 				.getForeignKeyName());

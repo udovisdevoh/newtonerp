@@ -17,16 +17,15 @@ public class State extends AbstractOrmEntity
 {
 
 	/**
-	 * @throws Exception a general exception
 	 */
-	public State() throws Exception
+	public State()
 	{
 		super();
 		setVisibleName("Provinces / États");
 	}
 
 	@Override
-	public Fields initFields() throws Exception
+	public Fields initFields()
 	{
 		FieldString name = new FieldString("Nom", "name");
 		name.setNaturalKey(true);

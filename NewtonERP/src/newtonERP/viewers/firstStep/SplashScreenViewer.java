@@ -16,9 +16,8 @@ public class SplashScreenViewer
 	/**
 	 * @param entity splash screen à voir
 	 * @return html du splash screen
-	 * @throws Exception si ça fail
 	 */
-	public static String getHtmlCode(SplashScreen entity) throws Exception
+	public static String getHtmlCode(SplashScreen entity)
 	{
 		String htmlCode = "";
 		for (ImageFile imageFile : entity.getImageFileList())

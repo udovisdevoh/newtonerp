@@ -16,13 +16,11 @@ public interface CheckListViewable
 
 	/**
 	 * @return a tree map of the available elements
-	 * @throws Exception a general exception
 	 */
-	public TreeMap<String, String> getAvailableElementList() throws Exception;
+	public TreeMap<String, String> getAvailableElementList();
 
 	/**
 	 * @return a hash set of cheked elements
-	 * @throws Exception a general exception
 	 */
-	public HashSet<String> getCheckedElementList() throws Exception;
+	public HashSet<String> getCheckedElementList();
 }

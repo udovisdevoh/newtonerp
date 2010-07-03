@@ -26,11 +26,10 @@ public class CommandRouteur
 	 * @param moduleGetter la nom du modulGetter a utiliser
 	 * @param parameter parametre a passer a l'action
 	 * @return une entity viewable
-	 * @throws Exception remonte
 	 */
 	public AbstractEntity routeCommand(String moduleName, String actionName,
 			String entityName, Hashtable<String, String> parameter)
-			throws Exception
+
 	{
 
 		Module module = ListModule.getModule(moduleName);

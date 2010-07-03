@@ -23,15 +23,14 @@ import newtonERP.viewers.viewerData.ListViewerData;
 public class ModuleEntity extends AbstractOrmEntity
 {
 	/**
-	 * @throws Exception si création fail
 	 */
-	public ModuleEntity() throws Exception
+	public ModuleEntity()
 	{
 		super();
 		setVisibleName("Module");
 	}
 
-	protected Fields preInitFields() throws Exception
+	protected Fields preInitFields()
 	{
 		// always build the field from initField and not from DB, thats mean
 		// that we cannot add a dynamic Field, this should not be done anywhere
@@ -40,7 +39,7 @@ public class ModuleEntity extends AbstractOrmEntity
 	}
 
 	@Override
-	public Fields initFields() throws Exception
+	public Fields initFields()
 	{
 		FieldString visibleName = new FieldString("Nom visible", "visibleName");
 		visibleName.setNaturalKey(true);
@@ -53,10 +52,9 @@ public class ModuleEntity extends AbstractOrmEntity
 	}
 
 	/**
-	 * @return vrai module
-	 * @throws Exception si obtention fail
+	 * @return vrai module @ si obtention fail
 	 */
-	public Module getModule() throws Exception
+	public Module getModule()
 	{
 		return ListModule.getModule(getModuleName());
 	}
@@ -68,7 +66,7 @@ public class ModuleEntity extends AbstractOrmEntity
 
 	@Override
 	public ListViewerData getList(Hashtable<String, String> parameters)
-			throws Exception
+
 	{
 		parameters.put(getPrimaryKeyName(), "&");
 
@@ -83,10 +81,9 @@ public class ModuleEntity extends AbstractOrmEntity
 	}
 
 	/**
-	 * @return list of entity entity for this module
-	 * @throws Exception si ça fail
+	 * @return list of entity entity for this module @ si ça fail
 	 */
-	public Vector<EntityEntity> getEntityEntityList() throws Exception
+	public Vector<EntityEntity> getEntityEntityList()
 	{
 		PluralAccessor accessor = getPluralAccessor(new EntityEntity()
 				.getSystemName());
@@ -97,10 +94,9 @@ public class ModuleEntity extends AbstractOrmEntity
 	}
 
 	/**
-	 * @return list of action entity for this module
-	 * @throws Exception si ça fail
+	 * @return list of action entity for this module @ si ça fail
 	 */
-	public Vector<ActionEntity> getActionEntityList() throws Exception
+	public Vector<ActionEntity> getActionEntityList()
 	{
 		PluralAccessor accessor = getPluralAccessor(new ActionEntity()
 				.getSystemName());

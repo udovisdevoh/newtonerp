@@ -1,11 +1,9 @@
 package newtonERP.orm.field.type;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 
 import newtonERP.logging.Logger;
-import newtonERP.module.exception.InvalidOperatorException;
 
 /**
  * Date field for entities
@@ -23,10 +21,8 @@ public class FieldDate extends FieldDateTime
 	 * @param name nom du champ qui sera visible par l'utilisateur
 	 * @param shortName nom du champ qui sera utiliser a l'interne
 	 * @param data donne du champ
-	 * @throws InvalidOperatorException remonte
 	 */
 	public FieldDate(String name, String shortName, GregorianCalendar data)
-			throws InvalidOperatorException
 	{
 		super(name, shortName, data);
 	}
@@ -34,16 +30,14 @@ public class FieldDate extends FieldDateTime
 	/**
 	 * @param name nom du champ qui sera visible par l'utilisateur
 	 * @param shortName nom du champ qui sera utiliser a l'interne
-	 * @throws InvalidOperatorException remonte
 	 */
 	public FieldDate(String name, String shortName)
-			throws InvalidOperatorException
 	{
 		super(name, shortName);
 	}
 
 	@Override
-	public void setData(String date) throws ParseException
+	public void setData(String date)
 	{
 		try
 		{

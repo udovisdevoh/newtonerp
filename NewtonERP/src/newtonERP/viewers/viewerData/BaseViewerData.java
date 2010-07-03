@@ -22,9 +22,8 @@ public class BaseViewerData extends AbstractEntity
 
 	/**
 	 * constructeur vide
-	 * @throws Exception remonte
 	 */
-	public BaseViewerData() throws Exception
+	public BaseViewerData()
 	{
 		super();
 	}

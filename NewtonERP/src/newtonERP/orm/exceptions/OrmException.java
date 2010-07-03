@@ -5,7 +5,7 @@ package newtonERP.orm.exceptions;
  * 
  * @author r3lacasgu, r3hallejo
  */
-public class OrmException extends Exception
+public class OrmException extends RuntimeException
 {
 	/**
 	 * @param message the message of the exception

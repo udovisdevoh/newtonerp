@@ -14,10 +14,9 @@ public class CheckListViewer
 	/**
 	 * @param entity the checklist viewable entity
 	 * @return the html code
-	 * @throws Exception general exception
 	 */
 	@SuppressWarnings("null")
-	public static String getHtmlCode(CheckListViewable entity) throws Exception
+	public static String getHtmlCode(CheckListViewable entity)
 	{
 		String html = "";
 		String isChecked;

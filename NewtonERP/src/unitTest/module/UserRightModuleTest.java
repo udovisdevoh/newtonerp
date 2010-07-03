@@ -23,20 +23,18 @@ public class UserRightModuleTest extends TestCase
 {
 
     /**
-     * @throws Exception remonte
      */
     @Before
-    public void setUp() throws Exception
+    public void setUp()
     {
 	ListModule.initAllModule();
 	Orm.connect();
     }
 
     /**
-     * @throws Exception remonte
      */
     @After
-    public void tearDown() throws Exception
+    public void tearDown()
     {
 	// TODO : Complete me
     }
@@ -46,10 +44,9 @@ public class UserRightModuleTest extends TestCase
      * {@link modules.userRightModule.actions.RightCheck#doAction(newtonERP.module.AbstractEntity, java.util.Hashtable)}
      * .
      * 
-     * @throws Exception remonte
      */
     @Test
-    public void testRightCheck() throws Exception
+    public void testRightCheck()
     {
 	Hashtable<String, String> rightParam = new Hashtable<String, String>();
 	Module module = ListModule.getModule("UserRightModule");

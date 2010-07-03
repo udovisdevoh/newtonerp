@@ -19,9 +19,8 @@ import newtonERP.orm.field.type.FieldText;
 public class Specification extends AbstractOrmEntity
 {
 	/**
-	 * @throws Exception si création fail
 	 */
-	public Specification() throws Exception
+	public Specification()
 	{
 		super();
 		setVisibleName("Spécification");
@@ -29,7 +28,7 @@ public class Specification extends AbstractOrmEntity
 	}
 
 	@Override
-	public Fields initFields() throws Exception
+	public Fields initFields()
 	{
 		Vector<Field<?>> fieldList = new Vector<Field<?>>();
 
@@ -43,11 +42,10 @@ public class Specification extends AbstractOrmEntity
 	/**
 	 * @param entityParameters paramètres de l'entité
 	 * @param isStraightSearch si c'est une recherche directe
-	 * @return true si la spécification est satisfaite
-	 * @throws Exception si test fail
+	 * @return true si la spécification est satisfaite @ si test fail
 	 */
 	public boolean isSatisfied(Hashtable<String, String> entityParameters,
-			boolean isStraightSearch) throws Exception
+			boolean isStraightSearch)
 	{
 		Logger
 				.info("[TASKMODULE] Vérification à savoir si une spécification est satisfaite");
@@ -73,7 +71,7 @@ public class Specification extends AbstractOrmEntity
 		return false;
 	}
 
-	private AbstractOrmEntity getSearchEntity() throws Exception
+	private AbstractOrmEntity getSearchEntity()
 	{
 		SearchEntity searchEntity = (SearchEntity) getSingleAccessor(new SearchEntity()
 				.getForeignKeyName());

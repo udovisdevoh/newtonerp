@@ -29,10 +29,9 @@ public class PromptViewer
 	 * Return the html code for the web page
 	 * @param promptData the entity to view
 	 * @return html
-	 * @throws Exception general exception
 	 */
 	public static String getHtmlCode(PromptViewerData promptData)
-			throws Exception
+
 	{
 		AbstractOrmEntity ormEntity = null;
 		String html = "";
@@ -143,7 +142,7 @@ public class PromptViewer
 	}
 
 	private static String getMultipleAccessorLinkList(AbstractOrmEntity entity,
-			boolean isReadOnly) throws Exception
+			boolean isReadOnly)
 	{
 		String html = "";
 
@@ -216,7 +215,7 @@ public class PromptViewer
 	}
 
 	private static String getSingleAccessorLinkList(AbstractOrmEntity entity,
-			boolean isReadOnly) throws Exception
+			boolean isReadOnly)
 	{
 		String html = "";
 

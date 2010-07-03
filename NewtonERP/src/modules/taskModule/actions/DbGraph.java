@@ -26,16 +26,15 @@ public class DbGraph extends AbstractAction
 	private int maxY;
 
 	/**
-	 * @throws Exception si création fail
 	 */
-	public DbGraph() throws Exception
+	public DbGraph()
 	{
 		super(null);
 	}
 
 	@Override
 	public BaseViewerData doAction(AbstractEntity sourceFieldEntity,
-			Hashtable<String, String> parameters) throws Exception
+			Hashtable<String, String> parameters)
 	{
 		maxX = 0;
 		maxY = 0;
@@ -64,7 +63,7 @@ public class DbGraph extends AbstractAction
 		int nextx;
 		int presenty;
 
-		public visualGraph() throws Exception
+		public visualGraph()
 		{
 			nextx = 0;
 			presenty = 0;
@@ -79,7 +78,7 @@ public class DbGraph extends AbstractAction
 			}
 		}
 
-		public void designGraph() throws Exception
+		public void designGraph()
 		{
 			for (VisualEntity entity : vEntity.values())
 			{
@@ -90,7 +89,7 @@ public class DbGraph extends AbstractAction
 			}
 		}
 
-		public void drawGraph(VisualEntity entity) throws Exception
+		public void drawGraph(VisualEntity entity)
 		{
 			if (nextx > 500)
 			{
@@ -153,9 +152,8 @@ public class DbGraph extends AbstractAction
 
 		/**
 		 * @return l'image généré
-		 * @throws Exception remonte
 		 */
-		public BufferedImage getDrawEntity() throws Exception
+		public BufferedImage getDrawEntity()
 		{
 			BufferedImage bi = new BufferedImage(width + 2 * marge + pad,
 					height + 2 * marge, BufferedImage.TYPE_BYTE_BINARY);

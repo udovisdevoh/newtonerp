@@ -50,11 +50,9 @@ public abstract class Viewer
 	 * @param moduleName the module of entity
 	 * @param actionName the action to perform
 	 * @return the viewer
-	 * @throws ViewerException an exception that can occur in viewers
-	 * @throws Exception general exception
 	 */
 	public static String getHtmlCode(AbstractEntity entity, String moduleName,
-			String actionName) throws Exception
+			String actionName)
 	{
 		String viewerHtml = "";
 		if (entity instanceof BaseViewerData)
@@ -100,10 +98,9 @@ public abstract class Viewer
 	 * @param actionName the action name
 	 * 
 	 * @return html
-	 * @throws Exception si ça fail
 	 */
 	public static String getHeader(String moduleName, String actionName)
-			throws Exception
+
 	{
 		String pageTitle = buildPageTitle(moduleName, actionName);
 
@@ -118,18 +115,20 @@ public abstract class Viewer
 
 		// css******************************************************************
 		header += "<link rel=\"stylesheet\" type=\"text/css\" title=\"base\" href=\""
-				+ ConfigManager.getStyleFileScreen() + "\" media=\"screen\" />";
+				+ ConfigManager.loadStringProperty("style-screen")
+				+ "\" media=\"screen\" />";
 		header += "<link rel=\"stylesheet\" type=\"text/css\" title=\"base\" href=\""
-				+ ConfigManager.getStyleFilePrint() + "\" media=\"print\" />";
+				+ ConfigManager.loadStringProperty("style-print")
+				+ "\" media=\"print\" />";
 		header += "</head><body>";
 
-		if (ConfigManager.isDisplayTopTitle())
+		if (ConfigManager.loadBoolProperty("show-top-title", true))
 			header += "<div id=\"header\"><h1>" + pageTitle + "</h1></div>";
 
 		return header;
 	}
 
-	private static String buildTopMenu() throws Exception
+	private static String buildTopMenu()
 	{
 		String html = "";
 
@@ -157,9 +156,9 @@ public abstract class Viewer
 	}
 
 	private static String buildPageTitle(String moduleName, String actionName)
-			throws Exception
+
 	{
-		String title = ConfigManager.getDisplayName();
+		String title = ConfigManager.loadStringProperty("display-name");
 
 		if (moduleName != null && !moduleName.equals("null"))
 			title += " - " + moduleName;
@@ -174,9 +173,8 @@ public abstract class Viewer
 	 * 
 	 * @param moduleName the module name
 	 * @return html
-	 * @throws Exception si obtention fail
 	 */
-	public static String getLeftMenu(String moduleName) throws Exception
+	public static String getLeftMenu(String moduleName)
 	{
 		Iterator<String> keys = ListModule.getAllModules().iterator();
 

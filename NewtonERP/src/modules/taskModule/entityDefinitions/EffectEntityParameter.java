@@ -15,16 +15,15 @@ public class EffectEntityParameter extends AbstractOrmEntity
 {
 
 	/**
-	 * @throws Exception si création fail
 	 */
-	public EffectEntityParameter() throws Exception
+	public EffectEntityParameter()
 	{
 		super();
 		setVisibleName("Paramètre d'éffet");
 	}
 
 	@Override
-	public Fields initFields() throws Exception
+	public Fields initFields()
 	{
 		Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
 		fieldsInit.add(new FieldInt("Effet", "effectEntityID"));

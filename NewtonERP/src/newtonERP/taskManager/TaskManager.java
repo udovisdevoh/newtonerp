@@ -27,10 +27,9 @@ public class TaskManager
 	 * @param entity entité pour laquelle on veut exécuter les tâches
 	 * @param primaryKeyValue valeur de clef primaire
 	 * @return retour de l'action d'une tâche exécutée (s'il y a lieu)
-	 * @throws Exception si exécution fail
 	 */
 	public static AbstractEntity executeTasks(AbstractOrmEntity entity,
-			int primaryKeyValue) throws Exception
+			int primaryKeyValue)
 	{
 		Hashtable<String, String> entityParameters = new Hashtable<String, String>();
 
@@ -45,10 +44,9 @@ public class TaskManager
 	/**
 	 * @param entity entité pour laquelle on veut exécuter les tâches
 	 * @return retour de l'action d'une tâche exécutée (s'il y a lieu)
-	 * @throws Exception si exécution des tâche fail
 	 */
 	public static AbstractEntity executeTasks(AbstractOrmEntity entity)
-			throws Exception
+
 	{
 		Hashtable<String, String> entityParameters = new Hashtable<String, String>();
 
@@ -66,10 +64,9 @@ public class TaskManager
 	 *            lieu
 	 * @param entityParameters paramètres de l'entité
 	 * @return entité viewable de retour
-	 * @throws Exception si exécution fail
 	 */
 	public static AbstractEntity executeTasks(AbstractOrmEntity entity,
-			Hashtable<String, String> entityParameters) throws Exception
+			Hashtable<String, String> entityParameters)
 	{
 		return executeTasks(entity.getSystemName(), entityParameters);
 	}
@@ -78,10 +75,9 @@ public class TaskManager
 	 * @param entityName nom de l'entité
 	 * @param entityParameters paramètres de l'entité
 	 * @return enitité visible de retour
-	 * @throws Exception si exécution fail
 	 */
 	public static AbstractEntity executeTasks(String entityName,
-			Hashtable<String, String> entityParameters) throws Exception
+			Hashtable<String, String> entityParameters)
 	{
 		if (entityName == null)
 			return null;
@@ -102,13 +98,13 @@ public class TaskManager
 	}
 
 	private static boolean isEntityRelatedToTaskModule(String entityName)
-			throws Exception
+
 	{
 		return getTaskModuleEntityDefinitionNameList().contains(entityName);
 	}
 
 	private static Vector<String> getTaskModuleEntityDefinitionNameList()
-			throws Exception
+
 	{
 		if (taskModuleEntityDefinitionNameList == null)
 		{
@@ -127,7 +123,7 @@ public class TaskManager
 	}
 
 	private static Collection<TaskEntity> getConcernedTaskList(String entityName)
-			throws Exception
+
 	{
 		Vector<TaskEntity> concernedTaskList = TaskCache
 				.getConcernedTaskList(entityName);
@@ -171,7 +167,7 @@ public class TaskManager
 	}
 
 	private static PluralAccessor getTaskList(PluralAccessor specificationList)
-			throws Exception
+
 	{
 		PluralAccessor taskEntityList = new PluralAccessor(new TaskEntity());
 
@@ -187,7 +183,7 @@ public class TaskManager
 	}
 
 	private static PluralAccessor getSpecificationEntityList(
-			PluralAccessor searchEntityList) throws Exception
+			PluralAccessor searchEntityList)
 	{
 		PluralAccessor specificationEntityList = new PluralAccessor(
 				new Specification());
@@ -204,13 +200,13 @@ public class TaskManager
 	}
 
 	private static PluralAccessor getSearchEntityList(EntityEntity entityEntity)
-			throws Exception
+
 	{
 		return entityEntity.getPluralAccessor("SearchEntity");
 	}
 
 	private static EntityEntity getEntityEntity(String entityName)
-			throws Exception
+
 	{
 		EntityEntity searchEntity = new EntityEntity();
 		searchEntity.initFields();
@@ -223,10 +219,9 @@ public class TaskManager
 	 * @param searchEntities entités pour lesquelles on doit possiblement
 	 *            effectuer des tâches
 	 * @param entityParameters paramètres de l'entité
-	 * @throws Exception si exécution fail
 	 */
 	public static void executeTasks(Vector<AbstractOrmEntity> searchEntities,
-			Hashtable<String, String> entityParameters) throws Exception
+			Hashtable<String, String> entityParameters)
 	{
 		if (searchEntities.size() > 0)
 			executeTasks(searchEntities.get(0), entityParameters);

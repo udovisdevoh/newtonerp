@@ -19,9 +19,8 @@ import newtonERP.orm.field.type.FieldInt;
 public class TaskEntity extends AbstractOrmEntity
 {
 	/**
-	 * @throws Exception si création fail
 	 */
-	public TaskEntity() throws Exception
+	public TaskEntity()
 	{
 		super();
 		setVisibleName("Tâche automatisée");
@@ -30,7 +29,7 @@ public class TaskEntity extends AbstractOrmEntity
 	}
 
 	@Override
-	public Fields initFields() throws Exception
+	public Fields initFields()
 	{
 		FieldInt specification = new FieldInt("Specification",
 				new Specification().getForeignKeyName());
@@ -52,17 +51,17 @@ public class TaskEntity extends AbstractOrmEntity
 	/**
 	 * @param entityParameters paramètres de l'entité
 	 * @param isStraightSearch si c'est une recherche directe
-	 * @return true si la spécification de la tâche est satisfaite
-	 * @throws Exception si vérification fail
+	 * @return true si la spécification de la tâche est satisfaite @ si
+	 *         vérification fail
 	 */
 	public boolean isSatisfied(Hashtable<String, String> entityParameters,
-			boolean isStraightSearch) throws Exception
+			boolean isStraightSearch)
 	{
 		return getSpecification().isSatisfied(entityParameters,
 				isStraightSearch);
 	}
 
-	private Specification getSpecification() throws Exception
+	private Specification getSpecification()
 	{
 		return (Specification) getSingleAccessor(new Specification()
 				.getForeignKeyName());
@@ -72,16 +71,15 @@ public class TaskEntity extends AbstractOrmEntity
 	 * Execute l'effet de la tâche
 	 * @param entityParameters paramètres de l'entité
 	 * @param isStraightSearch si c'est une recherche directe
-	 * @return entité viewable, résultat de la tâche
-	 * @throws Exception si execution fail
+	 * @return entité viewable, résultat de la tâche @ si execution fail
 	 */
 	public AbstractEntity execute(Hashtable<String, String> entityParameters,
-			boolean isStraightSearch) throws Exception
+			boolean isStraightSearch)
 	{
 		return getEffect().execute(entityParameters, isStraightSearch);
 	}
 
-	private EffectEntity getEffect() throws Exception
+	private EffectEntity getEffect()
 	{
 		return (EffectEntity) getSingleAccessor(new EffectEntity()
 				.getForeignKeyName());

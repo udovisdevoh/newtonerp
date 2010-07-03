@@ -15,14 +15,13 @@ public class VolatilEntity extends AbstractEntity
 
 	/**
 	 * default constructor
-	 * @throws Exception remonte
 	 */
-	public VolatilEntity() throws Exception
+	public VolatilEntity()
 	{
 		super();
 	}
 
-	public Fields initFields() throws Exception
+	public Fields initFields()
 	{
 		return new VolatileFields();
 	}
@@ -31,10 +30,9 @@ public class VolatilEntity extends AbstractEntity
 	 * @param label étiquette du champ
 	 * @param fieldName nom du champ
 	 * @param currentValue valeur courante
-	 * @throws Exception remonte
 	 */
 	public void addField(String label, String fieldName, String currentValue)
-			throws Exception
+
 	{
 		Field<?> field = new FieldString(label, fieldName);
 		field.setData(currentValue);
@@ -44,9 +42,8 @@ public class VolatilEntity extends AbstractEntity
 	/**
 	 * @param label étiquette du champ
 	 * @param fieldName nom du champ
-	 * @throws Exception remonte
 	 */
-	public void addField(String label, String fieldName) throws Exception
+	public void addField(String label, String fieldName)
 	{
 		addField(label, fieldName, "");
 	}

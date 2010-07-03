@@ -19,11 +19,10 @@ public class ButtonLinkViewer
 	 * @param actionLink representation du lien a effectuer
 	 * @param entity entity d'ou tiré les parametre, peu etre null
 	 * @return bouton de lien
-	 * @throws Exception remonte
 	 */
 
 	public static String getHtmlCode(ActionLink actionLink,
-			AbstractEntity entity) throws Exception
+			AbstractEntity entity)
 	{
 		String html = "";
 		int balloonDivId = LinkViewer.getNextBalloonDivId();
@@ -82,7 +81,7 @@ public class ButtonLinkViewer
 	}
 
 	private static boolean isPermissionAllowed(ActionLink actionLink)
-			throws Exception
+
 	{
 		UserRightModule userRightModule = (UserRightModule) ListModule
 				.getModule("UserRightModule");
@@ -93,9 +92,8 @@ public class ButtonLinkViewer
 	/**
 	 * @param actionLink representation du lien a effectuer
 	 * @return bouton de lien
-	 * @throws Exception remonte
 	 */
-	public static String getHtmlCode(ActionLink actionLink) throws Exception
+	public static String getHtmlCode(ActionLink actionLink)
 	{
 		return getHtmlCode(actionLink, null);
 	}

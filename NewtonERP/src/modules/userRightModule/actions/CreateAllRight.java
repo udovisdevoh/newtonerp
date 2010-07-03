@@ -25,7 +25,7 @@ public class CreateAllRight extends AbstractAction
 	}
 
 	public AbstractEntity doAction(AbstractEntity entity,
-			Hashtable<String, String> parameters) throws Exception
+			Hashtable<String, String> parameters)
 	{
 		Module module = null;
 		Vector<String> allModule;

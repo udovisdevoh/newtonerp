@@ -31,11 +31,8 @@ public class BaseAction extends AbstractAction
 	/**
 	 * @param actionName nom de l'Action (Get, Edit New Delete)
 	 * @param entity l'entity a utiliser
-	 * @throws ActionNotFoundException si l'actionName fournie n'Est pas un nom
-	 *             d'Action valide
 	 */
 	public BaseAction(String actionName, AbstractOrmEntity entity)
-			throws ActionNotFoundException
 	{
 		if (!validActionName.contains(actionName))
 			throw new ActionNotFoundException("BaseAction:" + actionName);
@@ -97,9 +94,9 @@ public class BaseAction extends AbstractAction
 	 */
 	public AbstractEntity doAction(
 			@SuppressWarnings("hiding") AbstractEntity entity,
-			Hashtable<String, String> parameters) throws Exception
+			Hashtable<String, String> parameters)
 	{
-		throw new Exception(
+		throw new RuntimeException(
 				"doAction ne doit pas etre appelé sur un baseAction");
 
 	}

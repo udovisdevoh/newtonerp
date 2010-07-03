@@ -1,13 +1,9 @@
 package modules.userRightModule.entityDefinitions;
 
-import java.text.ParseException;
 import java.util.Vector;
 
 import newtonERP.module.AbstractOrmEntity;
-import newtonERP.module.exception.FieldNotFoundException;
-import newtonERP.module.exception.InvalidOperatorException;
 import newtonERP.orm.Orm;
-import newtonERP.orm.exceptions.OrmException;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.Fields;
 import newtonERP.orm.field.type.FieldInt;
@@ -21,9 +17,8 @@ public class GroupsRight extends AbstractOrmEntity
 	private static Right rightDefinition;
 
 	/**
-	 * @throws Exception remonte
 	 */
-	public GroupsRight() throws Exception
+	public GroupsRight()
 	{
 		rightDefinition = new Right();
 		setVisibleName("Droit de groupe");
@@ -32,11 +27,8 @@ public class GroupsRight extends AbstractOrmEntity
 	/**
 	 * @param groups ID du groupe
 	 * @param right ID du droit
-	 * @throws Exception si création fail
-	 * @throws FieldNotFoundException remonte
-	 * @throws ParseException an exception that can occur during parsing dates
 	 */
-	public GroupsRight(Groups groups, Right right) throws Exception
+	public GroupsRight(Groups groups, Right right)
 	{
 		int groupsIdValue = groups.getPrimaryKeyValue();
 		int rightIdValue = right.getPrimaryKeyValue();
@@ -45,7 +37,7 @@ public class GroupsRight extends AbstractOrmEntity
 		getFields().setData("rightID", rightIdValue);
 	}
 
-	public Fields initFields() throws InvalidOperatorException
+	public Fields initFields()
 	{
 		Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
 		fieldsInit.add(new FieldInt("Numéro de groupe", "groupsID"));
@@ -57,10 +49,8 @@ public class GroupsRight extends AbstractOrmEntity
 	 * permet d'obtenir directement l'entity groups lie a cet user
 	 * 
 	 * @return le group lier
-	 * @throws Exception si get groups entity fail
-	 * @throws OrmException remonte
 	 */
-	public Groups getGroupsEntity() throws Exception
+	public Groups getGroupsEntity()
 	{
 		Groups groupsDefinition = new Groups();
 
@@ -74,10 +64,9 @@ public class GroupsRight extends AbstractOrmEntity
 	/**
 	 * permet d'obtenir directement l'entity Right lier a cet user
 	 * 
-	 * @return le Right lier
-	 * @throws Exception remonte
+	 * @return le Right lier @ remonte
 	 */
-	public Right getRightEntity() throws Exception
+	public Right getRightEntity()
 	{
 		String rightIDValue = getFields().getField("rightID").getDataString();
 

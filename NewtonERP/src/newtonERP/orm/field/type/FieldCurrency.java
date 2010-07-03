@@ -5,7 +5,6 @@ import java.text.NumberFormat;
 import java.util.Locale;
 
 import newtonERP.logging.Logger;
-import newtonERP.module.exception.InvalidOperatorException;
 
 /**
  * Double field in the entities
@@ -23,10 +22,8 @@ public class FieldCurrency extends FieldDouble
 	 * @param name nom du champ qui sera visible par l'utilisateur
 	 * @param shortName nom du champ qui sera utiliser a l'interne
 	 * @param data donne du champ
-	 * @throws InvalidOperatorException remonte
 	 */
 	public FieldCurrency(String name, String shortName, Double data)
-			throws InvalidOperatorException
 	{
 		super(name, shortName, data);
 		df.setGroupingUsed(false);
@@ -35,10 +32,8 @@ public class FieldCurrency extends FieldDouble
 	/**
 	 * @param name nom du champ qui sera visible par l'utilisateur
 	 * @param shortName nom du champ qui sera utiliser a l'interne
-	 * @throws InvalidOperatorException remonte
 	 */
 	public FieldCurrency(String name, String shortName)
-			throws InvalidOperatorException
 	{
 		this(name, shortName, null);
 	}
@@ -55,7 +50,7 @@ public class FieldCurrency extends FieldDouble
 		return df.format(super.getData());
 	}
 
-	public void setData(String data) throws Exception
+	public void setData(String data)
 	{
 		try
 		{

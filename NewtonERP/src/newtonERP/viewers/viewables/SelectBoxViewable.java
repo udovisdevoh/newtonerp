@@ -10,9 +10,8 @@ public interface SelectBoxViewable
 {
 	/**
 	 * @return the elements of the select box
-	 * @throws Exception an exception that can occur in the orm
 	 */
-	public NaturalMap<String, String> getElements() throws Exception;
+	public NaturalMap<String, String> getElements();
 
 	/**
 	 * @return the label name

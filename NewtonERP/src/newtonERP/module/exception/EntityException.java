@@ -6,7 +6,7 @@ package newtonERP.module.exception;
  * 
  *         Exception class representing a global entity exception
  */
-public class EntityException extends Exception
+public class EntityException extends RuntimeException
 {
 	/**
 	 * Default constructor for the entity exception
