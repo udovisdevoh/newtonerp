@@ -2,6 +2,7 @@ package modules.taskModule.actions;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Hashtable;
 
@@ -22,16 +23,15 @@ import newtonERP.viewers.viewerData.BaseViewerData;
 public class GenerateSourceCode extends AbstractAction
 {
 	/**
-	 * @throws Exception si création fail
 	 */
-	public GenerateSourceCode() throws Exception
+	public GenerateSourceCode()
 	{
 		super(new ModuleEntity());
 	}
 
 	@Override
 	public AbstractEntity doAction(AbstractEntity entity,
-			Hashtable<String, String> parameters) throws Exception
+			Hashtable<String, String> parameters)
 	{
 		ModuleEntity moduleEntity = (ModuleEntity) entity;
 
@@ -90,7 +90,7 @@ public class GenerateSourceCode extends AbstractAction
 	}
 
 	private Hashtable<String, String> buildEntityFileAndCodeList(
-			ModuleEntity moduleEntity) throws Exception
+			ModuleEntity moduleEntity)
 	{
 		Hashtable<String, String> fileAndCodeList = new Hashtable<String, String>();
 
@@ -112,7 +112,7 @@ public class GenerateSourceCode extends AbstractAction
 	}
 
 	private Hashtable<String, String> buildActionFileAndCodeList(
-			ModuleEntity moduleEntity) throws Exception
+			ModuleEntity moduleEntity)
 	{
 		Hashtable<String, String> fileAndCodeList = new Hashtable<String, String>();
 
@@ -141,18 +141,26 @@ public class GenerateSourceCode extends AbstractAction
 
 	/**
 	 * @param fileName file name
-	 * @param classCode class code
-	 * @throws Exception si ça fail
+	 * @param classCode class code @ si ça fail
 	 */
 	public static void writeClassFile(String fileName, String classCode)
-			throws Exception
-	{
-		File file = new File(fileName);
-		file.createNewFile();
 
-		FileWriter outFile = new FileWriter(fileName);
-		PrintWriter out = new PrintWriter(outFile);
-		out.print(classCode);
-		out.close();
+	{
+		try
+		{
+			File file = new File(fileName);
+			file.createNewFile();
+
+			FileWriter outFile;
+
+			outFile = new FileWriter(fileName);
+
+			PrintWriter out = new PrintWriter(outFile);
+			out.print(classCode);
+			out.close();
+		} catch (IOException e)
+		{
+			throw new RuntimeException(e);
+		}
 	}
 }

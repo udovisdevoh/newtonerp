@@ -45,10 +45,9 @@ public abstract class Module
 
 	/**
 	 * constructeur par default
-	 * @throws Exception remonte
 	 * 
 	 */
-	public Module() throws Exception
+	public Module()
 	{
 		entityDefinitionList = new Hashtable<String, AbstractOrmEntity>();
 
@@ -70,9 +69,8 @@ public abstract class Module
 
 	/**
 	 * @return the defaultAction
-	 * @throws ActionNotFoundException si action introuvable
 	 */
-	public String getDefaultAction() throws ActionNotFoundException
+	public String getDefaultAction()
 	{
 		if (defaultAction == null)
 		{
@@ -94,9 +92,8 @@ public abstract class Module
 	 * initialise la liste d'action du module
 	 * 
 	 * @param path path to the module contening the action
-	 * @throws Exception remonte
 	 */
-	public void initAction(String path) throws Exception
+	public void initAction(String path)
 	{
 		if (!ActionCache.containsKey(getSystemName()))
 		{
@@ -111,8 +108,18 @@ public abstract class Module
 					String className = getClass().getPackage().getName()
 							+ ".actions."
 							+ listOfFiles[i].getName().split("\\.class")[0];
-					AbstractAction act = (AbstractAction) ModuleLoader
-							.loadClass(className).newInstance();
+					AbstractAction act;
+					try
+					{
+						act = (AbstractAction) ModuleLoader
+								.loadClass(className).newInstance();
+					} catch (InstantiationException e)
+					{
+						throw new RuntimeException(e);
+					} catch (IllegalAccessException e)
+					{
+						throw new RuntimeException(e);
+					}
 					addAction(act);
 				}
 			}
@@ -128,9 +135,8 @@ public abstract class Module
 	 * initialise la liste de definition d'entite du module
 	 * 
 	 * @param path path to the module contening the action
-	 * @throws Exception remonte
 	 */
-	public void initEntityDefinition(String path) throws Exception
+	public void initEntityDefinition(String path)
 	{
 		if (!entityCache.containsKey(getSystemName()))
 		{
@@ -146,8 +152,17 @@ public abstract class Module
 							+ ".entityDefinitions."
 							+ listOfFiles[i].getName().split("\\.class")[0];
 					Class<?> entityClass = ModuleLoader.loadClass(className);
-					AbstractEntity def = (AbstractEntity) entityClass
-							.newInstance();
+					AbstractEntity def;
+					try
+					{
+						def = (AbstractEntity) entityClass.newInstance();
+					} catch (InstantiationException e)
+					{
+						throw new RuntimeException(e);
+					} catch (IllegalAccessException e)
+					{
+						throw new RuntimeException(e);
+					}
 					if (def instanceof AbstractOrmEntity)
 						addDefinitionEntity((AbstractOrmEntity) def);
 				}
@@ -195,10 +210,9 @@ public abstract class Module
 	/**
 	 * @param entityDefinitionName nom de l action
 	 * @return action de ce nom contenue dans le HashTable
-	 * @throws ModuleException si l'action n'Existe pas
 	 */
 	public final AbstractOrmEntity getEntityDefinition(
-			String entityDefinitionName) throws ModuleException
+			String entityDefinitionName)
 	{
 		AbstractOrmEntity entity = null;
 		try
@@ -220,10 +234,8 @@ public abstract class Module
 	/**
 	 * @param actionName nom de l action
 	 * @return action de ce nom contenue dans le HashTable
-	 * @throws ModuleException si l'action n'Existe pas
 	 */
 	public final AbstractAction getAction(String actionName)
-			throws ModuleException
 	{
 		AbstractAction action = null;
 
@@ -247,9 +259,8 @@ public abstract class Module
 	/**
 	 * permet d'initialiser la base de donne lors de l'installation du module,
 	 * ne doit pas prendre en compte la creation des table
-	 * @throws Exception remonte
 	 */
-	public void initDB() throws Exception
+	public void initDB()
 	{
 		// on trouve l'ID du groupe admin
 		Groups group = new Groups();
@@ -286,10 +297,9 @@ public abstract class Module
 	 * @param parameters Paramètres de l'action devant être accomplie, exemple,
 	 *            contenu d'un email
 	 * @return Entité viewable pour l'output du résultat
-	 * @throws Exception remonte
 	 */
 	public final AbstractEntity doAction(String actionName,
-			Hashtable<String, String> parameters) throws Exception
+			Hashtable<String, String> parameters)
 	{
 		AbstractAction action = getAction(actionName);
 		return action.perform(parameters);
@@ -306,14 +316,21 @@ public abstract class Module
 	 * @param parameters Paramètres de l'action devant être accomplie, exemple,
 	 *            contenu d'un email
 	 * @return Entité viewable pour l'output du résultat
-	 * @throws Exception remonte
-	 * @throws ModuleException voir le message...
 	 */
 	public final AbstractEntity doAction(String actionName, String entityName,
-			Hashtable<String, String> parameters) throws Exception
+			Hashtable<String, String> parameters)
 	{
-		AbstractOrmEntity entity = getEntityDefinition(entityName).getClass()
-				.newInstance();
+		AbstractOrmEntity entity;
+		try
+		{
+			entity = getEntityDefinition(entityName).getClass().newInstance();
+		} catch (InstantiationException e)
+		{
+			throw new RuntimeException(e);
+		} catch (IllegalAccessException e)
+		{
+			throw new RuntimeException(e);
+		}
 		entity.getFields().setFromHashTable(parameters);
 		if (actionName.equals("New"))
 			return entity.newUI(parameters);
@@ -469,10 +486,9 @@ public abstract class Module
 	 * @return retourne les élément du menu du module peu importe qu'ils aient
 	 *         été spécifiés ou pas (cas pour lequel les éléments par défault
 	 *         seront des GetList sur chaque entité du module)
-	 * @throws Exception si obtention fail
 	 */
 	public NaturalMap<String, AbstractAction> getGlobalActionMenuOrReturnDefaultBehavior()
-			throws Exception
+
 	{
 		if (getGlobalActionMenu().size() < 1)
 			return getDefaultBehaviorMenu();
@@ -480,7 +496,7 @@ public abstract class Module
 	}
 
 	private NaturalMap<String, AbstractAction> getDefaultBehaviorMenu()
-			throws Exception
+
 	{
 		if (defaultBehaviorMenu == null)
 		{
@@ -497,8 +513,18 @@ public abstract class Module
 				if (visibleActionName == null)
 					continue;
 				if (!defaultBehaviorMenu.containsKey(visibleActionName))
-					defaultBehaviorMenu.put(visibleActionName, new BaseAction(
-							"GetList", entity.getClass().newInstance()));
+					try
+					{
+						defaultBehaviorMenu.put(visibleActionName,
+								new BaseAction("GetList", entity.getClass()
+										.newInstance()));
+					} catch (InstantiationException e)
+					{
+						throw new RuntimeException(e);
+					} catch (IllegalAccessException e)
+					{
+						throw new RuntimeException(e);
+					}
 			}
 		}
 		return defaultBehaviorMenu;

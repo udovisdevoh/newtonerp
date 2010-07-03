@@ -13,9 +13,8 @@ public class ActionSourceCodeBuilder
 	/**
 	 * @param actionEntity action entity
 	 * @return source code
-	 * @throws Exception si construction fail
 	 */
-	public static String build(ActionEntity actionEntity) throws Exception
+	public static String build(ActionEntity actionEntity)
 	{
 		actionEntity = (ActionEntity) Orm.selectUnique(actionEntity);
 
@@ -47,7 +46,7 @@ public class ActionSourceCodeBuilder
 				+ " extends AbstractAction\n";
 		sourceCode += "{\n";
 		sourceCode += "    @Override\n";
-		sourceCode += "    public AbstractEntity doAction(AbstractEntity sourceEntity, Hashtable<String, String> parameters) throws Exception\n";
+		sourceCode += "    public AbstractEntity doAction(AbstractEntity sourceEntity, Hashtable<String, String> parameters)\n";
 		sourceCode += "    {\n";
 		sourceCode += "        return new StaticTextEntity(\"Please implement action\");\n";
 		sourceCode += "    }\n";
@@ -62,20 +61,20 @@ public class ActionSourceCodeBuilder
 	}
 
 	private static String getNaturalKeyValue(ActionEntity actionEntity)
-			throws Exception
+
 	{
 		return actionEntity.getNaturalKeyDescription();
 	}
 
 	private static String getPackageName(ActionEntity actionEntity)
-			throws Exception
+
 	{
 		return ModuleSourceCodeBuilder
 				.getPackageName(getModuleEntity(actionEntity));
 	}
 
 	private static ModuleEntity getModuleEntity(ActionEntity actionEntity)
-			throws Exception
+
 	{
 		ModuleEntity moduleEntity = (ModuleEntity) actionEntity
 				.getSingleAccessor(new ModuleEntity().getForeignKeyName());

@@ -37,9 +37,8 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	private Vector<String> accessorNameList;
 
 	/**
-	 * @throws Exception lorsque la création de l'entité échoue
 	 */
-	public AbstractOrmEntity() throws Exception
+	public AbstractOrmEntity()
 	{
 		super();
 	}
@@ -49,15 +48,14 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	private static Hashtable<String, FlagPool> negativeFlagPoolList;
 
 	// oblige le redefinition pour les sous-classe de AbstractOrmEntity
-	public abstract Fields initFields() throws Exception;
+	public abstract Fields initFields();
 
 	/**
 	 * @param parameters la hashTable de parametre qui sera transphormé en
 	 *            entity
-	 * @throws Exception lorsque l'insertion de données échoue
 	 */
 	public final void setOrmizableData(Hashtable<String, Object> parameters)
-			throws Exception
+
 	{
 		getFields().setFromHashTable(parameters);
 	}
@@ -67,10 +65,9 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	 * 
 	 * @param parameters parametre suplementaire
 	 * @return l'entity qui a été entré en DB (incluant la primaryKey)
-	 * @throws Exception remonte
 	 */
 	public AbstractEntity newUI(Hashtable<String, String> parameters)
-			throws Exception
+
 	{
 		getFields().setDefaultValue(false);
 
@@ -81,9 +78,8 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	 * enregistre l'entity en DB
 	 * 
 	 * @return this
-	 * @throws Exception remonte
 	 */
-	public final AbstractOrmEntity newE() throws Exception
+	public final AbstractOrmEntity newE()
 	{
 		if (getFields().getKeyList().contains(getPrimaryKeyName()))
 			setData(getPrimaryKeyName(), Orm.insert(this));
@@ -97,10 +93,9 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	 * 
 	 * @param parameters parametre suplementaire
 	 * @return todo: qu'Est-ce que l'on devrai retourné en general?
-	 * @throws Exception remonte
 	 */
 	public AbstractEntity deleteUI(Hashtable<String, String> parameters)
-			throws Exception
+
 	{
 		delete(getPrimaryKeyName() + "='" + getDataString(getPrimaryKeyName())
 				+ "'");
@@ -113,9 +108,8 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	 * 
 	 * @param whereClause the where clause for the query
 	 * 
-	 * @throws Exception remonte
 	 */
-	public final void delete(String whereClause) throws Exception
+	public final void delete(String whereClause)
 	{
 		Vector<String> whereParameter = new Vector<String>();
 		whereParameter.add(whereClause);
@@ -125,9 +119,8 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	/**
 	 * supprime l'entity en DB, la clause where est definie par this
 	 * 
-	 * @throws Exception remonte
 	 */
-	public final void delete() throws Exception
+	public final void delete()
 	{
 		delete(this);
 	}
@@ -137,9 +130,8 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	 * 
 	 * @param whereClause the where clause for the query
 	 * 
-	 * @throws Exception remonte
 	 */
-	public final void delete(AbstractOrmEntity whereClause) throws Exception
+	public final void delete(AbstractOrmEntity whereClause)
 	{
 		Vector<AbstractOrmEntity> whereParameter = new Vector<AbstractOrmEntity>();
 		whereParameter.add(whereClause);
@@ -152,11 +144,10 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	 * 
 	 * @param whereClause the where clause for the query
 	 * 
-	 * @throws Exception remonte
 	 * @see
 	 */
 	public final void delete(Vector<AbstractOrmEntity> whereClause)
-			throws Exception
+
 	{
 		Orm.delete(whereClause);
 	}
@@ -166,10 +157,9 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	 * 
 	 * @param parameters parametre suplementaire
 	 * @return todo: qu'Est-ce que l'on devrai retourné en general?
-	 * @throws Exception remonte
 	 */
 	public BaseViewerData editUI(Hashtable<String, String> parameters)
-			throws Exception
+
 	{
 		return editUI(parameters, false);
 	}
@@ -181,15 +171,24 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	 * @param isReadOnly si on est en mode readOnly: true, sinon, false
 	 *            (default: false)
 	 * @return todo: qu'Est-ce que l'on devrai retourné en general?
-	 * @throws Exception remonte
 	 */
 	public BaseViewerData editUI(Hashtable<String, String> parameters,
-			boolean isReadOnly) throws Exception
+			boolean isReadOnly)
 	{
 		PromptViewerData promptData = new PromptViewerData();
 
 		AbstractOrmEntity retEntity;
-		AbstractOrmEntity searchEntity = this.getClass().newInstance();
+		AbstractOrmEntity searchEntity;
+		try
+		{
+			searchEntity = this.getClass().newInstance();
+		} catch (InstantiationException e)
+		{
+			throw new RuntimeException(e);
+		} catch (IllegalAccessException e)
+		{
+			throw new RuntimeException(e);
+		}
 		if (getPrimaryKeyValue() != 0)
 		{
 			String primaryKeyName = getPrimaryKeyName();
@@ -253,9 +252,8 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	 * met a jour l'entity en DB, l'ID doit etre présent
 	 * 
 	 * @param whereClause the where clause for the query
-	 * @throws Exception remonte
 	 */
-	public final void edit(String whereClause) throws Exception
+	public final void edit(String whereClause)
 	{
 		Vector<String> whereParameter = new Vector<String>();
 		whereParameter.add(whereClause);
@@ -269,9 +267,8 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	 * @param whereClause the where clause for the query
 	 * @param changeToApply the chang to apply to entity matching the where
 	 *            clause
-	 * @throws Exception remonte
 	 */
-	public final void edit(AbstractOrmEntity changeToApply) throws Exception
+	public final void edit(AbstractOrmEntity changeToApply)
 	{
 		edit(this, changeToApply);
 	}
@@ -282,10 +279,9 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	 * @param whereClause the where clause for the query
 	 * @param changeToApply the chang to apply to entity matching the where
 	 *            clause
-	 * @throws Exception remonte
 	 */
 	public final void edit(AbstractOrmEntity whereClause,
-			AbstractOrmEntity changeToApply) throws Exception
+			AbstractOrmEntity changeToApply)
 	{
 		Vector<AbstractOrmEntity> whereParameter = new Vector<AbstractOrmEntity>();
 		whereParameter.add(whereClause);
@@ -298,10 +294,9 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	 * @param whereClause the where clause for the query
 	 * @param changeToApply the chang to apply to entity matching the where
 	 *            clause
-	 * @throws Exception remonte
 	 */
 	public final void edit(Vector<AbstractOrmEntity> whereClause,
-			AbstractOrmEntity changeToApply) throws Exception
+			AbstractOrmEntity changeToApply)
 	{
 		Orm.update(whereClause, changeToApply);
 	}
@@ -311,10 +306,9 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	 * 
 	 * @param parameters parametre suplementaire
 	 * @return entity qui doit etre read only
-	 * @throws Exception remonte
 	 */
 	public AbstractEntity getUI(Hashtable<String, String> parameters)
-			throws Exception
+
 	{
 		return editUI(parameters, true); // TODO: rendre readOnly, néscéssaire
 		// pour
@@ -323,9 +317,8 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 
 	/**
 	 * @return ne liste d'entité de ce type
-	 * @throws Exception lorsque la requête d'obtention de liste échoue
 	 */
-	public final ListViewerData getList() throws Exception
+	public final ListViewerData getList()
 	{
 		return getList(new Hashtable<String, String>());
 	}
@@ -333,14 +326,23 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	/**
 	 * @param parameters parametres de sélection (à venir)
 	 * @return une liste d'entité de ce type
-	 * @throws Exception lorsque la requête d'obtention de liste échoue
 	 */
 	@SuppressWarnings("null")
 	public ListViewerData getList(Hashtable<String, String> parameters)
-			throws Exception
+
 	{
 		Vector<AbstractOrmEntity> resultSet;
-		AbstractOrmEntity searchEntity = this.getClass().newInstance();
+		AbstractOrmEntity searchEntity;
+		try
+		{
+			searchEntity = this.getClass().newInstance();
+		} catch (InstantiationException e)
+		{
+			throw new RuntimeException(e);
+		} catch (IllegalAccessException e)
+		{
+			throw new RuntimeException(e);
+		}
 		ListViewerData entityList = new ListViewerData(searchEntity);
 		String searchEntry = parameters.get("searchEntry");
 		String orderBy = parameters.get("orderBy");
@@ -433,10 +435,9 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 
 	/**
 	 * @return Module par default
-	 * @throws Exception remonte
 	 */
 	@Override
-	public Module getCurrentModule() throws Exception
+	public Module getCurrentModule()
 	{
 		if (currentModule == null)
 		{
@@ -463,16 +464,24 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	 * 
 	 * @param whereClause the where clause for the query
 	 * @return this
-	 * @throws Exception remonte
 	 */
 	public final Vector<AbstractOrmEntity> get(String whereClause)
-			throws Exception
+
 	{
 		Vector<AbstractOrmEntity> retEntityList = null;
 		Vector<String> whereParameter = new Vector<String>();
 		whereParameter.add(whereClause);
-		retEntityList = Orm.select(this.getClass().newInstance(),
-				whereParameter);
+		try
+		{
+			retEntityList = Orm.select(this.getClass().newInstance(),
+					whereParameter);
+		} catch (InstantiationException e)
+		{
+			throw new RuntimeException(e);
+		} catch (IllegalAccessException e)
+		{
+			throw new RuntimeException(e);
+		}
 
 		return retEntityList;
 	}
@@ -480,9 +489,8 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	/**
 	 * fais un get sur un criter simple exprimé par l'entity this
 	 * @return the selected entities
-	 * @throws Exception remonte
 	 */
-	public final Vector<AbstractOrmEntity> get() throws Exception
+	public final Vector<AbstractOrmEntity> get()
 	{
 		return get(this);
 	}
@@ -490,10 +498,9 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	/**
 	 * @param entity the search entity
 	 * @return the selected entities
-	 * @throws Exception remonte
 	 */
 	public final Vector<AbstractOrmEntity> get(AbstractOrmEntity entity)
-			throws Exception
+
 	{
 		Vector<AbstractOrmEntity> entities = new Vector<AbstractOrmEntity>();
 		entities.add(entity);
@@ -504,10 +511,9 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	 * @param entities the entities from which we are going to select our data
 	 *            (where clause)
 	 * @return the selected entities
-	 * @throws Exception remonte
 	 */
 	public final Vector<AbstractOrmEntity> get(
-			Vector<AbstractOrmEntity> entities) throws Exception
+			Vector<AbstractOrmEntity> entities)
 	{
 		Vector<AbstractOrmEntity> retEntities = null;
 		retEntities = Orm.select(entities);
@@ -626,9 +632,8 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 
 	/**
 	 * @return Description d'une entité par la valeur de sa clef naturelle
-	 * @throws Exception si obtention de description fail
 	 */
-	public String getNaturalKeyDescription() throws Exception
+	public String getNaturalKeyDescription()
 	{
 		String description = "";
 		String currentFieldValue;
@@ -686,10 +691,9 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 
 	/**
 	 * @return la liste des accessors plusieurs à plusieurs pour cette entité
-	 * @throws Exception si obtention de liste d'accessor fail
 	 */
 	public final TreeMap<String, PluralAccessor> getPluralAccessorList()
-			throws Exception
+
 	{
 		if (pluralAccessorList == null)
 			pluralAccessorList = AccessorManager.getPluralAccessorList(this);
@@ -699,10 +703,9 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 
 	/**
 	 * @return la liste des accessors 1 à 1 ou plusieurs à 1 pour cette entité
-	 * @throws Exception si obtention fail
 	 */
 	public final TreeMap<String, AbstractOrmEntity> getSingleAccessorList()
-			throws Exception
+
 	{
 		if (singleAccessorList == null)
 			singleAccessorList = AccessorManager.getSingleAccessorList(this);
@@ -713,10 +716,9 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	/**
 	 * @param accessorName nom de l'accessor
 	 * @return accesseur singulier
-	 * @throws Exception si obtention fail
 	 */
 	public final AbstractOrmEntity getSingleAccessor(String accessorName)
-			throws Exception
+
 	{
 		return AccessorManager.getSingleAccessor(this, accessorName);
 	}
@@ -761,10 +763,8 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	/**
 	 * @param accessorName non de l'accesseur
 	 * @return accesseur multiple voulu
-	 * @throws Exception si obtention fail
 	 */
 	public PluralAccessor getPluralAccessor(String accessorName)
-			throws Exception
 	{
 		return PluralAccessorManager.getPluralAccessor(this, accessorName);
 	}
@@ -774,10 +774,9 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	 * @param searchCriteriaEntity entité de recherche pour accesseur multiple
 	 *            critérié
 	 * @return accesseur multiple critérié
-	 * @throws Exception si obtention fail
 	 */
 	public PluralAccessor getPluralAccessor(String accessorName,
-			AbstractOrmEntity searchCriteriaEntity) throws Exception
+			AbstractOrmEntity searchCriteriaEntity)
 	{
 		PluralAccessor pluralAccessor = PluralAccessorManager
 				.getPluralAccessor(this, accessorName, searchCriteriaEntity);
@@ -815,9 +814,8 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 
 	/**
 	 * @param foreignEntity entité étrangère
-	 * @throws Exception si assignation
 	 */
-	public void assign(AbstractOrmEntity foreignEntity) throws Exception
+	public void assign(AbstractOrmEntity foreignEntity)
 	{
 		String foreignEntityForeignKeyName = foreignEntity.getForeignKeyName();
 		String localEntityForeignKeyName = getForeignKeyName();
@@ -835,18 +833,19 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 		}
 		else
 		{
-			throw new Exception("Impossible d'assigner " + getNaturalKeyName()
-					+ " à " + foreignEntity.getNaturalKeyName());
+			throw new RuntimeException("Impossible d'assigner "
+					+ getNaturalKeyName() + " à "
+					+ foreignEntity.getNaturalKeyName());
 		}
 	}
 
 	/**
-	 * @throws Exception si enregistrement fail
 	 */
-	public void save() throws Exception
+	public void save()
 	{
 		if (getPrimaryKeyValue() == null)
-			throw new Exception("Aucune valeur de clef primaire disponible");
+			throw new RuntimeException(
+					"Aucune valeur de clef primaire disponible");
 
 		edit(getPrimaryKeyName() + "='" + getPrimaryKeyValue() + "'");
 	}

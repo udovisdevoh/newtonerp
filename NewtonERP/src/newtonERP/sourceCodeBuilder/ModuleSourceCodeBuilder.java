@@ -14,9 +14,8 @@ public class ModuleSourceCodeBuilder
 	/**
 	 * @param moduleEntity entité du module
 	 * @return code source
-	 * @throws Exception si construction fail
 	 */
-	public static String build(ModuleEntity moduleEntity) throws Exception
+	public static String build(ModuleEntity moduleEntity)
 	{
 		moduleEntity = (ModuleEntity) Orm.selectUnique(moduleEntity);
 
@@ -36,17 +35,15 @@ public class ModuleSourceCodeBuilder
 		sourceCode += "{\n";
 		sourceCode += "    /**\n";
 		sourceCode += "     * constructor\n";
-		sourceCode += "     * @throws Exception remonte\n";
 		sourceCode += "     */\n";
-		sourceCode += "    public " + getSystemName(moduleEntity)
-				+ "() throws Exception\n";
+		sourceCode += "    public " + getSystemName(moduleEntity) + "()\n";
 		sourceCode += "    {\n";
 		sourceCode += "        super();\n";
 		sourceCode += "        setVisibleName(\""
 				+ getVisibleName(moduleEntity) + "\");\n";
 		sourceCode += "    }\n";
 		sourceCode += "\n";
-		sourceCode += "    public void initDB() throws Exception\n";
+		sourceCode += "    public void initDB()\n";
 		sourceCode += "    {\n";
 		sourceCode += "        super.initDB();\n";
 		sourceCode += "    }\n";
@@ -74,10 +71,9 @@ public class ModuleSourceCodeBuilder
 	/**
 	 * @param moduleEntity module entity
 	 * @return source class file name
-	 * @throws Exception si ça fail
 	 */
 	public static String buildClassFileName(ModuleEntity moduleEntity)
-			throws Exception
+
 	{
 		String packagePath = getPackagePath(moduleEntity);
 
@@ -88,10 +84,9 @@ public class ModuleSourceCodeBuilder
 	/**
 	 * @param moduleEntity module entity
 	 * @return package path
-	 * @throws Exception si ça fail
 	 */
 	public static String getPackagePath(ModuleEntity moduleEntity)
-			throws Exception
+
 	{
 		moduleEntity = (ModuleEntity) Orm.selectUnique(moduleEntity);
 		return "./src/modules/" + getPackageName(moduleEntity);
@@ -99,10 +94,9 @@ public class ModuleSourceCodeBuilder
 
 	/**
 	 * @param moduleEntity module entity
-	 * @throws Exception si ça fail
 	 */
 	public static void createDirectories(ModuleEntity moduleEntity)
-			throws Exception
+
 	{
 		File file;
 		String packagePath = getPackagePath(moduleEntity);

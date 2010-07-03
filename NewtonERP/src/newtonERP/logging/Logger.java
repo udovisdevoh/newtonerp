@@ -29,7 +29,7 @@ public class Logger
 	private static FileWriter fstream = null;
 	private static BufferedWriter out = null;
 	private static SimpleDateFormat sdf = new SimpleDateFormat(
-			"kk:mm:ss yyyy.MM.dd");
+			"HH:mm:ss yyyy.MM.dd");
 
 	/**
 	 * States the logger can have

@@ -11,7 +11,6 @@ import java.util.Vector;
 import newtonERP.module.Module;
 import newtonERP.module.exception.ModuleException;
 import newtonERP.module.exception.ModuleNotFoundException;
-import newtonERP.serveur.ConfigManager;
 
 /**
  * pour créé le jar il faut, en ligne de commande, allé dans le dossier du
@@ -25,7 +24,6 @@ import newtonERP.serveur.ConfigManager;
  */
 public class ListModule
 {
-	// todo: jumelé les 2 hashtable
 	private static Hashtable<String, FileModule> allModules = new Hashtable<String, FileModule>();
 
 	/**
@@ -66,10 +64,8 @@ public class ListModule
 	 * 
 	 * @param moduleName nom du module
 	 * @return le module
-	 * @throws Exception remonte
-	 * @throws ModuleNotFoundException si le module n'existe pas
 	 */
-	public static Module getModule(String moduleName) throws Exception
+	public static Module getModule(String moduleName)
 	{
 		Module tmpMod = allModules.get(moduleName).getCache();
 		if (tmpMod != null)
@@ -106,12 +102,12 @@ public class ListModule
 
 	/**
 	 * initialise la liste de module
-	 * @throws Exception si sa fail
 	 */
-	public static void initAllModule() throws Exception
+	public static void initAllModule()
 	{
 		Vector<String> paths = new Vector<String>();
-		paths.add(ConfigManager.getModulesPath() + "modules");
+		// todo: uncomment that => paths.add(ConfigManager.getModulesPath() +
+		// "modules");
 		paths.add("./bin/modules");
 		File folder;
 		File[] listOfFiles;

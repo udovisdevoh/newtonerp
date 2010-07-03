@@ -1,6 +1,7 @@
 package newtonERP.serveur;
 
 import java.io.File;
+import java.util.Hashtable;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -11,172 +12,17 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * Sert à gérer la configuration dans un fichier XML
- * @author Guillaume Lacasse
+ * manage de config of the software from an XML file
+ * 
+ * @author Guillaume Lacasse JoCloutier
  */
 public class ConfigManager
 {
+	private static File file = null;
+	private static Document document = null;
 	private static final String configFile = "config.xml";
 
-	private static int port = -1;
-
-	private static String styleFileScreen = null;
-
-	private static String styleFilePrint = null;
-
-	private static String displayName = null;
-
-	private static String defaultUserName = null;
-
-	private static String defaultPassWord = null;
-
-	private static String defaultModuleName = null;
-
-	private static String defaultActionName = null;
-
-	private static String dbmsName = null;
-
-	private static File file = null;
-
-	private static Document document = null;
-
-	private static Boolean isDisplayHeader = null;
-
-	private static String modulesPath = null;
-
-	/**
-	 * @return le port (possiblement 80 ou autre) pour le portail web de
-	 *         l'application
-	 * @throws Exception si ça fail
-	 */
-	public static int getPort() throws Exception
-	{
-		if (port == -1)
-			port = loadPort();
-
-		return port;
-	}
-
-	/**
-	 * @return fichier css affiché à l'écran
-	 * @throws Exception si ça fail
-	 */
-	public static String getStyleFileScreen() throws Exception
-	{
-		if (styleFileScreen == null)
-			styleFileScreen = loadStyleFileScreen();
-		return styleFileScreen;
-	}
-
-	private static String loadStyleFileScreen() throws Exception
-	{
-		NodeList nodeList = getDocument().getElementsByTagName("style-screen");
-		return nodeList.item(0).getFirstChild().getNodeValue();
-	}
-
-	/**
-	 * @return fichier css pour impression
-	 * @throws Exception si ça fail
-	 */
-	public static String getStyleFilePrint() throws Exception
-	{
-		if (styleFilePrint == null)
-			styleFilePrint = loadStyleFilePrint();
-		return styleFilePrint;
-	}
-
-	private static String loadStyleFilePrint() throws Exception
-	{
-		NodeList nodeList = getDocument().getElementsByTagName("style-print");
-		return nodeList.item(0).getFirstChild().getNodeValue();
-	}
-
-	/**
-	 * @return nom affiché publiquement pour l'application
-	 * @throws Exception si ça fail
-	 */
-	public static String getDisplayName() throws Exception
-	{
-		if (displayName == null)
-			displayName = loadDisplayName();
-		return displayName;
-	}
-
-	private static String loadDisplayName() throws Exception
-	{
-		NodeList nodeList = getDocument().getElementsByTagName("display-name");
-		return nodeList.item(0).getFirstChild().getNodeValue();
-	}
-
-	private static String loadDefaultModuleName() throws Exception
-	{
-		NodeList nodeList = getDocument()
-				.getElementsByTagName("default-module");
-		return nodeList.item(0).getFirstChild().getNodeValue();
-	}
-
-	private static String loadDefaultActionName() throws Exception
-	{
-		NodeList nodeList = getDocument()
-				.getElementsByTagName("default-action");
-		return nodeList.item(0).getFirstChild().getNodeValue();
-	}
-
-	/**
-	 * @return mot de passe créé par default lors de déploiement
-	 * @throws Exception si ça fail
-	 */
-	public static String getDefaultPassWord() throws Exception
-	{
-		if (defaultUserName == null)
-			defaultUserName = loadDefaultPassWord();
-		return defaultUserName;
-	}
-
-	private static String loadDefaultUserName() throws Exception
-	{
-		NodeList nodeList = getDocument().getElementsByTagName("default-user");
-		Node node = nodeList.item(0);
-		NamedNodeMap attributeList = node.getAttributes();
-		return attributeList.getNamedItem("name").getFirstChild()
-				.getNodeValue();
-	}
-
-	/**
-	 * @return utilisateur par default créé lors de déploiement
-	 * @throws Exception si ça fail
-	 */
-	public static String getDefaultUserName() throws Exception
-	{
-		if (defaultPassWord == null)
-			defaultPassWord = loadDefaultUserName();
-		return defaultPassWord;
-	}
-
-	private static String loadDefaultPassWord() throws Exception
-	{
-		NodeList nodeList = getDocument().getElementsByTagName("default-user");
-		Node node = nodeList.item(0);
-		NamedNodeMap attributeList = node.getAttributes();
-		return attributeList.getNamedItem("password").getFirstChild()
-				.getNodeValue();
-	}
-
-	private static Boolean loadIsDisplayTitle() throws Exception
-	{
-		NodeList nodeList = getDocument()
-				.getElementsByTagName("show-top-title");
-		return Boolean.parseBoolean(nodeList.item(0).getFirstChild()
-				.getNodeValue());
-	}
-
-	private static int loadPort() throws Exception
-	{
-		NodeList nodeList = getDocument().getElementsByTagName("port");
-		Node node = nodeList.item(0);
-		String stringPort = node.getFirstChild().getNodeValue();
-		return Integer.parseInt(stringPort);
-	}
+	private static Hashtable<String, String> propertyValue = new Hashtable<String, String>();
 
 	private static Document getDocument() throws Exception
 	{
@@ -198,77 +44,176 @@ public class ConfigManager
 	}
 
 	/**
-	 * @return Nom du sgbd
-	 * @throws Exception si ça fail
+	 * @param propertyName the property name
+	 * @param attributName the attribut name
+	 * @param defaultValue a default value in case the property is'nt present in
+	 *            the config file
+	 * @return String property value
 	 */
-	public static String getDbmsName() throws Exception
+	public static String loadStringProperty(String propertyName,
+			String attributName, String defaultValue)
 	{
-		if (dbmsName == null)
-			dbmsName = loadDbmsName();
-		return dbmsName;
-	}
+		if (propertyName.contains("#")
+				|| (attributName != null && attributName.contains("#")))
+			throw new RuntimeException(
+					"name of config property or config attribut cannot containe '#' char");
+		if (propertyValue.containsKey(propertyName + "#" + attributName))
+			return propertyValue.get(propertyName + "#" + attributName);
 
-	private static String loadDbmsName() throws Exception
-	{
-		NodeList nodeList = getDocument().getElementsByTagName("dmbs-name");
-		Node node = nodeList.item(0);
-		return node.getFirstChild().getNodeValue();
-	}
+		try
+		{
+			String val;
+			NodeList nodeList = getDocument()
+					.getElementsByTagName(propertyName);
+			Node node = nodeList.item(0);
+			if (attributName != null)
+			{
+				NamedNodeMap attributeList = node.getAttributes();
+				val = attributeList.getNamedItem(attributName).getFirstChild()
+						.getNodeValue();
+			}
+			else
+			{
+				val = node.getFirstChild().getNodeValue();
+			}
 
-	/**
-	 * @return nom du module par default
-	 * @throws Exception si ça fail
-	 */
-	public static String getDefaultModuleName() throws Exception
-	{
-		if (defaultModuleName == null)
-			defaultModuleName = loadDefaultModuleName();
-		return defaultModuleName;
-	}
+			propertyValue.put(propertyName + "#" + attributName, val);
+			return val;
+		} catch (Exception e)
+		{
+			if (defaultValue == null)
+				throw new RuntimeException(
+						"the property "
+								+ propertyName
+								+ " is needed in the config file, there is no default value possible");
 
-	/**
-	 * @return nom de l'action par default
-	 * @throws Exception si ça fail
-	 */
-	public static String getDefaultActionName() throws Exception
-	{
-		if (defaultActionName == null)
-			defaultActionName = loadDefaultActionName();
-		return defaultActionName;
-	}
-
-	/**
-	 * @return si on veut afficher le header du programme
-	 * @throws Exception is ça fail
-	 */
-	public static boolean isDisplayTopTitle() throws Exception
-	{
-		if (isDisplayHeader == null)
-			isDisplayHeader = loadIsDisplayTitle();
-
-		return isDisplayHeader;
+			propertyValue.put(propertyName + "#" + attributName, defaultValue);
+			return defaultValue;
+		}
 	}
 
 	/**
-	 * @param modulesPath the modulesPath to set
-	 * @return value of modulesPath
-	 * @throws Exception si ça fail
+	 * @param propertyName the propetry name
+	 * @param defaultValue a default value in case the property is'nt present in
+	 *            the config file
+	 * @return String property value
 	 */
-	public static String loadModulesPath() throws Exception
+	public static String loadStringProperty(String propertyName,
+			String defaultValue)
 	{
-		NodeList nodeList = getDocument().getElementsByTagName("modulesPath");
-		Node node = nodeList.item(0);
-		return node.getFirstChild().getNodeValue();
+		return loadStringProperty(propertyName, null, defaultValue);
 	}
 
 	/**
-	 * @return the modulesPath
-	 * @throws Exception si ça fail
+	 * @param propertyName the propetry name
+	 * @param attributName the attribut name
+	 * @return String property value
 	 */
-	public static String getModulesPath() throws Exception
+	public static String loadStringAttrProperty(String propertyName,
+			String attributName)
 	{
-		if (modulesPath == null)
-			ConfigManager.modulesPath = loadModulesPath();
-		return modulesPath;
+		return loadStringProperty(propertyName, attributName, null);
+	}
+
+	/**
+	 * @param propertyName the propetry name
+	 * @return String property value
+	 */
+	public static String loadStringProperty(String propertyName)
+	{
+		return loadStringProperty(propertyName, null);
+	}
+
+	/**
+	 * @param propertyName the propetry name
+	 * @param attributName the attribut name
+	 * @return int property value
+	 * @param defaultValue a default value in case the property is'nt present in
+	 *            the config file
+	 */
+	public static int loadIntProperty(String propertyName, String attributName,
+			Integer defaultValue)
+	{
+		return Integer.parseInt(loadStringProperty(propertyName, attributName,
+				defaultValue + ""));
+	}
+
+	/**
+	 * @param propertyName the propetry name
+	 * @return int property value
+	 * @param defaultValue a default value in case the property is'nt present in
+	 *            the config file
+	 */
+	public static int loadIntProperty(String propertyName, Integer defaultValue)
+
+	{
+		return loadIntProperty(propertyName, null, defaultValue);
+	}
+
+	/**
+	 * @param propertyName the propetry name
+	 * @param attributName the attribut name
+	 * @return int property value
+	 */
+	public static int loadIntAttrProperty(String propertyName,
+			String attributName)
+	{
+		return loadIntProperty(propertyName, attributName, null);
+	}
+
+	/**
+	 * @param propertyName the propetry name
+	 * @return int property value
+	 */
+	public static int loadIntProperty(String propertyName)
+	{
+		return loadIntProperty(propertyName, null);
+	}
+
+	/**
+	 * @param propertyName the propetry name
+	 * @param attributName the attribut name
+	 * @param defaultValue a default value in case the property is'nt present in
+	 *            the config file
+	 * @return boolean property value
+	 */
+	public static boolean loadBoolProperty(String propertyName,
+			String attributName, Boolean defaultValue)
+	{
+		return Boolean.parseBoolean(loadStringProperty(propertyName,
+				attributName, defaultValue + ""));
+	}
+
+	/**
+	 * @param propertyName the propetry name
+	 * @param defaultValue a default value in case the property is'nt present in
+	 *            the config file
+	 * @return boolean property value
+	 */
+	public static boolean loadBoolProperty(String propertyName,
+			Boolean defaultValue)
+	{
+		return loadBoolProperty(propertyName, null, defaultValue);
+	}
+
+	/**
+	 * @param propertyName the propetry name
+	 * @param attributName the attribut name
+	 * @return boolean property value
+	 */
+	public static boolean loadBoolAttrProperty(String propertyName,
+			String attributName)
+	{
+		return loadBoolProperty(propertyName, attributName, null);
+	}
+
+	/**
+	 * @param propertyName the propetry name
+	 * @return boolean property value
+	 */
+	public static boolean loadBoolProperty(String propertyName)
+
+	{
+		return loadBoolProperty(propertyName, null);
 	}
 }

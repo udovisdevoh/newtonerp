@@ -5,8 +5,11 @@ package newtonERP.viewers.viewerData;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 
 import javax.imageio.ImageIO;
+
+import newtonERP.logging.Logger;
 
 /**
  * donnee pour faire affiche UNE image
@@ -18,9 +21,8 @@ public class ImgViewerData extends BaseViewerData
 	String filePath;
 
 	/**
-	 * @throws Exception remonte
 	 */
-	public ImgViewerData() throws Exception
+	public ImgViewerData()
 	{
 		super();
 		// TODO Auto-generated constructor stub
@@ -29,13 +31,22 @@ public class ImgViewerData extends BaseViewerData
 	/**
 	 * @param bi image sous forme de BufferedImage
 	 * @param fileName nom du fichier
-	 * @throws Exception remonte
 	 */
-	public ImgViewerData(BufferedImage bi, String fileName) throws Exception
+	public ImgViewerData(BufferedImage bi, String fileName)
 	{
 		filePath = "file/" + fileName + ".png";
 		File outputfile = new File(filePath);
-		ImageIO.write(bi, "png", outputfile);
+		try
+		{
+			ImageIO.write(bi, "png", outputfile);
+		} catch (IOException e)
+		{
+			// on log le probleme et affiche l'Exception, sa ne fera qu'une
+			// image introuvable pour l'utilisateur et nous avons une trace du
+			// probleme
+			Logger.error("the image " + filePath + " cannot be created");
+			e.printStackTrace();
+		}
 		filePath = "../" + filePath;
 	}
 
