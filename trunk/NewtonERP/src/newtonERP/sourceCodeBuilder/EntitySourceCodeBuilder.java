@@ -18,9 +18,8 @@ public class EntitySourceCodeBuilder
 	/**
 	 * @param entityEntity entité pour laquelle on veut le code source
 	 * @return code source
-	 * @throws Exception si construction fail
 	 */
-	public static String build(EntityEntity entityEntity) throws Exception
+	public static String build(EntityEntity entityEntity)
 	{
 		entityEntity = (EntityEntity) Orm.selectUnique(entityEntity);
 
@@ -46,10 +45,8 @@ public class EntitySourceCodeBuilder
 		sourceCode += "{\n";
 		sourceCode += "    /**\n";
 		sourceCode += "     * constructor\n";
-		sourceCode += "     * @throws Exception remonte\n";
 		sourceCode += "     */\n";
-		sourceCode += "    public " + getSystemName(entityEntity)
-				+ "() throws Exception\n";
+		sourceCode += "    public " + getSystemName(entityEntity) + "()\n";
 		sourceCode += "    {\n";
 		sourceCode += "        super();\n";
 		sourceCode += "        setVisibleName(\""
@@ -59,7 +56,7 @@ public class EntitySourceCodeBuilder
 
 		sourceCode += "    }\n";
 		sourceCode += "\n";
-		sourceCode += "    public Fields initFields() throws Exception\n";
+		sourceCode += "    public Fields initFields()\n";
 		sourceCode += "    {\n";
 
 		sourceCode += "        Vector<Field<?>> fieldList = new Vector<Field<?>>();\n";
@@ -72,7 +69,7 @@ public class EntitySourceCodeBuilder
 	}
 
 	private static String getAccessorListCode(EntityEntity entityEntity)
-			throws Exception
+
 	{
 		String sourceCode = "";
 
@@ -95,7 +92,7 @@ public class EntitySourceCodeBuilder
 	}
 
 	private static String getFieldsCode(EntityEntity entityEntity)
-			throws Exception
+
 	{
 		String sourceCode = "";
 		for (FieldEntity fieldEntity : entityEntity)
@@ -104,7 +101,7 @@ public class EntitySourceCodeBuilder
 	}
 
 	private static String getFieldCode(FieldEntity fieldEntity,
-			EntityEntity entityEntity) throws Exception
+			EntityEntity entityEntity)
 	{
 		String sourceCode = "";
 		String quotedShortName = getSystemName(fieldEntity);
@@ -177,7 +174,7 @@ public class EntitySourceCodeBuilder
 	}
 
 	private static String getFieldType(FieldEntity fieldEntity)
-			throws Exception
+
 	{
 		FieldTypeEntity fieldType = (FieldTypeEntity) fieldEntity
 				.getSingleAccessor(new FieldTypeEntity().getForeignKeyName());
@@ -201,14 +198,14 @@ public class EntitySourceCodeBuilder
 	}
 
 	private static String getPackageName(EntityEntity entityEntity)
-			throws Exception
+
 	{
 		return ModuleSourceCodeBuilder
 				.getPackageName(getModuleEntity(entityEntity));
 	}
 
 	private static ModuleEntity getModuleEntity(EntityEntity entityEntity)
-			throws Exception
+
 	{
 		return (ModuleEntity) entityEntity.getSingleAccessor(new ModuleEntity()
 				.getForeignKeyName());

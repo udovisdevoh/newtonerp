@@ -1,5 +1,6 @@
 package newtonERP.viewers.secondStep;
 
+import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 import newtonERP.viewers.Viewer;
@@ -15,10 +16,9 @@ public class PageSelectorViewer
 	/**
 	 * @param pageSelector selecteur de page
 	 * @return code html
-	 * @throws Exception si ça fail
 	 */
 	public static String getHtmlCode(PageSelector pageSelector)
-			throws Exception
+
 	{
 		String html = "";
 
@@ -29,9 +29,14 @@ public class PageSelectorViewer
 		int offset = pageSelector.getCurrentOffset();
 		String searchEntry = pageSelector.getCurrentSearchEntry();
 		String orderBy = pageSelector.getOrderBy();
-
-		searchEntry = URLEncoder.encode(searchEntry, Viewer.getEncoding());
-		orderBy = URLEncoder.encode(orderBy, Viewer.getEncoding());
+		try
+		{
+			searchEntry = URLEncoder.encode(searchEntry, Viewer.getEncoding());
+			orderBy = URLEncoder.encode(orderBy, Viewer.getEncoding());
+		} catch (UnsupportedEncodingException e)
+		{
+			throw new RuntimeException(e);
+		}
 
 		if (offset > 0)
 			html += "<a href='"

@@ -1,6 +1,5 @@
 package newtonERP.orm.field.type;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -27,10 +26,9 @@ public class FieldDateTime extends Field<GregorianCalendar>
 	 * @param name nom du champ qui sera visible par l'utilisateur
 	 * @param shortName nom du champ qui sera utiliser a l'interne
 	 * @param data donne du champ
-	 * @throws InvalidOperatorException remonte
 	 */
 	public FieldDateTime(String name, String shortName, GregorianCalendar data)
-			throws InvalidOperatorException
+
 	{
 		super(name, shortName, data);
 	}
@@ -38,10 +36,9 @@ public class FieldDateTime extends Field<GregorianCalendar>
 	/**
 	 * @param name nom du champ qui sera visible par l'utilisateur
 	 * @param shortName nom du champ qui sera utiliser a l'interne
-	 * @throws InvalidOperatorException remonte
 	 */
 	public FieldDateTime(String name, String shortName)
-			throws InvalidOperatorException
+
 	{
 		this(name, shortName, null);
 	}
@@ -58,7 +55,7 @@ public class FieldDateTime extends Field<GregorianCalendar>
 	}
 
 	@Override
-	public void setData(String date) throws ParseException
+	public void setData(String date)
 	{
 		try
 		{
@@ -74,7 +71,7 @@ public class FieldDateTime extends Field<GregorianCalendar>
 	}
 
 	@Override
-	public void setOperator(String operator) throws InvalidOperatorException
+	public void setOperator(String operator)
 	{
 		operator.trim();
 
@@ -87,13 +84,13 @@ public class FieldDateTime extends Field<GregorianCalendar>
 					+ getClass().getSimpleName());
 	}
 
-	public void setDefaultValue() throws FieldNotCompatibleException
+	public void setDefaultValue()
 	{
 		setData(new GregorianCalendar());
 	}
 
 	@Override
-	public void setData(Object date) throws FieldNotCompatibleException
+	public void setData(Object date)
 	{
 		if (date instanceof GregorianCalendar)
 			setDataType((GregorianCalendar) date);
@@ -106,10 +103,9 @@ public class FieldDateTime extends Field<GregorianCalendar>
 	 * Convertie une date de string vers GregorianCalendar
 	 * @param dateInString date en string
 	 * @return date un gregorian calendar
-	 * @throws Exception si formattage fail
 	 */
 	public static GregorianCalendar getFormatedDate(String dateInString)
-			throws Exception
+
 	{
 		return getFormatedDate(dateInString, dateFormatter);
 	}
@@ -119,15 +115,21 @@ public class FieldDateTime extends Field<GregorianCalendar>
 	 * @param dateInString date en string
 	 * @param sdf format de dateTime a utiliser
 	 * @return date un gregorian calendar
-	 * @throws Exception si formattage fail
 	 */
 	public static GregorianCalendar getFormatedDate(String dateInString,
-			SimpleDateFormat sdf) throws Exception
+			SimpleDateFormat sdf)
 	{
-		GregorianCalendar gregorianCalendar = new GregorianCalendar();
-		Date tempDate = sdf.parse(dateInString);
-		gregorianCalendar.setTime(tempDate);
-		return gregorianCalendar;
+		try
+		{
+			GregorianCalendar gregorianCalendar = new GregorianCalendar();
+			Date tempDate = sdf.parse(dateInString);
+			gregorianCalendar.setTime(tempDate);
+			return gregorianCalendar;
+		} catch (Exception e)
+		{
+			Logger.error(e.getMessage());
+			return null;
+		}
 	}
 
 	/**

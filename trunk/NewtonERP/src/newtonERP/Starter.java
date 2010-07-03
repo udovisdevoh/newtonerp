@@ -26,25 +26,21 @@ public class Starter
 	 * lance l'aplication et effectue toute les action d'initialisation
 	 * 
 	 * @param args aucun
-	 * @throws Exception -
+	 * @throws Exception hein ouai c sa...
 	 */
 	public static void main(String[] args) throws Exception
 	{
 		ListModule.initAllModule();
+		startOrm();
+		startWebWerver();
+	}
 
-		try
-		{
-			Orm.connect();
-			Orm.createNonExistentTables();
-		} catch (OrmException e)
-		{
-			e.printStackTrace();
-		}
-
-		new CreateAllRight().perform(null);
-
-		// lance le serveur web
-		server = new Server(ConfigManager.getPort());
+	/**
+	 * @throws Exception en cas de probleme avec le serveur
+	 */
+	private static void startWebWerver() throws Exception
+	{
+		server = new Server(ConfigManager.loadIntProperty("port", 47098));
 		server.setGracefulShutdown(2000);
 		server.setStopAtShutdown(true);
 		Context context = new Context(server, "/", Context.SESSIONS);
@@ -62,9 +58,25 @@ public class Starter
 	}
 
 	/**
+	 */
+	private static void startOrm()
+	{
+		try
+		{
+			Orm.connect();
+			Orm.createNonExistentTables();
+		} catch (OrmException e)
+		{
+			e.printStackTrace();
+		}
+
+		new CreateAllRight().perform(null);
+	}
+
+	/**
 	 * methode qui est apeller a la fermetur de l'aplication
+	 * @throws Exception en cas de probleme avec le serveur
 	 * 
-	 * @throws Exception -
 	 */
 	public static void shutdown() throws Exception
 	{
@@ -74,8 +86,8 @@ public class Starter
 
 	/**
 	 * boucle qui demande si l'on ferme le serveur
+	 * @throws Exception en cas de probleme avec le serveur
 	 * 
-	 * @throws Exception
 	 */
 	private static void doWeExit() throws Exception
 	{

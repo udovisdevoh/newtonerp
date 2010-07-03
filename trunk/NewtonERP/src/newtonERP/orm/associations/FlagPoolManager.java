@@ -20,11 +20,10 @@ public class FlagPoolManager
 	 * @param sourceEntity the source entity
 	 * @param flagPoolList liste de FlagPool
 	 * @param parameters paramêtres (mêmes type que dans doAction
-	 * @throws Exception a general exception
 	 */
 	public static void applyFlagPoolChanges(AbstractOrmEntity sourceEntity,
 			Iterable<FlagPool> flagPoolList,
-			Hashtable<String, String> parameters) throws Exception
+			Hashtable<String, String> parameters)
 	{
 		for (FlagPool flagPool : flagPoolList)
 			applyFlagPoolChanges(sourceEntity, flagPool, parameters);
@@ -32,7 +31,7 @@ public class FlagPoolManager
 
 	private static void applyFlagPoolChanges(AbstractOrmEntity sourceEntity,
 			FlagPool flagPool, Hashtable<String, String> parameters)
-			throws Exception
+
 	{
 		flagPool.query(sourceEntity.getPrimaryKeyName(), sourceEntity
 				.getPrimaryKeyValue());
@@ -64,7 +63,7 @@ public class FlagPoolManager
 
 	private static AbstractOrmEntity getSearchEntity(
 			AbstractOrmEntity sourceEntity, FlagPool flagPool,
-			String elementName) throws Exception
+			String elementName)
 	{
 		if (elementName.contains("."))
 		{
@@ -78,8 +77,18 @@ public class FlagPoolManager
 		String intermediateKeyInName = flagPool.getIntermediateKeyIn();
 		String intermediateKeyOutName = flagPool.getIntermediateKeyOut();
 
-		AbstractOrmEntity searchEntity = flagPool
-				.getIntermediateEntityDefinition().getClass().newInstance();
+		AbstractOrmEntity searchEntity;
+		try
+		{
+			searchEntity = flagPool.getIntermediateEntityDefinition()
+					.getClass().newInstance();
+		} catch (InstantiationException e)
+		{
+			throw new RuntimeException(e);
+		} catch (IllegalAccessException e)
+		{
+			throw new RuntimeException(e);
+		}
 		searchEntity.setData(intermediateKeyInName, keyIn);
 		searchEntity.setData(intermediateKeyOutName, keyOut);
 		return searchEntity;
@@ -88,10 +97,9 @@ public class FlagPoolManager
 	/**
 	 * @param sourceEntity the source entity
 	 * @param foreignEntityDefinition entity of the foreign entity
-	 * @throws Exception a general exception
 	 */
 	public static final void addFlagPool(AbstractOrmEntity sourceEntity,
-			AbstractOrmEntity foreignEntityDefinition) throws Exception
+			AbstractOrmEntity foreignEntityDefinition)
 	{
 
 		AbstractOrmEntity intermediateEntityDefinition = buildIntermediateEntityDefinition(
@@ -109,7 +117,7 @@ public class FlagPoolManager
 
 	private static AbstractOrmEntity buildIntermediateEntityDefinition(
 			AbstractOrmEntity entity1, AbstractOrmEntity entity2)
-			throws Exception
+
 	{
 		String entityName1, entityName2, intermediateEntityName;
 
@@ -126,8 +134,18 @@ public class FlagPoolManager
 
 		intermediateEntityName = classPath + "." + intermediateEntityName;
 
-		AbstractOrmEntity intermediateEntityDefinition = (AbstractOrmEntity) ModuleLoader
-				.loadClass(intermediateEntityName).newInstance();
+		AbstractOrmEntity intermediateEntityDefinition;
+		try
+		{
+			intermediateEntityDefinition = (AbstractOrmEntity) ModuleLoader
+					.loadClass(intermediateEntityName).newInstance();
+		} catch (InstantiationException e)
+		{
+			throw new RuntimeException(e);
+		} catch (IllegalAccessException e)
+		{
+			throw new RuntimeException(e);
+		}
 
 		intermediateEntityDefinition.initFields();
 
@@ -149,14 +167,13 @@ public class FlagPoolManager
 	 *            PKrightID
 	 * @param foreignDescriptionUiControls liste de colonne de description de
 	 *            table étrangère, exemple: Action, Module
-	 * @throws Exception si ajout de flagpool fail
 	 */
 	private static void addFlagPool(AbstractOrmEntity sourceEntity,
 			String visibleDescription,
 			AbstractOrmEntity intermediateEntityDefinition,
 			String intermediateKeyIn, String intermediateKeyOut,
 			AbstractOrmEntity foreignEntityDefinition, String foreignKey,
-			Vector<String> foreignDescriptionUiControls) throws Exception
+			Vector<String> foreignDescriptionUiControls)
 	{
 		FlagPool flagPool = new FlagPool(sourceEntity, visibleDescription,
 				intermediateEntityDefinition, intermediateKeyIn,

@@ -83,6 +83,7 @@ public class Servlet extends ServletHandler
 
 			// on formate la reponse
 			response.setContentType("text/html");
+			response.setCharacterEncoding(Viewer.getEncoding());
 			response.setStatus(HttpServletResponse.SC_OK);
 
 			response.getWriter().println(pageContent);
@@ -97,11 +98,10 @@ public class Servlet extends ServletHandler
 	 * @param target url d'apelle
 	 * @param request la request
 	 * @return le Viewable
-	 * @throws Exception remonte
 	 */
 	@SuppressWarnings("unchecked")
 	public AbstractEntity urlToAction(String target, HttpServletRequest request)
-			throws Exception
+
 	{
 		String moduleName;
 		String actionName;
@@ -115,8 +115,8 @@ public class Servlet extends ServletHandler
 		moduleName = buildModuleName(target);
 		if (moduleName == null || moduleName.trim().length() == 0)
 		{
-			moduleName = ConfigManager.getDefaultModuleName();
-			actionName = ConfigManager.getDefaultActionName();
+			moduleName = ConfigManager.loadStringProperty("default-module");
+			actionName = ConfigManager.loadStringProperty("default-action");
 		}
 
 		entityName = buildEntityName(target);
@@ -199,12 +199,10 @@ public class Servlet extends ServletHandler
 	}
 
 	/**
-	 * @param module module a lier
 	 * @param action action a lier
 	 * @return le lien relatif vers les ressource demander
-	 * @throws Exception remonte
 	 */
-	static public String makeLink(AbstractAction action) throws Exception
+	static public String makeLink(AbstractAction action)
 	{
 		if (action instanceof BaseAction)
 		{

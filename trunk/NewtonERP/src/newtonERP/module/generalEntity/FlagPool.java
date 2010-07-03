@@ -44,17 +44,17 @@ public class FlagPool implements CheckListViewable
 	 *            PKrightID
 	 * @param foreignDescriptionUiControls liste de colonne de description de
 	 *            table étrangère, exemple: Action, Module
-	 * @throws Exception si création fail
 	 */
 	public FlagPool(AbstractOrmEntity sourceEntityDefinition,
 			String visibleDescription,
 			AbstractOrmEntity intermediateEntityDefinition,
 			String intermediateKeyIn, String intermediateKeyOut,
 			AbstractOrmEntity foreignEntityDefinition, String foreignKey,
-			Vector<String> foreignDescriptionUiControls) throws Exception
+			Vector<String> foreignDescriptionUiControls)
 	{
 		if (sourceEntityDefinition == null || foreignEntityDefinition == null)
-			throw new Exception("Source entity and target entity can't be null");
+			throw new RuntimeException(
+					"Source entity and target entity can't be null");
 
 		this.sourceEntityDefinition = sourceEntityDefinition;
 		this.visibleDescription = visibleDescription;
@@ -73,7 +73,7 @@ public class FlagPool implements CheckListViewable
 	}
 
 	@Override
-	public TreeMap<String, String> getAvailableElementList() throws Exception
+	public TreeMap<String, String> getAvailableElementList()
 	{
 		Vector<AbstractOrmEntity> entityList = Orm.select(
 				foreignEntityDefinition, null);
@@ -100,7 +100,7 @@ public class FlagPool implements CheckListViewable
 	}
 
 	private String getForeignDescription(AbstractOrmEntity entity)
-			throws Exception
+
 	{
 		String description = "";
 		String currentValue;
@@ -129,7 +129,7 @@ public class FlagPool implements CheckListViewable
 	}
 
 	@Override
-	public HashSet<String> getCheckedElementList() throws Exception
+	public HashSet<String> getCheckedElementList()
 
 	{
 		HashSet<String> checkedElementList = new HashSet<String>();
@@ -203,15 +203,14 @@ public class FlagPool implements CheckListViewable
 
 	/**
 	 * @return retourne un accessor multiple
-	 * @throws Exception si obtention d'accessor multiple fail
 	 */
 	public Vector<AbstractOrmEntity> getPositivePluralIntermediateAccessor()
-			throws Exception
+
 	{
 		// searchCriteriaEntity can be null
 
 		if (sourceKeyName == null || sourceKeyValue == null)
-			throw new Exception(
+			throw new RuntimeException(
 					"Vous devez préablablement faire une query(clef, valeur) avant d'intéroger les éléments du flag pool");
 
 		try
@@ -234,10 +233,9 @@ public class FlagPool implements CheckListViewable
 	/**
 	 * @param searchCriteriaEntity critères de recherche facultatifs
 	 * @return accessor multiple vers entité étrangère
-	 * @throws Exception si obtention fail
 	 */
 	public PluralAccessor getPositivePluralForeignAccessor(
-			AbstractOrmEntity searchCriteriaEntity) throws Exception
+			AbstractOrmEntity searchCriteriaEntity)
 	{
 		// searchCriteriaEntity can be null
 
@@ -266,8 +264,18 @@ public class FlagPool implements CheckListViewable
 		{
 			resultSet = Orm.select(searchCriteriaEntity);
 
-			AbstractOrmEntity criteredIntermediateEntityDefinition = intermediateEntityDefinition
-					.getClass().newInstance();
+			AbstractOrmEntity criteredIntermediateEntityDefinition;
+			try
+			{
+				criteredIntermediateEntityDefinition = intermediateEntityDefinition
+						.getClass().newInstance();
+			} catch (InstantiationException e)
+			{
+				throw new RuntimeException(e);
+			} catch (IllegalAccessException e)
+			{
+				throw new RuntimeException(e);
+			}
 			criteredIntermediateEntityDefinition.initFields();
 
 			for (AbstractOrmEntity result : resultSet)

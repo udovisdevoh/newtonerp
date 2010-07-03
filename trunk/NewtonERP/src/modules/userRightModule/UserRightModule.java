@@ -27,9 +27,8 @@ public class UserRightModule extends Module
 	/**
 	 * Default constructor for the user right module initializing himself. Adds
 	 * the actions and the entity defenitions
-	 * @throws Exception remonte
 	 */
-	public UserRightModule() throws Exception
+	public UserRightModule()
 	{
 		super();
 		setDefaultAction(new BaseAction("GetList", new User()));
@@ -42,7 +41,7 @@ public class UserRightModule extends Module
 		setVisibleName("Gestion de droits");
 	}
 
-	public void initDB() throws Exception
+	public void initDB()
 	{
 		Groups groups;
 		User user;
@@ -98,8 +97,10 @@ public class UserRightModule extends Module
 
 		// cree le user Admin
 		user = new User();
-		user.setData("name", ConfigManager.getDefaultUserName());
-		user.setData("password", ConfigManager.getDefaultPassWord());
+		user.setData("name", ConfigManager.loadStringAttrProperty(
+				"default-user", "name"));
+		user.setData("password", ConfigManager.loadStringAttrProperty(
+				"default-user", "password"));
 		user.setData("groupsID", groupsID);
 		user.newE();
 
@@ -125,10 +126,9 @@ public class UserRightModule extends Module
 	 * @param groupName nom du groupe
 	 * @param actionName nom de l'action
 	 * @param entityName nom de l'entité
-	 * @throws Exception si ça fail
 	 */
 	public void addGroupsRight(String groupName, String actionName,
-			String entityName) throws Exception
+			String entityName)
 	{
 		Groups groups = (Groups) Orm.getOrCreateEntity(new Groups(),
 				"groupName", groupName);
@@ -144,10 +144,9 @@ public class UserRightModule extends Module
 	/**
 	 * @param groupName group's name
 	 * @param rightActionName right's name
-	 * @throws Exception si ça fail
 	 */
 	public void addGroupsRight(String groupName, String rightActionName)
-			throws Exception
+
 	{
 		Groups groups = (Groups) Orm.getOrCreateEntity(new Groups(),
 				"groupName", groupName);
@@ -163,10 +162,9 @@ public class UserRightModule extends Module
 	/**
 	 * @param groupName group's name
 	 * @param rightActionName right's name
-	 * @throws Exception si ça fail
 	 */
 	public void removeGroupsRight(String groupName, String rightActionName)
-			throws Exception
+
 	{
 		Groups groups = (Groups) Orm.getOrCreateEntity(new Groups(),
 				"groupName", groupName);
@@ -181,9 +179,8 @@ public class UserRightModule extends Module
 	/**
 	 * @param actionLink un actionLink
 	 * @return vrai si les permission sont présentement accordées, sinon, faux
-	 * @throws Exception si ça fail
 	 */
-	public boolean isPermissionAllowed(ActionLink actionLink) throws Exception
+	public boolean isPermissionAllowed(ActionLink actionLink)
 	{
 		String userName = Authentication.getCurrentUserName();
 		Groups groups = tryGetGroupsForUser(userName);
@@ -215,7 +212,7 @@ public class UserRightModule extends Module
 				.getPrimaryKeyValue());
 	}
 
-	private Right tryGetRight(String actionName) throws Exception
+	private Right tryGetRight(String actionName)
 	{
 		Right right = new Right();
 		right.setData("actionName", actionName);
@@ -227,7 +224,7 @@ public class UserRightModule extends Module
 	}
 
 	private Right tryGetRight(String actionName, String entityName)
-			throws Exception
+
 	{
 		Right right = new Right();
 		right.setData("actionName", actionName);
@@ -239,7 +236,7 @@ public class UserRightModule extends Module
 		return null;
 	}
 
-	private Groups tryGetGroupsForUser(String userName) throws Exception
+	private Groups tryGetGroupsForUser(String userName)
 	{
 		User user = new User();
 		user.setData("name", userName);
@@ -258,7 +255,7 @@ public class UserRightModule extends Module
 	}
 
 	private boolean isGroupsRightExists(Integer groupsID, Integer rightID)
-			throws Exception
+
 	{
 		GroupsRight groupsRight = new GroupsRight();
 		groupsRight.setData("groupsID", groupsID);

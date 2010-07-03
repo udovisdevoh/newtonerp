@@ -1,4 +1,7 @@
    Path du fichier à exécuter: NewtonERP\src\newtonERP\Starter.java
-   URL du serveur: http://localhost:47098/
-   User d'admin par default: admin
-   Mot de passe d'admin par default: aaa
+   les option du serveur doivent etre fixé dans le fichier config.xml, 
+   un fichier de config d'exemple est présent (au nom de config_ex.xml),
+   si le fichier config.xml n'Existe pas copier config_ex.xml en tant 
+   que config.xml et vérifier que les option on des valeur correcte pour 
+   votre instalation
+   

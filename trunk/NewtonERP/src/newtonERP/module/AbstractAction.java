@@ -33,16 +33,24 @@ public abstract class AbstractAction
 	 * @param parameters list de parametre utilisable par l'action, une partie
 	 *            d'entre eux sera transforme en entite
 	 * @return l,entite resultante de l'action
-	 * @throws Exception remonte
 	 */
 	public final AbstractEntity perform(Hashtable<String, String> parameters)
-			throws Exception
+
 	{
 
 		AbstractEntity entity = null;
 		try
 		{
-			entity = entityUsable.getClass().newInstance();
+			try
+			{
+				entity = entityUsable.getClass().newInstance();
+			} catch (InstantiationException e)
+			{
+				throw new RuntimeException(e);
+			} catch (IllegalAccessException e)
+			{
+				throw new RuntimeException(e);
+			}
 			entity.getFields().setFromHashTable(parameters);
 		} catch (NullPointerException e)
 		{
@@ -58,10 +66,9 @@ public abstract class AbstractAction
 	 * @param entity entite a utiliser a l'intérieur du doAction
 	 * @param parameters list de parametre autre que l'entite
 	 * @return l'entite resultante
-	 * @throws Exception si exécution fail
 	 */
 	public abstract AbstractEntity doAction(AbstractEntity entity,
-			Hashtable<String, String> parameters) throws Exception;
+			Hashtable<String, String> parameters);
 
 	/**
 	 * @return the entityUsable
@@ -81,9 +88,8 @@ public abstract class AbstractAction
 
 	/**
 	 * @return the ownedByModul
-	 * @throws Exception remonte
 	 */
-	public Module getOwnedByModule() throws Exception
+	public Module getOwnedByModule()
 	{
 		return ActionModule.getModule(this);
 	}
