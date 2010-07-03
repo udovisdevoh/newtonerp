@@ -20,9 +20,8 @@ public class Address extends AbstractOrmEntity
 	/**
 	 * Default constructor
 	 * 
-	 * @throws Exception a general exception
 	 */
-	public Address() throws Exception
+	public Address()
 	{
 		super();
 		AccessorManager.addAccessor(this, new Country());
@@ -31,7 +30,7 @@ public class Address extends AbstractOrmEntity
 	}
 
 	@Override
-	public Fields initFields() throws Exception
+	public Fields initFields()
 	{
 		FieldString streetName = new FieldString("Rue", "streetName");
 		streetName.setNaturalKey(true);

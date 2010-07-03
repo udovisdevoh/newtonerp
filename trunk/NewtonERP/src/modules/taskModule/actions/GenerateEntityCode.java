@@ -24,16 +24,15 @@ import newtonERP.viewers.viewerData.BaseViewerData;
 public class GenerateEntityCode extends AbstractAction
 {
 	/**
-	 * @throws Exception si création fail
 	 */
-	public GenerateEntityCode() throws Exception
+	public GenerateEntityCode()
 	{
 		super(new EntityEntity());
 	}
 
 	@Override
 	public AbstractEntity doAction(AbstractEntity entity,
-			Hashtable<String, String> parameters) throws Exception
+			Hashtable<String, String> parameters)
 	{
 		EntityEntity entityEntity = (EntityEntity) entity;
 
@@ -59,7 +58,7 @@ public class GenerateEntityCode extends AbstractAction
 		return editUI;
 	}
 
-	private void createRights(EntityEntity entityEntity) throws Exception
+	private void createRights(EntityEntity entityEntity)
 	{
 		ModuleEntity moduleEntity = entityEntity.getModuleEntity();
 		String moduleName = moduleEntity.getDataString("systemName");
@@ -70,7 +69,7 @@ public class GenerateEntityCode extends AbstractAction
 	}
 
 	private Vector<String> getActionNameList(ModuleEntity moduleEntity)
-			throws Exception
+
 	{
 		PluralAccessor actionEntityList = moduleEntity
 				.getPluralAccessor(new ActionEntity().getSystemName());
@@ -92,7 +91,7 @@ public class GenerateEntityCode extends AbstractAction
 		return actionNameList;
 	}
 
-	private String buildFileName(EntityEntity entityEntity) throws Exception
+	private String buildFileName(EntityEntity entityEntity)
 	{
 		String path = getPackagePath(entityEntity) + "/entityDefinitions";
 		String fileName;
@@ -101,7 +100,7 @@ public class GenerateEntityCode extends AbstractAction
 		return fileName;
 	}
 
-	private String getPackagePath(EntityEntity entityEntity) throws Exception
+	private String getPackagePath(EntityEntity entityEntity)
 	{
 		ModuleEntity moduleEntity = entityEntity.getModuleEntity();
 		return SourceCodeBuilder.getModulePackagePath(moduleEntity);
@@ -110,11 +109,10 @@ public class GenerateEntityCode extends AbstractAction
 	/**
 	 * @param moduleName module name
 	 * @param entityName entity name
-	 * @param actionName action name
-	 * @throws Exception si ça fail
+	 * @param actionName action name @ si ça fail
 	 */
 	public static void createRightIfNotExist(String moduleName,
-			String entityName, String actionName) throws Exception
+			String entityName, String actionName)
 	{
 		Right right = new Right();
 		right.setData("moduleName", moduleName);

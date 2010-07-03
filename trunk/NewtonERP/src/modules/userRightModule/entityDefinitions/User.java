@@ -19,16 +19,15 @@ public class User extends AbstractOrmEntity
 	// groups
 
 	/**
-	 * @throws Exception si création fail
 	 */
-	public User() throws Exception
+	public User()
 	{
 		super();
 		AccessorManager.addAccessor(this, new Groups());
 		setVisibleName("Utilisateur");
 	}
 
-	public Fields initFields() throws Exception
+	public Fields initFields()
 	{
 		Vector<Field<?>> fieldsData = new Vector<Field<?>>();
 		fieldsData.add(new FieldInt("Numéro de user", getPrimaryKeyName()));
@@ -44,9 +43,8 @@ public class User extends AbstractOrmEntity
 	 * permet d'obtenir directement l'entity groups lie a cet user
 	 * 
 	 * @return le group lie
-	 * @throws Exception si obtention fail
 	 */
-	public Groups getGroupsEntity() throws Exception
+	public Groups getGroupsEntity()
 	{
 		return (Groups) getSingleAccessor("groupsID");
 	}

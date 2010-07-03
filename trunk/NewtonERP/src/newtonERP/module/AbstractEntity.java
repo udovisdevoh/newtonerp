@@ -29,14 +29,13 @@ public abstract class AbstractEntity
 
 	/**
 	 * construit une entity ne comportant aucun champ
-	 * @throws Exception exceptions si création fail
 	 */
-	public AbstractEntity() throws Exception
+	public AbstractEntity()
 	{
 		fields = preInitFields();
 	}
 
-	protected Fields preInitFields() throws Exception
+	protected Fields preInitFields()
 	{
 		Vector<Field<?>> fieldsData = new Vector<Field<?>>();
 		Fields originalField = initFields();
@@ -79,15 +78,14 @@ public abstract class AbstractEntity
 	 * des champs, sinon initialise une liste de champ vide
 	 * 
 	 * @return le Fields initialiser
-	 * @throws Exception si initFields fail
 	 */
-	public Fields initFields() throws Exception
+	public Fields initFields()
 	{
 		return new Fields();
 	}
 
 	private Vector<Field<?>> initFieldsFromDb(
-			Vector<AbstractOrmEntity> dataField) throws Exception
+			Vector<AbstractOrmEntity> dataField)
 	{
 		FieldEntity field;
 		Vector<Field<?>> fieldsData = new Vector<Field<?>>();
@@ -167,9 +165,8 @@ public abstract class AbstractEntity
 	/**
 	 * @param shortName le nom du champ voulu
 	 * @param data the data to set
-	 * @throws Exception remonte
 	 */
-	public void setData(String shortName, Object data) throws Exception
+	public void setData(String shortName, Object data)
 	{
 		getFields().setData(shortName, data);
 	}
@@ -196,9 +193,8 @@ public abstract class AbstractEntity
 
 	/**
 	 * @return module courant
-	 * @throws Exception si obtiention fail
 	 */
-	public Module getCurrentModule() throws Exception
+	public Module getCurrentModule()
 	{
 		if (currentModule == null)
 			throw new EntityException(
@@ -308,9 +304,8 @@ public abstract class AbstractEntity
 
 	/**
 	 * remet l'etat de l'entity a ses valeur initial
-	 * @throws Exception remonte
 	 */
-	public void reset() throws Exception
+	public void reset()
 	{
 		fields.reset();
 	}

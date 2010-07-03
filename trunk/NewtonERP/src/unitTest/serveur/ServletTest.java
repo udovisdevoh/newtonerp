@@ -20,7 +20,7 @@ public class ServletTest extends TestCase
      * 
      * @see junit.framework.TestCase#setUp()
      */
-    protected void setUp() throws Exception
+    protected void setUp()
     {
 	super.setUp();
 	testServlet = new Servlet();
@@ -32,16 +32,15 @@ public class ServletTest extends TestCase
      * 
      * @see junit.framework.TestCase#tearDown()
      */
-    protected void tearDown() throws Exception
+    protected void tearDown()
     {
 	super.tearDown();
     }
 
     /**
-     * @throws Exception remonte
      * 
      */
-    public void testHandleFullAdress() throws Exception
+    public void testHandleFullAdress()
     {
 	// HttpServletRequestWrapper requ = new HttpServletRequestWrapper(null);
 
@@ -49,19 +48,17 @@ public class ServletTest extends TestCase
     }
 
     /**
-     * @throws Exception remonte
      * 
      */
-    public void testHandleNoAction() throws Exception
+    public void testHandleNoAction()
     {
 	assertNotNull(testServlet.urlToAction("/TestModule", null));
     }
 
     /**
-     * @throws Exception remonte
      * 
      */
-    public void testHandleNoModule() throws Exception
+    public void testHandleNoModule()
     {
 	assertNotNull(testServlet.urlToAction("", null));
     }

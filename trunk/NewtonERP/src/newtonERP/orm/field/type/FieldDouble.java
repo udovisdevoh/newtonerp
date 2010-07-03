@@ -18,10 +18,9 @@ public class FieldDouble extends Field<Double>
 	 * @param name nom du champ qui sera visible par l'utilisateur
 	 * @param shortName nom du champ qui sera utiliser a l'interne
 	 * @param data donne du champ
-	 * @throws InvalidOperatorException remonte
 	 */
 	public FieldDouble(String name, String shortName, Double data)
-			throws InvalidOperatorException
+
 	{
 		super(name, shortName, data);
 	}
@@ -29,19 +28,17 @@ public class FieldDouble extends Field<Double>
 	/**
 	 * @param name nom du champ qui sera visible par l'utilisateur
 	 * @param shortName nom du champ qui sera utiliser a l'interne
-	 * @throws InvalidOperatorException remonte
 	 */
 	public FieldDouble(String name, String shortName)
-			throws InvalidOperatorException
+
 	{
 		this(name, shortName, null);
 	}
 
 	/**
 	 * @param data the data to set
-	 * @throws Exception remonte
 	 */
-	public void setData(String data) throws Exception
+	public void setData(String data)
 	{
 		try
 		{
@@ -57,7 +54,7 @@ public class FieldDouble extends Field<Double>
 	}
 
 	@Override
-	public void setOperator(String operator) throws InvalidOperatorException
+	public void setOperator(String operator)
 	{
 		operator.trim();
 
@@ -71,12 +68,12 @@ public class FieldDouble extends Field<Double>
 					+ getClass().getSimpleName());
 	}
 
-	public void setDefaultValue() throws FieldNotCompatibleException
+	public void setDefaultValue()
 	{
 		setData(0.);
 	}
 
-	public void setData(Object data) throws FieldNotCompatibleException
+	public void setData(Object data)
 	{
 		if (data instanceof Double)
 			setDataType((Double) data);

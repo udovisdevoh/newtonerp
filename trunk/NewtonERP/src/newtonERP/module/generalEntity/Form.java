@@ -16,10 +16,9 @@ public class Form extends PromptViewerData
 	 * @param currentModule module courant
 	 * @param currentAction action courante
 	 * @param currentSelectedUser the currently selected user
-	 * @throws Exception an exception that can occur
 	 */
 	public Form(Module currentModule, AbstractAction currentAction)
-			throws Exception
+
 	{
 		super();
 		setData(new VolatilEntity());
@@ -31,10 +30,9 @@ public class Form extends PromptViewerData
 	 * @param label étiquette du champ
 	 * @param fieldName nom du champ
 	 * @param currentValue valeur courante
-	 * @throws Exception remonte
 	 */
 	public void addField(String label, String fieldName, String currentValue)
-			throws Exception
+
 	{
 		((VolatilEntity) getData()).addField(label, fieldName, currentValue);
 	}
@@ -42,9 +40,8 @@ public class Form extends PromptViewerData
 	/**
 	 * @param label étiquette du champ
 	 * @param fieldName nom du champ
-	 * @throws Exception remonte
 	 */
-	public void addField(String label, String fieldName) throws Exception
+	public void addField(String label, String fieldName)
 	{
 		((VolatilEntity) getData()).addField(label, fieldName);
 	}

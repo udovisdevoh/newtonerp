@@ -23,16 +23,15 @@ import newtonERP.viewers.viewerData.BaseViewerData;
 public class GenerateActionCode extends AbstractAction
 {
 	/**
-	 * @throws Exception si création fail
 	 */
-	public GenerateActionCode() throws Exception
+	public GenerateActionCode()
 	{
 		super(new ActionEntity());
 	}
 
 	@Override
 	public AbstractEntity doAction(AbstractEntity entity,
-			Hashtable<String, String> parameters) throws Exception
+			Hashtable<String, String> parameters)
 	{
 		ActionEntity actionEntity = (ActionEntity) entity;
 
@@ -58,7 +57,7 @@ public class GenerateActionCode extends AbstractAction
 		return editUI;
 	}
 
-	private void createRights(ActionEntity actionEntity) throws Exception
+	private void createRights(ActionEntity actionEntity)
 	{
 		ModuleEntity moduleEntity = actionEntity.getModuleEntity();
 		String moduleName = moduleEntity.getDataString("systemName");
@@ -70,7 +69,7 @@ public class GenerateActionCode extends AbstractAction
 	}
 
 	private Vector<String> getEntityNameList(ModuleEntity moduleEntity)
-			throws Exception
+
 	{
 		PluralAccessor entityEntityList = moduleEntity
 				.getPluralAccessor(new EntityEntity().getSystemName());
@@ -88,7 +87,7 @@ public class GenerateActionCode extends AbstractAction
 		return entityNameList;
 	}
 
-	private String buildFileName(ActionEntity actionEntity) throws Exception
+	private String buildFileName(ActionEntity actionEntity)
 	{
 		String path = getPackagePath(actionEntity) + "/actions";
 		String fileName;
@@ -97,7 +96,7 @@ public class GenerateActionCode extends AbstractAction
 		return fileName;
 	}
 
-	private String getPackagePath(ActionEntity actionEntity) throws Exception
+	private String getPackagePath(ActionEntity actionEntity)
 	{
 		ModuleEntity moduleEntity = actionEntity.getModuleEntity();
 		return SourceCodeBuilder.getModulePackagePath(moduleEntity);

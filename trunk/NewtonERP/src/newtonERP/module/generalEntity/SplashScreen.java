@@ -16,9 +16,8 @@ public class SplashScreen extends AbstractEntity
 	private Vector<ActionLink> actionLinkList = new Vector<ActionLink>();
 
 	/**
-	 * @throws Exception si ça fail
 	 */
-	public SplashScreen() throws Exception
+	public SplashScreen()
 	{
 		super();
 	}

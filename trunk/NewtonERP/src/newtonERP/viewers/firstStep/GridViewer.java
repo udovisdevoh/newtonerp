@@ -4,7 +4,6 @@ import java.util.Vector;
 
 import newtonERP.common.ActionLink;
 import newtonERP.module.AbstractEntity;
-import newtonERP.viewers.ViewerException;
 import newtonERP.viewers.secondStep.ButtonLinkViewer;
 import newtonERP.viewers.secondStep.PageSelectorViewer;
 import newtonERP.viewers.secondStep.SearchBarViewer;
@@ -24,11 +23,8 @@ public class GridViewer
 	 * 
 	 * @param gridEntity the entity to view in list
 	 * @return html the html code
-	 * @throws ViewerException an exception that can occur in the viewer
-	 * @throws Exception general exception
 	 */
 	public static String getHtmlCode(GridViewerData gridEntity)
-			throws ViewerException, Exception
 	{
 		String html = "";
 
@@ -71,7 +67,7 @@ public class GridViewer
 	}
 
 	private static String getTableHeader(GridCaseData[] headerCase,
-			boolean hasLeftHeader) throws Exception
+			boolean hasLeftHeader)
 	{
 
 		String html = "";
@@ -105,7 +101,7 @@ public class GridViewer
 	}
 
 	private static String getDataRowList(GridViewerData gridData)
-			throws Exception
+
 	{
 		GridCaseData[][] data = gridData.getCases();
 		GridCaseData[] leftHeader = gridData.getLeftHeader();
@@ -172,7 +168,7 @@ public class GridViewer
 	}
 
 	private static String getSpecificButton(Vector<ActionLink> actionLinks,
-			AbstractEntity entity) throws Exception
+			AbstractEntity entity)
 	{
 		String html = "";
 
@@ -189,7 +185,7 @@ public class GridViewer
 
 	}
 
-	private static String getCase(GridCaseData dtCase) throws Exception
+	private static String getCase(GridCaseData dtCase)
 	{
 		String html = "";
 		if (dtCase != null)

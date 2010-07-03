@@ -25,10 +25,9 @@ public class GateWayManager
 	 * @param gateWay gateWay
 	 * @param sourceEntity source entity
 	 * @return external entity
-	 * @throws Exception si ça fail
 	 */
 	public static AbstractOrmEntity getExternalEntity(GateWay gateWay,
-			AbstractOrmEntity sourceEntity) throws Exception
+			AbstractOrmEntity sourceEntity)
 	{
 		AbstractOrmEntity gateWayEntity = gateWay.getGateWayEntity();
 		gateWayEntity.setData(gateWayEntity.getPrimaryKeyName(), sourceEntity

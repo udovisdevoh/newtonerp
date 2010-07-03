@@ -30,9 +30,8 @@ import newtonERP.viewers.viewerData.ListViewerData;
 public class FieldEntity extends AbstractOrmEntity
 {
 	/**
-	 * @throws Exception si création fail
 	 */
-	public FieldEntity() throws Exception
+	public FieldEntity()
 	{
 		super();
 		setVisibleName("Champ");
@@ -40,7 +39,7 @@ public class FieldEntity extends AbstractOrmEntity
 		AccessorManager.addAccessor(this, new EntityEntity());
 	}
 
-	protected Fields preInitFields() throws Exception
+	protected Fields preInitFields()
 	{
 		// always build the field from initField and not from DB, thats mean
 		// that we cannot add a dynamic Field, this should not be done anywhere
@@ -49,7 +48,7 @@ public class FieldEntity extends AbstractOrmEntity
 	}
 
 	@Override
-	public Fields initFields() throws Exception
+	public Fields initFields()
 	{
 		FieldString visibleName = new FieldString("Nom visible", "visibleName");
 		visibleName.setNaturalKey(true);
@@ -79,7 +78,7 @@ public class FieldEntity extends AbstractOrmEntity
 
 	@Override
 	public AbstractEntity newUI(Hashtable<String, String> parameters)
-			throws Exception
+
 	{
 		getFields().setDefaultValue(false);
 		// parameters.put("dynamicField", "true"); On doit pouvoir aussi créer
@@ -107,7 +106,7 @@ public class FieldEntity extends AbstractOrmEntity
 		return editUI(parameters);
 	}
 
-	private EntityEntity getEntityEntity(int entityPrimaryKey) throws Exception
+	private EntityEntity getEntityEntity(int entityPrimaryKey)
 	{
 		EntityEntity entityEntity = new EntityEntity();
 		entityEntity
@@ -119,7 +118,7 @@ public class FieldEntity extends AbstractOrmEntity
 
 	@Override
 	public ListViewerData getList(Hashtable<String, String> parameters)
-			throws Exception
+
 	{
 		parameters.put(getPrimaryKeyName(), "&");
 
@@ -139,9 +138,8 @@ public class FieldEntity extends AbstractOrmEntity
 
 	/**
 	 * @return retourne un vrai field
-	 * @throws Exception si création fail
 	 */
-	public Field<?> getFieldInstance() throws Exception
+	public Field<?> getFieldInstance()
 	{
 		FieldTypeEntity fieldTypeEntity = getFieldTypeEntity();
 
@@ -184,7 +182,7 @@ public class FieldEntity extends AbstractOrmEntity
 		return field;
 	}
 
-	private FieldTypeEntity getFieldTypeEntity() throws Exception
+	private FieldTypeEntity getFieldTypeEntity()
 	{
 		return (FieldTypeEntity) getSingleAccessor(new FieldTypeEntity()
 				.getForeignKeyName());
@@ -194,12 +192,11 @@ public class FieldEntity extends AbstractOrmEntity
 	 * BaseAction Delete, on ne veut pas deleter de Field
 	 * 
 	 * @param parameters parametre suplementaire
-	 * @return todo: qu'Est-ce que l'on devrai retourné en general?
-	 * @throws Exception remonte
+	 * @return todo: qu'Est-ce que l'on devrai retourné en general? 
 	 */
 	@Override
 	public AbstractEntity deleteUI(Hashtable<String, String> parameters)
-			throws Exception
+
 	{
 		FieldEntity fieldEntity = (FieldEntity) Orm.selectUnique(this);
 

@@ -5,7 +5,7 @@ package newtonERP.module.exception;
  * 
  *         Exception class representing a module exception
  */
-public class ModuleException extends Exception
+public class ModuleException extends RuntimeException
 {
 	/**
 	 * Default constructor for the module exception

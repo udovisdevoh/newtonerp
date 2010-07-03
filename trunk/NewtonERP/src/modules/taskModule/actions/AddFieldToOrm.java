@@ -20,16 +20,15 @@ import newtonERP.viewers.viewerData.BaseViewerData;
 public class AddFieldToOrm extends AbstractAction
 {
 	/**
-	 * @throws Exception si création fail
 	 */
-	public AddFieldToOrm() throws Exception
+	public AddFieldToOrm()
 	{
 		super(new FieldEntity());
 	}
 
 	@Override
 	public BaseViewerData doAction(AbstractEntity sourceFieldEntity,
-			Hashtable<String, String> parameters) throws Exception
+			Hashtable<String, String> parameters)
 	{
 		FieldEntity fieldEntity = (FieldEntity) Orm
 				.selectUnique((AbstractOrmEntity) sourceFieldEntity);

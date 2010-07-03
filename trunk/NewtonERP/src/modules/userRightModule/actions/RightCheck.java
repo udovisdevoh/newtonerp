@@ -19,7 +19,7 @@ public class RightCheck extends AbstractAction
 {
 	@Override
 	public AbstractEntity doAction(AbstractEntity entity,
-			Hashtable<String, String> parameters) throws Exception
+			Hashtable<String, String> parameters)
 	{
 		Vector<String> search = new Vector<String>();
 		search.add("name='" + parameters.get("name") + "'");

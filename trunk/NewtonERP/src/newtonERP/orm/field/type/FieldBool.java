@@ -18,10 +18,8 @@ public class FieldBool extends Field<Boolean>
 	 * @param name nom du champ qui sera visible par l'utilisateur
 	 * @param shortName nom du champ qui sera utiliser a l'interne
 	 * @param data donne du champ
-	 * @throws InvalidOperatorException remonte
 	 */
 	public FieldBool(String name, String shortName, Boolean data)
-			throws InvalidOperatorException
 	{
 		super(name, shortName, data);
 	}
@@ -29,10 +27,8 @@ public class FieldBool extends Field<Boolean>
 	/**
 	 * @param name nom du champ qui sera visible par l'utilisateur
 	 * @param shortName nom du champ qui sera utiliser a l'interne
-	 * @throws InvalidOperatorException remonte
 	 */
 	public FieldBool(String name, String shortName)
-			throws InvalidOperatorException
 	{
 		this(name, shortName, null);
 	}
@@ -74,7 +70,7 @@ public class FieldBool extends Field<Boolean>
 	}
 
 	@Override
-	public void setOperator(String operator) throws InvalidOperatorException
+	public void setOperator(String operator)
 	{
 		operator.trim();
 
@@ -88,12 +84,12 @@ public class FieldBool extends Field<Boolean>
 	}
 
 	@Override
-	public void setDefaultValue() throws FieldNotCompatibleException
+	public void setDefaultValue()
 	{
 		data = false;
 	}
 
-	public void setData(Object data) throws FieldNotCompatibleException
+	public void setData(Object data)
 	{
 		if (data instanceof Boolean)
 			setDataType((Boolean) data);

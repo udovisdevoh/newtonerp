@@ -16,16 +16,15 @@ import newtonERP.orm.field.type.FieldString;
 public class Groups extends AbstractOrmEntity
 {
 	/**
-	 * @throws Exception Cré un Groups
 	 */
-	public Groups() throws Exception
+	public Groups()
 	{
 		super();
 		AccessorManager.addAccessor(this, new Right());
 		setVisibleName("Groupe");
 	}
 
-	public Fields initFields() throws Exception
+	public Fields initFields()
 	{
 		FieldString groupName = new FieldString("Nom", "groupName");
 		groupName.setNaturalKey(true);
@@ -40,10 +39,9 @@ public class Groups extends AbstractOrmEntity
 	 * Searches the rights for this group by the groupsID and then returns this
 	 * list
 	 * 
-	 * @return rightResult the right list
-	 * @throws Exception remonte
+	 * @return rightResult the right list @ remonte
 	 */
-	public Vector<Right> getRightList() throws Exception
+	public Vector<Right> getRightList()
 	{
 		Vector<Right> rightList = new Vector<Right>();
 		for (AbstractOrmEntity entity : getPluralAccessor("Right"))

@@ -18,10 +18,9 @@ public class FieldInt extends Field<Integer>
 	 * @param name nom du champ qui sera visible par l'utilisateur
 	 * @param shortName nom du champ qui sera utiliser a l'interne
 	 * @param data donne du champ
-	 * @throws InvalidOperatorException remonte
 	 */
 	public FieldInt(String name, String shortName, Integer data)
-			throws InvalidOperatorException
+
 	{
 		super(name, shortName, data);
 	}
@@ -29,10 +28,9 @@ public class FieldInt extends Field<Integer>
 	/**
 	 * @param name nom du champ qui sera visible par l'utilisateur
 	 * @param shortName nom du champ qui sera utiliser a l'interne
-	 * @throws InvalidOperatorException remonte
 	 */
 	public FieldInt(String name, String shortName)
-			throws InvalidOperatorException
+
 	{
 		this(name, shortName, null);
 	}
@@ -56,7 +54,7 @@ public class FieldInt extends Field<Integer>
 	}
 
 	@Override
-	public void setOperator(String operator) throws InvalidOperatorException
+	public void setOperator(String operator)
 	{
 		operator.trim();
 
@@ -70,12 +68,12 @@ public class FieldInt extends Field<Integer>
 					+ getClass().getSimpleName());
 	}
 
-	public void setDefaultValue() throws FieldNotCompatibleException
+	public void setDefaultValue()
 	{
 		setData(0);
 	}
 
-	public void setData(Object data) throws FieldNotCompatibleException
+	public void setData(Object data)
 	{
 		if (data instanceof Integer)
 			setDataType((Integer) data);

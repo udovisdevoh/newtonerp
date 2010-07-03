@@ -14,10 +14,9 @@ public class ListOfValueManager
 	/**
 	 * @param entity Entité source
 	 * @param foreignEntity Entité cible
-	 * @throws Exception a general exception
 	 */
 	public static final void addListOfValue(AbstractOrmEntity entity,
-			AbstractOrmEntity foreignEntity) throws Exception
+			AbstractOrmEntity foreignEntity)
 	{
 		String foreignKeyName = foreignEntity.getForeignKeyName();
 

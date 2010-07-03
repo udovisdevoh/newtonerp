@@ -24,9 +24,8 @@ public class FloorViewer
 	/**
 	 * @param entity entité de plancher
 	 * @return code HTML
-	 * @throws Exception si ça fail
 	 */
-	public static String getHtmlCode(FloorViewable entity) throws Exception
+	public static String getHtmlCode(FloorViewable entity)
 	{
 		String html = "";
 
@@ -76,7 +75,7 @@ public class FloorViewer
 
 	private static String getRoomHtml(String currentText,
 			String backgroundColor, FloorViewable entity, int x, int y,
-			boolean isCorridor) throws Exception
+			boolean isCorridor)
 	{
 		String html = "";
 

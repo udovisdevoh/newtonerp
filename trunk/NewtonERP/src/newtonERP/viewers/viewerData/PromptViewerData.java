@@ -21,9 +21,8 @@ public class PromptViewerData extends BaseViewerData
 
 	/**
 	 * default constructor
-	 * @throws Exception remonte
 	 */
-	public PromptViewerData() throws Exception
+	public PromptViewerData()
 	{
 		super();
 	}
@@ -118,9 +117,8 @@ public class PromptViewerData extends BaseViewerData
 
 	/**
 	 * @return the current module
-	 * @throws Exception lorsque l'obtention du module courant échoue
 	 */
-	public Module getCurrentModule() throws Exception
+	public Module getCurrentModule()
 	{
 		return null;
 	}

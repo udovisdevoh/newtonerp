@@ -1,12 +1,10 @@
 package newtonERP.orm.field;
 
-import java.text.ParseException;
 import java.util.Collection;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Vector;
 
-import newtonERP.module.exception.FieldNotCompatibleException;
 import newtonERP.module.exception.FieldNotFoundException;
 
 /**
@@ -68,9 +66,8 @@ public class Fields implements Iterable<Field<?>>
 	 * 
 	 * @param shortName nom du champ
 	 * @param data valeur modifie
-	 * @throws Exception maudites exceptions non-gérées de Java
 	 */
-	public void setData(String shortName, Object data) throws Exception
+	public void setData(String shortName, Object data)
 	{
 		try
 		{
@@ -87,13 +84,9 @@ public class Fields implements Iterable<Field<?>>
 
 	/**
 	 * @param parameters Hashtable de parametre
-	 * @throws Exception si fail quelque part, maudite exceptions non-gérées de
-	 *             Java
-	 * @throws ParseException an exception that can occur during date parsing
-	 * @throws FieldNotCompatibleException si champ pas compatible
 	 */
 	public void setFromHashTable(Hashtable<String, ?> parameters)
-			throws Exception
+
 	{
 		for (String key : parameters.keySet())
 		{
@@ -184,10 +177,8 @@ public class Fields implements Iterable<Field<?>>
 	 *            false pour ne mettre les valeurpar defaut qu'au field n'étant
 	 *            pas settez
 	 * 
-	 * @throws FieldNotCompatibleException remonte
 	 */
 	public void setDefaultValue(boolean allField)
-			throws FieldNotCompatibleException
 	{
 		for (Field<?> field : getFields())
 		{
@@ -198,9 +189,8 @@ public class Fields implements Iterable<Field<?>>
 
 	/**
 	 * identique a setDefaultValue(true);
-	 * @throws FieldNotCompatibleException remonte
 	 */
-	public void setDefaultValue() throws FieldNotCompatibleException
+	public void setDefaultValue()
 	{
 		setDefaultValue(true);
 	}
@@ -243,9 +233,8 @@ public class Fields implements Iterable<Field<?>>
 
 	/**
 	 * remet les valeur a null
-	 * @throws Exception remonte
 	 */
-	public void reset() throws Exception
+	public void reset()
 	{
 		ErrorState = false;
 		for (Field<?> field : fieldsDataVector)

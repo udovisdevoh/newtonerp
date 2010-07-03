@@ -16,9 +16,8 @@ import newtonERP.orm.field.type.FieldString;
 public class AccessorEntity extends AbstractOrmEntity
 {
 	/**
-	 * @throws Exception si création fail
 	 */
-	public AccessorEntity() throws Exception
+	public AccessorEntity()
 	{
 		super();
 		setVisibleName("Accesseur");
@@ -26,7 +25,7 @@ public class AccessorEntity extends AbstractOrmEntity
 	}
 
 	@Override
-	public Fields initFields() throws Exception
+	public Fields initFields()
 	{
 		Vector<Field<?>> fieldList = new Vector<Field<?>>();
 		fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));

@@ -19,16 +19,15 @@ import newtonERP.viewers.viewerData.ListViewerData;
 public class SearchCriteriaOperator extends AbstractOrmEntity
 {
 	/**
-	 * @throws Exception si création fail
 	 */
-	public SearchCriteriaOperator() throws Exception
+	public SearchCriteriaOperator()
 	{
 		super();
 		setVisibleName("Opérateur");
 	}
 
 	@Override
-	public Fields initFields() throws Exception
+	public Fields initFields()
 	{
 		Vector<Field<?>> fieldList = new Vector<Field<?>>();
 		fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
@@ -38,7 +37,7 @@ public class SearchCriteriaOperator extends AbstractOrmEntity
 
 	@Override
 	public AbstractEntity deleteUI(Hashtable<String, String> parameters)
-			throws Exception
+
 	{
 		/*
 		 * On ne veut pas permettre l'effacement d'opérateur alors on redirige
@@ -50,7 +49,7 @@ public class SearchCriteriaOperator extends AbstractOrmEntity
 
 	@Override
 	public BaseViewerData editUI(Hashtable<String, String> parameters)
-			throws Exception
+
 	{
 		/*
 		 * On ne veut pas permettre la modification d'opérateur alors on
@@ -62,7 +61,7 @@ public class SearchCriteriaOperator extends AbstractOrmEntity
 
 	@Override
 	public final ListViewerData getList(Hashtable<String, String> parameters)
-			throws Exception
+
 	{
 		ListViewerData entityList = super.getList(parameters);
 		return entityList;

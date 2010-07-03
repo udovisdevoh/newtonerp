@@ -18,10 +18,9 @@ public class FieldString extends Field<String>
 	 * @param name nom du champ qui sera visible par l'utilisateur
 	 * @param shortName nom du champ qui sera utiliser a l'interne
 	 * @param data donne du champ
-	 * @throws InvalidOperatorException remonte
 	 */
 	public FieldString(String name, String shortName, String data)
-			throws InvalidOperatorException
+
 	{
 		super(name, shortName, data);
 	}
@@ -29,16 +28,15 @@ public class FieldString extends Field<String>
 	/**
 	 * @param name nom du champ qui sera visible par l'utilisateur
 	 * @param shortName nom du champ qui sera utiliser a l'interne
-	 * @throws InvalidOperatorException remonte
 	 */
 	public FieldString(String name, String shortName)
-			throws InvalidOperatorException
+
 	{
 		this(name, shortName, null);
 	}
 
 	@Override
-	public void setOperator(String operator) throws InvalidOperatorException
+	public void setOperator(String operator)
 	{
 		operator.trim();
 
@@ -61,7 +59,7 @@ public class FieldString extends Field<String>
 		setDataType(data);
 	}
 
-	public void setData(Object data) throws FieldNotCompatibleException
+	public void setData(Object data)
 	{
 		if (data instanceof String)
 			setDataType((String) data);

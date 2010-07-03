@@ -136,9 +136,8 @@ public class ActionLink
 
 	/**
 	 * @return l'url relatif
-	 * @throws Exception remonte
 	 */
-	public String getUrl() throws Exception
+	public String getUrl()
 	{
 		return Servlet.makeLink(action);
 	}
@@ -147,9 +146,8 @@ public class ActionLink
 	 * @param entity entity servant a definir les parametre dynamique
 	 * @return les parametre sous la forme key=value&key2=value2... (ne contien
 	 *         pas le '?')
-	 * @throws Exception remonte
 	 */
-	public String getParam(AbstractEntity entity) throws Exception
+	public String getParam(AbstractEntity entity)
 	{
 		String param = "";
 		for (String key : getParameters(entity).keySet())
@@ -168,9 +166,8 @@ public class ActionLink
 	 * @param entity entity servant a definir les parametre dynamique
 	 * @return l'url relatif et suivie des parametre, utilisabe directement dans
 	 *         un lien web
-	 * @throws Exception remonte
 	 */
-	public String getUrlParam(AbstractEntity entity) throws Exception
+	public String getUrlParam(AbstractEntity entity)
 	{
 		return getUrl() + "?" + getParam(entity);
 	}
@@ -178,9 +175,8 @@ public class ActionLink
 	/**
 	 * @return l'url relatif et suivie des parametre, utilisabe directement dans
 	 *         un lien web
-	 * @throws Exception remonte
 	 */
-	public String getUrlParam() throws Exception
+	public String getUrlParam()
 	{
 		return getUrlParam(null);
 	}

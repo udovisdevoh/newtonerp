@@ -5,7 +5,6 @@ import java.util.Vector;
 import newtonERP.common.NaturalMap;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.Orm;
-import newtonERP.orm.exceptions.OrmException;
 import newtonERP.viewers.viewables.SelectBoxViewable;
 
 /**
@@ -34,7 +33,7 @@ public class ListOfValue implements SelectBoxViewable
 		this.foreignEntity = foreignEntity;
 	}
 
-	public NaturalMap<String, String> getElements() throws Exception
+	public NaturalMap<String, String> getElements()
 	{
 		Vector<AbstractOrmEntity> entityList = Orm.select(foreignEntity, null);
 
@@ -57,10 +56,8 @@ public class ListOfValue implements SelectBoxViewable
 	/**
 	 * @param currentForeignPrimaryKey the primary key
 	 * @return the foreign value of the primary key
-	 * @throws OrmException an exception that can occur in the orm
 	 */
 	public String getForeignValue(String currentForeignPrimaryKey)
-			throws OrmException
 	{
 		try
 		{

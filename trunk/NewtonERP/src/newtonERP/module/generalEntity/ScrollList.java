@@ -27,9 +27,8 @@ public class ScrollList extends AbstractEntity implements ScrollListViewable
 
 	/**
 	 * @param title titre
-	 * @throws Exception si création fail
 	 */
-	public ScrollList(String title) throws Exception
+	public ScrollList(String title)
 	{
 		super();
 		this.title = title;

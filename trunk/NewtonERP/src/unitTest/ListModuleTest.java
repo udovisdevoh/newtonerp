@@ -19,7 +19,7 @@ public class ListModuleTest extends TestCase
      * 
      * @see junit.framework.TestCase#setUp()
      */
-    protected void setUp() throws Exception
+    protected void setUp()
     {
 	super.setUp();
     }
@@ -29,7 +29,7 @@ public class ListModuleTest extends TestCase
      * 
      * @see junit.framework.TestCase#tearDown()
      */
-    protected void tearDown() throws Exception
+    protected void tearDown()
     {
 	super.tearDown();
     }

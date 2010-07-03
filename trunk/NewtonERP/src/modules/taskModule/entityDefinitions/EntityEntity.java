@@ -27,16 +27,15 @@ public class EntityEntity extends AbstractOrmEntity implements
 		Iterable<FieldEntity>
 {
 	/**
-	 * @throws Exception si création fail
 	 */
-	public EntityEntity() throws Exception
+	public EntityEntity()
 	{
 		super();
 		setVisibleName("Entité");
 		AccessorManager.addAccessor(this, new ModuleEntity());
 	}
 
-	protected Fields preInitFields() throws Exception
+	protected Fields preInitFields()
 	{
 		// always build the field from initField and not from DB, thats mean
 		// that we cannot add a dynamic Field, this should not be done anywhere
@@ -45,7 +44,7 @@ public class EntityEntity extends AbstractOrmEntity implements
 	}
 
 	@Override
-	public Fields initFields() throws Exception
+	public Fields initFields()
 	{
 		FieldInt module = new FieldInt("Module", new ModuleEntity()
 				.getForeignKeyName());
@@ -65,7 +64,7 @@ public class EntityEntity extends AbstractOrmEntity implements
 
 	@Override
 	public AbstractEntity deleteUI(Hashtable<String, String> parameters)
-			throws Exception
+
 	{
 		/*
 		 * On ne veut pas permettre l'effacement d'entité alors on redirige
@@ -77,7 +76,7 @@ public class EntityEntity extends AbstractOrmEntity implements
 
 	@Override
 	public ListViewerData getList(Hashtable<String, String> parameters)
-			throws Exception
+
 	{
 		parameters.put(getPrimaryKeyName(), "&");
 
@@ -95,9 +94,8 @@ public class EntityEntity extends AbstractOrmEntity implements
 
 	/**
 	 * @return definition réele d'entité selon EntityEntity
-	 * @throws Exception si obtention fail
 	 */
-	public AbstractOrmEntity getEntityDefinition() throws Exception
+	public AbstractOrmEntity getEntityDefinition()
 	{
 		Module module = getModuleEntity().getModule();
 		String entityName = getEntityName();
@@ -110,10 +108,9 @@ public class EntityEntity extends AbstractOrmEntity implements
 	}
 
 	/**
-	 * @return entité du module
-	 * @throws Exception si ça fail
+	 * @return entité du module 
 	 */
-	public ModuleEntity getModuleEntity() throws Exception
+	public ModuleEntity getModuleEntity()
 	{
 		return (ModuleEntity) getSingleAccessor(new ModuleEntity()
 				.getForeignKeyName());
@@ -124,28 +121,18 @@ public class EntityEntity extends AbstractOrmEntity implements
 	{
 		Vector<FieldEntity> fieldEntityVector = new Vector<FieldEntity>();
 		PluralAccessor accessor;
-		try
-		{
-			accessor = getPluralAccessor("FieldEntity");
-			for (AbstractOrmEntity entity : accessor)
-				fieldEntityVector.add((FieldEntity) entity);
-		} catch (Exception e)
-		{
-			e.printStackTrace();
-			// Obligé de faire un catch car iterator() ne peut pas avoir de
-			// throws pour lancer
-			// d'exception non-gérée, maudites exceptions de Java
-		}
+		accessor = getPluralAccessor("FieldEntity");
+		for (AbstractOrmEntity entity : accessor)
+			fieldEntityVector.add((FieldEntity) entity);
 
 		return fieldEntityVector.iterator();
 	}
 
 	/**
 	 * @return true si l'entité d'entité a un entité de field qui correspond à
-	 *         sa clef primaire
-	 * @throws Exception si ça fail
+	 *         sa clef primaire 
 	 */
-	public boolean ContainsPrimaryKeyField() throws Exception
+	public boolean ContainsPrimaryKeyField()
 	{
 		String primaryKeyName = buildPrimaryKeyName();
 

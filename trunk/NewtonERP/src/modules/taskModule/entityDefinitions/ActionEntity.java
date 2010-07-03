@@ -11,7 +11,6 @@ import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.BaseAction;
 import newtonERP.module.Module;
-import newtonERP.module.exception.ActionNotFoundException;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.Fields;
@@ -26,9 +25,8 @@ import newtonERP.viewers.viewerData.ListViewerData;
 public class ActionEntity extends AbstractOrmEntity
 {
 	/**
-	 * @throws Exception si création fail
 	 */
-	public ActionEntity() throws Exception
+	public ActionEntity()
 	{
 		super();
 		setVisibleName("Action");
@@ -36,7 +34,7 @@ public class ActionEntity extends AbstractOrmEntity
 	}
 
 	@Override
-	public Fields initFields() throws Exception
+	public Fields initFields()
 	{
 		FieldInt moduleEntity = new FieldInt("Module", new ModuleEntity()
 				.getForeignKeyName());
@@ -54,7 +52,7 @@ public class ActionEntity extends AbstractOrmEntity
 
 	@Override
 	public AbstractEntity deleteUI(Hashtable<String, String> parameters)
-			throws Exception
+
 	{
 		/*
 		 * On ne veut pas permettre l'effacement d'action alors on redirige
@@ -66,7 +64,7 @@ public class ActionEntity extends AbstractOrmEntity
 
 	@Override
 	public final ListViewerData getList(Hashtable<String, String> parameters)
-			throws Exception
+
 	{
 		parameters.put(getPrimaryKeyName(), "&");
 
@@ -83,10 +81,10 @@ public class ActionEntity extends AbstractOrmEntity
 	}
 
 	/**
-	 * @return retourne une instance de vrai action selon l'entité d'action
-	 * @throws Exception si obtention fail
+	 * @return retourne une instance de vrai action selon l'entité d'action @ si
+	 *         obtention fail
 	 */
-	public AbstractAction getAction() throws Exception
+	public AbstractAction getAction()
 	{
 		String actionName = getActionName();
 		Module module = getModuleEntity().getModule();
@@ -94,10 +92,9 @@ public class ActionEntity extends AbstractOrmEntity
 	}
 
 	/**
-	 * @return module entity
-	 * @throws Exception si ça fail
+	 * @return module entity @ si ça fail
 	 */
-	public ModuleEntity getModuleEntity() throws Exception
+	public ModuleEntity getModuleEntity()
 	{
 		return (ModuleEntity) getSingleAccessor(new ModuleEntity()
 				.getForeignKeyName());
@@ -114,10 +111,8 @@ public class ActionEntity extends AbstractOrmEntity
 	/**
 	 * @param entity entité
 	 * @return base action correspondant à la définition d'entité
-	 * @throws ActionNotFoundException remonte
 	 */
 	public BaseAction getBaseAction(AbstractOrmEntity entity)
-			throws ActionNotFoundException
 	{
 		return new BaseAction(getActionName(), entity);
 	}

@@ -23,7 +23,7 @@ public class EntityTest extends TestCase
      * 
      * @see junit.framework.TestCase#setUp()
      */
-    protected void setUp() throws Exception
+    protected void setUp()
     {
 	super.setUp();
 	entity = new TestEntity();
@@ -34,7 +34,7 @@ public class EntityTest extends TestCase
      * 
      * @see junit.framework.TestCase#tearDown()
      */
-    protected void tearDown() throws Exception
+    protected void tearDown()
     {
 	super.tearDown();
     }
@@ -43,12 +43,8 @@ public class EntityTest extends TestCase
      * Test method for
      * {@link newtonERP.module.AbstractEntity#setEntityFromHashTable(java.util.Hashtable)}
      * .
-     * @throws Exception Maudites exceptions de java
-     * 
-     * @throws FieldNotFoundException remonte
-     * @throws ParseException an exception that can occur parsing dates
      */
-    public void testGetEntityFromHashTableString() throws Exception
+    public void testGetEntityFromHashTableString()
     {
 	Hashtable<String, String> hash = new Hashtable<String, String>();
 
@@ -71,12 +67,8 @@ public class EntityTest extends TestCase
      * Test method for
      * {@link newtonERP.module.AbstractEntity#setEntityFromHashTable(java.util.Hashtable)}
      * .
-     * @throws Exception maudites exceptions de Java
-     * 
-     * @throws FieldNotFoundException remonte
-     * @throws ParseException an exception that can occur parsing dates
      */
-    public void testGetEntityFromHashTableObject() throws Exception
+    public void testGetEntityFromHashTableObject()
     {
 	System.out.println("**********");
 	Hashtable<String, Object> hash = new Hashtable<String, Object>();

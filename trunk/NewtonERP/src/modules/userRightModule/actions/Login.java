@@ -23,16 +23,15 @@ public class Login extends AbstractAction
 {
 	/**
 	 * constructeur
-	 * @throws Exception si création fail
 	 */
-	public Login() throws Exception
+	public Login()
 	{
 		super(new User()); // Travaille avec des users
 		setDetailedDescription("Vous connecter");
 	}
 
 	public AbstractEntity doAction(AbstractEntity entity,
-			Hashtable<String, String> parameters) throws Exception
+			Hashtable<String, String> parameters)
 	{
 		String currentLoginName = parameters.get("name");
 		if (currentLoginName == null)

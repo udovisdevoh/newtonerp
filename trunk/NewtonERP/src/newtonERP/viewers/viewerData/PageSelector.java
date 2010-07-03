@@ -17,9 +17,8 @@ public class PageSelector extends AbstractEntity
 	private int totalRowCount;
 
 	/**
-	 * @throws Exception si ça fail
 	 */
-	public PageSelector() throws Exception
+	public PageSelector()
 	{
 		super();
 		// TODO Auto-generated constructor stub
@@ -36,11 +35,10 @@ public class PageSelector extends AbstractEntity
 	 * @param orderBy ordre de tri
 	 * @param rowPerPage row per page
 	 * @param pageCount page count
-	 * @throws Exception si ça fail
 	 */
 	public PageSelector(int limit, int offset, int totalRowCount,
 			String currentUrl, String currentSearchEntry, String orderBy)
-			throws Exception
+
 	{
 		if (currentSearchEntry == null)
 			currentSearchEntry = "";

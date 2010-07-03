@@ -28,28 +28,25 @@ public class GridCaseData extends ActionLink
 	/**
 	 * @param name valeur a affiche dans cette case
 	 * @param actionLink action a effectuer lorsque clique (null par defaut)
-	 * @throws Exception remonte
 	 */
 	public GridCaseData(String name, AbstractAction actionLink)
-			throws Exception
+
 	{
 		this(name, actionLink, null);
 	}
 
 	/**
 	 * @param name valeur a affiche dans cette case
-	 * @throws Exception remonte
 	 */
-	public GridCaseData(String name) throws Exception
+	public GridCaseData(String name)
 	{
 		this(name, null);
 	}
 
 	/**
 	 * constructeur vide
-	 * @throws Exception remonte
 	 */
-	public GridCaseData() throws Exception
+	public GridCaseData()
 	{
 		this("");
 	}

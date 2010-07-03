@@ -18,9 +18,8 @@ public class Common extends Module
 	/**
 	 * Default constructor
 	 * 
-	 * @throws Exception a general exception
 	 */
-	public Common() throws Exception
+	public Common()
 	{
 		super();
 		setDefaultAction(new BaseAction("GetList", new Address()));
@@ -33,7 +32,7 @@ public class Common extends Module
 		setVisibleName("General");
 	}
 
-	public void initDB() throws Exception
+	public void initDB()
 	{
 		super.initDB();
 

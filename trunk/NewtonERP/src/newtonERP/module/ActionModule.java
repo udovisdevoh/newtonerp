@@ -16,9 +16,8 @@ public class ActionModule
 	 * permet d'obtenir le module proprietaire a partir de l'action
 	 * @param action l'action dont on veut obtenir le proprietaire
 	 * @return le module
-	 * @throws Exception remonte
 	 */
-	public static Module getModule(AbstractAction action) throws Exception
+	public static Module getModule(AbstractAction action)
 	{
 		return actionModule.get(action.getClass());
 	}

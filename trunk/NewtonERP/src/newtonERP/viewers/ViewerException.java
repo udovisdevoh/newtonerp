@@ -4,7 +4,7 @@ package newtonERP.viewers;
  * Represents the general viewer exception
  * @author Guillaume Lacasse, Pascal Lemay
  */
-public class ViewerException extends Exception
+public class ViewerException extends RuntimeException
 {
 	/**
 	 * Default constructor for the exception

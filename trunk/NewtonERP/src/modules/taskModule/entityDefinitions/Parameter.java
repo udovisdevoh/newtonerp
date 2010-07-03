@@ -16,16 +16,15 @@ import newtonERP.orm.field.type.FieldText;
 public class Parameter extends AbstractOrmEntity
 {
 	/**
-	 * @throws Exception si création fail
 	 */
-	public Parameter() throws Exception
+	public Parameter()
 	{
 		super();
 		setVisibleName("Paramètre générique");
 	}
 
 	@Override
-	public Fields initFields() throws Exception
+	public Fields initFields()
 	{
 		FieldString key = new FieldString("Nom de clef", "key");
 		key.setNaturalKey(true);

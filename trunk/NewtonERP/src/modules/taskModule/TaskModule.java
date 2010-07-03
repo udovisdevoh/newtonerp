@@ -31,9 +31,8 @@ import newtonERP.orm.field.Field;
 public class TaskModule extends Module
 {
 	/**
-	 * @throws Exception si création fail
 	 */
-	public TaskModule() throws Exception
+	public TaskModule()
 	{
 		super();
 		setDefaultAction(new BaseAction("GetList", new TaskEntity()));
@@ -55,7 +54,7 @@ public class TaskModule extends Module
 		addGlobalActionMenuItem("Voir le shcéma de DB", new DbGraph());
 	}
 
-	public void initDB() throws Exception
+	public void initDB()
 	{
 		super.initDB();
 		initActionsAndEntities();
@@ -64,7 +63,7 @@ public class TaskModule extends Module
 	}
 
 	@SuppressWarnings("unused")
-	private static void initTasks() throws Exception
+	private static void initTasks()
 	{
 		// NOS TÂCHES AUTOMATISÉES
 		initEmployeeNewUserTask();
@@ -77,7 +76,7 @@ public class TaskModule extends Module
 		initShippingTask();
 	}
 
-	private static void intiDynamicFieldTask() throws Exception
+	private static void intiDynamicFieldTask()
 	{
 		EntityEntity fieldEntity = new EntityEntity();
 		fieldEntity.setData("systemName", "FieldEntity");
@@ -122,7 +121,7 @@ public class TaskModule extends Module
 		task.newE();
 	}
 
-	private static void initInvoiceLineTask() throws Exception
+	private static void initInvoiceLineTask()
 	{
 		EntityEntity invoiceLineEntity = new EntityEntity();
 		invoiceLineEntity.setData("systemName", "InvoiceLine");
@@ -156,7 +155,7 @@ public class TaskModule extends Module
 		task.newE();
 	}
 
-	private static void initShippingTask() throws Exception
+	private static void initShippingTask()
 	{
 		EntityEntity shippingEntity = new EntityEntity();
 		shippingEntity.setData("systemName", "Shipping");
@@ -190,7 +189,7 @@ public class TaskModule extends Module
 		task.newE();
 	}
 
-	private static void initNewSupplierTransactionTask() throws Exception
+	private static void initNewSupplierTransactionTask()
 	{
 		// A CHAQUE FACTURE CREE ON FAIT UN NEW SUPPLIER TRANSACTION
 		ModuleEntity finances = new ModuleEntity();
@@ -230,7 +229,7 @@ public class TaskModule extends Module
 		task.newE();
 	}
 
-	private static void initWorkOrderTask() throws Exception
+	private static void initWorkOrderTask()
 	{
 		ModuleEntity mrmngmt = new ModuleEntity();
 		mrmngmt.setData("systemName", "MaterialResourcesManagement");
@@ -269,7 +268,7 @@ public class TaskModule extends Module
 		task.newE();
 	}
 
-	private static void initWorkOrderClosingTask() throws Exception
+	private static void initWorkOrderClosingTask()
 	{
 
 		ModuleEntity mrmngmt = new ModuleEntity();
@@ -309,7 +308,7 @@ public class TaskModule extends Module
 		task.newE();
 	}
 
-	private static void initInvoiceTaxLineTask() throws Exception
+	private static void initInvoiceTaxLineTask()
 	{
 		// CALCUL AUTOMATIQUE DE FACTURE A PARTIR D'UN TAXLINE
 		EntityEntity invoiceTaxLineEntity = new EntityEntity();
@@ -345,7 +344,7 @@ public class TaskModule extends Module
 		task1.newE();
 	}
 
-	private static void initEmployeeNewUserTask() throws Exception
+	private static void initEmployeeNewUserTask()
 	{
 		// les entitées suivantes sont là juste
 		// pour tester
@@ -413,7 +412,7 @@ public class TaskModule extends Module
 		task.newE();
 	}
 
-	private static void initSearchCriteriaOperators() throws Exception
+	private static void initSearchCriteriaOperators()
 	{
 		// Les entitées suivantes sont là pour avoir des données par default
 		// qu'on doit garder
@@ -457,7 +456,7 @@ public class TaskModule extends Module
 		searchCriteriaOperator.newE();
 	}
 
-	private static void initActionsAndEntities() throws Exception
+	private static void initActionsAndEntities()
 	{
 		// Les entitées suivantes sont là pour avoir des données par default
 		// qu'on doit garder
@@ -549,7 +548,7 @@ public class TaskModule extends Module
 
 	private static void initAccessorEntityListForEntityEntity(
 			EntityEntity entityEntity, Vector<String> accessorNameList)
-			throws Exception
+
 	{
 		for (String accessorName : accessorNameList)
 		{
@@ -563,7 +562,7 @@ public class TaskModule extends Module
 	@SuppressWarnings("unchecked")
 	private static void initFieldEntitiesForEntityEntity(
 			EntityEntity entityEntity, AbstractOrmEntity realEntity)
-			throws Exception
+
 	{
 		realEntity.initFields();
 
@@ -573,7 +572,7 @@ public class TaskModule extends Module
 
 	@SuppressWarnings("unchecked")
 	private static void initFieldEntity(Field field, EntityEntity entityEntity)
-			throws Exception
+
 	{
 		FieldTypeEntity fieldType = getOrCreateFieldType(field);
 		FieldEntity fieldEntity = new FieldEntity();
@@ -590,7 +589,7 @@ public class TaskModule extends Module
 
 	@SuppressWarnings("unchecked")
 	private static FieldTypeEntity getOrCreateFieldType(Field field)
-			throws Exception
+
 	{
 		FieldTypeEntity fieldType = new FieldTypeEntity();
 		fieldType.setData("systemName", field.getSystemName());

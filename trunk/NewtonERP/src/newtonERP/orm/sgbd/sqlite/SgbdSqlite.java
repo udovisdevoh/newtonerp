@@ -14,7 +14,6 @@ import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.BackupManager;
 import newtonERP.orm.OrmActions;
-import newtonERP.orm.exceptions.OrmException;
 import newtonERP.orm.exceptions.OrmSqlException;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.Fields;
@@ -43,7 +42,7 @@ public class SgbdSqlite extends AbstractSgbd
 
 	@Override
 	public ResultSet execute(String request, OrmActions action)
-			throws OrmException
+
 	{
 		try
 		{
@@ -67,7 +66,7 @@ public class SgbdSqlite extends AbstractSgbd
 	}
 
 	@Override
-	public void disconnect() throws OrmException
+	public void disconnect()
 	{
 		try
 		{
@@ -81,7 +80,7 @@ public class SgbdSqlite extends AbstractSgbd
 	}
 
 	@Override
-	public void connect() throws OrmException
+	public void connect()
 	{
 		try
 		{
@@ -97,7 +96,7 @@ public class SgbdSqlite extends AbstractSgbd
 
 	@Override
 	public ResultSet addColumnToTable(AbstractOrmEntity entity, Field<?> field)
-			throws OrmException
+
 	{
 		String sqlQuery = "ALTER TABLE " + prefix + entity.getSystemName()
 				+ " ADD COLUMN ";
@@ -124,7 +123,7 @@ public class SgbdSqlite extends AbstractSgbd
 
 	@Override
 	public ResultSet select(AbstractOrmEntity searchEntity,
-			Vector<String> searchCriteriasParam) throws OrmException
+			Vector<String> searchCriteriasParam)
 	{
 		String sqlQuery = "SELECT * FROM " + prefix
 				+ searchEntity.getSystemName();
@@ -272,7 +271,7 @@ public class SgbdSqlite extends AbstractSgbd
 
 	@Override
 	public ResultSet select(Vector<AbstractOrmEntity> searchEntities)
-			throws OrmException
+
 	{
 		String sqlQuery = "SELECT * FROM " + prefix
 				+ searchEntities.get(0).getSystemName();
@@ -288,7 +287,7 @@ public class SgbdSqlite extends AbstractSgbd
 	}
 
 	@Override
-	public int insert(AbstractOrmEntity newEntity) throws OrmException
+	public int insert(AbstractOrmEntity newEntity)
 	{
 		String sqlQuery = "INSERT INTO " + prefix + newEntity.getSystemName()
 				+ "( ";
@@ -351,7 +350,7 @@ public class SgbdSqlite extends AbstractSgbd
 
 	@Override
 	public void delete(AbstractOrmEntity searchEntity,
-			Vector<String> searchCriterias) throws OrmException
+			Vector<String> searchCriterias)
 	{
 		String sqlQuery = "DELETE FROM " + prefix
 				+ searchEntity.getSystemName();
@@ -365,7 +364,7 @@ public class SgbdSqlite extends AbstractSgbd
 
 	@Override
 	public void delete(Vector<AbstractOrmEntity> searchEntities)
-			throws OrmException
+
 	{
 		String sqlQuery = "DELETE FROM " + prefix
 				+ searchEntities.get(0).getSystemName();
@@ -379,7 +378,7 @@ public class SgbdSqlite extends AbstractSgbd
 
 	@Override
 	public void update(AbstractOrmEntity entityContainingChanges,
-			Vector<String> searchCriterias) throws OrmException
+			Vector<String> searchCriterias)
 	{
 		String sqlQuery = "UPDATE " + prefix
 				+ entityContainingChanges.getSystemName() + " SET ";
@@ -395,7 +394,7 @@ public class SgbdSqlite extends AbstractSgbd
 
 	@Override
 	public void update(Vector<AbstractOrmEntity> searchEntities,
-			AbstractOrmEntity entityContainingChanges) throws OrmException
+			AbstractOrmEntity entityContainingChanges)
 	{
 		String sqlQuery = "UPDATE " + prefix
 				+ entityContainingChanges.getSystemName() + " SET ";
@@ -410,7 +409,7 @@ public class SgbdSqlite extends AbstractSgbd
 	}
 
 	@Override
-	public boolean isEntityExists(String entitySystemName) throws Exception
+	public boolean isEntityExists(String entitySystemName)
 	{
 		String sqlQuery = "SELECT name FROM sqlite_master where name='"
 				+ prefix + entitySystemName + "';";
@@ -419,12 +418,18 @@ public class SgbdSqlite extends AbstractSgbd
 
 		ResultSet rs = execute(sqlQuery, OrmActions.SEARCH);
 
-		return rs.next();
+		try
+		{
+			return rs.next();
+		} catch (SQLException e)
+		{
+			throw new OrmSqlException("probleme ici");
+		}
 	}
 
 	@Override
 	public void createIndex(String entityName, String fieldName)
-			throws OrmException
+
 	{
 		String indexName = fieldName + "_index";
 		String tableName = prefix + entityName;
@@ -438,7 +443,7 @@ public class SgbdSqlite extends AbstractSgbd
 
 	@Override
 	public void createTableForEntity(AbstractOrmEntity entity)
-			throws OrmException
+
 	{
 		// Be sure to create the table only if it doesn't already
 		// exists
@@ -492,7 +497,7 @@ public class SgbdSqlite extends AbstractSgbd
 
 	@Override
 	public void updateUnique(AbstractOrmEntity searchEntity,
-			AbstractOrmEntity entityContainingChanges) throws OrmException
+			AbstractOrmEntity entityContainingChanges)
 	{
 		String sqlQuery = "UPDATE " + prefix
 				+ entityContainingChanges.getSystemName() + " SET ";
@@ -509,7 +514,7 @@ public class SgbdSqlite extends AbstractSgbd
 	@Override
 	public ResultSet select(AbstractOrmEntity searchEntity,
 			Vector<String> searchCriteriasParam, int limit, int offset,
-			String orderBy) throws OrmException
+			String orderBy)
 	{
 		String sqlQuery = "SELECT * FROM " + prefix
 				+ searchEntity.getSystemName();
@@ -542,7 +547,7 @@ public class SgbdSqlite extends AbstractSgbd
 
 	@Override
 	public int count(AbstractOrmEntity searchEntity,
-			Vector<String> searchParameterList) throws Exception
+			Vector<String> searchParameterList)
 	{
 		// Pour une raison quelconque, la fonction COUNT de SQLite empêche la
 		// transaction de se terminer
@@ -561,9 +566,15 @@ public class SgbdSqlite extends AbstractSgbd
 		ResultSet rs = execute(sqlQuery, OrmActions.SEARCH);
 
 		int count = 0;
-		while (rs.next())
-			count++;
+		try
+		{
+			while (rs.next())
+				count++;
 
+		} catch (SQLException e)
+		{
+			throw new OrmSqlException("probleme ici");
+		}
 		return count;
 	}
 

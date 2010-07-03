@@ -15,16 +15,15 @@ import newtonERP.orm.field.type.FieldString;
 public class FieldTypeEntity extends AbstractOrmEntity
 {
 	/**
-	 * @throws Exception si création fail
 	 */
-	public FieldTypeEntity() throws Exception
+	public FieldTypeEntity()
 	{
 		super();
 		setVisibleName("Type de champ");
 
 	}
 
-	protected Fields preInitFields() throws Exception
+	protected Fields preInitFields()
 	{
 		// always build the field from initField and not from DB, thats mean
 		// that we cannot add a dynamic Field, this should not be done anywhere
@@ -33,7 +32,7 @@ public class FieldTypeEntity extends AbstractOrmEntity
 	}
 
 	@Override
-	public Fields initFields() throws Exception
+	public Fields initFields()
 	{
 		Vector<Field<?>> fieldList = new Vector<Field<?>>();
 		fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));

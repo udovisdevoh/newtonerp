@@ -18,11 +18,10 @@ public class SelectBoxViewer
 	 * @param inputValue the input value
 	 * @param isReadOnly si le select box est readonly
 	 * @return the html code of this view
-	 * @throws Exception si obtention de code fail
 	 */
 	public static String getHtmlCode(SelectBoxViewable entity,
 			String inputName, String inputValue, boolean isReadOnly)
-			throws Exception
+
 	{
 		String html = "";
 

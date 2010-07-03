@@ -16,9 +16,8 @@ public class LinkViewer
 	/**
 	 * @param actionLink representation du lien a effectuer
 	 * @return bouton de lien
-	 * @throws Exception remonte
 	 */
-	public static String getHtmlCode(ActionLink actionLink) throws Exception
+	public static String getHtmlCode(ActionLink actionLink)
 	{
 		// String onClickConfirm = "";
 
@@ -79,7 +78,7 @@ public class LinkViewer
 	}
 
 	private static boolean isPermissionAllowed(ActionLink actionLink)
-			throws Exception
+
 	{
 		UserRightModule userRightModule = (UserRightModule) ListModule
 				.getModule("UserRightModule");

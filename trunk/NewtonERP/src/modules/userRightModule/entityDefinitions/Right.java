@@ -5,7 +5,6 @@ import java.util.Vector;
 
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
-import newtonERP.module.exception.InvalidOperatorException;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.Fields;
 import newtonERP.orm.field.type.FieldInt;
@@ -20,15 +19,14 @@ import newtonERP.viewers.viewerData.ListViewerData;
 public class Right extends AbstractOrmEntity
 {
 	/**
-	 * @throws Exception si création fail
 	 */
-	public Right() throws Exception
+	public Right()
 	{
 		super();
 		setVisibleName("Droit");
 	}
 
-	public Fields initFields() throws InvalidOperatorException
+	public Fields initFields()
 	{
 		FieldString moduleName = new FieldString("Module", "moduleName");
 		moduleName.setNaturalKey(true);
@@ -50,7 +48,7 @@ public class Right extends AbstractOrmEntity
 
 	@Override
 	public AbstractEntity deleteUI(Hashtable<String, String> parameters)
-			throws Exception
+
 	{
 		/*
 		 * On ne veut pas permettre l'effacement de droit alors on redirige
@@ -62,7 +60,7 @@ public class Right extends AbstractOrmEntity
 
 	@Override
 	public BaseViewerData editUI(Hashtable<String, String> parameters)
-			throws Exception
+
 	{
 		/*
 		 * On ne veut pas permettre la modification de droit alors on redirige
@@ -74,7 +72,7 @@ public class Right extends AbstractOrmEntity
 
 	@Override
 	public final ListViewerData getList(Hashtable<String, String> parameters)
-			throws Exception
+
 	{
 		ListViewerData entityList = super.getList(parameters);
 		return entityList;

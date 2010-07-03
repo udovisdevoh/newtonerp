@@ -32,17 +32,15 @@ public interface FloorViewable
 	 * @param x position x
 	 * @param y position y
 	 * @return nom de la zone à la position x, y
-	 * @throws Exception si ça fail
 	 */
-	String tryGetZoneNameAt(int x, int y) throws Exception;
+	String tryGetZoneNameAt(int x, int y);
 
 	/**
 	 * @param x position x
 	 * @param y position y
 	 * @return liste des actionLink pour la position spécifiée
-	 * @throws Exception
 	 */
-	Vector<ActionLink> getActionLinkListAt(int x, int y) throws Exception;
+	Vector<ActionLink> getActionLinkListAt(int x, int y);
 
 	/**
 	 * @param string nom de type de mur
