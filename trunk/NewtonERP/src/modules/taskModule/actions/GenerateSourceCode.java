@@ -141,7 +141,7 @@ public class GenerateSourceCode extends AbstractAction
 
 	/**
 	 * @param fileName file name
-	 * @param classCode class code @ si ça fail
+	 * @param classCode class code
 	 */
 	public static void writeClassFile(String fileName, String classCode)
 

@@ -51,8 +51,7 @@ public class TaskEntity extends AbstractOrmEntity
 	/**
 	 * @param entityParameters paramètres de l'entité
 	 * @param isStraightSearch si c'est une recherche directe
-	 * @return true si la spécification de la tâche est satisfaite @ si
-	 *         vérification fail
+	 * @return true si la spécification de la tâche est satisfaite
 	 */
 	public boolean isSatisfied(Hashtable<String, String> entityParameters,
 			boolean isStraightSearch)
@@ -71,7 +70,7 @@ public class TaskEntity extends AbstractOrmEntity
 	 * Execute l'effet de la tâche
 	 * @param entityParameters paramètres de l'entité
 	 * @param isStraightSearch si c'est une recherche directe
-	 * @return entité viewable, résultat de la tâche @ si execution fail
+	 * @return entité viewable, résultat de la tâche
 	 */
 	public AbstractEntity execute(Hashtable<String, String> entityParameters,
 			boolean isStraightSearch)

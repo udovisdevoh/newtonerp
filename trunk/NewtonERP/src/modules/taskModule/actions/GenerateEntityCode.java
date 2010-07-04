@@ -109,7 +109,7 @@ public class GenerateEntityCode extends AbstractAction
 	/**
 	 * @param moduleName module name
 	 * @param entityName entity name
-	 * @param actionName action name @ si ça fail
+	 * @param actionName action name
 	 */
 	public static void createRightIfNotExist(String moduleName,
 			String entityName, String actionName)

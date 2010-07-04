@@ -52,7 +52,7 @@ public class ModuleEntity extends AbstractOrmEntity
 	}
 
 	/**
-	 * @return vrai module @ si obtention fail
+	 * @return vrai module
 	 */
 	public Module getModule()
 	{
@@ -81,7 +81,7 @@ public class ModuleEntity extends AbstractOrmEntity
 	}
 
 	/**
-	 * @return list of entity entity for this module @ si ça fail
+	 * @return list of entity entity for this module
 	 */
 	public Vector<EntityEntity> getEntityEntityList()
 	{
@@ -94,7 +94,7 @@ public class ModuleEntity extends AbstractOrmEntity
 	}
 
 	/**
-	 * @return list of action entity for this module @ si ça fail
+	 * @return list of action entity for this module
 	 */
 	public Vector<ActionEntity> getActionEntityList()
 	{

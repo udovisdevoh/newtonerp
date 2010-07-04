@@ -42,7 +42,7 @@ public class Specification extends AbstractOrmEntity
 	/**
 	 * @param entityParameters paramètres de l'entité
 	 * @param isStraightSearch si c'est une recherche directe
-	 * @return true si la spécification est satisfaite @ si test fail
+	 * @return true si la spécification est satisfaite
 	 */
 	public boolean isSatisfied(Hashtable<String, String> entityParameters,
 			boolean isStraightSearch)
