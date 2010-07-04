@@ -39,7 +39,7 @@ public class Groups extends AbstractOrmEntity
 	 * Searches the rights for this group by the groupsID and then returns this
 	 * list
 	 * 
-	 * @return rightResult the right list @ remonte
+	 * @return rightResult the right list
 	 */
 	public Vector<Right> getRightList()
 	{

@@ -64,7 +64,7 @@ public class GroupsRight extends AbstractOrmEntity
 	/**
 	 * permet d'obtenir directement l'entity Right lier a cet user
 	 * 
-	 * @return le Right lier @ remonte
+	 * @return le Right lier
 	 */
 	public Right getRightEntity()
 	{

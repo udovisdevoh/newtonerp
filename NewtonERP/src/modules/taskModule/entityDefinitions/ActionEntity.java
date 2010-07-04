@@ -81,8 +81,7 @@ public class ActionEntity extends AbstractOrmEntity
 	}
 
 	/**
-	 * @return retourne une instance de vrai action selon l'entité d'action @ si
-	 *         obtention fail
+	 * @return retourne une instance de vrai action selon l'entité d'action
 	 */
 	public AbstractAction getAction()
 	{
@@ -92,7 +91,7 @@ public class ActionEntity extends AbstractOrmEntity
 	}
 
 	/**
-	 * @return module entity @ si ça fail
+	 * @return module entity
 	 */
 	public ModuleEntity getModuleEntity()
 	{

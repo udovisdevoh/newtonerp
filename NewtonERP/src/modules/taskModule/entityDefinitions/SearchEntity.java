@@ -37,7 +37,7 @@ public class SearchEntity extends AbstractOrmEntity
 	}
 
 	/**
-	 * @return vraie entité de recherche @ si obtention fail
+	 * @return vraie entité de recherche
 	 */
 	public AbstractOrmEntity getEntity()
 	{

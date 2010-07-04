@@ -66,7 +66,7 @@ public class SearchCriteria extends AbstractOrmEntity
 	}
 
 	/**
-	 * @return opérateur en string @ si optention fail
+	 * @return opérateur en string
 	 */
 	public String getOperator()
 	{

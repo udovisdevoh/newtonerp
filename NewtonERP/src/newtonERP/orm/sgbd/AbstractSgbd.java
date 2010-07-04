@@ -85,8 +85,7 @@ public abstract class AbstractSgbd
 	 * Method used to delete an entity from the database
 	 * 
 	 * @param searchEntity the entity to be researched
-	 * @param searchCriterias the search criterias for the where clause @ si
-	 *            effacement fail
+	 * @param searchCriterias the search criterias for the where clause
 	 */
 	public abstract void delete(AbstractOrmEntity searchEntity,
 			Vector<String> searchCriterias);
@@ -106,7 +105,7 @@ public abstract class AbstractSgbd
 	 * 
 	 * @param entityContainingChanges the entity that has been changed and will
 	 *            be in the orm
-	 * @param searchCriterias the criterias used by the update @ si update fail
+	 * @param searchCriterias the criterias used by the update
 	 */
 	public abstract void update(AbstractOrmEntity entityContainingChanges,
 			Vector<String> searchCriterias);
@@ -118,7 +117,7 @@ public abstract class AbstractSgbd
 	 * 
 	 * @param searchEntities the entities from which we will build our where
 	 *            clause
-	 * @param entityContainingChanges the changes to apply @ si update fail
+	 * @param entityContainingChanges the changes to apply
 	 */
 	public abstract void update(Vector<AbstractOrmEntity> searchEntities,
 			AbstractOrmEntity entityContainingChanges);
@@ -150,7 +149,7 @@ public abstract class AbstractSgbd
 	 * 
 	 * @param searchEntity the entities from which we will build our where
 	 *            clause
-	 * @param entityContainingChanges the changes to apply @ si update fail
+	 * @param entityContainingChanges the changes to apply
 	 */
 	public abstract void updateUnique(AbstractOrmEntity searchEntity,
 			AbstractOrmEntity entityContainingChanges);
