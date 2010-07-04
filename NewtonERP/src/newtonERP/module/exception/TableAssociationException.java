@@ -13,4 +13,29 @@ public class TableAssociationException extends RuntimeException
 	{
 		super(message);
 	}
+
+	/**
+	 * 
+	 */
+	public TableAssociationException()
+	{
+		super();
+	}
+
+	/**
+	 * @param message the message
+	 * @param cause the cause
+	 */
+	public TableAssociationException(String message, Throwable cause)
+	{
+		super(message, cause);
+	}
+
+	/**
+	 * @param cause the cause
+	 */
+	public TableAssociationException(Throwable cause)
+	{
+		super(cause);
+	}
 }

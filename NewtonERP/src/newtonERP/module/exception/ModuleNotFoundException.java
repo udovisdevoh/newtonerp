@@ -16,4 +16,29 @@ public class ModuleNotFoundException extends ModuleException
 	{
 		super(moduleName + " module doesn't exist");
 	}
+
+	/**
+	 * 
+	 */
+	public ModuleNotFoundException()
+	{
+		super();
+	}
+
+	/**
+	 * @param moduleName the module name
+	 * @param cause the cause
+	 */
+	public ModuleNotFoundException(String moduleName, Throwable cause)
+	{
+		super(moduleName + " module doesn't exist", cause);
+	}
+
+	/**
+	 * @param cause the cause
+	 */
+	public ModuleNotFoundException(Throwable cause)
+	{
+		super(cause);
+	}
 }

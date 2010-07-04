@@ -17,4 +17,29 @@ public class EntityException extends RuntimeException
 	{
 		super(message);
 	}
+
+	/**
+	 * 
+	 */
+	public EntityException()
+	{
+		super();
+	}
+
+	/**
+	 * @param message the message
+	 * @param cause the cause
+	 */
+	public EntityException(String message, Throwable cause)
+	{
+		super(message, cause);
+	}
+
+	/**
+	 * @param cause the cause
+	 */
+	public EntityException(Throwable cause)
+	{
+		super(cause);
+	}
 }

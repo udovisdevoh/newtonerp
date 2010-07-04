@@ -15,4 +15,29 @@ public class OrmSqlException extends OrmException
 	{
 		super(message);
 	}
+
+	/**
+	 * 
+	 */
+	public OrmSqlException()
+	{
+		super();
+	}
+
+	/**
+	 * @param message the message
+	 * @param cause the cause
+	 */
+	public OrmSqlException(String message, Throwable cause)
+	{
+		super(message, cause);
+	}
+
+	/**
+	 * @param cause the cause
+	 */
+	public OrmSqlException(Throwable cause)
+	{
+		super(cause);
+	}
 }

@@ -17,4 +17,29 @@ public class ActionNotFoundException extends ModuleException
 	{
 		super(actionName + " action doesn't exist");
 	}
+
+	/**
+	 * 
+	 */
+	public ActionNotFoundException()
+	{
+		super();
+	}
+
+	/**
+	 * @param actionName the message
+	 * @param cause the cause
+	 */
+	public ActionNotFoundException(String actionName, Throwable cause)
+	{
+		super(actionName + " action doesn't exist", cause);
+	}
+
+	/**
+	 * @param cause the cause
+	 */
+	public ActionNotFoundException(Throwable cause)
+	{
+		super(cause);
+	}
 }

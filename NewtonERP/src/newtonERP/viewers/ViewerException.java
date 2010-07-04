@@ -15,4 +15,29 @@ public class ViewerException extends RuntimeException
 	{
 		super(message);
 	}
+
+	/**
+	 * 
+	 */
+	public ViewerException()
+	{
+		super();
+	}
+
+	/**
+	 * @param message the message
+	 * @param cause the cause
+	 */
+	public ViewerException(String message, Throwable cause)
+	{
+		super(message, cause);
+	}
+
+	/**
+	 * @param cause the cause
+	 */
+	public ViewerException(Throwable cause)
+	{
+		super(cause);
+	}
 }

@@ -28,4 +28,29 @@ public class FieldNotCompatibleException extends ModuleException
 	{
 		super(message);
 	}
+
+	/**
+	 * 
+	 */
+	public FieldNotCompatibleException()
+	{
+		super();
+	}
+
+	/**
+	 * @param message the message
+	 * @param cause the cause
+	 */
+	public FieldNotCompatibleException(String message, Throwable cause)
+	{
+		super(message, cause);
+	}
+
+	/**
+	 * @param cause the cause
+	 */
+	public FieldNotCompatibleException(Throwable cause)
+	{
+		super(cause);
+	}
 }
