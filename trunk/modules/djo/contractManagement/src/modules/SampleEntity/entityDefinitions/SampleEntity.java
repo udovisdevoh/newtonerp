@@ -1,4 +1,4 @@
-package modules.humanResources.entityDefinitions;
+package modules.SampleEntity.entityDefinitions;
 
 import java.util.Vector;
 
