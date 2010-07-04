@@ -16,4 +16,29 @@ public class ModuleException extends RuntimeException
 	{
 		super(message);
 	}
+
+	/**
+	 * 
+	 */
+	public ModuleException()
+	{
+		super();
+	}
+
+	/**
+	 * @param message the message
+	 * @param cause the cause
+	 */
+	public ModuleException(String message, Throwable cause)
+	{
+		super(message, cause);
+	}
+
+	/**
+	 * @param cause the cause
+	 */
+	public ModuleException(Throwable cause)
+	{
+		super(cause);
+	}
 }

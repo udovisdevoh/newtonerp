@@ -15,4 +15,29 @@ public class OrmException extends RuntimeException
 		super(message);
 	}
 
+	/**
+	 * 
+	 */
+	public OrmException()
+	{
+		super();
+	}
+
+	/**
+	 * @param message the message
+	 * @param cause the cause
+	 */
+	public OrmException(String message, Throwable cause)
+	{
+		super(message, cause);
+	}
+
+	/**
+	 * @param cause the cause
+	 */
+	public OrmException(Throwable cause)
+	{
+		super(cause);
+	}
+
 }

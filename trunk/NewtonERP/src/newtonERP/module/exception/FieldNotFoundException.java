@@ -16,4 +16,29 @@ public class FieldNotFoundException extends ModuleException
 	{
 		super(fieldName + " field doesn't exist");
 	}
+
+	/**
+	 * 
+	 */
+	public FieldNotFoundException()
+	{
+		super();
+	}
+
+	/**
+	 * @param fieldName the message
+	 * @param cause the cause
+	 */
+	public FieldNotFoundException(String fieldName, Throwable cause)
+	{
+		super(fieldName + " field doesn't exist", cause);
+	}
+
+	/**
+	 * @param cause the cause
+	 */
+	public FieldNotFoundException(Throwable cause)
+	{
+		super(cause);
+	}
 }

@@ -15,4 +15,29 @@ public class OrmEntityCreationException extends OrmException
 		super(message);
 	}
 
+	/**
+	 * 
+	 */
+	public OrmEntityCreationException()
+	{
+		super();
+	}
+
+	/**
+	 * @param message the message
+	 * @param cause the cause
+	 */
+	public OrmEntityCreationException(String message, Throwable cause)
+	{
+		super(message, cause);
+	}
+
+	/**
+	 * @param cause the cause
+	 */
+	public OrmEntityCreationException(Throwable cause)
+	{
+		super(cause);
+	}
+
 }
