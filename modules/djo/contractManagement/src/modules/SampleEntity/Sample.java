@@ -1,6 +1,6 @@
-package modules.humanResources;
+package modules.SampleEntity;
 
-import modules.humanResources.entityDefinitions.SampleEntity;
+import modules.SampleEntity.entityDefinitions.SampleEntity;
 import newtonERP.module.BaseAction;
 import newtonERP.module.Module;
 

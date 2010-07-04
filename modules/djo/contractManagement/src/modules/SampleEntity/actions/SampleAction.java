@@ -1,8 +1,8 @@
-package modules.humanResources.actions;
+package modules.SampleEntity.actions;
 
 import java.util.Hashtable;
 
-import modules.humanResources.entityDefinitions.SampleEntity;
+import modules.SampleEntity.entityDefinitions.SampleEntity;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
 
