@@ -1,19 +1,11 @@
 package newtonERP.orm;
 
 import java.sql.ResultSet;
-import java.util.Collection;
 import java.util.Vector;
 
-import newtonERP.common.ListModule;
-import newtonERP.logging.Logger;
 import newtonERP.module.AbstractOrmEntity;
-import newtonERP.module.Module;
-import newtonERP.module.exception.ModuleException;
-import newtonERP.orm.exceptions.OrmException;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.sgbd.AbstractSgbd;
-import newtonERP.orm.sgbd.sqlite.SgbdSqlite;
-import newtonERP.serveur.ConfigManager;
 import newtonERP.taskManager.TaskManager;
 
 /**
@@ -31,36 +23,191 @@ import newtonERP.taskManager.TaskManager;
  */
 public class Orm
 {
-	@Deprecated
-	private static AbstractSgbd sgbd = null;
-
-	// vers le SGBD voulu
-
-	/**
-	 * Alter table
-	 * 
-	 * @param entity the entity containing the new field
-	 * @param field the field to add
-	 * @return ?
-	 */
-	public static ResultSet addColumnToTable(AbstractOrmEntity entity,
-			Field<?> field)
-	{
-		return getSgbd().addColumnToTable(entity, field);
-	}
 
 	private static AbstractSgbd getSgbd()
 	{
-		if (sgbd == null)
-			sgbd = buildSgbd();
-		return sgbd;
+		return OrmFonction.getSgbd();
 	}
 
-	private static AbstractSgbd buildSgbd()
+	/**
+	 * @param entityAsType entity as a type reference or empty entity to fill
+	 *            data from orm
+	 * @param fieldName key
+	 * @param fieldValue value
+	 * @return new entity or found entity
+	 */
+	public static AbstractOrmEntity getOrCreateEntity(
+			AbstractOrmEntity entityAsType, String fieldName, String fieldValue)
 	{
-		if (ConfigManager.loadStringProperty("dmbs-name").equals("sqlite"))
-			return new SgbdSqlite();// On cré la référence
-		throw new OrmException("Invalid DBMS type");
+		entityAsType.setData(fieldName, fieldValue);
+
+		Vector<AbstractOrmEntity> entityList = entityAsType.get();
+
+		if (entityList.size() > 0)
+		{
+			return entityList.get(0);
+		}
+
+		entityAsType.newE();
+		return entityAsType;
+	}
+
+	/**
+	 * @param entityAsType entity as a type reference or empty entity to fill
+	 * @param fieldName1 key1
+	 * @param fieldValue1 value2
+	 * @param fieldName2 key2
+	 * @param fieldValue2 value2
+	 * @return new entity or found entity
+	 */
+	public static AbstractOrmEntity getOrCreateEntity(
+			AbstractOrmEntity entityAsType, String fieldName1,
+			String fieldValue1, String fieldName2, String fieldValue2)
+	{
+		entityAsType.setData(fieldName1, fieldValue1);
+		entityAsType.setData(fieldName2, fieldValue2);
+
+		Vector<AbstractOrmEntity> entityList = entityAsType.get();
+
+		if (entityList.size() > 0)
+		{
+			return entityList.get(0);
+		}
+
+		entityAsType.newE();
+		return entityAsType;
+	}
+
+	/**
+	 * @param entityAsType entité en tant que référence de type ou entité vide
+	 *            pour ajouter des champs
+	 * @param fieldName1 key1
+	 * @param fieldValue1 value1
+	 * @param fieldName2 key2
+	 * @param fieldValue2 value2
+	 */
+	public static void delete(AbstractOrmEntity entityAsType,
+			String fieldName1, String fieldValue1, String fieldName2,
+			String fieldValue2)
+	{
+		entityAsType.setData(fieldName1, fieldValue1);
+		entityAsType.setData(fieldName2, fieldValue2);
+
+		Vector<AbstractOrmEntity> entityList = entityAsType.get();
+
+		if (entityList.size() > 0)
+		{
+			entityList.get(0).delete();
+		}
+
+	}
+
+	/**
+	 * @param searchEntity entité
+	 * @param searchParameters critère de recherche
+	 * @param limit limite
+	 * @param offset offset
+	 * @param orderBy ordre
+	 * @return liste d'entité
+	 */
+	public static Vector<AbstractOrmEntity> select(
+			AbstractOrmEntity searchEntity, Vector<String> searchParameters,
+			int limit, int offset, String orderBy)
+	{
+		return EntityCreator.createEntitiesFromResultSet(getSgbd().select(
+				searchEntity, searchParameters, limit, offset, orderBy),
+				searchEntity);
+	}
+
+	/**
+	 * @param entitySystemName nom système d'une entité
+	 * @return true si l'entité a une table dans la base de donnée, sinon false
+	 */
+	public static boolean isEntityExists(String entitySystemName)
+	{
+		return getSgbd().isEntityExists(entitySystemName);
+	}
+
+	/**
+	 * @param searchEntity entité de recherche
+	 * @param searchCriteriasParam critères de recherche
+	 * @param limit limite de résultats
+	 * @param offset offset de début de résultats
+	 * @return liste d'entités trouvées
+	 */
+	public static Vector<AbstractOrmEntity> select(
+			AbstractOrmEntity searchEntity,
+			Vector<String> searchCriteriasParam, int limit, int offset)
+	{
+		return select(searchEntity, searchCriteriasParam, limit, offset, null);
+	}
+
+	/**
+	 * @param searchEntity entité de recherche
+	 * @return nombre d'occurence du type de l'entité de recherche
+	 */
+	public static int count(AbstractOrmEntity searchEntity)
+	{
+		return count(searchEntity, null);
+	}
+
+	/**
+	 * @param searchEntity entité de recherche
+	 * @param searchParameterList liste de paramètres de recherche
+	 * @return nombre d'occurence du type de l'entité de recherche
+	 */
+	public static int count(AbstractOrmEntity searchEntity,
+			Vector<String> searchParameterList)
+	{
+		return getSgbd().count(searchEntity, searchParameterList);
+	}
+
+	/**
+	 * Sert à ajouter un index dans la table SQL de l'entité pour un field en
+	 * particulier
+	 * @param entity entité
+	 * @param field champ
+	 */
+	public static void createIndex(AbstractOrmEntity entity, Field<?> field)
+	{
+		createIndex(entity.getSystemName(), field.getSystemName());
+	}
+
+	/**
+	 * Sert à ajouter un index dans la table SQL de l'entité pour un field en
+	 * particulier
+	 * @param entityName nom de l'entité
+	 * @param fieldName nom du field
+	 */
+	public static void createIndex(String entityName, String fieldName)
+	{
+		getSgbd().createIndex(entityName, fieldName);
+	}
+
+	/**
+	 * Used to initialize the connection
+	 */
+	public static void connect()
+	{
+		getSgbd().connect();
+	}
+
+	/**
+	 * Used to disconnect from the db
+	 */
+	public static void disconnect()
+	{
+		getSgbd().disconnect();
+	}
+
+	/**
+	 * To execute a custom query
+	 * 
+	 * @param sqlQuery the executed
+	 */
+	public static void executeCustomQuery(String sqlQuery)
+	{
+		getSgbd().execute(sqlQuery, OrmActions.OTHER);
 	}
 
 	/**
@@ -75,6 +222,7 @@ public class Orm
 	 * @param searchCriteriasParam the search criterias formatted into strings
 	 * @return a vector of ormizable entities
 	 */
+	@Deprecated
 	public static Vector<AbstractOrmEntity> select(
 			AbstractOrmEntity searchEntity, Vector<String> searchCriteriasParam)
 	{
@@ -170,6 +318,7 @@ public class Orm
 	 * @param searchEntity the entity to be researched
 	 * @param searchCriterias the search criterias for the where clause
 	 */
+	@Deprecated
 	public static void delete(AbstractOrmEntity searchEntity,
 			Vector<String> searchCriterias)
 	{
@@ -210,6 +359,7 @@ public class Orm
 	 *            be in the orm
 	 * @param searchCriterias the criterias used by the update
 	 */
+	@Deprecated
 	public static void update(AbstractOrmEntity entityContainingChanges,
 			Vector<String> searchCriterias)
 	{
@@ -247,263 +397,33 @@ public class Orm
 	}
 
 	/**
+	 * Alter table
+	 * 
+	 * @param entity the entity containing the new field
+	 * @param field the field to add
+	 * @return ?
+	 */
+	public static ResultSet addColumnToTable(AbstractOrmEntity entity,
+			Field<?> field)
+	{
+		return getSgbd().addColumnToTable(entity, field);
+	}
+
+	/**
 	 * Creates the non-existent table from the modules in the database
 	 */
 	public static void createNonExistentTables()
 	{
-		for (String key : ListModule.getAllModules())
-		{
-			try
-			{
-				Module module = ListModule.getModule(key);
-				createNonExistentTables(module);
-			} catch (ModuleException e)
-			{
-				// PrintStackTrace nécéssaire pour afficher l'information de
-				// l'exception précédente. Il faudrait mettre l'ancien
-				// stackTrace dans le nouveau
-				e.printStackTrace();
-				throw new ModuleException(
-						"Erreur à la construction de la requête pour créer les tables : "
-								+ e.getMessage());
-			}
-		}
-	}
-
-	private static void createNonExistentTables(Module module)
-	{
-		Collection<AbstractOrmEntity> moduleEntities = module
-				.getEntityDefinitionList().values();
-
-		// For each entity in the list of module entities
-		for (AbstractOrmEntity entity : moduleEntities)
-		{
-			createTableForEntity(entity);
-			addMissingColumnsForEntity(entity);
-			createIndexesForEntity(entity);
-		}
-	}
-
-	private static void addMissingColumnsForEntity(AbstractOrmEntity entity)
-	{
-		for (Field<?> field : entity.getFields())
-		{
-			try
-			{
-				getSgbd().addColumnToTable(entity, field);
-			} catch (OrmException e)
-			{
-				Logger.warning("[ORM] Champ déjà dans entité");
-			}
-		}
-	}
-
-	private static void createTableForEntity(AbstractOrmEntity entity)
-	{
-		getSgbd().createTableForEntity(entity);
-	}
-
-	private static void createIndexesForEntity(AbstractOrmEntity entity)
-	{
-		// On cré des index pour chaque clef étrangère
-		for (String fieldName : entity.getFields().getKeyList())
-			if ((fieldName.endsWith("ID") && !fieldName.startsWith("PK"))
-					|| fieldName.startsWith("system"))
-				createIndex(entity.getSystemName(), fieldName);
-	}
-
-	/**
-	 * Sert à ajouter un index dans la table SQL de l'entité pour un field en
-	 * particulier
-	 * @param entity entité
-	 * @param field champ
-	 */
-	public static void createIndex(AbstractOrmEntity entity, Field<?> field)
-	{
-		createIndex(entity.getSystemName(), field.getSystemName());
-	}
-
-	/**
-	 * Sert à ajouter un index dans la table SQL de l'entité pour un field en
-	 * particulier
-	 * @param entityName nom de l'entité
-	 * @param fieldName nom du field
-	 */
-	public static void createIndex(String entityName, String fieldName)
-	{
-		getSgbd().createIndex(entityName, fieldName);
-	}
-
-	/**
-	 * Used to initialize the connection
-	 */
-	public static void connect()
-	{
-		getSgbd().connect();
-	}
-
-	/**
-	 * Used to disconnect from the db
-	 */
-	public static void disconnect()
-	{
-		getSgbd().disconnect();
-	}
-
-	/**
-	 * To execute a custom query
-	 * 
-	 * @param sqlQuery the executed
-	 */
-	public static void executeCustomQuery(String sqlQuery)
-	{
-		getSgbd().execute(sqlQuery, OrmActions.OTHER);
-	}
-
-	/**
-	 * @param entitySystemName nom système d'une entité
-	 * @return true si l'entité a une table dans la base de donnée, sinon false
-	 */
-	public static boolean isEntityExists(String entitySystemName)
-	{
-		return getSgbd().isEntityExists(entitySystemName);
-	}
-
-	/**
-	 * @param searchEntity entité de recherche
-	 * @param searchCriteriasParam critères de recherche
-	 * @param limit limite de résultats
-	 * @param offset offset de début de résultats
-	 * @return liste d'entités trouvées
-	 */
-	public static Vector<AbstractOrmEntity> select(
-			AbstractOrmEntity searchEntity,
-			Vector<String> searchCriteriasParam, int limit, int offset)
-	{
-		return select(searchEntity, searchCriteriasParam, limit, offset, null);
-	}
-
-	/**
-	 * @param searchEntity entité de recherche
-	 * @return nombre d'occurence du type de l'entité de recherche
-	 */
-	public static int count(AbstractOrmEntity searchEntity)
-	{
-		return count(searchEntity, null);
-	}
-
-	/**
-	 * @param searchEntity entité de recherche
-	 * @param searchParameterList liste de paramètres de recherche
-	 * @return nombre d'occurence du type de l'entité de recherche
-	 */
-	public static int count(AbstractOrmEntity searchEntity,
-			Vector<String> searchParameterList)
-	{
-		return getSgbd().count(searchEntity, searchParameterList);
+		OrmFonction.createNonExistentTables();
 	}
 
 	/**
 	 * Fait un backup de la DB si l'intervale de temps est assez grande
 	 */
+	@Deprecated
+	// cette fonction ne devrai plus etre apellé a l'extérieur de l'ORM
 	public static void doBackupIfTimeIntervalAllows()
 	{
-		long currentTime = BackupManager.getCurrentTime();
-		long latestBackupTime = getSgbd().getLatestBackupTime();
-		long desiredBackupTimeInterval = BackupManager
-				.getDesiredBackupIntervalTime();
-
-		if (currentTime - latestBackupTime > desiredBackupTimeInterval)
-			getSgbd().doBackup();
-	}
-
-	/**
-	 * @param searchEntity entité
-	 * @param searchParameters critère de recherche
-	 * @param limit limite
-	 * @param offset offset
-	 * @param orderBy ordre
-	 * @return liste d'entité
-	 */
-	public static Vector<AbstractOrmEntity> select(
-			AbstractOrmEntity searchEntity, Vector<String> searchParameters,
-			int limit, int offset, String orderBy)
-	{
-		return EntityCreator.createEntitiesFromResultSet(getSgbd().select(
-				searchEntity, searchParameters, limit, offset, orderBy),
-				searchEntity);
-	}
-
-	/**
-	 * @param entityAsType entity as a type reference or empty entity to fill
-	 *            data from orm
-	 * @param fieldName key
-	 * @param fieldValue value
-	 * @return new entity or found entity
-	 */
-	public static AbstractOrmEntity getOrCreateEntity(
-			AbstractOrmEntity entityAsType, String fieldName, String fieldValue)
-	{
-		entityAsType.setData(fieldName, fieldValue);
-
-		Vector<AbstractOrmEntity> entityList = entityAsType.get();
-
-		if (entityList.size() > 0)
-		{
-			return entityList.get(0);
-		}
-
-		entityAsType.newE();
-		return entityAsType;
-	}
-
-	/**
-	 * @param entityAsType entity as a type reference or empty entity to fill
-	 * @param fieldName1 key1
-	 * @param fieldValue1 value2
-	 * @param fieldName2 key2
-	 * @param fieldValue2 value2
-	 * @return new entity or found entity
-	 */
-	public static AbstractOrmEntity getOrCreateEntity(
-			AbstractOrmEntity entityAsType, String fieldName1,
-			String fieldValue1, String fieldName2, String fieldValue2)
-	{
-		entityAsType.setData(fieldName1, fieldValue1);
-		entityAsType.setData(fieldName2, fieldValue2);
-
-		Vector<AbstractOrmEntity> entityList = entityAsType.get();
-
-		if (entityList.size() > 0)
-		{
-			return entityList.get(0);
-		}
-
-		entityAsType.newE();
-		return entityAsType;
-	}
-
-	/**
-	 * @param entityAsType entité en tant que référence de type ou entité vide
-	 *            pour ajouter des champs
-	 * @param fieldName1 key1
-	 * @param fieldValue1 value1
-	 * @param fieldName2 key2
-	 * @param fieldValue2 value2
-	 */
-	public static void delete(AbstractOrmEntity entityAsType,
-			String fieldName1, String fieldValue1, String fieldName2,
-			String fieldValue2)
-	{
-		entityAsType.setData(fieldName1, fieldValue1);
-		entityAsType.setData(fieldName2, fieldValue2);
-
-		Vector<AbstractOrmEntity> entityList = entityAsType.get();
-
-		if (entityList.size() > 0)
-		{
-			entityList.get(0).delete();
-		}
-
+		OrmFonction.doBackupIfTimeIntervalAllows();
 	}
 }
