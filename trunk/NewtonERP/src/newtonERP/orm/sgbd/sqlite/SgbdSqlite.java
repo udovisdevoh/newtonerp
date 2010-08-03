@@ -122,6 +122,7 @@ public class SgbdSqlite extends AbstractSgbd
 	}
 
 	@Override
+	@Deprecated
 	public ResultSet select(AbstractOrmEntity searchEntity,
 			Vector<String> searchCriteriasParam)
 	{
@@ -349,6 +350,7 @@ public class SgbdSqlite extends AbstractSgbd
 	}
 
 	@Override
+	@Deprecated
 	public void delete(AbstractOrmEntity searchEntity,
 			Vector<String> searchCriterias)
 	{
@@ -376,6 +378,7 @@ public class SgbdSqlite extends AbstractSgbd
 		execute(sqlQuery, OrmActions.DELETE);
 	}
 
+	@Deprecated
 	@Override
 	public void update(AbstractOrmEntity entityContainingChanges,
 			Vector<String> searchCriterias)
