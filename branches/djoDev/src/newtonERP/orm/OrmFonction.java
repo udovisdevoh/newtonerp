@@ -3,35 +3,30 @@ package newtonERP.orm;
 import java.util.Collection;
 
 import newtonERP.common.ListModule;
-import newtonERP.logging.Logger;
 import newtonERP.module.AbstractOrmEntity;
-import newtonERP.module.Module;
 import newtonERP.module.exception.ModuleException;
 import newtonERP.orm.exceptions.OrmException;
-import newtonERP.orm.field.Field;
-import newtonERP.orm.sgbd.AbstractSgbd;
 import newtonERP.orm.sgbd.sqlite.SgbdSqlite;
 import newtonERP.serveur.ConfigManager;
 
 /**
  * @author CloutierJo
- * 
  */
 public class OrmFonction
 {
-	private static AbstractSgbd sgbd = null;
+	private static newtonERP.orm.sgbd.AbstractSgbd sgbd = null;
 
 	/**
 	 * @return abstractSgdb that is in the config file
 	 */
-	public static AbstractSgbd getSgbd()
+	public static newtonERP.orm.sgbd.AbstractSgbd getSgbd()
 	{
 		if (sgbd == null)
 			sgbd = buildSgbd();
 		return sgbd;
 	}
 
-	private static AbstractSgbd buildSgbd()
+	private static newtonERP.orm.sgbd.AbstractSgbd buildSgbd()
 	{
 		if (ConfigManager.loadStringProperty("dmbs-name").equals("sqlite"))
 			return new SgbdSqlite();// On cré la référence
@@ -62,7 +57,7 @@ public class OrmFonction
 		}
 	}
 
-	private static void createNonExistentTables(Module module)
+	private static void createNonExistentTables(newtonERP.module.Module module)
 	{
 		Collection<AbstractOrmEntity> moduleEntities = module
 				.getEntityDefinitionList().values();
@@ -76,12 +71,14 @@ public class OrmFonction
 		}
 	}
 
-	private static void createTableForEntity(AbstractOrmEntity entity)
+	private static void createTableForEntity(
+			newtonERP.module.AbstractOrmEntity entity)
 	{
 		getSgbd().createTableForEntity(entity);
 	}
 
-	private static void addMissingColumnsForEntity(AbstractOrmEntity entity)
+	private static void addMissingColumnsForEntity(
+			newtonERP.module.AbstractOrmEntity entity)
 	{
 		for (Field<?> field : entity.getFields())
 		{
@@ -95,7 +92,8 @@ public class OrmFonction
 		}
 	}
 
-	private static void createIndexesForEntity(AbstractOrmEntity entity)
+	private static void createIndexesForEntity(
+			newtonERP.module.AbstractOrmEntity entity)
 	{
 		// On cré des index pour chaque clef étrangère
 		for (String fieldName : entity.getFields().getKeyList())

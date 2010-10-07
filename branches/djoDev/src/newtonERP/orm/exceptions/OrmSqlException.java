@@ -16,9 +16,6 @@ public class OrmSqlException extends OrmException
 		super(message);
 	}
 
-	/**
-	 * 
-	 */
 	public OrmSqlException()
 	{
 		super();
@@ -40,4 +37,5 @@ public class OrmSqlException extends OrmException
 	{
 		super(cause);
 	}
+
 }

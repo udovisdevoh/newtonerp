@@ -1,6 +1,5 @@
 package newtonERP.orm.field.type;
 
-
 /**
  * text field in the entities (text is a long text where String is a short text)
  * 
@@ -18,7 +17,6 @@ public class FieldText extends FieldString
 	 * @param data donne du champ
 	 */
 	public FieldText(String name, String shortName, String data)
-
 	{
 		super(name, shortName, data);
 	}
@@ -29,7 +27,6 @@ public class FieldText extends FieldString
 	 * @param isVeryLong if it is a very long text field (default: false)
 	 */
 	public FieldText(String name, String shortName, boolean isVeryLong)
-
 	{
 		super(name, shortName);
 		this.isVeryLong = isVeryLong;
@@ -41,7 +38,6 @@ public class FieldText extends FieldString
 	 * @param shortName nom du champ qui sera utiliser a l'interne
 	 */
 	public FieldText(String name, String shortName)
-
 	{
 		this(name, shortName, false);
 	}

@@ -18,9 +18,6 @@ public class EntityException extends RuntimeException
 		super(message);
 	}
 
-	/**
-	 * 
-	 */
 	public EntityException()
 	{
 		super();
@@ -42,4 +39,5 @@ public class EntityException extends RuntimeException
 	{
 		super(cause);
 	}
+
 }

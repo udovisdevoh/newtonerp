@@ -3,7 +3,6 @@ package newtonERP.viewers.secondStep;
 import newtonERP.common.ActionLink;
 import newtonERP.common.NaturalMap;
 import newtonERP.viewers.secondStep.colorViewer.ColorViewer;
-import newtonERP.viewers.viewables.ScrollListViewable;
 
 /**
  * Sert à afficher des listes de lien et de texte en HTML avec une scrollbar
@@ -15,8 +14,8 @@ public class ScrollListViewer
 	 * @param entity liste à afficher
 	 * @return code HTML
 	 */
-	public static String getHtmlContent(ScrollListViewable entity)
-
+	public static String getHtmlContent(
+			newtonERP.viewers.viewables.ScrollListViewable entity)
 	{
 		String html = "";
 
@@ -72,4 +71,5 @@ public class ScrollListViewer
 
 		return html;
 	}
+
 }

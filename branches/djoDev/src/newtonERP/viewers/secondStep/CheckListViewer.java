@@ -3,8 +3,6 @@ package newtonERP.viewers.secondStep;
 import java.util.HashSet;
 import java.util.TreeMap;
 
-import newtonERP.viewers.viewables.CheckListViewable;
-
 /**
  * A checkList viewer
  * @author Guillaume Lacasse
@@ -16,7 +14,8 @@ public class CheckListViewer
 	 * @return the html code
 	 */
 	@SuppressWarnings("null")
-	public static String getHtmlCode(CheckListViewable entity)
+	public static String getHtmlCode(
+			newtonERP.viewers.viewables.CheckListViewable entity)
 	{
 		String html = "";
 		String isChecked;
@@ -116,4 +115,5 @@ public class CheckListViewer
 	{
 		return currentDescription.split(" ").length;
 	}
+
 }

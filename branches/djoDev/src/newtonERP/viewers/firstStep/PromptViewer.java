@@ -10,14 +10,11 @@ import newtonERP.module.generalEntity.ScrollList;
 import newtonERP.orm.associations.GateWay;
 import newtonERP.orm.associations.GateWayManager;
 import newtonERP.orm.associations.PluralAccessor;
-import newtonERP.orm.field.Field;
-import newtonERP.serveur.Servlet;
 import newtonERP.viewers.secondStep.CheckListViewer;
 import newtonERP.viewers.secondStep.FieldViewer;
 import newtonERP.viewers.secondStep.LinkViewer;
 import newtonERP.viewers.secondStep.ScrollListViewer;
 import newtonERP.viewers.secondStep.SelectBoxViewer;
-import newtonERP.viewers.viewerData.PromptViewerData;
 
 /**
  * Represents the prompt viewer
@@ -30,8 +27,8 @@ public class PromptViewer
 	 * @param promptData the entity to view
 	 * @return html
 	 */
-	public static String getHtmlCode(PromptViewerData promptData)
-
+	public static String getHtmlCode(
+			newtonERP.viewers.viewerData.PromptViewerData promptData)
 	{
 		AbstractOrmEntity ormEntity = null;
 		String html = "";
@@ -61,9 +58,9 @@ public class PromptViewer
 			else
 			{
 				html += "<tr><td>"
-						+ SelectBoxViewer.getHtmlCode(listOfValue, field
-								.getShortName(), field.getDataString(), field
-								.isReadOnly()) + "</td></tr>";
+						+ SelectBoxViewer.getHtmlCode(listOfValue,
+								field.getShortName(), field.getDataString(),
+								field.isReadOnly()) + "</td></tr>";
 			}
 
 		}
@@ -95,8 +92,8 @@ public class PromptViewer
 				for (FlagPool flagPool : ormEntity.getPositiveFlagPoolList()
 						.values())
 				{
-					flagPool.query(ormEntity.getPrimaryKeyName(), ormEntity
-							.getPrimaryKeyValue());
+					flagPool.query(ormEntity.getPrimaryKeyName(),
+							ormEntity.getPrimaryKeyValue());
 					html += "<tr><td colspan=\"2\">"
 							+ CheckListViewer.getHtmlCode(flagPool)
 							+ "</td></tr>";
@@ -141,8 +138,8 @@ public class PromptViewer
 		return html;
 	}
 
-	private static String getMultipleAccessorLinkList(AbstractOrmEntity entity,
-			boolean isReadOnly)
+	private static String getMultipleAccessorLinkList(
+			newtonERP.module.AbstractOrmEntity entity, boolean isReadOnly)
 	{
 		String html = "";
 
@@ -165,8 +162,7 @@ public class PromptViewer
 				continue;
 
 			scrollList = new ScrollList(pluralAccessor
-					.getInternalEntityDefinition().getVisibleName()
-					+ "(s)");
+					.getInternalEntityDefinition().getVisibleName() + "(s)");
 
 			ActionLink titleActionLink = new ActionLink("", new BaseAction(
 					"GetList", pluralAccessor.getInternalEntityDefinition()));
@@ -180,14 +176,18 @@ public class PromptViewer
 			for (AbstractOrmEntity currentForeignEntity : pluralAccessor)
 			{
 
-				scrollList.addLink(currentForeignEntity
-						.getNaturalKeyDescription(), Servlet.makeLink(
-						currentForeignEntity.getCurrentModule(),
-						new BaseAction(actionName, currentForeignEntity))
-						+ "?"
-						+ currentForeignEntity.getPrimaryKeyName()
-						+ "="
-						+ currentForeignEntity.getPrimaryKeyValue());
+				scrollList
+						.addLink(
+								currentForeignEntity.getNaturalKeyDescription(),
+								Servlet.makeLink(currentForeignEntity
+										.getCurrentModule(), new BaseAction(
+										actionName, currentForeignEntity))
+										+ "?"
+										+ currentForeignEntity
+												.getPrimaryKeyName()
+										+ "="
+										+ currentForeignEntity
+												.getPrimaryKeyValue());
 			}
 
 			if (pluralAccessor.getInternalEntityDefinition().getFields()
@@ -214,8 +214,8 @@ public class PromptViewer
 		return html;
 	}
 
-	private static String getSingleAccessorLinkList(AbstractOrmEntity entity,
-			boolean isReadOnly)
+	private static String getSingleAccessorLinkList(
+			newtonERP.module.AbstractOrmEntity entity, boolean isReadOnly)
 	{
 		String html = "";
 
@@ -259,4 +259,5 @@ public class PromptViewer
 
 		return html;
 	}
+
 }

@@ -24,7 +24,7 @@ public class Authentication
 	/**
 	 * @return Entité représentant l'utilisateur courant
 	 */
-	public static User getCurrentUser()
+	public static modules.userRightModule.entityDefinitions.User getCurrentUser()
 	{
 		User user = new User();
 		user.setData("name", getCurrentUserName());
@@ -46,4 +46,5 @@ public class Authentication
 			Authentication.currentUserName = currentUserName;
 		}
 	}
+
 }

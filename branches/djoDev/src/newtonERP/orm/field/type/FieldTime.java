@@ -23,7 +23,6 @@ public class FieldTime extends FieldDateTime
 	 * @param data donne du champ
 	 */
 	public FieldTime(String name, String shortName, GregorianCalendar data)
-
 	{
 		super(name, shortName, data);
 	}
@@ -33,7 +32,6 @@ public class FieldTime extends FieldDateTime
 	 * @param shortName nom du champ qui sera utiliser a l'interne
 	 */
 	public FieldTime(String name, String shortName)
-
 	{
 		super(name, shortName);
 	}
@@ -63,4 +61,5 @@ public class FieldTime extends FieldDateTime
 			return null;
 		return dateFormatter.format(super.getData().getTime());
 	}
+
 }

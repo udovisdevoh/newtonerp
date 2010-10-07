@@ -66,4 +66,5 @@ public class FieldCurrency extends FieldDouble
 			Logger.error(e.getMessage());
 		}
 	}
+
 }

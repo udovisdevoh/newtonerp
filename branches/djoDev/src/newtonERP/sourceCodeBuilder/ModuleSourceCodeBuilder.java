@@ -1,7 +1,5 @@
 package newtonERP.sourceCodeBuilder;
 
-import java.io.File;
-
 import modules.taskModule.entityDefinitions.ModuleEntity;
 import newtonERP.orm.Orm;
 
@@ -15,7 +13,8 @@ public class ModuleSourceCodeBuilder
 	 * @param moduleEntity entité du module
 	 * @return code source
 	 */
-	public static String build(ModuleEntity moduleEntity)
+	public static String build(
+			modules.taskModule.entityDefinitions.ModuleEntity moduleEntity)
 	{
 		moduleEntity = (ModuleEntity) Orm.selectUnique(moduleEntity);
 
@@ -52,18 +51,21 @@ public class ModuleSourceCodeBuilder
 		return sourceCode;
 	}
 
-	private static String getVisibleName(ModuleEntity moduleEntity)
+	private static String getVisibleName(
+			modules.taskModule.entityDefinitions.ModuleEntity moduleEntity)
 	{
 		return moduleEntity.getDataString("visibleName");
 	}
 
-	protected static String getPackageName(ModuleEntity moduleEntity)
+	protected static String getPackageName(
+			modules.taskModule.entityDefinitions.ModuleEntity moduleEntity)
 	{
 		return getSystemName(moduleEntity).substring(0, 1).toLowerCase()
 				+ getSystemName(moduleEntity).substring(1);
 	}
 
-	private static String getSystemName(ModuleEntity moduleEntity)
+	private static String getSystemName(
+			modules.taskModule.entityDefinitions.ModuleEntity moduleEntity)
 	{
 		return moduleEntity.getDataString("systemName");
 	}
@@ -72,8 +74,8 @@ public class ModuleSourceCodeBuilder
 	 * @param moduleEntity module entity
 	 * @return source class file name
 	 */
-	public static String buildClassFileName(ModuleEntity moduleEntity)
-
+	public static String buildClassFileName(
+			modules.taskModule.entityDefinitions.ModuleEntity moduleEntity)
 	{
 		String packagePath = getPackagePath(moduleEntity);
 
@@ -85,8 +87,8 @@ public class ModuleSourceCodeBuilder
 	 * @param moduleEntity module entity
 	 * @return package path
 	 */
-	public static String getPackagePath(ModuleEntity moduleEntity)
-
+	public static String getPackagePath(
+			modules.taskModule.entityDefinitions.ModuleEntity moduleEntity)
 	{
 		moduleEntity = (ModuleEntity) Orm.selectUnique(moduleEntity);
 		return "./src/modules/" + getPackageName(moduleEntity);
@@ -95,8 +97,8 @@ public class ModuleSourceCodeBuilder
 	/**
 	 * @param moduleEntity module entity
 	 */
-	public static void createDirectories(ModuleEntity moduleEntity)
-
+	public static void createDirectories(
+			modules.taskModule.entityDefinitions.ModuleEntity moduleEntity)
 	{
 		File file;
 		String packagePath = getPackagePath(moduleEntity);
@@ -107,4 +109,5 @@ public class ModuleSourceCodeBuilder
 		file = new File(packagePath + "/entityDefinitions");
 		file.mkdir();
 	}
+
 }

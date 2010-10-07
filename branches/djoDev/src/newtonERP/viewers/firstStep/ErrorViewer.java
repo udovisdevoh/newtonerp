@@ -6,7 +6,6 @@ import newtonERP.viewers.Viewer;
  * Represents a errorPage for our ERP
  * @author Pascal Lemay
  */
-
 public abstract class ErrorViewer
 {
 	/**
@@ -32,4 +31,5 @@ public abstract class ErrorViewer
 		return errorPage;
 
 	}
+
 }

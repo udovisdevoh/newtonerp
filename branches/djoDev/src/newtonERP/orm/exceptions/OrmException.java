@@ -15,9 +15,6 @@ public class OrmException extends RuntimeException
 		super(message);
 	}
 
-	/**
-	 * 
-	 */
 	public OrmException()
 	{
 		super();

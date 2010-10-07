@@ -9,5 +9,6 @@ public interface AlertViewable
 	/**
 	 * @return the alert message
 	 */
-	public String getMessage();
+	String getMessage();
+
 }

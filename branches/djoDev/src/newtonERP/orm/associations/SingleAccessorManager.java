@@ -17,8 +17,8 @@ public class SingleAccessorManager
 	 * @param entity entité source
 	 * @return liste des accessors plusieurs à plusieurs pour l'entité source
 	 */
-	public static final TreeMap<String, AbstractOrmEntity> getSingleAccessorList(
-			AbstractOrmEntity entity)
+	public final static newtonERP.module.AbstractOrmEntity getSingleAccessorList(
+			newtonERP.module.AbstractOrmEntity entity)
 	{
 		TreeMap<String, AbstractOrmEntity> singleAccessorList = new TreeMap<String, AbstractOrmEntity>();
 
@@ -44,9 +44,9 @@ public class SingleAccessorManager
 		return singleAccessorList;
 	}
 
-	private static AbstractOrmEntity getForeignEntity(
-			AbstractOrmEntity sourceEntity,
-			AbstractOrmEntity foreignEntityDefinition)
+	private static newtonERP.module.AbstractOrmEntity getForeignEntity(
+			newtonERP.module.AbstractOrmEntity sourceEntity,
+			newtonERP.module.AbstractOrmEntity foreignEntityDefinition)
 	{
 		foreignEntityDefinition.setData(foreignEntityDefinition
 				.getPrimaryKeyName(), sourceEntity
@@ -66,9 +66,9 @@ public class SingleAccessorManager
 	 * @param listOfValueName nom de l'accessor
 	 * @return accessor singulier
 	 */
-	public static AbstractOrmEntity getSingleAccessor(
-			AbstractOrmEntity abstractOrmEntity, String listOfValueName)
-
+	public static newtonERP.module.AbstractOrmEntity getSingleAccessor(
+			newtonERP.module.AbstractOrmEntity abstractOrmEntity,
+			String listOfValueName)
 	{
 		AbstractOrmEntity foreignEntityDefinition, realForeignEntity;
 
@@ -88,4 +88,5 @@ public class SingleAccessorManager
 		}
 		return null;
 	}
+
 }

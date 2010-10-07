@@ -1,22 +1,20 @@
-package newtonERP.viewers.secondStep.colorViewer;
 
-import java.util.Hashtable;
+package newtonERP.viewers.secondStep.colorViewer;
 
 /**
  * Ce viewer sert à inventer des couleurs en fonctions de noms de strings
  * quelconques
  * @author Guillaume
  */
-public class ColorViewer
-{
-	private static Hashtable<String, String> colorMap;
+public class ColorViewer {
+  private static String, String colorMap;
 
-	/**
-	 * @param text string
-	 * @return retourne une couleur pour cette string
-	 */
-	public static String getColor(String text)
-	{
+  /**
+   * @param text string
+   * @return retourne une couleur pour cette string
+   */
+  public static String getColor(String text)
+  {
 		text = text.replaceAll("\\<.*?\\>", "");
 		text = text.toLowerCase();
 
@@ -32,17 +30,17 @@ public class ColorViewer
 			getColorMap().put(text, buildColor(text));
 
 		return getColorMap().get(text);
-	}
+  }
 
-	private static Hashtable<String, String> getColorMap()
-	{
+  private static Hashtable<String, String> getColorMap()
+  {
 		if (colorMap == null)
 			colorMap = new Hashtable<String, String>();
 		return colorMap;
-	}
+  }
 
-	private static String buildColor(String text)
-	{
+  private static String buildColor(String text)
+  {
 		if (text.equals(""))
 			return "#FFF";
 
@@ -54,17 +52,17 @@ public class ColorViewer
 		hex = normalizeColors(hex);
 
 		return "#" + hex.substring(0, 6);
-	}
+  }
 
-	private static String normalizeColors(String color)
-	{
+  private static String normalizeColors(String color)
+  {
 		return normalizeColor(color.substring(0, 2))
 				+ normalizeColor(color.substring(2, 4))
 				+ normalizeColor(color.substring(4, 6));
-	}
+  }
 
-	private static String normalizeColor(String color)
-	{
+  private static String normalizeColor(String color)
+  {
 		char firstNumber = color.charAt(0);
 
 		if (firstNumber == '0')
@@ -85,5 +83,6 @@ public class ColorViewer
 			firstNumber = 'F';
 
 		return firstNumber + color.substring(1);
-	}
+  }
+
 }

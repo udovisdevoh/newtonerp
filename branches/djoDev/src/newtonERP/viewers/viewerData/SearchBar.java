@@ -2,21 +2,22 @@ package newtonERP.viewers.viewerData;
 
 import java.util.Vector;
 
-import newtonERP.module.AbstractEntity;
-import newtonERP.module.AbstractOrmEntity;
-import newtonERP.orm.field.Field;
-
 /**
  * Modele d'une barre de recherche
  * @author Guillaume Lacasse
  */
-public class SearchBar extends AbstractEntity
+public class SearchBar extends newtonERP.module.AbstractEntity
 {
 	private String targetUrl;
+
 	private String currentSearchEntry;
+
 	private int limit;
+
 	private int offset;
-	private Vector<String> possibleOrderList;
+
+	private String possibleOrderList;
+
 	private String currentOrder;
 
 	/**
@@ -28,8 +29,8 @@ public class SearchBar extends AbstractEntity
 	 * @param offset offset de recherche
 	 */
 	public SearchBar(String targetUrl, String currentSearchEntry,
-			AbstractOrmEntity concernedEntity, String currentOrder, int limit,
-			int offset)
+			newtonERP.module.AbstractOrmEntity concernedEntity,
+			String currentOrder, int limit, int offset)
 	{
 		super();
 		this.targetUrl = targetUrl;
@@ -65,7 +66,7 @@ public class SearchBar extends AbstractEntity
 	}
 
 	private Vector<String> buildPossibleOrderList(
-			AbstractOrmEntity concernedEntity)
+			newtonERP.module.AbstractOrmEntity concernedEntity)
 	{
 		Vector<String> newPossibleOrderList = new Vector<String>();
 
@@ -101,4 +102,5 @@ public class SearchBar extends AbstractEntity
 	{
 		return limit;
 	}
+
 }

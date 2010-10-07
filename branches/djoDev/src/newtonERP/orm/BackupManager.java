@@ -10,9 +10,14 @@ public class BackupManager
 {
 	private static GregorianCalendar gregorianCalendar = new GregorianCalendar();
 
-	private static long desiredBackupTimeInterval = 1800000; // Chaque demie
-	// heure
+	/**
+	 * Chaque demie
+	 */
+	private static long desiredBackupTimeInterval = 1800000;
 
+	/**
+	 * heure
+	 */
 	private static int maximumBackupInstanceCount = 100;
 
 	/**
@@ -39,4 +44,5 @@ public class BackupManager
 	{
 		return maximumBackupInstanceCount;
 	}
+
 }

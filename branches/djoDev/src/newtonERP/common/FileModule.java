@@ -1,23 +1,20 @@
-/**
- * 
- */
 package newtonERP.common;
-
-import newtonERP.module.Module;
 
 /**
  * représente les fichier de module et permet donc de ne pas faire la gestion du
  * systeme de fichier a l'extérieur de cette class
  * 
  * @author Cloutierjo
- * 
  */
 public class FileModule
 {
 	private String name;
+
 	private String filePath;
+
 	private String packagePath;
-	private Module cache;
+
+	private newtonERP.module.Module cache;
 
 	/**
 	 * constructor
@@ -49,7 +46,7 @@ public class FileModule
 	 * 
 	 * @return the cached module, return null if there is no cache
 	 */
-	public Module getCache()
+	public newtonERP.module.Module getCache()
 	{
 		return cache;
 	}
@@ -59,7 +56,7 @@ public class FileModule
 	 * 
 	 * @param cache the cache to set
 	 */
-	public void setCache(Module cache)
+	public void setCache(newtonERP.module.Module cache)
 	{
 		this.cache = cache;
 	}
@@ -92,4 +89,5 @@ public class FileModule
 	{
 		return packagePath;
 	}
+
 }

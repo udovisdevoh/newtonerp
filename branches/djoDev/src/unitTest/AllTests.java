@@ -1,23 +1,15 @@
-package unitTest;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
-import unitTest.abstractModule.EntityTest;
-import unitTest.module.UserRightModuleTest;
-import unitTest.serveur.ServletTest;
+package unitTest;
 
 /**
  * @author JoCloutier
- * 
  */
-public class AllTests
-{
-
-    /**
-     * @return .
-     */
-    public static Test suite()
-    {
+public class AllTests {
+  /**
+   * @return .
+   */
+  public static Test suite()
+  {
 	TestSuite suite = new TestSuite("Test for unitTest");
 	// $JUnit-BEGIN$
 	// racine
@@ -36,6 +28,6 @@ public class AllTests
 	suite.addTestSuite(ServletTest.class);
 	// $JUnit-END$
 	return suite;
-    }
+  }
 
 }

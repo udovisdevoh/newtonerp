@@ -8,7 +8,6 @@ import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.exception.FieldNotCompatibleException;
 import newtonERP.orm.Orm;
 import newtonERP.orm.associations.PluralAccessor;
-import newtonERP.viewers.viewables.CheckListViewable;
 
 /**
  * @author Guillaume Lacasse cette classe sert à faire des liste de flag qu'on
@@ -16,18 +15,27 @@ import newtonERP.viewers.viewables.CheckListViewable;
  *         étrangère passant par une table intermédiaire. Exemple: attribution
  *         de droits pour un groupe (ça passe par GroupsRight)
  */
-public class FlagPool implements CheckListViewable
+public class FlagPool implements newtonERP.viewers.viewables.CheckListViewable
 {
-	private AbstractOrmEntity sourceEntityDefinition;
+	private newtonERP.module.AbstractOrmEntity sourceEntityDefinition;
+
 	private String sourceKeyName;
+
 	private String sourceKeyValue;
+
 	private String visibleDescription;
-	private AbstractOrmEntity intermediateEntityDefinition;
-	private AbstractOrmEntity foreignEntityDefinition;
+
+	private newtonERP.module.AbstractOrmEntity intermediateEntityDefinition;
+
+	private newtonERP.module.AbstractOrmEntity foreignEntityDefinition;
+
 	private String intermediateKeyIn;
+
 	private String intermediateKeyOut;
+
 	private String foreignKey;
-	private Vector<String> foreignDescriptionUiControls;
+
+	private String foreignDescriptionUiControls;
 
 	/**
 	 * @param sourceEntityDefinition Definition de l'entité de source, exemple:
@@ -45,12 +53,12 @@ public class FlagPool implements CheckListViewable
 	 * @param foreignDescriptionUiControls liste de colonne de description de
 	 *            table étrangère, exemple: Action, Module
 	 */
-	public FlagPool(AbstractOrmEntity sourceEntityDefinition,
+	public FlagPool(newtonERP.module.AbstractOrmEntity sourceEntityDefinition,
 			String visibleDescription,
-			AbstractOrmEntity intermediateEntityDefinition,
+			newtonERP.module.AbstractOrmEntity intermediateEntityDefinition,
 			String intermediateKeyIn, String intermediateKeyOut,
-			AbstractOrmEntity foreignEntityDefinition, String foreignKey,
-			Vector<String> foreignDescriptionUiControls)
+			newtonERP.module.AbstractOrmEntity foreignEntityDefinition,
+			String foreignKey, Vector<String> foreignDescriptionUiControls)
 	{
 		if (sourceEntityDefinition == null || foreignEntityDefinition == null)
 			throw new RuntimeException(
@@ -75,6 +83,7 @@ public class FlagPool implements CheckListViewable
 	@Override
 	public TreeMap<String, String> getAvailableElementList()
 	{
+		// todo: correct deprecate
 		Vector<AbstractOrmEntity> entityList = Orm.select(
 				foreignEntityDefinition, null);
 
@@ -88,19 +97,18 @@ public class FlagPool implements CheckListViewable
 			while (availableElementList.containsKey(description))
 				description += "_bis";
 
-			availableElementList.put(description, intermediateEntityDefinition
-					.getSystemName()
-					+ "."
-					+ intermediateKeyOut
-					+ "."
-					+ entity.getDataString(foreignKey));
+			availableElementList.put(
+					description,
+					intermediateEntityDefinition.getSystemName() + "."
+							+ intermediateKeyOut + "."
+							+ entity.getDataString(foreignKey));
 		}
 
 		return availableElementList;
 	}
 
-	private String getForeignDescription(AbstractOrmEntity entity)
-
+	private String getForeignDescription(
+			newtonERP.module.AbstractOrmEntity entity)
 	{
 		String description = "";
 		String currentValue;
@@ -130,7 +138,6 @@ public class FlagPool implements CheckListViewable
 
 	@Override
 	public HashSet<String> getCheckedElementList()
-
 	{
 		HashSet<String> checkedElementList = new HashSet<String>();
 
@@ -155,7 +162,7 @@ public class FlagPool implements CheckListViewable
 	/**
 	 * @return définition d'entité de table intermédiaire
 	 */
-	public AbstractOrmEntity getIntermediateEntityDefinition()
+	public newtonERP.module.AbstractOrmEntity getIntermediateEntityDefinition()
 	{
 		return intermediateEntityDefinition;
 	}
@@ -163,7 +170,7 @@ public class FlagPool implements CheckListViewable
 	/**
 	 * @return définition d'entité de table étrangère
 	 */
-	public AbstractOrmEntity getForeignEntityDefinition()
+	public newtonERP.module.AbstractOrmEntity getForeignEntityDefinition()
 	{
 		return foreignEntityDefinition;
 	}
@@ -196,7 +203,7 @@ public class FlagPool implements CheckListViewable
 	 * @return définition d'entité source (entité de départ dans laquelle on met
 	 *         un flagPool)
 	 */
-	public AbstractOrmEntity getSourceEntityDefinition()
+	public newtonERP.module.AbstractOrmEntity getSourceEntityDefinition()
 	{
 		return sourceEntityDefinition;
 	}
@@ -204,8 +211,7 @@ public class FlagPool implements CheckListViewable
 	/**
 	 * @return retourne un accessor multiple
 	 */
-	public Vector<AbstractOrmEntity> getPositivePluralIntermediateAccessor()
-
+	public newtonERP.module.AbstractOrmEntity getPositivePluralIntermediateAccessor()
 	{
 		// searchCriteriaEntity can be null
 
@@ -234,8 +240,8 @@ public class FlagPool implements CheckListViewable
 	 * @param searchCriteriaEntity critères de recherche facultatifs
 	 * @return accessor multiple vers entité étrangère
 	 */
-	public PluralAccessor getPositivePluralForeignAccessor(
-			AbstractOrmEntity searchCriteriaEntity)
+	public newtonERP.orm.associations.PluralAccessor getPositivePluralForeignAccessor(
+			newtonERP.module.AbstractOrmEntity searchCriteriaEntity)
 	{
 		// searchCriteriaEntity can be null
 
@@ -249,8 +255,8 @@ public class FlagPool implements CheckListViewable
 			Vector<AbstractOrmEntity> pluralIntermediateAccessor = getPositivePluralIntermediateAccessor();
 			for (AbstractOrmEntity intermediateEntity : pluralIntermediateAccessor)
 			{
-				foreignEntityDefinition.setData(foreignKey, intermediateEntity
-						.getData(intermediateKeyOut));
+				foreignEntityDefinition.setData(foreignKey,
+						intermediateEntity.getData(intermediateKeyOut));
 
 				resultSet = Orm.select(foreignEntityDefinition);
 
@@ -297,4 +303,5 @@ public class FlagPool implements CheckListViewable
 
 		return pluralForeignAccessor;
 	}
+
 }

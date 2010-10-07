@@ -1,17 +1,13 @@
 package modules.userRightModule.actions;
 
-import java.util.Hashtable;
-
 import newtonERP.common.Authentication;
-import newtonERP.module.AbstractAction;
-import newtonERP.module.AbstractEntity;
 import newtonERP.module.generalEntity.StaticTextEntity;
 
 /**
  * action permettant de ce delogguer
  * @author GLacasse
  */
-public class Logout extends AbstractAction
+public class Logout extends newtonERP.module.AbstractAction
 {
 	/**
 	 * Constructeur
@@ -22,7 +18,8 @@ public class Logout extends AbstractAction
 	}
 
 	@Override
-	public AbstractEntity doAction(AbstractEntity entity,
+	public newtonERP.module.AbstractEntity doAction(
+			newtonERP.module.AbstractEntity entity,
 			Hashtable<String, String> parameters)
 	{
 		Authentication.setCurrentUserName(null);

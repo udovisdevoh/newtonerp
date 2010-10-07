@@ -2,7 +2,6 @@ package newtonERP.orm.field.type;
 
 import newtonERP.module.exception.FieldNotCompatibleException;
 import newtonERP.module.exception.InvalidOperatorException;
-import newtonERP.orm.field.Field;
 
 /**
  * String field in the entities (String is a short text where text is a long
@@ -10,7 +9,7 @@ import newtonERP.orm.field.Field;
  * 
  * @author CloutierJo, r3hallejo
  */
-public class FieldString extends Field<String>
+public class FieldString extends newtonERP.orm.field.Field<String>
 {
 	/**
 	 * constructeur minimum
@@ -20,7 +19,6 @@ public class FieldString extends Field<String>
 	 * @param data donne du champ
 	 */
 	public FieldString(String name, String shortName, String data)
-
 	{
 		super(name, shortName, data);
 	}
@@ -30,7 +28,6 @@ public class FieldString extends Field<String>
 	 * @param shortName nom du champ qui sera utiliser a l'interne
 	 */
 	public FieldString(String name, String shortName)
-
 	{
 		this(name, shortName, null);
 	}
@@ -68,4 +65,5 @@ public class FieldString extends Field<String>
 		else
 			throw new FieldNotCompatibleException(getShortName(), data);
 	}
+
 }

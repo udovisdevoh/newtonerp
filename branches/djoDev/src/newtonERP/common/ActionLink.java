@@ -1,110 +1,96 @@
+
 package newtonERP.common;
-
-import java.util.Hashtable;
-
-import newtonERP.module.AbstractAction;
-import newtonERP.module.AbstractEntity;
-import newtonERP.serveur.Servlet;
 
 /**
  * class englobant une action et tout les composants néscéssaire pour l'executer
  * @author CloutierJo
  */
-public class ActionLink
-{
-	private String name;
-	private AbstractAction action;
-	private Hashtable<String, String> parameters;
-	private boolean confirm = false;
+public class ActionLink {
+  private String name;
 
-	/**
-	 * constructeur vide
-	 */
-	public ActionLink()
-	{
+  private newtonERP.module.AbstractAction action;
+
+  private String, String parameters;
+
+  private boolean confirm =  false;
+
+  /**
+   * constructeur vide
+   */
+  public  ActionLink() {
 		this(null);
-	}
+  }
 
-	/**
-	 * @param action action a effectuer
-	 */
-	public ActionLink(AbstractAction action)
-	{
+  /**
+   * @param action action a effectuer
+   */
+  public  ActionLink(newtonERP.module.AbstractAction action) {
 		this("", action);
-	}
+  }
 
-	/**
-	 * @param name nom a afficher
-	 * @param action action a effectuer
-	 */
-	public ActionLink(String name, AbstractAction action)
-	{
+  /**
+   * @param name nom a afficher
+   * @param action action a effectuer
+   */
+  public  ActionLink(String name, newtonERP.module.AbstractAction action) {
 		this(name, action, null);
-	}
+  }
 
-	/**
-	 * @param name nom a afficher
-	 * @param action action a effectuer
-	 * @param parameters parametre de lien
-	 */
-	@SuppressWarnings("unchecked")
-	public ActionLink(String name, AbstractAction action,
-			Hashtable<String, String> parameters)
-	{
+  /**
+   * @param name nom a afficher
+   * @param action action a effectuer
+   * @param parameters parametre de lien
+   */
+  @SuppressWarnings("unchecked")
+  public  ActionLink(String name, newtonERP.module.AbstractAction action, Hashtable<String, String> parameters) {
 		this.name = name;
 		this.action = action;
 		if (parameters != null)
 			this.parameters = (Hashtable<String, String>) parameters.clone();
 		else
 			this.parameters = new Hashtable<String, String>();
-	}
+  }
 
-	/**
-	 * @return the name
-	 */
-	public String getName()
-	{
+  /**
+   * @return the name
+   */
+  public String getName() {
 		return name;
-	}
+  }
 
-	/**
-	 * @param name the name to set
-	 */
-	public void setName(String name)
-	{
+  /**
+   * @param name the name to set
+   */
+  public void setName(String name) {
 		this.name = name;
-	}
+  }
 
-	/**
-	 * @return the action
-	 */
-	public AbstractAction getAction()
-	{
+  /**
+   * @return the action
+   */
+  public newtonERP.module.AbstractAction getAction() {
 		return action;
-	}
+  }
 
-	/**
-	 * @param action the action to set
-	 */
-	public void setAction(AbstractAction action)
-	{
+  /**
+   * @param action the action to set
+   */
+  public void setAction(newtonERP.module.AbstractAction action) {
 		this.action = action;
-	}
+  }
 
-	/**
-	 * @return the parameters
-	 */
-	public Hashtable<String, String> getParameters()
-	{
+  /**
+   * @return the parameters
+   */
+  public Hashtable<String, String> getParameters() {
 		return parameters;
-	}
+  }
 
-	/**
-	 * @param entity entity servant a compile les parametre
-	 * @return les parametre compile
-	 */
-	public Hashtable<String, String> getParameters(AbstractEntity entity)
-	{
+  /**
+   * @param entity entity servant a compile les parametre
+   * @return les parametre compile
+   */
+  public Hashtable<String, String> getParameters(newtonERP.module.AbstractEntity entity) {
 		Hashtable<String, String> newparam = new Hashtable<String, String>();
 		for (String key : parameters.keySet())
 		{
@@ -114,41 +100,37 @@ public class ActionLink
 				newparam.put(key, parameters.get(key));
 		}
 		return newparam;
-	}
+  }
 
-	/**
-	 * @param parameters the parameters to set
-	 */
-	public void setParameters(Hashtable<String, String> parameters)
-	{
+  /**
+   * @param parameters the parameters to set
+   */
+  public void setParameters(Hashtable<String, String> parameters) {
 		this.parameters = parameters;
-	}
+  }
 
-	/**
-	 * @param field nom du champ a ajouter
-	 * @param value valeur du champ a ajouter
-	 * @param parameters ajoute le parametre a la liste de parametre
-	 */
-	public void addParameters(String field, String value)
-	{
+  /**
+   * @param field nom du champ a ajouter
+   * @param value valeur du champ a ajouter
+   * @param parameters ajoute le parametre a la liste de parametre
+   */
+  public void addParameters(String field, String value) {
 		parameters.put(field, value);
-	}
+  }
 
-	/**
-	 * @return l'url relatif
-	 */
-	public String getUrl()
-	{
+  /**
+   * @return l'url relatif
+   */
+  public String getUrl() {
 		return Servlet.makeLink(action);
-	}
+  }
 
-	/**
-	 * @param entity entity servant a definir les parametre dynamique
-	 * @return les parametre sous la forme key=value&key2=value2... (ne contien
-	 *         pas le '?')
-	 */
-	public String getParam(AbstractEntity entity)
-	{
+  /**
+   * @param entity entity servant a definir les parametre dynamique
+   * @return les parametre sous la forme key=value&key2=value2... (ne contien
+   *         pas le '?')
+   */
+  public String getParam(newtonERP.module.AbstractEntity entity) {
 		String param = "";
 		for (String key : getParameters(entity).keySet())
 		{
@@ -160,50 +142,45 @@ public class ActionLink
 			param = param.substring(0, param.length() - 1);
 
 		return param;
-	}
+  }
 
-	/**
-	 * @param entity entity servant a definir les parametre dynamique
-	 * @return l'url relatif et suivie des parametre, utilisabe directement dans
-	 *         un lien web
-	 */
-	public String getUrlParam(AbstractEntity entity)
-	{
+  /**
+   * @param entity entity servant a definir les parametre dynamique
+   * @return l'url relatif et suivie des parametre, utilisabe directement dans
+   *         un lien web
+   */
+  public String getUrlParam(newtonERP.module.AbstractEntity entity) {
 		return getUrl() + "?" + getParam(entity);
-	}
+  }
 
-	/**
-	 * @return l'url relatif et suivie des parametre, utilisabe directement dans
-	 *         un lien web
-	 */
-	public String getUrlParam()
-	{
+  /**
+   * @return l'url relatif et suivie des parametre, utilisabe directement dans
+   *         un lien web
+   */
+  public String getUrlParam() {
 		return getUrlParam(null);
-	}
+  }
 
-	/**
-	 * @return the confirm
-	 */
-	public boolean isConfirm()
-	{
+  /**
+   * @return the confirm
+   */
+  public boolean isConfirm() {
 		return confirm;
-	}
+  }
 
-	/**
-	 * @param confirm the confirm to set
-	 */
-	public void setConfirm(boolean confirm)
-	{
+  /**
+   * @param confirm the confirm to set
+   */
+  public void setConfirm(boolean confirm) {
 		this.confirm = confirm;
-	}
+  }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
-	public boolean equals(Object obj)
-	{
+  /**
+   * (non-Javadoc)
+   * 
+   * @see java.lang.Object#equals(java.lang.Object)
+   */
+  public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
 		if (obj == null)
@@ -235,11 +212,10 @@ public class ActionLink
 		else if (!parameters.equals(other.parameters))
 			return false;
 		return true;
-	}
+  }
 
-	public String toString()
-	{
+  public String toString() {
 		return name;
-	}
+  }
 
 }

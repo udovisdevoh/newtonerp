@@ -1,7 +1,5 @@
 package newtonERP.viewers.secondStep;
 
-import newtonERP.viewers.viewerData.SearchBar;
-
 /**
  * Ser à voir les barres de recherche
  * @author Guillaume Lacasse
@@ -12,7 +10,8 @@ public class SearchBarViewer
 	 * @param searchBar barre de recherche
 	 * @return code html
 	 */
-	public static String getHtmlCode(SearchBar searchBar)
+	public static String getHtmlCode(
+			newtonERP.viewers.viewerData.SearchBar searchBar)
 	{
 		String html = "";
 
@@ -52,4 +51,5 @@ public class SearchBarViewer
 
 		return html;
 	}
+
 }

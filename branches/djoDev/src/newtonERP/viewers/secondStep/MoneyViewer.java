@@ -5,7 +5,6 @@ import java.text.NumberFormat;
 /**
  * Sert à formatter de l'argent
  * @author Guillaume
- * 
  */
 public class MoneyViewer
 {
@@ -37,4 +36,5 @@ public class MoneyViewer
 	{
 		return numberFormat.format(inputValue).replace(" $", "$");
 	}
+
 }

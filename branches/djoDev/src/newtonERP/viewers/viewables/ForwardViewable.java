@@ -9,5 +9,6 @@ public interface ForwardViewable
 	/**
 	 * @return the forwarding url
 	 */
-	public String getForwardingUrl();
+	String getForwardingUrl();
+
 }

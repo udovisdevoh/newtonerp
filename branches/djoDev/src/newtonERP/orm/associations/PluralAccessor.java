@@ -1,7 +1,5 @@
 package newtonERP.orm.associations;
 
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.Vector;
 
 import newtonERP.module.AbstractOrmEntity;
@@ -10,16 +8,17 @@ import newtonERP.module.AbstractOrmEntity;
  * Accesseur multiple
  * @author Guillaume
  */
-public class PluralAccessor implements Collection<AbstractOrmEntity>
+public class PluralAccessor extends Collection
 {
-	private AbstractOrmEntity internalEntityDefinition;
+	private newtonERP.module.AbstractOrmEntity internalEntityDefinition;
 
-	private Vector<AbstractOrmEntity> entityList;
+	private newtonERP.module.AbstractOrmEntity entityList;
 
 	/**
 	 * @param internalEntityDefinition définition d'entité interne
 	 */
-	public PluralAccessor(AbstractOrmEntity internalEntityDefinition)
+	public PluralAccessor(
+			newtonERP.module.AbstractOrmEntity internalEntityDefinition)
 	{
 		this.internalEntityDefinition = internalEntityDefinition;
 	}
@@ -28,7 +27,8 @@ public class PluralAccessor implements Collection<AbstractOrmEntity>
 	 * @param internalEntityDefinition définition d'entité interne
 	 * @param entityList liste d'entités
 	 */
-	public PluralAccessor(AbstractOrmEntity internalEntityDefinition,
+	public PluralAccessor(
+			newtonERP.module.AbstractOrmEntity internalEntityDefinition,
 			Vector<AbstractOrmEntity> entityList)
 	{
 		this(internalEntityDefinition);
@@ -38,12 +38,12 @@ public class PluralAccessor implements Collection<AbstractOrmEntity>
 	/**
 	 * @return définition d'entité interne
 	 */
-	public AbstractOrmEntity getInternalEntityDefinition()
+	public newtonERP.module.AbstractOrmEntity getInternalEntityDefinition()
 	{
 		return internalEntityDefinition;
 	}
 
-	private Vector<AbstractOrmEntity> getEntityList()
+	private newtonERP.module.AbstractOrmEntity getEntityList()
 	{
 		if (entityList == null)
 			entityList = new Vector<AbstractOrmEntity>();
@@ -51,13 +51,13 @@ public class PluralAccessor implements Collection<AbstractOrmEntity>
 	}
 
 	@Override
-	public Iterator<AbstractOrmEntity> iterator()
+	public newtonERP.module.AbstractOrmEntity iterator()
 	{
 		return getEntityList().iterator();
 	}
 
 	@Override
-	public boolean add(AbstractOrmEntity entity)
+	public boolean add(newtonERP.module.AbstractOrmEntity entity)
 	{
 		return getEntityList().add(entity);
 	}
@@ -117,13 +117,13 @@ public class PluralAccessor implements Collection<AbstractOrmEntity>
 	}
 
 	@Override
-	public Object[] toArray()
+	public Object toArray()
 	{
 		return getEntityList().toArray();
 	}
 
 	@Override
-	public <T> T[] toArray(T[] a)
+	public T toArray(T a)
 	{
 		return getEntityList().toArray(a);
 	}
@@ -132,8 +132,9 @@ public class PluralAccessor implements Collection<AbstractOrmEntity>
 	 * @param i index
 	 * @return entité à l'index i
 	 */
-	public AbstractOrmEntity get(int i)
+	public newtonERP.module.AbstractOrmEntity get(int i)
 	{
 		return getEntityList().get(i);
 	}
+
 }

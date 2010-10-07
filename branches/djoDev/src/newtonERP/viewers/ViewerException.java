@@ -16,9 +16,6 @@ public class ViewerException extends RuntimeException
 		super(message);
 	}
 
-	/**
-	 * 
-	 */
 	public ViewerException()
 	{
 		super();
@@ -40,4 +37,5 @@ public class ViewerException extends RuntimeException
 	{
 		super(cause);
 	}
+
 }

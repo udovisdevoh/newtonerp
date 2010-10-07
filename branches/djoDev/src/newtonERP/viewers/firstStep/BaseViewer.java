@@ -3,22 +3,20 @@ package newtonERP.viewers.firstStep;
 import newtonERP.common.ActionLink;
 import newtonERP.viewers.secondStep.ButtonLinkViewer;
 import newtonERP.viewers.secondStep.LinkViewer;
-import newtonERP.viewers.viewerData.BaseViewerData;
 
 /**
  * permet l'affichage des BaseViewerData
  * @author CloutierJo
- * 
  */
 public class BaseViewer
 {
-
 	/**
 	 * donne le code html des element de base du haut
 	 * @param entity l'entity cntenant ces information
 	 * @return le code html
 	 */
-	public static String getTopHtmlCode(BaseViewerData entity)
+	public static String getTopHtmlCode(
+			newtonERP.viewers.viewerData.BaseViewerData entity)
 	{
 		String html = "";
 		if (entity.getBackLink() != null)
@@ -40,7 +38,8 @@ public class BaseViewer
 	 * @param html
 	 * @return
 	 */
-	private static String getMessage(BaseViewerData entity)
+	private static String getMessage(
+			newtonERP.viewers.viewerData.BaseViewerData entity)
 	{
 		String html = "";
 		if (entity.getAlertMessageList() != null)
@@ -58,8 +57,8 @@ public class BaseViewer
 	 * @param entity l'entity cntenant ces information
 	 * @return le code html
 	 */
-	public static String getBottomHtmlCode(BaseViewerData entity)
-
+	public static String getBottomHtmlCode(
+			newtonERP.viewers.viewerData.BaseViewerData entity)
 	{
 		String html = "";
 		html += "<p>";
@@ -82,4 +81,5 @@ public class BaseViewer
 	{
 		return "<ins><form class='submitButton' action='.\\'><div><input class='submitButton' type='submit' value='Imprimer' onclick='window.print();return false;'/></div></form></ins>";
 	}
+
 }
