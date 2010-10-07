@@ -9,5 +9,6 @@ public interface StaticTextViewable
 	/**
 	 * @return the text of the entity
 	 */
-	public String getText();
+	String getText();
+
 }

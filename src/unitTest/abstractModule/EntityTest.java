@@ -1,51 +1,37 @@
-/**
- * 
- */
+
 package unitTest.abstractModule;
-
-import java.text.ParseException;
-import java.util.Hashtable;
-
-import junit.framework.TestCase;
-import modules.testModule.entityDefinitions.TestEntity;
-import newtonERP.module.exception.FieldNotFoundException;
 
 /**
  * @author CloutierJo
- * 
  */
-public class EntityTest extends TestCase
-{
-    TestEntity entity;
+public class EntityTest extends TestCase {
+  TestEntity entity;
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see junit.framework.TestCase#setUp()
-     */
-    protected void setUp()
-    {
+  /**
+   * (non-Javadoc)
+   * 
+   * @see junit.framework.TestCase#setUp()
+   */
+  protected void setUp() {
 	super.setUp();
 	entity = new TestEntity();
-    }
+  }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see junit.framework.TestCase#tearDown()
-     */
-    protected void tearDown()
-    {
+  /**
+   * (non-Javadoc)
+   * 
+   * @see junit.framework.TestCase#tearDown()
+   */
+  protected void tearDown() {
 	super.tearDown();
-    }
+  }
 
-    /**
-     * Test method for
-     * {@link newtonERP.module.AbstractEntity#setEntityFromHashTable(java.util.Hashtable)}
-     * .
-     */
-    public void testGetEntityFromHashTableString()
-    {
+  /**
+   * Test method for
+   * {@link newtonERP.module.AbstractEntity#setEntityFromHashTable(java.util.Hashtable)}
+   * .
+   */
+  public void testGetEntityFromHashTableString() {
 	Hashtable<String, String> hash = new Hashtable<String, String>();
 
 	hash.put("age", "20");
@@ -61,15 +47,14 @@ public class EntityTest extends TestCase
 	otherEntity.getFields().setFromHashTable(hash);
 	assertEquals(entity, otherEntity);
 
-    }
+  }
 
-    /**
-     * Test method for
-     * {@link newtonERP.module.AbstractEntity#setEntityFromHashTable(java.util.Hashtable)}
-     * .
-     */
-    public void testGetEntityFromHashTableObject()
-    {
+  /**
+   * Test method for
+   * {@link newtonERP.module.AbstractEntity#setEntityFromHashTable(java.util.Hashtable)}
+   * .
+   */
+  public void testGetEntityFromHashTableObject() {
 	System.out.println("**********");
 	Hashtable<String, Object> hash = new Hashtable<String, Object>();
 
@@ -86,5 +71,6 @@ public class EntityTest extends TestCase
 	otherEntity.getFields().setFromHashTable(hash);
 	assertEquals(entity, otherEntity);
 
-    }
+  }
+
 }

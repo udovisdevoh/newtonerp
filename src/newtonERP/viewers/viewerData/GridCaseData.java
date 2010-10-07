@@ -1,16 +1,10 @@
 package newtonERP.viewers.viewerData;
 
-import java.util.Hashtable;
-
-import newtonERP.common.ActionLink;
-import newtonERP.module.AbstractAction;
-
 /**
  * represent une cellule d'un tableau affichable
  * @author CloutierJo
- * 
  */
-public class GridCaseData extends ActionLink
+public class GridCaseData extends newtonERP.common.ActionLink
 {
 	private boolean isColored;
 
@@ -19,7 +13,7 @@ public class GridCaseData extends ActionLink
 	 * @param action action a effectuer lorsque clique (null par defaut)
 	 * @param parameters parametre du lien
 	 */
-	public GridCaseData(String name, AbstractAction action,
+	public GridCaseData(String name, newtonERP.module.AbstractAction action,
 			Hashtable<String, String> parameters)
 	{
 		super(name, action, parameters);
@@ -29,8 +23,7 @@ public class GridCaseData extends ActionLink
 	 * @param name valeur a affiche dans cette case
 	 * @param actionLink action a effectuer lorsque clique (null par defaut)
 	 */
-	public GridCaseData(String name, AbstractAction actionLink)
-
+	public GridCaseData(String name, newtonERP.module.AbstractAction actionLink)
 	{
 		this(name, actionLink, null);
 	}
@@ -56,7 +49,7 @@ public class GridCaseData extends ActionLink
 	 * @return l'action
 	 */
 	@Deprecated
-	public AbstractAction getActionLink()
+	public newtonERP.module.AbstractAction getActionLink()
 	{
 		return getAction();
 	}
@@ -76,4 +69,5 @@ public class GridCaseData extends ActionLink
 	{
 		this.isColored = isColored;
 	}
+
 }

@@ -4,7 +4,6 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 import newtonERP.viewers.Viewer;
-import newtonERP.viewers.viewerData.PageSelector;
 
 /**
  * Sert à voir les liste de pages
@@ -12,13 +11,12 @@ import newtonERP.viewers.viewerData.PageSelector;
  */
 public class PageSelectorViewer
 {
-
 	/**
 	 * @param pageSelector selecteur de page
 	 * @return code html
 	 */
-	public static String getHtmlCode(PageSelector pageSelector)
-
+	public static String getHtmlCode(
+			newtonERP.viewers.viewerData.PageSelector pageSelector)
 	{
 		String html = "";
 
@@ -90,4 +88,5 @@ public class PageSelectorViewer
 
 		return html;
 	}
+
 }

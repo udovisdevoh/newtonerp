@@ -1,7 +1,5 @@
 package newtonERP.module;
 
-import java.util.Hashtable;
-import java.util.TreeMap;
 import java.util.Vector;
 
 import newtonERP.common.ActionLink;
@@ -14,11 +12,9 @@ import newtonERP.orm.associations.FlagPoolManager;
 import newtonERP.orm.associations.GateWay;
 import newtonERP.orm.associations.PluralAccessor;
 import newtonERP.orm.associations.PluralAccessorManager;
-import newtonERP.orm.field.Field;
 import newtonERP.orm.field.Fields;
 import newtonERP.orm.field.type.FieldCurrency;
 import newtonERP.viewers.secondStep.MoneyViewer;
-import newtonERP.viewers.viewerData.BaseViewerData;
 import newtonERP.viewers.viewerData.ListViewerData;
 import newtonERP.viewers.viewerData.PageSelector;
 import newtonERP.viewers.viewerData.PromptViewerData;
@@ -26,36 +22,38 @@ import newtonERP.viewers.viewerData.SearchBar;
 
 /**
  * @author cloutierJo
- * 
  */
 public abstract class AbstractOrmEntity extends AbstractEntity
 {
 	private String visibleName;
-	private TreeMap<String, PluralAccessor> pluralAccessorList;
-	private TreeMap<String, AbstractOrmEntity> singleAccessorList;
-	private Vector<GateWay> gateWayList;
-	private Vector<String> accessorNameList;
 
-	/**
-	 */
+	private newtonERP.orm.associations.PluralAccessor pluralAccessorList;
+
+	private AbstractOrmEntity singleAccessorList;
+
+	private newtonERP.orm.associations.GateWay gateWayList;
+
+	private String accessorNameList;
+
 	public AbstractOrmEntity()
 	{
 		super();
 	}
 
-	private Hashtable<String, FlagPool> positiveFlagPoolList;
+	private newtonERP.module.generalEntity.FlagPool positiveFlagPoolList;
 
-	private static Hashtable<String, FlagPool> negativeFlagPoolList;
+	private static newtonERP.module.generalEntity.FlagPool negativeFlagPoolList;
 
-	// oblige le redefinition pour les sous-classe de AbstractOrmEntity
-	public abstract Fields initFields();
+	/**
+	 * oblige le redefinition pour les sous-classe de AbstractOrmEntity
+	 */
+	public abstract newtonERP.orm.field.Fields initFields();
 
 	/**
 	 * @param parameters la hashTable de parametre qui sera transphormé en
 	 *            entity
 	 */
 	public final void setOrmizableData(Hashtable<String, Object> parameters)
-
 	{
 		getFields().setFromHashTable(parameters);
 	}
@@ -67,7 +65,6 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	 * @return l'entity qui a été entré en DB (incluant la primaryKey)
 	 */
 	public AbstractEntity newUI(Hashtable<String, String> parameters)
-
 	{
 		getFields().setDefaultValue(false);
 
@@ -95,7 +92,6 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	 * @return todo: qu'Est-ce que l'on devrai retourné en general?
 	 */
 	public AbstractEntity deleteUI(Hashtable<String, String> parameters)
-
 	{
 		delete(getPrimaryKeyName() + "='" + getDataString(getPrimaryKeyName())
 				+ "'");
@@ -107,8 +103,8 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	 * supprime l'entity en DB
 	 * 
 	 * @param whereClause the where clause for the query
-	 * 
 	 */
+	@Deprecated
 	public final void delete(String whereClause)
 	{
 		Vector<String> whereParameter = new Vector<String>();
@@ -118,7 +114,6 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 
 	/**
 	 * supprime l'entity en DB, la clause where est definie par this
-	 * 
 	 */
 	public final void delete()
 	{
@@ -129,7 +124,6 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	 * supprime l'entity en DB corespondant au whereClause
 	 * 
 	 * @param whereClause the where clause for the query
-	 * 
 	 */
 	public final void delete(AbstractOrmEntity whereClause)
 	{
@@ -147,7 +141,6 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	 * @see
 	 */
 	public final void delete(Vector<AbstractOrmEntity> whereClause)
-
 	{
 		Orm.delete(whereClause);
 	}
@@ -158,8 +151,8 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	 * @param parameters parametre suplementaire
 	 * @return todo: qu'Est-ce que l'on devrai retourné en general?
 	 */
-	public BaseViewerData editUI(Hashtable<String, String> parameters)
-
+	public newtonERP.viewers.viewerData.BaseViewerData editUI(
+			Hashtable<String, String> parameters)
 	{
 		return editUI(parameters, false);
 	}
@@ -172,8 +165,8 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	 *            (default: false)
 	 * @return todo: qu'Est-ce que l'on devrai retourné en general?
 	 */
-	public BaseViewerData editUI(Hashtable<String, String> parameters,
-			boolean isReadOnly)
+	public newtonERP.viewers.viewerData.BaseViewerData editUI(
+			Hashtable<String, String> parameters, boolean isReadOnly)
 	{
 		PromptViewerData promptData = new PromptViewerData();
 
@@ -253,6 +246,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	 * 
 	 * @param whereClause the where clause for the query
 	 */
+	@Deprecated
 	public final void edit(String whereClause)
 	{
 		Vector<String> whereParameter = new Vector<String>();
@@ -308,7 +302,6 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	 * @return entity qui doit etre read only
 	 */
 	public AbstractEntity getUI(Hashtable<String, String> parameters)
-
 	{
 		return editUI(parameters, true); // TODO: rendre readOnly, néscéssaire
 		// pour
@@ -318,7 +311,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	/**
 	 * @return ne liste d'entité de ce type
 	 */
-	public final ListViewerData getList()
+	public final newtonERP.viewers.viewerData.ListViewerData getList()
 	{
 		return getList(new Hashtable<String, String>());
 	}
@@ -327,9 +320,8 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	 * @param parameters parametres de sélection (à venir)
 	 * @return une liste d'entité de ce type
 	 */
-	@SuppressWarnings("null")
-	public ListViewerData getList(Hashtable<String, String> parameters)
-
+	public newtonERP.viewers.viewerData.ListViewerData getList(
+			Hashtable<String, String> parameters)
 	{
 		Vector<AbstractOrmEntity> resultSet;
 		AbstractOrmEntity searchEntity;
@@ -383,12 +375,12 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 				searchParameters.add(currentParameter);
 			}
 		}
-		if (searchParameters.size() == 0)
+		if (searchParameters != null && searchParameters.size() == 0)
 			searchParameters = null;
 
 		resultSet = Orm.select(searchEntity, searchParameters, limit, offset,
 				orderBy);
-
+		// todo: correct deprecate
 		int totalRowCount = Orm.count(searchEntity, searchParameters);
 		if (limit < totalRowCount)
 			entityList.setPageSelector(new PageSelector(limit, offset,
@@ -450,8 +442,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 					secondDot);
 
 			String moduleName = ("" + modulePackageName.charAt(0))
-					.toUpperCase()
-					+ modulePackageName.substring(1);
+					.toUpperCase() + modulePackageName.substring(1);
 
 			return ListModule.getModule(moduleName);
 		}
@@ -465,8 +456,8 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	 * @param whereClause the where clause for the query
 	 * @return this
 	 */
-	public final Vector<AbstractOrmEntity> get(String whereClause)
-
+	@Deprecated
+	public final AbstractOrmEntity get(String whereClause)
 	{
 		Vector<AbstractOrmEntity> retEntityList = null;
 		Vector<String> whereParameter = new Vector<String>();
@@ -490,7 +481,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	 * fais un get sur un criter simple exprimé par l'entity this
 	 * @return the selected entities
 	 */
-	public final Vector<AbstractOrmEntity> get()
+	public final AbstractOrmEntity get()
 	{
 		return get(this);
 	}
@@ -499,8 +490,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	 * @param entity the search entity
 	 * @return the selected entities
 	 */
-	public final Vector<AbstractOrmEntity> get(AbstractOrmEntity entity)
-
+	public final AbstractOrmEntity get(AbstractOrmEntity entity)
 	{
 		Vector<AbstractOrmEntity> entities = new Vector<AbstractOrmEntity>();
 		entities.add(entity);
@@ -512,8 +502,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	 *            (where clause)
 	 * @return the selected entities
 	 */
-	public final Vector<AbstractOrmEntity> get(
-			Vector<AbstractOrmEntity> entities)
+	public final AbstractOrmEntity get(Vector<AbstractOrmEntity> entities)
 	{
 		Vector<AbstractOrmEntity> retEntities = null;
 		retEntities = Orm.select(entities);
@@ -581,7 +570,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	/**
 	 * @return the flag pool list
 	 */
-	public final Hashtable<String, FlagPool> getPositiveFlagPoolList()
+	public final newtonERP.module.generalEntity.FlagPool getPositiveFlagPoolList()
 	{
 		if (positiveFlagPoolList == null)
 			positiveFlagPoolList = new Hashtable<String, FlagPool>();
@@ -594,7 +583,6 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	 *         l'entité
 	 */
 	public Vector<String> getNaturalKeyNameList()
-
 	{
 		Vector<String> naturalKeyNameList = new Vector<String>();
 
@@ -692,8 +680,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	/**
 	 * @return la liste des accessors plusieurs à plusieurs pour cette entité
 	 */
-	public final TreeMap<String, PluralAccessor> getPluralAccessorList()
-
+	public final newtonERP.orm.associations.PluralAccessor getPluralAccessorList()
 	{
 		if (pluralAccessorList == null)
 			pluralAccessorList = AccessorManager.getPluralAccessorList(this);
@@ -704,8 +691,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	/**
 	 * @return la liste des accessors 1 à 1 ou plusieurs à 1 pour cette entité
 	 */
-	public final TreeMap<String, AbstractOrmEntity> getSingleAccessorList()
-
+	public final AbstractOrmEntity getSingleAccessorList()
 	{
 		if (singleAccessorList == null)
 			singleAccessorList = AccessorManager.getSingleAccessorList(this);
@@ -718,7 +704,6 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	 * @return accesseur singulier
 	 */
 	public final AbstractOrmEntity getSingleAccessor(String accessorName)
-
 	{
 		return AccessorManager.getSingleAccessor(this, accessorName);
 	}
@@ -736,7 +721,8 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	 * @param visibleDescription description visible du flagPool
 	 * @param flagPool le flag pool
 	 */
-	public void addPositiveFlagPool(String visibleDescription, FlagPool flagPool)
+	public void addPositiveFlagPool(String visibleDescription,
+			newtonERP.module.generalEntity.FlagPool flagPool)
 	{
 		getPositiveFlagPoolList().put(visibleDescription, flagPool);
 	}
@@ -745,7 +731,8 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	 * @param visibleDescription description du flag pool
 	 * @param flagPool flag pool
 	 */
-	public void addNegativeFlagPool(String visibleDescription, FlagPool flagPool)
+	public void addNegativeFlagPool(String visibleDescription,
+			newtonERP.module.generalEntity.FlagPool flagPool)
 	{
 		getNegativeFlagPoolList().put(visibleDescription, flagPool);
 	}
@@ -753,7 +740,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	/**
 	 * @return liste des référence de flag pool inversées
 	 */
-	public Hashtable<String, FlagPool> getNegativeFlagPoolList()
+	public newtonERP.module.generalEntity.FlagPool getNegativeFlagPoolList()
 	{
 		if (negativeFlagPoolList == null)
 			negativeFlagPoolList = new Hashtable<String, FlagPool>();
@@ -764,7 +751,8 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	 * @param accessorName non de l'accesseur
 	 * @return accesseur multiple voulu
 	 */
-	public PluralAccessor getPluralAccessor(String accessorName)
+	public newtonERP.orm.associations.PluralAccessor getPluralAccessor(
+			String accessorName)
 	{
 		return PluralAccessorManager.getPluralAccessor(this, accessorName);
 	}
@@ -775,8 +763,8 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	 *            critérié
 	 * @return accesseur multiple critérié
 	 */
-	public PluralAccessor getPluralAccessor(String accessorName,
-			AbstractOrmEntity searchCriteriaEntity)
+	public newtonERP.orm.associations.PluralAccessor getPluralAccessor(
+			String accessorName, AbstractOrmEntity searchCriteriaEntity)
 	{
 		PluralAccessor pluralAccessor = PluralAccessorManager
 				.getPluralAccessor(this, accessorName, searchCriteriaEntity);
@@ -785,8 +773,8 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 			return pluralAccessor;
 
 		PluralAccessor uncleanedList = getPluralAccessor(accessorName);
-		PluralAccessor cleanList = new PluralAccessor(uncleanedList
-				.getInternalEntityDefinition());
+		PluralAccessor cleanList = new PluralAccessor(
+				uncleanedList.getInternalEntityDefinition());
 
 		for (AbstractOrmEntity entityFromList : uncleanedList)
 			if (entityFromList.matchesCriteriasFrom(searchCriteriaEntity))
@@ -822,8 +810,8 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 
 		if (getFields().containsFieldName(foreignEntityForeignKeyName))
 		{
-			setData(foreignEntityForeignKeyName, foreignEntity
-					.getPrimaryKeyValue());
+			setData(foreignEntityForeignKeyName,
+					foreignEntity.getPrimaryKeyValue());
 		}
 		else if (foreignEntity.getFields().containsFieldName(
 				localEntityForeignKeyName))
@@ -839,8 +827,6 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 		}
 	}
 
-	/**
-	 */
 	public void save()
 	{
 		if (getPrimaryKeyValue() == null)
@@ -863,10 +849,11 @@ public abstract class AbstractOrmEntity extends AbstractEntity
 	/**
 	 * @return liste des gateways (accesseurs passant par un autre)
 	 */
-	public Vector<GateWay> getGateWayList()
+	public newtonERP.orm.associations.GateWay getGateWayList()
 	{
 		if (gateWayList == null)
 			gateWayList = new Vector<GateWay>();
 		return gateWayList;
 	}
+
 }

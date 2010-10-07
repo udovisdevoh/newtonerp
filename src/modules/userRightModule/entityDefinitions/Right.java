@@ -1,32 +1,25 @@
 package modules.userRightModule.entityDefinitions;
 
-import java.util.Hashtable;
 import java.util.Vector;
 
-import newtonERP.module.AbstractEntity;
-import newtonERP.module.AbstractOrmEntity;
-import newtonERP.orm.field.Field;
 import newtonERP.orm.field.Fields;
 import newtonERP.orm.field.type.FieldInt;
 import newtonERP.orm.field.type.FieldString;
-import newtonERP.viewers.viewerData.BaseViewerData;
 import newtonERP.viewers.viewerData.ListViewerData;
 
 /**
  * Entity defenition class representing a right
  * @author CloutierJo, r3hallejo
  */
-public class Right extends AbstractOrmEntity
+public class Right extends newtonERP.module.AbstractOrmEntity
 {
-	/**
-	 */
 	public Right()
 	{
 		super();
 		setVisibleName("Droit");
 	}
 
-	public Fields initFields()
+	public newtonERP.orm.field.Fields initFields()
 	{
 		FieldString moduleName = new FieldString("Module", "moduleName");
 		moduleName.setNaturalKey(true);
@@ -47,8 +40,8 @@ public class Right extends AbstractOrmEntity
 	}
 
 	@Override
-	public AbstractEntity deleteUI(Hashtable<String, String> parameters)
-
+	public newtonERP.module.AbstractEntity deleteUI(
+			Hashtable<String, String> parameters)
 	{
 		/*
 		 * On ne veut pas permettre l'effacement de droit alors on redirige
@@ -59,8 +52,8 @@ public class Right extends AbstractOrmEntity
 	}
 
 	@Override
-	public BaseViewerData editUI(Hashtable<String, String> parameters)
-
+	public newtonERP.viewers.viewerData.BaseViewerData editUI(
+			Hashtable<String, String> parameters)
 	{
 		/*
 		 * On ne veut pas permettre la modification de droit alors on redirige
@@ -71,10 +64,11 @@ public class Right extends AbstractOrmEntity
 	}
 
 	@Override
-	public final ListViewerData getList(Hashtable<String, String> parameters)
-
+	public final newtonERP.viewers.viewerData.ListViewerData getList(
+			Hashtable<String, String> parameters)
 	{
 		ListViewerData entityList = super.getList(parameters);
 		return entityList;
 	}
+
 }

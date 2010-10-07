@@ -14,8 +14,10 @@ public class GateWayManager
 	 * @param gateWayEntity entité de passerelle
 	 * @param externalEntity entité externe
 	 */
-	public static void addGateWay(AbstractOrmEntity sourceEntity,
-			AbstractOrmEntity gateWayEntity, AbstractOrmEntity externalEntity)
+	public static void addGateWay(
+			newtonERP.module.AbstractOrmEntity sourceEntity,
+			newtonERP.module.AbstractOrmEntity gateWayEntity,
+			newtonERP.module.AbstractOrmEntity externalEntity)
 	{
 		GateWay gateWay = new GateWay(gateWayEntity, externalEntity);
 		sourceEntity.getGateWayList().add(gateWay);
@@ -26,12 +28,12 @@ public class GateWayManager
 	 * @param sourceEntity source entity
 	 * @return external entity
 	 */
-	public static AbstractOrmEntity getExternalEntity(GateWay gateWay,
-			AbstractOrmEntity sourceEntity)
+	public static newtonERP.module.AbstractOrmEntity getExternalEntity(
+			GateWay gateWay, newtonERP.module.AbstractOrmEntity sourceEntity)
 	{
 		AbstractOrmEntity gateWayEntity = gateWay.getGateWayEntity();
-		gateWayEntity.setData(gateWayEntity.getPrimaryKeyName(), sourceEntity
-				.getData(gateWayEntity.getForeignKeyName()));
+		gateWayEntity.setData(gateWayEntity.getPrimaryKeyName(),
+				sourceEntity.getData(gateWayEntity.getForeignKeyName()));
 		gateWayEntity = Orm.selectUnique(gateWayEntity);
 
 		AbstractOrmEntity externalEntity = gateWay.getExternalEntity();
@@ -46,4 +48,5 @@ public class GateWayManager
 
 		return externalEntity;
 	}
+
 }

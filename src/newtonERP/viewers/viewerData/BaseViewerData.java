@@ -1,24 +1,26 @@
 package newtonERP.viewers.viewerData;
 
-import java.util.Iterator;
 import java.util.Vector;
 
 import newtonERP.common.ActionLink;
-import newtonERP.module.AbstractEntity;
 
 /**
  * viewer servant a standardisé nos viewer
  * @author CloutierJo
- * 
  */
-public class BaseViewerData extends AbstractEntity
+public class BaseViewerData extends newtonERP.module.AbstractEntity
 {
 	private String title;
-	private Vector<ActionLink> globalActions = new Vector<ActionLink>();
-	private Vector<String> alertMessageList = new Vector<String>();
-	private Vector<String> normalMessageList = new Vector<String>();
-	private ActionLink backLink;
-	private Vector<String> complementaryInfoLineList;
+
+	private newtonERP.common.ActionLink globalActions = new Vector<ActionLink>();
+
+	private String alertMessageList = new Vector<String>();
+
+	private String normalMessageList = new Vector<String>();
+
+	private newtonERP.common.ActionLink backLink;
+
+	private String complementaryInfoLineList;
 
 	/**
 	 * constructeur vide
@@ -55,7 +57,7 @@ public class BaseViewerData extends AbstractEntity
 	/**
 	 * @return the globalActions
 	 */
-	public Vector<ActionLink> getGlobalActions()
+	public newtonERP.common.ActionLink getGlobalActions()
 	{
 		return globalActions;
 	}
@@ -63,7 +65,7 @@ public class BaseViewerData extends AbstractEntity
 	/**
 	 * @param globalAction the globalActions to add
 	 */
-	public void addGlobalActions(ActionLink globalAction)
+	public void addGlobalActions(newtonERP.common.ActionLink globalAction)
 	{
 		globalActions.add(globalAction);
 	}
@@ -134,7 +136,7 @@ public class BaseViewerData extends AbstractEntity
 	/**
 	 * @return the backLink
 	 */
-	public ActionLink getBackLink()
+	public newtonERP.common.ActionLink getBackLink()
 	{
 		return backLink;
 	}
@@ -142,7 +144,7 @@ public class BaseViewerData extends AbstractEntity
 	/**
 	 * @param backLink the backLink to set
 	 */
-	public void setBackLink(ActionLink backLink)
+	public void setBackLink(newtonERP.common.ActionLink backLink)
 	{
 		this.backLink = backLink;
 	}
@@ -165,4 +167,5 @@ public class BaseViewerData extends AbstractEntity
 			complementaryInfoLineList = new Vector<String>();
 		return complementaryInfoLineList;
 	}
+
 }

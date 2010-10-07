@@ -14,9 +14,6 @@ public class TableAssociationException extends RuntimeException
 		super(message);
 	}
 
-	/**
-	 * 
-	 */
 	public TableAssociationException()
 	{
 		super();
@@ -38,4 +35,5 @@ public class TableAssociationException extends RuntimeException
 	{
 		super(cause);
 	}
+
 }

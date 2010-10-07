@@ -1,28 +1,21 @@
 package newtonERP.orm.sgbd.sqlite;
 
-import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.Vector;
 
-import newtonERP.logging.Logger;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.BackupManager;
 import newtonERP.orm.OrmActions;
 import newtonERP.orm.exceptions.OrmSqlException;
-import newtonERP.orm.field.Field;
-import newtonERP.orm.field.Fields;
 import newtonERP.orm.field.type.FieldBool;
 import newtonERP.orm.field.type.FieldDateTime;
 import newtonERP.orm.field.type.FieldDouble;
 import newtonERP.orm.field.type.FieldInt;
 import newtonERP.orm.field.type.FieldString;
-import newtonERP.orm.sgbd.AbstractSgbd;
 
 /**
  * Class who's role is only for executing the statements that has been sent from
@@ -30,7 +23,7 @@ import newtonERP.orm.sgbd.AbstractSgbd;
  * 
  * @author r3lacasgu, r3hallejo
  */
-public class SgbdSqlite extends AbstractSgbd
+public class SgbdSqlite extends newtonERP.orm.sgbd.AbstractSgbd
 {
 	private static String prefix = "Bee_";
 
@@ -41,8 +34,7 @@ public class SgbdSqlite extends AbstractSgbd
 	private SgbdSqliteBackupManager sgbdSqliteBackupManager = new SgbdSqliteBackupManager();
 
 	@Override
-	public ResultSet execute(String request, OrmActions action)
-
+	public ResultSet execute(String request, newtonERP.orm.OrmActions action)
 	{
 		try
 		{
@@ -95,8 +87,9 @@ public class SgbdSqlite extends AbstractSgbd
 	}
 
 	@Override
-	public ResultSet addColumnToTable(AbstractOrmEntity entity, Field<?> field)
-
+	public ResultSet addColumnToTable(
+			newtonERP.module.AbstractOrmEntity entity,
+			newtonERP.orm.field.Field field)
 	{
 		String sqlQuery = "ALTER TABLE " + prefix + entity.getSystemName()
 				+ " ADD COLUMN ";
@@ -123,7 +116,7 @@ public class SgbdSqlite extends AbstractSgbd
 
 	@Override
 	@Deprecated
-	public ResultSet select(AbstractOrmEntity searchEntity,
+	public ResultSet select(newtonERP.module.AbstractOrmEntity searchEntity,
 			Vector<String> searchCriteriasParam)
 	{
 		String sqlQuery = "SELECT * FROM " + prefix
@@ -207,7 +200,7 @@ public class SgbdSqlite extends AbstractSgbd
 	 * @return the sqlQuery
 	 */
 	private static String buildWhereClauseForQuery(
-			AbstractOrmEntity searchEntity, String sqlQuery)
+			newtonERP.module.AbstractOrmEntity searchEntity, String sqlQuery)
 	{
 		sqlQuery += " WHERE ( ";
 
@@ -234,7 +227,8 @@ public class SgbdSqlite extends AbstractSgbd
 	 * @param sqlQuery the non-finished sqlQuery
 	 * @return the sqlQuery
 	 */
-	private static String buildSetClauseForQuery(Fields fields, String sqlQuery)
+	private static String buildSetClauseForQuery(
+			newtonERP.orm.field.Fields fields, String sqlQuery)
 	{
 		Iterator<Field<?>> dataIterator = fields.iterator();
 
@@ -272,7 +266,6 @@ public class SgbdSqlite extends AbstractSgbd
 
 	@Override
 	public ResultSet select(Vector<AbstractOrmEntity> searchEntities)
-
 	{
 		String sqlQuery = "SELECT * FROM " + prefix
 				+ searchEntities.get(0).getSystemName();
@@ -288,7 +281,7 @@ public class SgbdSqlite extends AbstractSgbd
 	}
 
 	@Override
-	public int insert(AbstractOrmEntity newEntity)
+	public int insert(newtonERP.module.AbstractOrmEntity newEntity)
 	{
 		String sqlQuery = "INSERT INTO " + prefix + newEntity.getSystemName()
 				+ "( ";
@@ -351,7 +344,7 @@ public class SgbdSqlite extends AbstractSgbd
 
 	@Override
 	@Deprecated
-	public void delete(AbstractOrmEntity searchEntity,
+	public void delete(newtonERP.module.AbstractOrmEntity searchEntity,
 			Vector<String> searchCriterias)
 	{
 		String sqlQuery = "DELETE FROM " + prefix
@@ -366,7 +359,6 @@ public class SgbdSqlite extends AbstractSgbd
 
 	@Override
 	public void delete(Vector<AbstractOrmEntity> searchEntities)
-
 	{
 		String sqlQuery = "DELETE FROM " + prefix
 				+ searchEntities.get(0).getSystemName();
@@ -380,7 +372,8 @@ public class SgbdSqlite extends AbstractSgbd
 
 	@Deprecated
 	@Override
-	public void update(AbstractOrmEntity entityContainingChanges,
+	public void update(
+			newtonERP.module.AbstractOrmEntity entityContainingChanges,
 			Vector<String> searchCriterias)
 	{
 		String sqlQuery = "UPDATE " + prefix
@@ -397,7 +390,7 @@ public class SgbdSqlite extends AbstractSgbd
 
 	@Override
 	public void update(Vector<AbstractOrmEntity> searchEntities,
-			AbstractOrmEntity entityContainingChanges)
+			newtonERP.module.AbstractOrmEntity entityContainingChanges)
 	{
 		String sqlQuery = "UPDATE " + prefix
 				+ entityContainingChanges.getSystemName() + " SET ";
@@ -432,7 +425,6 @@ public class SgbdSqlite extends AbstractSgbd
 
 	@Override
 	public void createIndex(String entityName, String fieldName)
-
 	{
 		String indexName = fieldName + "_index";
 		String tableName = prefix + entityName;
@@ -445,8 +437,7 @@ public class SgbdSqlite extends AbstractSgbd
 	}
 
 	@Override
-	public void createTableForEntity(AbstractOrmEntity entity)
-
+	public void createTableForEntity(newtonERP.module.AbstractOrmEntity entity)
 	{
 		// Be sure to create the table only if it doesn't already
 		// exists
@@ -499,8 +490,8 @@ public class SgbdSqlite extends AbstractSgbd
 	}
 
 	@Override
-	public void updateUnique(AbstractOrmEntity searchEntity,
-			AbstractOrmEntity entityContainingChanges)
+	public void updateUnique(newtonERP.module.AbstractOrmEntity searchEntity,
+			newtonERP.module.AbstractOrmEntity entityContainingChanges)
 	{
 		String sqlQuery = "UPDATE " + prefix
 				+ entityContainingChanges.getSystemName() + " SET ";
@@ -515,7 +506,8 @@ public class SgbdSqlite extends AbstractSgbd
 	}
 
 	@Override
-	public ResultSet select(AbstractOrmEntity searchEntity,
+	@Deprecated
+	public ResultSet select(newtonERP.module.AbstractOrmEntity searchEntity,
 			Vector<String> searchCriteriasParam, int limit, int offset,
 			String orderBy)
 	{
@@ -549,7 +541,8 @@ public class SgbdSqlite extends AbstractSgbd
 	}
 
 	@Override
-	public int count(AbstractOrmEntity searchEntity,
+	@Deprecated
+	public int count(newtonERP.module.AbstractOrmEntity searchEntity,
 			Vector<String> searchParameterList)
 	{
 		// Pour une raison quelconque, la fonction COUNT de SQLite empêche la
@@ -585,8 +578,8 @@ public class SgbdSqlite extends AbstractSgbd
 	public void doBackup()
 	{
 		Logger.info("Backup de la DB");
-		sgbdSqliteBackupManager.doBackup(dataBaseFileName, BackupManager
-				.getMaximumBackupInstanceCount());
+		sgbdSqliteBackupManager.doBackup(dataBaseFileName,
+				BackupManager.getMaximumBackupInstanceCount());
 	}
 
 	@Override
@@ -594,4 +587,5 @@ public class SgbdSqlite extends AbstractSgbd
 	{
 		return sgbdSqliteBackupManager.getLatestBackupTime();
 	}
+
 }

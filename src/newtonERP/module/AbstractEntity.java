@@ -1,7 +1,6 @@
 package newtonERP.module;
 
 import java.util.HashSet;
-import java.util.Hashtable;
 import java.util.Vector;
 
 import modules.taskModule.entityDefinitions.EntityEntity;
@@ -9,22 +8,25 @@ import modules.taskModule.entityDefinitions.FieldEntity;
 import newtonERP.module.exception.EntityException;
 import newtonERP.module.generalEntity.ListOfValue;
 import newtonERP.orm.field.DynamicFieldCache;
-import newtonERP.orm.field.Field;
 import newtonERP.orm.field.Fields;
 import newtonERP.orm.field.VolatileFields;
 import newtonERP.orm.field.type.FieldBool;
 
 /**
  * @author r3lemaypa, r3lacasgu, CloutierJo
- * 
  */
 public abstract class AbstractEntity
 {
-	protected Fields fields;
-	private Hashtable<String, ListOfValue> positiveListOfValueList;
-	private static HashSet<ListOfValue> negativeListOfValueList;
+	protected newtonERP.orm.field.Fields fields;
+
+	private newtonERP.module.generalEntity.ListOfValue positiveListOfValueList;
+
+	private static newtonERP.module.generalEntity.ListOfValue negativeListOfValueList;
+
 	protected Module currentModule;
+
 	private AbstractAction currentAction;
+
 	private String detailedDescription = null;
 
 	/**
@@ -35,7 +37,7 @@ public abstract class AbstractEntity
 		fields = preInitFields();
 	}
 
-	protected Fields preInitFields()
+	protected newtonERP.orm.field.Fields preInitFields()
 	{
 		Vector<Field<?>> fieldsData = new Vector<Field<?>>();
 		Fields originalField = initFields();
@@ -53,8 +55,8 @@ public abstract class AbstractEntity
 				entitySearch.setData("systemName", getSystemName());
 				entitySearch = (EntityEntity) entitySearch.get().get(0);
 				FieldEntity search = new FieldEntity();
-				search.setData(entitySearch.getForeignKeyName(), entitySearch
-						.getPrimaryKeyValue());
+				search.setData(entitySearch.getForeignKeyName(),
+						entitySearch.getPrimaryKeyValue());
 				search.setData("dynamicField", true);
 				dataField = search.get();
 				DynamicFieldCache.add(dataField, getSystemName());
@@ -79,12 +81,12 @@ public abstract class AbstractEntity
 	 * 
 	 * @return le Fields initialiser
 	 */
-	public Fields initFields()
+	public newtonERP.orm.field.Fields initFields()
 	{
 		return new Fields();
 	}
 
-	private Vector<Field<?>> initFieldsFromDb(
+	private newtonERP.orm.field.Field initFieldsFromDb(
 			Vector<AbstractOrmEntity> dataField)
 	{
 		FieldEntity field;
@@ -99,7 +101,7 @@ public abstract class AbstractEntity
 		return fieldsData;
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
@@ -124,7 +126,7 @@ public abstract class AbstractEntity
 	}
 
 	@SuppressWarnings("unused")
-	private void setFields(Fields fields)
+	private void setFields(newtonERP.orm.field.Fields fields)
 	{
 		// must not be implemented
 	}
@@ -132,7 +134,7 @@ public abstract class AbstractEntity
 	/**
 	 * @return the fields
 	 */
-	public Fields getFields()
+	public newtonERP.orm.field.Fields getFields()
 	{
 		return fields;
 	}
@@ -175,7 +177,8 @@ public abstract class AbstractEntity
 	 * @param fieldKeyName the field name
 	 * @return If list of value exist, return it, else, return null
 	 */
-	public ListOfValue tryMatchListOfValue(String fieldKeyName)
+	public newtonERP.module.generalEntity.ListOfValue tryMatchListOfValue(
+			String fieldKeyName)
 	{
 		if (positiveListOfValueList == null)
 			return null;
@@ -241,7 +244,7 @@ public abstract class AbstractEntity
 	/**
 	 * @return liste des listOfValue
 	 */
-	public Hashtable<String, ListOfValue> getPositiveListOfValueList()
+	public newtonERP.module.generalEntity.ListOfValue getPositiveListOfValueList()
 	{
 		if (positiveListOfValueList == null)
 			positiveListOfValueList = new Hashtable<String, ListOfValue>();
@@ -252,7 +255,7 @@ public abstract class AbstractEntity
 	/**
 	 * @return liste des listOfValue
 	 */
-	public HashSet<ListOfValue> getNegativeListOfValueList()
+	public newtonERP.module.generalEntity.ListOfValue getNegativeListOfValueList()
 	{
 		if (negativeListOfValueList == null)
 			negativeListOfValueList = new HashSet<ListOfValue>();
@@ -265,7 +268,7 @@ public abstract class AbstractEntity
 	 * @param listOfValue listOfValue à ajouter
 	 */
 	public void addPositiveListOfValue(String foreignKeyName,
-			ListOfValue listOfValue)
+			newtonERP.module.generalEntity.ListOfValue listOfValue)
 	{
 		// laissez le get car c'est de la lazy initialization -Guillaume
 		getPositiveListOfValueList().put(foreignKeyName, listOfValue);
@@ -275,7 +278,8 @@ public abstract class AbstractEntity
 	 * @param foreignKeyName nom de la clef etrangère de la listOfValue
 	 * @param listOfValue listOfValue à ajouter
 	 */
-	public void addNegativeListOfValue(ListOfValue listOfValue)
+	public void addNegativeListOfValue(
+			newtonERP.module.generalEntity.ListOfValue listOfValue)
 	{
 		// laissez le get car c'est de la lazy initialization -Guillaume
 
@@ -325,4 +329,5 @@ public abstract class AbstractEntity
 	{
 		this.detailedDescription = detailedDescription;
 	}
+
 }

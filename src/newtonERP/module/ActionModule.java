@@ -1,16 +1,13 @@
 package newtonERP.module;
 
-import java.util.Hashtable;
-
 /**
  * classe servant a enregistre les lien entre un module et ses action de maniere
  * persistante
  * @author CloutierJo
- * 
  */
 public class ActionModule
 {
-	static Hashtable<Class<?>, Module> actionModule = new Hashtable<Class<?>, Module>();
+	static Module actionModule = new Hashtable<Class<?>, Module>();
 
 	/**
 	 * permet d'obtenir le module proprietaire a partir de l'action
@@ -31,4 +28,5 @@ public class ActionModule
 	{
 		actionModule.put(action.getClass(), module);
 	}
+
 }

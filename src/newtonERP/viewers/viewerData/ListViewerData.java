@@ -1,7 +1,5 @@
 package newtonERP.viewers.viewerData;
 
-import java.util.Hashtable;
-import java.util.Iterator;
 import java.util.Vector;
 
 import newtonERP.module.AbstractOrmEntity;
@@ -9,25 +7,25 @@ import newtonERP.module.BaseAction;
 import newtonERP.module.generalEntity.ListOfValue;
 import newtonERP.orm.associations.GateWay;
 import newtonERP.orm.associations.GateWayManager;
-import newtonERP.orm.field.Field;
 
 /**
  * @author Guillaume Lacasse, CloutierJo
- * 
  */
-public class ListViewerData extends GridViewerData implements
-		Iterable<AbstractOrmEntity>
+public class ListViewerData extends GridViewerData
 {
-	private AbstractOrmEntity dataType;
-	private Vector<AbstractOrmEntity> data = new Vector<AbstractOrmEntity>();
+	private newtonERP.module.AbstractOrmEntity dataType;
+
+	private newtonERP.module.AbstractOrmEntity data = new Vector<AbstractOrmEntity>();
+
 	private PageSelector pageSelector = null;
+
 	private SearchBar searchBar = null;
 
 	/**
 	 * constructeur par defaut
 	 * @param dataType type d'entity a etre liste
 	 */
-	public ListViewerData(AbstractOrmEntity dataType)
+	public ListViewerData(newtonERP.module.AbstractOrmEntity dataType)
 	{
 		super();
 		this.dataType = dataType;
@@ -36,12 +34,12 @@ public class ListViewerData extends GridViewerData implements
 	/**
 	 * @return les entity
 	 */
-	public Vector<AbstractOrmEntity> getEntity()
+	public newtonERP.module.AbstractOrmEntity getEntity()
 	{
 		return data;
 	}
 
-	public GridCaseData[] getHeader()
+	public GridCaseData getHeader()
 	{
 		Vector<GridCaseData> header = new Vector<GridCaseData>();
 
@@ -55,8 +53,8 @@ public class ListViewerData extends GridViewerData implements
 			if (listOfValue != null)
 			{
 				gridCaseData = new GridCaseData(listOfValue.getLabelName(),
-						new BaseAction("GetList", listOfValue
-								.getForeignEntityDefinition()));
+						new BaseAction("GetList",
+								listOfValue.getForeignEntityDefinition()));
 				header.add(gridCaseData);
 			}
 			else if (!field.isHidden())
@@ -76,7 +74,7 @@ public class ListViewerData extends GridViewerData implements
 		return header.toArray(new GridCaseData[0]);
 	}
 
-	public GridCaseData[][] getCases()
+	public GridCaseData getCases()
 	{
 		Vector<GridCaseData[]> dataList = new Vector<GridCaseData[]>();
 		String value;
@@ -153,7 +151,7 @@ public class ListViewerData extends GridViewerData implements
 	/**
 	 * @param entity the entity to add
 	 */
-	public void addEntity(AbstractOrmEntity entity)
+	public void addEntity(newtonERP.module.AbstractOrmEntity entity)
 	{
 		data.add(entity);
 	}
@@ -161,13 +159,13 @@ public class ListViewerData extends GridViewerData implements
 	/**
 	 * @return the dataType
 	 */
-	public AbstractOrmEntity getDataType()
+	public newtonERP.module.AbstractOrmEntity getDataType()
 	{
 		return dataType;
 	}
 
 	@Override
-	public Iterator<AbstractOrmEntity> iterator()
+	public newtonERP.module.AbstractOrmEntity iterator()
 	{
 		return data.iterator();
 	}
@@ -234,4 +232,5 @@ public class ListViewerData extends GridViewerData implements
 	{
 		this.searchBar = searchBar;
 	}
+
 }

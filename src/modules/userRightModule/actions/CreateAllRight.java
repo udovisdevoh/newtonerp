@@ -45,6 +45,7 @@ public class CreateAllRight extends AbstractAction
 			search.add("ModuleName='" + moduleName + "'");
 			int numRight = 0;
 
+			// todo: correct deprecate
 			numRight = Orm.select(new Right(), search).size();
 
 			if (numRight == 0)
@@ -82,4 +83,5 @@ public class CreateAllRight extends AbstractAction
 
 		return null;
 	}
+
 }

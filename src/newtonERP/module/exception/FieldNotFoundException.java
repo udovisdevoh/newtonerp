@@ -17,9 +17,6 @@ public class FieldNotFoundException extends ModuleException
 		super(fieldName + " field doesn't exist");
 	}
 
-	/**
-	 * 
-	 */
 	public FieldNotFoundException()
 	{
 		super();
@@ -41,4 +38,5 @@ public class FieldNotFoundException extends ModuleException
 	{
 		super(cause);
 	}
+
 }

@@ -12,15 +12,16 @@ public interface CheckListViewable
 	/**
 	 * @return the visible description
 	 */
-	public String getVisibleDescription();
+	String getVisibleDescription();
 
 	/**
 	 * @return a tree map of the available elements
 	 */
-	public TreeMap<String, String> getAvailableElementList();
+	TreeMap<String, String> getAvailableElementList();
 
 	/**
 	 * @return a hash set of cheked elements
 	 */
-	public HashSet<String> getCheckedElementList();
+	HashSet<String> getCheckedElementList();
+
 }

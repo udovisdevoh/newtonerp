@@ -3,14 +3,13 @@ package newtonERP.orm.field.type;
 import newtonERP.logging.Logger;
 import newtonERP.module.exception.FieldNotCompatibleException;
 import newtonERP.module.exception.InvalidOperatorException;
-import newtonERP.orm.field.Field;
 
 /**
  * Double field in the entities
  * 
  * @author CloutierJo
  */
-public class FieldDouble extends Field<Double>
+public class FieldDouble extends newtonERP.orm.field.Field<Double>
 {
 	/**
 	 * constructeur minimum
@@ -20,7 +19,6 @@ public class FieldDouble extends Field<Double>
 	 * @param data donne du champ
 	 */
 	public FieldDouble(String name, String shortName, Double data)
-
 	{
 		super(name, shortName, data);
 	}
@@ -30,7 +28,6 @@ public class FieldDouble extends Field<Double>
 	 * @param shortName nom du champ qui sera utiliser a l'interne
 	 */
 	public FieldDouble(String name, String shortName)
-
 	{
 		this(name, shortName, null);
 	}
@@ -82,4 +79,5 @@ public class FieldDouble extends Field<Double>
 		else
 			throw new FieldNotCompatibleException(getShortName(), data);
 	}
+
 }

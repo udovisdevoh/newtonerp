@@ -7,7 +7,6 @@ package newtonERP.orm.field;
  */
 public abstract class FieldCalcule<T>
 {
-
 	protected abstract T calcul(Fields entityFields);
 
 	/**
@@ -26,4 +25,5 @@ public abstract class FieldCalcule<T>
 			return null;
 		}
 	}
+
 }

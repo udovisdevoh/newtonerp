@@ -1,19 +1,15 @@
 package newtonERP.serveur;
 
-import java.util.Hashtable;
-
 import modules.userRightModule.actions.RightCheck;
 import newtonERP.common.Authentication;
 import newtonERP.common.ListModule;
 import newtonERP.module.AbstractEntity;
-import newtonERP.module.Module;
 import newtonERP.module.generalEntity.AlertEntity;
 import newtonERP.orm.Orm;
 import newtonERP.taskManager.TaskManager;
 
 /**
  * @author Gabriel Therrien JoCloutier
- * 
  */
 public class CommandRouteur
 {
@@ -27,9 +23,9 @@ public class CommandRouteur
 	 * @param parameter parametre a passer a l'action
 	 * @return une entity viewable
 	 */
-	public AbstractEntity routeCommand(String moduleName, String actionName,
-			String entityName, Hashtable<String, String> parameter)
-
+	public newtonERP.module.AbstractEntity routeCommand(String moduleName,
+			String actionName, String entityName,
+			Hashtable<String, String> parameter)
 	{
 
 		Module module = ListModule.getModule(moduleName);
@@ -91,8 +87,10 @@ public class CommandRouteur
 			retView = taskManagerRetView;
 
 		// On averti l'Orm de faire des backup si c'est le temps
+		// todo: regardé quoi en faire?
 		Orm.doBackupIfTimeIntervalAllows();
 
 		return retView;
 	}
+
 }

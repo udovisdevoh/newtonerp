@@ -14,7 +14,8 @@ public class ActionSourceCodeBuilder
 	 * @param actionEntity action entity
 	 * @return source code
 	 */
-	public static String build(ActionEntity actionEntity)
+	public static String build(
+			modules.taskModule.entityDefinitions.ActionEntity actionEntity)
 	{
 		actionEntity = (ActionEntity) Orm.selectUnique(actionEntity);
 
@@ -55,30 +56,32 @@ public class ActionSourceCodeBuilder
 		return sourceCode;
 	}
 
-	private static String getSystemName(ActionEntity actionEntity)
+	private static String getSystemName(
+			modules.taskModule.entityDefinitions.ActionEntity actionEntity)
 	{
 		return actionEntity.getDataString("systemName");
 	}
 
-	private static String getNaturalKeyValue(ActionEntity actionEntity)
-
+	private static String getNaturalKeyValue(
+			modules.taskModule.entityDefinitions.ActionEntity actionEntity)
 	{
 		return actionEntity.getNaturalKeyDescription();
 	}
 
-	private static String getPackageName(ActionEntity actionEntity)
-
+	private static String getPackageName(
+			modules.taskModule.entityDefinitions.ActionEntity actionEntity)
 	{
 		return ModuleSourceCodeBuilder
 				.getPackageName(getModuleEntity(actionEntity));
 	}
 
-	private static ModuleEntity getModuleEntity(ActionEntity actionEntity)
-
+	private static modules.taskModule.entityDefinitions.ModuleEntity getModuleEntity(
+			modules.taskModule.entityDefinitions.ActionEntity actionEntity)
 	{
 		ModuleEntity moduleEntity = (ModuleEntity) actionEntity
 				.getSingleAccessor(new ModuleEntity().getForeignKeyName());
 
 		return moduleEntity;
 	}
+
 }

@@ -1,13 +1,10 @@
 package newtonERP.module.generalEntity;
 
-import newtonERP.module.AbstractEntity;
-import newtonERP.viewers.viewables.ForwardViewable;
-
 /**
  * @author Guillaume Lacasse
- * 
  */
-public class ForwardEntity extends AbstractEntity implements ForwardViewable
+public class ForwardEntity extends newtonERP.module.AbstractEntity implements
+		newtonERP.viewers.viewables.ForwardViewable
 {
 	private String forwardingUrl;
 
@@ -24,4 +21,5 @@ public class ForwardEntity extends AbstractEntity implements ForwardViewable
 	{
 		return forwardingUrl;
 	}
+
 }

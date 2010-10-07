@@ -61,4 +61,5 @@ public class FieldDate extends FieldDateTime
 			return null;
 		return dateFormatter.format(super.getData().getTime());
 	}
+
 }

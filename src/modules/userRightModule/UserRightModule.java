@@ -6,13 +6,10 @@ import modules.userRightModule.entityDefinitions.Groups;
 import modules.userRightModule.entityDefinitions.GroupsRight;
 import modules.userRightModule.entityDefinitions.Right;
 import modules.userRightModule.entityDefinitions.User;
-import newtonERP.common.ActionLink;
 import newtonERP.common.Authentication;
-import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.BaseAction;
-import newtonERP.module.Module;
 import newtonERP.orm.Orm;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.serveur.ConfigManager;
@@ -22,7 +19,7 @@ import newtonERP.serveur.ConfigManager;
  * 
  *         Class representing the user right module. Base module for the ERP.
  */
-public class UserRightModule extends Module
+public class UserRightModule extends newtonERP.module.Module
 {
 	/**
 	 * Default constructor for the user right module initializing himself. Adds
@@ -45,10 +42,9 @@ public class UserRightModule extends Module
 	{
 		Groups groups;
 		User user;
-		int rightID, groupsID;
 		Right right;
+		int rightID;
 		GroupsRight groupsRight;
-		Vector<String> search;
 
 		// ***************** unlogged User ****************
 		// cree le groupe
@@ -56,67 +52,54 @@ public class UserRightModule extends Module
 		groups.setData("groupName", "unLogedGroup");
 		groups.newE();
 
-		// retrouve le groupsID
-		search = new Vector<String>();
-		search.clear();
-		search.add("groupName=" + "'unLogedGroup'");
-		groupsID = (Integer) ((Groups) Orm.select(groups, search).get(0))
-				.getData(groups.getPrimaryKeyName());
-
 		// cree le user unLogedUser
 		user = new User();
 		user.setData("name", "unLogedUser");
 		user.setData("password", "");
-		user.setData("groupsID", groupsID);
-		Orm.insert(user);
+		user.setData(groups.getForeignKeyName(), groups.getPrimaryKeyValue());
+		user.newE();
 
-		// retrouve les rightID
-
+		// retrouve le rightID du login
 		right = new Right();
-		right.getFields().getField("moduleName").setData(getSystemName());
-		right.getFields().getField("actionName").setData("Login");
+		right.setData("moduleName", getSystemName());
+		right.setData("actionName", "Login");
 		right = (Right) right.get(right).get(0);
 		rightID = (Integer) right.getData(right.getPrimaryKeyName());
 
-		// cree le GroupsRight
+		// cree le GroupsRight pour donne acces au login a unloggedUser
 		groupsRight = new GroupsRight();
-		groupsRight.setData("groupsID", groupsID);
-		groupsRight.setData("rightID", rightID);
+		groupsRight.setData(groups.getForeignKeyName(),
+				groups.getPrimaryKeyValue());
+		groupsRight.setData(right.getPrimaryKeyName(), rightID);
 		groupsRight.newE();
+
+		// ***************** admin User ****************
 
 		// cree le groupe
 		groups = new Groups();
 		groups.setData("groupName", "admin");
 		groups.newE();
 
-		// retrouve le groupsID
-		search = new Vector<String>();
-		search.add("groupName=" + "'admin'");
-		groupsID = (Integer) ((Groups) Orm.select(groups, search).get(0))
-				.getData(groups.getPrimaryKeyName());
-
 		// cree le user Admin
 		user = new User();
-		user.setData("name", ConfigManager.loadStringAttrProperty(
-				"default-user", "name"));
+		user.setData("name",
+				ConfigManager.loadStringAttrProperty("default-user", "name"));
 		user.setData("password", ConfigManager.loadStringAttrProperty(
 				"default-user", "password"));
-		user.setData("groupsID", groupsID);
+		user.setData(groups.getPrimaryKeyName(), groups.getPrimaryKeyValue());
 		user.newE();
 
 		groupsRight = new GroupsRight();
 
-		// retrouve les rightID
-		search.clear();
-		search.add("moduleName='" + getSystemName() + "'");
-
-		for (AbstractOrmEntity currentRight : Orm.select(new Right(), search))
+		// retrouve les rightID pour donne les droit au group admin
+		right = new Right();
+		right.setData("moduleName", getSystemName());
+		for (AbstractOrmEntity currentRight : Orm.select(right))
 		{
-			rightID = (Integer) ((Right) currentRight).getData(currentRight
-					.getPrimaryKeyName());
+			rightID = currentRight.getPrimaryKeyValue();
 
 			// cree le GroupsRight
-			groupsRight.setData("groupsID", groupsID);
+			groupsRight.setData("groupsID", groups.getPrimaryKeyValue());
 			groupsRight.setData("rightID", rightID);
 			groupsRight.newE();
 		}
@@ -130,11 +113,14 @@ public class UserRightModule extends Module
 	public void addGroupsRight(String groupName, String actionName,
 			String entityName)
 	{
+		// todo: correct deprecate
 		Groups groups = (Groups) Orm.getOrCreateEntity(new Groups(),
 				"groupName", groupName);
+		// todo: correct deprecate
 		Right right = (Right) Orm.getOrCreateEntity(new Right(), "actionName",
 				actionName, "entityName", entityName);
 
+		// todo: correct deprecate
 		Orm.getOrCreateEntity(new GroupsRight(), groups.getForeignKeyName(),
 				groups.getPrimaryKeyValue().toString(), right
 						.getForeignKeyName(), right.getPrimaryKeyValue()
@@ -146,13 +132,15 @@ public class UserRightModule extends Module
 	 * @param rightActionName right's name
 	 */
 	public void addGroupsRight(String groupName, String rightActionName)
-
 	{
+		// todo: correct deprecate
 		Groups groups = (Groups) Orm.getOrCreateEntity(new Groups(),
 				"groupName", groupName);
+		// todo: correct deprecate
 		Right right = (Right) Orm.getOrCreateEntity(new Right(), "actionName",
 				rightActionName);
 
+		// todo: correct deprecate
 		Orm.getOrCreateEntity(new GroupsRight(), groups.getForeignKeyName(),
 				groups.getPrimaryKeyValue().toString(), right
 						.getForeignKeyName(), right.getPrimaryKeyValue()
@@ -164,13 +152,15 @@ public class UserRightModule extends Module
 	 * @param rightActionName right's name
 	 */
 	public void removeGroupsRight(String groupName, String rightActionName)
-
 	{
+		// todo: correct deprecate
 		Groups groups = (Groups) Orm.getOrCreateEntity(new Groups(),
 				"groupName", groupName);
+		// todo: correct deprecate
 		Right right = (Right) Orm.getOrCreateEntity(new Right(), "actionName",
 				rightActionName);
 
+		// todo: correct deprecate
 		Orm.delete(new GroupsRight(), groups.getForeignKeyName(), groups
 				.getPrimaryKeyValue().toString(), right.getForeignKeyName(),
 				right.getPrimaryKeyValue().toString());
@@ -180,7 +170,7 @@ public class UserRightModule extends Module
 	 * @param actionLink un actionLink
 	 * @return vrai si les permission sont présentement accordées, sinon, faux
 	 */
-	public boolean isPermissionAllowed(ActionLink actionLink)
+	public boolean isPermissionAllowed(newtonERP.common.ActionLink actionLink)
 	{
 		String userName = Authentication.getCurrentUserName();
 		Groups groups = tryGetGroupsForUser(userName);
@@ -208,11 +198,12 @@ public class UserRightModule extends Module
 		if (right == null)
 			right = tryGetRight(actionName);
 
-		return isGroupsRightExists(groups.getPrimaryKeyValue(), right
-				.getPrimaryKeyValue());
+		return isGroupsRightExists(groups.getPrimaryKeyValue(),
+				right.getPrimaryKeyValue());
 	}
 
-	private Right tryGetRight(String actionName)
+	private modules.userRightModule.entityDefinitions.Right tryGetRight(
+			String actionName)
 	{
 		Right right = new Right();
 		right.setData("actionName", actionName);
@@ -223,8 +214,8 @@ public class UserRightModule extends Module
 		return null;
 	}
 
-	private Right tryGetRight(String actionName, String entityName)
-
+	private modules.userRightModule.entityDefinitions.Right tryGetRight(
+			String actionName, String entityName)
 	{
 		Right right = new Right();
 		right.setData("actionName", actionName);
@@ -236,7 +227,8 @@ public class UserRightModule extends Module
 		return null;
 	}
 
-	private Groups tryGetGroupsForUser(String userName)
+	private modules.userRightModule.entityDefinitions.Groups tryGetGroupsForUser(
+			String userName)
 	{
 		User user = new User();
 		user.setData("name", userName);
@@ -255,7 +247,6 @@ public class UserRightModule extends Module
 	}
 
 	private boolean isGroupsRightExists(Integer groupsID, Integer rightID)
-
 	{
 		GroupsRight groupsRight = new GroupsRight();
 		groupsRight.setData("groupsID", groupsID);
@@ -264,4 +255,5 @@ public class UserRightModule extends Module
 		Vector<AbstractOrmEntity> entityList = groupsRight.get();
 		return entityList.size() > 0;
 	}
+
 }

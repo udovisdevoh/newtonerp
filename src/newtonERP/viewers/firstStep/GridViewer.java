@@ -3,13 +3,11 @@ package newtonERP.viewers.firstStep;
 import java.util.Vector;
 
 import newtonERP.common.ActionLink;
-import newtonERP.module.AbstractEntity;
 import newtonERP.viewers.secondStep.ButtonLinkViewer;
 import newtonERP.viewers.secondStep.PageSelectorViewer;
 import newtonERP.viewers.secondStep.SearchBarViewer;
 import newtonERP.viewers.secondStep.colorViewer.ColorViewer;
 import newtonERP.viewers.viewerData.GridCaseData;
-import newtonERP.viewers.viewerData.GridViewerData;
 import newtonERP.viewers.viewerData.ListViewerData;
 
 /**
@@ -24,7 +22,8 @@ public class GridViewer
 	 * @param gridEntity the entity to view in list
 	 * @return html the html code
 	 */
-	public static String getHtmlCode(GridViewerData gridEntity)
+	public static String getHtmlCode(
+			newtonERP.viewers.viewerData.GridViewerData gridEntity)
 	{
 		String html = "";
 
@@ -54,8 +53,8 @@ public class GridViewer
 		}
 
 		html += "<table class='ListViewerTable' border='0' cellpadding='3' cellspacing='0'>";
-		html += getTableHeader(gridEntity.getHeader(), gridEntity
-				.getLeftHeader().length > 0);
+		html += getTableHeader(gridEntity.getHeader(),
+				gridEntity.getLeftHeader().length > 0);
 		html += getDataRowList(gridEntity);
 
 		html += "</table>";
@@ -66,7 +65,8 @@ public class GridViewer
 		return html;
 	}
 
-	private static String getTableHeader(GridCaseData[] headerCase,
+	private static String getTableHeader(
+			newtonERP.viewers.viewerData.GridCaseData headerCase,
 			boolean hasLeftHeader)
 	{
 
@@ -100,8 +100,8 @@ public class GridViewer
 		return html;
 	}
 
-	private static String getDataRowList(GridViewerData gridData)
-
+	private static String getDataRowList(
+			newtonERP.viewers.viewerData.GridViewerData gridData)
 	{
 		GridCaseData[][] data = gridData.getCases();
 		GridCaseData[] leftHeader = gridData.getLeftHeader();
@@ -154,12 +154,12 @@ public class GridViewer
 					html.append("<td></td>");
 			}
 			if (gridData instanceof ListViewerData)
-				html.append(getSpecificButton(gridData
-						.getSpecificActionButtonList(),
+				html.append(getSpecificButton(
+						gridData.getSpecificActionButtonList(),
 						((ListViewerData) gridData).getEntity().get(i)));
 			else
-				html.append(getSpecificButton(gridData
-						.getSpecificActionButtonList(), null));
+				html.append(getSpecificButton(
+						gridData.getSpecificActionButtonList(), null));
 
 			html.append("</tr>");
 		}
@@ -168,7 +168,7 @@ public class GridViewer
 	}
 
 	private static String getSpecificButton(Vector<ActionLink> actionLinks,
-			AbstractEntity entity)
+			newtonERP.module.AbstractEntity entity)
 	{
 		String html = "";
 
@@ -185,7 +185,8 @@ public class GridViewer
 
 	}
 
-	private static String getCase(GridCaseData dtCase)
+	private static String getCase(
+			newtonERP.viewers.viewerData.GridCaseData dtCase)
 	{
 		String html = "";
 		if (dtCase != null)
@@ -198,4 +199,5 @@ public class GridViewer
 		}
 		return html;
 	}
+
 }

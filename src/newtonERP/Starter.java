@@ -4,14 +4,10 @@ import java.net.BindException;
 
 import modules.userRightModule.actions.CreateAllRight;
 import newtonERP.common.ListModule;
-import newtonERP.logging.Logger;
 import newtonERP.orm.Orm;
 import newtonERP.orm.exceptions.OrmException;
 import newtonERP.serveur.ConfigManager;
 import newtonERP.serveur.Servlet;
-
-import org.mortbay.jetty.Server;
-import org.mortbay.jetty.servlet.Context;
 
 /**
  * @author JoCloutier
@@ -28,7 +24,7 @@ public class Starter
 	 * @param args aucun
 	 * @throws Exception hein ouai c sa...
 	 */
-	public static void main(String[] args) throws Exception
+	public static void main(String args) throws Exception
 	{
 		ListModule.initAllModule();
 		startOrm();
@@ -57,8 +53,6 @@ public class Starter
 		}
 	}
 
-	/**
-	 */
 	private static void startOrm()
 	{
 		try
@@ -76,7 +70,6 @@ public class Starter
 	/**
 	 * methode qui est apeller a la fermetur de l'aplication
 	 * @throws Exception en cas de probleme avec le serveur
-	 * 
 	 */
 	public static void shutdown() throws Exception
 	{
@@ -87,7 +80,6 @@ public class Starter
 	/**
 	 * boucle qui demande si l'on ferme le serveur
 	 * @throws Exception en cas de probleme avec le serveur
-	 * 
 	 */
 	private static void doWeExit() throws Exception
 	{
@@ -102,4 +94,5 @@ public class Starter
 			}
 		}
 	}
+
 }

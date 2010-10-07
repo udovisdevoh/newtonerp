@@ -1,6 +1,5 @@
 package newtonERP.viewers.secondStep;
 
-import newtonERP.common.ActionLink;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.BaseAction;
 
@@ -10,13 +9,13 @@ import newtonERP.module.BaseAction;
  */
 public class HelpViewer
 {
-
 	/**
 	 * @param actionLink lien d'action
 	 * @param helpDivId id DOM du div d'aide
 	 * @return retourne le code HTML
 	 */
-	public static String getHtmlCode(ActionLink actionLink, int helpDivId)
+	public static String getHtmlCode(newtonERP.common.ActionLink actionLink,
+			int helpDivId)
 	{
 		String html = "<div class=\"HelpBalloon\" id=\"balloon" + helpDivId
 				+ "\">";
@@ -30,8 +29,8 @@ public class HelpViewer
 
 		for (String word : entityName.split(" "))
 		{
-			if (!actionName.trim().toLowerCase().contains(
-					word.toLowerCase().trim()))
+			if (!actionName.trim().toLowerCase()
+					.contains(word.toLowerCase().trim()))
 				html += " " + word;
 		}
 
@@ -40,7 +39,7 @@ public class HelpViewer
 		return html;
 	}
 
-	private static String getActionName(ActionLink actionLink)
+	private static String getActionName(newtonERP.common.ActionLink actionLink)
 	{
 		if (actionLink.getAction().getDetailedDescription() != null)
 			return actionLink.getAction().getDetailedDescription();
@@ -48,7 +47,7 @@ public class HelpViewer
 		return actionLink.getName();
 	}
 
-	private static String getEntityName(ActionLink actionLink)
+	private static String getEntityName(newtonERP.common.ActionLink actionLink)
 	{
 
 		if (actionLink.getAction() instanceof BaseAction)
@@ -77,4 +76,5 @@ public class HelpViewer
 		}
 		return "";
 	}
+
 }

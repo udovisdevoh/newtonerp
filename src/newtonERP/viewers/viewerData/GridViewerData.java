@@ -1,6 +1,5 @@
 package newtonERP.viewers.viewerData;
 
-import java.util.Iterator;
 import java.util.Vector;
 
 import newtonERP.common.ActionLink;
@@ -12,10 +11,15 @@ import newtonERP.common.ActionLink;
 public class GridViewerData extends BaseViewerData
 {
 	private GridCaseData[] header = new GridCaseData[0];
+
 	private GridCaseData[] leftHeader = new GridCaseData[0];
+
 	private GridCaseData[][] cases = new GridCaseData[0][0];
-	private Vector<ActionLink> specificActionButtonList = new Vector<ActionLink>();
+
+	private newtonERP.common.ActionLink specificActionButtonList = new Vector<ActionLink>();
+
 	private boolean isColored = false;
+
 	private boolean spanSimilar = false;
 
 	/**
@@ -29,7 +33,7 @@ public class GridViewerData extends BaseViewerData
 	/**
 	 * @return the header
 	 */
-	public GridCaseData[] getHeader()
+	public GridCaseData getHeader()
 	{
 		return header;
 	}
@@ -37,7 +41,7 @@ public class GridViewerData extends BaseViewerData
 	/**
 	 * @param header the header to set
 	 */
-	public void setHeader(GridCaseData[] header)
+	public void setHeader(GridCaseData header)
 	{
 		this.header = header;
 	}
@@ -45,7 +49,7 @@ public class GridViewerData extends BaseViewerData
 	/**
 	 * @return the leftHeader
 	 */
-	public GridCaseData[] getLeftHeader()
+	public GridCaseData getLeftHeader()
 	{
 		return leftHeader;
 	}
@@ -53,7 +57,7 @@ public class GridViewerData extends BaseViewerData
 	/**
 	 * @param leftHeader the leftHeader to set
 	 */
-	public void setLeftHeader(GridCaseData[] leftHeader)
+	public void setLeftHeader(GridCaseData leftHeader)
 	{
 		this.leftHeader = leftHeader;
 	}
@@ -61,7 +65,7 @@ public class GridViewerData extends BaseViewerData
 	/**
 	 * @return the cases
 	 */
-	public GridCaseData[][] getCases()
+	public GridCaseData getCases()
 	{
 		return cases;
 	}
@@ -69,7 +73,7 @@ public class GridViewerData extends BaseViewerData
 	/**
 	 * @param cases the cases to set
 	 */
-	public void setCases(GridCaseData[][] cases)
+	public void setCases(GridCaseData cases)
 	{
 		this.cases = cases;
 	}
@@ -78,7 +82,7 @@ public class GridViewerData extends BaseViewerData
 	 * permet d'obtenir les action specifique
 	 * @return liste de specificAction
 	 */
-	public Vector<ActionLink> getSpecificActionButtonList()
+	public newtonERP.common.ActionLink getSpecificActionButtonList()
 	{
 		return specificActionButtonList;
 	}
@@ -95,7 +99,8 @@ public class GridViewerData extends BaseViewerData
 	/**
 	 * @param actionLink action du bouton
 	 */
-	public void addSpecificActionButtonList(ActionLink actionLink)
+	public void addSpecificActionButtonList(
+			newtonERP.common.ActionLink actionLink)
 	{
 		specificActionButtonList.add(actionLink);
 	}
@@ -117,7 +122,8 @@ public class GridViewerData extends BaseViewerData
 	/**
 	 * @param SpecificActionName the globalActionName to remove
 	 */
-	public void removeSpecificActions(ActionLink SpecificActionName)
+	public void removeSpecificActions(
+			newtonERP.common.ActionLink SpecificActionName)
 	{
 		for (Iterator<ActionLink> sActionIT = specificActionButtonList
 				.iterator(); sActionIT.hasNext();)

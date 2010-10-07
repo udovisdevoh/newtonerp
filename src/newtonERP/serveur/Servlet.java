@@ -4,9 +4,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Enumeration;
-import java.util.Hashtable;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -14,15 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import newtonERP.common.Authentication;
-import newtonERP.logging.Logger;
-import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.BaseAction;
-import newtonERP.module.Module;
 import newtonERP.viewers.Viewer;
 import newtonERP.viewers.firstStep.ErrorViewer;
 
-import org.mortbay.jetty.Request;
 import org.mortbay.jetty.handler.ResourceHandler;
 import org.mortbay.jetty.servlet.ServletHandler;
 
@@ -34,7 +27,9 @@ public class Servlet extends ServletHandler
 {
 	private Pattern urlPattern = Pattern
 			.compile("(/(\\w*)(/(\\w*)(/(\\w*))?)?)?");
+
 	private CommandRouteur cmdRouter = new CommandRouteur();
+
 	ResourceHandler resourceHandler = new ResourceHandler();
 
 	/**
@@ -89,8 +84,8 @@ public class Servlet extends ServletHandler
 			response.getWriter().println(pageContent);
 			((Request) request).setHandled(true);
 
-			session.setAttribute("SESSION_UserName", Authentication
-					.getCurrentUserName());
+			session.setAttribute("SESSION_UserName",
+					Authentication.getCurrentUserName());
 		}
 	}
 
@@ -99,9 +94,8 @@ public class Servlet extends ServletHandler
 	 * @param request la request
 	 * @return le Viewable
 	 */
-	@SuppressWarnings("unchecked")
-	public AbstractEntity urlToAction(String target, HttpServletRequest request)
-
+	public newtonERP.module.AbstractEntity urlToAction(String target,
+			HttpServletRequest request)
 	{
 		String moduleName;
 		String actionName;
@@ -122,7 +116,7 @@ public class Servlet extends ServletHandler
 		entityName = buildEntityName(target);
 		// on trouve les parametres pour les mettre dans le hashtable
 
-		Enumeration e = request.getParameterNames();
+		Enumeration<?> e = request.getParameterNames();
 		while (e.hasMoreElements())
 		{
 			String paramName = (String) e.nextElement();
@@ -170,7 +164,7 @@ public class Servlet extends ServletHandler
 	 * @param module module a lier
 	 * @return le lien relatif vers les ressource demander
 	 */
-	static public String makeLink(Module module)
+	public static String makeLink(newtonERP.module.Module module)
 	{
 		return "/" + module.getSystemName();
 	}
@@ -180,7 +174,8 @@ public class Servlet extends ServletHandler
 	 * @param action action a lier
 	 * @return le lien relatif vers les ressource demander
 	 */
-	static public String makeLink(Module module, AbstractAction action)
+	public static String makeLink(newtonERP.module.Module module,
+			newtonERP.module.AbstractAction action)
 	{
 		String link = "/" + module.getSystemName();
 		if (action instanceof BaseAction)
@@ -202,7 +197,7 @@ public class Servlet extends ServletHandler
 	 * @param action action a lier
 	 * @return le lien relatif vers les ressource demander
 	 */
-	static public String makeLink(AbstractAction action)
+	public static String makeLink(newtonERP.module.AbstractAction action)
 	{
 		if (action instanceof BaseAction)
 		{
@@ -211,4 +206,5 @@ public class Servlet extends ServletHandler
 		}
 		return makeLink(action.getOwnedByModule(), action);
 	}
+
 }

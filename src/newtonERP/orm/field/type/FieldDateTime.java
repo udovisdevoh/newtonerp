@@ -8,14 +8,13 @@ import java.util.GregorianCalendar;
 import newtonERP.logging.Logger;
 import newtonERP.module.exception.FieldNotCompatibleException;
 import newtonERP.module.exception.InvalidOperatorException;
-import newtonERP.orm.field.Field;
 
 /**
  * Date field for entities
  * 
  * @author r3hallejo
  */
-public class FieldDateTime extends Field<GregorianCalendar>
+public class FieldDateTime extends newtonERP.orm.field.Field<GregorianCalendar>
 {
 	private static SimpleDateFormat dateFormatter = new SimpleDateFormat(
 			"yyyy-MM-dd HH:mm:ss");
@@ -28,7 +27,6 @@ public class FieldDateTime extends Field<GregorianCalendar>
 	 * @param data donne du champ
 	 */
 	public FieldDateTime(String name, String shortName, GregorianCalendar data)
-
 	{
 		super(name, shortName, data);
 	}
@@ -38,7 +36,6 @@ public class FieldDateTime extends Field<GregorianCalendar>
 	 * @param shortName nom du champ qui sera utiliser a l'interne
 	 */
 	public FieldDateTime(String name, String shortName)
-
 	{
 		this(name, shortName, null);
 	}
@@ -105,7 +102,6 @@ public class FieldDateTime extends Field<GregorianCalendar>
 	 * @return date un gregorian calendar
 	 */
 	public static GregorianCalendar getFormatedDate(String dateInString)
-
 	{
 		return getFormatedDate(dateInString, dateFormatter);
 	}
@@ -147,4 +143,5 @@ public class FieldDateTime extends Field<GregorianCalendar>
 		ret &= first.get(Calendar.YEAR) == second.get(Calendar.YEAR);
 		return ret;
 	}
+
 }

@@ -1,22 +1,21 @@
 package newtonERP.orm.associations;
 
-import newtonERP.module.AbstractOrmEntity;
-
 /**
  * Accesseur passant par un autre accesseur
  * @author Guillaume Lacasse
  */
 public class GateWay
 {
-	private AbstractOrmEntity gateWayEntity;
-	private AbstractOrmEntity externalEntity;
+	private newtonERP.module.AbstractOrmEntity gateWayEntity;
+
+	private newtonERP.module.AbstractOrmEntity externalEntity;
 
 	/**
 	 * @param gateWayEntity entité de passerelle
 	 * @param externalEntity entité externe
 	 */
-	public GateWay(AbstractOrmEntity gateWayEntity,
-			AbstractOrmEntity externalEntity)
+	public GateWay(newtonERP.module.AbstractOrmEntity gateWayEntity,
+			newtonERP.module.AbstractOrmEntity externalEntity)
 	{
 		this.gateWayEntity = gateWayEntity;
 		this.externalEntity = externalEntity;
@@ -25,7 +24,7 @@ public class GateWay
 	/**
 	 * @return entité de passerelle
 	 */
-	public AbstractOrmEntity getGateWayEntity()
+	public newtonERP.module.AbstractOrmEntity getGateWayEntity()
 	{
 		return gateWayEntity;
 	}
@@ -33,7 +32,7 @@ public class GateWay
 	/**
 	 * @return entité externe
 	 */
-	public AbstractOrmEntity getExternalEntity()
+	public newtonERP.module.AbstractOrmEntity getExternalEntity()
 	{
 		return externalEntity;
 	}
@@ -43,7 +42,8 @@ public class GateWay
 	 */
 	public boolean isColored()
 	{
-		return gateWayEntity.getFields().getField(
-				externalEntity.getForeignKeyName()).isColored();
+		return gateWayEntity.getFields()
+				.getField(externalEntity.getForeignKeyName()).isColored();
 	}
+
 }

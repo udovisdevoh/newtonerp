@@ -17,9 +17,6 @@ public class ModuleException extends RuntimeException
 		super(message);
 	}
 
-	/**
-	 * 
-	 */
 	public ModuleException()
 	{
 		super();
@@ -41,4 +38,5 @@ public class ModuleException extends RuntimeException
 	{
 		super(cause);
 	}
+
 }

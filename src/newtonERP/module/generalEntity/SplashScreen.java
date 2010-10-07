@@ -3,20 +3,17 @@ package newtonERP.module.generalEntity;
 import java.util.Vector;
 
 import newtonERP.common.ActionLink;
-import newtonERP.module.AbstractEntity;
 
 /**
  * Représente un Splash Screen en HTML
  * @author Guillaume Lacasse
  */
-public class SplashScreen extends AbstractEntity
+public class SplashScreen extends newtonERP.module.AbstractEntity
 {
-	private Vector<ImageFile> imageFileList = new Vector<ImageFile>();
+	private ImageFile imageFileList = new Vector<ImageFile>();
 
-	private Vector<ActionLink> actionLinkList = new Vector<ActionLink>();
+	private newtonERP.common.ActionLink actionLinkList = new Vector<ActionLink>();
 
-	/**
-	 */
 	public SplashScreen()
 	{
 		super();
@@ -33,7 +30,7 @@ public class SplashScreen extends AbstractEntity
 	/**
 	 * @param actionLink actionLink à ajouter
 	 */
-	public void addActionLink(ActionLink actionLink)
+	public void addActionLink(newtonERP.common.ActionLink actionLink)
 	{
 		actionLinkList.add(actionLink);
 	}
@@ -41,7 +38,7 @@ public class SplashScreen extends AbstractEntity
 	/**
 	 * @return image file list
 	 */
-	public Vector<ImageFile> getImageFileList()
+	public ImageFile getImageFileList()
 	{
 		return imageFileList;
 	}
@@ -49,8 +46,9 @@ public class SplashScreen extends AbstractEntity
 	/**
 	 * @return liste des liens
 	 */
-	public Vector<ActionLink> getActionLinkList()
+	public newtonERP.common.ActionLink getActionLinkList()
 	{
 		return actionLinkList;
 	}
+
 }

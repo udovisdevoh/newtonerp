@@ -5,18 +5,20 @@ import java.util.Vector;
 import newtonERP.common.NaturalMap;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.Orm;
-import newtonERP.viewers.viewables.SelectBoxViewable;
 
 /**
  * @author Guillaume Lacasse
  * 
  *         List of value for the viewers
  */
-public class ListOfValue implements SelectBoxViewable
+public class ListOfValue implements
+		newtonERP.viewers.viewables.SelectBoxViewable
 {
 	private String labelName;
-	private AbstractOrmEntity sourceEntity;
-	private AbstractOrmEntity foreignEntity;
+
+	private newtonERP.module.AbstractOrmEntity sourceEntity;
+
+	private newtonERP.module.AbstractOrmEntity foreignEntity;
 
 	/**
 	 * @param sourceEntity source entity
@@ -25,24 +27,25 @@ public class ListOfValue implements SelectBoxViewable
 	 *            étrangere
 	 * @param foreignEntity the foreign entity
 	 */
-	public ListOfValue(AbstractOrmEntity sourceEntity, String labelName,
-			AbstractOrmEntity foreignEntity)
+	public ListOfValue(newtonERP.module.AbstractOrmEntity sourceEntity,
+			String labelName, newtonERP.module.AbstractOrmEntity foreignEntity)
 	{
 		this.sourceEntity = sourceEntity;
 		this.labelName = labelName;
 		this.foreignEntity = foreignEntity;
 	}
 
-	public NaturalMap<String, String> getElements()
+	public newtonERP.common.NaturalMap getElements()
 	{
+		// todo: correct deprecate
 		Vector<AbstractOrmEntity> entityList = Orm.select(foreignEntity, null);
 
 		NaturalMap<String, String> elementList = new NaturalMap<String, String>();
 
 		for (AbstractOrmEntity entity : entityList)
 		{
-			elementList.put(entity.getPrimaryKeyValue() + "", entity
-					.getNaturalKeyDescription());
+			elementList.put(entity.getPrimaryKeyValue() + "",
+					entity.getNaturalKeyDescription());
 		}
 
 		return elementList;
@@ -64,6 +67,7 @@ public class ListOfValue implements SelectBoxViewable
 			Vector<String> criterias = new Vector<String>();
 			criterias.add(foreignEntity.getPrimaryKeyName() + "="
 					+ currentForeignPrimaryKey);
+			// todo: correct deprecate
 			Vector<AbstractOrmEntity> entityList = Orm.select(foreignEntity,
 					criterias);
 			AbstractOrmEntity resultEntity = entityList.get(0);
@@ -78,7 +82,7 @@ public class ListOfValue implements SelectBoxViewable
 	/**
 	 * @return définition pour entité étrangère
 	 */
-	public AbstractOrmEntity getForeignEntityDefinition()
+	public newtonERP.module.AbstractOrmEntity getForeignEntityDefinition()
 	{
 		return foreignEntity;
 	}
@@ -86,7 +90,7 @@ public class ListOfValue implements SelectBoxViewable
 	/**
 	 * @return entité qui a une listOfValue
 	 */
-	public AbstractOrmEntity getSourceEntityDefinition()
+	public newtonERP.module.AbstractOrmEntity getSourceEntityDefinition()
 	{
 		return sourceEntity;
 	}
@@ -105,4 +109,5 @@ public class ListOfValue implements SelectBoxViewable
 					return true;
 		return false;
 	}
+
 }

@@ -17,8 +17,7 @@ public class FieldNotCompatibleException extends ModuleException
 	{
 		super(
 				fieldName + " field is not compatible with " + data != null ? data
-						.getClass().getSimpleName()
-						: "null");
+						.getClass().getSimpleName() : "null");
 	}
 
 	/**
@@ -29,9 +28,6 @@ public class FieldNotCompatibleException extends ModuleException
 		super(message);
 	}
 
-	/**
-	 * 
-	 */
 	public FieldNotCompatibleException()
 	{
 		super();
@@ -53,4 +49,5 @@ public class FieldNotCompatibleException extends ModuleException
 	{
 		super(cause);
 	}
+
 }
