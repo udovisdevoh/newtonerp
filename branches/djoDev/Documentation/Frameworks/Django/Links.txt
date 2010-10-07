@@ -1,1 +1,0 @@
-http://docs.djangoproject.com/en/dev/ref/models/instances/
