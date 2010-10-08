@@ -59,8 +59,8 @@ public class FieldEntity extends AbstractOrmEntity
 		fieldList.add(visibleName);
 		fieldList.add(new FieldInt("Type", new FieldTypeEntity()
 				.getForeignKeyName()));
-		FieldInt entityID = new FieldInt("Entité", new EntityEntity()
-				.getForeignKeyName());
+		FieldInt entityID = new FieldInt("Entité",
+				new EntityEntity().getForeignKeyName());
 		entityID.setReadOnly(true);
 		fieldList.add(entityID);
 		fieldList.add(new FieldBool("Lecture seule", "readOnly"));
@@ -192,7 +192,7 @@ public class FieldEntity extends AbstractOrmEntity
 	 * BaseAction Delete, on ne veut pas deleter de Field
 	 * 
 	 * @param parameters parametre suplementaire
-	 * @return todo: qu'Est-ce que l'on devrai retourné en general? 
+	 * @return todo: qu'Est-ce que l'on devrai retourné en general?
 	 */
 	@Override
 	public AbstractEntity deleteUI(Hashtable<String, String> parameters)
@@ -206,8 +206,7 @@ public class FieldEntity extends AbstractOrmEntity
 		if (Orm.isEntityExists(entityEntity.getDataString("systemName")))
 		{
 			BaseViewerData editUI = editUI(parameters);
-			editUI
-					.addAlertMessage("Impossible d'effacer ce champ car l'entité à laquelle il appartient est déjà dans la base de donnée.");
+			editUI.addAlertMessage("Impossible d'effacer ce champ car l'entité à laquelle il appartient est déjà dans la base de donnée.");
 			return editUI;
 		}
 

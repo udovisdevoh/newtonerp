@@ -1,0 +1,8 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classmodules_1_1taskModule_1_1entityDefinitions_1_1Specification.html#ada9dab322c70ff14077833ffa3b15906" title="modules.taskModule.entityDefinitions.Specification.isSatisfied" alt="" coords="449,32,863,61"/>
+<area shape="rect" id="node5" href="$classnewtonERP_1_1module_1_1AbstractOrmEntity.html#ae4b6adab840c40cae3e3206ba41c42f1" title="newtonERP.module.AbstractOrmEntity.getPrimaryKeyName" alt="" coords="912,5,1309,35"/>
+<area shape="rect" id="node9" href="$classnewtonERP_1_1module_1_1AbstractEntity.html#af47e42b154414c6afaa3253cc4adaf6b" title="newtonERP.module.AbstractEntity.setData" alt="" coords="967,59,1255,88"/>
+<area shape="rect" id="node7" href="$classnewtonERP_1_1module_1_1AbstractEntity.html#ad26f590c74d49b7c494d62de6ad1563b" title="newtonERP.module.AbstractEntity.getSystemName" alt="" coords="1357,5,1704,35"/>
+<area shape="rect" id="node11" href="$classnewtonERP_1_1module_1_1AbstractEntity.html#a87356471289bf7f6daaea032e4155f83" title="newtonERP.module.AbstractEntity.getFields" alt="" coords="1384,59,1677,88"/>
+<area shape="rect" id="node13" href="$classnewtonERP_1_1orm_1_1field_1_1Fields.html#acb12ce722dc8de992622dfe61f478f8b" title="methode pour changer la valeur d&#39;un champ" alt="" coords="1409,112,1652,141"/>
+</map>

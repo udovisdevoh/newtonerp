@@ -1,0 +1,132 @@
+class TaskManager
+!!!235020.java!!!	executeTasks(inout entity : AbstractOrmEntity, in primaryKeyValue : int) : AbstractEntity
+		Hashtable<String, String> entityParameters = new Hashtable<String, String>();
+
+		if (entity.getFields().containsFieldName(entity.getPrimaryKeyName()))
+			if (primaryKeyValue != 0)
+				entityParameters.put(entity.getPrimaryKeyName(), Integer
+						.toString(primaryKeyValue));
+
+		return executeTasks(entity, entityParameters);
+!!!235148.java!!!	executeTasks(inout entity : AbstractOrmEntity) : AbstractEntity
+		Hashtable<String, String> entityParameters = new Hashtable<String, String>();
+
+		if (entity.getFields().containsFieldName(entity.getPrimaryKeyName()))
+			if (entity.getPrimaryKeyValue() != null)
+				if (entity.getPrimaryKeyValue() != 0)
+					entityParameters.put(entity.getPrimaryKeyName(), entity
+							.getPrimaryKeyValue().toString());
+
+		return executeTasks(entity, entityParameters);
+!!!235276.java!!!	executeTasks(inout entity : AbstractOrmEntity, inout entityParameters : Hashtable<String, String>) : AbstractEntity
+		return executeTasks(entity.getSystemName(), entityParameters);
+!!!235404.java!!!	executeTasks(in entityName : String, inout entityParameters : Hashtable<String, String>) : AbstractEntity
+		if (entityName == null)
+			return null;
+
+		AbstractEntity retEntity = null;
+
+		if (isEntityRelatedToTaskModule(entityName))
+			TaskCache.clear();
+
+		Collection<TaskEntity> concernedTaskList = getConcernedTaskList(entityName);
+		for (TaskEntity task : concernedTaskList)
+			if (task.isActive())
+				if (task.isSatisfied(entityParameters, task.isStraightSearch()))
+					retEntity = task.execute(entityParameters, task
+							.isStraightSearch());
+
+		return retEntity;
+!!!235532.java!!!	isEntityRelatedToTaskModule(in entityName : String) : boolean
+		return getTaskModuleEntityDefinitionNameList().contains(entityName);
+!!!235660.java!!!	getTaskModuleEntityDefinitionNameList() : Vector<String>
+		if (taskModuleEntityDefinitionNameList == null)
+		{
+			taskModuleEntityDefinitionNameList = new Vector<String>();
+
+			Module taskModule = ListModule.getModule("TaskModule");
+
+			for (String entityDefinitionName : taskModule
+					.getEntityDefinitionList().keySet())
+			{
+				taskModuleEntityDefinitionNameList.add(entityDefinitionName);
+			}
+		}
+
+		return taskModuleEntityDefinitionNameList;
+!!!235788.java!!!	getConcernedTaskList(in entityName : String) : TaskEntity
+		Vector<TaskEntity> concernedTaskList = TaskCache
+				.getConcernedTaskList(entityName);
+
+		if (concernedTaskList != null)
+			return concernedTaskList;
+
+		concernedTaskList = new Vector<TaskEntity>();
+
+		try
+		{
+			// On va chercher l'entité représentant le type d'entité de l'entité
+			// (c'est très fourrant)
+			EntityEntity entityEntity = getEntityEntity(entityName);
+
+			// On va chercher les entités de recherches concernant l'entité de
+			// définition d'entité
+			PluralAccessor searchEntityList = getSearchEntityList(entityEntity);
+
+			// On va chercher la liste de spécification qui concerne les
+			// entitées de
+			// recherches
+			PluralAccessor specificationList = getSpecificationEntityList(searchEntityList);
+
+			// On va chercher la liste de tâches qui concerne la liste de
+			// spécification
+			PluralAccessor taskList = getTaskList(specificationList);
+
+			for (AbstractOrmEntity currentEntity : taskList)
+				concernedTaskList.add((TaskEntity) currentEntity);
+
+		} catch (Exception e)
+		{
+			Logger
+					.error("[TASK_MANAGER] Impossible d'obtenir la liste des tâches pour cette entité");
+		}
+
+		TaskCache.setConcernedTaskList(entityName, concernedTaskList);
+
+		return concernedTaskList;
+!!!235916.java!!!	getTaskList(inout specificationList : PluralAccessor) : PluralAccessor
+		PluralAccessor taskEntityList = new PluralAccessor(new TaskEntity());
+
+		for (AbstractOrmEntity specificationEntity : specificationList)
+		{
+			PluralAccessor currentAccessor = specificationEntity
+					.getPluralAccessor("TaskEntity");
+
+			taskEntityList.addAll(currentAccessor);
+		}
+
+		return taskEntityList;
+!!!236044.java!!!	getSpecificationEntityList(inout searchEntityList : PluralAccessor) : PluralAccessor
+		PluralAccessor specificationEntityList = new PluralAccessor(
+				new Specification());
+
+		for (AbstractOrmEntity searchEntity : searchEntityList)
+		{
+			PluralAccessor currentAccessor = searchEntity
+					.getPluralAccessor("Specification");
+
+			specificationEntityList.addAll(currentAccessor);
+		}
+
+		return specificationEntityList;
+!!!236172.java!!!	getSearchEntityList(inout entityEntity : EntityEntity) : PluralAccessor
+		return entityEntity.getPluralAccessor("SearchEntity");
+!!!236300.java!!!	getEntityEntity(in entityName : String) : EntityEntity
+		EntityEntity searchEntity = new EntityEntity();
+		searchEntity.initFields();
+		searchEntity.setData("systemName", entityName);
+
+		return (EntityEntity) (Orm.selectUnique(searchEntity));
+!!!236428.java!!!	executeTasks(inout searchEntities : Vector<AbstractOrmEntity>, inout entityParameters : Hashtable<String, String>) : void
+		if (searchEntities.size() > 0)
+			executeTasks(searchEntities.get(0), entityParameters);

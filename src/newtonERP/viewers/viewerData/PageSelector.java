@@ -1,25 +1,23 @@
 package newtonERP.viewers.viewerData;
 
+import newtonERP.module.AbstractEntity;
+
 /**
  * Modèle d'un selecteur de page
  * @author Guillaume
  */
-public class PageSelector extends newtonERP.module.AbstractEntity
+public class PageSelector extends AbstractEntity
 {
 	private String currentUrl;
-
 	private String currentSearchEntry;
-
 	private String orderBy;
-
 	private int currentLimit;
-
 	private int pageCount;
-
 	private int currentOffset;
-
 	private int totalRowCount;
 
+	/**
+	 */
 	public PageSelector()
 	{
 		super();
@@ -40,6 +38,7 @@ public class PageSelector extends newtonERP.module.AbstractEntity
 	 */
 	public PageSelector(int limit, int offset, int totalRowCount,
 			String currentUrl, String currentSearchEntry, String orderBy)
+
 	{
 		if (currentSearchEntry == null)
 			currentSearchEntry = "";
@@ -112,5 +111,4 @@ public class PageSelector extends newtonERP.module.AbstractEntity
 	{
 		return orderBy;
 	}
-
 }

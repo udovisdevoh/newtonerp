@@ -1,0 +1,13 @@
+class SourceCodeBuilder
+!!!233740.java!!!	buildModuleSourceCode(inout moduleEntity : ModuleEntity) : String
+		return ModuleSourceCodeBuilder.build(moduleEntity);
+!!!233868.java!!!	buildEntitySourceCode(inout entityEntity : EntityEntity) : String
+		return EntitySourceCodeBuilder.build(entityEntity);
+!!!233996.java!!!	buildActionSourceCode(inout actionEntity : ActionEntity) : String
+		return ActionSourceCodeBuilder.build(actionEntity);
+!!!234124.java!!!	buildModuleClassFileName(inout moduleEntity : ModuleEntity) : String
+		return ModuleSourceCodeBuilder.buildClassFileName(moduleEntity);
+!!!234252.java!!!	createDirectoriesForModule(inout moduleEntity : ModuleEntity) : void
+		ModuleSourceCodeBuilder.createDirectories(moduleEntity);
+!!!234380.java!!!	getModulePackagePath(inout moduleEntity : ModuleEntity) : String
+		return ModuleSourceCodeBuilder.getPackagePath(moduleEntity);

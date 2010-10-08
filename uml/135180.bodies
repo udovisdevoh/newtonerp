@@ -1,0 +1,17 @@
+class Authentication
+!!!168972.java!!!	getCurrentUserName() : String
+		return currentUserName;
+!!!169100.java!!!	getCurrentUser() : User
+		User user = new User();
+		user.setData("name", getCurrentUserName());
+		user = (User) user.get().get(0);
+		return user;
+!!!169228.java!!!	setCurrentUserName(in currentUserName : String) : void
+		if (currentUserName == null)
+		{
+			Authentication.currentUserName = "unLogedUser";
+		}
+		else
+		{
+			Authentication.currentUserName = currentUserName;
+		}

@@ -1,0 +1,8 @@
+class BackupManager
+!!!191756.java!!!	getCurrentTime() : long
+		gregorianCalendar = new GregorianCalendar();
+		return gregorianCalendar.getTime().getTime();
+!!!191884.java!!!	getDesiredBackupIntervalTime() : long
+		return desiredBackupTimeInterval;
+!!!192012.java!!!	getMaximumBackupInstanceCount() : int
+		return maximumBackupInstanceCount;

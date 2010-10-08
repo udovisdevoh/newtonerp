@@ -1,0 +1,31 @@
+class SearchBar
+!!!255884.java!!!	SearchBar(in targetUrl : String, in currentSearchEntry : String, inout concernedEntity : AbstractOrmEntity, in currentOrder : String, in limit : int, in offset : int)
+		super();
+		this.targetUrl = targetUrl;
+		this.currentSearchEntry = currentSearchEntry;
+		this.currentOrder = currentOrder;
+		this.limit = limit;
+		this.offset = offset;
+		possibleOrderList = buildPossibleOrderList(concernedEntity);
+!!!256012.java!!!	getTargetUrl() : String
+		return targetUrl;
+!!!256140.java!!!	getCurrentSearchEntry() : String
+		return currentSearchEntry;
+!!!256268.java!!!	getPossibleOrderNameList() : Vector<String>
+		return possibleOrderList;
+!!!256396.java!!!	buildPossibleOrderList(inout concernedEntity : AbstractOrmEntity) : Vector<String>
+		Vector<String> newPossibleOrderList = new Vector<String>();
+
+		for (Field<?> field : concernedEntity.getFields())
+			newPossibleOrderList.add(field.getShortName() + " ASC");
+
+		for (Field<?> field : concernedEntity.getFields())
+			newPossibleOrderList.add(field.getShortName() + " DESC");
+
+		return newPossibleOrderList;
+!!!256524.java!!!	getCurrentOrder() : String
+		return currentOrder;
+!!!256652.java!!!	getOffset() : int
+		return offset;
+!!!256780.java!!!	getLimit() : int
+		return limit;

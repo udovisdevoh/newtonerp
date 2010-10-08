@@ -1,0 +1,37 @@
+class FieldDouble
+!!!214668.java!!!	FieldDouble(in name : String, in shortName : String, inout data : Double)
+		super(name, shortName, data);
+!!!214796.java!!!	FieldDouble(in name : String, in shortName : String)
+		this(name, shortName, null);
+!!!214924.java!!!	setData(in data : String) : void
+		try
+		{
+			if (data == null || data.equals("null"))
+				data = "0.0";
+			this.data = Double.parseDouble(data);
+		} catch (Exception e)
+		{
+			setErrorMessage("Le format de donnée entrée ne correspond pas avec le type de champ (Double): "
+					+ data);
+			Logger.error(e.getMessage());
+		}
+!!!215052.java!!!	setOperator(in operator : String) : void
+		operator.trim();
+
+		if (operator.equals("<") || operator.equals(">")
+				|| operator.equals("="))
+		{
+			super.operator = operator;
+		}
+		else
+			throw new InvalidOperatorException("Opérateur invalide pour "
+					+ getClass().getSimpleName());
+!!!215180.java!!!	setDefaultValue() : void
+		setData(0.);
+!!!215308.java!!!	setData(inout data : Object) : void
+		if (data instanceof Double)
+			setDataType((Double) data);
+		else if (data instanceof Integer)
+			setDataType((double) ((Integer) (data)));
+		else
+			throw new FieldNotCompatibleException(getShortName(), data);

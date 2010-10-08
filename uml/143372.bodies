@@ -1,0 +1,124 @@
+class Servlet
+!!!228748.java!!!	Servlet()
+		resourceHandler.setResourceBase(".");
+!!!228876.java!!!	handle(in target : String, inout request : HttpServletRequest, inout response : HttpServletResponse, in dispatch : int) : void
+		Logger.info("[SERVEUR] URL request : " + target);
+		request.setCharacterEncoding(Viewer.getEncoding());
+		if (target.matches("/file/.*")) // si on veut un fichier
+		{
+			resourceHandler.handle(target, request, response, dispatch);
+		}// ou une page normale de l'aplication
+		else
+		{
+			HttpSession session = request.getSession(true);
+
+			Authentication.setCurrentUserName((String) session
+					.getAttribute("SESSION_UserName"));
+			String pageContent = "";
+			try
+			{
+
+				AbstractEntity viewEntity = urlToAction(target, request);
+
+				pageContent += Viewer.getHtmlCode(viewEntity,
+						buildModuleName(target), buildActionName(target));
+
+			} catch (Exception e)
+			{
+				e.printStackTrace();
+
+				StringWriter sw = new StringWriter();
+				e.printStackTrace(new PrintWriter(sw));
+				String stacktrace = sw.toString();
+				pageContent = ErrorViewer.getErrorPage(stacktrace);
+
+			}
+
+			// on formate la reponse
+			response.setContentType("text/html");
+			response.setCharacterEncoding(Viewer.getEncoding());
+			response.setStatus(HttpServletResponse.SC_OK);
+
+			response.getWriter().println(pageContent);
+			((Request) request).setHandled(true);
+
+			session.setAttribute("SESSION_UserName",
+					Authentication.getCurrentUserName());
+		}
+!!!229004.java!!!	urlToAction(in target : String, inout request : HttpServletRequest) : AbstractEntity
+		String moduleName;
+		String actionName;
+		String entityName;
+		Hashtable<String, String> parameter = new Hashtable<String, String>();
+
+		actionName = buildActionName(target);
+		if (actionName == null || actionName.trim().length() == 0)
+			actionName = "default";
+
+		moduleName = buildModuleName(target);
+		if (moduleName == null || moduleName.trim().length() == 0)
+		{
+			moduleName = ConfigManager.loadStringProperty("default-module");
+			actionName = ConfigManager.loadStringProperty("default-action");
+		}
+
+		entityName = buildEntityName(target);
+		// on trouve les parametres pour les mettre dans le hashtable
+
+		Enumeration<?> e = request.getParameterNames();
+		while (e.hasMoreElements())
+		{
+			String paramName = (String) e.nextElement();
+			parameter.put(paramName, request.getParameter(paramName));
+		}
+
+		return cmdRouter.routeCommand(moduleName, actionName, entityName,
+				parameter);
+!!!229132.java!!!	buildEntityName(in target : String) : String
+		// Légèrement moins optimisé ici, mais comme le pattern regex est déjà
+		// compilé, ça change à peu près rien. Améliore la clarté et permet de
+		// partager l'information sur les noms de module, action et entité
+		// présentement utilisés
+		Matcher urlMatch = urlPattern.matcher(target);
+		urlMatch.matches();
+		return urlMatch.group(6);
+!!!229260.java!!!	buildActionName(in target : String) : String
+		// Légèrement moins optimisé ici, mais comme le pattern regex est déjà
+		// compilé, ça change à peu près rien. Améliore la clarté et permet de
+		// partager l'information sur les noms de module, action et entité
+		// présentement utilisés
+		Matcher urlMatch = urlPattern.matcher(target);
+		urlMatch.matches();
+		return urlMatch.group(4);
+!!!229388.java!!!	buildModuleName(in target : String) : String
+		// Légèrement moins optimisé ici, mais comme le pattern regex est déjà
+		// compilé, ça change à peu près rien. Améliore la clarté et permet de
+		// partager l'information sur les noms de module, action et entité
+		// présentement utilisés
+		Matcher urlMatch = urlPattern.matcher(target);
+		urlMatch.matches();
+		return urlMatch.group(2);
+!!!229516.java!!!	makeLink(inout module : Module) : String
+		return "/" + module.getSystemName();
+!!!229644.java!!!	makeLink(inout module : Module, inout action : AbstractAction) : String
+		String link = "/" + module.getSystemName();
+		if (action instanceof BaseAction)
+		{
+			String actionName = ((BaseAction) action).getSystemName();
+			String entityName = ((BaseAction) action).getEntity()
+					.getSystemName();
+			link += "/" + actionName + "/" + entityName;
+		}
+		else
+		{
+			link += "/" + action.getSystemName();
+		}
+
+		return link;
+!!!229772.java!!!	makeLink(inout action : AbstractAction) : String
+		if (action instanceof BaseAction)
+		{
+			return makeLink(((BaseAction) action).getEntity()
+					.getCurrentModule(), action);
+		}
+		return makeLink(action.getOwnedByModule(), action);

@@ -1,0 +1,1396 @@
+format 75
+"field" // src::newtonERP::orm::field
+  revision 1
+  modified_by 12 "djo"
+  // class settings
+  //class diagram settings
+  draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+  //use case diagram settings
+  package_name_in_tab default show_context default auto_label_position default draw_all_relations default class_drawing_mode default shadow default show_stereotype_properties default
+  //sequence diagram settings
+  show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+  //collaboration diagram settings
+  show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default show_msg_context default draw_all_relations default shadow default show_stereotype_properties default
+  //object diagram settings
+   write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+  //component diagram settings
+  package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default
+  draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+  //deployment diagram settings
+  package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
+  draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+  //state diagram settings
+  package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  //activity diagram settings
+  package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+  show_infonote default drawing_language default show_stereotype_properties default
+  
+  java_dir "/home/djo/workspace/NewtonERP/src/newtonERP/orm/field/"
+  java_package "newtonERP.orm.field"
+  classview 128524 "field"
+    //class diagram settings
+    draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+    //collaboration diagram settings
+    show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default show_msg_context default draw_all_relations default shadow default show_stereotype_properties default
+    //object diagram settings
+     write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+    //sequence diagram settings
+    show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+    //state diagram settings
+    package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+    show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+    //class settings
+    //activity diagram settings
+    package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+    show_infonote default drawing_language default show_stereotype_properties default
+    class 129036 "Fields"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "All the fields of an entity
+
+@author CloutierJo"
+      classrelation 142476 // <realization>
+	relation 142476 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 142476 // <realization>
+	  b parent class_ref 133004 // Iterable
+      end
+
+      classrelation 142604 // fieldsDataMap (<unidirectional association>)
+	relation 142604 --->
+	  stereotype "Hashtable"
+	  a role_name "fieldsDataMap" package
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 142604 // fieldsDataMap (<unidirectional association>)
+	  b parent class_ref 129292 // Field
+      end
+
+      classrelation 142732 // fieldsDataVector (<unidirectional association>)
+	relation 142732 --->
+	  stereotype "Collection"
+	  a role_name "fieldsDataVector" package
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 142732 // fieldsDataVector (<unidirectional association>)
+	  b parent class_ref 129292 // Field
+      end
+
+      attribute 138892 "ErrorState"
+	package explicit_type "boolean"
+	init_value " false"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 210444 "Fields"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "constructeur vide, permet de construire un Fields sans aucun champ"
+      end
+
+      operation 210572 "Fields"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "fields" explicit_type "Vector<Field<?>>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param fields une liste de champ a inclure dans le Fields"
+      end
+
+      operation 210700 "getFields"
+	public return_type class_ref 129292 // Field
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return the fields"
+      end
+
+      operation 210828 "getField"
+	public return_type class_ref 129292 // Field
+	nparams 1
+	  param in name "shortName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param shortName le nom du champ voulu
+@return the named field"
+      end
+
+      operation 210956 "setData"
+	public explicit_return_type "void"
+	nparams 2
+	  param in name "shortName" explicit_type "String"
+	  param inout name "data" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "methode pour changer la valeur d'un champ
+
+@param shortName nom du champ
+@param data valeur modifie"
+      end
+
+      operation 211084 "setFromHashTable"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "parameters" explicit_type "Hashtable<String, ?>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param parameters Hashtable de parametre"
+      end
+
+      operation 211212 "equals"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "obj" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "(non-Javadoc)
+
+@see java.lang.Object#equals(java.lang.Object)"
+      end
+
+      operation 211340 "toString"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 211468 "iterator"
+	public return_type class_ref 129292 // Field
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment "iterate over the fields (not the keys)"
+      end
+
+      operation 211596 "getKeyList"
+	public explicit_return_type "Collection<String>"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return Liste des clefs des fields"
+      end
+
+      operation 211724 "getLongFieldNameList"
+	public explicit_return_type "Collection<String>"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return Liste des nom utilisateur des fields"
+      end
+
+      operation 211852 "setDefaultValue"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "allField" explicit_type "boolean"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "met les valeur par defaut dans les field pour ne pas avoir de valeur null
+
+*ATTENTION* NE PAS UTILISE UNE ENTITY COMME SEARCHCRITERIA APRES AVOIR
+UTILISER CETTE FONCTION
+@param allField true pour mettre tous les champ a leur valeur par defaut
+           false pour ne mettre les valeurpar defaut qu'au field n'étant
+           pas settez
+"
+      end
+
+      operation 211980 "setDefaultValue"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "identique a setDefaultValue(true);"
+      end
+
+      operation 212108 "containsFieldName"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param in name "fieldName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param fieldName nom du champ
+@return true si nom du champ existe dans les fields"
+      end
+
+      operation 212236 "containsValues"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return true si au moins un field n'a pas une valeur null, sinon false"
+      end
+
+      operation 212364 "isErrorState"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return the errorState"
+      end
+
+      operation 212492 "setErrorState"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "errorState" explicit_type "boolean"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param errorState the errorState to set"
+      end
+
+      operation 212620 "reset"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "remet les valeur a null"
+      end
+    end
+
+    class 129292 "Field"
+      abstract visibility public 
+      nformals 1
+      formal name "T" type "" explicit_default_value ""
+        explicit_extends ""
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Super class for entity fields used in the modules
+
+@author CloutierJo, r3hallejo
+@param <T> type de field"
+      attribute 137740 "data"
+	protected explicit_type "T"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 137868 "name"
+	private explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	comment " Name is the name that is visible by the end-user"
+      end
+
+      attribute 137996 "shortName"
+	private explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	comment " Short name is the name that is used internally"
+      end
+
+      attribute 138124 "operator"
+	protected explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 138252 "hidden"
+	private explicit_type "Boolean"
+	init_value " false"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 138380 "readOnly"
+	private explicit_type "Boolean"
+	init_value " false"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 138508 "isNaturalKey"
+	private explicit_type "Boolean"
+	init_value " false"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 138636 "isDynamicField"
+	private explicit_type "Boolean"
+	init_value " false"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      classrelation 142092 // validator (<unidirectional association>)
+	relation 142092 --->
+	  a role_name "validator" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 142092 // validator (<unidirectional association>)
+	  b parent class_ref 141324 // FieldValidator
+      end
+
+      classrelation 142220 // calcul (<unidirectional association>)
+	relation 142220 --->
+	  a role_name "calcul" init_value " null" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 142220 // calcul (<unidirectional association>)
+	  b parent class_ref 141452 // FieldCalcule
+      end
+
+      classrelation 142348 // fieldsRef (<unidirectional association>)
+	relation 142348 --->
+	  a role_name "fieldsRef" init_value " null" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 142348 // fieldsRef (<unidirectional association>)
+	  b parent class_ref 129036 // Fields
+      end
+
+      attribute 138764 "isColored"
+	private explicit_type "boolean"
+	init_value " false"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 205452 "Field"
+	private explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@SuppressWarnings(\"unused\")
+"
+	
+	
+	
+	comment "default constructor"
+      end
+
+      operation 205580 "Field"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "name" explicit_type "String"
+	  param in name "shortName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "constructeur minimum
+
+@param data donne du champ
+@param name nom du champ qui sera visible par l'utilisateur
+@param shortName nom du champ qui sera utiliser a l'interne"
+      end
+
+      operation 205708 "Field"
+	public explicit_return_type ""
+	nparams 3
+	  param in name "name" explicit_type "String"
+	  param in name "shortName" explicit_type "String"
+	  param inout name "data" explicit_type "T"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "constructeur minimum
+
+@param name nom du champ qui sera visible par l'utilisateur
+@param shortName nom du champ qui sera utiliser a l'interne
+@param data donne du champ"
+      end
+
+      operation 205836 "setData"
+	abstract public explicit_return_type "void"
+	nparams 1
+	  param in name "data" explicit_type "String"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param data the data to set"
+      end
+
+      operation 205964 "setOperator"
+	abstract public explicit_return_type "void"
+	nparams 1
+	  param in name "operator" explicit_type "String"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Validation on operators will be done in the fields types
+
+@param operator the operator to set in the field"
+      end
+
+      operation 206092 "setDefaultValue"
+	abstract public explicit_return_type "void"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "definie la valeur par defaut (devrais etre une valeur null)"
+      end
+
+      operation 206220 "getName"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return the name"
+      end
+
+      operation 206348 "getShortName"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return the shortName"
+      end
+
+      operation 206476 "getDataString"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return the data sous forme de string visible par l'utilisateur"
+      end
+
+      operation 206604 "getDataString"
+	public explicit_return_type "String"
+	nparams 1
+	  param inout name "forOrm" explicit_type "Boolean"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param forOrm si true, la méthode retourne une string formatté pour l'ORM
+           si faux retourne un string visible pour l'utilisateur, valeur
+           par défaut false
+@return the data"
+      end
+
+      operation 206732 "getData"
+	public explicit_return_type "T"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return the data"
+      end
+
+      operation 206860 "setDataType"
+	protected explicit_return_type "void"
+	nparams 1
+	  param inout name "data" explicit_type "T"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param data the data to set"
+      end
+
+      operation 206988 "setData"
+	abstract public explicit_return_type "void"
+	nparams 1
+	  param inout name "data" explicit_type "Object"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param data the data to set"
+      end
+
+      operation 207116 "getOperator"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return the operator"
+      end
+
+      operation 207244 "setHidden"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "hidden" explicit_type "Boolean"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param hidden the hidden to set"
+      end
+
+      operation 207372 "setDynamicField"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "isDynamicField" explicit_type "Boolean"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param isDynamicField si le champ est dynamique"
+      end
+
+      operation 207500 "isDynamicField"
+	public explicit_return_type "Boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return si le field est dynamic"
+      end
+
+      operation 207628 "isHidden"
+	public explicit_return_type "Boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return the hidden"
+      end
+
+      operation 207756 "setReadOnly"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "readOnly" explicit_type "Boolean"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param readOnly the readOnly to set"
+      end
+
+      operation 207884 "isReadOnly"
+	public explicit_return_type "Boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return the readOnly"
+      end
+
+      operation 208012 "toString"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 208140 "addSlash"
+	protected explicit_return_type "String"
+	nparams 1
+	  param in name "str" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 208268 "getSystemName"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return nom système d'un field"
+      end
+
+      operation 208396 "isNaturalKey"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return si le field est une clef naturelle"
+      end
+
+      operation 208524 "setNaturalKey"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "isNaturalKey" explicit_type "boolean"
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param isNaturalKey mettre le field comme clef naturelle ou pas"
+      end
+
+      operation 208652 "setValidator"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "fieldValidator" type class_ref 141324 // FieldValidator
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param fieldValidator un validateur
+@param validator the validator to set"
+      end
+
+      operation 208780 "getValidator"
+	public return_type class_ref 141324 // FieldValidator
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return the validator"
+      end
+
+      operation 208908 "setCalcul"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "calcul" type class_ref 141452 // FieldCalcule
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param calcul the calcul to set"
+      end
+
+      operation 209036 "getCalcul"
+	public return_type class_ref 141452 // FieldCalcule
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return the calcul"
+      end
+
+      operation 209164 "setFieldsRef"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "fieldsRef" type class_ref 129036 // Fields
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param fieldsRef the fieldsRef to set"
+      end
+
+      operation 209292 "getFieldsRef"
+	public return_type class_ref 129036 // Fields
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return the fieldsRef"
+      end
+
+      operation 209420 "equals"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "obj" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "(non-Javadoc)
+
+@see java.lang.Object#equals(java.lang.Object)"
+      end
+
+      operation 209548 "getErrorMessage"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return les message d'erreur"
+      end
+
+      operation 209676 "setErrorMessage"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "errorMessage" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param errorMessage le message d'erreur a retourne a l'utilisateur"
+      end
+
+      operation 209804 "reset"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "remet la valeur a null"
+      end
+
+      operation 209932 "setColored"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "isColored" explicit_type "boolean"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param isColored ajoute ou met de la couleur sur le field"
+      end
+
+      operation 210060 "isColored"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return si le field est coloré"
+      end
+    end
+
+    class 141196 "DynamicFieldCache"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Cache pour accélérer les dynamic field (Ce cache conserve les entité de
+fields dynamiques)
+@author Guillaume Lacasse"
+      attribute 137612 "data"
+	class_attribute private explicit_type "String, Vector<AbstractOrmEntity>"
+	stereotype "Hashtable"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 204940 "clear"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param in name "entityName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param entityName nom de l'entité"
+      end
+
+      operation 205068 "add"
+	class_operation public explicit_return_type "void"
+	nparams 2
+	  param inout name "fieldEntityList" explicit_type "Vector<AbstractOrmEntity>"
+	  param in name "entityName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param fieldEntityList liste des entité de field
+@param entityName nom de l'entité"
+      end
+
+      operation 205196 "tryGetDataForEntity"
+	class_operation public return_type class_ref 128268 // AbstractOrmEntity
+	nparams 1
+	  param in name "entityName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param entityName nom de l'entité
+@return listes des entité de fields"
+      end
+
+      operation 205324 "getData"
+	class_operation private explicit_return_type "Hashtable<String, Vector<AbstractOrmEntity>>"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 141324 "FieldValidator"
+      abstract visibility public 
+      nformals 1
+      formal name "T" type "" explicit_default_value ""
+        explicit_extends ""
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "champ calcule
+@author CloutierJo
+@param <T> type de field a valider"
+      attribute 139020 "errorMessage"
+	private explicit_type "String"
+	init_value " \"\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 212748 "valide"
+	abstract protected explicit_return_type "boolean"
+	nparams 2
+	  param inout name "value" explicit_type "T"
+	  param inout name "entityFields" type class_ref 129036 // Fields
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 212876 "validate"
+	public explicit_return_type "boolean"
+	nparams 2
+	  param inout name "value" explicit_type "T"
+	  param inout name "entityFields" type class_ref 129036 // Fields
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "valide la donne entre, si la donnee n'Est pas valide un peu recupere la
+raison de non validite par getErrorMessage
+@param value valeur a valide
+@param entityFields fields actuelle servant normalement au calcul
+@return true si la value est valide false sinon"
+      end
+
+      operation 213004 "isValide"
+	public explicit_return_type "boolean"
+	nparams 2
+	  param inout name "value" explicit_type "T"
+	  param inout name "entityFields" type class_ref 129036 // Fields
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "valide la donne entre, si la donnee n'Est pas valide un peu recupere la
+raison de non validite par getErrorMessage
+@param value valeur a valide
+@param entityFields fields actuelle servant normalement au calcul
+@return true si la value est valide false sinon"
+      end
+
+      operation 213132 "setErrorMessage"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "errorMessage" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param errorMessage the errorMessage to set"
+      end
+
+      operation 213260 "getErrorMessage"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return the errorMessage"
+      end
+    end
+
+    class 141452 "FieldCalcule"
+      abstract visibility public 
+      nformals 1
+      formal name "T" type "" explicit_default_value ""
+        explicit_extends ""
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "champ calcule
+@author CloutierJo
+@param <T> type de field a calculer"
+      operation 210188 "calcul"
+	abstract protected explicit_return_type "T"
+	nparams 1
+	  param inout name "entityFields" type class_ref 129036 // Fields
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 210316 "calculate"
+	public explicit_return_type "T"
+	nparams 1
+	  param inout name "entityFields" type class_ref 129036 // Fields
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "calcule a executer
+@param entityFields fields actuelle servant normalement au calcul
+@return valeur calculer"
+      end
+    end
+
+    class 141580 "VolatileFields"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Version non-persistante de fields. Marche exactement comme fields sauf qu'on
+peut modifier les field apres instanciation et on ne peut les utiliser avec
+l'Orm
+@author Guillaume Lacasse, CloutierJo"
+      classrelation 142860 // <generalisation>
+	relation 142860 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 142860 // <generalisation>
+	  b parent class_ref 129036 // Fields
+      end
+
+      operation 213388 "VolatileFields"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "default constructor"
+      end
+
+      operation 213516 "VolatileFields"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "fields" explicit_type "Vector<Field<?>>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param fields une liste de champ a inclure dans le Fields"
+      end
+
+      operation 213644 "add"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "field" type class_ref 129292 // Field
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param field field à ajouter ou remplacer s'il existe"
+      end
+    end
+  end
+
+  deploymentview 130444 "field"
+    //deployment diagram settings
+    package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
+    draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+    artifact 139788 "DynamicFieldCache"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 141196 // DynamicFieldCache
+      end
+    end
+
+    artifact 139916 "Field"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 129292 // Field
+      end
+    end
+
+    artifact 140044 "FieldCalcule"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 141452 // FieldCalcule
+      end
+    end
+
+    artifact 140172 "Fields"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 129036 // Fields
+      end
+    end
+
+    artifact 140300 "FieldValidator"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 141324 // FieldValidator
+      end
+    end
+
+    artifact 140428 "VolatileFields"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 141580 // VolatileFields
+      end
+    end
+  end
+
+  package_ref 131212 // type
+end

@@ -1,0 +1,33 @@
+class VisualEntity
+!!!146700.java!!!	VisualEntity(inout entity : AbstractOrmEntity)
+			this.entity = entity;
+			width = entity.getSystemName().length() * charWidth;
+
+			for (Field<?> fld : entity.getFields())
+			{
+				if (fld.getShortName().length() * charWidth > width)
+					width = fld.getShortName().length() * charWidth;
+			}
+			height = (entity.getFields().getFields().size() + 1) * lineHeight
+					+ 2 * marge;
+!!!146828.java!!!	getDrawEntity() : BufferedImage
+			BufferedImage bi = new BufferedImage(width + 2 * marge + pad,
+					height + 2 * marge, BufferedImage.TYPE_BYTE_BINARY);
+			Graphics g = bi.getGraphics();
+			g.setColor(Color.BLACK);
+			g.fillRect(0, 0, bi.getWidth(), bi.getHeight());
+			g.setColor(Color.WHITE);
+
+			g.setFont(new Font(Font.MONOSPACED, Font.BOLD, lineHeight - 2));
+			g.drawString(entity.getSystemName(), inx, iny);
+			iny += lineHeight;
+			g.setFont(new Font(Font.MONOSPACED, 0, lineHeight - 2));
+			for (Field<?> fld : entity.getFields())
+			{
+				g.drawString(fld.getShortName(), inx, iny);
+				iny += lineHeight;
+			}
+			g.drawRect(marge, marge, width + pad, height);
+			g.drawLine(marge, lineHeight + marge, width + pad + 1, lineHeight
+					+ marge);
+			return bi;

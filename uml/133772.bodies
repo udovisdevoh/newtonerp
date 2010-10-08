@@ -1,0 +1,37 @@
+class TaskEntity
+!!!160396.java!!!	TaskEntity()
+		super();
+		setVisibleName("Tâche automatisée");
+		AccessorManager.addAccessor(this, new Specification());
+		AccessorManager.addAccessor(this, new EffectEntity());
+!!!160524.java!!!	initFields() : Fields
+		FieldInt specification = new FieldInt("Specification",
+				new Specification().getForeignKeyName());
+		specification.setNaturalKey(true);
+
+		FieldInt effet = new FieldInt("Effet", new EffectEntity()
+				.getForeignKeyName());
+		effet.setNaturalKey(true);
+
+		Vector<Field<?>> fieldList = new Vector<Field<?>>();
+		fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
+		fieldList.add(new FieldBool("Est active", "isActive"));
+		fieldList.add(new FieldBool("Recherche directe", "straightSearch"));
+		fieldList.add(specification);
+		fieldList.add(effet);
+		return new Fields(fieldList);
+!!!160652.java!!!	isSatisfied(inout entityParameters : Hashtable<String, String>, inout isStraightSearch : boolean) : boolean
+		return getSpecification().isSatisfied(entityParameters,
+				isStraightSearch);
+!!!160780.java!!!	getSpecification() : Specification
+		return (Specification) getSingleAccessor(new Specification()
+				.getForeignKeyName());
+!!!160908.java!!!	execute(inout entityParameters : Hashtable<String, String>, inout isStraightSearch : boolean) : AbstractEntity
+		return getEffect().execute(entityParameters, isStraightSearch);
+!!!161036.java!!!	getEffect() : EffectEntity
+		return (EffectEntity) getSingleAccessor(new EffectEntity()
+				.getForeignKeyName());
+!!!161164.java!!!	isActive() : boolean
+		return (Boolean) (getData("isActive"));
+!!!161292.java!!!	isStraightSearch() : boolean
+		return (Boolean) (getData("straightSearch"));

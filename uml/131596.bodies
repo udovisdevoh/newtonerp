@@ -1,0 +1,67 @@
+class GenerateEntityCode
+!!!147724.java!!!	GenerateEntityCode()
+		super(new EntityEntity());
+!!!147852.java!!!	doAction(inout entity : AbstractEntity, inout parameters : Hashtable<String, String>) : AbstractEntity
+		EntityEntity entityEntity = (EntityEntity) entity;
+
+		entityEntity = (EntityEntity) Orm.selectUnique(entityEntity);
+
+		String fileName = buildFileName(entityEntity);
+
+		BaseViewerData editUI = entityEntity.editUI(parameters);
+
+		if (!(new File(fileName).exists()))
+		{
+			new File(getPackagePath(entityEntity)).mkdir();
+			String sourceCode = EntitySourceCodeBuilder.build(entityEntity);
+			GenerateSourceCode.writeClassFile(fileName, sourceCode);
+			createRights(entityEntity);
+			editUI.addNormalMessage("La classe de l'entité a été créée.");
+		}
+		else
+		{
+			editUI.addAlertMessage("La classe d'entité existe déjà.");
+		}
+
+		return editUI;
+!!!147980.java!!!	createRights(inout entityEntity : EntityEntity) : void
+		ModuleEntity moduleEntity = entityEntity.getModuleEntity();
+		String moduleName = moduleEntity.getDataString("systemName");
+		String entityName = entityEntity.getDataString("systemName");
+		Vector<String> actionList = getActionNameList(moduleEntity);
+		for (String actionName : actionList)
+			createRightIfNotExist(moduleName, entityName, actionName);
+!!!148108.java!!!	getActionNameList(inout moduleEntity : ModuleEntity) : Vector<String>
+		PluralAccessor actionEntityList = moduleEntity
+				.getPluralAccessor(new ActionEntity().getSystemName());
+
+		Vector<String> actionNameList = new Vector<String>();
+		actionNameList.add("Get");
+		actionNameList.add("New");
+		actionNameList.add("Edit");
+		actionNameList.add("Delete");
+		actionNameList.add("GetList");
+
+		ActionEntity actionEntity;
+		for (AbstractOrmEntity entity : actionEntityList)
+		{
+			actionEntity = (ActionEntity) entity;
+			actionNameList.add(actionEntity.getDataString("systemName"));
+		}
+
+		return actionNameList;
+!!!148236.java!!!	buildFileName(inout entityEntity : EntityEntity) : String
+		String path = getPackagePath(entityEntity) + "/entityDefinitions";
+		String fileName;
+		fileName = path + "/" + entityEntity.getDataString("systemName")
+				+ ".java";
+		return fileName;
+!!!148364.java!!!	getPackagePath(inout entityEntity : EntityEntity) : String
+		ModuleEntity moduleEntity = entityEntity.getModuleEntity();
+		return SourceCodeBuilder.getModulePackagePath(moduleEntity);
+!!!148492.java!!!	createRightIfNotExist(in moduleName : String, in entityName : String, in actionName : String) : void
+		Right right = new Right();
+		right.setData("moduleName", moduleName);
+		right.setData("entityName", entityName);
+		right.setData("actionName", actionName);
+		Orm.insertUnique(right);

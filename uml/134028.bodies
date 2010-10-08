@@ -1,0 +1,38 @@
+class Right
+!!!164748.java!!!	Right()
+		super();
+		setVisibleName("Droit");
+!!!164876.java!!!	initFields() : Fields
+		FieldString moduleName = new FieldString("Module", "moduleName");
+		moduleName.setNaturalKey(true);
+
+		FieldString entityName = new FieldString("Entité", "entityName");
+		entityName.setNaturalKey(true);
+
+		FieldString actionName = new FieldString("Action", "actionName");
+		actionName.setNaturalKey(true);
+
+		Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
+		fieldsInit.add(new FieldInt("Numéro", getPrimaryKeyName()));
+		fieldsInit.add(moduleName);
+		fieldsInit.add(entityName);
+		fieldsInit.add(actionName);
+
+		return new Fields(fieldsInit);
+!!!165004.java!!!	deleteUI(inout parameters : Hashtable<String, String>) : AbstractEntity
+		/*
+		 * On ne veut pas permettre l'effacement de droit alors on redirige
+		 * l'effacement vers GetList
+		 */
+		ListViewerData entityList = super.getList();
+		return entityList;
+!!!165132.java!!!	editUI(inout parameters : Hashtable<String, String>) : BaseViewerData
+		/*
+		 * On ne veut pas permettre la modification de droit alors on redirige
+		 * vers GetList
+		 */
+		ListViewerData entityList = super.getList();
+		return entityList;
+!!!165260.java!!!	getList(inout parameters : Hashtable<String, String>) : ListViewerData
+		ListViewerData entityList = super.getList(parameters);
+		return entityList;

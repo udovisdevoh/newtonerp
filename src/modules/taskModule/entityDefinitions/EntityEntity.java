@@ -46,8 +46,8 @@ public class EntityEntity extends AbstractOrmEntity implements
 	@Override
 	public Fields initFields()
 	{
-		FieldInt module = new FieldInt("Module", new ModuleEntity()
-				.getForeignKeyName());
+		FieldInt module = new FieldInt("Module",
+				new ModuleEntity().getForeignKeyName());
 		module.setReadOnly(true);
 		module.setNaturalKey(true);
 
@@ -108,7 +108,7 @@ public class EntityEntity extends AbstractOrmEntity implements
 	}
 
 	/**
-	 * @return entité du module 
+	 * @return entité du module
 	 */
 	public ModuleEntity getModuleEntity()
 	{
@@ -130,7 +130,7 @@ public class EntityEntity extends AbstractOrmEntity implements
 
 	/**
 	 * @return true si l'entité d'entité a un entité de field qui correspond à
-	 *         sa clef primaire 
+	 *         sa clef primaire
 	 */
 	public boolean ContainsPrimaryKeyField()
 	{

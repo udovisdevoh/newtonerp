@@ -1,0 +1,41 @@
+class Specification
+!!!159884.java!!!	Specification()
+		super();
+		setVisibleName("Spécification");
+		AccessorManager.addAccessor(this, new SearchEntity());
+!!!160012.java!!!	initFields() : Fields
+		Vector<Field<?>> fieldList = new Vector<Field<?>>();
+
+		fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
+		fieldList.add(new FieldText("Description", "name", false));
+		fieldList.add(new FieldInt("Entité de recherche", new SearchEntity()
+				.getForeignKeyName()));
+		return new Fields(fieldList);
+!!!160140.java!!!	isSatisfied(inout entityParameters : Hashtable<String, String>, inout isStraightSearch : boolean) : boolean
+		Logger
+				.info("[TASKMODULE] Vérification à savoir si une spécification est satisfaite");
+
+		AbstractOrmEntity searchEntity = getSearchEntity();
+
+		if (isStraightSearch)
+		{
+			if (!entityParameters.containsKey(searchEntity.getPrimaryKeyName()))
+				return false;
+			else if (entityParameters.get(searchEntity.getPrimaryKeyName())
+					.equals("&"))
+				return false;
+
+			searchEntity.setData(searchEntity.getPrimaryKeyName(),
+					entityParameters.get(searchEntity.getPrimaryKeyName()));
+		}
+
+		Vector<AbstractOrmEntity> result = Orm.select(searchEntity);
+
+		if (result.size() > 0)
+			return true;
+		return false;
+!!!160268.java!!!	getSearchEntity() : AbstractOrmEntity
+		SearchEntity searchEntity = (SearchEntity) getSingleAccessor(new SearchEntity()
+				.getForeignKeyName());
+
+		return searchEntity.getEntity();

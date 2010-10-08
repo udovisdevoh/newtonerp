@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node1" href="$classnewtonERP_1_1module_1_1Module.html" title="Abstract class representing an abstract module." alt="" coords="5,59,197,88"/>
+<area shape="rect" id="node3" href="$classmodules_1_1common_1_1Common.html" title="A general common module for everything that could have been duplicated between modules." alt="" coords="295,5,495,35"/>
+<area shape="rect" id="node5" href="$classmodules_1_1taskModule_1_1TaskModule.html" title="Module des tasks." alt="" coords="280,59,509,88"/>
+<area shape="rect" id="node7" href="$classmodules_1_1userRightModule_1_1UserRightModule.html" title="modules.userRightModule.UserRightModule" alt="" coords="245,112,544,141"/>
+</map>

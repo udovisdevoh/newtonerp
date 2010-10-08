@@ -1,0 +1,35 @@
+class FieldInt
+!!!217740.java!!!	FieldInt(in name : String, in shortName : String, inout data : Integer)
+		super(name, shortName, data);
+!!!217868.java!!!	FieldInt(in name : String, in shortName : String)
+		this(name, shortName, null);
+!!!217996.java!!!	setData(in data : String) : void
+		try
+		{
+			if (data == null || data.equals("null"))
+				data = "0";
+			setDataType(Integer.parseInt(data));
+		} catch (Exception e)
+		{
+			setErrorMessage("Le format de donnée entrée ne correspond pas avec le type de champ (entier): "
+					+ data);
+			Logger.error(e.getMessage());
+		}
+!!!218124.java!!!	setOperator(in operator : String) : void
+		operator.trim();
+
+		if (operator.equals(">") || operator.equals("<")
+				|| operator.equals("="))
+		{
+			super.operator = operator;
+		}
+		else
+			throw new InvalidOperatorException("Opérateur invalide pour "
+					+ getClass().getSimpleName());
+!!!218252.java!!!	setDefaultValue() : void
+		setData(0);
+!!!218380.java!!!	setData(inout data : Object) : void
+		if (data instanceof Integer)
+			setDataType((Integer) data);
+		else
+			throw new FieldNotCompatibleException(getShortName(), data);

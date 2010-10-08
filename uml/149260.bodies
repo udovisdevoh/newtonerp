@@ -1,0 +1,20 @@
+class AllTests
+!!!256908.java!!!	suite() : Test
+	TestSuite suite = new TestSuite("Test for unitTest");
+	// $JUnit-BEGIN$
+	// racine
+	suite.addTestSuite(ListModuleTest.class);
+
+	// abstractModule
+	suite.addTestSuite(EntityTest.class);
+
+	// module
+	suite.addTestSuite(UserRightModuleTest.class);
+
+	// orm
+	// suite.addTestSuite(OrmTest.class);
+
+	// serveur
+	suite.addTestSuite(ServletTest.class);
+	// $JUnit-END$
+	return suite;

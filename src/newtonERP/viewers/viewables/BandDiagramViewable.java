@@ -1,5 +1,7 @@
 package newtonERP.viewers.viewables;
 
+import java.util.Hashtable;
+
 /**
  * Diagramme à bande
  * @author Guillaume Lacasse
@@ -15,5 +17,4 @@ public interface BandDiagramViewable
 	 * @return valeur maximum du diagramme
 	 */
 	double getMaximumValue();
-
 }

@@ -1,0 +1,56 @@
+class AbstractAction
+!!!144396.java!!!	AbstractAction()
+		entityUsable = null;
+!!!144524.java!!!	AbstractAction(inout entityUsable : AbstractEntity)
+		this.entityUsable = entityUsable;
+!!!144652.java!!!	perform(inout parameters : Hashtable<String, String>) : AbstractEntity
+
+		AbstractEntity entity = null;
+		try
+		{
+			try
+			{
+				entity = entityUsable.getClass().newInstance();
+			} catch (InstantiationException e)
+			{
+				throw new RuntimeException(e);
+			} catch (IllegalAccessException e)
+			{
+				throw new RuntimeException(e);
+			}
+			entity.getFields().setFromHashTable(parameters);
+		} catch (NullPointerException e)
+		{
+			// ne rien faire si cette exception est lancé, laissé le bloc
+			// présent
+		}
+		return doAction(entity, parameters);
+!!!144908.java!!!	getEntityUsable() : AbstractEntity
+		return entityUsable;
+!!!145036.java!!!	setOwnedByModul(inout ownedByModul : Module) : void
+		ActionModule.addActionModule(this, ownedByModul);
+!!!145164.java!!!	getOwnedByModule() : Module
+		return ActionModule.getModule(this);
+!!!145292.java!!!	equals(inout obj : Object) : boolean
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof AbstractAction))
+			return false;
+		AbstractAction other = (AbstractAction) obj;
+		if (entityUsable == null)
+		{
+			if (other.entityUsable != null)
+				return false;
+		}
+		else if (!entityUsable.equals(other.entityUsable))
+			return false;
+
+		return true;
+!!!145420.java!!!	getSystemName() : String
+		return this.getClass().getSimpleName();
+!!!145548.java!!!	getDetailedDescription() : String
+		return detailedDescription;
+!!!145676.java!!!	setDetailedDescription(in detailedDescription : String) : void
+		this.detailedDescription = detailedDescription;

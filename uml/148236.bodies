@@ -1,0 +1,48 @@
+class SelectBoxViewer
+!!!244364.java!!!	getHtmlCode(inout entity : SelectBoxViewable, in inputName : String, in inputValue : String, inout isReadOnly : boolean) : String
+		String html = "";
+
+		String getListLinkHtml = LinkViewer.getHtmlCode(new ActionLink(entity
+				.getLabelName(), new BaseAction("GetList",
+				((ListOfValue) entity).getForeignEntityDefinition())));
+
+		if (getListLinkHtml.length() < 2)
+			getListLinkHtml = entity.getLabelName();
+
+		html += getListLinkHtml;
+
+		html += ": </td><td>";
+
+		NaturalMap<String, String> elements = entity.getElements();
+
+		if (isReadOnly)
+		{
+			if (inputValue == null || inputValue.equals("null")
+					|| inputValue.equals("0"))
+				inputValue = "1";
+
+			if (elements.get(inputValue) != null)
+				html += elements.get(inputValue);
+			html += "<input type=\"hidden\" name=\"" + inputName
+					+ "\" value=\"" + inputValue + "\" />";
+		}
+		else
+		{
+			html += "<select name=\"" + inputName + "\">";
+
+			if (elements.get(inputValue) != null)
+				html += "<option value=\"" + inputValue + "\">"
+						+ elements.get(inputValue) + "</option>";
+
+			for (String elementKey : elements.getKeyList())
+			{
+				if (!elementKey.equals(inputValue))
+				{
+					html += "<option value=\"" + elementKey + "\">"
+							+ elements.get(elementKey) + "</option>";
+				}
+			}
+			html += "</select>";
+		}
+
+		return html;

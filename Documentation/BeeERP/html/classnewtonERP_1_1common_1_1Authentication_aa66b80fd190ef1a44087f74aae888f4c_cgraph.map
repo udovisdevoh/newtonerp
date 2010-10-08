@@ -1,0 +1,7 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classnewtonERP_1_1module_1_1AbstractOrmEntity.html#af1876f416ab5b4b4235229da3ac0fde0" title="trouve l&#39;entity selon les critere disponible, retourne le premier trouve" alt="" coords="459,5,744,35"/>
+<area shape="rect" id="node5" href="$classnewtonERP_1_1common_1_1Authentication.html#a38e6641999dbc907ae70d35f07f82bcc" title="newtonERP.common.Authentication.getCurrentUserName" alt="" coords="407,59,796,88"/>
+<area shape="rect" id="node7" href="$classnewtonERP_1_1module_1_1AbstractEntity.html#af47e42b154414c6afaa3253cc4adaf6b" title="newtonERP.module.AbstractEntity.setData" alt="" coords="457,112,745,141"/>
+<area shape="rect" id="node9" href="$classnewtonERP_1_1module_1_1AbstractEntity.html#a87356471289bf7f6daaea032e4155f83" title="newtonERP.module.AbstractEntity.getFields" alt="" coords="847,85,1140,115"/>
+<area shape="rect" id="node11" href="$classnewtonERP_1_1orm_1_1field_1_1Fields.html#acb12ce722dc8de992622dfe61f478f8b" title="methode pour changer la valeur d&#39;un champ" alt="" coords="872,139,1115,168"/>
+</map>

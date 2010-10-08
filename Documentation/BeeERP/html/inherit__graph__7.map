@@ -1,0 +1,16 @@
+<map id="G" name="G">
+<area shape="rect" id="node1" href="$classnewtonERP_1_1module_1_1AbstractAction.html" title="newtonERP.module.AbstractAction" alt="" coords="5,325,245,355"/>
+<area shape="rect" id="node3" href="$classmodules_1_1taskModule_1_1actions_1_1AddFieldToOrm.html" title="Ajoute un field à l&#39;Orm." alt="" coords="316,5,617,35"/>
+<area shape="rect" id="node5" href="$classmodules_1_1taskModule_1_1actions_1_1DbGraph.html" title="visualisation de la structure de la DB" alt="" coords="335,59,599,88"/>
+<area shape="rect" id="node7" href="$classmodules_1_1taskModule_1_1actions_1_1GenerateActionCode.html" title="Sert à générer dynamiquement le code d&#39;une action." alt="" coords="296,112,637,141"/>
+<area shape="rect" id="node9" href="$classmodules_1_1taskModule_1_1actions_1_1GenerateEntityCode.html" title="Génère code source d&#39;entité." alt="" coords="299,165,635,195"/>
+<area shape="rect" id="node11" href="$classmodules_1_1taskModule_1_1actions_1_1GenerateSourceCode.html" title="Cette action sert à écrire les fichiers de code source d&#39;un module." alt="" coords="293,219,640,248"/>
+<area shape="rect" id="node13" href="$classmodules_1_1taskModule_1_1actions_1_1ViewActionSource.html" title="Pour voir le code source (stub) d&#39;une action." alt="" coords="305,272,628,301"/>
+<area shape="rect" id="node15" href="$classmodules_1_1taskModule_1_1actions_1_1ViewEntitySource.html" title="modules.taskModule.actions.ViewEntitySource" alt="" coords="308,325,625,355"/>
+<area shape="rect" id="node17" href="$classmodules_1_1taskModule_1_1actions_1_1ViewModuleSource.html" title="modules.taskModule.actions.ViewModuleSource" alt="" coords="303,379,631,408"/>
+<area shape="rect" id="node19" href="$classmodules_1_1userRightModule_1_1actions_1_1CreateAllRight.html" title="Action class that creates all the rights for every module." alt="" coords="301,432,632,461"/>
+<area shape="rect" id="node21" href="$classmodules_1_1userRightModule_1_1actions_1_1Login.html" title="Action class that creates all the rights for every module." alt="" coords="329,485,604,515"/>
+<area shape="rect" id="node23" href="$classmodules_1_1userRightModule_1_1actions_1_1Logout.html" title="action permettant de ce delogguer" alt="" coords="324,539,609,568"/>
+<area shape="rect" id="node25" href="$classmodules_1_1userRightModule_1_1actions_1_1RightCheck.html" title="Action class that checks the right on an entity." alt="" coords="311,592,623,621"/>
+<area shape="rect" id="node27" href="$classnewtonERP_1_1module_1_1BaseAction.html" title="newtonERP.module.BaseAction" alt="" coords="357,645,576,675"/>
+</map>

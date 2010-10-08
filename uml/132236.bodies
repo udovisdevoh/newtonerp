@@ -1,0 +1,7 @@
+class ViewModuleSource
+!!!149900.java!!!	ViewModuleSource()
+		super(new ModuleEntity());
+!!!150028.java!!!	doAction(inout entity : AbstractEntity, inout parameters : Hashtable<String, String>) : StaticTextEntity
+		ModuleEntity moduleEntity = (ModuleEntity) entity;
+		return new StaticTextEntity(SourceCodeBuilder
+				.buildModuleSourceCode(moduleEntity));

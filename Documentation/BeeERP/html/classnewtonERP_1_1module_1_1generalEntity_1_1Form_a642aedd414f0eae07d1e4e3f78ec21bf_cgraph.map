@@ -1,0 +1,8 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classnewtonERP_1_1module_1_1AbstractEntity.html#a8a11a5fecd538692ab2db648860897f2" title="newtonERP.module.AbstractEntity.setCurrentAction" alt="" coords="381,5,728,35"/>
+<area shape="rect" id="node5" href="$classnewtonERP_1_1module_1_1AbstractEntity.html#ac0f061466de10eafa7beddaaa9a413f4" title="newtonERP.module.AbstractEntity.setCurrentModule" alt="" coords="379,59,731,88"/>
+<area shape="rect" id="node7" href="$classnewtonERP_1_1viewers_1_1viewerData_1_1PromptViewerData.html#a47660a589d0db52e7a27a63a1639f0eb" title="newtonERP.viewers.viewerData.PromptViewerData.setData" alt="" coords="357,112,752,141"/>
+<area shape="rect" id="node9" href="$classnewtonERP_1_1module_1_1AbstractEntity.html#ad26f590c74d49b7c494d62de6ad1563b" title="newtonERP.module.AbstractEntity.getSystemName" alt="" coords="815,59,1161,88"/>
+<area shape="rect" id="node11" href="$classnewtonERP_1_1viewers_1_1viewerData_1_1BaseViewerData.html#a467ea44dd468857f577fa307cc2302c1" title="newtonERP.viewers.viewerData.BaseViewerData.getTitle" alt="" coords="800,112,1176,141"/>
+<area shape="rect" id="node13" href="$classnewtonERP_1_1viewers_1_1viewerData_1_1BaseViewerData.html#a816933400f0d64659158eb3bc93f035c" title="newtonERP.viewers.viewerData.BaseViewerData.setTitle" alt="" coords="801,165,1175,195"/>
+</map>

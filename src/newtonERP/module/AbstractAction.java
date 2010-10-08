@@ -1,5 +1,7 @@
 package newtonERP.module;
 
+import java.util.Hashtable;
+
 /**
  * @author r3lacasgu cloutierJo
  * 
@@ -8,7 +10,6 @@ package newtonERP.module;
 public abstract class AbstractAction
 {
 	private AbstractEntity entityUsable;
-
 	private String detailedDescription = null;
 
 	protected AbstractAction()
@@ -34,6 +35,7 @@ public abstract class AbstractAction
 	 * @return l,entite resultante de l'action
 	 */
 	public final AbstractEntity perform(Hashtable<String, String> parameters)
+
 	{
 
 		AbstractEntity entity = null;
@@ -92,7 +94,7 @@ public abstract class AbstractAction
 		return ActionModule.getModule(this);
 	}
 
-	/**
+	/*
 	 * (non-Javadoc)
 	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
@@ -142,5 +144,4 @@ public abstract class AbstractAction
 	{
 		this.detailedDescription = detailedDescription;
 	}
-
 }

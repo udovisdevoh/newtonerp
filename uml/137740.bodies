@@ -1,0 +1,12 @@
+class Form
+!!!185740.java!!!	Form(inout currentModule : Module, inout currentAction : AbstractAction)
+		super();
+		setData(new VolatilEntity());
+		setCurrentModule(currentModule);
+		setCurrentAction(currentAction);
+!!!185868.java!!!	addField(in label : String, in fieldName : String, in currentValue : String) : void
+		((VolatilEntity) getData()).addField(label, fieldName, currentValue);
+!!!185996.java!!!	addField(in label : String, in fieldName : String) : void
+		((VolatilEntity) getData()).addField(label, fieldName);
+!!!186124.java!!!	addField(inout field : Field) : void
+		((VolatilEntity) getData()).addField(field);

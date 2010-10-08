@@ -1,0 +1,10 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classnewtonERP_1_1common_1_1ActionLink.html#ab81b1ceb4eb26e7a8cb41845f8df5219" title="newtonERP.common.ActionLink.getAction" alt="" coords="540,5,825,35"/>
+<area shape="rect" id="node5" href="$classnewtonERP_1_1module_1_1AbstractAction.html#adb36fc783b6f1eedee8498e00ca9063a" title="newtonERP.module.AbstractAction.getEntityUsable" alt="" coords="511,59,855,88"/>
+<area shape="rect" id="node7" href="$classnewtonERP_1_1module_1_1AbstractOrmEntity.html#af0d9a2dbe5359007d2d0f9f727d3d5da" title="newtonERP.module.AbstractOrmEntity.getPrimaryKeyValue" alt="" coords="487,112,879,141"/>
+<area shape="rect" id="node15" href="$classnewtonERP_1_1module_1_1AbstractEntity.html#ad26f590c74d49b7c494d62de6ad1563b" title="newtonERP.module.AbstractEntity.getSystemName" alt="" coords="1373,139,1720,168"/>
+<area shape="rect" id="node18" href="$classnewtonERP_1_1module_1_1AbstractAction.html#aef25f98ecaa8ce989cef2d0995d441ab" title="newtonERP.module.AbstractAction.getSystemName" alt="" coords="507,216,859,245"/>
+<area shape="rect" id="node9" href="$classnewtonERP_1_1orm_1_1field_1_1Fields.html#a60c293a9a0e504f5cda3865ad7c8c160" title="newtonERP.orm.field.Fields.getField" alt="" coords="1005,5,1248,35"/>
+<area shape="rect" id="node11" href="$classnewtonERP_1_1module_1_1AbstractEntity.html#a87356471289bf7f6daaea032e4155f83" title="newtonERP.module.AbstractEntity.getFields" alt="" coords="980,59,1273,88"/>
+<area shape="rect" id="node13" href="$classnewtonERP_1_1module_1_1AbstractOrmEntity.html#ae4b6adab840c40cae3e3206ba41c42f1" title="newtonERP.module.AbstractOrmEntity.getPrimaryKeyName" alt="" coords="928,112,1325,141"/>
+</map>

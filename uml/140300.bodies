@@ -1,0 +1,14 @@
+class ListOfValueManager
+!!!199564.java!!!	addListOfValue(inout entity : AbstractOrmEntity, inout foreignEntity : AbstractOrmEntity) : void
+		String foreignKeyName = foreignEntity.getForeignKeyName();
+
+		if (entity.getFields().getField(foreignKeyName) == null)
+			throw new TableAssociationException(foreignKeyName
+					+ " introuvable dans " + entity.getSystemName());
+
+		ListOfValue listOfValue = new ListOfValue(entity, foreignEntity
+				.getNaturalKeyName(), foreignEntity);
+
+		entity.addPositiveListOfValue(foreignKeyName, listOfValue);
+
+		foreignEntity.addNegativeListOfValue(listOfValue);

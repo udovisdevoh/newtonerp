@@ -1,0 +1,136 @@
+class ListViewerData
+!!!253068.java!!!	ListViewerData(inout dataType : AbstractOrmEntity)
+		super();
+		this.dataType = dataType;
+!!!253196.java!!!	getEntity() : AbstractOrmEntity
+		return data;
+!!!253324.java!!!	getHeader() : GridCaseData
+		Vector<GridCaseData> header = new Vector<GridCaseData>();
+
+		GridCaseData gridCaseData;
+
+		for (Field<?> field : dataType.getFields())
+		{
+			ListOfValue listOfValue = dataType.tryMatchListOfValue(field
+					.getShortName());
+
+			if (listOfValue != null)
+			{
+				gridCaseData = new GridCaseData(listOfValue.getLabelName(),
+						new BaseAction("GetList", listOfValue
+								.getForeignEntityDefinition()));
+				header.add(gridCaseData);
+			}
+			else if (!field.isHidden())
+			{
+				gridCaseData = new GridCaseData(field.getName());
+				header.add(gridCaseData);
+			}
+		}
+
+		for (GateWay gateWay : dataType.getGateWayList())
+		{
+			gridCaseData = new GridCaseData(gateWay.getExternalEntity()
+					.getNaturalKeyName());
+			header.add(gridCaseData);
+		}
+
+		return header.toArray(new GridCaseData[0]);
+!!!253452.java!!!	getCases() : GridCaseData
+		Vector<GridCaseData[]> dataList = new Vector<GridCaseData[]>();
+		String value;
+		GridCaseData gridCaseData;
+
+		for (AbstractOrmEntity entity : data)
+		{
+			Vector<GridCaseData> oneData = new Vector<GridCaseData>();
+			for (Field<?> field : entity.getFields())
+			{
+				value = "";
+				if (field.isHidden())
+					continue;
+
+				ListOfValue listOfValue = entity.tryMatchListOfValue(field
+						.getShortName());
+
+				if (listOfValue != null)
+				{
+					value = listOfValue.getForeignValue(field.getDataString());
+					Hashtable<String, String> param = new Hashtable<String, String>();
+					param.put(listOfValue.getForeignEntityDefinition()
+							.getPrimaryKeyName(), field.getDataString());
+
+					gridCaseData = new GridCaseData(value, new BaseAction(
+							"Edit", listOfValue.getForeignEntityDefinition()),
+							param);
+					gridCaseData.setColored(field.isColored());
+					oneData.add(gridCaseData);
+				}
+				else if (!field.isHidden())
+				{
+					value = field.getDataString();
+					if (value == null)
+						value = "";
+					if (value.length() > 64)
+						value = field.getDataString().substring(0, 64)
+								+ "[...]";
+					gridCaseData = new GridCaseData(value);
+					gridCaseData.setColored(field.isColored());
+					oneData.add(gridCaseData);
+				}
+				else
+				{
+					gridCaseData = new GridCaseData(value);
+					gridCaseData.setColored(field.isColored());
+					oneData.add(gridCaseData);
+				}
+			}
+
+			for (GateWay gateWay : entity.getGateWayList())
+			{
+				AbstractOrmEntity foreignEntity = GateWayManager
+						.getExternalEntity(gateWay, entity);
+				String naturalKeyValue = foreignEntity
+						.getNaturalKeyDescription();
+
+				Hashtable<String, String> param = new Hashtable<String, String>();
+				param.put(foreignEntity.getPrimaryKeyName(), foreignEntity
+						.getPrimaryKeyValue().toString());
+
+				gridCaseData = new GridCaseData(naturalKeyValue,
+						new BaseAction("Edit", foreignEntity), param);
+				gridCaseData.setColored(gateWay.isColored());
+				oneData.add(gridCaseData);
+			}
+
+			dataList.add(oneData.toArray(new GridCaseData[0]));
+		}
+		return dataList.toArray(new GridCaseData[0][0]);
+
+!!!253580.java!!!	addEntity(inout entity : AbstractOrmEntity) : void
+		data.add(entity);
+!!!253708.java!!!	getDataType() : AbstractOrmEntity
+		return dataType;
+!!!253836.java!!!	iterator() : AbstractOrmEntity
+		return data.iterator();
+!!!253964.java!!!	BuildOffset(inout parameters : Hashtable<String, String>, in limit : int) : int
+		int offset = 0;
+		if (parameters.containsKey("offset"))
+		{
+			offset = Integer.parseInt(parameters.get("offset"));
+			if (offset % limit != 0)
+				offset = offset / limit * limit;
+		}
+		return offset;
+!!!254092.java!!!	BuildLimit(inout parameters : Hashtable<String, String>, in defaultValue : int) : int
+		if (parameters.containsKey("limit"))
+			return Integer.parseInt(parameters.get("limit"));
+		return defaultValue;
+!!!254220.java!!!	getPageSelector() : PageSelector
+		return pageSelector;
+!!!254348.java!!!	setPageSelector(inout pageSelector : PageSelector) : void
+		this.pageSelector = pageSelector;
+!!!254476.java!!!	getSearchBar() : SearchBar
+		return searchBar;
+!!!254604.java!!!	setSearchBar(inout searchBar : SearchBar) : void
+		this.searchBar = searchBar;

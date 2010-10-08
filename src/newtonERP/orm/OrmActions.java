@@ -10,28 +10,33 @@ package newtonERP.orm;
  */
 public enum OrmActions
 {
-	SEARCH, /**
+	/**
 	 * Represents a select statement in the Orm
 	 */
+	SEARCH,
 
-	UPDATE, /**
+	/**
 	 * Represents an update statement in the orm
 	 */
+	UPDATE,
 
-	DELETE, /**
+	/**
 	 * Represents a delete statement in the orm
 	 */
+	DELETE,
 
-	INSERT, /**
+	/**
 	 * Represents an insert statement in the orm
 	 */
+	INSERT,
 
-	CREATE, /**
+	/**
 	 * Represents a create table statement in the orm
 	 */
+	CREATE,
 
-	OTHER, /**
+	/**
 	 * Anything else
 	 */
-	;
+	OTHER
 }

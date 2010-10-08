@@ -1,0 +1,29 @@
+class FieldCurrency
+!!!215436.java!!!	FieldCurrency(in name : String, in shortName : String, inout data : Double)
+		super(name, shortName, data);
+		df.setGroupingUsed(false);
+!!!215564.java!!!	FieldCurrency(in name : String, in shortName : String)
+		this(name, shortName, null);
+!!!215692.java!!!	getDataString(inout forOrm : Boolean) : String
+
+		if (forOrm)
+			return super.getDataString(forOrm);
+		if (getCalcul() != null)
+			data = super.getData();
+		if (data == null)
+			return "";
+		return df.format(super.getData());
+!!!215820.java!!!	setData(in data : String) : void
+		try
+		{
+			data = data.replaceAll("\\s", "");
+			data = data.replaceAll("\\$", "");
+			data = data.replaceAll("\\.", ",");
+			data += " $";
+			this.data = df.parse(data).doubleValue();
+		} catch (Exception e)
+		{
+			setErrorMessage("Le format de donnée entrée ne correspond pas avec le type de champ (Currency): "
+					+ data);
+			Logger.error(e.getMessage());
+		}

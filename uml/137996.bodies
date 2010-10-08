@@ -1,0 +1,5 @@
+class ForwardEntity
+!!!186380.java!!!	ForwardEntity(in forwardingUrl : String)
+		this.forwardingUrl = forwardingUrl;
+!!!186508.java!!!	getForwardingUrl() : String
+		return forwardingUrl;

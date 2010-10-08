@@ -1,0 +1,36 @@
+class SearchEntity
+!!!159244.java!!!	SearchEntity()
+		super();
+		setVisibleName("Entité de recherche");
+		AccessorManager.addAccessor(this, new EntityEntity());
+!!!159372.java!!!	initFields() : Fields
+		Vector<Field<?>> fieldList = new Vector<Field<?>>();
+		fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
+		fieldList.add(new FieldText("Description", "name", false));
+		fieldList.add(new FieldInt("Entité", new EntityEntity()
+				.getForeignKeyName()));
+		return new Fields(fieldList);
+!!!159500.java!!!	getEntity() : AbstractOrmEntity
+		EntityEntity entityEntity = (EntityEntity) getSingleAccessor(new EntityEntity()
+				.getForeignKeyName());
+
+		AbstractOrmEntity entity = entityEntity.getEntityDefinition();
+
+		Vector<SearchCriteria> searchCriteriaList = getSearchCriteriaList();
+
+		for (SearchCriteria searchCriteria : searchCriteriaList)
+			addSearchCriteria(entity, searchCriteria);
+
+		return entity;
+!!!159628.java!!!	getSearchCriteriaList() : SearchCriteria
+		PluralAccessor searchCriteriaList = getPluralAccessor("SearchCriteria");
+		Vector<SearchCriteria> searchCriteriaVector = new Vector<SearchCriteria>();
+		for (AbstractOrmEntity entity : searchCriteriaList)
+			searchCriteriaVector.add((SearchCriteria) entity);
+		return searchCriteriaVector;
+!!!159756.java!!!	addSearchCriteria(inout entity : AbstractOrmEntity, inout searchCriteria : SearchCriteria) : void
+		String key = searchCriteria.getKey();
+		String value = searchCriteria.getValue();
+		String operator = searchCriteria.getOperator();
+		entity.setData(key, value);
+		entity.getFields().getField(key).setOperator(operator);

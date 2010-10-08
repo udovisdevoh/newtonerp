@@ -1,0 +1,136 @@
+class AbstractEntity
+!!!131852.java!!!	AbstractEntity()
+		fields = preInitFields();
+!!!131980.java!!!	preInitFields() : Fields
+		Vector<Field<?>> fieldsData = new Vector<Field<?>>();
+		Fields originalField = initFields();
+
+		fieldsData.addAll(originalField.getFields());
+
+		try
+		{
+			Vector<AbstractOrmEntity> dataField = DynamicFieldCache
+					.tryGetDataForEntity(getSystemName());
+
+			if (dataField == null)
+			{
+				EntityEntity entitySearch = new EntityEntity();
+				entitySearch.setData("systemName", getSystemName());
+				entitySearch = (EntityEntity) entitySearch.get().get(0);
+				FieldEntity search = new FieldEntity();
+				search.setData(entitySearch.getForeignKeyName(), entitySearch
+						.getPrimaryKeyValue());
+				search.setData("dynamicField", true);
+				dataField = search.get();
+				DynamicFieldCache.add(dataField, getSystemName());
+			}
+
+			fieldsData.addAll(initFieldsFromDb(dataField));
+		} catch (Exception e)
+		{
+			// ne rien faire ici, n'arrive que dans le cas du premier build de
+			// la DB et c'Est normale ou d'un entity nonOrmilizer
+		}
+
+		if (originalField instanceof VolatileFields)
+			return new VolatileFields(fieldsData);
+		return new Fields(fieldsData);
+
+!!!132108.java!!!	initFields() : Fields
+		return new Fields();
+!!!132236.java!!!	initFieldsFromDb(inout dataField : Vector<AbstractOrmEntity>) : Field
+		FieldEntity field;
+		Vector<Field<?>> fieldsData = new Vector<Field<?>>();
+
+		for (AbstractOrmEntity abstractField : dataField)
+		{
+			field = (FieldEntity) abstractField;
+			fieldsData.add(field.getFieldInstance());
+		}
+
+		return fieldsData;
+!!!132364.java!!!	equals(inout obj : Object) : boolean
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof AbstractEntity))
+			return false;
+		AbstractEntity other = (AbstractEntity) obj;
+		if (fields == null)
+		{
+			if (other.fields != null)
+				return false;
+		}
+		else if (!fields.equals(other.fields))
+			return false;
+		return true;
+!!!132492.java!!!	setFields(inout fields : Fields) : void
+		// must not be implemented
+!!!132620.java!!!	getFields() : Fields
+		return fields;
+!!!132748.java!!!	toString() : String
+		return fields.toString();
+!!!132876.java!!!	getDataString(in shortName : String) : String
+		return getFields().getField(shortName).getDataString();
+!!!133004.java!!!	getData(in shortName : String) : Object
+		return getFields().getField(shortName).getData();
+!!!133132.java!!!	setData(in shortName : String, inout data : Object) : void
+		getFields().setData(shortName, data);
+!!!133260.java!!!	tryMatchListOfValue(in fieldKeyName : String) : ListOfValue
+		if (positiveListOfValueList == null)
+			return null;
+
+		return positiveListOfValueList.get(fieldKeyName);
+!!!133388.java!!!	getCurrentAction() : AbstractAction
+		return currentAction;
+!!!133516.java!!!	getCurrentModule() : Module
+		if (currentModule == null)
+			throw new EntityException(
+					"Vous devez setter le module courrant dans le viewer avec setCurrentModule()");
+
+		return currentModule;
+!!!133644.java!!!	setCurrentModule(inout currentModule : Module) : void
+		this.currentModule = currentModule;
+!!!133772.java!!!	setCurrentAction(inout currentAction : AbstractAction) : void
+		this.currentAction = currentAction;
+!!!133900.java!!!	getSystemName() : String
+		return getClass().getSimpleName();
+!!!134028.java!!!	getLabelName(in inputName : String) : String
+		return getFields().getField(inputName).getName();
+!!!134156.java!!!	getPositiveListOfValueList() : ListOfValue
+		if (positiveListOfValueList == null)
+			positiveListOfValueList = new Hashtable<String, ListOfValue>();
+
+		return positiveListOfValueList;
+!!!134284.java!!!	getNegativeListOfValueList() : ListOfValue
+		if (negativeListOfValueList == null)
+			negativeListOfValueList = new HashSet<ListOfValue>();
+
+		return negativeListOfValueList;
+!!!134412.java!!!	addPositiveListOfValue(in foreignKeyName : String, inout listOfValue : ListOfValue) : void
+		// laissez le get car c'est de la lazy initialization -Guillaume
+		getPositiveListOfValueList().put(foreignKeyName, listOfValue);
+!!!134540.java!!!	addNegativeListOfValue(inout listOfValue : ListOfValue) : void
+		// laissez le get car c'est de la lazy initialization -Guillaume
+
+		for (ListOfValue currentListOfValue : getNegativeListOfValueList())
+			if (currentListOfValue.equals(listOfValue))
+				return;
+
+		getNegativeListOfValueList().add(listOfValue);
+!!!134668.java!!!	isMatchCheckBox(in inputName : String) : boolean
+		Field<?> field = getFields().getField(inputName);
+
+		if (field == null)
+			return false;
+
+		if (field instanceof FieldBool)
+			return true;
+		return false;
+!!!134796.java!!!	reset() : void
+		fields.reset();
+!!!134924.java!!!	getDetailedDescription() : String
+		return detailedDescription;
+!!!135052.java!!!	setDetailedDescription(in detailedDescription : String) : void
+		this.detailedDescription = detailedDescription;

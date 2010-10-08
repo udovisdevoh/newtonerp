@@ -1,0 +1,13 @@
+class MoneyViewer
+!!!243724.java!!!	getHtmlCode(in inputValue : String) : String
+		inputValue = inputValue.replace("$", "");
+		inputValue = inputValue.replace(',', '.');
+		inputValue = inputValue.trim();
+
+		if (inputValue.equals(""))
+			inputValue = "0.0";
+
+		double doubleNumber = Double.parseDouble(inputValue);
+		return getHtmlCode(doubleNumber);
+!!!243852.java!!!	getHtmlCode(in inputValue : double) : String
+		return numberFormat.format(inputValue).replace(" $", "$");

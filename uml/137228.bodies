@@ -1,0 +1,9 @@
+class TableAssociationException
+!!!178700.java!!!	TableAssociationException(in message : String)
+		super(message);
+!!!178828.java!!!	TableAssociationException()
+		super();
+!!!178956.java!!!	TableAssociationException(in message : String, inout cause : Throwable)
+		super(message, cause);
+!!!179084.java!!!	TableAssociationException(inout cause : Throwable)
+		super(cause);

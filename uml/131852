@@ -1,0 +1,698 @@
+format 75
+"firstStep" // src::newtonERP::viewers::firstStep
+  revision 1
+  modified_by 12 "djo"
+  // class settings
+  //class diagram settings
+  draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+  //use case diagram settings
+  package_name_in_tab default show_context default auto_label_position default draw_all_relations default class_drawing_mode default shadow default show_stereotype_properties default
+  //sequence diagram settings
+  show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+  //collaboration diagram settings
+  show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default show_msg_context default draw_all_relations default shadow default show_stereotype_properties default
+  //object diagram settings
+   write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+  //component diagram settings
+  package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default
+  draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+  //deployment diagram settings
+  package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
+  draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+  //state diagram settings
+  package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  //activity diagram settings
+  package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+  show_infonote default drawing_language default show_stereotype_properties default
+  
+  java_dir "/home/djo/workspace/NewtonERP/src/newtonERP/viewers/firstStep/"
+  java_package "newtonERP.viewers.firstStep"
+  classview 131596 "firstStep"
+    //class diagram settings
+    draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+    //collaboration diagram settings
+    show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default show_msg_context default draw_all_relations default shadow default show_stereotype_properties default
+    //object diagram settings
+     write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+    //sequence diagram settings
+    show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+    //state diagram settings
+    package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+    show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+    //class settings
+    //activity diagram settings
+    package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+    show_infonote default drawing_language default show_stereotype_properties default
+    class 144652 "AlertViewer"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Alert viewer
+@author Guillaume Lacasse"
+      operation 237964 "getHtmlCode"
+	class_operation public explicit_return_type "String"
+	nparams 1
+	  param inout name "entity" type class_ref 137484 // AlertViewable
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param entity the alert entity
+@return the html code (Javascript) of this alert"
+      end
+    end
+
+    class 144780 "BandDiagramViewer"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Sert à voir les diagrammes à bandes
+@author Guillaume Lacasse"
+      attribute 141580 "maxWidth"
+	class_attribute const_attribute private explicit_type "double"
+	init_value " 640.0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 238092 "getHtmlCode"
+	class_operation public explicit_return_type "String"
+	nparams 1
+	  param inout name "entity" type class_ref 144908 // BandDiagramViewable
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param entity diagramme à bande
+@return code html"
+      end
+    end
+
+    class 145036 "BaseViewer"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "permet l'affichage des BaseViewerData
+@author CloutierJo
+"
+      operation 238220 "getTopHtmlCode"
+	class_operation public explicit_return_type "String"
+	nparams 1
+	  param inout name "entity" type class_ref 129804 // BaseViewerData
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "donne le code html des element de base du haut
+@param entity l'entity cntenant ces information
+@return le code html"
+      end
+
+      operation 238348 "getMessage"
+	class_operation private explicit_return_type "String"
+	nparams 1
+	  param inout name "entity" type class_ref 129804 // BaseViewerData
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param entity
+@param html
+@return"
+      end
+
+      operation 238476 "getBottomHtmlCode"
+	class_operation public explicit_return_type "String"
+	nparams 1
+	  param inout name "entity" type class_ref 129804 // BaseViewerData
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "donne le code html des element de base du bas
+@param entity l'entity cntenant ces information
+@return le code html"
+      end
+
+      operation 238604 "getPrintButton"
+	class_operation private explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 145164 "ErrorViewer"
+      abstract visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Represents a errorPage for our ERP
+@author Pascal Lemay"
+      operation 238732 "getErrorPage"
+	class_operation public explicit_return_type "String"
+	nparams 1
+	  param in name "errorMessage" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Gets the html code for the errorPage
+
+@param errorMessage stacktrace de l'exception provenant du servlet
+@return html"
+      end
+    end
+
+    class 145292 "FloorViewer"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Représente un viewer de plancher
+@author Guillaume Lacasse"
+      attribute 141708 "noWallColor"
+	class_attribute const_attribute private explicit_type "String"
+	init_value " \"#433\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 141836 "wallColor"
+	class_attribute const_attribute private explicit_type "String"
+	init_value " \"#DEE\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 141964 "internalZoneSize"
+	class_attribute const_attribute private explicit_type "int"
+	init_value " 72"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 142092 "wallWidth"
+	class_attribute const_attribute private explicit_type "int"
+	init_value " 4"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 238860 "getHtmlCode"
+	class_operation public explicit_return_type "String"
+	nparams 1
+	  param inout name "entity" type class_ref 145420 // FloorViewable
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param entity entité de plancher
+@return code HTML"
+      end
+
+      operation 238988 "getRoomHtml"
+	class_operation private explicit_return_type "String"
+	nparams 6
+	  param in name "currentText" explicit_type "String"
+	  param in name "backgroundColor" explicit_type "String"
+	  param inout name "entity" type class_ref 145420 // FloorViewable
+	  param in name "x" explicit_type "int"
+	  param in name "y" explicit_type "int"
+	  param inout name "isCorridor" explicit_type "boolean"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}, ${t4} ${p4}, ${t5} ${p5}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 145548 "ForwardViewer"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Used to forward to a new page
+@author Guillaume Lacasse"
+      operation 239116 "getHtmlCode"
+	class_operation public explicit_return_type "String"
+	nparams 1
+	  param inout name "entity" type class_ref 138124 // ForwardViewable
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param entity the entity we want to go to
+@return the entity"
+      end
+    end
+
+    class 145676 "GridViewer"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Represents the list viewer for listing data
+@author Guillaume Lacasse, Pascal Lemay"
+      operation 239244 "getHtmlCode"
+	class_operation public explicit_return_type "String"
+	nparams 1
+	  param inout name "gridEntity" type class_ref 145804 // GridViewerData
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Creates the html code for the web page
+
+@param gridEntity the entity to view in list
+@return html the html code"
+      end
+
+      operation 239372 "getTableHeader"
+	class_operation private explicit_return_type "String"
+	nparams 2
+	  param inout name "headerCase" type class_ref 145932 // GridCaseData
+	  param inout name "hasLeftHeader" explicit_type "boolean"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 239500 "getDataRowList"
+	class_operation private explicit_return_type "String"
+	nparams 1
+	  param inout name "gridData" type class_ref 145804 // GridViewerData
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 239628 "getSpecificButton"
+	class_operation private explicit_return_type "String"
+	nparams 2
+	  param inout name "actionLinks" explicit_type "Vector<ActionLink>"
+	  param inout name "entity" type class_ref 128780 // AbstractEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 239756 "getCase"
+	class_operation private explicit_return_type "String"
+	nparams 1
+	  param inout name "dtCase" type class_ref 145932 // GridCaseData
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 146060 "ImgViewer"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "viewer servant a afiche UNE image seulement
+@author CloutierJo"
+      operation 239884 "getHtmlCode"
+	class_operation public explicit_return_type "String"
+	nparams 1
+	  param inout name "entity" type class_ref 146188 // ImgViewerData
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param entity l'ImgViewerData
+@return html d'une image"
+      end
+    end
+
+    class 146316 "PromptViewer"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Represents the prompt viewer
+@author Guillaume Lacasse, Pascal Lemay"
+      operation 240012 "getHtmlCode"
+	class_operation public explicit_return_type "String"
+	nparams 1
+	  param inout name "promptData" type class_ref 137868 // PromptViewerData
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Return the html code for the web page
+@param promptData the entity to view
+@return html"
+      end
+
+      operation 240140 "getMultipleAccessorLinkList"
+	class_operation private explicit_return_type "String"
+	nparams 2
+	  param inout name "entity" type class_ref 128268 // AbstractOrmEntity
+	  param inout name "isReadOnly" explicit_type "boolean"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 240268 "getSingleAccessorLinkList"
+	class_operation private explicit_return_type "String"
+	nparams 2
+	  param inout name "entity" type class_ref 128268 // AbstractOrmEntity
+	  param inout name "isReadOnly" explicit_type "boolean"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 146444 "SplashScreenViewer"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Sert à afficher des splash screens
+@author Guillaume Lacasse"
+      operation 240396 "getHtmlCode"
+	class_operation public explicit_return_type "String"
+	nparams 1
+	  param inout name "entity" type class_ref 138764 // SplashScreen
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param entity splash screen à voir
+@return html du splash screen"
+      end
+    end
+
+    class 146572 "StaticTextViewer"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Static text viewer
+@author Guillaume Lacasse"
+      operation 240524 "getHtmlCode"
+	class_operation public explicit_return_type "String"
+	nparams 1
+	  param inout name "entity" type class_ref 138892 // StaticTextViewable
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param entity the entity to view
+@return the entity text"
+      end
+    end
+  end
+
+  deploymentview 131468 "firstStep"
+    //deployment diagram settings
+    package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
+    draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+    artifact 143500 "AlertViewer"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 144652 // AlertViewer
+      end
+    end
+
+    artifact 143628 "BandDiagramViewer"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 144780 // BandDiagramViewer
+      end
+    end
+
+    artifact 143756 "BaseViewer"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 145036 // BaseViewer
+      end
+    end
+
+    artifact 143884 "ErrorViewer"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 145164 // ErrorViewer
+      end
+    end
+
+    artifact 144012 "FloorViewer"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 145292 // FloorViewer
+      end
+    end
+
+    artifact 144140 "ForwardViewer"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 145548 // ForwardViewer
+      end
+    end
+
+    artifact 144268 "GridViewer"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 145676 // GridViewer
+      end
+    end
+
+    artifact 144396 "ImgViewer"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 146060 // ImgViewer
+      end
+    end
+
+    artifact 144524 "PromptViewer"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 146316 // PromptViewer
+      end
+    end
+
+    artifact 144652 "SplashScreenViewer"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 146444 // SplashScreenViewer
+      end
+    end
+
+    artifact 144780 "StaticTextViewer"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 146572 // StaticTextViewer
+      end
+    end
+  end
+end

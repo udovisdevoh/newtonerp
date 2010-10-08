@@ -1,0 +1,62 @@
+class FieldDateTime
+!!!215948.java!!!	FieldDateTime(in name : String, in shortName : String, inout data : GregorianCalendar)
+		super(name, shortName, data);
+!!!216076.java!!!	FieldDateTime(in name : String, in shortName : String)
+		this(name, shortName, null);
+!!!216204.java!!!	getDataString(inout forOrm : Boolean) : String
+		if (data == null)
+			return null;
+		String retVal = dateFormatter.format(super.getData().getTime());
+		if (forOrm)
+			return addSlash(retVal);
+		return retVal;
+!!!216332.java!!!	setData(in date : String) : void
+		try
+		{
+			GregorianCalendar tempDate = new GregorianCalendar();
+			tempDate.setTime(dateFormatter.parse(date));
+			data = tempDate;
+		} catch (Exception e)
+		{
+			setErrorMessage("Le format de donnée entrée ne correspond pas avec le type de champ (dateTime): "
+					+ data);
+			Logger.error(e.getMessage());
+		}
+!!!216460.java!!!	setOperator(in operator : String) : void
+		operator.trim();
+
+		if (operator.equals("="))
+		{
+			super.operator = operator;
+		}
+		else
+			throw new InvalidOperatorException("Opérateur invalide pour "
+					+ getClass().getSimpleName());
+!!!216588.java!!!	setDefaultValue() : void
+		setData(new GregorianCalendar());
+!!!216716.java!!!	setData(inout date : Object) : void
+		if (date instanceof GregorianCalendar)
+			setDataType((GregorianCalendar) date);
+		else
+			throw new FieldNotCompatibleException(
+					"Field has to be a gregorian calendar");
+!!!216844.java!!!	getFormatedDate(in dateInString : String) : GregorianCalendar
+		return getFormatedDate(dateInString, dateFormatter);
+!!!216972.java!!!	getFormatedDate(in dateInString : String, inout sdf : SimpleDateFormat) : GregorianCalendar
+		try
+		{
+			GregorianCalendar gregorianCalendar = new GregorianCalendar();
+			Date tempDate = sdf.parse(dateInString);
+			gregorianCalendar.setTime(tempDate);
+			return gregorianCalendar;
+		} catch (Exception e)
+		{
+			Logger.error(e.getMessage());
+			return null;
+		}
+!!!217100.java!!!	isInSameDay(inout first : GregorianCalendar, inout second : GregorianCalendar) : boolean
+		boolean ret;
+		ret = first.get(Calendar.DAY_OF_YEAR) == second
+				.get(Calendar.DAY_OF_YEAR);
+		ret &= first.get(Calendar.YEAR) == second.get(Calendar.YEAR);
+		return ret;

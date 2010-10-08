@@ -1,12 +1,15 @@
 package newtonERP.module.generalEntity;
 
+import newtonERP.module.AbstractEntity;
+import newtonERP.viewers.viewables.StaticTextViewable;
+
 /**
  * @author Guillaume Lacasse
  * 
  *         Represents a static text entity
  */
-public class StaticTextEntity extends newtonERP.module.AbstractEntity implements
-		newtonERP.viewers.viewables.StaticTextViewable
+public class StaticTextEntity extends AbstractEntity implements
+		StaticTextViewable
 {
 	private String text;
 
@@ -22,5 +25,4 @@ public class StaticTextEntity extends newtonERP.module.AbstractEntity implements
 	{
 		return text.replace("<", "&lt;").replace(">", "&gt;");
 	}
-
 }

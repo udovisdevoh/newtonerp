@@ -1,0 +1,76 @@
+class SgbdSqliteBackupManager
+!!!226060.java!!!	doBackup(in originalFileName : String, in maxBackupCount : int) : void
+		if (countBackupFile(originalFileName) > maxBackupCount)
+			deleteFile(getEarliestBackupFile(originalFileName));
+
+		long currentTime = BackupManager.getCurrentTime();
+
+		copyFile("./" + originalFileName, backupDirectoryPath
+				+ originalFileName + "." + currentTime);
+
+		latestBackupTime = currentTime;
+!!!226188.java!!!	deleteFile(in fileName : String) : void
+		File file = new File(backupDirectoryPath + fileName);
+		file.delete();
+!!!226316.java!!!	getEarliestBackupFile(in originalFileName : String) : String
+		File folder = new File(backupDirectoryPath);
+		File[] listOfFiles = folder.listFiles();
+
+		for (int i = 0; i < listOfFiles.length; i++)
+		{
+			if (!listOfFiles[i].isDirectory()
+					&& listOfFiles[i].getName().startsWith(
+							originalFileName + "."))
+			{
+				return listOfFiles[i].getName();
+			}
+		}
+		return null;
+!!!226444.java!!!	countBackupFile(in originalFileName : String) : int
+		int count = 0;
+		File folder = new File(backupDirectoryPath);
+		File[] listOfFiles = folder.listFiles();
+
+		for (int i = 0; i < listOfFiles.length; i++)
+		{
+			if (!listOfFiles[i].isDirectory()
+					&& listOfFiles[i].getName().startsWith(
+							originalFileName + "."))
+			{
+				count++;
+			}
+		}
+		return count;
+!!!226572.java!!!	copyFile(in sourceFile : String, in destinationFile : String) : void
+		try
+		{
+			File f1 = new File(sourceFile);
+			File f2 = new File(destinationFile);
+			InputStream in = new FileInputStream(f1);
+
+			// For Append the file.
+			// OutputStream out = new FileOutputStream(f2,true);
+
+			// For Overwrite the file.
+			OutputStream out = new FileOutputStream(f2);
+
+			byte[] buf = new byte[1024];
+			int len;
+			while ((len = in.read(buf)) > 0)
+			{
+				out.write(buf, 0, len);
+			}
+			in.close();
+			out.close();
+			Logger.info("[SQLITE_BACKUP] File copied.");
+		} catch (FileNotFoundException ex)
+		{
+			Logger.error("[SQLITE_BACKUP] " + ex.getMessage()
+					+ " in the specified directory.");
+			System.exit(0);
+		} catch (IOException e)
+		{
+			Logger.error("[SQLITE_BACKUP] " + e.getMessage());
+		}
+!!!226700.java!!!	getLatestBackupTime() : long
+		return latestBackupTime;

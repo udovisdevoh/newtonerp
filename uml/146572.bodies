@@ -1,0 +1,5 @@
+class StaticTextViewer
+!!!240524.java!!!	getHtmlCode(inout entity : StaticTextViewable) : String
+		return "<pre>"
+				+ entity.getText().replace("<", "&lt;").replace(">", "&gt;")
+				+ "</pre>";

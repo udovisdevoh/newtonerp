@@ -1,0 +1,26 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classnewtonERP_1_1viewers_1_1viewerData_1_1BaseViewerData.html#a85fb79c72b79df9ba2d164ce2c458ade" title="newtonERP.viewers.viewerData.BaseViewerData.addAlertMessage" alt="" coords="367,5,807,35"/>
+<area shape="rect" id="node5" href="$classnewtonERP_1_1viewers_1_1viewerData_1_1BaseViewerData.html#a2b0b0ad252b2393e5bb8e54a7868e401" title="newtonERP.viewers.viewerData.BaseViewerData.addNormalMessage" alt="" coords="359,59,815,88"/>
+<area shape="rect" id="node7" href="$classnewtonERP_1_1module_1_1AbstractOrmEntity.html#a1f3ed9fb7e6909ee4538a1d0ecb8ded4" title="met a jour l&#39;entity en DB, l&#39;ID doit etre présent" alt="" coords="441,112,732,141"/>
+<area shape="rect" id="node9" href="$classnewtonERP_1_1module_1_1AbstractOrmEntity.html#ae8f1cf3dfbc0b34d8cbf9458a79badb1" title="BaseAction Edit." alt="" coords="436,165,737,195"/>
+<area shape="rect" id="node11" href="$classnewtonERP_1_1module_1_1AbstractOrmEntity.html#af1876f416ab5b4b4235229da3ac0fde0" title="trouve l&#39;entity selon les critere disponible, retourne le premier trouve" alt="" coords="444,219,729,248"/>
+<area shape="rect" id="node13" href="$classnewtonERP_1_1module_1_1AbstractEntity.html#a33927f97bd00fed3f714f4466b021c3e" title="newtonERP.module.AbstractEntity.getData" alt="" coords="441,323,732,352"/>
+<area shape="rect" id="node17" href="$classnewtonERP_1_1module_1_1AbstractEntity.html#a87356471289bf7f6daaea032e4155f83" title="newtonERP.module.AbstractEntity.getFields" alt="" coords="1336,376,1629,405"/>
+<area shape="rect" id="node20" href="$classnewtonERP_1_1module_1_1AbstractOrmEntity.html#ada649a16942f4d7412e447342070f3a3" title="newtonERP.module.AbstractOrmEntity.getPositiveFlagPoolList" alt="" coords="381,739,792,768"/>
+<area shape="rect" id="node22" href="$classnewtonERP_1_1module_1_1AbstractOrmEntity.html#ae4b6adab840c40cae3e3206ba41c42f1" title="newtonERP.module.AbstractOrmEntity.getPrimaryKeyName" alt="" coords="864,428,1261,457"/>
+<area shape="rect" id="node26" href="$classnewtonERP_1_1module_1_1AbstractOrmEntity.html#af0d9a2dbe5359007d2d0f9f727d3d5da" title="newtonERP.module.AbstractOrmEntity.getPrimaryKeyValue" alt="" coords="391,376,783,405"/>
+<area shape="rect" id="node31" href="$classnewtonERP_1_1module_1_1AbstractOrmEntity.html#a05e7f438d4f673a9d760ca0d969bfd2c" title="newtonERP.module.AbstractOrmEntity.getVisibleName" alt="" coords="880,585,1245,615"/>
+<area shape="rect" id="node34" href="$classnewtonERP_1_1orm_1_1field_1_1Fields.html#ac39125d868807b9886e6526fb6441945" title="newtonERP.orm.field.Fields.isErrorState" alt="" coords="452,792,721,821"/>
+<area shape="rect" id="node36" href="$classnewtonERP_1_1module_1_1AbstractOrmEntity.html#abc63817c57d950d59d812dcffed8831a" title="enregistre l&#39;entity en DB" alt="" coords="437,480,736,509"/>
+<area shape="rect" id="node40" href="$classnewtonERP_1_1module_1_1AbstractEntity.html#af47e42b154414c6afaa3253cc4adaf6b" title="newtonERP.module.AbstractEntity.setData" alt="" coords="919,532,1207,561"/>
+<area shape="rect" id="node45" href="$classnewtonERP_1_1viewers_1_1viewerData_1_1BaseViewerData.html#a6e17223380a1b37fdee5c5ba0eb70223" title="newtonERP.viewers.viewerData.BaseViewerData.setBackLink" alt="" coords="384,845,789,875"/>
+<area shape="rect" id="node47" href="$classnewtonERP_1_1viewers_1_1viewerData_1_1PromptViewerData.html#a51c838dcfd1ffb37d5d116e127017c4d" title="newtonERP.viewers.viewerData.PromptViewerData.setButtonAction" alt="" coords="364,899,809,928"/>
+<area shape="rect" id="node49" href="$classnewtonERP_1_1module_1_1AbstractEntity.html#a8a11a5fecd538692ab2db648860897f2" title="newtonERP.module.AbstractEntity.setCurrentAction" alt="" coords="413,952,760,981"/>
+<area shape="rect" id="node51" href="$classnewtonERP_1_1viewers_1_1viewerData_1_1PromptViewerData.html#a47660a589d0db52e7a27a63a1639f0eb" title="newtonERP.viewers.viewerData.PromptViewerData.setData" alt="" coords="389,635,784,664"/>
+<area shape="rect" id="node56" href="$classnewtonERP_1_1viewers_1_1viewerData_1_1BaseViewerData.html#a816933400f0d64659158eb3bc93f035c" title="newtonERP.viewers.viewerData.BaseViewerData.setTitle" alt="" coords="876,743,1249,772"/>
+<area shape="rect" id="node59" href="$classnewtonERP_1_1viewers_1_1viewerData_1_1PromptViewerData.html#a1f5da115fe8a9bc38e5cd23d1671434e" title="newtonERP.viewers.viewerData.PromptViewerData.setReadOnly" alt="" coords="376,1005,797,1035"/>
+<area shape="rect" id="node15" href="$classnewtonERP_1_1orm_1_1field_1_1Fields.html#a60c293a9a0e504f5cda3865ad7c8c160" title="newtonERP.orm.field.Fields.getField" alt="" coords="941,324,1184,353"/>
+<area shape="rect" id="node24" href="$classnewtonERP_1_1module_1_1AbstractEntity.html#ad26f590c74d49b7c494d62de6ad1563b" title="newtonERP.module.AbstractEntity.getSystemName" alt="" coords="1309,585,1656,615"/>
+<area shape="rect" id="node43" href="$classnewtonERP_1_1orm_1_1field_1_1Fields.html#acb12ce722dc8de992622dfe61f478f8b" title="methode pour changer la valeur d&#39;un champ" alt="" coords="1361,532,1604,561"/>
+<area shape="rect" id="node54" href="$classnewtonERP_1_1viewers_1_1viewerData_1_1BaseViewerData.html#a467ea44dd468857f577fa307cc2302c1" title="newtonERP.viewers.viewerData.BaseViewerData.getTitle" alt="" coords="875,689,1251,719"/>
+</map>

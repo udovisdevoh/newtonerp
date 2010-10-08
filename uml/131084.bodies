@@ -1,0 +1,49 @@
+class visualGraph
+!!!146316.java!!!	visualGraph()
+			nextx = 0;
+			presenty = 0;
+			for (AbstractOrmEntity entity : new TaskModule()
+					.getEntityDefinitionList().values())
+				vEntity.put(entity.getSystemName(), new VisualEntity(entity));
+
+			tmpEntityNameList = new Vector<String>();
+			for (String str : vEntity.keySet())
+			{
+				tmpEntityNameList.add(str);
+			}
+!!!146444.java!!!	designGraph() : void
+			for (VisualEntity entity : vEntity.values())
+			{
+				if (tmpEntityNameList.remove(entity.entity.getSystemName()))
+				{
+					drawGraph(entity);
+				}
+			}
+!!!146572.java!!!	drawGraph(inout entity : DbGraph::VisualEntity) : void
+			if (nextx > 500)
+			{
+				nextx = 0;
+				presenty = maxY + 10;
+			}
+			entity.x = nextx;
+			nextx += entity.width + 15;
+			if (maxX < nextx)
+				maxX = nextx;
+
+			entity.y = presenty;
+			if (maxY < entity.height + presenty)
+				maxY = entity.height + presenty;
+
+			/*
+			 * VisualEntity currentEntity; entity.entity.get("1=1");
+			 * System.out.println(entity.entity.getSystemName());
+			 * 
+			 * for (String entityName : entity.entity.getSingleAccessorList()
+			 * .keySet()) { currentEntity = vEntity.get(entityName); if
+			 * (tmpEntityNameList.remove(currentEntity.entity .getSystemName()))
+			 * { entity.x = nextx; nextx += entity.width + 15; if (maxX < nextx)
+			 * maxX = nextx;
+			 * 
+			 * entity.y = presenty; if (maxY < entity.height + presenty) maxY =
+			 * entity.height + presenty; } }
+			 */

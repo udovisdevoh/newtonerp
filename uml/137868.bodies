@@ -1,0 +1,31 @@
+class PromptViewerData
+!!!183948.java!!!	PromptViewerData()
+		super();
+!!!184076.java!!!	getButtonAction() : ActionLink
+		return buttonAction;
+!!!184204.java!!!	setButtonAction(inout buttonAction : ActionLink) : void
+		this.buttonAction = buttonAction;
+!!!184332.java!!!	setData(inout data : AbstractEntity) : void
+		this.data = data;
+		if (getTitle() == null)
+			setTitle(data.getSystemName());
+!!!184460.java!!!	getData() : AbstractEntity
+		return data;
+!!!184588.java!!!	isMatchCheckBox(in inputName : String) : boolean
+		return false;
+!!!184716.java!!!	tryMatchListOfValue(in fieldKeyName : String) : ListOfValue
+		return null;
+!!!184844.java!!!	getPositiveFlagPoolList() : FlagPool
+		return null;
+!!!184972.java!!!	getInputValue(in inputName : String) : String
+		return null;
+!!!185100.java!!!	getLabelName(in inputName : String) : String
+		return null;
+!!!185228.java!!!	getCurrentAction() : AbstractAction
+		return null;
+!!!185356.java!!!	getCurrentModule() : Module
+		return null;
+!!!185484.java!!!	setReadOnly(inout isReadOnly : boolean) : void
+		this.isReadOnly = isReadOnly;
+!!!185612.java!!!	isReadOnly() : boolean
+		return isReadOnly;

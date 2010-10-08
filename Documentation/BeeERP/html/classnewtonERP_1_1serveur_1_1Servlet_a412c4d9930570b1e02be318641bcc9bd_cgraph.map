@@ -1,0 +1,13 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classnewtonERP_1_1serveur_1_1CommandRouteur.html#a9ef5922b38020d607c4de624846ac0fb" title="dirige une demande client vers une action d&#39;un module" alt="" coords="317,165,683,195"/>
+<area shape="rect" id="node5" href="$classnewtonERP_1_1module_1_1Module.html#aec1c35e1b8ce08eb97241e65f7535de5" title="permet de faire une action" alt="" coords="755,113,1005,143"/>
+<area shape="rect" id="node9" href="$classnewtonERP_1_1module_1_1Module.html#a8f3773f1982e9c14f34d5c3b52fc39cd" title="newtonERP.module.Module.getDefaultAction" alt="" coords="1427,165,1728,195"/>
+<area shape="rect" id="node24" href="$classnewtonERP_1_1module_1_1Module.html#af8f10ab150c7187f6b1111ea74ab98b2" title="newtonERP.module.Module.getDefaultEntity" alt="" coords="731,217,1029,247"/>
+<area shape="rect" id="node7" href="$classnewtonERP_1_1module_1_1Module.html#a8d2f7a692d6da109ae664a3a4248e2e2" title="newtonERP.module.Module.getAction" alt="" coords="1097,113,1353,143"/>
+<area shape="rect" id="node13" href="$classnewtonERP_1_1module_1_1AbstractAction.html#ad9ddb445cdeb72011f3785ce3f1f02c8" title="Abstract method that will be used to perform the actions." alt="" coords="1079,60,1372,89"/>
+<area shape="rect" id="node11" href="$classnewtonERP_1_1module_1_1Module.html#ae41e62fda99c45639864d873de1d6f4f" title="newtonERP.module.Module.getEntityDefinitionList" alt="" coords="1783,165,2116,195"/>
+<area shape="rect" id="node15" href="$classnewtonERP_1_1module_1_1AbstractAction.html#a04e4bf2e08e87857d2728d830765ec2f" title="Abstract method that will be reused by all the actions." alt="" coords="1428,59,1727,88"/>
+<area shape="rect" id="node17" href="$classnewtonERP_1_1module_1_1AbstractEntity.html#a87356471289bf7f6daaea032e4155f83" title="newtonERP.module.AbstractEntity.getFields" alt="" coords="1431,112,1724,141"/>
+<area shape="rect" id="node19" href="$classnewtonERP_1_1orm_1_1field_1_1Fields.html#a144f41aab701ebb1edf60d34a4304725" title="newtonERP.orm.field.Fields.setFromHashTable" alt="" coords="1423,5,1732,35"/>
+<area shape="rect" id="node21" href="$classnewtonERP_1_1orm_1_1field_1_1Fields.html#acb12ce722dc8de992622dfe61f478f8b" title="methode pour changer la valeur d&#39;un champ" alt="" coords="1828,5,2071,35"/>
+</map>

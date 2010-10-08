@@ -1,0 +1,12 @@
+class Country
+!!!141708.java!!!	Country()
+		super();
+		setVisibleName("Pays");
+!!!141836.java!!!	initFields() : Fields
+		FieldString name = new FieldString("Nom", "name");
+		name.setNaturalKey(true);
+
+		Vector<Field<?>> fieldList = new Vector<Field<?>>();
+		fieldList.add(new FieldInt("Numero de pays", getPrimaryKeyName()));
+		fieldList.add(name);
+		return new Fields(fieldList);

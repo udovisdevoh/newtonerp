@@ -47,8 +47,7 @@ public class AddFieldToOrm extends AbstractAction
 			{
 				Orm.addColumnToTable(entity, field);
 				Orm.createIndex(entity, field);
-				editUI
-						.addNormalMessage("Le champ a été inséré dans la base de donnée");
+				editUI.addNormalMessage("Le champ a été inséré dans la base de donnée");
 			} catch (OrmException e)
 			{
 				editUI.addNormalMessage("Champ déjà dans la base de donnée");
@@ -59,8 +58,7 @@ public class AddFieldToOrm extends AbstractAction
 
 		} catch (Exception e)
 		{
-			editUI
-					.addNormalMessage("Impossible de trouver l'entité dans la base de donnée. Si c'est une nouvelle entité pas encore générée, ce message est normal.");
+			editUI.addNormalMessage("Impossible de trouver l'entité dans la base de donnée. Si c'est une nouvelle entité pas encore générée, ce message est normal.");
 		}
 
 		return editUI;

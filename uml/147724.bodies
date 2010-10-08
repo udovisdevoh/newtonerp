@@ -1,0 +1,35 @@
+class PageSelector
+!!!254732.java!!!	PageSelector()
+		super();
+		// TODO Auto-generated constructor stub
+		currentLimit = 15;
+		pageCount = 100;
+!!!254860.java!!!	PageSelector(in limit : int, in offset : int, in totalRowCount : int, in currentUrl : String, in currentSearchEntry : String, in orderBy : String)
+		if (currentSearchEntry == null)
+			currentSearchEntry = "";
+
+		if (orderBy == null)
+			orderBy = "";
+
+		this.totalRowCount = totalRowCount;
+		this.currentSearchEntry = currentSearchEntry;
+		this.orderBy = orderBy;
+		currentLimit = limit;
+		currentOffset = offset;
+		pageCount = (int) Math
+				.ceil((double) (totalRowCount) / (double) (limit));
+		this.currentUrl = currentUrl;
+!!!254988.java!!!	getPageCount() : int
+		return pageCount;
+!!!255116.java!!!	getCurrentLimit() : int
+		return currentLimit;
+!!!255244.java!!!	getCurrentUrl() : String
+		return currentUrl;
+!!!255372.java!!!	getCurrentOffset() : int
+		return currentOffset;
+!!!255500.java!!!	getTotalRowCount() : int
+		return totalRowCount;
+!!!255628.java!!!	getCurrentSearchEntry() : String
+		return currentSearchEntry;
+!!!255756.java!!!	getOrderBy() : String
+		return orderBy;

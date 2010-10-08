@@ -1,0 +1,1250 @@
+format 75
+"type" // src::newtonERP::orm::field::type
+  revision 1
+  modified_by 12 "djo"
+  // class settings
+  //class diagram settings
+  draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+  //use case diagram settings
+  package_name_in_tab default show_context default auto_label_position default draw_all_relations default class_drawing_mode default shadow default show_stereotype_properties default
+  //sequence diagram settings
+  show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+  //collaboration diagram settings
+  show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default show_msg_context default draw_all_relations default shadow default show_stereotype_properties default
+  //object diagram settings
+   write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+  //component diagram settings
+  package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default
+  draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+  //deployment diagram settings
+  package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
+  draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+  //state diagram settings
+  package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  //activity diagram settings
+  package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+  show_infonote default drawing_language default show_stereotype_properties default
+  
+  java_dir "/home/djo/workspace/NewtonERP/src/newtonERP/orm/field/type/"
+  java_package "newtonERP.orm.field.type"
+  classview 130828 "type"
+    //class diagram settings
+    draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+    //collaboration diagram settings
+    show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default show_msg_context default draw_all_relations default shadow default show_stereotype_properties default
+    //object diagram settings
+     write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+    //sequence diagram settings
+    show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+    //state diagram settings
+    package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+    show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+    //class settings
+    //activity diagram settings
+    package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+    show_infonote default drawing_language default show_stereotype_properties default
+    class 141708 "FieldBool"
+      visibility public 
+      nactuals 1
+      actual class class_ref 129292 // Field
+        rank 0 explicit_value ""
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Boolean field in the entities
+
+@author CloutierJo, r3hallejo"
+      classrelation 142988 // <realization>
+	relation 142988 -_-|>
+	  stereotype "bind"
+	  a public
+	    java "${type}"
+	    classrelation_ref 142988 // <realization>
+	  b parent class_ref 129292 // Field
+      end
+
+      operation 213772 "FieldBool"
+	public explicit_return_type ""
+	nparams 3
+	  param in name "name" explicit_type "String"
+	  param in name "shortName" explicit_type "String"
+	  param inout name "data" explicit_type "Boolean"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "constructeur minimum
+
+@param name nom du champ qui sera visible par l'utilisateur
+@param shortName nom du champ qui sera utiliser a l'interne
+@param data donne du champ"
+      end
+
+      operation 213900 "FieldBool"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "name" explicit_type "String"
+	  param in name "shortName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param name nom du champ qui sera visible par l'utilisateur
+@param shortName nom du champ qui sera utiliser a l'interne"
+      end
+
+      operation 214028 "getDataString"
+	public explicit_return_type "String"
+	nparams 1
+	  param inout name "forOrm" explicit_type "Boolean"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 214156 "setData"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "data" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param data the data to set"
+      end
+
+      operation 214284 "setOperator"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "operator" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 214412 "setDefaultValue"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 214540 "setData"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "data" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 141836 "FieldCurrency"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Double field in the entities
+
+@author CloutierJo"
+      classrelation 143244 // <generalisation>
+	relation 143244 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 143244 // <generalisation>
+	  b parent class_ref 141964 // FieldDouble
+      end
+
+      attribute 139148 "df"
+	private explicit_type "DecimalFormat"
+	init_value " (DecimalFormat) NumberFormat
+			.getCurrencyInstance(Locale.CANADA_FRENCH)"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 215436 "FieldCurrency"
+	public explicit_return_type ""
+	nparams 3
+	  param in name "name" explicit_type "String"
+	  param in name "shortName" explicit_type "String"
+	  param inout name "data" explicit_type "Double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "constructeur minimum
+
+@param name nom du champ qui sera visible par l'utilisateur
+@param shortName nom du champ qui sera utiliser a l'interne
+@param data donne du champ"
+      end
+
+      operation 215564 "FieldCurrency"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "name" explicit_type "String"
+	  param in name "shortName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param name nom du champ qui sera visible par l'utilisateur
+@param shortName nom du champ qui sera utiliser a l'interne"
+      end
+
+      operation 215692 "getDataString"
+	public explicit_return_type "String"
+	nparams 1
+	  param inout name "forOrm" explicit_type "Boolean"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 215820 "setData"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "data" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 141964 "FieldDouble"
+      visibility public 
+      nactuals 1
+      actual class class_ref 129292 // Field
+        rank 0 explicit_value ""
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Double field in the entities
+
+@author CloutierJo"
+      classrelation 143116 // <realization>
+	relation 143116 -_-|>
+	  stereotype "bind"
+	  a public
+	    java "${type}"
+	    classrelation_ref 143116 // <realization>
+	  b parent class_ref 129292 // Field
+      end
+
+      operation 214668 "FieldDouble"
+	public explicit_return_type ""
+	nparams 3
+	  param in name "name" explicit_type "String"
+	  param in name "shortName" explicit_type "String"
+	  param inout name "data" explicit_type "Double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "constructeur minimum
+
+@param name nom du champ qui sera visible par l'utilisateur
+@param shortName nom du champ qui sera utiliser a l'interne
+@param data donne du champ"
+      end
+
+      operation 214796 "FieldDouble"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "name" explicit_type "String"
+	  param in name "shortName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param name nom du champ qui sera visible par l'utilisateur
+@param shortName nom du champ qui sera utiliser a l'interne"
+      end
+
+      operation 214924 "setData"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "data" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param data the data to set"
+      end
+
+      operation 215052 "setOperator"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "operator" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 215180 "setDefaultValue"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 215308 "setData"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "data" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 142092 "FieldDate"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Date field for entities
+
+@author r3hallejo"
+      classrelation 143500 // <generalisation>
+	relation 143500 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 143500 // <generalisation>
+	  b parent class_ref 142220 // FieldDateTime
+      end
+
+      attribute 139404 "dateFormatter"
+	class_attribute private explicit_type "SimpleDateFormat"
+	init_value " new SimpleDateFormat(
+			\"yyyy-MM-dd\")"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 217228 "FieldDate"
+	public explicit_return_type ""
+	nparams 3
+	  param in name "name" explicit_type "String"
+	  param in name "shortName" explicit_type "String"
+	  param inout name "data" explicit_type "GregorianCalendar"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "constructeur minimum
+
+@param name nom du champ qui sera visible par l'utilisateur
+@param shortName nom du champ qui sera utiliser a l'interne
+@param data donne du champ"
+      end
+
+      operation 217356 "FieldDate"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "name" explicit_type "String"
+	  param in name "shortName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param name nom du champ qui sera visible par l'utilisateur
+@param shortName nom du champ qui sera utiliser a l'interne"
+      end
+
+      operation 217484 "setData"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "date" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 217612 "getDataString"
+	public explicit_return_type "String"
+	nparams 1
+	  param inout name "forOrm" explicit_type "Boolean"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+    end
+
+    class 142220 "FieldDateTime"
+      visibility public 
+      nactuals 1
+      actual class class_ref 129292 // Field
+        rank 0 explicit_value ""
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Date field for entities
+
+@author r3hallejo"
+      classrelation 143372 // <realization>
+	relation 143372 -_-|>
+	  stereotype "bind"
+	  a public
+	    java "${type}"
+	    classrelation_ref 143372 // <realization>
+	  b parent class_ref 129292 // Field
+      end
+
+      attribute 139276 "dateFormatter"
+	class_attribute private explicit_type "SimpleDateFormat"
+	init_value " new SimpleDateFormat(
+			\"yyyy-MM-dd HH:mm:ss\")"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 215948 "FieldDateTime"
+	public explicit_return_type ""
+	nparams 3
+	  param in name "name" explicit_type "String"
+	  param in name "shortName" explicit_type "String"
+	  param inout name "data" explicit_type "GregorianCalendar"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "constructeur minimum
+
+@param name nom du champ qui sera visible par l'utilisateur
+@param shortName nom du champ qui sera utiliser a l'interne
+@param data donne du champ"
+      end
+
+      operation 216076 "FieldDateTime"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "name" explicit_type "String"
+	  param in name "shortName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param name nom du champ qui sera visible par l'utilisateur
+@param shortName nom du champ qui sera utiliser a l'interne"
+      end
+
+      operation 216204 "getDataString"
+	public explicit_return_type "String"
+	nparams 1
+	  param inout name "forOrm" explicit_type "Boolean"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 216332 "setData"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "date" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 216460 "setOperator"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "operator" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 216588 "setDefaultValue"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 216716 "setData"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "date" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 216844 "getFormatedDate"
+	class_operation public explicit_return_type "GregorianCalendar"
+	nparams 1
+	  param in name "dateInString" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Convertie une date de string vers GregorianCalendar
+@param dateInString date en string
+@return date un gregorian calendar"
+      end
+
+      operation 216972 "getFormatedDate"
+	class_operation public explicit_return_type "GregorianCalendar"
+	nparams 2
+	  param in name "dateInString" explicit_type "String"
+	  param inout name "sdf" explicit_type "SimpleDateFormat"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Convertie une date de string vers GregorianCalendar
+@param dateInString date en string
+@param sdf format de dateTime a utiliser
+@return date un gregorian calendar"
+      end
+
+      operation 217100 "isInSameDay"
+	class_operation public explicit_return_type "boolean"
+	nparams 2
+	  param inout name "first" explicit_type "GregorianCalendar"
+	  param inout name "second" explicit_type "GregorianCalendar"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param first premier date
+@param second deuxieme date
+@param field etendu de comparaison
+@return true si les 2 date son dans le meme intervale"
+      end
+    end
+
+    class 142348 "FieldInt"
+      visibility public 
+      nactuals 1
+      actual class class_ref 129292 // Field
+        rank 0 explicit_value ""
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Integer field in the entities
+
+@author CloutierJo, r3hallejo"
+      classrelation 143628 // <realization>
+	relation 143628 -_-|>
+	  stereotype "bind"
+	  a public
+	    java "${type}"
+	    classrelation_ref 143628 // <realization>
+	  b parent class_ref 129292 // Field
+      end
+
+      operation 217740 "FieldInt"
+	public explicit_return_type ""
+	nparams 3
+	  param in name "name" explicit_type "String"
+	  param in name "shortName" explicit_type "String"
+	  param inout name "data" explicit_type "Integer"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "constructeur minimum
+
+@param name nom du champ qui sera visible par l'utilisateur
+@param shortName nom du champ qui sera utiliser a l'interne
+@param data donne du champ"
+      end
+
+      operation 217868 "FieldInt"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "name" explicit_type "String"
+	  param in name "shortName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param name nom du champ qui sera visible par l'utilisateur
+@param shortName nom du champ qui sera utiliser a l'interne"
+      end
+
+      operation 217996 "setData"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "data" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param data the data to set"
+      end
+
+      operation 218124 "setOperator"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "operator" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 218252 "setDefaultValue"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 218380 "setData"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "data" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 142476 "FieldString"
+      visibility public 
+      nactuals 1
+      actual class class_ref 129292 // Field
+        rank 0 explicit_value ""
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "String field in the entities (String is a short text where text is a long
+text)
+
+@author CloutierJo, r3hallejo"
+      classrelation 143756 // <realization>
+	relation 143756 -_-|>
+	  stereotype "bind"
+	  a public
+	    java "${type}"
+	    classrelation_ref 143756 // <realization>
+	  b parent class_ref 129292 // Field
+      end
+
+      operation 218508 "FieldString"
+	public explicit_return_type ""
+	nparams 3
+	  param in name "name" explicit_type "String"
+	  param in name "shortName" explicit_type "String"
+	  param in name "data" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "constructeur minimum
+
+@param name nom du champ qui sera visible par l'utilisateur
+@param shortName nom du champ qui sera utiliser a l'interne
+@param data donne du champ"
+      end
+
+      operation 218636 "FieldString"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "name" explicit_type "String"
+	  param in name "shortName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param name nom du champ qui sera visible par l'utilisateur
+@param shortName nom du champ qui sera utiliser a l'interne"
+      end
+
+      operation 218764 "setOperator"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "operator" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 218892 "setDefaultValue"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 219020 "setData"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "data" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 219148 "setData"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "data" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 142604 "FieldText"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "text field in the entities (text is a long text where String is a short text)
+
+@author CloutierJo"
+      classrelation 143884 // <generalisation>
+	relation 143884 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 143884 // <generalisation>
+	  b parent class_ref 142476 // FieldString
+      end
+
+      attribute 139532 "isVeryLong"
+	private explicit_type "boolean"
+	init_value " false"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 219276 "FieldText"
+	public explicit_return_type ""
+	nparams 3
+	  param in name "name" explicit_type "String"
+	  param in name "shortName" explicit_type "String"
+	  param in name "data" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "constructeur minimum
+
+@param name nom du champ qui sera visible par l'utilisateur
+@param shortName nom du champ qui sera utiliser a l'interne
+@param data donne du champ"
+      end
+
+      operation 219404 "FieldText"
+	public explicit_return_type ""
+	nparams 3
+	  param in name "name" explicit_type "String"
+	  param in name "shortName" explicit_type "String"
+	  param inout name "isVeryLong" explicit_type "boolean"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param name nom du champ qui sera visible par l'utilisateur
+@param shortName nom du champ qui sera utiliser a l'interne
+@param isVeryLong if it is a very long text field (default: false)"
+      end
+
+      operation 219532 "FieldText"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "name" explicit_type "String"
+	  param in name "shortName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "isVeryLong sera à false par default
+@param name nom du champ qui sera visible par l'utilisateur
+@param shortName nom du champ qui sera utiliser a l'interne"
+      end
+
+      operation 219660 "setVeryLong"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "isVeryLong" explicit_type "boolean"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param isVeryLong if it is a very long text area"
+      end
+
+      operation 219788 "isVeryLong"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return isVeryLong"
+      end
+    end
+
+    class 142732 "FieldTime"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Date field for entities
+
+@author r3hallejo"
+      classrelation 144012 // <generalisation>
+	relation 144012 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 144012 // <generalisation>
+	  b parent class_ref 142220 // FieldDateTime
+      end
+
+      attribute 139660 "dateFormatter"
+	class_attribute private explicit_type "SimpleDateFormat"
+	init_value " new SimpleDateFormat(
+			\"HH:mm\")"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 219916 "FieldTime"
+	public explicit_return_type ""
+	nparams 3
+	  param in name "name" explicit_type "String"
+	  param in name "shortName" explicit_type "String"
+	  param inout name "data" explicit_type "GregorianCalendar"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "constructeur minimum
+
+@param name nom du champ qui sera visible par l'utilisateur
+@param shortName nom du champ qui sera utiliser a l'interne
+@param data donne du champ"
+      end
+
+      operation 220044 "FieldTime"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "name" explicit_type "String"
+	  param in name "shortName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param name nom du champ qui sera visible par l'utilisateur
+@param shortName nom du champ qui sera utiliser a l'interne"
+      end
+
+      operation 220172 "setData"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "date" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 220300 "getDataString"
+	public explicit_return_type "String"
+	nparams 1
+	  param inout name "forOrm" explicit_type "Boolean"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+    end
+  end
+
+  deploymentview 130572 "type"
+    //deployment diagram settings
+    package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
+    draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+    artifact 140556 "FieldBool"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 141708 // FieldBool
+      end
+    end
+
+    artifact 140684 "FieldDouble"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 141964 // FieldDouble
+      end
+    end
+
+    artifact 140812 "FieldCurrency"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 141836 // FieldCurrency
+      end
+    end
+
+    artifact 140940 "FieldDateTime"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 142220 // FieldDateTime
+      end
+    end
+
+    artifact 141068 "FieldDate"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 142092 // FieldDate
+      end
+    end
+
+    artifact 141196 "FieldInt"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 142348 // FieldInt
+      end
+    end
+
+    artifact 141324 "FieldString"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 142476 // FieldString
+      end
+    end
+
+    artifact 141452 "FieldText"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 142604 // FieldText
+      end
+    end
+
+    artifact 141580 "FieldTime"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 142732 // FieldTime
+      end
+    end
+  end
+end

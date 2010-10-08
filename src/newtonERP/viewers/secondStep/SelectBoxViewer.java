@@ -4,6 +4,7 @@ import newtonERP.common.ActionLink;
 import newtonERP.common.NaturalMap;
 import newtonERP.module.BaseAction;
 import newtonERP.module.generalEntity.ListOfValue;
+import newtonERP.viewers.viewables.SelectBoxViewable;
 
 /**
  * The select box viewer
@@ -18,9 +19,9 @@ public class SelectBoxViewer
 	 * @param isReadOnly si le select box est readonly
 	 * @return the html code of this view
 	 */
-	public static String getHtmlCode(
-			newtonERP.viewers.viewables.SelectBoxViewable entity,
+	public static String getHtmlCode(SelectBoxViewable entity,
 			String inputName, String inputValue, boolean isReadOnly)
+
 	{
 		String html = "";
 
@@ -69,5 +70,4 @@ public class SelectBoxViewer
 
 		return html;
 	}
-
 }

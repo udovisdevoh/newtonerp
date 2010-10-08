@@ -1,0 +1,76 @@
+class ConfigManager
+!!!226956.java!!!	getDocument() : Document
+		if (document == null)
+		{
+			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+			DocumentBuilder db = dbf.newDocumentBuilder();
+			document = db.parse(getFile());
+			document.getDocumentElement().normalize();
+		}
+		return document;
+!!!227084.java!!!	getFile() : File
+		if (file == null)
+			file = new File(configFile);
+		return file;
+!!!227212.java!!!	loadStringProperty(in propertyName : String, in attributName : String, in defaultValue : String) : String
+		if (propertyName.contains("#")
+				|| (attributName != null && attributName.contains("#")))
+			throw new RuntimeException(
+					"name of config property or config attribut cannot containe '#' char");
+		if (propertyValue.containsKey(propertyName + "#" + attributName))
+			return propertyValue.get(propertyName + "#" + attributName);
+
+		try
+		{
+			String val;
+			NodeList nodeList = getDocument()
+					.getElementsByTagName(propertyName);
+			Node node = nodeList.item(0);
+			if (attributName != null)
+			{
+				NamedNodeMap attributeList = node.getAttributes();
+				val = attributeList.getNamedItem(attributName).getFirstChild()
+						.getNodeValue();
+			}
+			else
+			{
+				val = node.getFirstChild().getNodeValue();
+			}
+
+			propertyValue.put(propertyName + "#" + attributName, val);
+			return val;
+		} catch (Exception e)
+		{
+			if (defaultValue == null)
+				throw new RuntimeException(
+						"the property "
+								+ propertyName
+								+ " is needed in the config file, there is no default value possible");
+
+			propertyValue.put(propertyName + "#" + attributName, defaultValue);
+			return defaultValue;
+		}
+!!!227340.java!!!	loadStringProperty(in propertyName : String, in defaultValue : String) : String
+		return loadStringProperty(propertyName, null, defaultValue);
+!!!227468.java!!!	loadStringAttrProperty(in propertyName : String, in attributName : String) : String
+		return loadStringProperty(propertyName, attributName, null);
+!!!227596.java!!!	loadStringProperty(in propertyName : String) : String
+		return loadStringProperty(propertyName, null);
+!!!227724.java!!!	loadIntProperty(in propertyName : String, in attributName : String, inout defaultValue : Integer) : int
+		return Integer.parseInt(loadStringProperty(propertyName, attributName,
+				defaultValue + ""));
+!!!227852.java!!!	loadIntProperty(in propertyName : String, inout defaultValue : Integer) : int
+		return loadIntProperty(propertyName, null, defaultValue);
+!!!227980.java!!!	loadIntAttrProperty(in propertyName : String, in attributName : String) : int
+		return loadIntProperty(propertyName, attributName, null);
+!!!228108.java!!!	loadIntProperty(in propertyName : String) : int
+		return loadIntProperty(propertyName, null);
+!!!228236.java!!!	loadBoolProperty(in propertyName : String, in attributName : String, inout defaultValue : Boolean) : boolean
+		return Boolean.parseBoolean(loadStringProperty(propertyName,
+				attributName, defaultValue + ""));
+!!!228364.java!!!	loadBoolProperty(in propertyName : String, inout defaultValue : Boolean) : boolean
+		return loadBoolProperty(propertyName, null, defaultValue);
+!!!228492.java!!!	loadBoolAttrProperty(in propertyName : String, in attributName : String) : boolean
+		return loadBoolProperty(propertyName, attributName, null);
+!!!228620.java!!!	loadBoolProperty(in propertyName : String) : boolean
+		return loadBoolProperty(propertyName, null);

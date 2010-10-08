@@ -1,0 +1,49 @@
+class ActionEntity
+!!!150412.java!!!	ActionEntity()
+		super();
+		setVisibleName("Action");
+		AccessorManager.addAccessor(this, new ModuleEntity());
+!!!150540.java!!!	initFields() : Fields
+		FieldInt moduleEntity = new FieldInt("Module", new ModuleEntity()
+				.getForeignKeyName());
+		moduleEntity.setReadOnly(true);
+
+		FieldString systemName = new FieldString("Nom système", "systemName");
+		systemName.setNaturalKey(true);
+
+		Vector<Field<?>> fieldList = new Vector<Field<?>>();
+		fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
+		fieldList.add(systemName);
+		fieldList.add(moduleEntity);
+		return new Fields(fieldList);
+!!!150668.java!!!	deleteUI(inout parameters : Hashtable<String, String>) : AbstractEntity
+		/*
+		 * On ne veut pas permettre l'effacement d'action alors on redirige
+		 * l'effacement vers GetList
+		 */
+		ListViewerData entityList = super.getList();
+		return entityList;
+!!!150796.java!!!	getList(inout parameters : Hashtable<String, String>) : ListViewerData
+		parameters.put(getPrimaryKeyName(), "&");
+
+		ListViewerData entityList = super.getList(parameters);
+		entityList.addSpecificActionButtonList(new ActionLink("Voir source",
+				new ViewActionSource(), parameters));
+		entityList.addSpecificActionButtonList(new ActionLink("Générer source",
+				new GenerateActionCode(), parameters));
+
+		// On doit créer une action seulement avec le [+] de son module
+		entityList.removeGlobalActions("Nouveau " + getVisibleName());
+
+		return entityList;
+!!!150924.java!!!	getAction() : AbstractAction
+		String actionName = getActionName();
+		Module module = getModuleEntity().getModule();
+		return module.getAction(actionName);
+!!!151052.java!!!	getModuleEntity() : ModuleEntity
+		return (ModuleEntity) getSingleAccessor(new ModuleEntity()
+				.getForeignKeyName());
+!!!151180.java!!!	getActionName() : String
+		return getDataString("systemName");
+!!!151308.java!!!	getBaseAction(inout entity : AbstractOrmEntity) : BaseAction
+		return new BaseAction(getActionName(), entity);

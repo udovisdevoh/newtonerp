@@ -36,8 +36,8 @@ public class ActionEntity extends AbstractOrmEntity
 	@Override
 	public Fields initFields()
 	{
-		FieldInt moduleEntity = new FieldInt("Module", new ModuleEntity()
-				.getForeignKeyName());
+		FieldInt moduleEntity = new FieldInt("Module",
+				new ModuleEntity().getForeignKeyName());
 		moduleEntity.setReadOnly(true);
 
 		FieldString systemName = new FieldString("Nom système", "systemName");

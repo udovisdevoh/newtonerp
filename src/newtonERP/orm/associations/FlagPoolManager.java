@@ -1,6 +1,7 @@
 package newtonERP.orm.associations;
 
 import java.util.Collection;
+import java.util.Hashtable;
 import java.util.Vector;
 
 import newtonERP.common.ModuleLoader;
@@ -20,8 +21,7 @@ public class FlagPoolManager
 	 * @param flagPoolList liste de FlagPool
 	 * @param parameters paramêtres (mêmes type que dans doAction
 	 */
-	public static void applyFlagPoolChanges(
-			newtonERP.module.AbstractOrmEntity sourceEntity,
+	public static void applyFlagPoolChanges(AbstractOrmEntity sourceEntity,
 			Iterable<FlagPool> flagPoolList,
 			Hashtable<String, String> parameters)
 	{
@@ -29,10 +29,9 @@ public class FlagPoolManager
 			applyFlagPoolChanges(sourceEntity, flagPool, parameters);
 	}
 
-	private static void applyFlagPoolChanges(
-			newtonERP.module.AbstractOrmEntity sourceEntity,
-			newtonERP.module.generalEntity.FlagPool flagPool,
-			Hashtable<String, String> parameters)
+	private static void applyFlagPoolChanges(AbstractOrmEntity sourceEntity,
+			FlagPool flagPool, Hashtable<String, String> parameters)
+
 	{
 		flagPool.query(sourceEntity.getPrimaryKeyName(),
 				sourceEntity.getPrimaryKeyValue());
@@ -62,9 +61,9 @@ public class FlagPoolManager
 
 	}
 
-	private static newtonERP.module.AbstractOrmEntity getSearchEntity(
-			newtonERP.module.AbstractOrmEntity sourceEntity,
-			newtonERP.module.generalEntity.FlagPool flagPool, String elementName)
+	private static AbstractOrmEntity getSearchEntity(
+			AbstractOrmEntity sourceEntity, FlagPool flagPool,
+			String elementName)
 	{
 		if (elementName.contains("."))
 		{
@@ -99,9 +98,8 @@ public class FlagPoolManager
 	 * @param sourceEntity the source entity
 	 * @param foreignEntityDefinition entity of the foreign entity
 	 */
-	public final static void addFlagPool(
-			newtonERP.module.AbstractOrmEntity sourceEntity,
-			newtonERP.module.AbstractOrmEntity foreignEntityDefinition)
+	public static final void addFlagPool(AbstractOrmEntity sourceEntity,
+			AbstractOrmEntity foreignEntityDefinition)
 	{
 
 		AbstractOrmEntity intermediateEntityDefinition = buildIntermediateEntityDefinition(
@@ -117,9 +115,9 @@ public class FlagPoolManager
 				foreignEntityDefinition.getNaturalKeyNameList());
 	}
 
-	private static newtonERP.module.AbstractOrmEntity buildIntermediateEntityDefinition(
-			newtonERP.module.AbstractOrmEntity entity1,
-			newtonERP.module.AbstractOrmEntity entity2)
+	private static AbstractOrmEntity buildIntermediateEntityDefinition(
+			AbstractOrmEntity entity1, AbstractOrmEntity entity2)
+
 	{
 		String entityName1, entityName2, intermediateEntityName;
 
@@ -170,13 +168,12 @@ public class FlagPoolManager
 	 * @param foreignDescriptionUiControls liste de colonne de description de
 	 *            table étrangère, exemple: Action, Module
 	 */
-	private static void addFlagPool(
-			newtonERP.module.AbstractOrmEntity sourceEntity,
+	private static void addFlagPool(AbstractOrmEntity sourceEntity,
 			String visibleDescription,
-			newtonERP.module.AbstractOrmEntity intermediateEntityDefinition,
+			AbstractOrmEntity intermediateEntityDefinition,
 			String intermediateKeyIn, String intermediateKeyOut,
-			newtonERP.module.AbstractOrmEntity foreignEntityDefinition,
-			String foreignKey, Vector<String> foreignDescriptionUiControls)
+			AbstractOrmEntity foreignEntityDefinition, String foreignKey,
+			Vector<String> foreignDescriptionUiControls)
 	{
 		FlagPool flagPool = new FlagPool(sourceEntity, visibleDescription,
 				intermediateEntityDefinition, intermediateKeyIn,
@@ -187,5 +184,4 @@ public class FlagPoolManager
 		foreignEntityDefinition.addNegativeFlagPool(visibleDescription,
 				flagPool);
 	}
-
 }

@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classnewtonERP_1_1module_1_1AbstractOrmEntity.html#ae8f1cf3dfbc0b34d8cbf9458a79badb1" title="BaseAction Edit." alt="" coords="359,5,660,35"/>
+<area shape="rect" id="node5" href="$classnewtonERP_1_1module_1_1AbstractEntity.html#a87356471289bf7f6daaea032e4155f83" title="newtonERP.module.AbstractEntity.getFields" alt="" coords="363,59,656,88"/>
+<area shape="rect" id="node7" href="$classnewtonERP_1_1orm_1_1field_1_1Fields.html#a1dead41b09739f40cab6b0d0d9d8c59a" title="met les valeur par defaut dans les field pour ne pas avoir de valeur null" alt="" coords="363,112,656,141"/>
+<area shape="rect" id="node9" href="$classnewtonERP_1_1orm_1_1field_1_1Fields.html#a3cdc9fa5b4e29a69a8743d5fa4fde59c" title="newtonERP.orm.field.Fields.getFields" alt="" coords="711,112,959,141"/>
+</map>

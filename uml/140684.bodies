@@ -1,0 +1,54 @@
+class SingleAccessorManager
+!!!203020.java!!!	getSingleAccessorList(inout entity : AbstractOrmEntity) : AbstractOrmEntity
+		TreeMap<String, AbstractOrmEntity> singleAccessorList = new TreeMap<String, AbstractOrmEntity>();
+
+		AbstractOrmEntity foreignEntityDefinition, realForeignEntity;
+
+		ListOfValue listOfValue;
+
+		for (String listOfValueName : entity.getPositiveListOfValueList()
+				.keySet())
+		{
+			listOfValue = entity.getPositiveListOfValueList().get(
+					listOfValueName);
+			foreignEntityDefinition = listOfValue.getForeignEntityDefinition();
+
+			realForeignEntity = getForeignEntity(entity,
+					foreignEntityDefinition);
+
+			if (realForeignEntity != null)
+				singleAccessorList.put(realForeignEntity.getSystemName(),
+						realForeignEntity);
+		}
+
+		return singleAccessorList;
+!!!203148.java!!!	getForeignEntity(inout sourceEntity : AbstractOrmEntity, inout foreignEntityDefinition : AbstractOrmEntity) : AbstractOrmEntity
+		foreignEntityDefinition.setData(foreignEntityDefinition
+				.getPrimaryKeyName(), sourceEntity
+				.getData(foreignEntityDefinition.getForeignKeyName()));
+
+		Vector<AbstractOrmEntity> resultSet = Orm
+				.select(foreignEntityDefinition);
+
+		if (resultSet.size() > 0)
+			return resultSet.get(0);
+
+		return null;
+!!!203276.java!!!	getSingleAccessor(inout abstractOrmEntity : AbstractOrmEntity, in listOfValueName : String) : AbstractOrmEntity
+		AbstractOrmEntity foreignEntityDefinition, realForeignEntity;
+
+		ListOfValue listOfValue = abstractOrmEntity
+				.tryMatchListOfValue(listOfValueName);
+
+		if (listOfValue != null)
+		{
+			listOfValue = abstractOrmEntity.getPositiveListOfValueList().get(
+					listOfValueName);
+			foreignEntityDefinition = listOfValue.getForeignEntityDefinition();
+
+			realForeignEntity = getForeignEntity(abstractOrmEntity,
+					foreignEntityDefinition);
+
+			return realForeignEntity;
+		}
+		return null;

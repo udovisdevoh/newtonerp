@@ -1,11 +1,13 @@
 package newtonERP.viewers.secondStep;
 
 import modules.userRightModule.UserRightModule;
+import newtonERP.common.ActionLink;
 import newtonERP.common.ListModule;
 
 /**
  * Sert à formatter de l'argent
  * @author Guillaume
+ * 
  */
 public class LinkViewer
 {
@@ -15,7 +17,7 @@ public class LinkViewer
 	 * @param actionLink representation du lien a effectuer
 	 * @return bouton de lien
 	 */
-	public static String getHtmlCode(newtonERP.common.ActionLink actionLink)
+	public static String getHtmlCode(ActionLink actionLink)
 	{
 		// String onClickConfirm = "";
 
@@ -57,10 +59,8 @@ public class LinkViewer
 		return currentBalloonDivId;
 	}
 
-	/**
-	 * todo: retire lorsque la correction est aporter plus haut
-	 */
 	@SuppressWarnings("unused")
+	// todo: retire lorsque la correction est aporter plus haut
 	private static String getOnClickConfirm(String actionName,
 			String entityTypeName, String value)
 	{
@@ -77,13 +77,12 @@ public class LinkViewer
 		return html;
 	}
 
-	private static boolean isPermissionAllowed(
-			newtonERP.common.ActionLink actionLink)
+	private static boolean isPermissionAllowed(ActionLink actionLink)
+
 	{
 		UserRightModule userRightModule = (UserRightModule) ListModule
 				.getModule("UserRightModule");
 
 		return userRightModule.isPermissionAllowed(actionLink);
 	}
-
 }

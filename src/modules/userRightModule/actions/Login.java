@@ -1,20 +1,25 @@
 package modules.userRightModule.actions;
 
+import java.util.Hashtable;
 import java.util.Vector;
 
 import modules.userRightModule.UserRightModule;
 import modules.userRightModule.entityDefinitions.User;
 import newtonERP.common.ActionLink;
 import newtonERP.common.Authentication;
+import newtonERP.module.AbstractAction;
+import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
+import newtonERP.module.generalEntity.Form;
 import newtonERP.module.generalEntity.StaticTextEntity;
+import newtonERP.orm.field.Field;
 
 /**
  * Action class that creates all the rights for every module
  * 
  * @author cloutierJo
  */
-public class Login extends newtonERP.module.AbstractAction
+public class Login extends AbstractAction
 {
 	/**
 	 * constructeur
@@ -25,8 +30,7 @@ public class Login extends newtonERP.module.AbstractAction
 		setDetailedDescription("Vous connecter");
 	}
 
-	public newtonERP.module.AbstractEntity doAction(
-			newtonERP.module.AbstractEntity entity,
+	public AbstractEntity doAction(AbstractEntity entity,
 			Hashtable<String, String> parameters)
 	{
 		String currentLoginName = parameters.get("name");
@@ -64,8 +68,7 @@ public class Login extends newtonERP.module.AbstractAction
 		return loginForm;
 	}
 
-	private boolean IsGroupValid(
-			modules.userRightModule.entityDefinitions.User user)
+	private boolean IsGroupValid(User user)
 	{
 		AbstractOrmEntity groups;
 		try
@@ -79,5 +82,4 @@ public class Login extends newtonERP.module.AbstractAction
 			return false;
 		return true;
 	}
-
 }

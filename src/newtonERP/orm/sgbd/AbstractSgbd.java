@@ -4,6 +4,8 @@ import java.sql.ResultSet;
 import java.util.Vector;
 
 import newtonERP.module.AbstractOrmEntity;
+import newtonERP.orm.OrmActions;
+import newtonERP.orm.field.Field;
 
 /**
  * @author BeeERP team Représente tous les SGBD et leurs implémentations et
@@ -19,16 +21,17 @@ public abstract class AbstractSgbd
 	 * @param action the OrmActions that will be done
 	 * @return le resultat sous forme d'un result set
 	 */
-	public abstract ResultSet execute(String request,
-			newtonERP.orm.OrmActions action);
+	public abstract ResultSet execute(String request, OrmActions action);
 
 	/**
 	 * Method used to initialize the connection to the databse
+	 * 
 	 */
 	public abstract void connect();
 
 	/**
 	 * Method used to disconnect from the database
+	 * 
 	 */
 	public abstract void disconnect();
 
@@ -39,9 +42,8 @@ public abstract class AbstractSgbd
 	 * @param field the field to add
 	 * @return ?
 	 */
-	public abstract ResultSet addColumnToTable(
-			newtonERP.module.AbstractOrmEntity entity,
-			newtonERP.orm.field.Field field);
+	public abstract ResultSet addColumnToTable(AbstractOrmEntity entity,
+			Field<?> field);
 
 	/**
 	 * Use only for complex queries. Use the select that takes only a vector of
@@ -56,8 +58,7 @@ public abstract class AbstractSgbd
 	 * @return a vector of ormizable entities
 	 */
 	@Deprecated
-	public abstract ResultSet select(
-			newtonERP.module.AbstractOrmEntity searchEntity,
+	public abstract ResultSet select(AbstractOrmEntity searchEntity,
 			Vector<String> searchCriteriasParam);
 
 	/**
@@ -79,7 +80,7 @@ public abstract class AbstractSgbd
 	 * @param newEntity the entity to add
 	 * @return le id de clé primaire ajoutée
 	 */
-	public abstract int insert(newtonERP.module.AbstractOrmEntity newEntity);
+	public abstract int insert(AbstractOrmEntity newEntity);
 
 	/**
 	 * Method used to delete an entity from the database
@@ -88,8 +89,7 @@ public abstract class AbstractSgbd
 	 * @param searchCriterias the search criterias for the where clause
 	 */
 	@Deprecated
-	public abstract void delete(
-			newtonERP.module.AbstractOrmEntity searchEntity,
+	public abstract void delete(AbstractOrmEntity searchEntity,
 			Vector<String> searchCriterias);
 
 	/**
@@ -110,8 +110,7 @@ public abstract class AbstractSgbd
 	 * @param searchCriterias the criterias used by the update
 	 */
 	@Deprecated
-	public abstract void update(
-			newtonERP.module.AbstractOrmEntity entityContainingChanges,
+	public abstract void update(AbstractOrmEntity entityContainingChanges,
 			Vector<String> searchCriterias);
 
 	/**
@@ -124,7 +123,7 @@ public abstract class AbstractSgbd
 	 * @param entityContainingChanges the changes to apply
 	 */
 	public abstract void update(Vector<AbstractOrmEntity> searchEntities,
-			newtonERP.module.AbstractOrmEntity entityContainingChanges);
+			AbstractOrmEntity entityContainingChanges);
 
 	/**
 	 * @param entitySystemName nom système d'une entité
@@ -144,8 +143,7 @@ public abstract class AbstractSgbd
 	 * Créer une table pour un type d'entité
 	 * @param entity entité
 	 */
-	public abstract void createTableForEntity(
-			newtonERP.module.AbstractOrmEntity entity);
+	public abstract void createTableForEntity(AbstractOrmEntity entity);
 
 	/**
 	 * Uses the new where builder
@@ -156,9 +154,8 @@ public abstract class AbstractSgbd
 	 *            clause
 	 * @param entityContainingChanges the changes to apply
 	 */
-	public abstract void updateUnique(
-			newtonERP.module.AbstractOrmEntity searchEntity,
-			newtonERP.module.AbstractOrmEntity entityContainingChanges);
+	public abstract void updateUnique(AbstractOrmEntity searchEntity,
+			AbstractOrmEntity entityContainingChanges);
 
 	/**
 	 * Use only for complex queries. Use the select that takes only a vector of
@@ -176,8 +173,7 @@ public abstract class AbstractSgbd
 	 * @return a vector of ormizable entities
 	 */
 	@Deprecated
-	public abstract ResultSet select(
-			newtonERP.module.AbstractOrmEntity searchEntity,
+	public abstract ResultSet select(AbstractOrmEntity searchEntity,
 			Vector<String> searchCriteriasParam, int limit, int offset,
 			String orderBy);
 
@@ -185,7 +181,7 @@ public abstract class AbstractSgbd
 	 * @param searchEntity entité de recherche
 	 * @return nombre d'occurence du type de l'entité de recherche
 	 */
-	public int count(newtonERP.module.AbstractOrmEntity searchEntity)
+	public int count(AbstractOrmEntity searchEntity)
 	{
 		return count(searchEntity, null);
 	}
@@ -196,7 +192,7 @@ public abstract class AbstractSgbd
 	 * @return nombre d'occurence du type de l'entité de recherche
 	 */
 	@Deprecated
-	public abstract int count(newtonERP.module.AbstractOrmEntity searchEntity,
+	public abstract int count(AbstractOrmEntity searchEntity,
 			Vector<String> searchParameterList);
 
 	/**

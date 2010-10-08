@@ -1,0 +1,46 @@
+class Starter
+!!!165772.java!!!	main(inout args : String) : void
+		ListModule.initAllModule();
+		startOrm();
+		startWebWerver();
+!!!165900.java!!!	startWebWerver() : void
+		server = new Server(ConfigManager.loadIntProperty("port", 47098));
+		server.setGracefulShutdown(2000);
+		server.setStopAtShutdown(true);
+		Context context = new Context(server, "/", Context.SESSIONS);
+		context.setServletHandler(new Servlet());
+
+		try
+		{
+			server.start();
+			doWeExit();
+		} catch (BindException e)
+		{
+			Logger.error("      *****serveur déja partie********");
+			shutdown();
+		}
+!!!166028.java!!!	startOrm() : void
+		try
+		{
+			Orm.connect();
+			Orm.createNonExistentTables();
+		} catch (OrmException e)
+		{
+			e.printStackTrace();
+		}
+
+		new CreateAllRight().perform(null);
+!!!166156.java!!!	shutdown() : void
+		server.stop();
+		Logger.close();
+!!!166284.java!!!	doWeExit() : void
+		boolean exit = false;
+		while (!exit)
+		{
+			System.out.println("Voulez-vous quitter? (o)");
+			if (System.in.read() == 'o')
+			{
+				exit = true;
+				shutdown();
+			}
+		}

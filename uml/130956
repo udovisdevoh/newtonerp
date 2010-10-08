@@ -1,0 +1,453 @@
+format 75
+"sgbd" // src::newtonERP::orm::sgbd
+  revision 1
+  modified_by 12 "djo"
+  // class settings
+  //class diagram settings
+  draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+  //use case diagram settings
+  package_name_in_tab default show_context default auto_label_position default draw_all_relations default class_drawing_mode default shadow default show_stereotype_properties default
+  //sequence diagram settings
+  show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+  //collaboration diagram settings
+  show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default show_msg_context default draw_all_relations default shadow default show_stereotype_properties default
+  //object diagram settings
+   write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+  //component diagram settings
+  package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default
+  draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+  //deployment diagram settings
+  package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
+  draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+  //state diagram settings
+  package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  //activity diagram settings
+  package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+  show_infonote default drawing_language default show_stereotype_properties default
+  
+  java_dir "/home/djo/workspace/NewtonERP/src/newtonERP/orm/sgbd/"
+  java_package "newtonERP.orm.sgbd"
+  classview 130572 "sgbd"
+    //class diagram settings
+    draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+    //collaboration diagram settings
+    show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default show_msg_context default draw_all_relations default shadow default show_stereotype_properties default
+    //object diagram settings
+     write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+    //sequence diagram settings
+    show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+    //state diagram settings
+    package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+    show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+    //class settings
+    //activity diagram settings
+    package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+    show_infonote default drawing_language default show_stereotype_properties default
+    class 139532 "AbstractSgbd"
+      abstract visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "@author BeeERP team Représente tous les SGBD et leurs implémentations et
+        déclatations communes"
+      operation 220428 "execute"
+	abstract public explicit_return_type "ResultSet"
+	nparams 2
+	  param in name "request" explicit_type "String"
+	  param inout name "action" type class_ref 139660 // OrmActions
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Method that executes the sql query passed in paramter plus de action from
+the OrmAction
+
+@param request l'action a effectue
+@param action the OrmActions that will be done
+@return le resultat sous forme d'un result set"
+      end
+
+      operation 220556 "connect"
+	abstract public explicit_return_type "void"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Method used to initialize the connection to the databse
+"
+      end
+
+      operation 220684 "disconnect"
+	abstract public explicit_return_type "void"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Method used to disconnect from the database
+"
+      end
+
+      operation 220812 "addColumnToTable"
+	abstract public explicit_return_type "ResultSet"
+	nparams 2
+	  param inout name "entity" type class_ref 128268 // AbstractOrmEntity
+	  param inout name "field" type class_ref 129292 // Field
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Alter table
+
+@param entity the entity containing the new field
+@param field the field to add
+@return ?"
+      end
+
+      operation 220940 "select"
+	abstract public explicit_return_type "ResultSet"
+	nparams 2
+	  param inout name "searchEntity" type class_ref 128268 // AbstractOrmEntity
+	  param inout name "searchCriteriasParam" explicit_type "Vector<String>"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Deprecated
+"
+	
+	
+	
+	comment "Use only for complex queries. Use the select that takes only a vector of
+entities instead
+
+Method used to do search queries done from the views to the databse. The
+search criterias that has been passed in parameter are a list of string
+that has been generated by the view modules
+
+@param searchEntity the entity that has to be researched
+@param searchCriteriasParam the search criterias formatted into strings
+@return a vector of ormizable entities"
+      end
+
+      operation 221068 "select"
+	abstract public explicit_return_type "ResultSet"
+	nparams 1
+	  param inout name "searchEntities" explicit_type "Vector<AbstractOrmEntity>"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Uses the new where builder
+
+Method used to do search queries done from the views to the databse. The
+search criterias that has been passed in parameter are a list of string
+that has been generated by the view modules todo: correct doc
+
+@param searchEntities the entities from which we will perform the search
+@return the entities"
+      end
+
+      operation 221196 "insert"
+	abstract public explicit_return_type "int"
+	nparams 1
+	  param inout name "newEntity" type class_ref 128268 // AbstractOrmEntity
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Method used to insert an entity in the database based into the entity
+passed in parameter
+
+@param newEntity the entity to add
+@return le id de clé primaire ajoutée"
+      end
+
+      operation 221324 "delete"
+	abstract public explicit_return_type "void"
+	nparams 2
+	  param inout name "searchEntity" type class_ref 128268 // AbstractOrmEntity
+	  param inout name "searchCriterias" explicit_type "Vector<String>"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Deprecated
+"
+	
+	
+	
+	comment "Method used to delete an entity from the database
+
+@param searchEntity the entity to be researched
+@param searchCriterias the search criterias for the where clause"
+      end
+
+      operation 221452 "delete"
+	abstract public explicit_return_type "void"
+	nparams 1
+	  param inout name "searchEntities" explicit_type "Vector<AbstractOrmEntity>"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Uses the new where builder
+
+Method used to delete an entity from the database
+
+@param searchEntities the entities from which we will build our where
+           clause"
+      end
+
+      operation 221580 "update"
+	abstract public explicit_return_type "void"
+	nparams 2
+	  param inout name "entityContainingChanges" type class_ref 128268 // AbstractOrmEntity
+	  param inout name "searchCriterias" explicit_type "Vector<String>"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Deprecated
+"
+	
+	
+	
+	comment "Method used to update / change an entity
+
+@param entityContainingChanges the entity that has been changed and will
+           be in the orm
+@param searchCriterias the criterias used by the update"
+      end
+
+      operation 221708 "update"
+	abstract public explicit_return_type "void"
+	nparams 2
+	  param inout name "searchEntities" explicit_type "Vector<AbstractOrmEntity>"
+	  param inout name "entityContainingChanges" type class_ref 128268 // AbstractOrmEntity
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Uses the new where builder
+
+Method used to update / change an entity
+
+@param searchEntities the entities from which we will build our where
+           clause
+@param entityContainingChanges the changes to apply"
+      end
+
+      operation 221836 "isEntityExists"
+	abstract public explicit_return_type "boolean"
+	nparams 1
+	  param in name "entitySystemName" explicit_type "String"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param entitySystemName nom système d'une entité
+@return true si l'entité a une table dans la base de donnée, sinon false"
+      end
+
+      operation 221964 "createIndex"
+	abstract public explicit_return_type "void"
+	nparams 2
+	  param in name "entityName" explicit_type "String"
+	  param in name "fieldName" explicit_type "String"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Sert à ajouter un index dans la table SQL de l'entité pour un field en
+particulier
+@param entityName nom de l'entité
+@param fieldName nom du field"
+      end
+
+      operation 222092 "createTableForEntity"
+	abstract public explicit_return_type "void"
+	nparams 1
+	  param inout name "entity" type class_ref 128268 // AbstractOrmEntity
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Créer une table pour un type d'entité
+@param entity entité"
+      end
+
+      operation 222220 "updateUnique"
+	abstract public explicit_return_type "void"
+	nparams 2
+	  param inout name "searchEntity" type class_ref 128268 // AbstractOrmEntity
+	  param inout name "entityContainingChanges" type class_ref 128268 // AbstractOrmEntity
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Uses the new where builder
+
+Method used to update / change an entity
+
+@param searchEntity the entities from which we will build our where
+           clause
+@param entityContainingChanges the changes to apply"
+      end
+
+      operation 222348 "select"
+	abstract public explicit_return_type "ResultSet"
+	nparams 5
+	  param inout name "searchEntity" type class_ref 128268 // AbstractOrmEntity
+	  param inout name "searchCriteriasParam" explicit_type "Vector<String>"
+	  param in name "limit" explicit_type "int"
+	  param in name "offset" explicit_type "int"
+	  param in name "orderBy" explicit_type "String"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}, ${t4} ${p4}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Deprecated
+"
+	
+	
+	
+	comment "Use only for complex queries. Use the select that takes only a vector of
+entities instead
+
+Method used to do search queries done from the views to the databse. The
+search criterias that has been passed in parameter are a list of string
+that has been generated by the view modules
+
+@param searchEntity the entity that has to be researched
+@param searchCriteriasParam the search criterias formatted into strings
+@param limit limite de résultat
+@param offset offset du début des résultats
+@param orderBy ordre facultatif
+@return a vector of ormizable entities"
+      end
+
+      operation 222476 "count"
+	public explicit_return_type "int"
+	nparams 1
+	  param inout name "searchEntity" type class_ref 128268 // AbstractOrmEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param searchEntity entité de recherche
+@return nombre d'occurence du type de l'entité de recherche"
+      end
+
+      operation 222604 "count"
+	abstract public explicit_return_type "int"
+	nparams 2
+	  param inout name "searchEntity" type class_ref 128268 // AbstractOrmEntity
+	  param inout name "searchParameterList" explicit_type "Vector<String>"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Deprecated
+"
+	
+	
+	
+	comment "@param searchEntity entité de recherche
+@param searchParameterList paramêtres de recherche
+@return nombre d'occurence du type de l'entité de recherche"
+      end
+
+      operation 222732 "doBackup"
+	abstract public explicit_return_type "void"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Fait un backup de la DB"
+      end
+
+      operation 222860 "getLatestBackupTime"
+	abstract public explicit_return_type "long"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return timestamp en ms où le dernier backup à été fait"
+      end
+    end
+  end
+
+  deploymentview 130700 "sgbd"
+    //deployment diagram settings
+    package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
+    draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+    artifact 141708 "AbstractSgbd"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 139532 // AbstractSgbd
+      end
+    end
+  end
+
+  package_ref 131340 // sqlite
+end

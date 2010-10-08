@@ -1,0 +1,14 @@
+class BandDiagramViewerData
+!!!248076.java!!!	BandDiagramViewerData(inout diagramInfo : Hashtable<String, Double>)
+		super();
+		this.diagramInfo = diagramInfo;
+!!!248204.java!!!	getDiagramInfo() : Hashtable<String, Double>
+		if (diagramInfo == null)
+			diagramInfo = new Hashtable<String, Double>();
+		return diagramInfo;
+!!!248332.java!!!	getMaximumValue() : double
+		double max = 0;
+		for (double value : getDiagramInfo().values())
+			if (value > max)
+				max = value;
+		return max;

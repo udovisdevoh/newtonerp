@@ -1,14 +1,17 @@
 package newtonERP.taskManager;
 
 import java.util.Collection;
+import java.util.Hashtable;
 import java.util.Vector;
 
 import modules.taskModule.entityDefinitions.EntityEntity;
 import modules.taskModule.entityDefinitions.Specification;
 import modules.taskModule.entityDefinitions.TaskEntity;
 import newtonERP.common.ListModule;
+import newtonERP.logging.Logger;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
+import newtonERP.module.Module;
 import newtonERP.orm.Orm;
 import newtonERP.orm.associations.PluralAccessor;
 
@@ -18,15 +21,15 @@ import newtonERP.orm.associations.PluralAccessor;
  */
 public class TaskManager
 {
-	private static String taskModuleEntityDefinitionNameList;
+	private static Vector<String> taskModuleEntityDefinitionNameList;
 
 	/**
 	 * @param entity entité pour laquelle on veut exécuter les tâches
 	 * @param primaryKeyValue valeur de clef primaire
 	 * @return retour de l'action d'une tâche exécutée (s'il y a lieu)
 	 */
-	public static newtonERP.module.AbstractEntity executeTasks(
-			newtonERP.module.AbstractOrmEntity entity, int primaryKeyValue)
+	public static AbstractEntity executeTasks(AbstractOrmEntity entity,
+			int primaryKeyValue)
 	{
 		Hashtable<String, String> entityParameters = new Hashtable<String, String>();
 
@@ -42,8 +45,8 @@ public class TaskManager
 	 * @param entity entité pour laquelle on veut exécuter les tâches
 	 * @return retour de l'action d'une tâche exécutée (s'il y a lieu)
 	 */
-	public static newtonERP.module.AbstractEntity executeTasks(
-			newtonERP.module.AbstractOrmEntity entity)
+	public static AbstractEntity executeTasks(AbstractOrmEntity entity)
+
 	{
 		Hashtable<String, String> entityParameters = new Hashtable<String, String>();
 
@@ -62,8 +65,7 @@ public class TaskManager
 	 * @param entityParameters paramètres de l'entité
 	 * @return entité viewable de retour
 	 */
-	public static newtonERP.module.AbstractEntity executeTasks(
-			newtonERP.module.AbstractOrmEntity entity,
+	public static AbstractEntity executeTasks(AbstractOrmEntity entity,
 			Hashtable<String, String> entityParameters)
 	{
 		return executeTasks(entity.getSystemName(), entityParameters);
@@ -74,8 +76,8 @@ public class TaskManager
 	 * @param entityParameters paramètres de l'entité
 	 * @return enitité visible de retour
 	 */
-	public static newtonERP.module.AbstractEntity executeTasks(
-			String entityName, Hashtable<String, String> entityParameters)
+	public static AbstractEntity executeTasks(String entityName,
+			Hashtable<String, String> entityParameters)
 	{
 		if (entityName == null)
 			return null;
@@ -96,11 +98,13 @@ public class TaskManager
 	}
 
 	private static boolean isEntityRelatedToTaskModule(String entityName)
+
 	{
 		return getTaskModuleEntityDefinitionNameList().contains(entityName);
 	}
 
 	private static Vector<String> getTaskModuleEntityDefinitionNameList()
+
 	{
 		if (taskModuleEntityDefinitionNameList == null)
 		{
@@ -118,8 +122,8 @@ public class TaskManager
 		return taskModuleEntityDefinitionNameList;
 	}
 
-	private static modules.taskModule.entityDefinitions.TaskEntity getConcernedTaskList(
-			String entityName)
+	private static Collection<TaskEntity> getConcernedTaskList(String entityName)
+
 	{
 		Vector<TaskEntity> concernedTaskList = TaskCache
 				.getConcernedTaskList(entityName);
@@ -161,8 +165,8 @@ public class TaskManager
 		return concernedTaskList;
 	}
 
-	private static newtonERP.orm.associations.PluralAccessor getTaskList(
-			newtonERP.orm.associations.PluralAccessor specificationList)
+	private static PluralAccessor getTaskList(PluralAccessor specificationList)
+
 	{
 		PluralAccessor taskEntityList = new PluralAccessor(new TaskEntity());
 
@@ -177,8 +181,8 @@ public class TaskManager
 		return taskEntityList;
 	}
 
-	private static newtonERP.orm.associations.PluralAccessor getSpecificationEntityList(
-			newtonERP.orm.associations.PluralAccessor searchEntityList)
+	private static PluralAccessor getSpecificationEntityList(
+			PluralAccessor searchEntityList)
 	{
 		PluralAccessor specificationEntityList = new PluralAccessor(
 				new Specification());
@@ -194,14 +198,14 @@ public class TaskManager
 		return specificationEntityList;
 	}
 
-	private static newtonERP.orm.associations.PluralAccessor getSearchEntityList(
-			modules.taskModule.entityDefinitions.EntityEntity entityEntity)
+	private static PluralAccessor getSearchEntityList(EntityEntity entityEntity)
+
 	{
 		return entityEntity.getPluralAccessor("SearchEntity");
 	}
 
-	private static modules.taskModule.entityDefinitions.EntityEntity getEntityEntity(
-			String entityName)
+	private static EntityEntity getEntityEntity(String entityName)
+
 	{
 		EntityEntity searchEntity = new EntityEntity();
 		searchEntity.initFields();
@@ -221,5 +225,4 @@ public class TaskManager
 		if (searchEntities.size() > 0)
 			executeTasks(searchEntities.get(0), entityParameters);
 	}
-
 }

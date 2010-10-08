@@ -1,0 +1,9 @@
+class EffectEntityParameter
+!!!152972.java!!!	EffectEntityParameter()
+		super();
+		setVisibleName("Paramètre d'éffet");
+!!!153100.java!!!	initFields() : Fields
+		Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
+		fieldsInit.add(new FieldInt("Effet", "effectEntityID"));
+		fieldsInit.add(new FieldInt("Paramètre", "parameterID"));
+		return new Fields(fieldsInit);

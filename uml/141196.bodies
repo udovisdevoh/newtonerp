@@ -1,0 +1,13 @@
+class DynamicFieldCache
+!!!204940.java!!!	clear(in entityName : String) : void
+		Vector<AbstractOrmEntity> dataForEntity = tryGetDataForEntity(entityName);
+		if (dataForEntity != null)
+			getData().remove(entityName);
+!!!205068.java!!!	add(inout fieldEntityList : Vector<AbstractOrmEntity>, in entityName : String) : void
+		getData().put(entityName, fieldEntityList);
+!!!205196.java!!!	tryGetDataForEntity(in entityName : String) : AbstractOrmEntity
+		return getData().get(entityName);
+!!!205324.java!!!	getData() : Hashtable<String, Vector<AbstractOrmEntity>>
+		if (data == null)
+			data = new Hashtable<String, Vector<AbstractOrmEntity>>();
+		return data;

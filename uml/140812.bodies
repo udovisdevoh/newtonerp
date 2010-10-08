@@ -1,0 +1,9 @@
+class OrmEntityCreationException
+!!!203916.java!!!	OrmEntityCreationException(in message : String)
+		super(message);
+!!!204044.java!!!	OrmEntityCreationException()
+		super();
+!!!204172.java!!!	OrmEntityCreationException(in message : String, inout cause : Throwable)
+		super(message, cause);
+!!!204300.java!!!	OrmEntityCreationException(inout cause : Throwable)
+		super(cause);

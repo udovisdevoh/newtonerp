@@ -5,6 +5,8 @@ import java.util.Vector;
 
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.exceptions.OrmException;
+import newtonERP.orm.field.Field;
+import newtonERP.orm.sgbd.AbstractSgbd;
 import newtonERP.taskManager.TaskManager;
 
 /**
@@ -22,7 +24,8 @@ import newtonERP.taskManager.TaskManager;
  */
 public class Orm
 {
-	private static newtonERP.orm.sgbd.AbstractSgbd getSgbd()
+
+	private static AbstractSgbd getSgbd()
 	{
 		return OrmFonction.getSgbd();
 	}
@@ -35,9 +38,8 @@ public class Orm
 	 * @return new entity or found entity
 	 */
 	@Deprecated
-	public static newtonERP.module.AbstractOrmEntity getOrCreateEntity(
-			newtonERP.module.AbstractOrmEntity entityAsType, String fieldName,
-			String fieldValue)
+	public static AbstractOrmEntity getOrCreateEntity(
+			AbstractOrmEntity entityAsType, String fieldName, String fieldValue)
 	{
 		entityAsType.setData(fieldName, fieldValue);
 
@@ -61,8 +63,8 @@ public class Orm
 	 * @return new entity or found entity
 	 */
 	@Deprecated
-	public static newtonERP.module.AbstractOrmEntity getOrCreateEntity(
-			newtonERP.module.AbstractOrmEntity entityAsType, String fieldName1,
+	public static AbstractOrmEntity getOrCreateEntity(
+			AbstractOrmEntity entityAsType, String fieldName1,
 			String fieldValue1, String fieldName2, String fieldValue2)
 	{
 		entityAsType.setData(fieldName1, fieldValue1);
@@ -88,7 +90,7 @@ public class Orm
 	 * @param fieldValue2 value2
 	 */
 	@Deprecated
-	public static void delete(newtonERP.module.AbstractOrmEntity entityAsType,
+	public static void delete(AbstractOrmEntity entityAsType,
 			String fieldName1, String fieldValue1, String fieldName2,
 			String fieldValue2)
 	{
@@ -113,10 +115,9 @@ public class Orm
 	 * @return liste d'entité
 	 */
 	@Deprecated
-	public static newtonERP.module.AbstractOrmEntity select(
-			newtonERP.module.AbstractOrmEntity searchEntity,
-			Vector<String> searchParameters, int limit, int offset,
-			String orderBy)
+	public static Vector<AbstractOrmEntity> select(
+			AbstractOrmEntity searchEntity, Vector<String> searchParameters,
+			int limit, int offset, String orderBy)
 	{
 		return EntityCreator.createEntitiesFromResultSet(
 				getSgbd().select(searchEntity, searchParameters, limit, offset,
@@ -139,8 +140,8 @@ public class Orm
 	 * @param offset offset de début de résultats
 	 * @return liste d'entités trouvées
 	 */
-	public static newtonERP.module.AbstractOrmEntity select(
-			newtonERP.module.AbstractOrmEntity searchEntity,
+	public static Vector<AbstractOrmEntity> select(
+			AbstractOrmEntity searchEntity,
 			Vector<String> searchCriteriasParam, int limit, int offset)
 	{
 		return select(searchEntity, searchCriteriasParam, limit, offset, null);
@@ -150,7 +151,7 @@ public class Orm
 	 * @param searchEntity entité de recherche
 	 * @return nombre d'occurence du type de l'entité de recherche
 	 */
-	public static int count(newtonERP.module.AbstractOrmEntity searchEntity)
+	public static int count(AbstractOrmEntity searchEntity)
 	{
 		return count(searchEntity, null);
 	}
@@ -161,7 +162,7 @@ public class Orm
 	 * @return nombre d'occurence du type de l'entité de recherche
 	 */
 	@Deprecated
-	public static int count(newtonERP.module.AbstractOrmEntity searchEntity,
+	public static int count(AbstractOrmEntity searchEntity,
 			Vector<String> searchParameterList)
 	{
 		return getSgbd().count(searchEntity, searchParameterList);
@@ -173,8 +174,7 @@ public class Orm
 	 * @param entity entité
 	 * @param field champ
 	 */
-	public static void createIndex(newtonERP.module.AbstractOrmEntity entity,
-			newtonERP.orm.field.Field field)
+	public static void createIndex(AbstractOrmEntity entity, Field<?> field)
 	{
 		createIndex(entity.getSystemName(), field.getSystemName());
 	}
@@ -229,9 +229,8 @@ public class Orm
 	 * @return a vector of ormizable entities
 	 */
 	@Deprecated
-	public static newtonERP.module.AbstractOrmEntity select(
-			newtonERP.module.AbstractOrmEntity searchEntity,
-			Vector<String> searchCriteriasParam)
+	public static Vector<AbstractOrmEntity> select(
+			AbstractOrmEntity searchEntity, Vector<String> searchCriteriasParam)
 	{
 		return EntityCreator.createEntitiesFromResultSet(
 				getSgbd().select(searchEntity, searchCriteriasParam),
@@ -248,7 +247,7 @@ public class Orm
 	 * @param searchEntities the entities from which we will perform the search
 	 * @return the entities
 	 */
-	public static newtonERP.module.AbstractOrmEntity select(
+	public static Vector<AbstractOrmEntity> select(
 			Vector<AbstractOrmEntity> searchEntities)
 	{
 		return EntityCreator.createEntitiesFromResultSet(
@@ -259,8 +258,8 @@ public class Orm
 	 * @param searchEntity the single search entity
 	 * @return the entities that have been selected in the db
 	 */
-	public static newtonERP.module.AbstractOrmEntity select(
-			newtonERP.module.AbstractOrmEntity searchEntity)
+	public static Vector<AbstractOrmEntity> select(
+			AbstractOrmEntity searchEntity)
 	{
 		Vector<AbstractOrmEntity> searchEntities = new Vector<AbstractOrmEntity>();
 		searchEntities.add(searchEntity);
@@ -274,8 +273,7 @@ public class Orm
 	 * @param searchEntity the entity from which we will perform our search
 	 * @return the first entity from the result set
 	 */
-	public static newtonERP.module.AbstractOrmEntity selectUnique(
-			newtonERP.module.AbstractOrmEntity searchEntity)
+	public static AbstractOrmEntity selectUnique(AbstractOrmEntity searchEntity)
 	{
 		return select(searchEntity).get(0);
 	}
@@ -287,7 +285,7 @@ public class Orm
 	 * @param searchEntities the entity from which we will perform our search
 	 * @return the first entity from the result set
 	 */
-	public static newtonERP.module.AbstractOrmEntity selectUnique(
+	public static AbstractOrmEntity selectUnique(
 			Vector<AbstractOrmEntity> searchEntities)
 	{
 		return select(searchEntities).get(0);
@@ -300,7 +298,7 @@ public class Orm
 	 * @param newEntity the entity to add
 	 * @return le id de clé primaire ajoutée
 	 */
-	public static int insert(newtonERP.module.AbstractOrmEntity newEntity)
+	public static int insert(AbstractOrmEntity newEntity)
 	{
 		int primaryKeyValue = getSgbd().insert(newEntity);
 
@@ -317,8 +315,7 @@ public class Orm
 	 * @param newUniqueEntity New unique entity to insert
 	 * @return le id de clé primaire ajoutée ou qui avais déja été inséré
 	 */
-	public static int insertUnique(
-			newtonERP.module.AbstractOrmEntity newUniqueEntity)
+	public static int insertUnique(AbstractOrmEntity newUniqueEntity)
 	{
 		// todo: devrait alle dans OrmFonction
 		Vector<AbstractOrmEntity> entity = select(newUniqueEntity);
@@ -338,7 +335,7 @@ public class Orm
 	 * @param searchCriterias the search criterias for the where clause
 	 */
 	@Deprecated
-	public static void delete(newtonERP.module.AbstractOrmEntity searchEntity,
+	public static void delete(AbstractOrmEntity searchEntity,
 			Vector<String> searchCriterias)
 	{
 		getSgbd().delete(searchEntity, searchCriterias);
@@ -364,7 +361,7 @@ public class Orm
 	 * 
 	 * @param searchEntity the entity from which we will build our where
 	 */
-	public static void delete(newtonERP.module.AbstractOrmEntity searchEntity)
+	public static void delete(AbstractOrmEntity searchEntity)
 	{
 		Vector<AbstractOrmEntity> searchEntities = new Vector<AbstractOrmEntity>();
 		searchEntities.add(searchEntity);
@@ -379,8 +376,7 @@ public class Orm
 	 * @param searchCriterias the criterias used by the update
 	 */
 	@Deprecated
-	public static void update(
-			newtonERP.module.AbstractOrmEntity entityContainingChanges,
+	public static void update(AbstractOrmEntity entityContainingChanges,
 			Vector<String> searchCriterias)
 	{
 		getSgbd().update(entityContainingChanges, searchCriterias);
@@ -396,7 +392,7 @@ public class Orm
 	 * @param entityContainingChanges the changes to apply
 	 */
 	public static void update(Vector<AbstractOrmEntity> searchEntities,
-			newtonERP.module.AbstractOrmEntity entityContainingChanges)
+			AbstractOrmEntity entityContainingChanges)
 	{
 		getSgbd().update(searchEntities, entityContainingChanges);
 	}
@@ -410,9 +406,8 @@ public class Orm
 	 *            clause
 	 * @param entityContainingChanges the changes to apply
 	 */
-	public static void updateUnique(
-			newtonERP.module.AbstractOrmEntity searchEntity,
-			newtonERP.module.AbstractOrmEntity entityContainingChanges)
+	public static void updateUnique(AbstractOrmEntity searchEntity,
+			AbstractOrmEntity entityContainingChanges)
 	{
 		getSgbd().updateUnique(searchEntity, entityContainingChanges);
 	}
@@ -424,9 +419,8 @@ public class Orm
 	 * @param field the field to add
 	 * @return ?
 	 */
-	public static ResultSet addColumnToTable(
-			newtonERP.module.AbstractOrmEntity entity,
-			newtonERP.orm.field.Field field)
+	public static ResultSet addColumnToTable(AbstractOrmEntity entity,
+			Field<?> field)
 	{
 		return getSgbd().addColumnToTable(entity, field);
 	}
@@ -441,10 +435,9 @@ public class Orm
 
 	/**
 	 * Fait un backup de la DB si l'intervale de temps est assez grande
-	 * 
-	 * cette fonction ne devrai plus etre apellé a l'extérieur de l'ORM
 	 */
 	@Deprecated
+	// cette fonction ne devrai plus etre apellé a l'extérieur de l'ORM
 	public static void doBackupIfTimeIntervalAllows()
 	{
 		OrmFonction.doBackupIfTimeIntervalAllows();

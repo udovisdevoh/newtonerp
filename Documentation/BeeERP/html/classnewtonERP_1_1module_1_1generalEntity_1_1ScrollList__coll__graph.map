@@ -1,0 +1,7 @@
+<map id="G" name="G">
+<area shape="rect" id="node2" href="$classnewtonERP_1_1module_1_1AbstractEntity.html" title="newtonERP.module.AbstractEntity" alt="" coords="1097,139,1332,168"/>
+<area shape="rect" id="node6" href="$classnewtonERP_1_1module_1_1AbstractAction.html" title="newtonERP.module.AbstractAction" alt="" coords="1537,116,1777,145"/>
+<area shape="rect" id="node9" href="$classnewtonERP_1_1module_1_1Module.html" title="Abstract class representing an abstract module." alt="" coords="643,216,835,245"/>
+<area shape="rect" id="node23" href="$classnewtonERP_1_1orm_1_1field_1_1Fields.html" title="All the fields of an entity." alt="" coords="644,73,833,103"/>
+<area shape="rect" id="node31" href="$interfacenewtonERP_1_1viewers_1_1viewables_1_1ScrollListViewable.html" title="Element graphique visible en tant que liste scrollable de lien ou de texte avec une scrollbar..." alt="" coords="1053,304,1376,333"/>
+</map>

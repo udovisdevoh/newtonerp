@@ -1,0 +1,12 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classnewtonERP_1_1module_1_1AbstractEntity.html#a33927f97bd00fed3f714f4466b021c3e" title="newtonERP.module.AbstractEntity.getData" alt="" coords="539,5,829,35"/>
+<area shape="rect" id="node9" href="$classnewtonERP_1_1orm_1_1associations_1_1GateWay.html#af8eca6b33e896b04a5d66ed440a79259" title="newtonERP.orm.associations.GateWay.getExternalEntity" alt="" coords="497,59,871,88"/>
+<area shape="rect" id="node11" href="$classnewtonERP_1_1module_1_1AbstractOrmEntity.html#a79082dade2f4d88f4ffa770c8db8b884" title="newtonERP.module.AbstractOrmEntity.getForeignKeyName" alt="" coords="487,219,881,248"/>
+<area shape="rect" id="node15" href="$classnewtonERP_1_1orm_1_1associations_1_1GateWay.html#a49ce3c97e2a7bdaea1f47b1040ea14b9" title="newtonERP.orm.associations.GateWay.getGateWayEntity" alt="" coords="495,165,873,195"/>
+<area shape="rect" id="node17" href="$classnewtonERP_1_1module_1_1AbstractOrmEntity.html#ae4b6adab840c40cae3e3206ba41c42f1" title="newtonERP.module.AbstractOrmEntity.getPrimaryKeyName" alt="" coords="485,272,883,301"/>
+<area shape="rect" id="node20" href="$classnewtonERP_1_1module_1_1AbstractEntity.html#af47e42b154414c6afaa3253cc4adaf6b" title="newtonERP.module.AbstractEntity.setData" alt="" coords="540,112,828,141"/>
+<area shape="rect" id="node5" href="$classnewtonERP_1_1orm_1_1field_1_1Fields.html#a60c293a9a0e504f5cda3865ad7c8c160" title="newtonERP.orm.field.Fields.getField" alt="" coords="983,5,1225,35"/>
+<area shape="rect" id="node7" href="$classnewtonERP_1_1module_1_1AbstractEntity.html#a87356471289bf7f6daaea032e4155f83" title="newtonERP.module.AbstractEntity.getFields" alt="" coords="957,59,1251,88"/>
+<area shape="rect" id="node13" href="$classnewtonERP_1_1module_1_1AbstractEntity.html#ad26f590c74d49b7c494d62de6ad1563b" title="newtonERP.module.AbstractEntity.getSystemName" alt="" coords="931,245,1277,275"/>
+<area shape="rect" id="node23" href="$classnewtonERP_1_1orm_1_1field_1_1Fields.html#acb12ce722dc8de992622dfe61f478f8b" title="methode pour changer la valeur d&#39;un champ" alt="" coords="983,112,1225,141"/>
+</map>

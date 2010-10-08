@@ -1,9 +1,15 @@
+/**
+ * 
+ */
 package newtonERP.viewers.viewerData;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+
+import newtonERP.logging.Logger;
 
 /**
  * donnee pour faire affiche UNE image
@@ -11,8 +17,11 @@ import javax.imageio.ImageIO;
  */
 public class ImgViewerData extends BaseViewerData
 {
+
 	String filePath;
 
+	/**
+	 */
 	public ImgViewerData()
 	{
 		super();

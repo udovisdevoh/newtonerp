@@ -1,0 +1,9 @@
+class ImageFile
+!!!186636.java!!!	ImageFile(in alt : String, in url : String)
+		super();
+		this.alt = alt;
+		this.url = url;
+!!!186764.java!!!	getUrl() : String
+		return url;
+!!!186892.java!!!	getAlt() : String
+		return alt;

@@ -1,5 +1,6 @@
 package newtonERP.viewers.secondStep;
 
+import newtonERP.orm.field.Field;
 import newtonERP.orm.field.type.FieldBool;
 import newtonERP.orm.field.type.FieldCurrency;
 import newtonERP.orm.field.type.FieldDateTime;
@@ -10,6 +11,7 @@ import newtonERP.orm.field.type.FieldText;
 /**
  * Sert à formatter de l'argent
  * @author Guillaume
+ * 
  */
 public class FieldViewer
 {
@@ -17,7 +19,7 @@ public class FieldViewer
 	 * @param field field a afficher
 	 * @return les code html
 	 */
-	public static String getHtmlCode(newtonERP.orm.field.Field field)
+	public static String getHtmlCode(Field<?> field)
 	{
 		String html;
 		if (field instanceof FieldBool)
@@ -37,7 +39,7 @@ public class FieldViewer
 
 	}
 
-	private static String currencyViewer(newtonERP.orm.field.Field field)
+	private static String currencyViewer(Field<?> field)
 	{
 		String moneyFormatStyle = " style=\"width:80px;text-align:right\"";
 		String textFieldType = "";
@@ -57,7 +59,7 @@ public class FieldViewer
 				+ field.getDataString() + "' class='textField' />";
 	}
 
-	private static String textViewer(newtonERP.orm.field.Field field)
+	private static String textViewer(Field<?> field)
 	{
 		String longText = "";
 		if (!((FieldText) field).isVeryLong())
@@ -72,17 +74,17 @@ public class FieldViewer
 				+ "</div></td></tr>";
 	}
 
-	private static String dateTimeViewer(newtonERP.orm.field.Field field)
+	private static String dateTimeViewer(Field<?> field)
 	{
 		return otherViewer(field);
 	}
 
-	private static String numberViewer(newtonERP.orm.field.Field field)
+	private static String numberViewer(Field<?> field)
 	{
 		return otherViewer(field);
 	}
 
-	private static String boolViewer(newtonERP.orm.field.Field field)
+	private static String boolViewer(Field<?> field)
 	{
 		String html = "";
 		String yesIsChecked, noIsChecked;
@@ -121,7 +123,7 @@ public class FieldViewer
 		return html;
 	}
 
-	private static String otherViewer(newtonERP.orm.field.Field field)
+	private static String otherViewer(Field<?> field)
 	{
 		String textFieldType = "";
 		String isReadOnly = "";
@@ -140,5 +142,4 @@ public class FieldViewer
 				+ field.getShortName() + "' value='" + field.getDataString()
 				+ "' class='textField'" + isReadOnly + " />";
 	}
-
 }

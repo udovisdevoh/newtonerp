@@ -1,36 +1,48 @@
-
 package newtonERP.viewers.viewerData;
+
+import java.util.HashSet;
+import java.util.Vector;
+
+import newtonERP.common.ActionLink;
+import newtonERP.module.AbstractEntity;
+import newtonERP.module.AbstractOrmEntity;
+import newtonERP.viewers.viewables.FloorViewable;
 
 /**
  * Information pour visualiser un plancher
  * @author Guillaume Lacasse
  */
-public class FloorViewerData extends newtonERP.module.AbstractEntity implements newtonERP.viewers.viewables.FloorViewable {
-  private int columnCount =  0;
+public class FloorViewerData extends AbstractEntity implements FloorViewable
+{
+	private int columnCount = 0;
 
-  private int rowCount =  0;
+	private int rowCount = 0;
 
-  private Boolean[][] corridorMask;
+	private Boolean[][] corridorMask;
 
-  private String[][] zoneNameMap;
+	private String[][] zoneNameMap;
 
-  private Zone[][] zoneMap =  null;
+	private Zone[][] zoneMap = null;
 
-  private Floor sourceFloor =  null;
+	private Floor sourceFloor = null;
 
-  private String wallHash;
+	private HashSet<String> wallHash;
 
-  private static String lazyWallTypeNameList =  null;
+	private static Vector<String> lazyWallTypeNameList = null;
 
-  public  FloorViewerData() {
+	/**
+	 */
+	public FloorViewerData()
+	{
 		super();
 		wallHash = new HashSet<String>();
-  }
+	}
 
-  /**
-   * @param sourceFloor source floor
-   */
-  public  FloorViewerData(Floor sourceFloor) {
+	/**
+	 * @param sourceFloor source floor
+	 */
+	public FloorViewerData(Floor sourceFloor)
+	{
 		super();
 		this.sourceFloor = sourceFloor;
 		wallHash = new HashSet<String>();
@@ -66,9 +78,10 @@ public class FloorViewerData extends newtonERP.module.AbstractEntity implements 
 						wallHash.add(wallTypeName + "-" + x + "-" + y);
 			}
 		}
-  }
+	}
 
-  private Vector<String> getWallTypeNameList() {
+	private Vector<String> getWallTypeNameList()
+	{
 		if (lazyWallTypeNameList == null)
 		{
 			lazyWallTypeNameList = new Vector<String>();
@@ -81,44 +94,50 @@ public class FloorViewerData extends newtonERP.module.AbstractEntity implements 
 				lazyWallTypeNameList.add((entity.getDataString("Name")));
 		}
 		return lazyWallTypeNameList;
-  }
+	}
 
-  @Override
-  public int getColumnCount() {
+	@Override
+	public int getColumnCount()
+	{
 		return columnCount;
-  }
+	}
 
-  @Override
-  public int getRowCount() {
+	@Override
+	public int getRowCount()
+	{
 		return rowCount;
-  }
+	}
 
-  @Override
-  public boolean isCorridorAt(int x, int y) {
+	@Override
+	public boolean isCorridorAt(int x, int y)
+	{
 		if (corridorMask == null)
 			return false;
 
 		return corridorMask[x][y];
-  }
+	}
 
-  @Override
-  public String tryGetZoneNameAt(int x, int y) {
+	@Override
+	public String tryGetZoneNameAt(int x, int y)
+	{
 		if (zoneNameMap == null)
 			return "-";
 		return zoneNameMap[x][y];
-  }
+	}
 
-  @Override
-  public newtonERP.common.ActionLink getActionLinkListAt(int x, int y) {
+	@Override
+	public Vector<ActionLink> getActionLinkListAt(int x, int y)
+
+	{
 		if (sourceFloor == null)
 			return new Vector<ActionLink>();
 
 		return sourceFloor.getActionLinkListAt(x, y);
-  }
+	}
 
-  @Override
-  public boolean isWallAt(String wallName, int x, int y) {
+	@Override
+	public boolean isWallAt(String wallName, int x, int y)
+	{
 		return wallHash.contains(wallName + "-" + x + "-" + y);
-  }
-
+	}
 }

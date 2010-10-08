@@ -1,0 +1,14 @@
+class FieldNotCompatibleException
+!!!176524.java!!!	FieldNotCompatibleException(in fieldName : String, inout data : Object)
+		super(
+				fieldName + " field is not compatible with " + data != null ? data
+						.getClass().getSimpleName()
+						: "null");
+!!!176652.java!!!	FieldNotCompatibleException(in message : String)
+		super(message);
+!!!176780.java!!!	FieldNotCompatibleException()
+		super();
+!!!176908.java!!!	FieldNotCompatibleException(in message : String, inout cause : Throwable)
+		super(message, cause);
+!!!177036.java!!!	FieldNotCompatibleException(inout cause : Throwable)
+		super(cause);

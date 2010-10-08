@@ -1,0 +1,58 @@
+class GenerateActionCode
+!!!146956.java!!!	GenerateActionCode()
+		super(new ActionEntity());
+!!!147084.java!!!	doAction(inout entity : AbstractEntity, inout parameters : Hashtable<String, String>) : AbstractEntity
+		ActionEntity actionEntity = (ActionEntity) entity;
+
+		actionEntity = (ActionEntity) Orm.selectUnique(actionEntity);
+
+		String fileName = buildFileName(actionEntity);
+
+		BaseViewerData editUI = actionEntity.editUI(parameters);
+
+		if (!(new File(fileName).exists()))
+		{
+			new File(getPackagePath(actionEntity)).mkdir();
+			String sourceCode = ActionSourceCodeBuilder.build(actionEntity);
+			GenerateSourceCode.writeClassFile(fileName, sourceCode);
+			createRights(actionEntity);
+			editUI.addAlertMessage("La classe de l'action a été créée.");
+		}
+		else
+		{
+			editUI.addAlertMessage("La classe d'action existe déjà.");
+		}
+
+		return editUI;
+!!!147212.java!!!	createRights(inout actionEntity : ActionEntity) : void
+		ModuleEntity moduleEntity = actionEntity.getModuleEntity();
+		String moduleName = moduleEntity.getDataString("systemName");
+		String actionName = actionEntity.getDataString("systemName");
+		Vector<String> entityList = getEntityNameList(moduleEntity);
+		for (String entityName : entityList)
+			GenerateEntityCode.createRightIfNotExist(moduleName, entityName,
+					actionName);
+!!!147340.java!!!	getEntityNameList(inout moduleEntity : ModuleEntity) : Vector<String>
+		PluralAccessor entityEntityList = moduleEntity
+				.getPluralAccessor(new EntityEntity().getSystemName());
+
+		Vector<String> entityNameList = new Vector<String>();
+		entityNameList.add("");
+
+		EntityEntity entityEntity;
+		for (AbstractOrmEntity entity : entityEntityList)
+		{
+			entityEntity = (EntityEntity) entity;
+			entityNameList.add(entityEntity.getDataString("systemName"));
+		}
+
+		return entityNameList;
+!!!147468.java!!!	buildFileName(inout actionEntity : ActionEntity) : String
+		String path = getPackagePath(actionEntity) + "/actions";
+		String fileName;
+		fileName = path + "/" + actionEntity.getDataString("systemName")
+				+ ".java";
+		return fileName;
+!!!147596.java!!!	getPackagePath(inout actionEntity : ActionEntity) : String
+		ModuleEntity moduleEntity = actionEntity.getModuleEntity();
+		return SourceCodeBuilder.getModulePackagePath(moduleEntity);

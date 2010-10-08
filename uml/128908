@@ -1,0 +1,1031 @@
+format 75
+"orm" // src::newtonERP::orm
+  revision 1
+  modified_by 12 "djo"
+  // class settings
+  //class diagram settings
+  draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+  //use case diagram settings
+  package_name_in_tab default show_context default auto_label_position default draw_all_relations default class_drawing_mode default shadow default show_stereotype_properties default
+  //sequence diagram settings
+  show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+  //collaboration diagram settings
+  show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default show_msg_context default draw_all_relations default shadow default show_stereotype_properties default
+  //object diagram settings
+   write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+  //component diagram settings
+  package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default
+  draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+  //deployment diagram settings
+  package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
+  draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+  //state diagram settings
+  package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  //activity diagram settings
+  package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+  show_infonote default drawing_language default show_stereotype_properties default
+  
+  java_dir "/home/djo/workspace/NewtonERP/src/newtonERP/orm/"
+  java_package "newtonERP.orm"
+  package_ref 129036 // field
+
+  package_ref 129292 // associations
+
+  classview 130444 "orm"
+    //class diagram settings
+    draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+    //collaboration diagram settings
+    show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default show_msg_context default draw_all_relations default shadow default show_stereotype_properties default
+    //object diagram settings
+     write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+    //sequence diagram settings
+    show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+    //state diagram settings
+    package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+    show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+    //class settings
+    //activity diagram settings
+    package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+    show_infonote default drawing_language default show_stereotype_properties default
+    class 139148 "BackupManager"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Sert à gérer les backup automatiques
+@author Guillaume Lacasse"
+      attribute 136460 "gregorianCalendar"
+	class_attribute private explicit_type "GregorianCalendar"
+	init_value " new GregorianCalendar()"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 136588 "desiredBackupTimeInterval"
+	class_attribute private explicit_type "long"
+	init_value " 1800000"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	comment " Chaque demie"
+      end
+
+      attribute 136716 "maximumBackupInstanceCount"
+	class_attribute private explicit_type "int"
+	init_value " 100"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	comment " heure"
+      end
+
+      operation 191756 "getCurrentTime"
+	class_operation public explicit_return_type "long"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return temps actuel en ms"
+      end
+
+      operation 191884 "getDesiredBackupIntervalTime"
+	class_operation public explicit_return_type "long"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return interval désirée pour backup en ms"
+      end
+
+      operation 192012 "getMaximumBackupInstanceCount"
+	class_operation public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return nombre maximum d'instance de backup"
+      end
+    end
+
+    class 139276 "EntityCreator"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Class used to create the entities in the select statement of the orm because
+it's not the orm's responsibility. By doing that I am trying to respect the
+SRP (Single responsibility principle) principle
+
+@author r3hallejo"
+      operation 192140 "createEntitiesFromResultSet"
+	class_operation public return_type class_ref 128268 // AbstractOrmEntity
+	nparams 2
+	  param inout name "rs" explicit_type "ResultSet"
+	  param inout name "searchEntity" type class_ref 128268 // AbstractOrmEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Default constructor used to create the entities from the result set
+
+@param rs the result set from which we will create our entities
+@param searchEntity the entities from which we searched
+@return a vector of ormizable entities"
+      end
+    end
+
+    class 139404 "Orm"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Basic class for the orm. It is used to put the objects in the databse using a
+sgdb and its java binding. The orm will receive an entity from which the orm
+will perform various tasks such as generating the query and executing it
+obviously. Then it's gonna send the query to the SgbdSqlite class to execute
+it.
+
+http://www.sqlite.org/lang_keywords.html
+
+TODO: Drop a module (maybe a an array of the entities to drop?)
+
+@author r3hallejo, r3lacasgu"
+      operation 192268 "getSgbd"
+	class_operation private return_type class_ref 139532 // AbstractSgbd
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 192396 "getOrCreateEntity"
+	class_operation public return_type class_ref 128268 // AbstractOrmEntity
+	nparams 3
+	  param inout name "entityAsType" type class_ref 128268 // AbstractOrmEntity
+	  param in name "fieldName" explicit_type "String"
+	  param in name "fieldValue" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Deprecated
+"
+	
+	
+	
+	comment "@param entityAsType entity as a type reference or empty entity to fill
+           data from orm
+@param fieldName key
+@param fieldValue value
+@return new entity or found entity"
+      end
+
+      operation 192524 "getOrCreateEntity"
+	class_operation public return_type class_ref 128268 // AbstractOrmEntity
+	nparams 5
+	  param inout name "entityAsType" type class_ref 128268 // AbstractOrmEntity
+	  param in name "fieldName1" explicit_type "String"
+	  param in name "fieldValue1" explicit_type "String"
+	  param in name "fieldName2" explicit_type "String"
+	  param in name "fieldValue2" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}, ${t4} ${p4}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Deprecated
+"
+	
+	
+	
+	comment "@param entityAsType entity as a type reference or empty entity to fill
+@param fieldName1 key1
+@param fieldValue1 value2
+@param fieldName2 key2
+@param fieldValue2 value2
+@return new entity or found entity"
+      end
+
+      operation 192652 "delete"
+	class_operation public explicit_return_type "void"
+	nparams 5
+	  param inout name "entityAsType" type class_ref 128268 // AbstractOrmEntity
+	  param in name "fieldName1" explicit_type "String"
+	  param in name "fieldValue1" explicit_type "String"
+	  param in name "fieldName2" explicit_type "String"
+	  param in name "fieldValue2" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}, ${t4} ${p4}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Deprecated
+"
+	
+	
+	
+	comment "@param entityAsType entité en tant que référence de type ou entité vide
+           pour ajouter des champs
+@param fieldName1 key1
+@param fieldValue1 value1
+@param fieldName2 key2
+@param fieldValue2 value2"
+      end
+
+      operation 192780 "select"
+	class_operation public return_type class_ref 128268 // AbstractOrmEntity
+	nparams 5
+	  param inout name "searchEntity" type class_ref 128268 // AbstractOrmEntity
+	  param inout name "searchParameters" explicit_type "Vector<String>"
+	  param in name "limit" explicit_type "int"
+	  param in name "offset" explicit_type "int"
+	  param in name "orderBy" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}, ${t4} ${p4}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Deprecated
+"
+	
+	
+	
+	comment "@param searchEntity entité
+@param searchParameters critère de recherche
+@param limit limite
+@param offset offset
+@param orderBy ordre
+@return liste d'entité"
+      end
+
+      operation 192908 "isEntityExists"
+	class_operation public explicit_return_type "boolean"
+	nparams 1
+	  param in name "entitySystemName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param entitySystemName nom système d'une entité
+@return true si l'entité a une table dans la base de donnée, sinon false"
+      end
+
+      operation 193036 "select"
+	class_operation public return_type class_ref 128268 // AbstractOrmEntity
+	nparams 4
+	  param inout name "searchEntity" type class_ref 128268 // AbstractOrmEntity
+	  param inout name "searchCriteriasParam" explicit_type "Vector<String>"
+	  param in name "limit" explicit_type "int"
+	  param in name "offset" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param searchEntity entité de recherche
+@param searchCriteriasParam critères de recherche
+@param limit limite de résultats
+@param offset offset de début de résultats
+@return liste d'entités trouvées"
+      end
+
+      operation 193164 "count"
+	class_operation public explicit_return_type "int"
+	nparams 1
+	  param inout name "searchEntity" type class_ref 128268 // AbstractOrmEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param searchEntity entité de recherche
+@return nombre d'occurence du type de l'entité de recherche"
+      end
+
+      operation 193292 "count"
+	class_operation public explicit_return_type "int"
+	nparams 2
+	  param inout name "searchEntity" type class_ref 128268 // AbstractOrmEntity
+	  param inout name "searchParameterList" explicit_type "Vector<String>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Deprecated
+"
+	
+	
+	
+	comment "@param searchEntity entité de recherche
+@param searchParameterList liste de paramètres de recherche
+@return nombre d'occurence du type de l'entité de recherche"
+      end
+
+      operation 193420 "createIndex"
+	class_operation public explicit_return_type "void"
+	nparams 2
+	  param inout name "entity" type class_ref 128268 // AbstractOrmEntity
+	  param inout name "field" type class_ref 129292 // Field
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Sert à ajouter un index dans la table SQL de l'entité pour un field en
+particulier
+@param entity entité
+@param field champ"
+      end
+
+      operation 193548 "createIndex"
+	class_operation public explicit_return_type "void"
+	nparams 2
+	  param in name "entityName" explicit_type "String"
+	  param in name "fieldName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Sert à ajouter un index dans la table SQL de l'entité pour un field en
+particulier
+@param entityName nom de l'entité
+@param fieldName nom du field"
+      end
+
+      operation 193676 "connect"
+	class_operation public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Used to initialize the connection"
+      end
+
+      operation 193804 "disconnect"
+	class_operation public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Used to disconnect from the db"
+      end
+
+      operation 193932 "executeCustomQuery"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param in name "sqlQuery" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "To execute a custom query
+
+@param sqlQuery the executed"
+      end
+
+      operation 194060 "select"
+	class_operation public return_type class_ref 128268 // AbstractOrmEntity
+	nparams 2
+	  param inout name "searchEntity" type class_ref 128268 // AbstractOrmEntity
+	  param inout name "searchCriteriasParam" explicit_type "Vector<String>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Deprecated
+"
+	
+	
+	
+	comment "Use only for complex queries. Use the select that takes only a vector of
+entities instead
+
+Method used to do search queries done from the views to the databse. The
+search criterias that has been passed in parameter are a list of string
+that has been generated by the view modules
+
+@param searchEntity the entity that has to be researched
+@param searchCriteriasParam the search criterias formatted into strings
+@return a vector of ormizable entities"
+      end
+
+      operation 194188 "select"
+	class_operation public return_type class_ref 128268 // AbstractOrmEntity
+	nparams 1
+	  param inout name "searchEntities" explicit_type "Vector<AbstractOrmEntity>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Uses the new where builder
+
+Method used to do search queries done from the views to the databse. The
+search criterias that has been passed in parameter are a list of string
+that has been generated by the view modules
+
+@param searchEntities the entities from which we will perform the search
+@return the entities"
+      end
+
+      operation 194316 "select"
+	class_operation public return_type class_ref 128268 // AbstractOrmEntity
+	nparams 1
+	  param inout name "searchEntity" type class_ref 128268 // AbstractOrmEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param searchEntity the single search entity
+@return the entities that have been selected in the db"
+      end
+
+      operation 194444 "selectUnique"
+	class_operation public return_type class_ref 128268 // AbstractOrmEntity
+	nparams 1
+	  param inout name "searchEntity" type class_ref 128268 // AbstractOrmEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Select. Use only if you are sure that it will return only 1 entity (or
+that you want the first entity)
+
+@param searchEntity the entity from which we will perform our search
+@return the first entity from the result set"
+      end
+
+      operation 194572 "selectUnique"
+	class_operation public return_type class_ref 128268 // AbstractOrmEntity
+	nparams 1
+	  param inout name "searchEntities" explicit_type "Vector<AbstractOrmEntity>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Select. Use only if you are sure that it will return only 1 entity (or
+that you want the first entity)
+
+@param searchEntities the entity from which we will perform our search
+@return the first entity from the result set"
+      end
+
+      operation 194700 "insert"
+	class_operation public explicit_return_type "int"
+	nparams 1
+	  param inout name "newEntity" type class_ref 128268 // AbstractOrmEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Method used to insert an entity in the databse based into the entity
+passed in parameter
+
+@param newEntity the entity to add
+@return le id de clé primaire ajoutée"
+      end
+
+      operation 194828 "insertUnique"
+	class_operation public explicit_return_type "int"
+	nparams 1
+	  param inout name "newUniqueEntity" type class_ref 128268 // AbstractOrmEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Insert an entity if no entity matches current field
+
+@param newUniqueEntity New unique entity to insert
+@return le id de clé primaire ajoutée ou qui avais déja été inséré"
+      end
+
+      operation 194956 "delete"
+	class_operation public explicit_return_type "void"
+	nparams 2
+	  param inout name "searchEntity" type class_ref 128268 // AbstractOrmEntity
+	  param inout name "searchCriterias" explicit_type "Vector<String>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Deprecated
+"
+	
+	
+	
+	comment "Method used to delete an entity from the database
+
+@param searchEntity the entity to be researched
+@param searchCriterias the search criterias for the where clause"
+      end
+
+      operation 195084 "delete"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "searchEntities" explicit_type "Vector<AbstractOrmEntity>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Uses the new where builder
+
+Method used to delete an entity from the database
+
+@param searchEntities the entities from which we will build our where
+           clause"
+      end
+
+      operation 195212 "delete"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "searchEntity" type class_ref 128268 // AbstractOrmEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Using new where builder
+
+Method used to delete an entity from the database
+
+@param searchEntity the entity from which we will build our where"
+      end
+
+      operation 195340 "update"
+	class_operation public explicit_return_type "void"
+	nparams 2
+	  param inout name "entityContainingChanges" type class_ref 128268 // AbstractOrmEntity
+	  param inout name "searchCriterias" explicit_type "Vector<String>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Deprecated
+"
+	
+	
+	
+	comment "Method used to update / change an entity
+
+@param entityContainingChanges the entity that has been changed and will
+           be in the orm
+@param searchCriterias the criterias used by the update"
+      end
+
+      operation 195468 "update"
+	class_operation public explicit_return_type "void"
+	nparams 2
+	  param inout name "searchEntities" explicit_type "Vector<AbstractOrmEntity>"
+	  param inout name "entityContainingChanges" type class_ref 128268 // AbstractOrmEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Uses the new where builder
+
+Method used to update / change an entity
+
+@param searchEntities the entities from which we will build our where
+           clause
+@param entityContainingChanges the changes to apply"
+      end
+
+      operation 195596 "updateUnique"
+	class_operation public explicit_return_type "void"
+	nparams 2
+	  param inout name "searchEntity" type class_ref 128268 // AbstractOrmEntity
+	  param inout name "entityContainingChanges" type class_ref 128268 // AbstractOrmEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Uses the new where builder
+
+Method used to update / change an entity
+
+@param searchEntity the entities from which we will build our where
+           clause
+@param entityContainingChanges the changes to apply"
+      end
+
+      operation 195724 "addColumnToTable"
+	class_operation public explicit_return_type "ResultSet"
+	nparams 2
+	  param inout name "entity" type class_ref 128268 // AbstractOrmEntity
+	  param inout name "field" type class_ref 129292 // Field
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Alter table
+
+@param entity the entity containing the new field
+@param field the field to add
+@return ?"
+      end
+
+      operation 195852 "createNonExistentTables"
+	class_operation public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Creates the non-existent table from the modules in the database"
+      end
+
+      operation 195980 "doBackupIfTimeIntervalAllows"
+	class_operation public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Deprecated
+"
+	
+	
+	
+	comment "Fait un backup de la DB si l'intervale de temps est assez grande
+
+ cette fonction ne devrai plus etre apellé a l'extérieur de l'ORM"
+      end
+    end
+
+    class 139660 "OrmActions"
+      visibility public stereotype "enum"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}enum ${name}${implements} {
+${items};
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "This enum is only describing the type of actions the orm can do. It is only
+used internally so when we execute the request in the SgbdSqlite we pass an
+action in parameter because the method to execute the statement in sql is not
+the same for an insert statement than a select statement for example
+
+@author r3hallejo"
+      attribute 136844 "SEARCH"
+	public type class_ref 139660 // OrmActions
+	cpp_decl ""
+	java_decl "  ${@}${name}${value},${comment}"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	comment "Represents a select statement in the Orm
+"
+      end
+
+      attribute 136972 "UPDATE"
+	public type class_ref 139660 // OrmActions
+	cpp_decl ""
+	java_decl "  ${@}${name}${value},${comment}"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	comment "Represents an update statement in the orm
+"
+      end
+
+      attribute 137100 "DELETE"
+	public type class_ref 139660 // OrmActions
+	cpp_decl ""
+	java_decl "  ${@}${name}${value},${comment}"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	comment "Represents a delete statement in the orm
+"
+      end
+
+      attribute 137228 "INSERT"
+	public type class_ref 139660 // OrmActions
+	cpp_decl ""
+	java_decl "  ${@}${name}${value},${comment}"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	comment "Represents an insert statement in the orm
+"
+      end
+
+      attribute 137356 "CREATE"
+	public type class_ref 139660 // OrmActions
+	cpp_decl ""
+	java_decl "  ${@}${name}${value},${comment}"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	comment "Represents a create table statement in the orm
+"
+      end
+
+      attribute 137484 "OTHER"
+	public type class_ref 139660 // OrmActions
+	cpp_decl ""
+	java_decl "  ${@}${name}${value},${comment}"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	comment "Anything else"
+      end
+    end
+
+    class 139788 "OrmFonction"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "@author CloutierJo
+"
+      classrelation 140940 // sgbd (<unidirectional association>)
+	relation 140940 --->
+	  a role_name "sgbd" init_value " null" class_relation private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 140940 // sgbd (<unidirectional association>)
+	  b parent class_ref 139532 // AbstractSgbd
+      end
+
+      operation 196108 "getSgbd"
+	class_operation public return_type class_ref 139532 // AbstractSgbd
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return abstractSgdb that is in the config file"
+      end
+
+      operation 196236 "buildSgbd"
+	class_operation private return_type class_ref 139532 // AbstractSgbd
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 196364 "createNonExistentTables"
+	class_operation public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Creates the non-existent table from the modules in the database"
+      end
+
+      operation 196492 "createNonExistentTables"
+	class_operation private explicit_return_type "void"
+	nparams 1
+	  param inout name "module" type class_ref 128140 // Module
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 196620 "createTableForEntity"
+	class_operation private explicit_return_type "void"
+	nparams 1
+	  param inout name "entity" type class_ref 128268 // AbstractOrmEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 196748 "addMissingColumnsForEntity"
+	class_operation private explicit_return_type "void"
+	nparams 1
+	  param inout name "entity" type class_ref 128268 // AbstractOrmEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 196876 "createIndexesForEntity"
+	class_operation private explicit_return_type "void"
+	nparams 1
+	  param inout name "entity" type class_ref 128268 // AbstractOrmEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 197004 "doBackupIfTimeIntervalAllows"
+	class_operation public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Fait un backup de la DB si l'intervale de temps est assez grande"
+      end
+    end
+  end
+
+  deploymentview 130060 "orm"
+    //deployment diagram settings
+    package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
+    draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+    artifact 137740 "BackupManager"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 139148 // BackupManager
+      end
+    end
+
+    artifact 137868 "EntityCreator"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 139276 // EntityCreator
+      end
+    end
+
+    artifact 137996 "Orm"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 139404 // Orm
+      end
+    end
+
+    artifact 138124 "OrmActions"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 139660 // OrmActions
+      end
+    end
+
+    artifact 138252 "OrmFonction"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 139788 // OrmFonction
+      end
+    end
+  end
+
+  package_ref 130956 // sgbd
+
+  package_ref 131084 // exceptions
+end

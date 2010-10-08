@@ -1,0 +1,94 @@
+class ActionLink
+!!!166412.java!!!	ActionLink()
+		this(null);
+!!!166540.java!!!	ActionLink(inout action : AbstractAction)
+		this("", action);
+!!!166668.java!!!	ActionLink(in name : String, inout action : AbstractAction)
+		this(name, action, null);
+!!!166796.java!!!	ActionLink(in name : String, inout action : AbstractAction, inout parameters : Hashtable<String, String>)
+		this.name = name;
+		this.action = action;
+		if (parameters != null)
+			this.parameters = (Hashtable<String, String>) parameters.clone();
+		else
+			this.parameters = new Hashtable<String, String>();
+!!!166924.java!!!	getName() : String
+		return name;
+!!!167052.java!!!	setName(in name : String) : void
+		this.name = name;
+!!!167180.java!!!	getAction() : AbstractAction
+		return action;
+!!!167308.java!!!	setAction(inout action : AbstractAction) : void
+		this.action = action;
+!!!167436.java!!!	getParameters() : Hashtable<String, String>
+		return parameters;
+!!!167564.java!!!	getParameters(inout entity : AbstractEntity) : Hashtable<String, String>
+		Hashtable<String, String> newparam = new Hashtable<String, String>();
+		for (String key : parameters.keySet())
+		{
+			if (parameters.get(key).startsWith("&"))
+				newparam.put(key, entity.getDataString(key));
+			else
+				newparam.put(key, parameters.get(key));
+		}
+		return newparam;
+!!!167692.java!!!	setParameters(inout parameters : Hashtable<String, String>) : void
+		this.parameters = parameters;
+!!!167820.java!!!	addParameters(in field : String, in value : String) : void
+		parameters.put(field, value);
+!!!167948.java!!!	getUrl() : String
+		return Servlet.makeLink(action);
+!!!168076.java!!!	getParam(inout entity : AbstractEntity) : String
+		String param = "";
+		for (String key : getParameters(entity).keySet())
+		{
+			param += key + "=";
+			param += parameters.get(key);
+			param += "&";
+		}
+		if (param.length() > 0)
+			param = param.substring(0, param.length() - 1);
+
+		return param;
+!!!168204.java!!!	getUrlParam(inout entity : AbstractEntity) : String
+		return getUrl() + "?" + getParam(entity);
+!!!168332.java!!!	getUrlParam() : String
+		return getUrlParam(null);
+!!!168460.java!!!	isConfirm() : boolean
+		return confirm;
+!!!168588.java!!!	setConfirm(inout confirm : boolean) : void
+		this.confirm = confirm;
+!!!168716.java!!!	equals(inout obj : Object) : boolean
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof ActionLink))
+			return false;
+		ActionLink other = (ActionLink) obj;
+		if (action == null)
+		{
+			if (other.action != null)
+				return false;
+		}
+		else if (!action.equals(other.action))
+			return false;
+		if (confirm != other.confirm)
+			return false;
+		if (name == null)
+		{
+			if (other.name != null)
+				return false;
+		}
+		else if (!name.equals(other.name))
+			return false;
+		if (parameters == null)
+		{
+			if (other.parameters != null)
+				return false;
+		}
+		else if (!parameters.equals(other.parameters))
+			return false;
+		return true;
+!!!168844.java!!!	toString() : String
+		return name;

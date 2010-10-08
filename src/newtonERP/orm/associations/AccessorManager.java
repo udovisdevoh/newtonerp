@@ -1,5 +1,8 @@
 package newtonERP.orm.associations;
 
+import java.util.TreeMap;
+
+import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.exception.TableAssociationException;
 
 /**
@@ -15,9 +18,8 @@ public class AccessorManager
 	 * @param sourceEntity the source entity
 	 * @param foreignEntityDefinition entity of the foreign entity
 	 */
-	public static void addAccessor(
-			newtonERP.module.AbstractOrmEntity sourceEntity,
-			newtonERP.module.AbstractOrmEntity foreignEntityDefinition)
+	public static void addAccessor(AbstractOrmEntity sourceEntity,
+			AbstractOrmEntity foreignEntityDefinition)
 	{
 		try
 		{
@@ -47,9 +49,8 @@ public class AccessorManager
 	 * @param sourceEntity the source entity
 	 * @param foreignEntityDefinition entity of the foreign entity
 	 */
-	public final static void addFlagPool(
-			newtonERP.module.AbstractOrmEntity sourceEntity,
-			newtonERP.module.AbstractOrmEntity foreignEntityDefinition)
+	public static final void addFlagPool(AbstractOrmEntity sourceEntity,
+			AbstractOrmEntity foreignEntityDefinition)
 	{
 		FlagPoolManager.addFlagPool(sourceEntity, foreignEntityDefinition);
 	}
@@ -58,9 +59,8 @@ public class AccessorManager
 	 * @param entity Entité source
 	 * @param foreignEntity Entité cible
 	 */
-	public final static void addListOfValue(
-			newtonERP.module.AbstractOrmEntity entity,
-			newtonERP.module.AbstractOrmEntity foreignEntity)
+	public static final void addListOfValue(AbstractOrmEntity entity,
+			AbstractOrmEntity foreignEntity)
 	{
 		ListOfValueManager.addListOfValue(entity, foreignEntity);
 	}
@@ -69,8 +69,8 @@ public class AccessorManager
 	 * @param abstractOrmEntity entité source
 	 * @return liste des accessors plusieurs à plusieurs pour l'entité source
 	 */
-	public final static PluralAccessor getPluralAccessorList(
-			newtonERP.module.AbstractOrmEntity abstractOrmEntity)
+	public static final TreeMap<String, PluralAccessor> getPluralAccessorList(
+			AbstractOrmEntity abstractOrmEntity)
 	{
 		return PluralAccessorManager.getPluralAccessorList(abstractOrmEntity);
 	}
@@ -79,8 +79,8 @@ public class AccessorManager
 	 * @param abstractOrmEntity entité source
 	 * @return liste des accessors 1 à 1 et plusieurs à 1 pour l'entité source
 	 */
-	public final static newtonERP.module.AbstractOrmEntity getSingleAccessorList(
-			newtonERP.module.AbstractOrmEntity abstractOrmEntity)
+	public static final TreeMap<String, AbstractOrmEntity> getSingleAccessorList(
+			AbstractOrmEntity abstractOrmEntity)
 	{
 		return SingleAccessorManager.getSingleAccessorList(abstractOrmEntity);
 	}
@@ -90,9 +90,9 @@ public class AccessorManager
 	 * @param accessorName nom de l'accessor
 	 * @return accessor
 	 */
-	public static newtonERP.module.AbstractOrmEntity getSingleAccessor(
-			newtonERP.module.AbstractOrmEntity abstractOrmEntity,
-			String accessorName)
+	public static AbstractOrmEntity getSingleAccessor(
+			AbstractOrmEntity abstractOrmEntity, String accessorName)
+
 	{
 		return SingleAccessorManager.getSingleAccessor(abstractOrmEntity,
 				accessorName);
@@ -103,12 +103,9 @@ public class AccessorManager
 	 * @param gateWayEntity entité de passerelle
 	 * @param externalEntity entié externe
 	 */
-	public static void addGateWay(
-			newtonERP.module.AbstractOrmEntity sourceEntity,
-			newtonERP.module.AbstractOrmEntity gateWayEntity,
-			newtonERP.module.AbstractOrmEntity externalEntity)
+	public static void addGateWay(AbstractOrmEntity sourceEntity,
+			AbstractOrmEntity gateWayEntity, AbstractOrmEntity externalEntity)
 	{
 		GateWayManager.addGateWay(sourceEntity, gateWayEntity, externalEntity);
 	}
-
 }

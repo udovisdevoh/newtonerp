@@ -1,0 +1,8 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classnewtonERP_1_1module_1_1Module.html#a52764cdf180b252458ce12f5ceb543b0" title="newtonERP.module.Module.getGlobalActionButtonList" alt="" coords="389,5,752,35"/>
+<area shape="rect" id="node5" href="$classnewtonERP_1_1module_1_1Module.html#a8e95506ab5b9153a1fb16c52f55437c8" title="newtonERP.module.Module.getGlobalActionMenuOrReturnDefaultBehavior" alt="" coords="325,59,816,88"/>
+<area shape="rect" id="node9" href="$classnewtonERP_1_1module_1_1Module.html#a761da6e9bccc8e6fb510ca250d3783fc" title="newtonERP.module.Module.getVisibleName" alt="" coords="423,112,719,141"/>
+<area shape="rect" id="node13" href="$classnewtonERP_1_1module_1_1Module.html#a6f3fe6584a586622d1b84dbe5bf51f41" title="newtonERP.module.Module.isVisible" alt="" coords="448,165,693,195"/>
+<area shape="rect" id="node7" href="$classnewtonERP_1_1module_1_1Module.html#a7e5637b5c4e762305c2c0f2b9495c113" title="newtonERP.module.Module.getGlobalActionMenu" alt="" coords="865,59,1196,88"/>
+<area shape="rect" id="node11" href="$classnewtonERP_1_1module_1_1Module.html#abf6fb228b829478cc5f73ccf81bac932" title="newtonERP.module.Module.getSystemName" alt="" coords="879,112,1183,141"/>
+</map>

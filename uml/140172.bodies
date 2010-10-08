@@ -1,0 +1,21 @@
+class GateWayManager
+!!!199308.java!!!	addGateWay(inout sourceEntity : AbstractOrmEntity, inout gateWayEntity : AbstractOrmEntity, inout externalEntity : AbstractOrmEntity) : void
+		GateWay gateWay = new GateWay(gateWayEntity, externalEntity);
+		sourceEntity.getGateWayList().add(gateWay);
+!!!199436.java!!!	getExternalEntity(inout gateWay : GateWay, inout sourceEntity : AbstractOrmEntity) : AbstractOrmEntity
+		AbstractOrmEntity gateWayEntity = gateWay.getGateWayEntity();
+		gateWayEntity.setData(gateWayEntity.getPrimaryKeyName(), sourceEntity
+				.getData(gateWayEntity.getForeignKeyName()));
+		gateWayEntity = Orm.selectUnique(gateWayEntity);
+
+		AbstractOrmEntity externalEntity = gateWay.getExternalEntity();
+
+		String externalPrimaryKeyName = externalEntity.getPrimaryKeyName();
+		String externalForeignKeyName = externalEntity.getForeignKeyName();
+		int externalPrimaryKeyValue = (Integer) gateWayEntity
+				.getData(externalForeignKeyName);
+
+		externalEntity.setData(externalPrimaryKeyName, externalPrimaryKeyValue);
+		externalEntity = Orm.selectUnique(externalEntity);
+
+		return externalEntity;

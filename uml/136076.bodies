@@ -1,0 +1,5 @@
+class ActionModule
+!!!173836.java!!!	getModule(inout action : AbstractAction) : Module
+		return actionModule.get(action.getClass());
+!!!173964.java!!!	addActionModule(inout action : AbstractAction, inout module : Module) : void
+		actionModule.put(action.getClass(), module);

@@ -1,0 +1,48 @@
+class ListOfValue
+!!!187276.java!!!	ListOfValue(inout sourceEntity : AbstractOrmEntity, in labelName : String, inout foreignEntity : AbstractOrmEntity)
+		this.sourceEntity = sourceEntity;
+		this.labelName = labelName;
+		this.foreignEntity = foreignEntity;
+!!!187404.java!!!	getElements() : NaturalMap
+		// todo: correct deprecate
+		Vector<AbstractOrmEntity> entityList = Orm.select(foreignEntity, null);
+
+		NaturalMap<String, String> elementList = new NaturalMap<String, String>();
+
+		for (AbstractOrmEntity entity : entityList)
+		{
+			elementList.put(entity.getPrimaryKeyValue() + "",
+					entity.getNaturalKeyDescription());
+		}
+
+		return elementList;
+!!!187532.java!!!	getLabelName() : String
+		return labelName;
+!!!187660.java!!!	getForeignValue(in currentForeignPrimaryKey : String) : String
+		try
+		{
+			Vector<String> criterias = new Vector<String>();
+			criterias.add(foreignEntity.getPrimaryKeyName() + "="
+					+ currentForeignPrimaryKey);
+			// todo: correct deprecate
+			Vector<AbstractOrmEntity> entityList = Orm.select(foreignEntity,
+					criterias);
+			AbstractOrmEntity resultEntity = entityList.get(0);
+
+			return resultEntity.getNaturalKeyDescription();
+		} catch (Exception e)
+		{
+			return "- " + foreignEntity.getVisibleName() + " invalide - ";
+		}
+!!!187788.java!!!	getForeignEntityDefinition() : AbstractOrmEntity
+		return foreignEntity;
+!!!187916.java!!!	getSourceEntityDefinition() : AbstractOrmEntity
+		return sourceEntity;
+!!!188044.java!!!	equals(inout other : ListOfValue) : boolean
+		if (getForeignEntityDefinition().getSystemName().equals(
+				other.getForeignEntityDefinition().getSystemName()))
+			if (getSourceEntityDefinition().getSystemName().equals(
+					other.getSourceEntityDefinition().getSystemName()))
+				if (getLabelName().equals(other.getLabelName()))
+					return true;
+		return false;

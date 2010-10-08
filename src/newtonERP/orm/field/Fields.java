@@ -1,6 +1,8 @@
 package newtonERP.orm.field;
 
 import java.util.Collection;
+import java.util.Hashtable;
+import java.util.Iterator;
 import java.util.Vector;
 
 import newtonERP.module.exception.FieldNotFoundException;
@@ -10,12 +12,11 @@ import newtonERP.module.exception.FieldNotFoundException;
  * 
  * @author CloutierJo
  */
-public class Fields extends Iterable
+public class Fields implements Iterable<Field<?>>
 {
-	Field fieldsDataMap;
 
-	Field fieldsDataVector;
-
+	Hashtable<String, Field<?>> fieldsDataMap;
+	Collection<Field<?>> fieldsDataVector;
 	boolean ErrorState = false;
 
 	/**
@@ -46,7 +47,7 @@ public class Fields extends Iterable
 	/**
 	 * @return the fields
 	 */
-	public Field getFields()
+	public Collection<Field<?>> getFields()
 	{
 		return fieldsDataVector;
 	}
@@ -55,7 +56,7 @@ public class Fields extends Iterable
 	 * @param shortName le nom du champ voulu
 	 * @return the named field
 	 */
-	public Field getField(String shortName)
+	public Field<?> getField(String shortName)
 	{
 		return fieldsDataMap.get(shortName);
 	}
@@ -85,6 +86,7 @@ public class Fields extends Iterable
 	 * @param parameters Hashtable de parametre
 	 */
 	public void setFromHashTable(Hashtable<String, ?> parameters)
+
 	{
 		for (String key : parameters.keySet())
 		{
@@ -102,7 +104,7 @@ public class Fields extends Iterable
 		}
 	}
 
-	/**
+	/*
 	 * (non-Javadoc)
 	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
@@ -142,7 +144,7 @@ public class Fields extends Iterable
 	 * iterate over the fields (not the keys)
 	 */
 	@Override
-	public Field iterator()
+	public Iterator<Field<?>> iterator()
 	{
 		return fieldsDataVector.iterator();
 	}
@@ -174,6 +176,7 @@ public class Fields extends Iterable
 	 * @param allField true pour mettre tous les champ a leur valeur par defaut
 	 *            false pour ne mettre les valeurpar defaut qu'au field n'étant
 	 *            pas settez
+	 * 
 	 */
 	public void setDefaultValue(boolean allField)
 	{
@@ -239,5 +242,4 @@ public class Fields extends Iterable
 			field.reset();
 		}
 	}
-
 }

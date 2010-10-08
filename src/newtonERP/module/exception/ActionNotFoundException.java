@@ -18,6 +18,9 @@ public class ActionNotFoundException extends ModuleException
 		super(actionName + " action doesn't exist");
 	}
 
+	/**
+	 * 
+	 */
 	public ActionNotFoundException()
 	{
 		super();
@@ -39,5 +42,4 @@ public class ActionNotFoundException extends ModuleException
 	{
 		super(cause);
 	}
-
 }

@@ -1,0 +1,4 @@
+class ImageFileViewer
+!!!243084.java!!!	getHtmlCode(inout imageFile : ImageFile) : String
+		return "<img src=\"" + imageFile.getUrl() + "\" alt=\""
+				+ imageFile.getAlt() + "\" />";

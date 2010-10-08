@@ -1,0 +1,13 @@
+<map id="G" name="G">
+<area shape="rect" id="node2" href="$classnewtonERP_1_1viewers_1_1viewerData_1_1GridViewerData.html" title="Représente les données pouvant être visible par le grid viewer." alt="" coords="2953,580,3271,609"/>
+<area shape="rect" id="node4" href="$classnewtonERP_1_1viewers_1_1viewerData_1_1BaseViewerData.html" title="viewer servant a standardisé nos viewer" alt="" coords="2509,508,2835,537"/>
+<area shape="rect" id="node6" href="$classnewtonERP_1_1module_1_1AbstractEntity.html" title="newtonERP.module.AbstractEntity" alt="" coords="1055,477,1289,507"/>
+<area shape="rect" id="node10" href="$classnewtonERP_1_1module_1_1AbstractAction.html" title="newtonERP.module.AbstractAction" alt="" coords="1427,529,1667,559"/>
+<area shape="rect" id="node49" href="$classnewtonERP_1_1viewers_1_1viewerData_1_1PageSelector.html" title="Modèle d&#39;un selecteur de page." alt="" coords="1691,635,1995,664"/>
+<area shape="rect" id="node52" href="$classnewtonERP_1_1viewers_1_1viewerData_1_1SearchBar.html" title="Modele d&#39;une barre de recherche." alt="" coords="2529,436,2815,465"/>
+<area shape="rect" id="node56" href="$classnewtonERP_1_1module_1_1AbstractOrmEntity.html" title="newtonERP.module.AbstractOrmEntity" alt="" coords="2540,165,2804,195"/>
+<area shape="rect" id="node35" href="$classnewtonERP_1_1common_1_1ActionLink.html" title="class englobant une action et tout les composants néscéssaire pour l&#39;executer" alt="" coords="2044,551,2263,580"/>
+<area shape="rect" id="node13" href="$classnewtonERP_1_1module_1_1Module.html" title="Abstract class representing an abstract module." alt="" coords="643,531,835,560"/>
+<area shape="rect" id="node27" href="$classnewtonERP_1_1orm_1_1field_1_1Fields.html" title="All the fields of an entity." alt="" coords="644,325,833,355"/>
+<area shape="rect" id="node44" href="$classnewtonERP_1_1viewers_1_1viewerData_1_1GridCaseData.html" title="represent une cellule d&#39;un tableau affichable" alt="" coords="2517,569,2827,599"/>
+</map>

@@ -1,0 +1,1707 @@
+format 75
+"entityDefinitions" // src::modules::taskModule::entityDefinitions
+  revision 1
+  modified_by 12 "djo"
+  // class settings
+  //class diagram settings
+  draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+  //use case diagram settings
+  package_name_in_tab default show_context default auto_label_position default draw_all_relations default class_drawing_mode default shadow default show_stereotype_properties default
+  //sequence diagram settings
+  show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+  //collaboration diagram settings
+  show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default show_msg_context default draw_all_relations default shadow default show_stereotype_properties default
+  //object diagram settings
+   write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+  //component diagram settings
+  package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default
+  draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+  //deployment diagram settings
+  package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
+  draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+  //state diagram settings
+  package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  //activity diagram settings
+  package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+  show_infonote default drawing_language default show_stereotype_properties default
+  
+  java_dir "/home/djo/workspace/NewtonERP/src/modules/taskModule/entityDefinitions/"
+  java_package "modules.taskModule.entityDefinitions"
+  classview 129164 "entityDefinitions"
+    //class diagram settings
+    draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+    //collaboration diagram settings
+    show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default show_msg_context default draw_all_relations default shadow default show_stereotype_properties default
+    //object diagram settings
+     write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+    //sequence diagram settings
+    show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+    //state diagram settings
+    package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+    show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+    //class settings
+    //activity diagram settings
+    package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+    show_infonote default drawing_language default show_stereotype_properties default
+    class 130444 "EntityEntity"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Représente une définition d'entité pour une entité
+@author Guillaume Lacasse"
+      classrelation 132620 // <generalisation>
+	relation 132620 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 132620 // <generalisation>
+	  b parent class_ref 128268 // AbstractOrmEntity
+      end
+
+      classrelation 132748 // <realization>
+	relation 132748 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 132748 // <realization>
+	  b parent class_ref 133004 // Iterable
+      end
+
+      operation 153228 "EntityEntity"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 153356 "preInitFields"
+	protected return_type class_ref 129036 // Fields
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 153484 "initFields"
+	public return_type class_ref 129036 // Fields
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 153612 "deleteUI"
+	public return_type class_ref 128780 // AbstractEntity
+	nparams 1
+	  param inout name "parameters" explicit_type "Hashtable<String, String>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 153740 "getList"
+	public return_type class_ref 129932 // ListViewerData
+	nparams 1
+	  param inout name "parameters" explicit_type "Hashtable<String, String>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 153868 "getEntityDefinition"
+	public return_type class_ref 128268 // AbstractOrmEntity
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return definition réele d'entité selon EntityEntity"
+      end
+
+      operation 153996 "getEntityName"
+	private explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 154124 "getModuleEntity"
+	public return_type class_ref 131468 // ModuleEntity
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return entité du module "
+      end
+
+      operation 154252 "iterator"
+	public return_type class_ref 132876 // FieldEntity
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 154380 "ContainsPrimaryKeyField"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return true si l'entité d'entité a un entité de field qui correspond à
+        sa clef primaire "
+      end
+
+      operation 154508 "buildPrimaryKeyName"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return primary key name for real entity (not entity entity)"
+      end
+    end
+
+    class 130572 "FieldTypeEntity"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Représente un type de field
+@author Guillaume"
+      classrelation 133004 // <generalisation>
+	relation 133004 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 133004 // <generalisation>
+	  b parent class_ref 128268 // AbstractOrmEntity
+      end
+
+      operation 155788 "FieldTypeEntity"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 155916 "preInitFields"
+	protected return_type class_ref 129036 // Fields
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 156044 "initFields"
+	public return_type class_ref 129036 // Fields
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+    end
+
+    class 131340 "ActionEntity"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Représente une action définie dans une entitée
+@author Guillaume Lacasse"
+      classrelation 132236 // <generalisation>
+	relation 132236 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 132236 // <generalisation>
+	  b parent class_ref 128268 // AbstractOrmEntity
+      end
+
+      operation 150412 "ActionEntity"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 150540 "initFields"
+	public return_type class_ref 129036 // Fields
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 150668 "deleteUI"
+	public return_type class_ref 128780 // AbstractEntity
+	nparams 1
+	  param inout name "parameters" explicit_type "Hashtable<String, String>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 150796 "getList"
+	public return_type class_ref 129932 // ListViewerData
+	nparams 1
+	  param inout name "parameters" explicit_type "Hashtable<String, String>"
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 150924 "getAction"
+	public return_type class_ref 128396 // AbstractAction
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return retourne une instance de vrai action selon l'entité d'action"
+      end
+
+      operation 151052 "getModuleEntity"
+	public return_type class_ref 131468 // ModuleEntity
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return module entity"
+      end
+
+      operation 151180 "getActionName"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return nom de l'action"
+      end
+
+      operation 151308 "getBaseAction"
+	public return_type class_ref 132492 // BaseAction
+	nparams 1
+	  param inout name "entity" type class_ref 128268 // AbstractOrmEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param entity entité
+@return base action correspondant à la définition d'entité"
+      end
+    end
+
+    class 131468 "ModuleEntity"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Entité représentant un module
+@author Guillaume Lacasse"
+      classrelation 133132 // <generalisation>
+	relation 133132 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 133132 // <generalisation>
+	  b parent class_ref 128268 // AbstractOrmEntity
+      end
+
+      operation 156172 "ModuleEntity"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 156300 "preInitFields"
+	protected return_type class_ref 129036 // Fields
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 156428 "initFields"
+	public return_type class_ref 129036 // Fields
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 156556 "getModule"
+	public return_type class_ref 128140 // Module
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return vrai module"
+      end
+
+      operation 156684 "getModuleName"
+	private explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 156812 "getList"
+	public return_type class_ref 129932 // ListViewerData
+	nparams 1
+	  param inout name "parameters" explicit_type "Hashtable<String, String>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 156940 "getEntityEntityList"
+	public return_type class_ref 130444 // EntityEntity
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return list of entity entity for this module"
+      end
+
+      operation 157068 "getActionEntityList"
+	public return_type class_ref 131340 // ActionEntity
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return list of action entity for this module"
+      end
+    end
+
+    class 132364 "AccessorEntity"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Entité qui représente un accesseur
+@author Guillaume Lacasse"
+      classrelation 132108 // <generalisation>
+	relation 132108 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 132108 // <generalisation>
+	  b parent class_ref 128268 // AbstractOrmEntity
+      end
+
+      operation 150156 "AccessorEntity"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 150284 "initFields"
+	public return_type class_ref 129036 // Fields
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+    end
+
+    class 132620 "EffectEntity"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Représente l'effet d'une task son action son entité de recherche ses
+paramètres custom
+@author Guillaume Lacasse"
+      classrelation 132364 // <generalisation>
+	relation 132364 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 132364 // <generalisation>
+	  b parent class_ref 128268 // AbstractOrmEntity
+      end
+
+      operation 151436 "EffectEntity"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 151564 "initFields"
+	public return_type class_ref 129036 // Fields
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 151692 "execute"
+	public return_type class_ref 128780 // AbstractEntity
+	nparams 2
+	  param inout name "entityParameters" explicit_type "Hashtable<String, String>"
+	  param inout name "isStraightSearch" explicit_type "boolean"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Exécute l'effet d'une tâche
+@param entityParameters paramètres de l'entité
+@param isStraightSearch si c'est une recherche
+@return entité viewable en tant que résultat de la tâche "
+      end
+
+      operation 151820 "doBaseAction"
+	private return_type class_ref 128780 // AbstractEntity
+	nparams 3
+	  param inout name "baseAction" type class_ref 132492 // BaseAction
+	  param inout name "entity" type class_ref 128268 // AbstractOrmEntity
+	  param inout name "parameters" explicit_type "Hashtable<String, String>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 151948 "getAffectedEntityList"
+	private return_type class_ref 128268 // AbstractOrmEntity
+	nparams 2
+	  param inout name "entityParameters" explicit_type "Hashtable<String, String>"
+	  param inout name "isStraightSearch" explicit_type "boolean"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 152076 "getSearchEntity"
+	private return_type class_ref 128268 // AbstractOrmEntity
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 152204 "getParameters"
+	private explicit_return_type "Hashtable<String, String>"
+	nparams 1
+	  param inout name "entity" type class_ref 128268 // AbstractOrmEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 152332 "getRawParameters"
+	private explicit_return_type "Hashtable<String, String>"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 152460 "parseDynamicParameters"
+	private explicit_return_type "Hashtable<String, String>"
+	nparams 2
+	  param inout name "parameters" explicit_type "Hashtable<String, String>"
+	  param inout name "entity" type class_ref 128268 // AbstractOrmEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 152588 "replaceToEntityFieldValue"
+	private explicit_return_type "String"
+	nparams 3
+	  param inout name "entity" type class_ref 128268 // AbstractOrmEntity
+	  param in name "value" explicit_type "String"
+	  param in name "variable" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 152716 "getAction"
+	private return_type class_ref 128396 // AbstractAction
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 152844 "getActionEntity"
+	private return_type class_ref 131340 // ActionEntity
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 132748 "EffectEntityParameter"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Entité intermédiaire entre effect et parameter
+@author Guillaume Lacasse"
+      classrelation 132492 // <generalisation>
+	relation 132492 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 132492 // <generalisation>
+	  b parent class_ref 128268 // AbstractOrmEntity
+      end
+
+      operation 152972 "EffectEntityParameter"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 153100 "initFields"
+	public return_type class_ref 129036 // Fields
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+    end
+
+    class 132876 "FieldEntity"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Représente un champ
+@author Guillaume Lacasse"
+      classrelation 132876 // <generalisation>
+	relation 132876 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 132876 // <generalisation>
+	  b parent class_ref 128268 // AbstractOrmEntity
+      end
+
+      operation 154636 "FieldEntity"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 154764 "preInitFields"
+	protected return_type class_ref 129036 // Fields
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 154892 "initFields"
+	public return_type class_ref 129036 // Fields
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 155020 "newUI"
+	public return_type class_ref 128780 // AbstractEntity
+	nparams 1
+	  param inout name "parameters" explicit_type "Hashtable<String, String>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 155148 "getEntityEntity"
+	private return_type class_ref 130444 // EntityEntity
+	nparams 1
+	  param in name "entityPrimaryKey" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 155276 "getList"
+	public return_type class_ref 129932 // ListViewerData
+	nparams 1
+	  param inout name "parameters" explicit_type "Hashtable<String, String>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 155404 "getFieldInstance"
+	public return_type class_ref 129292 // Field
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return retourne un vrai field"
+      end
+
+      operation 155532 "getFieldTypeEntity"
+	private return_type class_ref 130572 // FieldTypeEntity
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 155660 "deleteUI"
+	public return_type class_ref 128780 // AbstractEntity
+	nparams 1
+	  param inout name "parameters" explicit_type "Hashtable<String, String>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment "BaseAction Delete, on ne veut pas deleter de Field
+
+@param parameters parametre suplementaire
+@return todo: qu'Est-ce que l'on devrai retourné en general? "
+      end
+    end
+
+    class 133132 "Parameter"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Paramètres custom utilisé par effet de task
+@author Guillaume Lacasse"
+      classrelation 133260 // <generalisation>
+	relation 133260 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 133260 // <generalisation>
+	  b parent class_ref 128268 // AbstractOrmEntity
+      end
+
+      operation 157196 "Parameter"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 157324 "initFields"
+	public return_type class_ref 129036 // Fields
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 157452 "getKey"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return clef du paramètre"
+      end
+
+      operation 157580 "getValue"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return valeur du paramètre"
+      end
+    end
+
+    class 133260 "SearchCriteria"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Critère de recherche pour une entité de recherche
+@author Guillaume Lacasse"
+      classrelation 133388 // <generalisation>
+	relation 133388 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 133388 // <generalisation>
+	  b parent class_ref 128268 // AbstractOrmEntity
+      end
+
+      operation 157708 "SearchCriteria"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 157836 "initFields"
+	public return_type class_ref 129036 // Fields
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 157964 "getKey"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return clef du critère de recherche"
+      end
+
+      operation 158092 "getValue"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return valeur du critère de recherche"
+      end
+
+      operation 158220 "getOperator"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return opérateur en string"
+      end
+
+      operation 158348 "getOperatorEntity"
+	private return_type class_ref 133388 // SearchCriteriaOperator
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 133388 "SearchCriteriaOperator"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Opérateur de critère de recherche
+@author Guillaume Lacasse"
+      classrelation 133516 // <generalisation>
+	relation 133516 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 133516 // <generalisation>
+	  b parent class_ref 128268 // AbstractOrmEntity
+      end
+
+      operation 158476 "SearchCriteriaOperator"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 158604 "initFields"
+	public return_type class_ref 129036 // Fields
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 158732 "deleteUI"
+	public return_type class_ref 128780 // AbstractEntity
+	nparams 1
+	  param inout name "parameters" explicit_type "Hashtable<String, String>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 158860 "editUI"
+	public return_type class_ref 129804 // BaseViewerData
+	nparams 1
+	  param inout name "parameters" explicit_type "Hashtable<String, String>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 158988 "getList"
+	public return_type class_ref 129932 // ListViewerData
+	nparams 1
+	  param inout name "parameters" explicit_type "Hashtable<String, String>"
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 159116 "getOperator"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return opérateur en string"
+      end
+    end
+
+    class 133516 "SearchEntity"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Entité de recherche pour spécification
+@author Guillaume Lacasse"
+      classrelation 133644 // <generalisation>
+	relation 133644 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 133644 // <generalisation>
+	  b parent class_ref 128268 // AbstractOrmEntity
+      end
+
+      operation 159244 "SearchEntity"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 159372 "initFields"
+	public return_type class_ref 129036 // Fields
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 159500 "getEntity"
+	public return_type class_ref 128268 // AbstractOrmEntity
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return vraie entité de recherche"
+      end
+
+      operation 159628 "getSearchCriteriaList"
+	private return_type class_ref 133260 // SearchCriteria
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 159756 "addSearchCriteria"
+	private explicit_return_type "void"
+	nparams 2
+	  param inout name "entity" type class_ref 128268 // AbstractOrmEntity
+	  param inout name "searchCriteria" type class_ref 133260 // SearchCriteria
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 133644 "Specification"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Spécification d'une tâche
+@author Guillaume Lacasse"
+      classrelation 133772 // <generalisation>
+	relation 133772 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 133772 // <generalisation>
+	  b parent class_ref 128268 // AbstractOrmEntity
+      end
+
+      operation 159884 "Specification"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 160012 "initFields"
+	public return_type class_ref 129036 // Fields
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 160140 "isSatisfied"
+	public explicit_return_type "boolean"
+	nparams 2
+	  param inout name "entityParameters" explicit_type "Hashtable<String, String>"
+	  param inout name "isStraightSearch" explicit_type "boolean"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param entityParameters paramètres de l'entité
+@param isStraightSearch si c'est une recherche directe
+@return true si la spécification est satisfaite"
+      end
+
+      operation 160268 "getSearchEntity"
+	private return_type class_ref 128268 // AbstractOrmEntity
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 133772 "TaskEntity"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "entité représentant une task
+@author Guillaume Lacasse
+"
+      classrelation 133900 // <generalisation>
+	relation 133900 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 133900 // <generalisation>
+	  b parent class_ref 128268 // AbstractOrmEntity
+      end
+
+      operation 160396 "TaskEntity"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 160524 "initFields"
+	public return_type class_ref 129036 // Fields
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 160652 "isSatisfied"
+	public explicit_return_type "boolean"
+	nparams 2
+	  param inout name "entityParameters" explicit_type "Hashtable<String, String>"
+	  param inout name "isStraightSearch" explicit_type "boolean"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param entityParameters paramètres de l'entité
+@param isStraightSearch si c'est une recherche directe
+@return true si la spécification de la tâche est satisfaite"
+      end
+
+      operation 160780 "getSpecification"
+	private return_type class_ref 133644 // Specification
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 160908 "execute"
+	public return_type class_ref 128780 // AbstractEntity
+	nparams 2
+	  param inout name "entityParameters" explicit_type "Hashtable<String, String>"
+	  param inout name "isStraightSearch" explicit_type "boolean"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Execute l'effet de la tâche
+@param entityParameters paramètres de l'entité
+@param isStraightSearch si c'est une recherche directe
+@return entité viewable, résultat de la tâche"
+      end
+
+      operation 161036 "getEffect"
+	private return_type class_ref 132620 // EffectEntity
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 161164 "isActive"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return si la tâche est présentement active"
+      end
+
+      operation 161292 "isStraightSearch"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return si c'est une recherche directe"
+      end
+    end
+  end
+
+  deploymentview 128652 "entityDefinitions"
+    //deployment diagram settings
+    package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
+    draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+    artifact 130188 "AccessorEntity"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 132364 // AccessorEntity
+      end
+    end
+
+    artifact 130316 "ActionEntity"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 131340 // ActionEntity
+      end
+    end
+
+    artifact 130444 "EffectEntity"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 132620 // EffectEntity
+      end
+    end
+
+    artifact 130572 "EffectEntityParameter"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 132748 // EffectEntityParameter
+      end
+    end
+
+    artifact 130700 "EntityEntity"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 130444 // EntityEntity
+      end
+    end
+
+    artifact 130828 "FieldEntity"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 132876 // FieldEntity
+      end
+    end
+
+    artifact 130956 "FieldTypeEntity"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 130572 // FieldTypeEntity
+      end
+    end
+
+    artifact 131084 "ModuleEntity"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 131468 // ModuleEntity
+      end
+    end
+
+    artifact 131212 "Parameter"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 133132 // Parameter
+      end
+    end
+
+    artifact 131340 "SearchCriteria"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 133260 // SearchCriteria
+      end
+    end
+
+    artifact 131468 "SearchCriteriaOperator"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 133388 // SearchCriteriaOperator
+      end
+    end
+
+    artifact 131596 "SearchEntity"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 133516 // SearchEntity
+      end
+    end
+
+    artifact 131724 "Specification"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 133644 // Specification
+      end
+    end
+
+    artifact 131852 "TaskEntity"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 133772 // TaskEntity
+      end
+    end
+  end
+end

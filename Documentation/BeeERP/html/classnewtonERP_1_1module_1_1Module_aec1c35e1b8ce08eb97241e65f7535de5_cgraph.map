@@ -1,0 +1,10 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classnewtonERP_1_1module_1_1Module.html#a8d2f7a692d6da109ae664a3a4248e2e2" title="newtonERP.module.Module.getAction" alt="" coords="327,19,583,48"/>
+<area shape="rect" id="node9" href="$classnewtonERP_1_1module_1_1AbstractAction.html#ad9ddb445cdeb72011f3785ce3f1f02c8" title="Abstract method that will be used to perform the actions." alt="" coords="308,99,601,128"/>
+<area shape="rect" id="node5" href="$classnewtonERP_1_1module_1_1Module.html#a8f3773f1982e9c14f34d5c3b52fc39cd" title="newtonERP.module.Module.getDefaultAction" alt="" coords="656,5,957,35"/>
+<area shape="rect" id="node7" href="$classnewtonERP_1_1module_1_1Module.html#ae41e62fda99c45639864d873de1d6f4f" title="newtonERP.module.Module.getEntityDefinitionList" alt="" coords="1012,5,1345,35"/>
+<area shape="rect" id="node11" href="$classnewtonERP_1_1module_1_1AbstractAction.html#a04e4bf2e08e87857d2728d830765ec2f" title="Abstract method that will be reused by all the actions." alt="" coords="657,59,956,88"/>
+<area shape="rect" id="node13" href="$classnewtonERP_1_1module_1_1AbstractEntity.html#a87356471289bf7f6daaea032e4155f83" title="newtonERP.module.AbstractEntity.getFields" alt="" coords="660,112,953,141"/>
+<area shape="rect" id="node15" href="$classnewtonERP_1_1orm_1_1field_1_1Fields.html#a144f41aab701ebb1edf60d34a4304725" title="newtonERP.orm.field.Fields.setFromHashTable" alt="" coords="652,165,961,195"/>
+<area shape="rect" id="node17" href="$classnewtonERP_1_1orm_1_1field_1_1Fields.html#acb12ce722dc8de992622dfe61f478f8b" title="methode pour changer la valeur d&#39;un champ" alt="" coords="1057,165,1300,195"/>
+</map>

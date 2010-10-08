@@ -1,0 +1,14 @@
+window_sizes 1274 939 398 870 704 145
+windows_style
+show_stereotypes
+open
+  class_ref 128012 // Common
+  deploymentview_ref 128140 // common
+  classview_ref 128396 // entityDefinitions
+  deploymentview_ref 128268 // entityDefinitions
+  
+  package_ref 128396 // newtonERP
+  
+  package_ref 132236 // unitTest
+end
+end

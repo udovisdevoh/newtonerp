@@ -1,0 +1,40 @@
+class PluralAccessor
+!!!199692.java!!!	PluralAccessor(inout internalEntityDefinition : AbstractOrmEntity)
+		this.internalEntityDefinition = internalEntityDefinition;
+!!!199820.java!!!	PluralAccessor(inout internalEntityDefinition : AbstractOrmEntity, inout entityList : Vector<AbstractOrmEntity>)
+		this(internalEntityDefinition);
+		this.entityList = entityList;
+!!!199948.java!!!	getInternalEntityDefinition() : AbstractOrmEntity
+		return internalEntityDefinition;
+!!!200076.java!!!	getEntityList() : AbstractOrmEntity
+		if (entityList == null)
+			entityList = new Vector<AbstractOrmEntity>();
+		return entityList;
+!!!200204.java!!!	iterator() : AbstractOrmEntity
+		return getEntityList().iterator();
+!!!200332.java!!!	add(inout entity : AbstractOrmEntity) : boolean
+		return getEntityList().add(entity);
+!!!200460.java!!!	addAll(inout collection : Collection<? extends AbstractOrmEntity>) : boolean
+		return getEntityList().addAll(collection);
+!!!200588.java!!!	clear() : void
+		getEntityList().clear();
+!!!200716.java!!!	contains(inout object : Object) : boolean
+		return getEntityList().contains(object);
+!!!200844.java!!!	containsAll(inout collection : Collection<?>) : boolean
+		return getEntityList().containsAll(collection);
+!!!200972.java!!!	isEmpty() : boolean
+		return getEntityList().isEmpty();
+!!!201100.java!!!	remove(inout object : Object) : boolean
+		return getEntityList().remove(object);
+!!!201228.java!!!	removeAll(inout collection : Collection<?>) : boolean
+		return getEntityList().removeAll(collection);
+!!!201356.java!!!	retainAll(inout collection : Collection<?>) : boolean
+		return getEntityList().retainAll(collection);
+!!!201484.java!!!	size() : int
+		return getEntityList().size();
+!!!201612.java!!!	toArray() : Object
+		return getEntityList().toArray();
+!!!201740.java!!!	toArray(inout a : T) : T
+		return getEntityList().toArray(a);
+!!!201868.java!!!	get(in i : int) : AbstractOrmEntity
+		return getEntityList().get(i);

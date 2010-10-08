@@ -1,0 +1,9 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classnewtonERP_1_1viewers_1_1viewerData_1_1PageSelector.html#a34c9844ca7f7a16d0d087c2d2b9e9c08" title="newtonERP.viewers.viewerData.PageSelector.getCurrentLimit" alt="" coords="519,5,924,35"/>
+<area shape="rect" id="node5" href="$classnewtonERP_1_1viewers_1_1viewerData_1_1PageSelector.html#a39a99253e9a53f2d277eec438a6a6172" title="newtonERP.viewers.viewerData.PageSelector.getCurrentOffset" alt="" coords="515,59,928,88"/>
+<area shape="rect" id="node7" href="$classnewtonERP_1_1viewers_1_1viewerData_1_1PageSelector.html#a8267d8d706ed62a48a9ea5c1ba7827ca" title="newtonERP.viewers.viewerData.PageSelector.getCurrentSearchEntry" alt="" coords="495,112,948,141"/>
+<area shape="rect" id="node9" href="$classnewtonERP_1_1viewers_1_1viewerData_1_1PageSelector.html#aca2e04a1d2ca939719c51231d9978ef1" title="newtonERP.viewers.viewerData.PageSelector.getCurrentUrl" alt="" coords="524,165,919,195"/>
+<area shape="rect" id="node11" href="$classnewtonERP_1_1viewers_1_1viewerData_1_1PageSelector.html#aa16efe45e3dc7d4cfd563b7d35a5f7a8" title="newtonERP.viewers.viewerData.PageSelector.getOrderBy" alt="" coords="532,219,911,248"/>
+<area shape="rect" id="node13" href="$classnewtonERP_1_1viewers_1_1viewerData_1_1PageSelector.html#a7ce1cca09d3e2fd67d957b4bc4267479" title="newtonERP.viewers.viewerData.PageSelector.getPageCount" alt="" coords="523,272,920,301"/>
+<area shape="rect" id="node15" href="$classnewtonERP_1_1viewers_1_1viewerData_1_1PageSelector.html#a9ae72b3a90ef2e186afef5af3816ff67" title="newtonERP.viewers.viewerData.PageSelector.getTotalRowCount" alt="" coords="512,325,931,355"/>
+</map>

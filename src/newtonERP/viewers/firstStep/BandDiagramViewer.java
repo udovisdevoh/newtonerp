@@ -2,6 +2,7 @@ package newtonERP.viewers.firstStep;
 
 import newtonERP.viewers.secondStep.MoneyViewer;
 import newtonERP.viewers.secondStep.colorViewer.ColorViewer;
+import newtonERP.viewers.viewables.BandDiagramViewable;
 
 /**
  * Sert à voir les diagrammes à bandes
@@ -15,8 +16,7 @@ public class BandDiagramViewer
 	 * @param entity diagramme à bande
 	 * @return code html
 	 */
-	public static String getHtmlCode(
-			newtonERP.viewers.viewables.BandDiagramViewable entity)
+	public static String getHtmlCode(BandDiagramViewable entity)
 	{
 		String html = "";
 		double maximum = entity.getMaximumValue();

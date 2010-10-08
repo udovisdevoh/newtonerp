@@ -1,0 +1,12 @@
+class FieldText
+!!!219276.java!!!	FieldText(in name : String, in shortName : String, in data : String)
+		super(name, shortName, data);
+!!!219404.java!!!	FieldText(in name : String, in shortName : String, inout isVeryLong : boolean)
+		super(name, shortName);
+		this.isVeryLong = isVeryLong;
+!!!219532.java!!!	FieldText(in name : String, in shortName : String)
+		this(name, shortName, false);
+!!!219660.java!!!	setVeryLong(inout isVeryLong : boolean) : void
+		this.isVeryLong = isVeryLong;
+!!!219788.java!!!	isVeryLong() : boolean
+		return isVeryLong;

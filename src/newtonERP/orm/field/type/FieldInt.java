@@ -3,13 +3,14 @@ package newtonERP.orm.field.type;
 import newtonERP.logging.Logger;
 import newtonERP.module.exception.FieldNotCompatibleException;
 import newtonERP.module.exception.InvalidOperatorException;
+import newtonERP.orm.field.Field;
 
 /**
  * Integer field in the entities
  * 
  * @author CloutierJo, r3hallejo
  */
-public class FieldInt extends newtonERP.orm.field.Field<Integer>
+public class FieldInt extends Field<Integer>
 {
 	/**
 	 * constructeur minimum
@@ -19,6 +20,7 @@ public class FieldInt extends newtonERP.orm.field.Field<Integer>
 	 * @param data donne du champ
 	 */
 	public FieldInt(String name, String shortName, Integer data)
+
 	{
 		super(name, shortName, data);
 	}
@@ -28,6 +30,7 @@ public class FieldInt extends newtonERP.orm.field.Field<Integer>
 	 * @param shortName nom du champ qui sera utiliser a l'interne
 	 */
 	public FieldInt(String name, String shortName)
+
 	{
 		this(name, shortName, null);
 	}
@@ -77,5 +80,4 @@ public class FieldInt extends newtonERP.orm.field.Field<Integer>
 		else
 			throw new FieldNotCompatibleException(getShortName(), data);
 	}
-
 }

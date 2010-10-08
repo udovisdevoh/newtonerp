@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$interfacenewtonERP_1_1viewers_1_1viewables_1_1FloorViewable.html#acc3e1fad38b7fee0fe8b0b10ddc69a85" title="newtonERP.viewers.viewables.FloorViewable.getColumnCount" alt="" coords="429,5,837,35"/>
+<area shape="rect" id="node5" href="$interfacenewtonERP_1_1viewers_1_1viewables_1_1FloorViewable.html#ab2cb3a1e09036884809b7f15c219cc95" title="newtonERP.viewers.viewables.FloorViewable.getRowCount" alt="" coords="441,59,825,88"/>
+<area shape="rect" id="node7" href="$interfacenewtonERP_1_1viewers_1_1viewables_1_1FloorViewable.html#a41c5ca6d4988481aa9edab302104e653" title="newtonERP.viewers.viewables.FloorViewable.isCorridorAt" alt="" coords="445,112,821,141"/>
+<area shape="rect" id="node9" href="$interfacenewtonERP_1_1viewers_1_1viewables_1_1FloorViewable.html#a7b5f8503023f3bffcf4d7fb12847c95d" title="newtonERP.viewers.viewables.FloorViewable.tryGetZoneNameAt" alt="" coords="420,165,847,195"/>
+</map>

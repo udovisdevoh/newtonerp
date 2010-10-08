@@ -1,0 +1,104 @@
+class Fields
+!!!210444.java!!!	Fields()
+		fieldsDataMap = new Hashtable<String, Field<?>>();
+		fieldsDataVector = new Vector<Field<?>>();
+!!!210572.java!!!	Fields(inout fields : Vector<Field<?>>)
+		fieldsDataVector = fields;
+		fieldsDataMap = new Hashtable<String, Field<?>>();
+		for (Field<?> field : fields)
+		{
+			if (field.getShortName().matches("PK.*"))
+				field.setReadOnly(true);
+			fieldsDataMap.put(field.getShortName(), field);
+			field.setFieldsRef(this);
+		}
+!!!210700.java!!!	getFields() : Field
+		return fieldsDataVector;
+!!!210828.java!!!	getField(in shortName : String) : Field
+		return fieldsDataMap.get(shortName);
+!!!210956.java!!!	setData(in shortName : String, inout data : Object) : void
+		try
+		{
+			if (fieldsDataMap.get(shortName).getCalcul() == null)
+				if (data instanceof String)
+					fieldsDataMap.get(shortName).setData((String) data);
+				else
+					fieldsDataMap.get(shortName).setData(data);
+		} catch (NullPointerException e)
+		{
+			throw new FieldNotFoundException(shortName);
+		}
+!!!211084.java!!!	setFromHashTable(inout parameters : Hashtable<String, ?>) : void
+		for (String key : parameters.keySet())
+		{
+			try
+			{
+				Object value = parameters.get(key);
+				if (value instanceof String)
+					value = (((String) (value)).replace("&rsquo;", "'"));
+
+				setData(key, value);
+			} catch (FieldNotFoundException e)
+			{
+				// nothing to do
+			}
+		}
+!!!211212.java!!!	equals(inout obj : Object) : boolean
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof Fields))
+			return false;
+		Fields other = (Fields) obj;
+		if (fieldsDataMap == null)
+		{
+			if (other.fieldsDataMap != null)
+				return false;
+		}
+		else if (!fieldsDataMap.equals(other.fieldsDataMap))
+			return false;
+		if (fieldsDataVector == null)
+		{
+			if (other.fieldsDataVector != null)
+				return false;
+		}
+		else if (!fieldsDataVector.equals(other.fieldsDataVector))
+			return false;
+		return true;
+!!!211340.java!!!	toString() : String
+		return fieldsDataMap.toString();
+!!!211468.java!!!	iterator() : Field
+		return fieldsDataVector.iterator();
+!!!211596.java!!!	getKeyList() : Collection<String>
+		return new Vector<String>(fieldsDataMap.keySet());
+!!!211724.java!!!	getLongFieldNameList() : Collection<String>
+		Vector<String> longFieldName = new Vector<String>();
+		for (Field<?> field : this)
+			longFieldName.add(field.getName());
+		return longFieldName;
+!!!211852.java!!!	setDefaultValue(inout allField : boolean) : void
+		for (Field<?> field : getFields())
+		{
+			if (field.getData() == null || allField)
+				field.setDefaultValue();
+		}
+!!!211980.java!!!	setDefaultValue() : void
+		setDefaultValue(true);
+!!!212108.java!!!	containsFieldName(in fieldName : String) : boolean
+		return fieldsDataMap.containsKey(fieldName);
+!!!212236.java!!!	containsValues() : boolean
+		for (Field<?> field : this)
+			if (field.getData() != null)
+				return true;
+		return false;
+!!!212364.java!!!	isErrorState() : boolean
+		return ErrorState;
+!!!212492.java!!!	setErrorState(inout errorState : boolean) : void
+		ErrorState = errorState;
+!!!212620.java!!!	reset() : void
+		ErrorState = false;
+		for (Field<?> field : fieldsDataVector)
+		{
+			field.reset();
+		}

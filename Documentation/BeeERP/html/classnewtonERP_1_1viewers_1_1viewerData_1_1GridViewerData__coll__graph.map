@@ -1,0 +1,9 @@
+<map id="G" name="G">
+<area shape="rect" id="node2" href="$classnewtonERP_1_1viewers_1_1viewerData_1_1BaseViewerData.html" title="viewer servant a standardisé nos viewer" alt="" coords="2235,149,2560,179"/>
+<area shape="rect" id="node4" href="$classnewtonERP_1_1module_1_1AbstractEntity.html" title="newtonERP.module.AbstractEntity" alt="" coords="1055,315,1289,344"/>
+<area shape="rect" id="node8" href="$classnewtonERP_1_1module_1_1AbstractAction.html" title="newtonERP.module.AbstractAction" alt="" coords="1427,291,1667,320"/>
+<area shape="rect" id="node33" href="$classnewtonERP_1_1common_1_1ActionLink.html" title="class englobant une action et tout les composants néscéssaire pour l&#39;executer" alt="" coords="1793,252,2012,281"/>
+<area shape="rect" id="node11" href="$classnewtonERP_1_1module_1_1Module.html" title="Abstract class representing an abstract module." alt="" coords="643,261,835,291"/>
+<area shape="rect" id="node25" href="$classnewtonERP_1_1orm_1_1field_1_1Fields.html" title="All the fields of an entity." alt="" coords="644,477,833,507"/>
+<area shape="rect" id="node42" href="$classnewtonERP_1_1viewers_1_1viewerData_1_1GridCaseData.html" title="represent une cellule d&#39;un tableau affichable" alt="" coords="2243,228,2552,257"/>
+</map>

@@ -1,0 +1,181 @@
+class UserRightModule
+!!!161420.java!!!	UserRightModule()
+		super();
+		setDefaultAction(new BaseAction("GetList", new User()));
+		addGlobalActionMenuItem("Utilisateurs", new BaseAction("GetList",
+				new User()));
+		addGlobalActionMenuItem("Liste des droits", new BaseAction("GetList",
+				new Right()));
+		addGlobalActionMenuItem("Groupes", new BaseAction("GetList",
+				new Groups()));
+		setVisibleName("Gestion de droits");
+!!!161548.java!!!	initDB() : void
+		Groups groups;
+		User user;
+		Right right;
+		int rightID;
+		GroupsRight groupsRight;
+
+		// ***************** unlogged User ****************
+		// cree le groupe
+		groups = new Groups();
+		groups.setData("groupName", "unLogedGroup");
+		groups.newE();
+
+		// cree le user unLogedUser
+		user = new User();
+		user.setData("name", "unLogedUser");
+		user.setData("password", "");
+		user.setData(groups.getForeignKeyName(), groups.getPrimaryKeyValue());
+		user.newE();
+
+		// retrouve le rightID du login
+		right = new Right();
+		right.setData("moduleName", getSystemName());
+		right.setData("actionName", "Login");
+		right = (Right) right.get(right).get(0);
+		rightID = (Integer) right.getData(right.getPrimaryKeyName());
+
+		// cree le GroupsRight pour donne acces au login a unloggedUser
+		groupsRight = new GroupsRight();
+		groupsRight.setData(groups.getForeignKeyName(),
+				groups.getPrimaryKeyValue());
+		groupsRight.setData(right.getPrimaryKeyName(), rightID);
+		groupsRight.newE();
+
+		// ***************** admin User ****************
+
+		// cree le groupe
+		groups = new Groups();
+		groups.setData("groupName", "admin");
+		groups.newE();
+
+		// cree le user Admin
+		user = new User();
+		user.setData("name",
+				ConfigManager.loadStringAttrProperty("default-user", "name"));
+		user.setData("password", ConfigManager.loadStringAttrProperty(
+				"default-user", "password"));
+		user.setData(groups.getPrimaryKeyName(), groups.getPrimaryKeyValue());
+		user.newE();
+
+		groupsRight = new GroupsRight();
+
+		// retrouve les rightID pour donne les droit au group admin
+		right = new Right();
+		right.setData("moduleName", getSystemName());
+		for (AbstractOrmEntity currentRight : Orm.select(right))
+		{
+			rightID = currentRight.getPrimaryKeyValue();
+
+			// cree le GroupsRight
+			groupsRight.setData("groupsID", groups.getPrimaryKeyValue());
+			groupsRight.setData("rightID", rightID);
+			groupsRight.newE();
+		}
+!!!161676.java!!!	addGroupsRight(in groupName : String, in actionName : String, in entityName : String) : void
+		// todo: correct deprecate
+		Groups groups = (Groups) Orm.getOrCreateEntity(new Groups(),
+				"groupName", groupName);
+		// todo: correct deprecate
+		Right right = (Right) Orm.getOrCreateEntity(new Right(), "actionName",
+				actionName, "entityName", entityName);
+
+		// todo: correct deprecate
+		Orm.getOrCreateEntity(new GroupsRight(), groups.getForeignKeyName(),
+				groups.getPrimaryKeyValue().toString(), right
+						.getForeignKeyName(), right.getPrimaryKeyValue()
+						.toString());
+!!!161804.java!!!	addGroupsRight(in groupName : String, in rightActionName : String) : void
+		// todo: correct deprecate
+		Groups groups = (Groups) Orm.getOrCreateEntity(new Groups(),
+				"groupName", groupName);
+		// todo: correct deprecate
+		Right right = (Right) Orm.getOrCreateEntity(new Right(), "actionName",
+				rightActionName);
+
+		// todo: correct deprecate
+		Orm.getOrCreateEntity(new GroupsRight(), groups.getForeignKeyName(),
+				groups.getPrimaryKeyValue().toString(), right
+						.getForeignKeyName(), right.getPrimaryKeyValue()
+						.toString());
+!!!161932.java!!!	removeGroupsRight(in groupName : String, in rightActionName : String) : void
+		// todo: correct deprecate
+		Groups groups = (Groups) Orm.getOrCreateEntity(new Groups(),
+				"groupName", groupName);
+		// todo: correct deprecate
+		Right right = (Right) Orm.getOrCreateEntity(new Right(), "actionName",
+				rightActionName);
+
+		// todo: correct deprecate
+		Orm.delete(new GroupsRight(), groups.getForeignKeyName(), groups
+				.getPrimaryKeyValue().toString(), right.getForeignKeyName(),
+				right.getPrimaryKeyValue().toString());
+!!!162060.java!!!	isPermissionAllowed(inout actionLink : ActionLink) : boolean
+		String userName = Authentication.getCurrentUserName();
+		Groups groups = tryGetGroupsForUser(userName);
+		String entityName;
+		AbstractEntity entity;
+
+		if (groups == null)
+			return false;
+
+		AbstractAction action = actionLink.getAction();
+		String actionName = action.getSystemName();
+
+		if (action instanceof BaseAction)
+			entity = ((BaseAction) action).getEntity();
+		else
+			entity = action.getEntityUsable();
+
+		if (entity == null)
+			entityName = "";
+		else
+			entityName = entity.getSystemName();
+
+		Right right = tryGetRight(actionName, entityName);
+
+		if (right == null)
+			right = tryGetRight(actionName);
+
+		return isGroupsRightExists(groups.getPrimaryKeyValue(),
+				right.getPrimaryKeyValue());
+!!!162188.java!!!	tryGetRight(in actionName : String) : Right
+		Right right = new Right();
+		right.setData("actionName", actionName);
+
+		Vector<AbstractOrmEntity> rightList = right.get();
+		if (rightList.size() > 0)
+			return (Right) rightList.get(0);
+		return null;
+!!!162316.java!!!	tryGetRight(in actionName : String, in entityName : String) : Right
+		Right right = new Right();
+		right.setData("actionName", actionName);
+		right.setData("entityName", entityName);
+
+		Vector<AbstractOrmEntity> rightList = right.get();
+		if (rightList.size() > 0)
+			return (Right) rightList.get(0);
+		return null;
+!!!162444.java!!!	tryGetGroupsForUser(in userName : String) : Groups
+		User user = new User();
+		user.setData("name", userName);
+
+		Vector<AbstractOrmEntity> userList = user.get();
+
+		if (userList.size() < 1)
+			return null;
+
+		user = (User) userList.get(0);
+
+		Groups groups = (Groups) AccessorManager.getSingleAccessor(user,
+				"groupsID");
+
+		return groups;
+!!!162572.java!!!	isGroupsRightExists(inout groupsID : Integer, inout rightID : Integer) : boolean
+		GroupsRight groupsRight = new GroupsRight();
+		groupsRight.setData("groupsID", groupsID);
+		groupsRight.setData("rightID", rightID);
+
+		Vector<AbstractOrmEntity> entityList = groupsRight.get();
+		return entityList.size() > 0;

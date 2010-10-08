@@ -1,0 +1,9 @@
+class ModuleException
+!!!174988.java!!!	ModuleException(in message : String)
+		super(message);
+!!!175116.java!!!	ModuleException()
+		super();
+!!!175244.java!!!	ModuleException(in message : String, inout cause : Throwable)
+		super(message, cause);
+!!!175372.java!!!	ModuleException(inout cause : Throwable)
+		super(cause);

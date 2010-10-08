@@ -1,0 +1,28 @@
+class ListModuleTest
+!!!257036.java!!!	setUp() : void
+	super.setUp();
+!!!257164.java!!!	tearDown() : void
+	super.tearDown();
+!!!257292.java!!!	testAddModule() : void
+	ListModule.addModule("TestModule");
+	assertEquals(1, ListModule.getAllModules().size());
+!!!257420.java!!!	testRemoveModule() : void
+	ListModule.addModule("TestModule");
+	ListModule.removeModule("TestModule");
+	assertEquals(0, ListModule.getAllModules().size());
+!!!257548.java!!!	testGetAllModules() : void
+	assertNotNull(ListModule.getAllModules());
+!!!257676.java!!!	testGetModule() : void
+	ListModule.addModule("TestModule");
+	try
+	{
+	    assertTrue(ListModule.getModule("TestModule") instanceof TestModule);
+	} catch (Exception e)
+	{
+	    e.printStackTrace();
+	    fail("exception");
+	}
+
+!!!257804.java!!!	testInitAllModule() : void
+	ListModule.initAllModule();
+	assertTrue(ListModule.getAllModules().size() > 0);

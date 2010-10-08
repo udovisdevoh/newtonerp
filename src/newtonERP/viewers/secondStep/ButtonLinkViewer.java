@@ -1,12 +1,17 @@
 package newtonERP.viewers.secondStep;
 
+import java.util.Hashtable;
+
 import modules.userRightModule.UserRightModule;
+import newtonERP.common.ActionLink;
 import newtonERP.common.ListModule;
+import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 
 /**
  * Sert à formatter de l'argent
  * @author Guillaume
+ * 
  */
 public class ButtonLinkViewer
 {
@@ -15,8 +20,9 @@ public class ButtonLinkViewer
 	 * @param entity entity d'ou tiré les parametre, peu etre null
 	 * @return bouton de lien
 	 */
-	public static String getHtmlCode(newtonERP.common.ActionLink actionLink,
-			newtonERP.module.AbstractEntity entity)
+
+	public static String getHtmlCode(ActionLink actionLink,
+			AbstractEntity entity)
 	{
 		String html = "";
 		int balloonDivId = LinkViewer.getNextBalloonDivId();
@@ -74,8 +80,8 @@ public class ButtonLinkViewer
 		return html;
 	}
 
-	private static boolean isPermissionAllowed(
-			newtonERP.common.ActionLink actionLink)
+	private static boolean isPermissionAllowed(ActionLink actionLink)
+
 	{
 		UserRightModule userRightModule = (UserRightModule) ListModule
 				.getModule("UserRightModule");
@@ -87,7 +93,7 @@ public class ButtonLinkViewer
 	 * @param actionLink representation du lien a effectuer
 	 * @return bouton de lien
 	 */
-	public static String getHtmlCode(newtonERP.common.ActionLink actionLink)
+	public static String getHtmlCode(ActionLink actionLink)
 	{
 		return getHtmlCode(actionLink, null);
 	}
@@ -120,5 +126,4 @@ public class ButtonLinkViewer
 
 		return html;
 	}
-
 }

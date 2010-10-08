@@ -1,0 +1,62 @@
+class ListModule
+!!!170252.java!!!	addModule(in moduleName : String, in path : String) : void
+		FileModule fileMod = new FileModule(moduleName, path);
+		allModules.put(fileMod.getName(), fileMod);
+!!!170380.java!!!	removeModule(in moduleName : String) : void
+		allModules.remove(moduleName);
+!!!170508.java!!!	getAllModules() : Set<String>
+		return allModules.keySet();
+!!!170636.java!!!	getModule(in moduleName : String) : Module
+		Module tmpMod = allModules.get(moduleName).getCache();
+		if (tmpMod != null)
+		{
+			tmpMod = allModules.get(moduleName).getCache();
+			tmpMod.initEntityDefinition(allModules.get(moduleName)
+					.getFilePath());
+			return tmpMod;
+		}
+
+		Object mod = null;
+		try
+		{
+			mod = ModuleLoader.loadClass(
+					allModules.get(moduleName).getPackagePathName())
+					.newInstance();
+		} catch (Exception e)
+		{
+			e.printStackTrace(); // TODO add stackTrace to new exception
+			throw new ModuleException(moduleName);
+		}
+		if (!(mod instanceof Module))
+		{
+			throw new ModuleNotFoundException(moduleName);
+		}
+		tmpMod = (Module) mod;
+
+		tmpMod.initAction(allModules.get(moduleName).getFilePath());
+		tmpMod.initEntityDefinition(allModules.get(moduleName).getFilePath());
+
+		allModules.get(moduleName).setCache(tmpMod);
+		return tmpMod;
+!!!170764.java!!!	initAllModule() : void
+		Vector<String> paths = new Vector<String>();
+		// todo: uncomment that => paths.add(ConfigManager.getModulesPath() +
+		// "modules");
+		paths.add("./bin/modules");
+		File folder;
+		File[] listOfFiles;
+		for (String path : paths)
+		{
+			folder = new File(path);
+			listOfFiles = folder.listFiles();
+
+			for (int i = 0; i < listOfFiles.length; i++)
+			{
+				if (listOfFiles[i].isDirectory()
+						&& !listOfFiles[i].getName().equals(".svn"))
+				{
+					addModule(listOfFiles[i].getName(), path + "/"
+							+ listOfFiles[i].getName());
+				}
+			}
+		}

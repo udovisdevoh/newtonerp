@@ -1,15 +1,22 @@
 package newtonERP.viewers.viewerData;
 
+import java.util.Hashtable;
+
+import newtonERP.common.ActionLink;
+import newtonERP.module.AbstractAction;
+import newtonERP.module.AbstractEntity;
+import newtonERP.module.Module;
+import newtonERP.module.generalEntity.FlagPool;
+import newtonERP.module.generalEntity.ListOfValue;
+
 /**
  * data du promptViewer
  * @author CloutierJo
  */
 public class PromptViewerData extends BaseViewerData
 {
-	private newtonERP.common.ActionLink buttonAction;
-
-	private newtonERP.module.AbstractEntity data;
-
+	private ActionLink buttonAction;
+	private AbstractEntity data;
 	private boolean isReadOnly;
 
 	/**
@@ -23,7 +30,7 @@ public class PromptViewerData extends BaseViewerData
 	/**
 	 * @return nom du bouton "ok"
 	 */
-	public newtonERP.common.ActionLink getButtonAction()
+	public ActionLink getButtonAction()
 	{
 		return buttonAction;
 	}
@@ -31,7 +38,7 @@ public class PromptViewerData extends BaseViewerData
 	/**
 	 * @param buttonAction nom du bouton "ok"
 	 */
-	public void setButtonAction(newtonERP.common.ActionLink buttonAction)
+	public void setButtonAction(ActionLink buttonAction)
 	{
 		this.buttonAction = buttonAction;
 	}
@@ -39,7 +46,7 @@ public class PromptViewerData extends BaseViewerData
 	/**
 	 * @param data the data to set
 	 */
-	public void setData(newtonERP.module.AbstractEntity data)
+	public void setData(AbstractEntity data)
 	{
 		this.data = data;
 		if (getTitle() == null)
@@ -49,14 +56,13 @@ public class PromptViewerData extends BaseViewerData
 	/**
 	 * @return the data
 	 */
-	public newtonERP.module.AbstractEntity getData()
+	public AbstractEntity getData()
 	{
 		return data;
 	}
 
+	// *************************************************************************
 	/**
-	 * *************************************************************************
-	 * 
 	 * @param inputName nom du champ
 	 * @return is le champ est un check box (bool)
 	 */
@@ -69,8 +75,7 @@ public class PromptViewerData extends BaseViewerData
 	 * @param fieldKeyName the field key name
 	 * @return If list of value exist, return it, else, return null
 	 */
-	public newtonERP.module.generalEntity.ListOfValue tryMatchListOfValue(
-			String fieldKeyName)
+	public ListOfValue tryMatchListOfValue(String fieldKeyName)
 	{
 		return null;
 	}
@@ -78,7 +83,7 @@ public class PromptViewerData extends BaseViewerData
 	/**
 	 * @return the flag pool list
 	 */
-	public newtonERP.module.generalEntity.FlagPool getPositiveFlagPoolList()
+	public Hashtable<String, FlagPool> getPositiveFlagPoolList()
 	{
 		return null;
 	}
@@ -105,7 +110,7 @@ public class PromptViewerData extends BaseViewerData
 	/**
 	 * @return the current action
 	 */
-	public newtonERP.module.AbstractAction getCurrentAction()
+	public AbstractAction getCurrentAction()
 	{
 		return null;
 	}
@@ -113,7 +118,7 @@ public class PromptViewerData extends BaseViewerData
 	/**
 	 * @return the current module
 	 */
-	public newtonERP.module.Module getCurrentModule()
+	public Module getCurrentModule()
 	{
 		return null;
 	}
@@ -134,5 +139,4 @@ public class PromptViewerData extends BaseViewerData
 	{
 		return isReadOnly;
 	}
-
 }

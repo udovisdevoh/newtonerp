@@ -6,10 +6,13 @@ import modules.userRightModule.entityDefinitions.Groups;
 import modules.userRightModule.entityDefinitions.GroupsRight;
 import modules.userRightModule.entityDefinitions.Right;
 import modules.userRightModule.entityDefinitions.User;
+import newtonERP.common.ActionLink;
 import newtonERP.common.Authentication;
+import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.BaseAction;
+import newtonERP.module.Module;
 import newtonERP.orm.Orm;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.serveur.ConfigManager;
@@ -19,7 +22,7 @@ import newtonERP.serveur.ConfigManager;
  * 
  *         Class representing the user right module. Base module for the ERP.
  */
-public class UserRightModule extends newtonERP.module.Module
+public class UserRightModule extends Module
 {
 	/**
 	 * Default constructor for the user right module initializing himself. Adds
@@ -170,7 +173,7 @@ public class UserRightModule extends newtonERP.module.Module
 	 * @param actionLink un actionLink
 	 * @return vrai si les permission sont présentement accordées, sinon, faux
 	 */
-	public boolean isPermissionAllowed(newtonERP.common.ActionLink actionLink)
+	public boolean isPermissionAllowed(ActionLink actionLink)
 	{
 		String userName = Authentication.getCurrentUserName();
 		Groups groups = tryGetGroupsForUser(userName);
@@ -202,8 +205,7 @@ public class UserRightModule extends newtonERP.module.Module
 				right.getPrimaryKeyValue());
 	}
 
-	private modules.userRightModule.entityDefinitions.Right tryGetRight(
-			String actionName)
+	private Right tryGetRight(String actionName)
 	{
 		Right right = new Right();
 		right.setData("actionName", actionName);
@@ -214,8 +216,8 @@ public class UserRightModule extends newtonERP.module.Module
 		return null;
 	}
 
-	private modules.userRightModule.entityDefinitions.Right tryGetRight(
-			String actionName, String entityName)
+	private Right tryGetRight(String actionName, String entityName)
+
 	{
 		Right right = new Right();
 		right.setData("actionName", actionName);
@@ -227,8 +229,7 @@ public class UserRightModule extends newtonERP.module.Module
 		return null;
 	}
 
-	private modules.userRightModule.entityDefinitions.Groups tryGetGroupsForUser(
-			String userName)
+	private Groups tryGetGroupsForUser(String userName)
 	{
 		User user = new User();
 		user.setData("name", userName);

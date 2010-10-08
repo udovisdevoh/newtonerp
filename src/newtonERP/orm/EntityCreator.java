@@ -2,11 +2,13 @@ package newtonERP.orm;
 
 import java.sql.ResultSet;
 import java.util.Collection;
+import java.util.Hashtable;
 import java.util.Vector;
 
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.exceptions.OrmEntityCreationException;
+import newtonERP.orm.field.Field;
 
 /**
  * Class used to create the entities in the select statement of the orm because
@@ -24,8 +26,8 @@ public class EntityCreator
 	 * @param searchEntity the entities from which we searched
 	 * @return a vector of ormizable entities
 	 */
-	public static newtonERP.module.AbstractOrmEntity createEntitiesFromResultSet(
-			ResultSet rs, newtonERP.module.AbstractOrmEntity searchEntity)
+	public static Vector<AbstractOrmEntity> createEntitiesFromResultSet(
+			ResultSet rs, AbstractOrmEntity searchEntity)
 	{
 		Vector<AbstractOrmEntity> returnedEntities = new Vector<AbstractOrmEntity>();
 
@@ -84,5 +86,4 @@ public class EntityCreator
 		}
 		return returnedEntities;
 	}
-
 }

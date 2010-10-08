@@ -1,0 +1,133 @@
+class EntitySourceCodeBuilder
+!!!230540.java!!!	build(inout entityEntity : EntityEntity) : String
+		entityEntity = (EntityEntity) Orm.selectUnique(entityEntity);
+
+		String sourceCode = "";
+
+		sourceCode += "package modules." + getPackageName(entityEntity)
+				+ ".entityDefinitions;\n";
+		sourceCode += "\n";
+		sourceCode += "import newtonERP.orm.field.*;\n";
+		sourceCode += "import newtonERP.orm.field.type.*;";
+		sourceCode += "import newtonERP.orm.associations.AccessorManager;\n";
+		sourceCode += "import newtonERP.module.AbstractOrmEntity;\n";
+		sourceCode += "import java.util.Hashtable;\n";
+		sourceCode += "import java.util.Vector;\n";
+
+		sourceCode += "\n";
+		sourceCode += "/**\n";
+		sourceCode += " * " + getVisibleName(entityEntity) + "\n";
+		sourceCode += " * @author NewtonERP code generator - Guillaume Lacasse\n";
+		sourceCode += " */\n";
+		sourceCode += "public class " + getSystemName(entityEntity)
+				+ " extends AbstractOrmEntity\n";
+		sourceCode += "{\n";
+		sourceCode += "    /**\n";
+		sourceCode += "     * constructor\n";
+		sourceCode += "     */\n";
+		sourceCode += "    public " + getSystemName(entityEntity) + "()\n";
+		sourceCode += "    {\n";
+		sourceCode += "        super();\n";
+		sourceCode += "        setVisibleName(\""
+				+ getVisibleName(entityEntity) + "\");\n";
+
+		sourceCode += getAccessorListCode(entityEntity);
+
+		sourceCode += "    }\n";
+		sourceCode += "\n";
+		sourceCode += "    public Fields initFields()\n";
+		sourceCode += "    {\n";
+
+		sourceCode += "        Vector<Field<?>> fieldList = new Vector<Field<?>>();\n";
+		sourceCode += getFieldsCode(entityEntity);
+		sourceCode += "        return new Fields(fieldList);\n";
+		sourceCode += "    }\n";
+		sourceCode += "}\n";
+
+		return sourceCode;
+!!!230668.java!!!	getAccessorListCode(inout entityEntity : EntityEntity) : String
+		String sourceCode = "";
+
+		PluralAccessor accessorList = entityEntity
+				.getPluralAccessor("AccessorEntity");
+
+		for (AbstractOrmEntity entity : accessorList)
+		{
+			AccessorEntity accessorEntity = (AccessorEntity) entity;
+			sourceCode += "        AccessorManager.addAccessor(this, new "
+					+ getForeignEntityName(accessorEntity) + "());\n";
+		}
+
+		return sourceCode;
+!!!230796.java!!!	getForeignEntityName(inout accessorEntity : AccessorEntity) : String
+		return accessorEntity.getDataString("foreignEntityName");
+!!!230924.java!!!	getFieldsCode(inout entityEntity : EntityEntity) : String
+		String sourceCode = "";
+		for (FieldEntity fieldEntity : entityEntity)
+			sourceCode += getFieldCode(fieldEntity, entityEntity);
+		return sourceCode;
+!!!231052.java!!!	getFieldCode(inout fieldEntity : FieldEntity, inout entityEntity : EntityEntity) : String
+		String sourceCode = "";
+		String quotedShortName = getSystemName(fieldEntity);
+		if (quotedShortName.equals(getPrimaryKeyName(entityEntity)))
+			quotedShortName = "getPrimaryKeyName()";
+		else
+			quotedShortName = "\"" + quotedShortName + "\"";
+
+		String camelCaseName = getCamelCaseName(fieldEntity);
+
+		sourceCode += "\n";
+		sourceCode += "        " + getFieldType(fieldEntity) + " "
+				+ camelCaseName + " = new " + getFieldType(fieldEntity) + "(\""
+				+ getVisibleName(fieldEntity) + "\", " + quotedShortName
+				+ ");\n";
+
+		if (isNaturalKey(fieldEntity))
+			sourceCode += "        " + camelCaseName
+					+ ".setNaturalKey(true);\n";
+		if (isHidden(fieldEntity))
+			sourceCode += "        " + camelCaseName + ".setHidden(true);\n";
+		if (isReadOnly(fieldEntity))
+			sourceCode += "        " + camelCaseName + ".setReadOnly(true);\n";
+		if (isDynamicField(fieldEntity))
+			sourceCode += "        " + camelCaseName
+					+ ".setDynamicField(true);\n";
+
+		sourceCode += "        fieldList.add(" + camelCaseName + ");\n";
+
+		return sourceCode;
+!!!231180.java!!!	getCamelCaseName(inout fieldEntity : FieldEntity) : String
+		String name = getSystemName(fieldEntity);
+		name = name.substring(0, 1).toLowerCase() + name.substring(1);
+		return name;
+!!!231308.java!!!	getPrimaryKeyName(inout entityEntity : EntityEntity) : String
+		String name = getSystemName(entityEntity);
+		name = name.substring(0, 1).toLowerCase() + name.substring(1);
+		return "PK" + name + "ID";
+!!!231436.java!!!	isDynamicField(inout fieldEntity : FieldEntity) : boolean
+		return (Boolean) fieldEntity.getData("dynamicField");
+!!!231564.java!!!	isHidden(inout fieldEntity : FieldEntity) : boolean
+		return (Boolean) fieldEntity.getData("hidden");
+!!!231692.java!!!	isReadOnly(inout fieldEntity : FieldEntity) : boolean
+		return (Boolean) fieldEntity.getData("readOnly");
+!!!231820.java!!!	isNaturalKey(inout fieldEntity : FieldEntity) : boolean
+		return (Boolean) fieldEntity.getData("naturalKey");
+!!!231948.java!!!	getVisibleName(inout fieldEntity : FieldEntity) : String
+		return fieldEntity.getDataString("visibleName");
+!!!232076.java!!!	getFieldType(inout fieldEntity : FieldEntity) : String
+		FieldTypeEntity fieldType = (FieldTypeEntity) fieldEntity
+				.getSingleAccessor(new FieldTypeEntity().getForeignKeyName());
+
+		return fieldType.getDataString("systemName");
+!!!232204.java!!!	getSystemName(inout fieldEntity : FieldEntity) : String
+		return fieldEntity.getDataString("name");
+!!!232332.java!!!	getSystemName(inout entityEntity : EntityEntity) : String
+		return entityEntity.getDataString("systemName");
+!!!232460.java!!!	getVisibleName(inout entityEntity : EntityEntity) : String
+		return entityEntity.getDataString("visibleName");
+!!!232588.java!!!	getPackageName(inout entityEntity : EntityEntity) : String
+		return ModuleSourceCodeBuilder
+				.getPackageName(getModuleEntity(entityEntity));
+!!!232716.java!!!	getModuleEntity(inout entityEntity : EntityEntity) : ModuleEntity
+		return (ModuleEntity) entityEntity.getSingleAccessor(new ModuleEntity()
+				.getForeignKeyName());

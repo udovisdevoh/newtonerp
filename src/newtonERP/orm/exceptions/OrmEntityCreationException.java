@@ -15,6 +15,9 @@ public class OrmEntityCreationException extends OrmException
 		super(message);
 	}
 
+	/**
+	 * 
+	 */
 	public OrmEntityCreationException()
 	{
 		super();

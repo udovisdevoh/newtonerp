@@ -1,0 +1,643 @@
+format 75
+"sourceCodeBuilder" // src::newtonERP::sourceCodeBuilder
+  revision 1
+  modified_by 12 "djo"
+  // class settings
+  //class diagram settings
+  draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+  //use case diagram settings
+  package_name_in_tab default show_context default auto_label_position default draw_all_relations default class_drawing_mode default shadow default show_stereotype_properties default
+  //sequence diagram settings
+  show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+  //collaboration diagram settings
+  show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default show_msg_context default draw_all_relations default shadow default show_stereotype_properties default
+  //object diagram settings
+   write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+  //component diagram settings
+  package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default
+  draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+  //deployment diagram settings
+  package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
+  draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+  //state diagram settings
+  package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  //activity diagram settings
+  package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+  show_infonote default drawing_language default show_stereotype_properties default
+  
+  java_dir "/home/djo/workspace/NewtonERP/src/newtonERP/sourceCodeBuilder/"
+  java_package "newtonERP.sourceCodeBuilder"
+  classview 131212 "sourceCodeBuilder"
+    //class diagram settings
+    draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+    //collaboration diagram settings
+    show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default show_msg_context default draw_all_relations default shadow default show_stereotype_properties default
+    //object diagram settings
+     write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+    //sequence diagram settings
+    show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+    //state diagram settings
+    package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+    show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+    //class settings
+    //activity diagram settings
+    package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+    show_infonote default drawing_language default show_stereotype_properties default
+    class 143628 "ActionSourceCodeBuilder"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Build source code for action entity
+@author Guillaume Lacasse"
+      operation 229900 "build"
+	class_operation public explicit_return_type "String"
+	nparams 1
+	  param inout name "actionEntity" type class_ref 131340 // ActionEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param actionEntity action entity
+@return source code"
+      end
+
+      operation 230028 "getSystemName"
+	class_operation private explicit_return_type "String"
+	nparams 1
+	  param inout name "actionEntity" type class_ref 131340 // ActionEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 230156 "getNaturalKeyValue"
+	class_operation private explicit_return_type "String"
+	nparams 1
+	  param inout name "actionEntity" type class_ref 131340 // ActionEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 230284 "getPackageName"
+	class_operation private explicit_return_type "String"
+	nparams 1
+	  param inout name "actionEntity" type class_ref 131340 // ActionEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 230412 "getModuleEntity"
+	class_operation private return_type class_ref 131468 // ModuleEntity
+	nparams 1
+	  param inout name "actionEntity" type class_ref 131340 // ActionEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 143756 "EntitySourceCodeBuilder"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Sert à générer le code source d'une entité
+@author Guillaume Lacasse"
+      operation 230540 "build"
+	class_operation public explicit_return_type "String"
+	nparams 1
+	  param inout name "entityEntity" type class_ref 130444 // EntityEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param entityEntity entité pour laquelle on veut le code source
+@return code source"
+      end
+
+      operation 230668 "getAccessorListCode"
+	class_operation private explicit_return_type "String"
+	nparams 1
+	  param inout name "entityEntity" type class_ref 130444 // EntityEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 230796 "getForeignEntityName"
+	class_operation private explicit_return_type "String"
+	nparams 1
+	  param inout name "accessorEntity" type class_ref 132364 // AccessorEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 230924 "getFieldsCode"
+	class_operation private explicit_return_type "String"
+	nparams 1
+	  param inout name "entityEntity" type class_ref 130444 // EntityEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 231052 "getFieldCode"
+	class_operation private explicit_return_type "String"
+	nparams 2
+	  param inout name "fieldEntity" type class_ref 132876 // FieldEntity
+	  param inout name "entityEntity" type class_ref 130444 // EntityEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 231180 "getCamelCaseName"
+	class_operation private explicit_return_type "String"
+	nparams 1
+	  param inout name "fieldEntity" type class_ref 132876 // FieldEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 231308 "getPrimaryKeyName"
+	class_operation private explicit_return_type "String"
+	nparams 1
+	  param inout name "entityEntity" type class_ref 130444 // EntityEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 231436 "isDynamicField"
+	class_operation private explicit_return_type "boolean"
+	nparams 1
+	  param inout name "fieldEntity" type class_ref 132876 // FieldEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 231564 "isHidden"
+	class_operation private explicit_return_type "boolean"
+	nparams 1
+	  param inout name "fieldEntity" type class_ref 132876 // FieldEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 231692 "isReadOnly"
+	class_operation private explicit_return_type "boolean"
+	nparams 1
+	  param inout name "fieldEntity" type class_ref 132876 // FieldEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 231820 "isNaturalKey"
+	class_operation private explicit_return_type "boolean"
+	nparams 1
+	  param inout name "fieldEntity" type class_ref 132876 // FieldEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 231948 "getVisibleName"
+	class_operation private explicit_return_type "String"
+	nparams 1
+	  param inout name "fieldEntity" type class_ref 132876 // FieldEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 232076 "getFieldType"
+	class_operation private explicit_return_type "String"
+	nparams 1
+	  param inout name "fieldEntity" type class_ref 132876 // FieldEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 232204 "getSystemName"
+	class_operation private explicit_return_type "String"
+	nparams 1
+	  param inout name "fieldEntity" type class_ref 132876 // FieldEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 232332 "getSystemName"
+	class_operation private explicit_return_type "String"
+	nparams 1
+	  param inout name "entityEntity" type class_ref 130444 // EntityEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 232460 "getVisibleName"
+	class_operation private explicit_return_type "String"
+	nparams 1
+	  param inout name "entityEntity" type class_ref 130444 // EntityEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 232588 "getPackageName"
+	class_operation private explicit_return_type "String"
+	nparams 1
+	  param inout name "entityEntity" type class_ref 130444 // EntityEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 232716 "getModuleEntity"
+	class_operation private return_type class_ref 131468 // ModuleEntity
+	nparams 1
+	  param inout name "entityEntity" type class_ref 130444 // EntityEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 143884 "ModuleSourceCodeBuilder"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Cette classe sert à construire le code source de module
+@author Guillaume Lacasse"
+      operation 232844 "build"
+	class_operation public explicit_return_type "String"
+	nparams 1
+	  param inout name "moduleEntity" type class_ref 131468 // ModuleEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param moduleEntity entité du module
+@return code source"
+      end
+
+      operation 232972 "getVisibleName"
+	class_operation private explicit_return_type "String"
+	nparams 1
+	  param inout name "moduleEntity" type class_ref 131468 // ModuleEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 233100 "getPackageName"
+	class_operation protected explicit_return_type "String"
+	nparams 1
+	  param inout name "moduleEntity" type class_ref 131468 // ModuleEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 233228 "getSystemName"
+	class_operation private explicit_return_type "String"
+	nparams 1
+	  param inout name "moduleEntity" type class_ref 131468 // ModuleEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 233356 "buildClassFileName"
+	class_operation public explicit_return_type "String"
+	nparams 1
+	  param inout name "moduleEntity" type class_ref 131468 // ModuleEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param moduleEntity module entity
+@return source class file name"
+      end
+
+      operation 233484 "getPackagePath"
+	class_operation public explicit_return_type "String"
+	nparams 1
+	  param inout name "moduleEntity" type class_ref 131468 // ModuleEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param moduleEntity module entity
+@return package path"
+      end
+
+      operation 233612 "createDirectories"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "moduleEntity" type class_ref 131468 // ModuleEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param moduleEntity module entity"
+      end
+    end
+
+    class 144012 "SourceCodeBuilder"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Cette classe sert à construire le code source de modules, entités et actions
+@author Guillaume Lacasse"
+      operation 233740 "buildModuleSourceCode"
+	class_operation public explicit_return_type "String"
+	nparams 1
+	  param inout name "moduleEntity" type class_ref 131468 // ModuleEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param moduleEntity entité du module
+@return code source"
+      end
+
+      operation 233868 "buildEntitySourceCode"
+	class_operation public explicit_return_type "String"
+	nparams 1
+	  param inout name "entityEntity" type class_ref 130444 // EntityEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param entityEntity entité pour laquelle on veut le code source
+@return code source d'une entité"
+      end
+
+      operation 233996 "buildActionSourceCode"
+	class_operation public explicit_return_type "String"
+	nparams 1
+	  param inout name "actionEntity" type class_ref 131340 // ActionEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param actionEntity entité de l'action
+@return code source de l'action"
+      end
+
+      operation 234124 "buildModuleClassFileName"
+	class_operation public explicit_return_type "String"
+	nparams 1
+	  param inout name "moduleEntity" type class_ref 131468 // ModuleEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param moduleEntity module entity
+@return source class file name"
+      end
+
+      operation 234252 "createDirectoriesForModule"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "moduleEntity" type class_ref 131468 // ModuleEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param moduleEntity module entity"
+      end
+
+      operation 234380 "getModulePackagePath"
+	class_operation public explicit_return_type "String"
+	nparams 1
+	  param inout name "moduleEntity" type class_ref 131468 // ModuleEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param moduleEntity module entity
+@return package path"
+      end
+    end
+  end
+
+  deploymentview 131084 "sourceCodeBuilder"
+    //deployment diagram settings
+    package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
+    draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+    artifact 142476 "ActionSourceCodeBuilder"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 143628 // ActionSourceCodeBuilder
+      end
+    end
+
+    artifact 142604 "EntitySourceCodeBuilder"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 143756 // EntitySourceCodeBuilder
+      end
+    end
+
+    artifact 142732 "ModuleSourceCodeBuilder"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 143884 // ModuleSourceCodeBuilder
+      end
+    end
+
+    artifact 142860 "SourceCodeBuilder"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 144012 // SourceCodeBuilder
+      end
+    end
+  end
+end

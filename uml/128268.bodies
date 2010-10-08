@@ -1,0 +1,458 @@
+class AbstractOrmEntity
+!!!135180.java!!!	AbstractOrmEntity()
+		super();
+!!!135436.java!!!	setOrmizableData(inout parameters : Hashtable<String, Object>) : void
+		getFields().setFromHashTable(parameters);
+!!!135564.java!!!	newUI(inout parameters : Hashtable<String, String>) : AbstractEntity
+		getFields().setDefaultValue(false);
+
+		return editUI(parameters, false);
+!!!135692.java!!!	newE() : AbstractOrmEntity
+		if (getFields().getKeyList().contains(getPrimaryKeyName()))
+			setData(getPrimaryKeyName(), Orm.insert(this));
+		else
+			Orm.insert(this);
+		return this;
+!!!135820.java!!!	deleteUI(inout parameters : Hashtable<String, String>) : AbstractEntity
+		delete(getPrimaryKeyName() + "='" + getDataString(getPrimaryKeyName())
+				+ "'");
+
+		return getList();
+!!!135948.java!!!	delete(in whereClause : String) : void
+		Vector<String> whereParameter = new Vector<String>();
+		whereParameter.add(whereClause);
+		Orm.delete(this, whereParameter);
+!!!136076.java!!!	delete() : void
+		delete(this);
+!!!136204.java!!!	delete(inout whereClause : AbstractOrmEntity) : void
+		Vector<AbstractOrmEntity> whereParameter = new Vector<AbstractOrmEntity>();
+		whereParameter.add(whereClause);
+		delete(whereParameter);
+!!!136332.java!!!	delete(inout whereClause : Vector<AbstractOrmEntity>) : void
+		Orm.delete(whereClause);
+!!!136460.java!!!	editUI(inout parameters : Hashtable<String, String>) : BaseViewerData
+		return editUI(parameters, false);
+!!!136588.java!!!	editUI(inout parameters : Hashtable<String, String>, inout isReadOnly : boolean) : BaseViewerData
+		PromptViewerData promptData = new PromptViewerData();
+
+		AbstractOrmEntity retEntity;
+		AbstractOrmEntity searchEntity;
+		try
+		{
+			searchEntity = this.getClass().newInstance();
+		} catch (InstantiationException e)
+		{
+			throw new RuntimeException(e);
+		} catch (IllegalAccessException e)
+		{
+			throw new RuntimeException(e);
+		}
+		if (getPrimaryKeyValue() != 0)
+		{
+			String primaryKeyName = getPrimaryKeyName();
+			Integer primaryKeyValue = getPrimaryKeyValue();
+			searchEntity.setData(primaryKeyName, primaryKeyValue);
+
+			// il ne peu y avoir plus d'une entity (search par primaryKey)
+			Vector<AbstractOrmEntity> result = get(searchEntity);
+			retEntity = result.get(0);
+		}
+		else
+		{
+			retEntity = this;
+		}
+		retEntity.setCurrentAction(new BaseAction("Edit", this));
+
+		if (parameters != null && parameters.containsKey("submit")
+				&& !fields.isErrorState() && !isReadOnly)
+		{
+			if (getPrimaryKeyValue() == 0)
+			{
+				newE();
+			}
+			else
+			{
+				edit(getPrimaryKeyName() + "='" + getPrimaryKeyValue() + "'");
+			}
+
+			FlagPoolManager.applyFlagPoolChanges(this,
+					getPositiveFlagPoolList().values(), parameters);
+
+			retEntity = (AbstractOrmEntity) ((PromptViewerData) editUI(
+					new Hashtable<String, String>(), isReadOnly)).getData();
+			promptData.addNormalMessage("Changements accomplis");
+		}
+
+		// On doit ajouter les paramètres spécifiés par défaut lors de la
+		// création de l'entité.
+		if (parameters != null)
+			for (String key : getFields().getKeyList())
+				if (parameters.get(key) != null)
+					setData(key, parameters.get(key));
+
+		promptData.setData(retEntity);
+		promptData.setButtonAction(new ActionLink("Enregistrer",
+				new BaseAction("Edit", this)));
+		promptData.setBackLink(new ActionLink("Voir Liste", new BaseAction(
+				"GetList", this)));
+		promptData.setTitle(retEntity.getVisibleName());
+		for (Field<?> fld : getFields())
+		{
+			promptData.addAlertMessage(fld.getErrorMessage());
+		}
+
+		promptData.setReadOnly(isReadOnly);
+
+		return promptData;
+!!!136716.java!!!	edit(in whereClause : String) : void
+		Vector<String> whereParameter = new Vector<String>();
+		whereParameter.add(whereClause);
+		Orm.update(this, whereParameter);
+!!!136844.java!!!	edit(inout changeToApply : AbstractOrmEntity) : void
+		edit(this, changeToApply);
+!!!136972.java!!!	edit(inout whereClause : AbstractOrmEntity, inout changeToApply : AbstractOrmEntity) : void
+		Vector<AbstractOrmEntity> whereParameter = new Vector<AbstractOrmEntity>();
+		whereParameter.add(whereClause);
+		edit(whereParameter, changeToApply);
+!!!137100.java!!!	edit(inout whereClause : Vector<AbstractOrmEntity>, inout changeToApply : AbstractOrmEntity) : void
+		Orm.update(whereClause, changeToApply);
+!!!137228.java!!!	getUI(inout parameters : Hashtable<String, String>) : AbstractEntity
+		return editUI(parameters, true); // TODO: rendre readOnly, néscéssaire
+		// pour
+		// une gestion de droit suffisante
+!!!137356.java!!!	getList() : ListViewerData
+		return getList(new Hashtable<String, String>());
+!!!137484.java!!!	getList(inout parameters : Hashtable<String, String>) : ListViewerData
+		Vector<AbstractOrmEntity> resultSet;
+		AbstractOrmEntity searchEntity;
+		try
+		{
+			searchEntity = this.getClass().newInstance();
+		} catch (InstantiationException e)
+		{
+			throw new RuntimeException(e);
+		} catch (IllegalAccessException e)
+		{
+			throw new RuntimeException(e);
+		}
+		ListViewerData entityList = new ListViewerData(searchEntity);
+		String searchEntry = parameters.get("searchEntry");
+		String orderBy = parameters.get("orderBy");
+		Vector<String> searchParameters = null;
+
+		int limit = ListViewerData.BuildLimit(parameters,
+				getItemLimitListPerPage());
+
+		int offset = ListViewerData.BuildOffset(parameters, limit);
+
+		// On ajoute les critères de recherche de la barre de recherche
+		if (searchEntry != null && searchEntry.length() > 0
+				&& !searchEntry.equals("null"))
+		{
+			searchParameters = new Vector<String>();
+			String currentParameter;
+			for (Field<?> field : getFields())
+			{
+				currentParameter = field.getShortName() + " like '%"
+						+ searchEntry + "%'";
+				if (searchParameters.size() > 0)
+					currentParameter = "or " + currentParameter;
+				searchParameters.add(currentParameter);
+			}
+		}
+
+		for (String fieldName : searchEntity.getFields().getKeyList())
+		{
+			if (searchParameters == null)
+				searchParameters = new Vector<String>();
+			String currentParameter;
+			if (parameters.containsKey(fieldName)
+					&& !parameters.get(fieldName).equals("&"))
+
+			{
+				currentParameter = fieldName + " = "
+						+ parameters.get(fieldName);
+				searchParameters.add(currentParameter);
+			}
+		}
+		if (searchParameters != null && searchParameters.size() == 0)
+			searchParameters = null;
+
+		resultSet = Orm.select(searchEntity, searchParameters, limit, offset,
+				orderBy);
+		// todo: correct deprecate
+		int totalRowCount = Orm.count(searchEntity, searchParameters);
+		if (limit < totalRowCount)
+			entityList.setPageSelector(new PageSelector(limit, offset,
+					totalRowCount, "/" + getCurrentModule().getSystemName()
+							+ "/GetList/" + getSystemName(), searchEntry,
+					orderBy));
+		else
+			entityList.setPageSelector(null);
+
+		entityList.setSearchBar(new SearchBar("/"
+				+ getCurrentModule().getSystemName() + "/GetList/"
+				+ getSystemName(), parameters.get("searchEntry"), this,
+				orderBy, limit, offset));
+
+		for (AbstractOrmEntity entity : resultSet)
+			entityList.addEntity(entity);
+
+		entityList.setCurrentModule(getCurrentModule());
+		entityList.setTitle(getVisibleName());
+		entityList.addGlobalActions(new ActionLink("Nouveau "
+				+ getVisibleName(), new BaseAction("New", this)));
+
+		// ajout des action specifique
+		ActionLink specAction = new ActionLink("Modifier", new BaseAction(
+				"Edit", this));
+		specAction.addParameters(getPrimaryKeyName(), "&");
+		entityList.addSpecificActionButtonList(specAction);
+
+		specAction = new ActionLink("Effacer", new BaseAction("Delete", this));
+		specAction.addParameters(getPrimaryKeyName(), "&");
+		specAction.setConfirm(true);
+		entityList.addSpecificActionButtonList(specAction);
+
+		return entityList;
+!!!137612.java!!!	getItemLimitListPerPage() : int
+		return 15;
+!!!137740.java!!!	getCurrentModule() : Module
+		if (currentModule == null)
+		{
+			String fullClassName = getClass().getName();
+
+			int firstDot = fullClassName.indexOf('.');
+			int secondDot = fullClassName.indexOf('.', firstDot + 1);
+
+			String modulePackageName = fullClassName.substring(firstDot + 1,
+					secondDot);
+
+			String moduleName = ("" + modulePackageName.charAt(0))
+					.toUpperCase() + modulePackageName.substring(1);
+
+			return ListModule.getModule(moduleName);
+		}
+
+		return currentModule;
+!!!137868.java!!!	get(in whereClause : String) : AbstractOrmEntity
+		Vector<AbstractOrmEntity> retEntityList = null;
+		Vector<String> whereParameter = new Vector<String>();
+		whereParameter.add(whereClause);
+		try
+		{
+			retEntityList = Orm.select(this.getClass().newInstance(),
+					whereParameter);
+		} catch (InstantiationException e)
+		{
+			throw new RuntimeException(e);
+		} catch (IllegalAccessException e)
+		{
+			throw new RuntimeException(e);
+		}
+
+		return retEntityList;
+!!!137996.java!!!	get() : AbstractOrmEntity
+		return get(this);
+!!!138124.java!!!	get(inout entity : AbstractOrmEntity) : AbstractOrmEntity
+		Vector<AbstractOrmEntity> entities = new Vector<AbstractOrmEntity>();
+		entities.add(entity);
+		return get(entities);
+!!!138252.java!!!	get(inout entities : Vector<AbstractOrmEntity>) : AbstractOrmEntity
+		Vector<AbstractOrmEntity> retEntities = null;
+		retEntities = Orm.select(entities);
+
+		return retEntities;
+!!!138380.java!!!	getPrimaryKeyName() : String
+		String firstLetter = (getSystemName().charAt(0) + "").toLowerCase();
+
+		return "PK" + firstLetter + getSystemName().substring(1) + "ID";
+!!!138508.java!!!	getForeignKeyName() : String
+		String firstLetter = (getSystemName().charAt(0) + "").toLowerCase();
+		return firstLetter + getSystemName().substring(1) + "ID";
+!!!138636.java!!!	getPrimaryKeyValue() : Integer
+		String primaryKeyName = getPrimaryKeyName();
+		Fields fieldsList = getFields();
+		Field<?> field = fieldsList.getField(primaryKeyName);
+
+		if (field == null || field.getData() == null)
+			return null;
+
+		int value = (Integer) field.getData();
+
+		return value;
+!!!138764.java!!!	getButtonCaption() : String
+		return "Enregistrer";
+!!!138892.java!!!	getVisibleName() : String
+		if (visibleName == null)
+			visibleName = getSystemName();
+
+		return visibleName;
+!!!139020.java!!!	getPositiveFlagPoolList() : FlagPool
+		if (positiveFlagPoolList == null)
+			positiveFlagPoolList = new Hashtable<String, FlagPool>();
+
+		return positiveFlagPoolList;
+!!!139148.java!!!	getNaturalKeyNameList() : Vector<String>
+		Vector<String> naturalKeyNameList = new Vector<String>();
+
+		for (Field<?> field : getFields())
+			if (field.isNaturalKey())
+				naturalKeyNameList.add(field.getShortName());
+
+		if (naturalKeyNameList.size() < 1) // 1er Comportement par default si
+			// clef
+			// naturelle vide
+			for (Field<?> field : getFields())
+				if (field.getShortName().toLowerCase().contains("name"))
+					naturalKeyNameList.add(field.getShortName());
+
+		if (naturalKeyNameList.size() < 1) // 2er Comportement par default si
+			// clef
+			// naturelle vide
+			for (Field<?> field : getFields())
+				if (field.getShortName().toLowerCase().contains("nom"))
+					naturalKeyNameList.add(field.getShortName());
+
+		if (naturalKeyNameList.size() < 1) // 3e Comportement par default si
+			// clef
+			// naturelle vide
+			for (Field<?> field : getFields())
+				if (!field.getShortName().equals(getPrimaryKeyName()))
+					naturalKeyNameList.add(field.getShortName());
+
+		if (naturalKeyNameList.size() < 1)// 4e Comportement par default si clef
+			// naturelle vide
+			naturalKeyNameList.add(getPrimaryKeyName());
+
+		return naturalKeyNameList;
+!!!139276.java!!!	getNaturalKeyDescription() : String
+		String description = "";
+		String currentFieldValue;
+		for (String naturalKeyName : getNaturalKeyNameList())
+		{
+
+			if (getFields().containsFieldName(naturalKeyName))
+			{
+				currentFieldValue = getDataString(naturalKeyName);
+
+				if (getFields().getField(naturalKeyName) instanceof FieldCurrency)
+					currentFieldValue = MoneyViewer
+							.getHtmlCode(currentFieldValue);
+
+				ListOfValue listOfValue = tryMatchListOfValue(naturalKeyName);
+				if (listOfValue == null)
+				{
+					description += " " + currentFieldValue;
+				}
+				else
+				{
+					description += " "
+							+ listOfValue.getForeignValue(currentFieldValue);
+				}
+			}
+			else
+			{
+				description += " -";
+			}
+
+		}
+
+		return description.trim();
+!!!139404.java!!!	getNaturalKeyName() : String
+		String name = getVisibleName();
+		for (String naturalKeyName : getNaturalKeyNameList())
+			name += " " + getFields().getField(naturalKeyName).getName();
+
+		return name.trim();
+!!!139532.java!!!	setVisibleName(in visibleName : String) : void
+		this.visibleName = visibleName;
+!!!139660.java!!!	getPluralAccessorList() : PluralAccessor
+		if (pluralAccessorList == null)
+			pluralAccessorList = AccessorManager.getPluralAccessorList(this);
+
+		return pluralAccessorList;
+!!!139788.java!!!	getSingleAccessorList() : AbstractOrmEntity
+		if (singleAccessorList == null)
+			singleAccessorList = AccessorManager.getSingleAccessorList(this);
+
+		return singleAccessorList;
+!!!139916.java!!!	getSingleAccessor(in accessorName : String) : AbstractOrmEntity
+		return AccessorManager.getSingleAccessor(this, accessorName);
+!!!140044.java!!!	getInputValue(in inputName : String) : String
+		return fields.getField(inputName).getDataString();
+!!!140172.java!!!	addPositiveFlagPool(in visibleDescription : String, inout flagPool : FlagPool) : void
+		getPositiveFlagPoolList().put(visibleDescription, flagPool);
+!!!140300.java!!!	addNegativeFlagPool(in visibleDescription : String, inout flagPool : FlagPool) : void
+		getNegativeFlagPoolList().put(visibleDescription, flagPool);
+!!!140428.java!!!	getNegativeFlagPoolList() : FlagPool
+		if (negativeFlagPoolList == null)
+			negativeFlagPoolList = new Hashtable<String, FlagPool>();
+		return negativeFlagPoolList;
+!!!140556.java!!!	getPluralAccessor(in accessorName : String) : PluralAccessor
+		return PluralAccessorManager.getPluralAccessor(this, accessorName);
+!!!140684.java!!!	getPluralAccessor(in accessorName : String, inout searchCriteriaEntity : AbstractOrmEntity) : PluralAccessor
+		PluralAccessor pluralAccessor = PluralAccessorManager
+				.getPluralAccessor(this, accessorName, searchCriteriaEntity);
+
+		if (pluralAccessor != null)
+			return pluralAccessor;
+
+		PluralAccessor uncleanedList = getPluralAccessor(accessorName);
+		PluralAccessor cleanList = new PluralAccessor(
+				uncleanedList.getInternalEntityDefinition());
+
+		for (AbstractOrmEntity entityFromList : uncleanedList)
+			if (entityFromList.matchesCriteriasFrom(searchCriteriaEntity))
+				cleanList.add(entityFromList);
+
+		return cleanList;
+!!!140812.java!!!	matchesCriteriasFrom(inout searchCriteriaEntity : AbstractOrmEntity) : boolean
+		String fieldValue, fieldValueToMatch;
+		for (Field<?> field : searchCriteriaEntity.getFields())
+		{
+			fieldValue = getDataString(field.getShortName());
+			fieldValueToMatch = field.getDataString();
+
+			if (fieldValueToMatch != null && !fieldValueToMatch.equals("null")
+					&& !fieldValueToMatch.equals(fieldValue))
+			{
+				return false;
+			}
+		}
+		return true;
+!!!140940.java!!!	assign(inout foreignEntity : AbstractOrmEntity) : void
+		String foreignEntityForeignKeyName = foreignEntity.getForeignKeyName();
+		String localEntityForeignKeyName = getForeignKeyName();
+
+		if (getFields().containsFieldName(foreignEntityForeignKeyName))
+		{
+			setData(foreignEntityForeignKeyName,
+					foreignEntity.getPrimaryKeyValue());
+		}
+		else if (foreignEntity.getFields().containsFieldName(
+				localEntityForeignKeyName))
+		{
+			foreignEntity.setData(localEntityForeignKeyName,
+					getPrimaryKeyValue());
+		}
+		else
+		{
+			throw new RuntimeException("Impossible d'assigner "
+					+ getNaturalKeyName() + " à "
+					+ foreignEntity.getNaturalKeyName());
+		}
+!!!141068.java!!!	save() : void
+		if (getPrimaryKeyValue() == null)
+			throw new RuntimeException(
+					"Aucune valeur de clef primaire disponible");
+
+		edit(getPrimaryKeyName() + "='" + getPrimaryKeyValue() + "'");
+!!!141196.java!!!	getAccessorNameList() : Vector<String>
+		if (accessorNameList == null)
+			accessorNameList = new Vector<String>();
+		return accessorNameList;
+!!!141324.java!!!	getGateWayList() : GateWay
+		if (gateWayList == null)
+			gateWayList = new Vector<GateWay>();
+		return gateWayList;

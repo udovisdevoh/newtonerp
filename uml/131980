@@ -1,0 +1,835 @@
+format 75
+"secondStep" // src::newtonERP::viewers::secondStep
+  revision 1
+  modified_by 12 "djo"
+  // class settings
+  //class diagram settings
+  draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+  //use case diagram settings
+  package_name_in_tab default show_context default auto_label_position default draw_all_relations default class_drawing_mode default shadow default show_stereotype_properties default
+  //sequence diagram settings
+  show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+  //collaboration diagram settings
+  show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default show_msg_context default draw_all_relations default shadow default show_stereotype_properties default
+  //object diagram settings
+   write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+  //component diagram settings
+  package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default
+  draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+  //deployment diagram settings
+  package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
+  draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+  //state diagram settings
+  package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  //activity diagram settings
+  package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+  show_infonote default drawing_language default show_stereotype_properties default
+  
+  java_dir "/home/djo/workspace/NewtonERP/src/newtonERP/viewers/secondStep/"
+  java_package "newtonERP.viewers.secondStep"
+  classview 131724 "secondStep"
+    //class diagram settings
+    draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+    //collaboration diagram settings
+    show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default show_msg_context default draw_all_relations default shadow default show_stereotype_properties default
+    //object diagram settings
+     write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+    //sequence diagram settings
+    show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+    //state diagram settings
+    package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+    show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+    //class settings
+    //activity diagram settings
+    package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+    show_infonote default drawing_language default show_stereotype_properties default
+    class 146700 "ButtonLinkViewer"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Sert à formatter de l'argent
+@author Guillaume
+"
+      operation 240652 "getHtmlCode"
+	class_operation public explicit_return_type "String"
+	nparams 2
+	  param inout name "actionLink" type class_ref 128652 // ActionLink
+	  param inout name "entity" type class_ref 128780 // AbstractEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param actionLink representation du lien a effectuer
+@param entity entity d'ou tiré les parametre, peu etre null
+@return bouton de lien"
+      end
+
+      operation 240780 "isPermissionAllowed"
+	class_operation private explicit_return_type "boolean"
+	nparams 1
+	  param inout name "actionLink" type class_ref 128652 // ActionLink
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 240908 "getHtmlCode"
+	class_operation public explicit_return_type "String"
+	nparams 1
+	  param inout name "actionLink" type class_ref 128652 // ActionLink
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param actionLink representation du lien a effectuer
+@return bouton de lien"
+      end
+
+      operation 241036 "getOnClickConfirm"
+	class_operation private explicit_return_type "String"
+	nparams 3
+	  param in name "actionName" explicit_type "String"
+	  param in name "entityTypeName" explicit_type "String"
+	  param in name "value" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 241164 "getOnClickConfirm"
+	class_operation private explicit_return_type "String"
+	nparams 1
+	  param in name "actionName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 146828 "CheckListViewer"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "A checkList viewer
+@author Guillaume Lacasse"
+      operation 241292 "getHtmlCode"
+	class_operation public explicit_return_type "String"
+	nparams 1
+	  param inout name "entity" type class_ref 137612 // CheckListViewable
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@SuppressWarnings(\"null\")
+"
+	
+	
+	
+	comment "@param entity the checklist viewable entity
+@return the html code"
+      end
+
+      operation 241420 "removeFirstWord"
+	class_operation private explicit_return_type "String"
+	nparams 1
+	  param in name "currentDescription" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 241548 "getFirstWord"
+	class_operation private explicit_return_type "String"
+	nparams 1
+	  param in name "currentDescription" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 241676 "wordCount"
+	class_operation private explicit_return_type "int"
+	nparams 1
+	  param in name "currentDescription" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 146956 "FieldViewer"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Sert à formatter de l'argent
+@author Guillaume
+"
+      operation 241804 "getHtmlCode"
+	class_operation public explicit_return_type "String"
+	nparams 1
+	  param inout name "field" type class_ref 129292 // Field
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param field field a afficher
+@return les code html"
+      end
+
+      operation 241932 "currencyViewer"
+	class_operation private explicit_return_type "String"
+	nparams 1
+	  param inout name "field" type class_ref 129292 // Field
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 242060 "textViewer"
+	class_operation private explicit_return_type "String"
+	nparams 1
+	  param inout name "field" type class_ref 129292 // Field
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 242188 "dateTimeViewer"
+	class_operation private explicit_return_type "String"
+	nparams 1
+	  param inout name "field" type class_ref 129292 // Field
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 242316 "numberViewer"
+	class_operation private explicit_return_type "String"
+	nparams 1
+	  param inout name "field" type class_ref 129292 // Field
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 242444 "boolViewer"
+	class_operation private explicit_return_type "String"
+	nparams 1
+	  param inout name "field" type class_ref 129292 // Field
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 242572 "otherViewer"
+	class_operation private explicit_return_type "String"
+	nparams 1
+	  param inout name "field" type class_ref 129292 // Field
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 147084 "HelpViewer"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Sert à voir l'aide de l'action
+@author Guillaume Lacasse"
+      operation 242700 "getHtmlCode"
+	class_operation public explicit_return_type "String"
+	nparams 2
+	  param inout name "actionLink" type class_ref 128652 // ActionLink
+	  param in name "helpDivId" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param actionLink lien d'action
+@param helpDivId id DOM du div d'aide
+@return retourne le code HTML"
+      end
+
+      operation 242828 "getActionName"
+	class_operation private explicit_return_type "String"
+	nparams 1
+	  param inout name "actionLink" type class_ref 128652 // ActionLink
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 242956 "getEntityName"
+	class_operation private explicit_return_type "String"
+	nparams 1
+	  param inout name "actionLink" type class_ref 128652 // ActionLink
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 147212 "ImageFileViewer"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Pour voir fichiers images en HTML
+@author Guillaume"
+      operation 243084 "getHtmlCode"
+	class_operation public explicit_return_type "String"
+	nparams 1
+	  param inout name "imageFile" type class_ref 138252 // ImageFile
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param imageFile image en HTML
+@return html avec image dedans"
+      end
+    end
+
+    class 147340 "LinkViewer"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Sert à formatter de l'argent
+@author Guillaume
+"
+      attribute 142220 "currentBalloonDivId"
+	class_attribute private explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 243212 "getHtmlCode"
+	class_operation public explicit_return_type "String"
+	nparams 1
+	  param inout name "actionLink" type class_ref 128652 // ActionLink
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param actionLink representation du lien a effectuer
+@return bouton de lien"
+      end
+
+      operation 243340 "getNextBalloonDivId"
+	class_operation public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return prochain ID de bulle d'aide"
+      end
+
+      operation 243468 "getOnClickConfirm"
+	class_operation private explicit_return_type "String"
+	nparams 3
+	  param in name "actionName" explicit_type "String"
+	  param in name "entityTypeName" explicit_type "String"
+	  param in name "value" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@SuppressWarnings(\"unused\")
+"
+	
+	
+	
+	comment " todo: retire lorsque la correction est aporter plus haut"
+      end
+
+      operation 243596 "isPermissionAllowed"
+	class_operation private explicit_return_type "boolean"
+	nparams 1
+	  param inout name "actionLink" type class_ref 128652 // ActionLink
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 147468 "MoneyViewer"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Sert à formatter de l'argent
+@author Guillaume
+"
+      attribute 142348 "numberFormat"
+	class_attribute private explicit_type "NumberFormat"
+	init_value " NumberFormat
+			.getCurrencyInstance()"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 243724 "getHtmlCode"
+	class_operation public explicit_return_type "String"
+	nparams 1
+	  param in name "inputValue" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param inputValue valeur à formatter
+@return valeur formattée"
+      end
+
+      operation 243852 "getHtmlCode"
+	class_operation public explicit_return_type "String"
+	nparams 1
+	  param in name "inputValue" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param inputValue valeur à formatter
+@return valeur formattée"
+      end
+    end
+
+    class 147596 "PageSelectorViewer"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Sert à voir les liste de pages
+@author Guillaume Lacasse"
+      operation 243980 "getHtmlCode"
+	class_operation public explicit_return_type "String"
+	nparams 1
+	  param inout name "pageSelector" type class_ref 147724 // PageSelector
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param pageSelector selecteur de page
+@return code html"
+      end
+    end
+
+    class 147852 "ScrollListViewer"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Sert à afficher des listes de lien et de texte en HTML avec une scrollbar
+@author Guillaume"
+      operation 244108 "getHtmlContent"
+	class_operation public explicit_return_type "String"
+	nparams 1
+	  param inout name "entity" type class_ref 138636 // ScrollListViewable
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param entity liste à afficher
+@return code HTML"
+      end
+    end
+
+    class 147980 "SearchBarViewer"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Ser à voir les barres de recherche
+@author Guillaume Lacasse"
+      operation 244236 "getHtmlCode"
+	class_operation public explicit_return_type "String"
+	nparams 1
+	  param inout name "searchBar" type class_ref 148108 // SearchBar
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param searchBar barre de recherche
+@return code html"
+      end
+    end
+
+    class 148236 "SelectBoxViewer"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "The select box viewer
+@author Guillaume Lacasse"
+      operation 244364 "getHtmlCode"
+	class_operation public explicit_return_type "String"
+	nparams 4
+	  param inout name "entity" type class_ref 138380 // SelectBoxViewable
+	  param in name "inputName" explicit_type "String"
+	  param in name "inputValue" explicit_type "String"
+	  param inout name "isReadOnly" explicit_type "boolean"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param entity the entity to view
+@param inputName the input name
+@param inputValue the input value
+@param isReadOnly si le select box est readonly
+@return the html code of this view"
+      end
+    end
+
+    class 148364 "SwitchViewer"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Viewer d'élément bool switchable de vrai à faux
+@author Guillaume Lacasse"
+      operation 244492 "getHtmlCode"
+	class_operation public explicit_return_type "String"
+	nparams 3
+	  param in name "keyName" explicit_type "String"
+	  param in name "labelName" explicit_type "String"
+	  param inout name "isChecked" explicit_type "boolean"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param keyName nom du champ de l'entité
+@param labelName nom de l'étiquette
+@param isChecked si la switch est à \"on\"
+@return code html de la switch true/false"
+      end
+    end
+  end
+
+  deploymentview 131596 "secondStep"
+    //deployment diagram settings
+    package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
+    draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+    artifact 144908 "ButtonLinkViewer"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 146700 // ButtonLinkViewer
+      end
+    end
+
+    artifact 145036 "CheckListViewer"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 146828 // CheckListViewer
+      end
+    end
+
+    artifact 145164 "FieldViewer"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 146956 // FieldViewer
+      end
+    end
+
+    artifact 145292 "HelpViewer"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 147084 // HelpViewer
+      end
+    end
+
+    artifact 145420 "ImageFileViewer"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 147212 // ImageFileViewer
+      end
+    end
+
+    artifact 145548 "LinkViewer"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 147340 // LinkViewer
+      end
+    end
+
+    artifact 145676 "MoneyViewer"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 147468 // MoneyViewer
+      end
+    end
+
+    artifact 145804 "PageSelectorViewer"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 147596 // PageSelectorViewer
+      end
+    end
+
+    artifact 145932 "ScrollListViewer"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 147852 // ScrollListViewer
+      end
+    end
+
+    artifact 146060 "SearchBarViewer"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 147980 // SearchBarViewer
+      end
+    end
+
+    artifact 146188 "SelectBoxViewer"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 148236 // SelectBoxViewer
+      end
+    end
+
+    artifact 146316 "SwitchViewer"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 148364 // SwitchViewer
+      end
+    end
+  end
+
+  package_ref 132108 // colorViewer
+end

@@ -1,0 +1,37 @@
+class AccessorManager
+!!!197132.java!!!	addAccessor(inout sourceEntity : AbstractOrmEntity, inout foreignEntityDefinition : AbstractOrmEntity) : void
+		try
+		{
+			ListOfValueManager.addListOfValue(sourceEntity,
+					foreignEntityDefinition);
+		} catch (Exception exception)
+		{
+
+			try
+			{
+				FlagPoolManager.addFlagPool(sourceEntity,
+						foreignEntityDefinition);
+			} catch (Exception exception2)
+			{
+				exception2.printStackTrace();// Pour connaitre la source de la
+				// 1ère exception
+				throw new TableAssociationException(
+						exception2.getMessage()
+								+ "\nL'accessor n'a pas pu créer de listOfValue ni de flagPool.\nSi vous tentez de créer un accessor de plusieur à plusieur,\nsoyez-sur qu'une table intermédiaire existe ayant pour nom\nla concaténation des noms en ordre alphabetique\ndes deux tables nécéssitant une relation de plusieurs à plusieurs.\nIl faut également que cette table intermédiaire ait\npour colonnes chaque clef etrangère de chaque tables pour lesquelles\nvous voulez la relation de plusieurs à plusieurs.\nVeuillez utiliser la methode getForeignKeyName() pour ces tables.");
+			}
+		}
+		sourceEntity.getAccessorNameList().add(
+				foreignEntityDefinition.getSystemName());
+!!!197260.java!!!	addFlagPool(inout sourceEntity : AbstractOrmEntity, inout foreignEntityDefinition : AbstractOrmEntity) : void
+		FlagPoolManager.addFlagPool(sourceEntity, foreignEntityDefinition);
+!!!197388.java!!!	addListOfValue(inout entity : AbstractOrmEntity, inout foreignEntity : AbstractOrmEntity) : void
+		ListOfValueManager.addListOfValue(entity, foreignEntity);
+!!!197516.java!!!	getPluralAccessorList(inout abstractOrmEntity : AbstractOrmEntity) : PluralAccessor
+		return PluralAccessorManager.getPluralAccessorList(abstractOrmEntity);
+!!!197644.java!!!	getSingleAccessorList(inout abstractOrmEntity : AbstractOrmEntity) : AbstractOrmEntity
+		return SingleAccessorManager.getSingleAccessorList(abstractOrmEntity);
+!!!197772.java!!!	getSingleAccessor(inout abstractOrmEntity : AbstractOrmEntity, in accessorName : String) : AbstractOrmEntity
+		return SingleAccessorManager.getSingleAccessor(abstractOrmEntity,
+				accessorName);
+!!!197900.java!!!	addGateWay(inout sourceEntity : AbstractOrmEntity, inout gateWayEntity : AbstractOrmEntity, inout externalEntity : AbstractOrmEntity) : void
+		GateWayManager.addGateWay(sourceEntity, gateWayEntity, externalEntity);
