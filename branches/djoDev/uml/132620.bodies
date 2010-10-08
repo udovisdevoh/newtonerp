@@ -1,0 +1,100 @@
+class EffectEntity
+!!!151436.java!!!	EffectEntity()
+		super();
+		setVisibleName("Effet");
+		AccessorManager.addAccessor(this, new SearchEntity());
+		AccessorManager.addAccessor(this, new Parameter());
+		AccessorManager.addAccessor(this, new ActionEntity());
+!!!151564.java!!!	initFields() : Fields
+		Vector<Field<?>> fieldList = new Vector<Field<?>>();
+		fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
+		fieldList.add(new FieldText("Description", "name", false));
+		fieldList.add(new FieldInt("Entité de recherche", new SearchEntity()
+				.getForeignKeyName()));
+		fieldList.add(new FieldInt("Action", new ActionEntity()
+				.getForeignKeyName()));
+		return new Fields(fieldList);
+!!!151692.java!!!	execute(inout entityParameters : Hashtable<String, String>, inout isStraightSearch : boolean) : AbstractEntity
+		AbstractEntity returnEntity = null;
+
+		Logger.info("[TASKMODULE] Exécution d'une tâche");
+		AbstractAction action = getAction();
+		Vector<AbstractOrmEntity> entityList = getAffectedEntityList(
+				entityParameters, isStraightSearch);
+		for (AbstractOrmEntity entity : entityList)
+		{
+			if (action instanceof BaseAction)
+				returnEntity = doBaseAction((BaseAction) action, entity,
+						getParameters(entity));
+			else
+				returnEntity = action.doAction(entity, getParameters(entity));
+		}
+
+		return returnEntity;
+!!!151820.java!!!	doBaseAction(inout baseAction : BaseAction, inout entity : AbstractOrmEntity, inout parameters : Hashtable<String, String>) : AbstractEntity
+		if (baseAction.getSystemName().equals("Get"))
+			return entity.getUI(parameters);
+		else if (baseAction.getSystemName().equals("Delete"))
+			return entity.deleteUI(parameters);
+		else if (baseAction.getSystemName().equals("New"))
+			return entity.newUI(parameters);
+		else if (baseAction.getSystemName().equals("GetList"))
+			return entity.getList(parameters);
+		else if (baseAction.getSystemName().equals("GetList"))
+			return entity.editUI(parameters);
+		throw new RuntimeException("Base Entity type not found");
+!!!151948.java!!!	getAffectedEntityList(inout entityParameters : Hashtable<String, String>, inout isStraightSearch : boolean) : AbstractOrmEntity
+		AbstractOrmEntity searchEntity = getSearchEntity();
+
+		if (isStraightSearch)
+			searchEntity.setData(searchEntity.getPrimaryKeyName(),
+					entityParameters.get(searchEntity.getPrimaryKeyName()));
+
+		return Orm.select(searchEntity);
+!!!152076.java!!!	getSearchEntity() : AbstractOrmEntity
+		SearchEntity searchEntity = (SearchEntity) getSingleAccessor(new SearchEntity()
+				.getForeignKeyName());
+
+		return searchEntity.getEntity();
+!!!152204.java!!!	getParameters(inout entity : AbstractOrmEntity) : Hashtable<String, String>
+		Hashtable<String, String> rawParameters = getRawParameters();
+		return parseDynamicParameters(rawParameters, entity);
+!!!152332.java!!!	getRawParameters() : Hashtable<String, String>
+		Hashtable<String, String> rawParameters = new Hashtable<String, String>();
+
+		PluralAccessor parameterList = this.getPluralAccessor("Parameter");
+
+		Parameter parameter;
+		for (AbstractOrmEntity entity : parameterList)
+		{
+			parameter = (Parameter) entity;
+			rawParameters.put(parameter.getKey(), parameter.getValue());
+		}
+
+		return rawParameters;
+!!!152460.java!!!	parseDynamicParameters(inout parameters : Hashtable<String, String>, inout entity : AbstractOrmEntity) : Hashtable<String, String>
+		String value;
+		for (String key : parameters.keySet())
+		{
+			value = parameters.get(key);
+			for (String variable : entity.getFields().getKeyList())
+			{
+				value = replaceToEntityFieldValue(entity, value, variable);
+				parameters.put(key, value);
+			}
+		}
+
+		return parameters;
+!!!152588.java!!!	replaceToEntityFieldValue(inout entity : AbstractOrmEntity, in value : String, in variable : String) : String
+
+		return value.replace(":" + entity.getSystemName() + "." + variable,
+				entity.getDataString(variable));
+!!!152716.java!!!	getAction() : AbstractAction
+		ActionEntity actionEntity = getActionEntity();
+
+		if (BaseAction.isNameMatchesBaseAction(actionEntity.getActionName()))
+			return actionEntity.getBaseAction(getSearchEntity());
+		return actionEntity.getAction();
+!!!152844.java!!!	getActionEntity() : ActionEntity
+		return (ActionEntity) getSingleAccessor(new ActionEntity()
+				.getForeignKeyName());

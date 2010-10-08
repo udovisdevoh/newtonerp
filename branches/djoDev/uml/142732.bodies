@@ -1,0 +1,23 @@
+class FieldTime
+!!!219916.java!!!	FieldTime(in name : String, in shortName : String, inout data : GregorianCalendar)
+		super(name, shortName, data);
+!!!220044.java!!!	FieldTime(in name : String, in shortName : String)
+		super(name, shortName);
+!!!220172.java!!!	setData(in date : String) : void
+		try
+		{
+			GregorianCalendar tempDate = new GregorianCalendar();
+			tempDate.setTime(dateFormatter.parse(date));
+			data = tempDate;
+		} catch (Exception e)
+		{
+			setErrorMessage("Le format de donnée entrée ne correspond pas avec le type de champ (Time): "
+					+ data);
+			Logger.error(e.getMessage());
+		}
+!!!220300.java!!!	getDataString(inout forOrm : Boolean) : String
+		if (forOrm)
+			return super.getDataString(forOrm);
+		if (data == null)
+			return null;
+		return dateFormatter.format(super.getData().getTime());

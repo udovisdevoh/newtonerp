@@ -1,0 +1,43 @@
+class BaseViewer
+!!!238220.java!!!	getTopHtmlCode(inout entity : BaseViewerData) : String
+		String html = "";
+		if (entity.getBackLink() != null)
+		{
+			html += "<p class='backLink'>";
+			html += LinkViewer.getHtmlCode(entity.getBackLink());
+			html += "</p>";
+		}
+
+		html += "<h2>" + entity.getTitle() + "</h2>";
+
+		html += getMessage(entity);
+
+		return html;
+!!!238348.java!!!	getMessage(inout entity : BaseViewerData) : String
+		String html = "";
+		if (entity.getAlertMessageList() != null)
+			for (String message : entity.getAlertMessageList())
+				html += "<p class='errorMessage'>" + message + "</p>";
+
+		if (entity.getNormalMessageList() != null)
+			for (String message : entity.getNormalMessageList())
+				html += "<p class='normalMessage'>" + message + "</p>";
+		return html;
+!!!238476.java!!!	getBottomHtmlCode(inout entity : BaseViewerData) : String
+		String html = "";
+		html += "<p>";
+		for (ActionLink globalAction : entity.getGlobalActions())
+		{
+			html += ButtonLinkViewer.getHtmlCode(globalAction);
+			/*
+			 * todo: remove when sucefully tested html += " <a href='" +
+			 * globalAction.getUrl() + "'>"; html += globalAction.getName() +
+			 * "</a> ";
+			 */
+		}
+		html += getPrintButton(); // todo: find a way to get this out of here...
+		html += "</p>";
+
+		return html;
+!!!238604.java!!!	getPrintButton() : String
+		return "<ins><form class='submitButton' action='.\\'><div><input class='submitButton' type='submit' value='Imprimer' onclick='window.print();return false;'/></div></form></ins>";

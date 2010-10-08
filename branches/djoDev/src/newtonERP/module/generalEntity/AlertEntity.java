@@ -1,12 +1,14 @@
 package newtonERP.module.generalEntity;
 
+import newtonERP.module.AbstractEntity;
+import newtonERP.viewers.viewables.AlertViewable;
+
 /**
  * @author Guillaume Lacasse
  * 
  *         Represents an alert entity
  */
-public class AlertEntity extends newtonERP.module.AbstractEntity implements
-		newtonERP.viewers.viewables.AlertViewable
+public class AlertEntity extends AbstractEntity implements AlertViewable
 {
 	private String message;
 
@@ -22,5 +24,4 @@ public class AlertEntity extends newtonERP.module.AbstractEntity implements
 	{
 		return message;
 	}
-
 }

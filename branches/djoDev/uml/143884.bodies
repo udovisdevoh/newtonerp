@@ -1,0 +1,59 @@
+class ModuleSourceCodeBuilder
+!!!232844.java!!!	build(inout moduleEntity : ModuleEntity) : String
+		moduleEntity = (ModuleEntity) Orm.selectUnique(moduleEntity);
+
+		String sourceCode = "";
+
+		sourceCode += "package modules." + getPackageName(moduleEntity) + ";\n";
+		sourceCode += "\n";
+		sourceCode += "import newtonERP.module.Module;\n";
+		sourceCode += "\n";
+		sourceCode += "/**\n";
+		sourceCode += " * " + getVisibleName(moduleEntity) + "\n";
+		sourceCode += " * @author NewtonERP code generator - Guillaume Lacasse\n";
+		sourceCode += " */\n";
+
+		sourceCode += "public class " + getSystemName(moduleEntity)
+				+ " extends Module\n";
+		sourceCode += "{\n";
+		sourceCode += "    /**\n";
+		sourceCode += "     * constructor\n";
+		sourceCode += "     */\n";
+		sourceCode += "    public " + getSystemName(moduleEntity) + "()\n";
+		sourceCode += "    {\n";
+		sourceCode += "        super();\n";
+		sourceCode += "        setVisibleName(\""
+				+ getVisibleName(moduleEntity) + "\");\n";
+		sourceCode += "    }\n";
+		sourceCode += "\n";
+		sourceCode += "    public void initDB()\n";
+		sourceCode += "    {\n";
+		sourceCode += "        super.initDB();\n";
+		sourceCode += "    }\n";
+		sourceCode += "}\n";
+
+		return sourceCode;
+!!!232972.java!!!	getVisibleName(inout moduleEntity : ModuleEntity) : String
+		return moduleEntity.getDataString("visibleName");
+!!!233100.java!!!	getPackageName(inout moduleEntity : ModuleEntity) : String
+		return getSystemName(moduleEntity).substring(0, 1).toLowerCase()
+				+ getSystemName(moduleEntity).substring(1);
+!!!233228.java!!!	getSystemName(inout moduleEntity : ModuleEntity) : String
+		return moduleEntity.getDataString("systemName");
+!!!233356.java!!!	buildClassFileName(inout moduleEntity : ModuleEntity) : String
+		String packagePath = getPackagePath(moduleEntity);
+
+		moduleEntity = (ModuleEntity) Orm.selectUnique(moduleEntity);
+		return packagePath + "/" + getSystemName(moduleEntity) + ".java";
+!!!233484.java!!!	getPackagePath(inout moduleEntity : ModuleEntity) : String
+		moduleEntity = (ModuleEntity) Orm.selectUnique(moduleEntity);
+		return "./src/modules/" + getPackageName(moduleEntity);
+!!!233612.java!!!	createDirectories(inout moduleEntity : ModuleEntity) : void
+		File file;
+		String packagePath = getPackagePath(moduleEntity);
+		file = new File(packagePath);
+		file.mkdir();
+		file = new File(packagePath + "/actions");
+		file.mkdir();
+		file = new File(packagePath + "/entityDefinitions");
+		file.mkdir();

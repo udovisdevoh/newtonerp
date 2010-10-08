@@ -2,6 +2,7 @@ package newtonERP.viewers.firstStep;
 
 import newtonERP.common.ActionLink;
 import newtonERP.module.generalEntity.ImageFile;
+import newtonERP.module.generalEntity.SplashScreen;
 import newtonERP.viewers.secondStep.ImageFileViewer;
 import newtonERP.viewers.secondStep.LinkViewer;
 
@@ -11,12 +12,12 @@ import newtonERP.viewers.secondStep.LinkViewer;
  */
 public class SplashScreenViewer
 {
+
 	/**
 	 * @param entity splash screen à voir
 	 * @return html du splash screen
 	 */
-	public static String getHtmlCode(
-			newtonERP.module.generalEntity.SplashScreen entity)
+	public static String getHtmlCode(SplashScreen entity)
 	{
 		String htmlCode = "";
 		for (ImageFile imageFile : entity.getImageFileList())
@@ -33,5 +34,4 @@ public class SplashScreenViewer
 
 		return htmlCode;
 	}
-
 }

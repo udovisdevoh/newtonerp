@@ -1,5 +1,6 @@
 package newtonERP.orm.associations;
 
+import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.exception.TableAssociationException;
 import newtonERP.module.generalEntity.ListOfValue;
 
@@ -14,9 +15,8 @@ public class ListOfValueManager
 	 * @param entity Entité source
 	 * @param foreignEntity Entité cible
 	 */
-	public final static void addListOfValue(
-			newtonERP.module.AbstractOrmEntity entity,
-			newtonERP.module.AbstractOrmEntity foreignEntity)
+	public static final void addListOfValue(AbstractOrmEntity entity,
+			AbstractOrmEntity foreignEntity)
 	{
 		String foreignKeyName = foreignEntity.getForeignKeyName();
 
@@ -31,5 +31,4 @@ public class ListOfValueManager
 
 		foreignEntity.addNegativeListOfValue(listOfValue);
 	}
-
 }

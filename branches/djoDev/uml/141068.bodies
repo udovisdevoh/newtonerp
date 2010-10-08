@@ -1,0 +1,9 @@
+class OrmSqlException
+!!!204428.java!!!	OrmSqlException(in message : String)
+		super(message);
+!!!204556.java!!!	OrmSqlException()
+		super();
+!!!204684.java!!!	OrmSqlException(in message : String, inout cause : Throwable)
+		super(message, cause);
+!!!204812.java!!!	OrmSqlException(inout cause : Throwable)
+		super(cause);

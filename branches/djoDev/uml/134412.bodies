@@ -1,0 +1,50 @@
+class Login
+!!!162956.java!!!	Login()
+		super(new User()); // Travaille avec des users
+		setDetailedDescription("Vous connecter");
+!!!163084.java!!!	doAction(inout entity : AbstractEntity, inout parameters : Hashtable<String, String>) : AbstractEntity
+		String currentLoginName = parameters.get("name");
+		if (currentLoginName == null)
+			currentLoginName = "";
+
+		Form loginForm = new Form(new UserRightModule(), new Login());
+		loginForm.addField("Utilisateur", "name", currentLoginName);
+		Field<?> tmpPwd = new User().getFields().getField("password");
+		tmpPwd.setDefaultValue();
+		loginForm.addField(tmpPwd);
+		loginForm.setTitle("Identification");
+		loginForm.setButtonAction(new ActionLink("Entrer", this));
+
+		if (parameters.containsKey("submit"))
+		{
+			Vector<AbstractOrmEntity> userList = ((AbstractOrmEntity) (entity))
+					.get((AbstractOrmEntity) (entity));
+
+			if (userList.size() > 0 && userList.get(0).getData("name") != null)
+			{
+				if (IsGroupValid((User) (userList.get(0))))
+				{
+					Authentication.setCurrentUserName(entity
+							.getDataString("name"));
+					return new StaticTextEntity("Bienvenue "
+							+ userList.get(0).getData("name"));
+				}
+
+				loginForm.addAlertMessage("Groupe invalide ou corrompu");
+			}
+			loginForm.addAlertMessage("Nom ou mot de passe invalide");
+		}
+
+		return loginForm;
+!!!163212.java!!!	IsGroupValid(inout user : User) : boolean
+		AbstractOrmEntity groups;
+		try
+		{
+			groups = user.getGroupsEntity();
+		} catch (Exception e)
+		{
+			return false;
+		}
+		if (groups == null)
+			return false;
+		return true;

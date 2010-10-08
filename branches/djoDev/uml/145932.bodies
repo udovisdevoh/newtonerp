@@ -1,0 +1,15 @@
+class GridCaseData
+!!!249612.java!!!	GridCaseData(in name : String, inout action : AbstractAction, inout parameters : Hashtable<String, String>)
+		super(name, action, parameters);
+!!!249740.java!!!	GridCaseData(in name : String, inout actionLink : AbstractAction)
+		this(name, actionLink, null);
+!!!249868.java!!!	GridCaseData(in name : String)
+		this(name, null);
+!!!249996.java!!!	GridCaseData()
+		this("");
+!!!250124.java!!!	getActionLink() : AbstractAction
+		return getAction();
+!!!250252.java!!!	isColored() : boolean
+		return isColored;
+!!!250380.java!!!	setColored(inout isColored : boolean) : void
+		this.isColored = isColored;

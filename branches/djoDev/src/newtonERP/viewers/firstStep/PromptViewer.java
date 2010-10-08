@@ -10,11 +10,14 @@ import newtonERP.module.generalEntity.ScrollList;
 import newtonERP.orm.associations.GateWay;
 import newtonERP.orm.associations.GateWayManager;
 import newtonERP.orm.associations.PluralAccessor;
+import newtonERP.orm.field.Field;
+import newtonERP.serveur.Servlet;
 import newtonERP.viewers.secondStep.CheckListViewer;
 import newtonERP.viewers.secondStep.FieldViewer;
 import newtonERP.viewers.secondStep.LinkViewer;
 import newtonERP.viewers.secondStep.ScrollListViewer;
 import newtonERP.viewers.secondStep.SelectBoxViewer;
+import newtonERP.viewers.viewerData.PromptViewerData;
 
 /**
  * Represents the prompt viewer
@@ -27,8 +30,8 @@ public class PromptViewer
 	 * @param promptData the entity to view
 	 * @return html
 	 */
-	public static String getHtmlCode(
-			newtonERP.viewers.viewerData.PromptViewerData promptData)
+	public static String getHtmlCode(PromptViewerData promptData)
+
 	{
 		AbstractOrmEntity ormEntity = null;
 		String html = "";
@@ -138,8 +141,8 @@ public class PromptViewer
 		return html;
 	}
 
-	private static String getMultipleAccessorLinkList(
-			newtonERP.module.AbstractOrmEntity entity, boolean isReadOnly)
+	private static String getMultipleAccessorLinkList(AbstractOrmEntity entity,
+			boolean isReadOnly)
 	{
 		String html = "";
 
@@ -214,8 +217,8 @@ public class PromptViewer
 		return html;
 	}
 
-	private static String getSingleAccessorLinkList(
-			newtonERP.module.AbstractOrmEntity entity, boolean isReadOnly)
+	private static String getSingleAccessorLinkList(AbstractOrmEntity entity,
+			boolean isReadOnly)
 	{
 		String html = "";
 
@@ -259,5 +262,4 @@ public class PromptViewer
 
 		return html;
 	}
-
 }

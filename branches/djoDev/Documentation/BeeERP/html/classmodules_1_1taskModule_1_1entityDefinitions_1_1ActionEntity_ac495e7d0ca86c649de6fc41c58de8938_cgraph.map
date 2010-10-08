@@ -1,0 +1,14 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classnewtonERP_1_1module_1_1Module.html#a8d2f7a692d6da109ae664a3a4248e2e2" title="newtonERP.module.Module.getAction" alt="" coords="555,5,811,35"/>
+<area shape="rect" id="node9" href="$classmodules_1_1taskModule_1_1entityDefinitions_1_1ActionEntity.html#a282afb2061c2ddaf6fdad06a82b0dad2" title="modules.taskModule.entityDefinitions.ActionEntity.getActionName" alt="" coords="461,59,904,88"/>
+<area shape="rect" id="node17" href="$classmodules_1_1taskModule_1_1entityDefinitions_1_1ModuleEntity.html#a73e520bf7f054fc75a45d79015e866bd" title="modules.taskModule.entityDefinitions.ModuleEntity.getModule" alt="" coords="475,112,891,141"/>
+<area shape="rect" id="node19" href="$classmodules_1_1taskModule_1_1entityDefinitions_1_1ActionEntity.html#adbbce80c7a0ebd6a153878bc90dda824" title="modules.taskModule.entityDefinitions.ActionEntity.getModuleEntity" alt="" coords="460,165,905,195"/>
+<area shape="rect" id="node5" href="$classnewtonERP_1_1module_1_1Module.html#a8f3773f1982e9c14f34d5c3b52fc39cd" title="newtonERP.module.Module.getDefaultAction" alt="" coords="1001,5,1303,35"/>
+<area shape="rect" id="node7" href="$classnewtonERP_1_1module_1_1Module.html#ae41e62fda99c45639864d873de1d6f4f" title="newtonERP.module.Module.getEntityDefinitionList" alt="" coords="1404,5,1737,35"/>
+<area shape="rect" id="node11" href="$classnewtonERP_1_1module_1_1AbstractEntity.html#a5595cb77a3f635214e489cc4663b9f64" title="methode d&#39;Accces rapide au donnees sous forme de string" alt="" coords="988,59,1316,88"/>
+<area shape="rect" id="node13" href="$classnewtonERP_1_1orm_1_1field_1_1Fields.html#a60c293a9a0e504f5cda3865ad7c8c160" title="newtonERP.orm.field.Fields.getField" alt="" coords="1449,59,1692,88"/>
+<area shape="rect" id="node15" href="$classnewtonERP_1_1module_1_1AbstractEntity.html#a87356471289bf7f6daaea032e4155f83" title="newtonERP.module.AbstractEntity.getFields" alt="" coords="1424,112,1717,141"/>
+<area shape="rect" id="node21" href="$classnewtonERP_1_1module_1_1AbstractOrmEntity.html#a79082dade2f4d88f4ffa770c8db8b884" title="newtonERP.module.AbstractOrmEntity.getForeignKeyName" alt="" coords="955,165,1349,195"/>
+<area shape="rect" id="node25" href="$classnewtonERP_1_1module_1_1AbstractOrmEntity.html#a39371dfcec6dff1615e661ed75a42de1" title="newtonERP.module.AbstractOrmEntity.getSingleAccessor" alt="" coords="960,243,1344,272"/>
+<area shape="rect" id="node23" href="$classnewtonERP_1_1module_1_1AbstractEntity.html#ad26f590c74d49b7c494d62de6ad1563b" title="newtonERP.module.AbstractEntity.getSystemName" alt="" coords="1397,165,1744,195"/>
+</map>

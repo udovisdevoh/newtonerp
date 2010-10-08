@@ -35,8 +35,8 @@ public class TaskEntity extends AbstractOrmEntity
 				new Specification().getForeignKeyName());
 		specification.setNaturalKey(true);
 
-		FieldInt effet = new FieldInt("Effet", new EffectEntity()
-				.getForeignKeyName());
+		FieldInt effet = new FieldInt("Effet",
+				new EffectEntity().getForeignKeyName());
 		effet.setNaturalKey(true);
 
 		Vector<Field<?>> fieldList = new Vector<Field<?>>();

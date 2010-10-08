@@ -26,7 +26,7 @@ public class ViewEntitySource extends AbstractAction
 			Hashtable<String, String> parameters)
 	{
 		EntityEntity entityEntity = (EntityEntity) entity;
-		return new StaticTextEntity(SourceCodeBuilder
-				.buildEntitySourceCode(entityEntity));
+		return new StaticTextEntity(
+				SourceCodeBuilder.buildEntitySourceCode(entityEntity));
 	}
 }

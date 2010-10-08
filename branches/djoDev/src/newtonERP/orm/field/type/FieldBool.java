@@ -3,13 +3,14 @@ package newtonERP.orm.field.type;
 import newtonERP.logging.Logger;
 import newtonERP.module.exception.FieldNotCompatibleException;
 import newtonERP.module.exception.InvalidOperatorException;
+import newtonERP.orm.field.Field;
 
 /**
  * Boolean field in the entities
  * 
  * @author CloutierJo, r3hallejo
  */
-public class FieldBool extends newtonERP.orm.field.Field<Boolean>
+public class FieldBool extends Field<Boolean>
 {
 	/**
 	 * constructeur minimum
@@ -95,5 +96,4 @@ public class FieldBool extends newtonERP.orm.field.Field<Boolean>
 		else
 			throw new FieldNotCompatibleException(getShortName(), data);
 	}
-
 }

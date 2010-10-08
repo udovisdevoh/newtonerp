@@ -1,0 +1,85 @@
+class ButtonLinkViewer
+!!!240652.java!!!	getHtmlCode(inout actionLink : ActionLink, inout entity : AbstractEntity) : String
+		String html = "";
+		int balloonDivId = LinkViewer.getNextBalloonDivId();
+
+		if (isPermissionAllowed(actionLink))
+		{
+
+			String onClickConfirm = "";
+
+			if (actionLink.isConfirm())
+			{
+				if (entity != null)
+					onClickConfirm = getOnClickConfirm(actionLink.getName(),
+							entity.getSystemName(),
+							((AbstractOrmEntity) entity)
+									.getNaturalKeyDescription());
+				else
+					onClickConfirm = getOnClickConfirm(actionLink.getName());
+			}
+
+			html += "<ins>";
+
+			html += "<form method='get' action='" + actionLink.getUrl() + "'>";
+
+			html += "<div>";
+
+			Hashtable<String, String> param = actionLink.getParameters(entity);
+			for (String key : param.keySet())
+			{
+				html += "<input type='hidden' name='" + key + "' value='"
+						+ param.get(key) + "' />";
+			}
+			html += "<input onmouseover='document.getElementById(\"balloon"
+					+ balloonDivId
+					+ "\").style.visibility=\"visible\"' onmouseout='document.getElementById(\"balloon"
+					+ balloonDivId
+					+ "\").style.visibility=\"hidden\"' class='submitButton' type='submit' "
+					+ onClickConfirm + " value=\"" + actionLink.getName()
+					+ "\" />";
+
+			html += "</div>";
+
+			html += "</form>";
+
+			html += "</ins>";
+
+			html += HelpViewer.getHtmlCode(actionLink, balloonDivId);
+		}
+		else
+		{
+			// html += "<i style=\"font-size:8px\">" + actionLink.getName()
+			// + "</i>";
+		}
+
+		return html;
+!!!240780.java!!!	isPermissionAllowed(inout actionLink : ActionLink) : boolean
+		UserRightModule userRightModule = (UserRightModule) ListModule
+				.getModule("UserRightModule");
+
+		return userRightModule.isPermissionAllowed(actionLink);
+!!!240908.java!!!	getHtmlCode(inout actionLink : ActionLink) : String
+		return getHtmlCode(actionLink, null);
+!!!241036.java!!!	getOnClickConfirm(in actionName : String, in entityTypeName : String, in value : String) : String
+		String html = "";
+
+		html += "onclick='return confirm(\"Voulez-vous vraiment ";
+		html += actionName + " ";
+		html += entityTypeName;
+		html += " " + value;
+		html += "?\")";
+
+		html += "'";
+
+		return html;
+!!!241164.java!!!	getOnClickConfirm(in actionName : String) : String
+		String html = "";
+
+		html += "onclick='return confirm(\"Voulez-vous vraiment ";
+		html += actionName;
+		html += "?\")";
+
+		html += "'";
+
+		return html;

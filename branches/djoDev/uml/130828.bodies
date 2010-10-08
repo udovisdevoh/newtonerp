@@ -1,0 +1,23 @@
+class DbGraph
+!!!146060.java!!!	DbGraph()
+		super(null);
+!!!146188.java!!!	doAction(inout sourceFieldEntity : AbstractEntity, inout parameters : Hashtable<String, String>) : BaseViewerData
+		maxX = 0;
+		maxY = 0;
+		vEntity = new Hashtable<String, VisualEntity>();
+		visualGraph vgraph = new visualGraph();
+		vgraph.designGraph();
+		BufferedImage bi = new BufferedImage(maxX, maxY + 8,
+				BufferedImage.TYPE_BYTE_BINARY);
+		Graphics g = bi.getGraphics();
+		g.setColor(Color.WHITE);
+		g.fillRect(0, 0, bi.getWidth(), bi.getHeight());
+		g.setColor(Color.BLACK);
+		for (VisualEntity entity : vEntity.values())
+		{
+			g.drawImage(entity.getDrawEntity(), entity.x, entity.y, null);
+		}
+
+		ImgViewerData ret = new ImgViewerData(bi, "testPic");
+		ret.setTitle("shema de la DB");
+		return ret;

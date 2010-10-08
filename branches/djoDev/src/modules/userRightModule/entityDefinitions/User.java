@@ -2,7 +2,9 @@ package modules.userRightModule.entityDefinitions;
 
 import java.util.Vector;
 
+import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.associations.AccessorManager;
+import newtonERP.orm.field.Field;
 import newtonERP.orm.field.Fields;
 import newtonERP.orm.field.type.FieldInt;
 import newtonERP.orm.field.type.FieldString;
@@ -11,10 +13,12 @@ import newtonERP.orm.field.type.FieldString;
  * Entity defenition class representing a user
  * @author r3hallejo cloutierJo
  */
-public class User extends newtonERP.module.AbstractOrmEntity
+public class User extends AbstractOrmEntity
 {
+	// vers les entités
+	// groups
+
 	/**
-	 * vers les entités groups
 	 */
 	public User()
 	{
@@ -23,7 +27,7 @@ public class User extends newtonERP.module.AbstractOrmEntity
 		setVisibleName("Utilisateur");
 	}
 
-	public newtonERP.orm.field.Fields initFields()
+	public Fields initFields()
 	{
 		Vector<Field<?>> fieldsData = new Vector<Field<?>>();
 		fieldsData.add(new FieldInt("Numéro de user", getPrimaryKeyName()));
@@ -44,5 +48,4 @@ public class User extends newtonERP.module.AbstractOrmEntity
 	{
 		return (Groups) getSingleAccessor("groupsID");
 	}
-
 }

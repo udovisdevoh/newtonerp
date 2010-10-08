@@ -1,0 +1,9 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classnewtonERP_1_1module_1_1AbstractEntity.html#a97b62934148af8ec3e9b8c190d8684e9" title="newtonERP.module.AbstractEntity.addNegativeListOfValue" alt="" coords="488,5,877,35"/>
+<area shape="rect" id="node7" href="$classnewtonERP_1_1module_1_1AbstractEntity.html#a99b071134d0ceb3ac55c07547629660d" title="newtonERP.module.AbstractEntity.addPositiveListOfValue" alt="" coords="492,59,873,88"/>
+<area shape="rect" id="node11" href="$classnewtonERP_1_1module_1_1AbstractEntity.html#a87356471289bf7f6daaea032e4155f83" title="newtonERP.module.AbstractEntity.getFields" alt="" coords="536,112,829,141"/>
+<area shape="rect" id="node13" href="$classnewtonERP_1_1module_1_1AbstractOrmEntity.html#a79082dade2f4d88f4ffa770c8db8b884" title="newtonERP.module.AbstractOrmEntity.getForeignKeyName" alt="" coords="485,165,880,195"/>
+<area shape="rect" id="node15" href="$classnewtonERP_1_1module_1_1AbstractEntity.html#ad26f590c74d49b7c494d62de6ad1563b" title="newtonERP.module.AbstractEntity.getSystemName" alt="" coords="960,191,1307,220"/>
+<area shape="rect" id="node5" href="$classnewtonERP_1_1module_1_1AbstractEntity.html#a03ceae838e366ceee8c3677b6db8ac19" title="newtonERP.module.AbstractEntity.getNegativeListOfValueList" alt="" coords="929,5,1337,35"/>
+<area shape="rect" id="node9" href="$classnewtonERP_1_1module_1_1AbstractEntity.html#a2d3190f6f039a6081d107d17ecfb5a58" title="newtonERP.module.AbstractEntity.getPositiveListOfValueList" alt="" coords="933,59,1333,88"/>
+</map>

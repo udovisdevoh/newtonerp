@@ -1,0 +1,9 @@
+class AlertViewer
+!!!237964.java!!!	getHtmlCode(inout entity : AlertViewable) : String
+		String html = "";
+		html += "\n<script language=\"JavaScript\">";
+		html += "\n<!--";
+		html += "\nalert(\"" + entity.getMessage() + "\")";
+		html += "\n-->";
+		html += "\n</script>";
+		return html;

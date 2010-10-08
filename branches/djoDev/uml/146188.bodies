@@ -1,0 +1,23 @@
+class ImgViewerData
+!!!252556.java!!!	ImgViewerData()
+		super();
+		// TODO Auto-generated constructor stub
+!!!252684.java!!!	ImgViewerData(inout bi : BufferedImage, in fileName : String)
+		filePath = "file/" + fileName + ".png";
+		File outputfile = new File(filePath);
+		try
+		{
+			ImageIO.write(bi, "png", outputfile);
+		} catch (IOException e)
+		{
+			// on log le probleme et affiche l'Exception, sa ne fera qu'une
+			// image introuvable pour l'utilisateur et nous avons une trace du
+			// probleme
+			Logger.error("the image " + filePath + " cannot be created");
+			e.printStackTrace();
+		}
+		filePath = "../" + filePath;
+!!!252812.java!!!	getFilePath() : String
+		return filePath;
+!!!252940.java!!!	setFilePath(in filePath : String) : void
+		this.filePath = filePath;

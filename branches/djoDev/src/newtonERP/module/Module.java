@@ -1,51 +1,61 @@
-
 package newtonERP.module;
+
+import java.io.File;
+import java.util.Collection;
+import java.util.Hashtable;
+import java.util.Vector;
+
+import modules.userRightModule.entityDefinitions.Groups;
+import modules.userRightModule.entityDefinitions.GroupsRight;
+import modules.userRightModule.entityDefinitions.Right;
+import newtonERP.common.ActionLink;
+import newtonERP.common.ModuleLoader;
+import newtonERP.common.NaturalMap;
+import newtonERP.module.exception.ActionNotFoundException;
+import newtonERP.module.exception.ModuleException;
+import newtonERP.orm.Orm;
 
 /**
  * Abstract class representing an abstract module
  * 
  * @author Pascal Lemay
  */
-public abstract class Module {
-  /**
-   *  Sert a conserver les definitions de tables
-   *  Genre d'exemple d'une table.
-   */
-  protected AbstractOrmEntity entityDefinitionList;
+public abstract class Module
+{
+	// Sert a conserver les definitions de tables
+	// Genre d'exemple d'une table.
+	protected Hashtable<String, AbstractOrmEntity> entityDefinitionList;
 
-  /**
-   *  Sert a stocker les actions pouvant etre appelees
-   */
-  protected AbstractAction actionList;
+	// Sert a stocker les actions pouvant etre appelees
+	protected Hashtable<String, AbstractAction> actionList;
+	private NaturalMap<String, AbstractAction> globalActionList;
 
-  private newtonERP.common.NaturalMap globalActionList;
+	private String defaultAction;
+	private String defaultEntity;
+	private String visibleName;
 
-  private String defaultAction;
+	private Vector<ActionLink> globalActionButtonList = null;
 
-  private String defaultEntity;
+	private NaturalMap<String, AbstractAction> defaultBehaviorMenu;
 
-  private String visibleName;
+	private boolean visible = true;
 
-  private newtonERP.common.ActionLink globalActionButtonList =  null;
+	private static Hashtable<String, Hashtable<String, AbstractOrmEntity>> entityCache = new Hashtable<String, Hashtable<String, AbstractOrmEntity>>();
+	private static Hashtable<String, Hashtable<String, AbstractAction>> ActionCache = new Hashtable<String, Hashtable<String, AbstractAction>>();
 
-  private newtonERP.common.NaturalMap defaultBehaviorMenu;
-
-  private boolean visible =  true;
-
-  private static String, Hashtable<String, AbstractOrmEntity> entityCache =  new Hashtable<String, Hashtable<String, AbstractOrmEntity>>();
-
-  private static String, Hashtable<String, AbstractAction> ActionCache =  new Hashtable<String, Hashtable<String, AbstractAction>>();
-
-  /**
-   * constructeur par default
-   */
-  public  Module() {
+	/**
+	 * constructeur par default
+	 * 
+	 */
+	public Module()
+	{
 		entityDefinitionList = new Hashtable<String, AbstractOrmEntity>();
 
 		actionList = new Hashtable<String, AbstractAction>();
-  }
+	}
 
-  protected final void setDefaultAction(AbstractAction action) {
+	protected final void setDefaultAction(AbstractAction action)
+	{
 		if (action instanceof BaseAction)
 		{
 			defaultAction = ((BaseAction) (action)).getSystemName();
@@ -55,12 +65,13 @@ public abstract class Module {
 		{
 			defaultAction = action.getSystemName();
 		}
-  }
+	}
 
-  /**
-   * @return the defaultAction
-   */
-  public String getDefaultAction() {
+	/**
+	 * @return the defaultAction
+	 */
+	public String getDefaultAction()
+	{
 		if (defaultAction == null)
 		{
 			if (getEntityDefinitionList().size() < 1)
@@ -75,14 +86,15 @@ public abstract class Module {
 		}
 
 		return defaultAction;
-  }
+	}
 
-  /**
-   * initialise la liste d'action du module
-   * 
-   * @param path path to the module contening the action
-   */
-  public void initAction(String path) {
+	/**
+	 * initialise la liste d'action du module
+	 * 
+	 * @param path path to the module contening the action
+	 */
+	public void initAction(String path)
+	{
 		if (!ActionCache.containsKey(getSystemName()))
 		{
 			File folder = new File(path + "/actions");
@@ -117,14 +129,15 @@ public abstract class Module {
 		{
 			actionList = ActionCache.get(getSystemName());
 		}
-  }
+	}
 
-  /**
-   * initialise la liste de definition d'entite du module
-   * 
-   * @param path path to the module contening the action
-   */
-  public void initEntityDefinition(String path) {
+	/**
+	 * initialise la liste de definition d'entite du module
+	 * 
+	 * @param path path to the module contening the action
+	 */
+	public void initEntityDefinition(String path)
+	{
 		if (!entityCache.containsKey(getSystemName()))
 		{
 			File folder = new File(path + "/entityDefinitions");
@@ -164,37 +177,43 @@ public abstract class Module {
 				entity.reset();
 			}
 		}
-  }
+	}
 
-  private final void addAction(AbstractAction action) {
+	private final void addAction(AbstractAction action)
+	{
 		actionList.put(action.getSystemName(), action);
 		action.setOwnedByModul(this);
-  }
+	}
 
-  private final void addDefinitionEntity(AbstractOrmEntity definitinEntity) {
+	private final void addDefinitionEntity(AbstractOrmEntity definitinEntity)
+	{
 		entityDefinitionList.put(definitinEntity.getSystemName(),
 				definitinEntity);
-  }
+	}
 
-  /**
-   * @return the Vector entities
-   */
-  public final AbstractOrmEntity getEntityDefinitionList() {
+	/**
+	 * @return the Vector entities
+	 */
+	public final Hashtable<String, AbstractOrmEntity> getEntityDefinitionList()
+	{
 		return entityDefinitionList;
-  }
+	}
 
-  /**
-   * @return the actions HashTable
-   */
-  public final AbstractAction getActionList() {
+	/**
+	 * @return the actions HashTable
+	 */
+	public final Hashtable<String, AbstractAction> getActionList()
+	{
 		return actionList;
-  }
+	}
 
-  /**
-   * @param entityDefinitionName nom de l action
-   * @return action de ce nom contenue dans le HashTable
-   */
-  public final AbstractOrmEntity getEntityDefinition(String entityDefinitionName) {
+	/**
+	 * @param entityDefinitionName nom de l action
+	 * @return action de ce nom contenue dans le HashTable
+	 */
+	public final AbstractOrmEntity getEntityDefinition(
+			String entityDefinitionName)
+	{
 		AbstractOrmEntity entity = null;
 		try
 		{
@@ -210,13 +229,14 @@ public abstract class Module {
 					+ " introuvable");
 
 		return entity;
-  }
+	}
 
-  /**
-   * @param actionName nom de l action
-   * @return action de ce nom contenue dans le HashTable
-   */
-  public final AbstractAction getAction(String actionName) {
+	/**
+	 * @param actionName nom de l action
+	 * @return action de ce nom contenue dans le HashTable
+	 */
+	public final AbstractAction getAction(String actionName)
+	{
 		AbstractAction action = null;
 
 		if (actionName.equals("default"))
@@ -234,13 +254,14 @@ public abstract class Module {
 			throw new ModuleException("Action: " + actionName + " introuvable");
 
 		return action;
-  }
+	}
 
-  /**
-   * permet d'initialiser la base de donne lors de l'installation du module,
-   * ne doit pas prendre en compte la creation des table
-   */
-  public void initDB() {
+	/**
+	 * permet d'initialiser la base de donne lors de l'installation du module,
+	 * ne doit pas prendre en compte la creation des table
+	 */
+	public void initDB()
+	{
 		// on trouve l'ID du groupe admin
 		Groups group = new Groups();
 		group.setData("groupName", "admin");
@@ -264,37 +285,41 @@ public abstract class Module {
 			GroupsRight.setData("rightID", rightID);
 			Orm.insert(GroupsRight);
 		}
-  }
+	}
 
-  /**
-   * permet de faire une action
-   * 
-   * @param actionName Nom de l'action que l'utilisateur veut faire
-   * @param moduleGetterName Nom du module getter permetant d'obtenir l'entité
-   *            produite par le module (cette entité servira de paramêtre à
-   *            l'action
-   * @param parameters Paramètres de l'action devant être accomplie, exemple,
-   *            contenu d'un email
-   * @return Entité viewable pour l'output du résultat
-   */
-  public final AbstractEntity doAction(String actionName, Hashtable<String, String> parameters) {
+	/**
+	 * permet de faire une action
+	 * 
+	 * @param actionName Nom de l'action que l'utilisateur veut faire
+	 * @param moduleGetterName Nom du module getter permetant d'obtenir l'entité
+	 *            produite par le module (cette entité servira de paramêtre à
+	 *            l'action
+	 * @param parameters Paramètres de l'action devant être accomplie, exemple,
+	 *            contenu d'un email
+	 * @return Entité viewable pour l'output du résultat
+	 */
+	public final AbstractEntity doAction(String actionName,
+			Hashtable<String, String> parameters)
+	{
 		AbstractAction action = getAction(actionName);
 		return action.perform(parameters);
-  }
+	}
 
-  /**
-   * permet de faire un action standart sur une entité
-   * 
-   * @param actionName Nom de l'action que l'utilisateur veut faire
-   * @param entityName Nom de l'entity contenant l'action
-   * @param moduleGetterName Nom du module getter permetant d'obtenir l'entité
-   *            produite par le module (cette entité servira de paramêtre à
-   *            l'action
-   * @param parameters Paramètres de l'action devant être accomplie, exemple,
-   *            contenu d'un email
-   * @return Entité viewable pour l'output du résultat
-   */
-  public final AbstractEntity doAction(String actionName, String entityName, Hashtable<String, String> parameters) {
+	/**
+	 * permet de faire un action standart sur une entité
+	 * 
+	 * @param actionName Nom de l'action que l'utilisateur veut faire
+	 * @param entityName Nom de l'entity contenant l'action
+	 * @param moduleGetterName Nom du module getter permetant d'obtenir l'entité
+	 *            produite par le module (cette entité servira de paramêtre à
+	 *            l'action
+	 * @param parameters Paramètres de l'action devant être accomplie, exemple,
+	 *            contenu d'un email
+	 * @return Entité viewable pour l'output du résultat
+	 */
+	public final AbstractEntity doAction(String actionName, String entityName,
+			Hashtable<String, String> parameters)
+	{
 		AbstractOrmEntity entity;
 		try
 		{
@@ -320,74 +345,82 @@ public abstract class Module {
 
 		throw new ActionNotFoundException("l'action " + actionName
 				+ "de l'entity" + entityName + "n'existe pas");
-  }
+	}
 
-  /**
-   * @return the global action list
-   */
-  public final newtonERP.common.NaturalMap getGlobalActionMenu() {
+	/**
+	 * @return the global action list
+	 */
+	public final NaturalMap<String, AbstractAction> getGlobalActionMenu()
+	{
 		if (globalActionList == null)
 			globalActionList = new NaturalMap<String, AbstractAction>();
 
 		return globalActionList;
-  }
+	}
 
-  /**
-   * @param name the action name
-   * @param action the action
-   */
-  public final void addGlobalActionMenuItem(String name, AbstractAction action) {
+	/**
+	 * @param name the action name
+	 * @param action the action
+	 */
+	public final void addGlobalActionMenuItem(String name, AbstractAction action)
+	{
 		getGlobalActionMenu().put(name, action);
-  }
+	}
 
-  /**
-   * @param actionLink bouton à ajouter
-   */
-  public void addGlobalActionButton(newtonERP.common.ActionLink actionLink) {
+	/**
+	 * @param actionLink bouton à ajouter
+	 */
+	public void addGlobalActionButton(ActionLink actionLink)
+	{
 		getGlobalActionButtonList().add(actionLink);
-  }
+	}
 
-  /**
-   * @return liste des boutons du module
-   */
-  public newtonERP.common.ActionLink getGlobalActionButtonList() {
+	/**
+	 * @return liste des boutons du module
+	 */
+	public Vector<ActionLink> getGlobalActionButtonList()
+	{
 		if (globalActionButtonList == null)
 			globalActionButtonList = new Vector<ActionLink>();
 		return globalActionButtonList;
-  }
+	}
 
-  /**
-   * @return Entité par default (dans le cas d'action par default qui est une
-   *         baseAction)
-   */
-  public String getDefaultEntity() {
+	/**
+	 * @return Entité par default (dans le cas d'action par default qui est une
+	 *         baseAction)
+	 */
+	public String getDefaultEntity()
+	{
 		return defaultEntity;
-  }
+	}
 
-  /**
-   * @return Nom visible d'un module
-   */
-  public final String getVisibleName() {
+	/**
+	 * @return Nom visible d'un module
+	 */
+	public final String getVisibleName()
+	{
 		if (visibleName == null)
 			visibleName = getSystemName();
 
 		return visibleName;
-  }
+	}
 
-  /**
-   * @param visibleName nom visible d'un module
-   */
-  public final void setVisibleName(String visibleName) {
+	/**
+	 * @param visibleName nom visible d'un module
+	 */
+	public final void setVisibleName(String visibleName)
+	{
 		this.visibleName = visibleName;
-  }
+	}
 
-  /**
-   * (non-Javadoc)
-   * 
-   * @see java.lang.Object#equals(java.lang.Object)
-   */
-  @Override
-  public boolean equals(Object obj) {
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj)
+	{
 		if (this == obj)
 			return true;
 		if (obj == null)
@@ -438,28 +471,33 @@ public abstract class Module {
 		else if (!visibleName.equals(other.visibleName))
 			return false;
 		return true;
-  }
+	}
 
-  /**
-   * @return nom du module dans le système (normalement nom de la classe mais
-   *         peut être overridé si c'est un module dynamique)
-   */
-  public String getSystemName() {
+	/**
+	 * @return nom du module dans le système (normalement nom de la classe mais
+	 *         peut être overridé si c'est un module dynamique)
+	 */
+	public String getSystemName()
+	{
 		return getClass().getSimpleName();
-  }
+	}
 
-  /**
-   * @return retourne les élément du menu du module peu importe qu'ils aient
-   *         été spécifiés ou pas (cas pour lequel les éléments par défault
-   *         seront des GetList sur chaque entité du module)
-   */
-  public newtonERP.common.NaturalMap getGlobalActionMenuOrReturnDefaultBehavior() {
+	/**
+	 * @return retourne les élément du menu du module peu importe qu'ils aient
+	 *         été spécifiés ou pas (cas pour lequel les éléments par défault
+	 *         seront des GetList sur chaque entité du module)
+	 */
+	public NaturalMap<String, AbstractAction> getGlobalActionMenuOrReturnDefaultBehavior()
+
+	{
 		if (getGlobalActionMenu().size() < 1)
 			return getDefaultBehaviorMenu();
 		return getGlobalActionMenu();
-  }
+	}
 
-  private newtonERP.common.NaturalMap getDefaultBehaviorMenu() {
+	private NaturalMap<String, AbstractAction> getDefaultBehaviorMenu()
+
+	{
 		if (defaultBehaviorMenu == null)
 		{
 			defaultBehaviorMenu = new NaturalMap<String, AbstractAction>();
@@ -490,29 +528,30 @@ public abstract class Module {
 			}
 		}
 		return defaultBehaviorMenu;
-  }
+	}
 
-  /**
-   * @return the visible
-   */
-  public boolean isVisible() {
+	/**
+	 * @return the visible
+	 */
+	public boolean isVisible()
+	{
 		return visible;
-  }
+	}
 
-  /**
-   * @param visible the visible to set
-   */
-  public void setVisible(boolean visible) {
+	/**
+	 * @param visible the visible to set
+	 */
+	public void setVisible(boolean visible)
+	{
 		this.visible = visible;
-  }
+	}
 
-  /**
-   * reset les cache de module
-   */
-  public static void resetCache()
-  {
+	/**
+	 * reset les cache de module
+	 */
+	public static void resetCache()
+	{
 		ActionCache.clear();
 		entityCache.clear();
-  }
-
+	}
 }

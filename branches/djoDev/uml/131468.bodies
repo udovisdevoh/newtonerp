@@ -1,0 +1,47 @@
+class ModuleEntity
+!!!156172.java!!!	ModuleEntity()
+		super();
+		setVisibleName("Module");
+!!!156300.java!!!	preInitFields() : Fields
+		// always build the field from initField and not from DB, thats mean
+		// that we cannot add a dynamic Field, this should not be done anywhere
+		// else
+		return initFields();
+!!!156428.java!!!	initFields() : Fields
+		FieldString visibleName = new FieldString("Nom visible", "visibleName");
+		visibleName.setNaturalKey(true);
+
+		Vector<Field<?>> fieldList = new Vector<Field<?>>();
+		fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
+		fieldList.add(new FieldString("Nom système", "systemName"));
+		fieldList.add(visibleName);
+		return new Fields(fieldList);
+!!!156556.java!!!	getModule() : Module
+		return ListModule.getModule(getModuleName());
+!!!156684.java!!!	getModuleName() : String
+		return getDataString("systemName");
+!!!156812.java!!!	getList(inout parameters : Hashtable<String, String>) : ListViewerData
+		parameters.put(getPrimaryKeyName(), "&");
+
+		ListViewerData entityList = super.getList(parameters);
+		entityList.addSpecificActionButtonList(new ActionLink("Voir source",
+				new ViewModuleSource(), parameters));
+
+		entityList.addSpecificActionButtonList(new ActionLink("Générer source",
+				new GenerateSourceCode(), parameters));
+
+		return entityList;
+!!!156940.java!!!	getEntityEntityList() : EntityEntity
+		PluralAccessor accessor = getPluralAccessor(new EntityEntity()
+				.getSystemName());
+		Vector<EntityEntity> entityEntityList = new Vector<EntityEntity>();
+		for (AbstractOrmEntity entity : accessor)
+			entityEntityList.add((EntityEntity) entity);
+		return entityEntityList;
+!!!157068.java!!!	getActionEntityList() : ActionEntity
+		PluralAccessor accessor = getPluralAccessor(new ActionEntity()
+				.getSystemName());
+		Vector<ActionEntity> actionEntityList = new Vector<ActionEntity>();
+		for (AbstractOrmEntity entity : accessor)
+			actionEntityList.add((ActionEntity) entity);
+		return actionEntityList;

@@ -1,0 +1,38 @@
+class NaturalMap
+!!!171148.java!!!	clear() : void
+		getHashtable().clear();
+		getKeyList().clear();
+!!!171276.java!!!	getKeyList() : Vector<K>
+		if (keyList == null)
+			keyList = new Vector<K>();
+		return keyList;
+!!!171404.java!!!	containsKey(inout arg0 : Object) : boolean
+		return getHashtable().containsKey(arg0);
+!!!171532.java!!!	getHashtable() : Hashtable<K, V>
+		if (hashtable == null)
+			hashtable = new Hashtable<K, V>();
+		return hashtable;
+!!!171660.java!!!	containsValue(inout arg0 : Object) : boolean
+		return getHashtable().containsValue(arg0);
+!!!171788.java!!!	entrySet() : Set<java.util.Map.Entry<K, V>>
+		// TODO Auto-generated method stub
+		return null;
+!!!171916.java!!!	get(inout arg0 : Object) : V
+		return getHashtable().get(arg0);
+!!!172044.java!!!	isEmpty() : boolean
+		return getKeyList().isEmpty();
+!!!172172.java!!!	keySet() : Set<K>
+		return getHashtable().keySet();
+!!!172300.java!!!	put(inout arg0 : K, inout arg1 : V) : V
+		getKeyList().add(arg0);
+		return getHashtable().put(arg0, arg1);
+!!!172428.java!!!	putAll(inout arg0 : Map<? extends K, ? extends V>) : void
+		getKeyList().addAll(arg0.keySet());
+		getHashtable().putAll(arg0);
+!!!172556.java!!!	remove(inout arg0 : Object) : V
+		getKeyList().remove(arg0);
+		return getHashtable().remove(arg0);
+!!!172684.java!!!	size() : int
+		return getKeyList().size();
+!!!172812.java!!!	values() : Collection<V>
+		return getHashtable().values();

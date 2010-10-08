@@ -1,11 +1,18 @@
 package newtonERP.viewers;
 
+import java.util.Iterator;
+
 import modules.userRightModule.actions.Login;
 import modules.userRightModule.actions.Logout;
 import newtonERP.common.ActionLink;
 import newtonERP.common.Authentication;
 import newtonERP.common.ListModule;
+import newtonERP.module.AbstractAction;
+import newtonERP.module.AbstractEntity;
+import newtonERP.module.Module;
+import newtonERP.module.generalEntity.SplashScreen;
 import newtonERP.serveur.ConfigManager;
+import newtonERP.serveur.Servlet;
 import newtonERP.viewers.firstStep.AlertViewer;
 import newtonERP.viewers.firstStep.BandDiagramViewer;
 import newtonERP.viewers.firstStep.BaseViewer;
@@ -44,8 +51,8 @@ public abstract class Viewer
 	 * @param actionName the action to perform
 	 * @return the viewer
 	 */
-	public static String getHtmlCode(newtonERP.module.AbstractEntity entity,
-			String moduleName, String actionName)
+	public static String getHtmlCode(AbstractEntity entity, String moduleName,
+			String actionName)
 	{
 		String viewerHtml = "";
 		if (entity instanceof BaseViewerData)
@@ -93,6 +100,7 @@ public abstract class Viewer
 	 * @return html
 	 */
 	public static String getHeader(String moduleName, String actionName)
+
 	{
 		String pageTitle = buildPageTitle(moduleName, actionName);
 
@@ -148,6 +156,7 @@ public abstract class Viewer
 	}
 
 	private static String buildPageTitle(String moduleName, String actionName)
+
 	{
 		String title = ConfigManager.loadStringProperty("display-name");
 
@@ -253,5 +262,4 @@ public abstract class Viewer
 	{
 		return defaultEncoding;
 	}
-
 }

@@ -1,0 +1,11 @@
+class SplashScreen
+!!!190092.java!!!	SplashScreen()
+		super();
+!!!190220.java!!!	addImage(inout image : ImageFile) : void
+		imageFileList.add(image);
+!!!190348.java!!!	addActionLink(inout actionLink : ActionLink) : void
+		actionLinkList.add(actionLink);
+!!!190476.java!!!	getImageFileList() : ImageFile
+		return imageFileList;
+!!!190604.java!!!	getActionLinkList() : ActionLink
+		return actionLinkList;

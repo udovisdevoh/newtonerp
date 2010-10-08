@@ -1,0 +1,2372 @@
+format 75
+"module" // src::newtonERP::module
+  revision 1
+  modified_by 12 "djo"
+  // class settings
+  //class diagram settings
+  draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+  //use case diagram settings
+  package_name_in_tab default show_context default auto_label_position default draw_all_relations default class_drawing_mode default shadow default show_stereotype_properties default
+  //sequence diagram settings
+  show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+  //collaboration diagram settings
+  show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default show_msg_context default draw_all_relations default shadow default show_stereotype_properties default
+  //object diagram settings
+   write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+  //component diagram settings
+  package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default
+  draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+  //deployment diagram settings
+  package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
+  draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+  //state diagram settings
+  package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  //activity diagram settings
+  package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+  show_infonote default drawing_language default show_stereotype_properties default
+  
+  java_dir "/home/djo/workspace/NewtonERP/src/newtonERP/module/"
+  java_package "newtonERP.module"
+  classview 128140 "module"
+    //class diagram settings
+    draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+    //collaboration diagram settings
+    show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default show_msg_context default draw_all_relations default shadow default show_stereotype_properties default
+    //object diagram settings
+     write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+    //sequence diagram settings
+    show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+    //state diagram settings
+    package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+    show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+    //class settings
+    //activity diagram settings
+    package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+    show_infonote default drawing_language default show_stereotype_properties default
+    class 128140 "Module"
+      abstract visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Abstract class representing an abstract module
+
+@author Pascal Lemay"
+      classrelation 128012 // entityDefinitionList (<unidirectional association>)
+	relation 128012 --->
+	  stereotype "Hashtable"
+	  a role_name "entityDefinitionList" protected
+	    comment " Sert a conserver les definitions de tables
+ Genre d'exemple d'une table."
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 128012 // entityDefinitionList (<unidirectional association>)
+	  b parent class_ref 128268 // AbstractOrmEntity
+      end
+
+      classrelation 128140 // actionList (<unidirectional association>)
+	relation 128140 --->
+	  stereotype "Hashtable"
+	  a role_name "actionList" protected
+	    comment " Sert a stocker les actions pouvant etre appelees"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 128140 // actionList (<unidirectional association>)
+	  b parent class_ref 128396 // AbstractAction
+      end
+
+      classrelation 128268 // globalActionList (<unidirectional association>)
+	relation 128268 --->
+	  a role_name "globalActionList" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 128268 // globalActionList (<unidirectional association>)
+	  b parent class_ref 128524 // NaturalMap
+      end
+
+      attribute 128012 "defaultAction"
+	private explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 128140 "defaultEntity"
+	private explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 128268 "visibleName"
+	private explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      classrelation 128396 // globalActionButtonList (<unidirectional association>)
+	relation 128396 --->
+	  stereotype "Vector"
+	  a role_name "globalActionButtonList" init_value " null" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 128396 // globalActionButtonList (<unidirectional association>)
+	  b parent class_ref 128652 // ActionLink
+      end
+
+      classrelation 128524 // defaultBehaviorMenu (<unidirectional association>)
+	relation 128524 --->
+	  a role_name "defaultBehaviorMenu" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 128524 // defaultBehaviorMenu (<unidirectional association>)
+	  b parent class_ref 128524 // NaturalMap
+      end
+
+      attribute 128396 "visible"
+	private explicit_type "boolean"
+	init_value " true"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 128524 "entityCache"
+	class_attribute private explicit_type "String, Hashtable<String, AbstractOrmEntity>"
+	init_value " new Hashtable<String, Hashtable<String, AbstractOrmEntity>>()"
+	stereotype "Hashtable"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 128652 "ActionCache"
+	class_attribute private explicit_type "String, Hashtable<String, AbstractAction>"
+	init_value " new Hashtable<String, Hashtable<String, AbstractAction>>()"
+	stereotype "Hashtable"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 128012 "Module"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "constructeur par default
+"
+      end
+
+      operation 128140 "setDefaultAction"
+	protected explicit_return_type "void"
+	nparams 1
+	  param inout name "action" type class_ref 128396 // AbstractAction
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 128268 "getDefaultAction"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return the defaultAction"
+      end
+
+      operation 128396 "initAction"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "path" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "initialise la liste d'action du module
+
+@param path path to the module contening the action"
+      end
+
+      operation 128524 "initEntityDefinition"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "path" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "initialise la liste de definition d'entite du module
+
+@param path path to the module contening the action"
+      end
+
+      operation 128652 "addAction"
+	private explicit_return_type "void"
+	nparams 1
+	  param inout name "action" type class_ref 128396 // AbstractAction
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 128780 "addDefinitionEntity"
+	private explicit_return_type "void"
+	nparams 1
+	  param inout name "definitinEntity" type class_ref 128268 // AbstractOrmEntity
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 128908 "getEntityDefinitionList"
+	public return_type class_ref 128268 // AbstractOrmEntity
+	nparams 0
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return the Vector entities"
+      end
+
+      operation 129036 "getActionList"
+	public return_type class_ref 128396 // AbstractAction
+	nparams 0
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return the actions HashTable"
+      end
+
+      operation 129164 "getEntityDefinition"
+	public return_type class_ref 128268 // AbstractOrmEntity
+	nparams 1
+	  param in name "entityDefinitionName" explicit_type "String"
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param entityDefinitionName nom de l action
+@return action de ce nom contenue dans le HashTable"
+      end
+
+      operation 129292 "getAction"
+	public return_type class_ref 128396 // AbstractAction
+	nparams 1
+	  param in name "actionName" explicit_type "String"
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param actionName nom de l action
+@return action de ce nom contenue dans le HashTable"
+      end
+
+      operation 129420 "initDB"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "permet d'initialiser la base de donne lors de l'installation du module,
+ne doit pas prendre en compte la creation des table"
+      end
+
+      operation 129548 "doAction"
+	public return_type class_ref 128780 // AbstractEntity
+	nparams 2
+	  param in name "actionName" explicit_type "String"
+	  param inout name "parameters" explicit_type "Hashtable<String, String>"
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "permet de faire une action
+
+@param actionName Nom de l'action que l'utilisateur veut faire
+@param moduleGetterName Nom du module getter permetant d'obtenir l'entité
+           produite par le module (cette entité servira de paramêtre à
+           l'action
+@param parameters Paramètres de l'action devant être accomplie, exemple,
+           contenu d'un email
+@return Entité viewable pour l'output du résultat"
+      end
+
+      operation 129676 "doAction"
+	public return_type class_ref 128780 // AbstractEntity
+	nparams 3
+	  param in name "actionName" explicit_type "String"
+	  param in name "entityName" explicit_type "String"
+	  param inout name "parameters" explicit_type "Hashtable<String, String>"
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "permet de faire un action standart sur une entité
+
+@param actionName Nom de l'action que l'utilisateur veut faire
+@param entityName Nom de l'entity contenant l'action
+@param moduleGetterName Nom du module getter permetant d'obtenir l'entité
+           produite par le module (cette entité servira de paramêtre à
+           l'action
+@param parameters Paramètres de l'action devant être accomplie, exemple,
+           contenu d'un email
+@return Entité viewable pour l'output du résultat"
+      end
+
+      operation 129804 "getGlobalActionMenu"
+	public return_type class_ref 128524 // NaturalMap
+	nparams 0
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return the global action list"
+      end
+
+      operation 129932 "addGlobalActionMenuItem"
+	public explicit_return_type "void"
+	nparams 2
+	  param in name "name" explicit_type "String"
+	  param inout name "action" type class_ref 128396 // AbstractAction
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param name the action name
+@param action the action"
+      end
+
+      operation 130060 "addGlobalActionButton"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "actionLink" type class_ref 128652 // ActionLink
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param actionLink bouton à ajouter"
+      end
+
+      operation 130188 "getGlobalActionButtonList"
+	public return_type class_ref 128652 // ActionLink
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return liste des boutons du module"
+      end
+
+      operation 130316 "getDefaultEntity"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return Entité par default (dans le cas d'action par default qui est une
+        baseAction)"
+      end
+
+      operation 130444 "getVisibleName"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return Nom visible d'un module"
+      end
+
+      operation 130572 "setVisibleName"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "visibleName" explicit_type "String"
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param visibleName nom visible d'un module"
+      end
+
+      operation 130700 "equals"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "obj" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment "(non-Javadoc)
+
+@see java.lang.Object#equals(java.lang.Object)"
+      end
+
+      operation 130828 "getSystemName"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return nom du module dans le système (normalement nom de la classe mais
+        peut être overridé si c'est un module dynamique)"
+      end
+
+      operation 130956 "getGlobalActionMenuOrReturnDefaultBehavior"
+	public return_type class_ref 128524 // NaturalMap
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return retourne les élément du menu du module peu importe qu'ils aient
+        été spécifiés ou pas (cas pour lequel les éléments par défault
+        seront des GetList sur chaque entité du module)"
+      end
+
+      operation 131084 "getDefaultBehaviorMenu"
+	private return_type class_ref 128524 // NaturalMap
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 131212 "isVisible"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return the visible"
+      end
+
+      operation 131340 "setVisible"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "visible" explicit_type "boolean"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param visible the visible to set"
+      end
+
+      operation 131468 "resetCache"
+	class_operation public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "reset les cache de module"
+      end
+    end
+
+    class 128268 "AbstractOrmEntity"
+      abstract visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "@author cloutierJo
+"
+      classrelation 129420 // <generalisation>
+	relation 129420 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 129420 // <generalisation>
+	  b parent class_ref 128780 // AbstractEntity
+      end
+
+      attribute 128908 "visibleName"
+	private explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      classrelation 129548 // pluralAccessorList (<unidirectional association>)
+	relation 129548 --->
+	  stereotype "TreeMap"
+	  a role_name "pluralAccessorList" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 129548 // pluralAccessorList (<unidirectional association>)
+	  b parent class_ref 129420 // PluralAccessor
+      end
+
+      classrelation 129676 // singleAccessorList (<unidirectional association>)
+	relation 129676 --->
+	  stereotype "TreeMap"
+	  a role_name "singleAccessorList" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 129676 // singleAccessorList (<unidirectional association>)
+	  b parent class_ref 128268 // AbstractOrmEntity
+      end
+
+      classrelation 129804 // gateWayList (<unidirectional association>)
+	relation 129804 --->
+	  stereotype "Vector"
+	  a role_name "gateWayList" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 129804 // gateWayList (<unidirectional association>)
+	  b parent class_ref 129548 // GateWay
+      end
+
+      attribute 129036 "accessorNameList"
+	private explicit_type "String"
+	stereotype "Vector"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 135180 "AbstractOrmEntity"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      classrelation 129932 // positiveFlagPoolList (<unidirectional association>)
+	relation 129932 --->
+	  stereotype "Hashtable"
+	  a role_name "positiveFlagPoolList" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 129932 // positiveFlagPoolList (<unidirectional association>)
+	  b parent class_ref 129676 // FlagPool
+      end
+
+      classrelation 130060 // negativeFlagPoolList (<unidirectional association>)
+	relation 130060 --->
+	  stereotype "Hashtable"
+	  a role_name "negativeFlagPoolList" class_relation private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 130060 // negativeFlagPoolList (<unidirectional association>)
+	  b parent class_ref 129676 // FlagPool
+      end
+
+      operation 135308 "initFields"
+	abstract public return_type class_ref 129036 // Fields
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " oblige le redefinition pour les sous-classe de AbstractOrmEntity"
+      end
+
+      operation 135436 "setOrmizableData"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "parameters" explicit_type "Hashtable<String, Object>"
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param parameters la hashTable de parametre qui sera transphormé en
+           entity"
+      end
+
+      operation 135564 "newUI"
+	public return_type class_ref 128780 // AbstractEntity
+	nparams 1
+	  param inout name "parameters" explicit_type "Hashtable<String, String>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "BaseAction New
+
+@param parameters parametre suplementaire
+@return l'entity qui a été entré en DB (incluant la primaryKey)"
+      end
+
+      operation 135692 "newE"
+	public return_type class_ref 128268 // AbstractOrmEntity
+	nparams 0
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "enregistre l'entity en DB
+
+@return this"
+      end
+
+      operation 135820 "deleteUI"
+	public return_type class_ref 128780 // AbstractEntity
+	nparams 1
+	  param inout name "parameters" explicit_type "Hashtable<String, String>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "BaseAction Delete
+
+@param parameters parametre suplementaire
+@return todo: qu'Est-ce que l'on devrai retourné en general?"
+      end
+
+      operation 135948 "delete"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "whereClause" explicit_type "String"
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Deprecated
+"
+	
+	
+	
+	comment "supprime l'entity en DB
+
+@param whereClause the where clause for the query
+"
+      end
+
+      operation 136076 "delete"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "supprime l'entity en DB, la clause where est definie par this
+"
+      end
+
+      operation 136204 "delete"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "whereClause" type class_ref 128268 // AbstractOrmEntity
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "supprime l'entity en DB corespondant au whereClause
+
+@param whereClause the where clause for the query
+"
+      end
+
+      operation 136332 "delete"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "whereClause" explicit_type "Vector<AbstractOrmEntity>"
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "supprime l'entity en DB corespondant aux whereClauses en utilisant le
+whereBuilder
+
+@param whereClause the where clause for the query
+
+@see"
+      end
+
+      operation 136460 "editUI"
+	public return_type class_ref 129804 // BaseViewerData
+	nparams 1
+	  param inout name "parameters" explicit_type "Hashtable<String, String>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "BaseAction Edit
+
+@param parameters parametre suplementaire
+@return todo: qu'Est-ce que l'on devrai retourné en general?"
+      end
+
+      operation 136588 "editUI"
+	public return_type class_ref 129804 // BaseViewerData
+	nparams 2
+	  param inout name "parameters" explicit_type "Hashtable<String, String>"
+	  param inout name "isReadOnly" explicit_type "boolean"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "BaseAction Edit
+
+@param parameters parametre suplementaire
+@param isReadOnly si on est en mode readOnly: true, sinon, false
+           (default: false)
+@return todo: qu'Est-ce que l'on devrai retourné en general?"
+      end
+
+      operation 136716 "edit"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "whereClause" explicit_type "String"
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Deprecated
+"
+	
+	
+	
+	comment "met a jour l'entity en DB, l'ID doit etre présent
+
+@param whereClause the where clause for the query"
+      end
+
+      operation 136844 "edit"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "changeToApply" type class_ref 128268 // AbstractOrmEntity
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "met a jour l'entity en DB, l'ID doit etre présent, le whereclause
+correspond a this
+
+@param whereClause the where clause for the query
+@param changeToApply the chang to apply to entity matching the where
+           clause"
+      end
+
+      operation 136972 "edit"
+	public explicit_return_type "void"
+	nparams 2
+	  param inout name "whereClause" type class_ref 128268 // AbstractOrmEntity
+	  param inout name "changeToApply" type class_ref 128268 // AbstractOrmEntity
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "met a jour l'entity en DB, l'ID doit etre présent
+
+@param whereClause the where clause for the query
+@param changeToApply the chang to apply to entity matching the where
+           clause"
+      end
+
+      operation 137100 "edit"
+	public explicit_return_type "void"
+	nparams 2
+	  param inout name "whereClause" explicit_type "Vector<AbstractOrmEntity>"
+	  param inout name "changeToApply" type class_ref 128268 // AbstractOrmEntity
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "met a jour l'entity en DB, l'ID doit etre présent
+
+@param whereClause the where clause for the query
+@param changeToApply the chang to apply to entity matching the where
+           clause"
+      end
+
+      operation 137228 "getUI"
+	public return_type class_ref 128780 // AbstractEntity
+	nparams 1
+	  param inout name "parameters" explicit_type "Hashtable<String, String>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "BaseAction Get
+
+@param parameters parametre suplementaire
+@return entity qui doit etre read only"
+      end
+
+      operation 137356 "getList"
+	public return_type class_ref 129932 // ListViewerData
+	nparams 0
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return ne liste d'entité de ce type"
+      end
+
+      operation 137484 "getList"
+	public return_type class_ref 129932 // ListViewerData
+	nparams 1
+	  param inout name "parameters" explicit_type "Hashtable<String, String>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param parameters parametres de sélection (à venir)
+@return une liste d'entité de ce type"
+      end
+
+      operation 137612 "getItemLimitListPerPage"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return Nombre d'item par page"
+      end
+
+      operation 137740 "getCurrentModule"
+	public return_type class_ref 128140 // Module
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment "@return Module par default"
+      end
+
+      operation 137868 "get"
+	public return_type class_ref 128268 // AbstractOrmEntity
+	nparams 1
+	  param in name "whereClause" explicit_type "String"
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Deprecated
+"
+	
+	
+	
+	comment "trouve l'entity selon les critere disponible, retourne le premier trouve
+
+@param whereClause the where clause for the query
+@return this"
+      end
+
+      operation 137996 "get"
+	public return_type class_ref 128268 // AbstractOrmEntity
+	nparams 0
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "fais un get sur un criter simple exprimé par l'entity this
+@return the selected entities"
+      end
+
+      operation 138124 "get"
+	public return_type class_ref 128268 // AbstractOrmEntity
+	nparams 1
+	  param inout name "entity" type class_ref 128268 // AbstractOrmEntity
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param entity the search entity
+@return the selected entities"
+      end
+
+      operation 138252 "get"
+	public return_type class_ref 128268 // AbstractOrmEntity
+	nparams 1
+	  param inout name "entities" explicit_type "Vector<AbstractOrmEntity>"
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param entities the entities from which we are going to select our data
+           (where clause)
+@return the selected entities"
+      end
+
+      operation 138380 "getPrimaryKeyName"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return Nom de la clef primaire"
+      end
+
+      operation 138508 "getForeignKeyName"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return nom de la clef étrangère pour cette entité lorsque les autres
+        entités l'utilisent"
+      end
+
+      operation 138636 "getPrimaryKeyValue"
+	public explicit_return_type "Integer"
+	nparams 0
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return Valeur de la clef primaire"
+      end
+
+      operation 138764 "getButtonCaption"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Implémentation par default
+@return Caption par default d'un bouton de modification pour cette entité"
+      end
+
+      operation 138892 "getVisibleName"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return Nom visible de l'entités"
+      end
+
+      operation 139020 "getPositiveFlagPoolList"
+	public return_type class_ref 129676 // FlagPool
+	nparams 0
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return the flag pool list"
+      end
+
+      operation 139148 "getNaturalKeyNameList"
+	public explicit_return_type "Vector<String>"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return Liste des noms de champs correspondant à la clef naturelle de
+        l'entité"
+      end
+
+      operation 139276 "getNaturalKeyDescription"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return Description d'une entité par la valeur de sa clef naturelle"
+      end
+
+      operation 139404 "getNaturalKeyName"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return Nom de la clef naturelle"
+      end
+
+      operation 139532 "setVisibleName"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "visibleName" explicit_type "String"
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param visibleName nom visible de l'entité"
+      end
+
+      operation 139660 "getPluralAccessorList"
+	public return_type class_ref 129420 // PluralAccessor
+	nparams 0
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return la liste des accessors plusieurs à plusieurs pour cette entité"
+      end
+
+      operation 139788 "getSingleAccessorList"
+	public return_type class_ref 128268 // AbstractOrmEntity
+	nparams 0
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return la liste des accessors 1 à 1 ou plusieurs à 1 pour cette entité"
+      end
+
+      operation 139916 "getSingleAccessor"
+	public return_type class_ref 128268 // AbstractOrmEntity
+	nparams 1
+	  param in name "accessorName" explicit_type "String"
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param accessorName nom de l'accessor
+@return accesseur singulier"
+      end
+
+      operation 140044 "getInputValue"
+	public explicit_return_type "String"
+	nparams 1
+	  param in name "inputName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param inputName nom du field
+@return valeur contenue dans le field"
+      end
+
+      operation 140172 "addPositiveFlagPool"
+	public explicit_return_type "void"
+	nparams 2
+	  param in name "visibleDescription" explicit_type "String"
+	  param inout name "flagPool" type class_ref 129676 // FlagPool
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param visibleDescription description visible du flagPool
+@param flagPool le flag pool"
+      end
+
+      operation 140300 "addNegativeFlagPool"
+	public explicit_return_type "void"
+	nparams 2
+	  param in name "visibleDescription" explicit_type "String"
+	  param inout name "flagPool" type class_ref 129676 // FlagPool
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param visibleDescription description du flag pool
+@param flagPool flag pool"
+      end
+
+      operation 140428 "getNegativeFlagPoolList"
+	public return_type class_ref 129676 // FlagPool
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return liste des référence de flag pool inversées"
+      end
+
+      operation 140556 "getPluralAccessor"
+	public return_type class_ref 129420 // PluralAccessor
+	nparams 1
+	  param in name "accessorName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param accessorName non de l'accesseur
+@return accesseur multiple voulu"
+      end
+
+      operation 140684 "getPluralAccessor"
+	public return_type class_ref 129420 // PluralAccessor
+	nparams 2
+	  param in name "accessorName" explicit_type "String"
+	  param inout name "searchCriteriaEntity" type class_ref 128268 // AbstractOrmEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param accessorName nom de l'accesseur
+@param searchCriteriaEntity entité de recherche pour accesseur multiple
+           critérié
+@return accesseur multiple critérié"
+      end
+
+      operation 140812 "matchesCriteriasFrom"
+	private explicit_return_type "boolean"
+	nparams 1
+	  param inout name "searchCriteriaEntity" type class_ref 128268 // AbstractOrmEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 140940 "assign"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "foreignEntity" type class_ref 128268 // AbstractOrmEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param foreignEntity entité étrangère"
+      end
+
+      operation 141068 "save"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 141196 "getAccessorNameList"
+	public explicit_return_type "Vector<String>"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return nom de tous les accesseurs"
+      end
+
+      operation 141324 "getGateWayList"
+	public return_type class_ref 129548 // GateWay
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return liste des gateways (accesseurs passant par un autre)"
+      end
+    end
+
+    class 128396 "AbstractAction"
+      abstract visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "@author r3lacasgu cloutierJo
+
+        Class representing an abstract action"
+      classrelation 130700 // entityUsable (<unidirectional association>)
+	relation 130700 --->
+	  a role_name "entityUsable" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 130700 // entityUsable (<unidirectional association>)
+	  b parent class_ref 128780 // AbstractEntity
+      end
+
+      attribute 129164 "detailedDescription"
+	private explicit_type "String"
+	init_value " null"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 144396 "AbstractAction"
+	protected explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 144524 "AbstractAction"
+	protected explicit_return_type ""
+	nparams 1
+	  param inout name "entityUsable" type class_ref 128780 // AbstractEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Default constructor for the action
+
+@param entityUsable le type d'entité qui sera utiliser par la methode"
+      end
+
+      operation 144652 "perform"
+	public return_type class_ref 128780 // AbstractEntity
+	nparams 1
+	  param inout name "parameters" explicit_type "Hashtable<String, String>"
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Abstract method that will be used to perform the actions
+
+@param parameters list de parametre utilisable par l'action, une partie
+           d'entre eux sera transforme en entite
+@return l,entite resultante de l'action"
+      end
+
+      operation 144780 "doAction"
+	abstract public return_type class_ref 128780 // AbstractEntity
+	nparams 2
+	  param inout name "entity" type class_ref 128780 // AbstractEntity
+	  param inout name "parameters" explicit_type "Hashtable<String, String>"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Abstract method that will be reused by all the actions
+
+@param entity entite a utiliser a l'intérieur du doAction
+@param parameters list de parametre autre que l'entite
+@return l'entite resultante"
+      end
+
+      operation 144908 "getEntityUsable"
+	public return_type class_ref 128780 // AbstractEntity
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return the entityUsable"
+      end
+
+      operation 145036 "setOwnedByModul"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "ownedByModul" type class_ref 128140 // Module
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param ownedByModul the ownedByModul to set"
+      end
+
+      operation 145164 "getOwnedByModule"
+	public return_type class_ref 128140 // Module
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return the ownedByModul"
+      end
+
+      operation 145292 "equals"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "obj" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment "(non-Javadoc)
+
+@see java.lang.Object#equals(java.lang.Object)"
+      end
+
+      operation 145420 "getSystemName"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return nom de l'action dans le système (normalement nom de la classe
+        mais peut être overridé si c'est une action dynamique)"
+      end
+
+      operation 145548 "getDetailedDescription"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return description détaillée facultative"
+      end
+
+      operation 145676 "setDetailedDescription"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "detailedDescription" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param detailedDescription description détaillée facultative"
+      end
+    end
+
+    class 128780 "AbstractEntity"
+      abstract visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "@author r3lemaypa, r3lacasgu, CloutierJo
+"
+      classrelation 128780 // fields (<unidirectional association>)
+	relation 128780 --->
+	  a role_name "fields" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 128780 // fields (<unidirectional association>)
+	  b parent class_ref 129036 // Fields
+      end
+
+      classrelation 128908 // positiveListOfValueList (<unidirectional association>)
+	relation 128908 --->
+	  stereotype "Hashtable"
+	  a role_name "positiveListOfValueList" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 128908 // positiveListOfValueList (<unidirectional association>)
+	  b parent class_ref 129164 // ListOfValue
+      end
+
+      classrelation 129036 // negativeListOfValueList (<unidirectional association>)
+	relation 129036 --->
+	  stereotype "HashSet"
+	  a role_name "negativeListOfValueList" class_relation private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 129036 // negativeListOfValueList (<unidirectional association>)
+	  b parent class_ref 129164 // ListOfValue
+      end
+
+      classrelation 129164 // currentModule (<unidirectional association>)
+	relation 129164 --->
+	  a role_name "currentModule" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 129164 // currentModule (<unidirectional association>)
+	  b parent class_ref 128140 // Module
+      end
+
+      classrelation 129292 // currentAction (<unidirectional association>)
+	relation 129292 --->
+	  a role_name "currentAction" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 129292 // currentAction (<unidirectional association>)
+	  b parent class_ref 128396 // AbstractAction
+      end
+
+      attribute 128780 "detailedDescription"
+	private explicit_type "String"
+	init_value " null"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 131852 "AbstractEntity"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "construit une entity ne comportant aucun champ"
+      end
+
+      operation 131980 "preInitFields"
+	protected return_type class_ref 129036 // Fields
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 132108 "initFields"
+	public return_type class_ref 129036 // Fields
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "initialise les champ de l'entity, doit etre overider si l'entity contient
+des champs, sinon initialise une liste de champ vide
+
+@return le Fields initialiser"
+      end
+
+      operation 132236 "initFieldsFromDb"
+	private return_type class_ref 129292 // Field
+	nparams 1
+	  param inout name "dataField" explicit_type "Vector<AbstractOrmEntity>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 132364 "equals"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "obj" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "(non-Javadoc)
+
+@see java.lang.Object#equals(java.lang.Object)"
+      end
+
+      operation 132492 "setFields"
+	private explicit_return_type "void"
+	nparams 1
+	  param inout name "fields" type class_ref 129036 // Fields
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@SuppressWarnings(\"unused\")
+"
+	
+	
+	
+      end
+
+      operation 132620 "getFields"
+	public return_type class_ref 129036 // Fields
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return the fields"
+      end
+
+      operation 132748 "toString"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 132876 "getDataString"
+	public explicit_return_type "String"
+	nparams 1
+	  param in name "shortName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "methode d'Accces rapide au donnees sous forme de string
+
+@param shortName le nom du champ voulu
+@return la valeur sous forme de string"
+      end
+
+      operation 133004 "getData"
+	public explicit_return_type "Object"
+	nparams 1
+	  param in name "shortName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param shortName le nom du champ voulu
+@return the data"
+      end
+
+      operation 133132 "setData"
+	public explicit_return_type "void"
+	nparams 2
+	  param in name "shortName" explicit_type "String"
+	  param inout name "data" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param shortName le nom du champ voulu
+@param data the data to set"
+      end
+
+      operation 133260 "tryMatchListOfValue"
+	public return_type class_ref 129164 // ListOfValue
+	nparams 1
+	  param in name "fieldKeyName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param fieldKeyName the field name
+@return If list of value exist, return it, else, return null"
+      end
+
+      operation 133388 "getCurrentAction"
+	public return_type class_ref 128396 // AbstractAction
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return action courante"
+      end
+
+      operation 133516 "getCurrentModule"
+	public return_type class_ref 128140 // Module
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return module courant"
+      end
+
+      operation 133644 "setCurrentModule"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "currentModule" type class_ref 128140 // Module
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param currentModule Défini le module utilisé en ce moment pour cette
+           entité"
+      end
+
+      operation 133772 "setCurrentAction"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "currentAction" type class_ref 128396 // AbstractAction
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param currentAction Action qui sera utilisée"
+      end
+
+      operation 133900 "getSystemName"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return nom de l'entité dans le système (normalement nom de la classe
+        mais peut être overridé si c'est une entité dynamique)"
+      end
+
+      operation 134028 "getLabelName"
+	public explicit_return_type "String"
+	nparams 1
+	  param in name "inputName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param inputName nom d'un field
+@return nom complete d'un field"
+      end
+
+      operation 134156 "getPositiveListOfValueList"
+	public return_type class_ref 129164 // ListOfValue
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return liste des listOfValue"
+      end
+
+      operation 134284 "getNegativeListOfValueList"
+	public return_type class_ref 129164 // ListOfValue
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return liste des listOfValue"
+      end
+
+      operation 134412 "addPositiveListOfValue"
+	public explicit_return_type "void"
+	nparams 2
+	  param in name "foreignKeyName" explicit_type "String"
+	  param inout name "listOfValue" type class_ref 129164 // ListOfValue
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param foreignKeyName nom de la clef etrangère de la listOfValue
+@param listOfValue listOfValue à ajouter"
+      end
+
+      operation 134540 "addNegativeListOfValue"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "listOfValue" type class_ref 129164 // ListOfValue
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param foreignKeyName nom de la clef etrangère de la listOfValue
+@param listOfValue listOfValue à ajouter"
+      end
+
+      operation 134668 "isMatchCheckBox"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param in name "inputName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param inputName nom du champ
+@return si le champ est un checkbox"
+      end
+
+      operation 134796 "reset"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "remet l'etat de l'entity a ses valeur initial"
+      end
+
+      operation 134924 "getDetailedDescription"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return description détaillée facultative"
+      end
+
+      operation 135052 "setDetailedDescription"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "detailedDescription" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param detailedDescription description détaillée facultative"
+      end
+    end
+
+    class 132492 "BaseAction"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "@author CloutierJo
+"
+      classrelation 135948 // <generalisation>
+	relation 135948 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 135948 // <generalisation>
+	  b parent class_ref 128396 // AbstractAction
+      end
+
+      attribute 133516 "actionName"
+	private explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      classrelation 136076 // entity (<unidirectional association>)
+	relation 136076 --->
+	  a role_name "entity" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 136076 // entity (<unidirectional association>)
+	  b parent class_ref 128268 // AbstractOrmEntity
+      end
+
+      attribute 133644 "validActionName"
+	class_attribute package explicit_type "String"
+	stereotype "Vector"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      extra_member 128012 "initialization"
+	
+	cpp "" ""
+	java "  {
+		validActionName = new Vector<String>();
+		validActionName.add(\"New\");
+		validActionName.add(\"Edit\");
+		validActionName.add(\"Delete\");
+		validActionName.add(\"Get\");
+		validActionName.add(\"GetList\");
+	}"
+	php ""
+	python ""
+	idl ""
+      end
+
+      operation 174092 "BaseAction"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "actionName" explicit_type "String"
+	  param inout name "entity" type class_ref 128268 // AbstractOrmEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param actionName nom de l'Action (Get, Edit New Delete)
+@param entity l'entity a utiliser"
+      end
+
+      operation 174220 "getSystemName"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment "@return nom de l'action de base (override le nom de la classe car
+        BaseAction n'a pas de sens)"
+      end
+
+      operation 174348 "setActionName"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "actionName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param actionName the actionName to set"
+      end
+
+      operation 174476 "getEntity"
+	public return_type class_ref 128268 // AbstractOrmEntity
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return the entity"
+      end
+
+      operation 174604 "setEntity"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "entity" type class_ref 128268 // AbstractOrmEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param entity the entity to set"
+      end
+
+      operation 174732 "doAction"
+	public return_type class_ref 128780 // AbstractEntity
+	nparams 2
+	  param inout name "entity" type class_ref 128780 // AbstractEntity
+	  param inout name "parameters" explicit_type "Hashtable<String, String>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "(non-Javadoc)
+
+@see
+newtonERP.module.AbstractAction#doAction(newtonERP.module.AbstractEntity,
+java.util.Hashtable)"
+      end
+
+      operation 174860 "isNameMatchesBaseAction"
+	class_operation public explicit_return_type "boolean"
+	nparams 1
+	  param in name "name" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param name nom de l'action
+@return true si le nom est un nom de base action"
+      end
+    end
+
+    class 136076 "ActionModule"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "classe servant a enregistre les lien entre un module et ses action de maniere
+persistante
+@author CloutierJo
+"
+      classrelation 135820 // actionModule (<unidirectional association>)
+	relation 135820 --->
+	  stereotype "Hashtable"
+	  a role_name "actionModule" init_value " new Hashtable<Class<?>, Module>()" class_relation package
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 135820 // actionModule (<unidirectional association>)
+	  b parent class_ref 128140 // Module
+      end
+
+      operation 173836 "getModule"
+	class_operation public return_type class_ref 128140 // Module
+	nparams 1
+	  param inout name "action" type class_ref 128396 // AbstractAction
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "permet d'obtenir le module proprietaire a partir de l'action
+@param action l'action dont on veut obtenir le proprietaire
+@return le module"
+      end
+
+      operation 173964 "addActionModule"
+	class_operation public explicit_return_type "void"
+	nparams 2
+	  param inout name "action" type class_ref 128396 // AbstractAction
+	  param inout name "module" type class_ref 128140 // Module
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "ajoute un relation action-module
+@param action l'Action a ajouter
+@param module le module a ajouter"
+      end
+    end
+  end
+
+  deploymentview 128012 "module"
+    //deployment diagram settings
+    package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
+    draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+    artifact 128012 "Module"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 128140 // Module
+      end
+    end
+
+    artifact 128268 "AbstractEntity"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 128780 // AbstractEntity
+      end
+    end
+
+    artifact 128396 "AbstractOrmEntity"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 128268 // AbstractOrmEntity
+      end
+    end
+
+    artifact 129036 "AbstractAction"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 128396 // AbstractAction
+      end
+    end
+
+    artifact 134156 "ActionModule"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 136076 // ActionModule
+      end
+    end
+
+    artifact 134284 "BaseAction"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 132492 // BaseAction
+      end
+    end
+  end
+
+  package_ref 129164 // generalEntity
+
+  package_ref 130700 // exception
+end

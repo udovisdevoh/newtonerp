@@ -5,20 +5,18 @@ import java.util.Vector;
 import newtonERP.common.NaturalMap;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.Orm;
+import newtonERP.viewers.viewables.SelectBoxViewable;
 
 /**
  * @author Guillaume Lacasse
  * 
  *         List of value for the viewers
  */
-public class ListOfValue implements
-		newtonERP.viewers.viewables.SelectBoxViewable
+public class ListOfValue implements SelectBoxViewable
 {
 	private String labelName;
-
-	private newtonERP.module.AbstractOrmEntity sourceEntity;
-
-	private newtonERP.module.AbstractOrmEntity foreignEntity;
+	private AbstractOrmEntity sourceEntity;
+	private AbstractOrmEntity foreignEntity;
 
 	/**
 	 * @param sourceEntity source entity
@@ -27,15 +25,15 @@ public class ListOfValue implements
 	 *            étrangere
 	 * @param foreignEntity the foreign entity
 	 */
-	public ListOfValue(newtonERP.module.AbstractOrmEntity sourceEntity,
-			String labelName, newtonERP.module.AbstractOrmEntity foreignEntity)
+	public ListOfValue(AbstractOrmEntity sourceEntity, String labelName,
+			AbstractOrmEntity foreignEntity)
 	{
 		this.sourceEntity = sourceEntity;
 		this.labelName = labelName;
 		this.foreignEntity = foreignEntity;
 	}
 
-	public newtonERP.common.NaturalMap getElements()
+	public NaturalMap<String, String> getElements()
 	{
 		// todo: correct deprecate
 		Vector<AbstractOrmEntity> entityList = Orm.select(foreignEntity, null);
@@ -82,7 +80,7 @@ public class ListOfValue implements
 	/**
 	 * @return définition pour entité étrangère
 	 */
-	public newtonERP.module.AbstractOrmEntity getForeignEntityDefinition()
+	public AbstractOrmEntity getForeignEntityDefinition()
 	{
 		return foreignEntity;
 	}
@@ -90,7 +88,7 @@ public class ListOfValue implements
 	/**
 	 * @return entité qui a une listOfValue
 	 */
-	public newtonERP.module.AbstractOrmEntity getSourceEntityDefinition()
+	public AbstractOrmEntity getSourceEntityDefinition()
 	{
 		return sourceEntity;
 	}

@@ -1,19 +1,24 @@
 package newtonERP.module.generalEntity;
 
+import newtonERP.module.AbstractAction;
+import newtonERP.module.Module;
+import newtonERP.orm.field.Field;
+import newtonERP.viewers.viewerData.PromptViewerData;
+
 /**
  * @author Guillaume Lacasse
  * 
  *         A loging form
  */
-public class Form extends newtonERP.viewers.viewerData.PromptViewerData
+public class Form extends PromptViewerData
 {
 	/**
 	 * @param currentModule module courant
 	 * @param currentAction action courante
 	 * @param currentSelectedUser the currently selected user
 	 */
-	public Form(newtonERP.module.Module currentModule,
-			newtonERP.module.AbstractAction currentAction)
+	public Form(Module currentModule, AbstractAction currentAction)
+
 	{
 		super();
 		setData(new VolatilEntity());
@@ -27,6 +32,7 @@ public class Form extends newtonERP.viewers.viewerData.PromptViewerData
 	 * @param currentValue valeur courante
 	 */
 	public void addField(String label, String fieldName, String currentValue)
+
 	{
 		((VolatilEntity) getData()).addField(label, fieldName, currentValue);
 	}
@@ -43,9 +49,8 @@ public class Form extends newtonERP.viewers.viewerData.PromptViewerData
 	/**
 	 * @param field un field a ajouter
 	 */
-	public void addField(newtonERP.orm.field.Field field)
+	public void addField(Field<?> field)
 	{
 		((VolatilEntity) getData()).addField(field);
 	}
-
 }

@@ -1,0 +1,10 @@
+class FieldCalcule
+!!!210316.java!!!	calculate(inout entityFields : Fields) : T
+		try
+		{
+			return calcul(entityFields);
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+			return null;
+		}

@@ -1,0 +1,9 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classnewtonERP_1_1module_1_1AbstractEntity.html#a5595cb77a3f635214e489cc4663b9f64" title="methode d&#39;Accces rapide au donnees sous forme de string" alt="" coords="597,57,925,87"/>
+<area shape="rect" id="node9" href="$classnewtonERP_1_1module_1_1generalEntity_1_1FlagPool.html#acbaf8dedac08492bcfcfe2ab7d1ba50a" title="newtonERP.module.generalEntity.FlagPool.getPositivePluralIntermediateAccessor" alt="" coords="495,111,1028,140"/>
+<area shape="rect" id="node16" href="$classnewtonERP_1_1module_1_1AbstractEntity.html#ad26f590c74d49b7c494d62de6ad1563b" title="newtonERP.module.AbstractEntity.getSystemName" alt="" coords="588,164,935,193"/>
+<area shape="rect" id="node5" href="$classnewtonERP_1_1orm_1_1field_1_1Fields.html#a60c293a9a0e504f5cda3865ad7c8c160" title="newtonERP.orm.field.Fields.getField" alt="" coords="1101,5,1344,35"/>
+<area shape="rect" id="node7" href="$classnewtonERP_1_1module_1_1AbstractEntity.html#a87356471289bf7f6daaea032e4155f83" title="newtonERP.module.AbstractEntity.getFields" alt="" coords="1417,57,1711,87"/>
+<area shape="rect" id="node11" href="$classnewtonERP_1_1module_1_1AbstractEntity.html#af47e42b154414c6afaa3253cc4adaf6b" title="newtonERP.module.AbstractEntity.setData" alt="" coords="1079,111,1367,140"/>
+<area shape="rect" id="node14" href="$classnewtonERP_1_1orm_1_1field_1_1Fields.html#acb12ce722dc8de992622dfe61f478f8b" title="methode pour changer la valeur d&#39;un champ" alt="" coords="1443,111,1685,140"/>
+</map>

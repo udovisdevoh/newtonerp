@@ -1,0 +1,12 @@
+class AccessorEntity
+!!!150156.java!!!	AccessorEntity()
+		super();
+		setVisibleName("Accesseur");
+		AccessorManager.addAccessor(this, new EntityEntity());
+!!!150284.java!!!	initFields() : Fields
+		Vector<Field<?>> fieldList = new Vector<Field<?>>();
+		fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
+		fieldList.add(new FieldInt("Entité parent", new EntityEntity()
+				.getForeignKeyName()));
+		fieldList.add(new FieldString("Entité étrangère", "foreignEntityName"));
+		return new Fields(fieldList);

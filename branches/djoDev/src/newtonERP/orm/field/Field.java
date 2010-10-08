@@ -9,33 +9,16 @@ package newtonERP.orm.field;
 public abstract class Field<T>
 {
 	protected T data;
-
-	/**
-	 * Name is the name that is visible by the end-user
-	 */
-	private String name;
-
-	/**
-	 * Short name is the name that is used internally
-	 */
-	private String shortName;
-
+	private String name; // Name is the name that is visible by the end-user
+	private String shortName; // Short name is the name that is used internally
 	protected String operator;
-
 	private Boolean hidden = false;
-
 	private Boolean readOnly = false;
-
 	private Boolean isNaturalKey = false;
-
 	private Boolean isDynamicField = false;
-
-	private FieldValidator validator;
-
-	private FieldCalcule calcul = null;
-
+	private FieldValidator<T> validator;
+	private FieldCalcule<T> calcul = null;
 	private Fields fieldsRef = null;
-
 	private boolean isColored = false;
 
 	/**
@@ -68,6 +51,7 @@ public abstract class Field<T>
 	 * @param data donne du champ
 	 */
 	public Field(String name, String shortName, T data)
+
 	{
 
 		this.name = name;
@@ -263,7 +247,7 @@ public abstract class Field<T>
 	 * @param fieldValidator un validateur
 	 * @param validator the validator to set
 	 */
-	public void setValidator(FieldValidator fieldValidator)
+	public void setValidator(FieldValidator<T> fieldValidator)
 	{
 		validator = fieldValidator;
 	}
@@ -271,7 +255,7 @@ public abstract class Field<T>
 	/**
 	 * @return the validator
 	 */
-	public FieldValidator getValidator()
+	public FieldValidator<T> getValidator()
 	{
 		return validator;
 	}
@@ -279,7 +263,7 @@ public abstract class Field<T>
 	/**
 	 * @param calcul the calcul to set
 	 */
-	public void setCalcul(FieldCalcule calcul)
+	public void setCalcul(FieldCalcule<T> calcul)
 	{
 		readOnly = true;
 		this.calcul = calcul;
@@ -288,7 +272,7 @@ public abstract class Field<T>
 	/**
 	 * @return the calcul
 	 */
-	public FieldCalcule getCalcul()
+	public FieldCalcule<T> getCalcul()
 	{
 		return calcul;
 	}
@@ -309,7 +293,7 @@ public abstract class Field<T>
 		return fieldsRef;
 	}
 
-	/**
+	/*
 	 * (non-Javadoc)
 	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
@@ -421,5 +405,4 @@ public abstract class Field<T>
 	{
 		return isColored;
 	}
-
 }

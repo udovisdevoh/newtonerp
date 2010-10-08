@@ -1,0 +1,25 @@
+class RightCheck
+!!!163596.java!!!	doAction(inout entity : AbstractEntity, inout parameters : Hashtable<String, String>) : AbstractEntity
+		Vector<String> search = new Vector<String>();
+		search.add("name='" + parameters.get("name") + "'");
+
+		// todo: correct deprecate
+		Vector<AbstractOrmEntity> userList = Orm.select(new User(), search);
+
+		if (userList.size() < 1)// Utilisateur introuvable
+			return null;
+
+		User user = (User) userList.get(0);
+
+		Right searchEntity = new Right();
+		searchEntity.setData("moduleName", parameters.get("module"));
+		searchEntity.setData("actionName", parameters.get("action"));
+		if (parameters.get("entity") != null)
+			searchEntity.setData("entityName", parameters.get("entity"));
+
+		PluralAccessor rightList = user.getGroupsEntity().getPluralAccessor(
+				"Right", searchEntity);
+
+		if (rightList.size() > 0)
+			return rightList.get(0);
+		return null;

@@ -1,0 +1,651 @@
+format 75
+"sqlite" // src::newtonERP::orm::sgbd::sqlite
+  revision 1
+  modified_by 12 "djo"
+  // class settings
+  //class diagram settings
+  draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+  //use case diagram settings
+  package_name_in_tab default show_context default auto_label_position default draw_all_relations default class_drawing_mode default shadow default show_stereotype_properties default
+  //sequence diagram settings
+  show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+  //collaboration diagram settings
+  show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default show_msg_context default draw_all_relations default shadow default show_stereotype_properties default
+  //object diagram settings
+   write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+  //component diagram settings
+  package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default
+  draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+  //deployment diagram settings
+  package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
+  draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+  //state diagram settings
+  package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  //activity diagram settings
+  package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+  show_infonote default drawing_language default show_stereotype_properties default
+  
+  java_dir "/home/djo/workspace/NewtonERP/src/newtonERP/orm/sgbd/sqlite/"
+  java_package "newtonERP.orm.sgbd.sqlite"
+  classview 130956 "sqlite"
+    //class diagram settings
+    draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+    //collaboration diagram settings
+    show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default show_msg_context default draw_all_relations default shadow default show_stereotype_properties default
+    //object diagram settings
+     write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+    //sequence diagram settings
+    show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+    //state diagram settings
+    package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+    show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+    //class settings
+    //activity diagram settings
+    package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+    show_infonote default drawing_language default show_stereotype_properties default
+    class 142860 "SgbdSqlite"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Class who's role is only for executing the statements that has been sent from
+the orm
+
+@author r3lacasgu, r3hallejo"
+      classrelation 144140 // <generalisation>
+	relation 144140 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 144140 // <generalisation>
+	  b parent class_ref 139532 // AbstractSgbd
+      end
+
+      attribute 139788 "prefix"
+	class_attribute private explicit_type "String"
+	init_value " \"Bee_\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 139916 "dataBaseFileName"
+	class_attribute private explicit_type "String"
+	init_value " \"test.db\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 140044 "connexion"
+	class_attribute private explicit_type "Connection"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      classrelation 144268 // sgbdSqliteBackupManager (<unidirectional association>)
+	relation 144268 --->
+	  a role_name "sgbdSqliteBackupManager" init_value " new SgbdSqliteBackupManager()" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 144268 // sgbdSqliteBackupManager (<unidirectional association>)
+	  b parent class_ref 142988 // SgbdSqliteBackupManager
+      end
+
+      operation 222988 "execute"
+	public explicit_return_type "ResultSet"
+	nparams 2
+	  param in name "request" explicit_type "String"
+	  param inout name "action" type class_ref 139660 // OrmActions
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 223116 "disconnect"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 223244 "connect"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 223372 "addColumnToTable"
+	public explicit_return_type "ResultSet"
+	nparams 2
+	  param inout name "entity" type class_ref 128268 // AbstractOrmEntity
+	  param inout name "field" type class_ref 129292 // Field
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 223500 "select"
+	public explicit_return_type "ResultSet"
+	nparams 2
+	  param inout name "searchEntity" type class_ref 128268 // AbstractOrmEntity
+	  param inout name "searchCriteriasParam" explicit_type "Vector<String>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+	@Deprecated
+"
+	
+	
+	
+      end
+
+      operation 223628 "buildWhereClauseForQuery"
+	class_operation private explicit_return_type "String"
+	nparams 1
+	  param inout name "searchEntities" explicit_type "Vector<AbstractOrmEntity>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "This is the new where builder!
+
+Method used to build the where clause for the query
+
+@param sqlQuery the non-finished sqlQuery
+@param searchEntities the entities used for the search
+@return the sqlQuery"
+      end
+
+      operation 223756 "buildWhereClauseForQuery"
+	class_operation private explicit_return_type "String"
+	nparams 2
+	  param inout name "searchEntity" type class_ref 128268 // AbstractOrmEntity
+	  param in name "sqlQuery" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "This is the new where builder!
+
+Method used to build the where clause for the query
+
+@param sqlQuery the non-finished sqlQuery
+@param searchEntities the entities used for the search
+@return the sqlQuery"
+      end
+
+      operation 223884 "buildSetClauseForQuery"
+	class_operation private explicit_return_type "String"
+	nparams 2
+	  param inout name "fields" type class_ref 129036 // Fields
+	  param in name "sqlQuery" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Method used internally by the update method to build the set statement
+
+@param fields the data from the entities
+@param sqlQuery the non-finished sqlQuery
+@return the sqlQuery"
+      end
+
+      operation 224012 "buildWhereClauseForQuery"
+	class_operation private explicit_return_type "String"
+	nparams 2
+	  param in name "sqlQuery" explicit_type "String"
+	  param inout name "searchCriterias" explicit_type "Vector<String>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Use only for complex queries. Use buildWhereClauseForQuery instead
+
+Method used to build the where clause for the delete, select and update
+methods.
+
+@param sqlQuery the non-finished sqlQuery that has been produced
+@param searchCriterias the parameters of the where clause under form of
+           strings
+@return sqlQuery the sqlQuery with the where statement"
+      end
+
+      operation 224140 "select"
+	public explicit_return_type "ResultSet"
+	nparams 1
+	  param inout name "searchEntities" explicit_type "Vector<AbstractOrmEntity>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 224268 "insert"
+	public explicit_return_type "int"
+	nparams 1
+	  param inout name "newEntity" type class_ref 128268 // AbstractOrmEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 224396 "delete"
+	public explicit_return_type "void"
+	nparams 2
+	  param inout name "searchEntity" type class_ref 128268 // AbstractOrmEntity
+	  param inout name "searchCriterias" explicit_type "Vector<String>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+	@Deprecated
+"
+	
+	
+	
+      end
+
+      operation 224524 "delete"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "searchEntities" explicit_type "Vector<AbstractOrmEntity>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 224652 "update"
+	public explicit_return_type "void"
+	nparams 2
+	  param inout name "entityContainingChanges" type class_ref 128268 // AbstractOrmEntity
+	  param inout name "searchCriterias" explicit_type "Vector<String>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Deprecated
+	@Override
+"
+	
+	
+	
+      end
+
+      operation 224780 "update"
+	public explicit_return_type "void"
+	nparams 2
+	  param inout name "searchEntities" explicit_type "Vector<AbstractOrmEntity>"
+	  param inout name "entityContainingChanges" type class_ref 128268 // AbstractOrmEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 224908 "isEntityExists"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param in name "entitySystemName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 225036 "createIndex"
+	public explicit_return_type "void"
+	nparams 2
+	  param in name "entityName" explicit_type "String"
+	  param in name "fieldName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 225164 "createTableForEntity"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "entity" type class_ref 128268 // AbstractOrmEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 225292 "updateUnique"
+	public explicit_return_type "void"
+	nparams 2
+	  param inout name "searchEntity" type class_ref 128268 // AbstractOrmEntity
+	  param inout name "entityContainingChanges" type class_ref 128268 // AbstractOrmEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 225420 "select"
+	public explicit_return_type "ResultSet"
+	nparams 5
+	  param inout name "searchEntity" type class_ref 128268 // AbstractOrmEntity
+	  param inout name "searchCriteriasParam" explicit_type "Vector<String>"
+	  param in name "limit" explicit_type "int"
+	  param in name "offset" explicit_type "int"
+	  param in name "orderBy" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}, ${t4} ${p4}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+	@Deprecated
+"
+	
+	
+	
+      end
+
+      operation 225548 "buildWhereClause"
+	class_operation private explicit_return_type "String"
+	nparams 1
+	  param inout name "searchCriteriasParam" explicit_type "Vector<String>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 225676 "count"
+	public explicit_return_type "int"
+	nparams 2
+	  param inout name "searchEntity" type class_ref 128268 // AbstractOrmEntity
+	  param inout name "searchParameterList" explicit_type "Vector<String>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+	@Deprecated
+"
+	
+	
+	
+      end
+
+      operation 225804 "doBackup"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 225932 "getLatestBackupTime"
+	public explicit_return_type "long"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+    end
+
+    class 142988 "SgbdSqliteBackupManager"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Gestionnaire de backup pour SQLite
+@author Guillaume Lacasse"
+      attribute 140172 "latestBackupTime"
+	class_attribute private explicit_type "long"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 140300 "backupDirectoryPath"
+	class_attribute private explicit_type "String"
+	init_value " \"./sqliteDbBackup/\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 226060 "doBackup"
+	public explicit_return_type "void"
+	nparams 2
+	  param in name "originalFileName" explicit_type "String"
+	  param in name "maxBackupCount" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param originalFileName fichier de DB original
+@param maxBackupCount nombre maximum de backup persistants"
+      end
+
+      operation 226188 "deleteFile"
+	private explicit_return_type "void"
+	nparams 1
+	  param in name "fileName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 226316 "getEarliestBackupFile"
+	private explicit_return_type "String"
+	nparams 1
+	  param in name "originalFileName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 226444 "countBackupFile"
+	private explicit_return_type "int"
+	nparams 1
+	  param in name "originalFileName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 226572 "copyFile"
+	private explicit_return_type "void"
+	nparams 2
+	  param in name "sourceFile" explicit_type "String"
+	  param in name "destinationFile" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 226700 "getLatestBackupTime"
+	public explicit_return_type "long"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return moment où le dernier backup à été fait"
+      end
+    end
+  end
+
+  deploymentview 130828 "sqlite"
+    //deployment diagram settings
+    package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
+    draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+    artifact 141836 "SgbdSqlite"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 142860 // SgbdSqlite
+      end
+    end
+
+    artifact 141964 "SgbdSqliteBackupManager"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 142988 // SgbdSqliteBackupManager
+      end
+    end
+  end
+end

@@ -1,10 +1,12 @@
 package newtonERP.module.generalEntity;
 
+import newtonERP.module.AbstractEntity;
+
 /**
  * Représente un fichier d'image visible en HTML
  * @author Guillaume Lacasse
  */
-public class ImageFile extends newtonERP.module.AbstractEntity
+public class ImageFile extends AbstractEntity
 {
 	private String alt;
 
@@ -36,5 +38,4 @@ public class ImageFile extends newtonERP.module.AbstractEntity
 	{
 		return alt;
 	}
-
 }

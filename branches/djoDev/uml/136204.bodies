@@ -1,0 +1,9 @@
+class ActionNotFoundException
+!!!175500.java!!!	ActionNotFoundException(in actionName : String)
+		super(actionName + " action doesn't exist");
+!!!175628.java!!!	ActionNotFoundException()
+		super();
+!!!175756.java!!!	ActionNotFoundException(in actionName : String, inout cause : Throwable)
+		super(actionName + " action doesn't exist", cause);
+!!!175884.java!!!	ActionNotFoundException(inout cause : Throwable)
+		super(cause);

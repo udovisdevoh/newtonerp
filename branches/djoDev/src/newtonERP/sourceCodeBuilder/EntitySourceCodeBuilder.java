@@ -19,8 +19,7 @@ public class EntitySourceCodeBuilder
 	 * @param entityEntity entité pour laquelle on veut le code source
 	 * @return code source
 	 */
-	public static String build(
-			modules.taskModule.entityDefinitions.EntityEntity entityEntity)
+	public static String build(EntityEntity entityEntity)
 	{
 		entityEntity = (EntityEntity) Orm.selectUnique(entityEntity);
 
@@ -69,8 +68,8 @@ public class EntitySourceCodeBuilder
 		return sourceCode;
 	}
 
-	private static String getAccessorListCode(
-			modules.taskModule.entityDefinitions.EntityEntity entityEntity)
+	private static String getAccessorListCode(EntityEntity entityEntity)
+
 	{
 		String sourceCode = "";
 
@@ -87,14 +86,13 @@ public class EntitySourceCodeBuilder
 		return sourceCode;
 	}
 
-	private static String getForeignEntityName(
-			modules.taskModule.entityDefinitions.AccessorEntity accessorEntity)
+	private static String getForeignEntityName(AccessorEntity accessorEntity)
 	{
 		return accessorEntity.getDataString("foreignEntityName");
 	}
 
-	private static String getFieldsCode(
-			modules.taskModule.entityDefinitions.EntityEntity entityEntity)
+	private static String getFieldsCode(EntityEntity entityEntity)
+
 	{
 		String sourceCode = "";
 		for (FieldEntity fieldEntity : entityEntity)
@@ -102,9 +100,8 @@ public class EntitySourceCodeBuilder
 		return sourceCode;
 	}
 
-	private static String getFieldCode(
-			modules.taskModule.entityDefinitions.FieldEntity fieldEntity,
-			modules.taskModule.entityDefinitions.EntityEntity entityEntity)
+	private static String getFieldCode(FieldEntity fieldEntity,
+			EntityEntity entityEntity)
 	{
 		String sourceCode = "";
 		String quotedShortName = getSystemName(fieldEntity);
@@ -137,54 +134,47 @@ public class EntitySourceCodeBuilder
 		return sourceCode;
 	}
 
-	private static String getCamelCaseName(
-			modules.taskModule.entityDefinitions.FieldEntity fieldEntity)
+	private static String getCamelCaseName(FieldEntity fieldEntity)
 	{
 		String name = getSystemName(fieldEntity);
 		name = name.substring(0, 1).toLowerCase() + name.substring(1);
 		return name;
 	}
 
-	private static String getPrimaryKeyName(
-			modules.taskModule.entityDefinitions.EntityEntity entityEntity)
+	private static String getPrimaryKeyName(EntityEntity entityEntity)
 	{
 		String name = getSystemName(entityEntity);
 		name = name.substring(0, 1).toLowerCase() + name.substring(1);
 		return "PK" + name + "ID";
 	}
 
-	private static boolean isDynamicField(
-			modules.taskModule.entityDefinitions.FieldEntity fieldEntity)
+	private static boolean isDynamicField(FieldEntity fieldEntity)
 	{
 		return (Boolean) fieldEntity.getData("dynamicField");
 	}
 
-	private static boolean isHidden(
-			modules.taskModule.entityDefinitions.FieldEntity fieldEntity)
+	private static boolean isHidden(FieldEntity fieldEntity)
 	{
 		return (Boolean) fieldEntity.getData("hidden");
 	}
 
-	private static boolean isReadOnly(
-			modules.taskModule.entityDefinitions.FieldEntity fieldEntity)
+	private static boolean isReadOnly(FieldEntity fieldEntity)
 	{
 		return (Boolean) fieldEntity.getData("readOnly");
 	}
 
-	private static boolean isNaturalKey(
-			modules.taskModule.entityDefinitions.FieldEntity fieldEntity)
+	private static boolean isNaturalKey(FieldEntity fieldEntity)
 	{
 		return (Boolean) fieldEntity.getData("naturalKey");
 	}
 
-	private static String getVisibleName(
-			modules.taskModule.entityDefinitions.FieldEntity fieldEntity)
+	private static String getVisibleName(FieldEntity fieldEntity)
 	{
 		return fieldEntity.getDataString("visibleName");
 	}
 
-	private static String getFieldType(
-			modules.taskModule.entityDefinitions.FieldEntity fieldEntity)
+	private static String getFieldType(FieldEntity fieldEntity)
+
 	{
 		FieldTypeEntity fieldType = (FieldTypeEntity) fieldEntity
 				.getSingleAccessor(new FieldTypeEntity().getForeignKeyName());
@@ -192,33 +182,30 @@ public class EntitySourceCodeBuilder
 		return fieldType.getDataString("systemName");
 	}
 
-	private static String getSystemName(
-			modules.taskModule.entityDefinitions.FieldEntity fieldEntity)
+	private static String getSystemName(FieldEntity fieldEntity)
 	{
 		return fieldEntity.getDataString("name");
 	}
 
-	private static String getSystemName(
-			modules.taskModule.entityDefinitions.EntityEntity entityEntity)
+	private static String getSystemName(EntityEntity entityEntity)
 	{
 		return entityEntity.getDataString("systemName");
 	}
 
-	private static String getVisibleName(
-			modules.taskModule.entityDefinitions.EntityEntity entityEntity)
+	private static String getVisibleName(EntityEntity entityEntity)
 	{
 		return entityEntity.getDataString("visibleName");
 	}
 
-	private static String getPackageName(
-			modules.taskModule.entityDefinitions.EntityEntity entityEntity)
+	private static String getPackageName(EntityEntity entityEntity)
+
 	{
 		return ModuleSourceCodeBuilder
 				.getPackageName(getModuleEntity(entityEntity));
 	}
 
-	private static modules.taskModule.entityDefinitions.ModuleEntity getModuleEntity(
-			modules.taskModule.entityDefinitions.EntityEntity entityEntity)
+	private static ModuleEntity getModuleEntity(EntityEntity entityEntity)
+
 	{
 		return (ModuleEntity) entityEntity.getSingleAccessor(new ModuleEntity()
 				.getForeignKeyName());

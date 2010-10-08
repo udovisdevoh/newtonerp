@@ -1,19 +1,23 @@
+/**
+ * 
+ */
 package newtonERP.module;
 
+import java.util.Hashtable;
 import java.util.Vector;
 
 import newtonERP.module.exception.ActionNotFoundException;
 
 /**
  * @author CloutierJo
+ * 
  */
 public class BaseAction extends AbstractAction
 {
+
 	private String actionName;
-
 	private AbstractOrmEntity entity;
-
-	static String validActionName;
+	static Vector<String> validActionName;
 
 	{
 		validActionName = new Vector<String>();
@@ -81,13 +85,15 @@ public class BaseAction extends AbstractAction
 		this.entity = entity;
 	}
 
-	/**
+	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see newtonERP.module.AbstractAction#doAction(newtonERP.module.AbstractEntity,
-	 *      java.util.Hashtable)
+	 * @see
+	 * newtonERP.module.AbstractAction#doAction(newtonERP.module.AbstractEntity,
+	 * java.util.Hashtable)
 	 */
-	public AbstractEntity doAction(AbstractEntity entity,
+	public AbstractEntity doAction(
+			@SuppressWarnings("hiding") AbstractEntity entity,
 			Hashtable<String, String> parameters)
 	{
 		throw new RuntimeException(
@@ -106,5 +112,4 @@ public class BaseAction extends AbstractAction
 			return true;
 		return false;
 	}
-
 }

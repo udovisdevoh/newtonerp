@@ -1,0 +1,11 @@
+class TaskCache
+!!!234508.java!!!	getConcernedTaskList(in entityName : String) : TaskEntity
+		return getCacheList().get(entityName);
+!!!234636.java!!!	getCacheList() : Hashtable<String, Vector<TaskEntity>>
+		if (cacheList == null)
+			cacheList = new Hashtable<String, Vector<TaskEntity>>();
+		return cacheList;
+!!!234764.java!!!	setConcernedTaskList(in entityName : String, inout concernedTaskList : Vector<TaskEntity>) : void
+		getCacheList().put(entityName, concernedTaskList);
+!!!234892.java!!!	clear() : void
+		getCacheList().clear();

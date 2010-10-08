@@ -366,8 +366,8 @@ public class TaskModule extends Module
 
 		SearchEntity searchEntity = new SearchEntity();
 		searchEntity.setData("name", "Employe sans login");
-		searchEntity.setData(entity.getForeignKeyName(), entity
-				.getPrimaryKeyValue());
+		searchEntity.setData(entity.getForeignKeyName(),
+				entity.getPrimaryKeyValue());
 		searchEntity.newE();
 
 		User user = new User();
@@ -376,11 +376,11 @@ public class TaskModule extends Module
 
 		SearchCriteria searchCriteria = new SearchCriteria();
 		searchCriteria.setData("key", new User().getForeignKeyName());
-		searchCriteria.setData(searchEntity.getForeignKeyName(), searchEntity
-				.getPrimaryKeyValue());
+		searchCriteria.setData(searchEntity.getForeignKeyName(),
+				searchEntity.getPrimaryKeyValue());
 		searchCriteria.setData(
-				new SearchCriteriaOperator().getForeignKeyName(), equals
-						.getPrimaryKeyValue());
+				new SearchCriteriaOperator().getForeignKeyName(),
+				equals.getPrimaryKeyValue());
 		searchCriteria.setData("value", user.getPrimaryKeyValue());
 		searchCriteria.newE();
 
@@ -390,8 +390,8 @@ public class TaskModule extends Module
 
 		EffectEntity effect = new EffectEntity();
 		effect.setData("name", "On cre un login");
-		effect.setData(searchEntity.getForeignKeyName(), searchEntity
-				.getPrimaryKeyValue());
+		effect.setData(searchEntity.getForeignKeyName(),
+				searchEntity.getPrimaryKeyValue());
 		// effect.setData(actionEntity.getForeignKeyName(), actionEntity
 		// .getPrimaryKeyValue());
 		effect.assign(actionEntity);
@@ -399,15 +399,15 @@ public class TaskModule extends Module
 
 		Specification specification = new Specification();
 		specification.setData("name", "Si employe pas encore de login");
-		specification.setData(searchEntity.getForeignKeyName(), searchEntity
-				.getPrimaryKeyValue());
+		specification.setData(searchEntity.getForeignKeyName(),
+				searchEntity.getPrimaryKeyValue());
 		specification.newE();
 
 		TaskEntity task = new TaskEntity();
 		task.setData("isActive", false);
 		task.setData("straightSearch", false);
-		task.setData(specification.getForeignKeyName(), specification
-				.getPrimaryKeyValue());
+		task.setData(specification.getForeignKeyName(),
+				specification.getPrimaryKeyValue());
 		task.setData(effect.getForeignKeyName(), effect.getPrimaryKeyValue());
 		task.newE();
 	}
@@ -473,32 +473,32 @@ public class TaskModule extends Module
 		ActionEntity actionEntity;
 
 		actionEntity = new ActionEntity();
-		actionEntity.setData(moduleForeignKey, moduleEntity
-				.getPrimaryKeyValue());
+		actionEntity.setData(moduleForeignKey,
+				moduleEntity.getPrimaryKeyValue());
 		actionEntity.setData("systemName", "Get");
 		actionEntity.newE();
 
 		actionEntity = new ActionEntity();
-		actionEntity.setData(moduleForeignKey, moduleEntity
-				.getPrimaryKeyValue());
+		actionEntity.setData(moduleForeignKey,
+				moduleEntity.getPrimaryKeyValue());
 		actionEntity.setData("systemName", "New");
 		actionEntity.newE();
 
 		actionEntity = new ActionEntity();
-		actionEntity.setData(moduleForeignKey, moduleEntity
-				.getPrimaryKeyValue());
+		actionEntity.setData(moduleForeignKey,
+				moduleEntity.getPrimaryKeyValue());
 		actionEntity.setData("systemName", "Edit");
 		actionEntity.newE();
 
 		actionEntity = new ActionEntity();
-		actionEntity.setData(moduleForeignKey, moduleEntity
-				.getPrimaryKeyValue());
+		actionEntity.setData(moduleForeignKey,
+				moduleEntity.getPrimaryKeyValue());
 		actionEntity.setData("systemName", "Delete");
 		actionEntity.newE();
 
 		actionEntity = new ActionEntity();
-		actionEntity.setData(moduleForeignKey, moduleEntity
-				.getPrimaryKeyValue());
+		actionEntity.setData(moduleForeignKey,
+				moduleEntity.getPrimaryKeyValue());
 		actionEntity.setData("systemName", "GetList");
 		actionEntity.newE();
 
@@ -520,8 +520,8 @@ public class TaskModule extends Module
 			for (String actionName : module.getActionList().keySet())
 			{
 				actionEntity = new ActionEntity();
-				actionEntity.setData(moduleForeignKey, moduleEntity
-						.getPrimaryKeyValue());
+				actionEntity.setData(moduleForeignKey,
+						moduleEntity.getPrimaryKeyValue());
 				actionEntity.setData("systemName", actionName);
 				actionEntity.newE();
 			}
@@ -532,16 +532,16 @@ public class TaskModule extends Module
 						.get(entityName);
 
 				entityEntity = new EntityEntity();
-				entityEntity.setData(moduleForeignKey, moduleEntity
-						.getPrimaryKeyValue());
+				entityEntity.setData(moduleForeignKey,
+						moduleEntity.getPrimaryKeyValue());
 				entityEntity.setData("systemName", entityName);
 				entityEntity
 						.setData("visibleName", realEntity.getVisibleName());
 				entityEntity.newE();
 
 				initFieldEntitiesForEntityEntity(entityEntity, realEntity);
-				initAccessorEntityListForEntityEntity(entityEntity, realEntity
-						.getAccessorNameList());
+				initAccessorEntityListForEntityEntity(entityEntity,
+						realEntity.getAccessorNameList());
 			}
 		}
 	}

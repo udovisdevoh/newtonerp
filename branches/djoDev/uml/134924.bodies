@@ -1,0 +1,32 @@
+class GroupsRight
+!!!164108.java!!!	GroupsRight()
+		rightDefinition = new Right();
+		setVisibleName("Droit de groupe");
+!!!164236.java!!!	GroupsRight(inout groups : Groups, inout right : Right)
+		int groupsIdValue = groups.getPrimaryKeyValue();
+		int rightIdValue = right.getPrimaryKeyValue();
+
+		getFields().setData("groupsID", groupsIdValue);
+		getFields().setData("rightID", rightIdValue);
+!!!164364.java!!!	initFields() : Fields
+		Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
+		fieldsInit.add(new FieldInt("Numéro de groupe", "groupsID"));
+		fieldsInit.add(new FieldInt("Numéro de droit", "rightID"));
+		return new Fields(fieldsInit);
+!!!164492.java!!!	getGroupsEntity() : Groups
+		Groups groupsDefinition = new Groups();
+
+		Vector<String> search = new Vector<String>();
+		search.add(groupsDefinition.getPrimaryKeyName()
+				+ getFields().getField(groupsDefinition.getPrimaryKeyName()));
+
+		// todo: correct deprecate
+		return (Groups) Orm.select(new Groups(), search).get(0);
+!!!164620.java!!!	getRightEntity() : Right
+		String rightIDValue = getFields().getField("rightID").getDataString();
+
+		Right rightSearchEntity = new Right();
+		rightSearchEntity.getFields().setData(
+				rightDefinition.getPrimaryKeyName(), rightIDValue);
+
+		return (Right) Orm.select(rightSearchEntity).get(0);

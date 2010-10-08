@@ -1,0 +1,5 @@
+class OrmTest
+!!!258828.java!!!	setUp() : void
+	super.setUp();
+!!!258956.java!!!	tearDown() : void
+	super.tearDown();

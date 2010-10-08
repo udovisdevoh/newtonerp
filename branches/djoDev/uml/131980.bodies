@@ -1,0 +1,7 @@
+class ViewEntitySource
+!!!149644.java!!!	ViewEntitySource()
+		super(new EntityEntity());
+!!!149772.java!!!	doAction(inout entity : AbstractEntity, inout parameters : Hashtable<String, String>) : StaticTextEntity
+		EntityEntity entityEntity = (EntityEntity) entity;
+		return new StaticTextEntity(SourceCodeBuilder
+				.buildEntitySourceCode(entityEntity));

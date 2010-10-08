@@ -1,0 +1,11 @@
+class GateWay
+!!!198796.java!!!	GateWay(inout gateWayEntity : AbstractOrmEntity, inout externalEntity : AbstractOrmEntity)
+		this.gateWayEntity = gateWayEntity;
+		this.externalEntity = externalEntity;
+!!!198924.java!!!	getGateWayEntity() : AbstractOrmEntity
+		return gateWayEntity;
+!!!199052.java!!!	getExternalEntity() : AbstractOrmEntity
+		return externalEntity;
+!!!199180.java!!!	isColored() : boolean
+		return gateWayEntity.getFields().getField(
+				externalEntity.getForeignKeyName()).isColored();

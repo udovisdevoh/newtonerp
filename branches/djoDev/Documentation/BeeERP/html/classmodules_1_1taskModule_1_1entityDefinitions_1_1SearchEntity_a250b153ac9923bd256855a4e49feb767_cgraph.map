@@ -1,0 +1,9 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classmodules_1_1taskModule_1_1entityDefinitions_1_1EntityEntity.html#a5821c3ce9a93f2c27cd132ed13e6455b" title="modules.taskModule.entityDefinitions.EntityEntity.getEntityDefinition" alt="" coords="459,85,915,115"/>
+<area shape="rect" id="node15" href="$classnewtonERP_1_1module_1_1AbstractOrmEntity.html#a39371dfcec6dff1615e661ed75a42de1" title="newtonERP.module.AbstractOrmEntity.getSingleAccessor" alt="" coords="1459,164,1843,193"/>
+<area shape="rect" id="node5" href="$classnewtonERP_1_1module_1_1Module.html#ac4fd144aa74284f1aa339a83a19e881e" title="newtonERP.module.Module.getEntityDefinition" alt="" coords="1028,5,1340,35"/>
+<area shape="rect" id="node7" href="$classmodules_1_1taskModule_1_1entityDefinitions_1_1ModuleEntity.html#a73e520bf7f054fc75a45d79015e866bd" title="modules.taskModule.entityDefinitions.ModuleEntity.getModule" alt="" coords="976,59,1392,88"/>
+<area shape="rect" id="node9" href="$classmodules_1_1taskModule_1_1entityDefinitions_1_1EntityEntity.html#aef5aa112afdc009308b333370831336d" title="modules.taskModule.entityDefinitions.EntityEntity.getModuleEntity" alt="" coords="963,112,1405,141"/>
+<area shape="rect" id="node11" href="$classnewtonERP_1_1module_1_1AbstractOrmEntity.html#a79082dade2f4d88f4ffa770c8db8b884" title="newtonERP.module.AbstractOrmEntity.getForeignKeyName" alt="" coords="1453,87,1848,116"/>
+<area shape="rect" id="node13" href="$classnewtonERP_1_1module_1_1AbstractEntity.html#ad26f590c74d49b7c494d62de6ad1563b" title="newtonERP.module.AbstractEntity.getSystemName" alt="" coords="1896,87,2243,116"/>
+</map>

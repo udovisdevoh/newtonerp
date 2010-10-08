@@ -1,0 +1,15 @@
+class ColorViewerSpecialWordList
+!!!245260.java!!!	getSpecialWordColor(in key : String) : String
+		key = key.toLowerCase().trim();
+
+		return getSpecialWordColorList().get(key);
+!!!245388.java!!!	getSpecialWordColorList() : Hashtable<String, String>
+		if (specialWordColorList == null)
+			specialWordColorList = buildSpecialWordColorList();
+
+		return specialWordColorList;
+!!!245516.java!!!	buildSpecialWordColorList() : Hashtable<String, String>
+		Hashtable<String, String> newSpecialWordColorList = new Hashtable<String, String>();
+		newSpecialWordColorList.put("rush", "#F88");
+		newSpecialWordColorList.put("cash", "#F88");
+		return newSpecialWordColorList;

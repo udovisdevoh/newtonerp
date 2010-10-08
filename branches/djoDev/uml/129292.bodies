@@ -1,0 +1,156 @@
+class Field
+!!!205452.java!!!	Field()
+		// on ne doit pas pouvoir initialiser un Field sans son name et
+		// shortName
+!!!205580.java!!!	Field(in name : String, in shortName : String)
+		this(name, shortName, null);
+!!!205708.java!!!	Field(in name : String, in shortName : String, inout data : T)
+
+		this.name = name;
+		// TODO: validate that shortName are really shortName
+		this.shortName = shortName;
+		this.data = data;
+		setOperator("=");
+		setValidator(new FieldValidator<T>()
+		{
+			public boolean valide(T value, Fields entityFields)
+			{
+				return true;
+			}
+		});
+!!!206220.java!!!	getName() : String
+		return name;
+!!!206348.java!!!	getShortName() : String
+		return shortName;
+!!!206476.java!!!	getDataString() : String
+		return getDataString(false);
+!!!206604.java!!!	getDataString(inout forOrm : Boolean) : String
+		if (calcul != null)
+			data = calcul.calculate(fieldsRef);
+		if (data == null)
+			return "";
+		if (forOrm)
+			return addSlash(data.toString());
+		return data.toString();
+!!!206732.java!!!	getData() : T
+		if (calcul != null)
+			return calcul.calculate(fieldsRef);
+		return data;
+!!!206860.java!!!	setDataType(inout data : T) : void
+		if (validator.isValide(data, fieldsRef))
+			this.data = data;
+		else
+			fieldsRef.setErrorState(true);
+!!!207116.java!!!	getOperator() : String
+		return operator;
+!!!207244.java!!!	setHidden(inout hidden : Boolean) : void
+		this.hidden = hidden;
+!!!207372.java!!!	setDynamicField(inout isDynamicField : Boolean) : void
+		this.isDynamicField = isDynamicField;
+!!!207500.java!!!	isDynamicField() : Boolean
+		return isDynamicField;
+!!!207628.java!!!	isHidden() : Boolean
+		return hidden;
+!!!207756.java!!!	setReadOnly(inout readOnly : Boolean) : void
+		this.readOnly = readOnly;
+!!!207884.java!!!	isReadOnly() : Boolean
+		return readOnly;
+!!!208012.java!!!	toString() : String
+		return "{" + getClass().getSimpleName() + ":" + getDataString() + "}";
+!!!208140.java!!!	addSlash(in str : String) : String
+		str = str.replace("'", "`");
+		return str;
+!!!208268.java!!!	getSystemName() : String
+		return getClass().getSimpleName();
+!!!208396.java!!!	isNaturalKey() : boolean
+		return isNaturalKey;
+!!!208524.java!!!	setNaturalKey(inout isNaturalKey : boolean) : void
+		this.isNaturalKey = isNaturalKey;
+!!!208652.java!!!	setValidator(inout fieldValidator : FieldValidator) : void
+		validator = fieldValidator;
+!!!208780.java!!!	getValidator() : FieldValidator
+		return validator;
+!!!208908.java!!!	setCalcul(inout calcul : FieldCalcule) : void
+		readOnly = true;
+		this.calcul = calcul;
+!!!209036.java!!!	getCalcul() : FieldCalcule
+		return calcul;
+!!!209164.java!!!	setFieldsRef(inout fieldsRef : Fields) : void
+		this.fieldsRef = fieldsRef;
+!!!209292.java!!!	getFieldsRef() : Fields
+		return fieldsRef;
+!!!209420.java!!!	equals(inout obj : Object) : boolean
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof Field<?>))
+			return false;
+		Field<?> other = (Field<?>) obj;
+		if (data == null)
+		{
+			if (other.data != null)
+				return false;
+		}
+		else if (!data.equals(other.data))
+			return false;
+		if (hidden == null)
+		{
+			if (other.hidden != null)
+				return false;
+		}
+		else if (!hidden.equals(other.hidden))
+			return false;
+		if (isDynamicField == null)
+		{
+			if (other.isDynamicField != null)
+				return false;
+		}
+		else if (!isDynamicField.equals(other.isDynamicField))
+			return false;
+		if (isNaturalKey == null)
+		{
+			if (other.isNaturalKey != null)
+				return false;
+		}
+		else if (!isNaturalKey.equals(other.isNaturalKey))
+			return false;
+		if (name == null)
+		{
+			if (other.name != null)
+				return false;
+		}
+		else if (!name.equals(other.name))
+			return false;
+		if (operator == null)
+		{
+			if (other.operator != null)
+				return false;
+		}
+		else if (!operator.equals(other.operator))
+			return false;
+		if (readOnly == null)
+		{
+			if (other.readOnly != null)
+				return false;
+		}
+		else if (!readOnly.equals(other.readOnly))
+			return false;
+		if (shortName == null)
+		{
+			if (other.shortName != null)
+				return false;
+		}
+		else if (!shortName.equals(other.shortName))
+			return false;
+		return true;
+!!!209548.java!!!	getErrorMessage() : String
+		return validator.getErrorMessage();
+!!!209676.java!!!	setErrorMessage(in errorMessage : String) : void
+		validator.setErrorMessage(errorMessage);
+!!!209804.java!!!	reset() : void
+		data = null;
+!!!209932.java!!!	setColored(inout isColored : boolean) : void
+		this.isColored = isColored;
+!!!210060.java!!!	isColored() : boolean
+		return isColored;

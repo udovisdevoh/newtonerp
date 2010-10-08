@@ -1,0 +1,9 @@
+class EntityException
+!!!176012.java!!!	EntityException(in message : String)
+		super(message);
+!!!176140.java!!!	EntityException()
+		super();
+!!!176268.java!!!	EntityException(in message : String, inout cause : Throwable)
+		super(message, cause);
+!!!176396.java!!!	EntityException(inout cause : Throwable)
+		super(cause);

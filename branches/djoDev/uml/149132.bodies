@@ -1,0 +1,73 @@
+class FloorViewerData
+!!!248460.java!!!	FloorViewerData()
+		super();
+		wallHash = new HashSet<String>();
+!!!248588.java!!!	FloorViewerData(inout sourceFloor : Floor)
+		super();
+		this.sourceFloor = sourceFloor;
+		wallHash = new HashSet<String>();
+
+		sourceFloor = (Floor) sourceFloor.get().get(0);
+
+		columnCount = sourceFloor.getColumnCount();
+		rowCount = sourceFloor.getRowCount();
+		corridorMask = new Boolean[columnCount][rowCount];
+		zoneNameMap = new String[columnCount][rowCount];
+		zoneMap = new Zone[columnCount][rowCount];
+
+		for (int x = 0; x < columnCount; x++)
+		{
+			for (int y = 0; y < rowCount; y++)
+			{
+				corridorMask[x][y] = sourceFloor.isCorridorAt(x, y);
+
+				Zone zone = sourceFloor.getZoneAt(x, y);
+
+				if (zone == null)
+					zoneNameMap[x][y] = "-";
+				else
+					zoneNameMap[x][y] = zone.getKioskName();
+
+				zoneMap[x][y] = zone;
+
+				if (zone == null)
+					continue;
+
+				for (String wallTypeName : getWallTypeNameList())
+					if (zone.isMuretAt(wallTypeName, x, y))
+						wallHash.add(wallTypeName + "-" + x + "-" + y);
+			}
+		}
+!!!248716.java!!!	getWallTypeNameList() : Vector<String>
+		if (lazyWallTypeNameList == null)
+		{
+			lazyWallTypeNameList = new Vector<String>();
+
+			WallType wallType = new WallType();
+
+			Vector<AbstractOrmEntity> entityList = wallType.get();
+
+			for (AbstractOrmEntity entity : entityList)
+				lazyWallTypeNameList.add((entity.getDataString("Name")));
+		}
+		return lazyWallTypeNameList;
+!!!248844.java!!!	getColumnCount() : int
+		return columnCount;
+!!!248972.java!!!	getRowCount() : int
+		return rowCount;
+!!!249100.java!!!	isCorridorAt(in x : int, in y : int) : boolean
+		if (corridorMask == null)
+			return false;
+
+		return corridorMask[x][y];
+!!!249228.java!!!	tryGetZoneNameAt(in x : int, in y : int) : String
+		if (zoneNameMap == null)
+			return "-";
+		return zoneNameMap[x][y];
+!!!249356.java!!!	getActionLinkListAt(in x : int, in y : int) : ActionLink
+		if (sourceFloor == null)
+			return new Vector<ActionLink>();
+
+		return sourceFloor.getActionLinkListAt(x, y);
+!!!249484.java!!!	isWallAt(in wallName : String, in x : int, in y : int) : boolean
+		return wallHash.contains(wallName + "-" + x + "-" + y);

@@ -1,13 +1,18 @@
+/**
+ * 
+ */
 package newtonERP.common;
 
 import java.net.MalformedURLException;
+import java.net.URL;
 import java.net.URLClassLoader;
 
 import newtonERP.module.exception.ModuleException;
 import newtonERP.serveur.ConfigManager;
 
 /**
- * @author djo
+ * @author cloutierJo
+ * 
  */
 public class ModuleLoader
 {

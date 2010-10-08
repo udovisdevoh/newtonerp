@@ -1,0 +1,34 @@
+class SearchCriteria
+!!!157708.java!!!	SearchCriteria()
+		super();
+		setVisibleName("Critère de rercherche");
+		AccessorManager.addAccessor(this, new SearchCriteriaOperator());
+		AccessorManager.addAccessor(this, new SearchEntity());
+!!!157836.java!!!	initFields() : Fields
+		FieldString key = new FieldString("Nom de clef", "key");
+		key.setNaturalKey(true);
+
+		FieldInt specOperator = new FieldInt("Opérateur",
+				new SearchCriteriaOperator().getForeignKeyName());
+		specOperator.setNaturalKey(true);
+
+		FieldText value = new FieldText("Valeur", "value", false);
+		value.setNaturalKey(true);
+
+		Vector<Field<?>> fieldList = new Vector<Field<?>>();
+		fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
+		fieldList.add(new FieldInt("Entité de recherche", new SearchEntity()
+				.getForeignKeyName()));
+		fieldList.add(key);
+		fieldList.add(specOperator);
+		fieldList.add(value);
+		return new Fields(fieldList);
+!!!157964.java!!!	getKey() : String
+		return (String) getData("key");
+!!!158092.java!!!	getValue() : String
+		return getDataString("value");
+!!!158220.java!!!	getOperator() : String
+		return getOperatorEntity().getOperator();
+!!!158348.java!!!	getOperatorEntity() : SearchCriteriaOperator
+		return (SearchCriteriaOperator) getSingleAccessor(new SearchCriteriaOperator()
+				.getForeignKeyName());

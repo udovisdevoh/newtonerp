@@ -1,0 +1,3 @@
+class ImgViewer
+!!!239884.java!!!	getHtmlCode(inout entity : ImgViewerData) : String
+		return "<img src='" + entity.getFilePath() + "' />";

@@ -1,0 +1,9 @@
+class OrmException
+!!!203404.java!!!	OrmException(in message : String)
+		super(message);
+!!!203532.java!!!	OrmException()
+		super();
+!!!203660.java!!!	OrmException(in message : String, inout cause : Throwable)
+		super(message, cause);
+!!!203788.java!!!	OrmException(inout cause : Throwable)
+		super(cause);

@@ -1,0 +1,19 @@
+class FileModule
+!!!169356.java!!!	FileModule(in name : String, in filePath : String)
+		String endName = name.substring(1);
+		String firstChar = name.substring(0, 1);
+		this.name = firstChar.toUpperCase() + endName;
+		packagePath = "modules." + firstChar.toLowerCase() + endName;
+		this.filePath = filePath;
+!!!169484.java!!!	getPackagePathName() : String
+		return getPackagePath() + "." + getName();
+!!!169612.java!!!	getCache() : Module
+		return cache;
+!!!169740.java!!!	setCache(inout cache : Module) : void
+		this.cache = cache;
+!!!169868.java!!!	getName() : String
+		return name;
+!!!169996.java!!!	getFilePath() : String
+		return filePath;
+!!!170124.java!!!	getPackagePath() : String
+		return packagePath;

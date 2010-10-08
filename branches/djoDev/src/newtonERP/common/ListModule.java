@@ -1,8 +1,14 @@
+/**
+ * 
+ */
 package newtonERP.common;
 
+import java.io.File;
+import java.util.Hashtable;
 import java.util.Set;
 import java.util.Vector;
 
+import newtonERP.module.Module;
 import newtonERP.module.exception.ModuleException;
 import newtonERP.module.exception.ModuleNotFoundException;
 
@@ -14,16 +20,18 @@ import newtonERP.module.exception.ModuleNotFoundException;
  * J:\workspace\NewtonERP\bin\modules\testModule
  * 
  * @author Gabriel Therrien JoCloutier
+ * 
  */
 public class ListModule
 {
-	private static FileModule allModules = new Hashtable<String, FileModule>();
+	private static Hashtable<String, FileModule> allModules = new Hashtable<String, FileModule>();
 
 	/**
 	 * ajoute un module a la liste
 	 * 
 	 * @param moduleName le nom du module a ajoute
 	 * @param path system path to the module
+	 * 
 	 */
 	public static void addModule(String moduleName, String path)
 	{
@@ -57,7 +65,7 @@ public class ListModule
 	 * @param moduleName nom du module
 	 * @return le module
 	 */
-	public static newtonERP.module.Module getModule(String moduleName)
+	public static Module getModule(String moduleName)
 	{
 		Module tmpMod = allModules.get(moduleName).getCache();
 		if (tmpMod != null)
@@ -119,5 +127,4 @@ public class ListModule
 			}
 		}
 	}
-
 }

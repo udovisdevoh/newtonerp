@@ -1,0 +1,9 @@
+class FieldNotFoundException
+!!!177164.java!!!	FieldNotFoundException(in fieldName : String)
+		super(fieldName + " field doesn't exist");
+!!!177292.java!!!	FieldNotFoundException()
+		super();
+!!!177420.java!!!	FieldNotFoundException(in fieldName : String, inout cause : Throwable)
+		super(fieldName + " field doesn't exist", cause);
+!!!177548.java!!!	FieldNotFoundException(inout cause : Throwable)
+		super(cause);

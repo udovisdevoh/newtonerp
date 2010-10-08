@@ -25,31 +25,36 @@ import java.util.GregorianCalendar;
  */
 public class Logger
 {
+
 	private static FileWriter fstream = null;
-
 	private static BufferedWriter out = null;
-
 	private static SimpleDateFormat sdf = new SimpleDateFormat(
 			"HH:mm:ss yyyy.MM.dd");
 
+	/**
+	 * States the logger can have
+	 */
 	public enum State
 	{
-		DEBUG, /**
+		/**
 		 * An debug message
 		 */
+		DEBUG,
 
-		INFO, /**
+		/**
 		 * An information message
 		 */
+		INFO,
 
-		WARNING, /**
+		/**
 		 * A warning message
 		 */
+		WARNING,
 
-		ERROR, /**
+		/**
 		 * An error message
 		 */
-		;
+		ERROR;
 	}
 
 	/**
@@ -97,7 +102,7 @@ public class Logger
 	 * @param message the message
 	 * @param state the state
 	 */
-	public static void log(String message, Logger.State state)
+	public static void log(String message, State state)
 	{
 		String strState;
 		init();
@@ -177,5 +182,4 @@ public class Logger
 	{
 		log(message, State.ERROR);
 	}
-
 }

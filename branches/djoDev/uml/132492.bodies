@@ -1,0 +1,34 @@
+class BaseAction
+!!!174092.java!!!	BaseAction(in actionName : String, inout entity : AbstractOrmEntity)
+		if (!validActionName.contains(actionName))
+			throw new ActionNotFoundException("BaseAction:" + actionName);
+		this.actionName = actionName;
+		this.entity = entity;
+
+		if (actionName == "New")
+			setDetailedDescription("Créer un(e) nouveau(lle)");
+		else if (actionName == "Edit")
+			setDetailedDescription("Effectuer une modification sur");
+		else if (actionName == "Delete")
+			setDetailedDescription("Effacer de manière permanente");
+		else if (actionName == "Get")
+			setDetailedDescription("Afficher les informations sur (le/la)");
+		else if (actionName == "GetList")
+			setDetailedDescription("Obtenir une liste des");
+!!!174220.java!!!	getSystemName() : String
+		return actionName;
+!!!174348.java!!!	setActionName(in actionName : String) : void
+		this.actionName = actionName;
+!!!174476.java!!!	getEntity() : AbstractOrmEntity
+		return entity;
+!!!174604.java!!!	setEntity(inout entity : AbstractOrmEntity) : void
+		this.entity = entity;
+!!!174732.java!!!	doAction(inout entity : AbstractEntity, inout parameters : Hashtable<String, String>) : AbstractEntity
+		throw new RuntimeException(
+				"doAction ne doit pas etre appelé sur un baseAction");
+
+!!!174860.java!!!	isNameMatchesBaseAction(in name : String) : boolean
+		if (name.equals("Get") || name.equals("Edit") || name.equals("GetList")
+				|| name.equals("Delete") || name.equals("New"))
+			return true;
+		return false;

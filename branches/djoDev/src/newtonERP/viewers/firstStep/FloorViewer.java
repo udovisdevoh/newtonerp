@@ -5,6 +5,7 @@ import java.util.Vector;
 import newtonERP.common.ActionLink;
 import newtonERP.viewers.secondStep.LinkViewer;
 import newtonERP.viewers.secondStep.colorViewer.ColorViewer;
+import newtonERP.viewers.viewables.FloorViewable;
 
 /**
  * Représente un viewer de plancher
@@ -24,8 +25,7 @@ public class FloorViewer
 	 * @param entity entité de plancher
 	 * @return code HTML
 	 */
-	public static String getHtmlCode(
-			newtonERP.viewers.viewables.FloorViewable entity)
+	public static String getHtmlCode(FloorViewable entity)
 	{
 		String html = "";
 
@@ -74,8 +74,7 @@ public class FloorViewer
 	}
 
 	private static String getRoomHtml(String currentText,
-			String backgroundColor,
-			newtonERP.viewers.viewables.FloorViewable entity, int x, int y,
+			String backgroundColor, FloorViewable entity, int x, int y,
 			boolean isCorridor)
 	{
 		String html = "";
@@ -179,5 +178,4 @@ public class FloorViewer
 
 		return html;
 	}
-
 }

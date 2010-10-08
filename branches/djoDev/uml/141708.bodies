@@ -1,0 +1,48 @@
+class FieldBool
+!!!213772.java!!!	FieldBool(in name : String, in shortName : String, inout data : Boolean)
+		super(name, shortName, data);
+!!!213900.java!!!	FieldBool(in name : String, in shortName : String)
+		this(name, shortName, null);
+!!!214028.java!!!	getDataString(inout forOrm : Boolean) : String
+		if (data == null)
+			return "";
+
+		if (forOrm)
+			return addSlash(data.toString());
+		else if (data)
+			return "Oui";
+		else
+			return "Non";
+!!!214156.java!!!	setData(in data : String) : void
+		try
+		{
+			if (data.toLowerCase().equals("on")
+					|| data.toLowerCase().equals("true"))
+			{
+				setDataType(true);
+			}
+			else
+				setDataType(Boolean.parseBoolean(data));
+		} catch (Exception e)
+		{
+			setErrorMessage("Le format de donnée entrée ne correspond pas avec le type de champ (boolean): "
+					+ data);
+			Logger.error(e.getMessage());
+		}
+!!!214284.java!!!	setOperator(in operator : String) : void
+		operator.trim();
+
+		if (operator.equals("="))
+		{
+			super.operator = operator;
+		}
+		else
+			throw new InvalidOperatorException("Opérateur ( " + operator
+					+ " ) invalide pour " + getSystemName());
+!!!214412.java!!!	setDefaultValue() : void
+		data = false;
+!!!214540.java!!!	setData(inout data : Object) : void
+		if (data instanceof Boolean)
+			setDataType((Boolean) data);
+		else
+			throw new FieldNotCompatibleException(getShortName(), data);

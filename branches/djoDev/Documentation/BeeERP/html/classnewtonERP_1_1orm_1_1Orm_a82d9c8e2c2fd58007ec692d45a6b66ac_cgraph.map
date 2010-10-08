@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classnewtonERP_1_1orm_1_1Orm.html#a09639019a2777a758d6756f844134687" title="Method used to insert an entity in the databse based into the entity passed in parameter." alt="" coords="292,5,484,35"/>
+<area shape="rect" id="node7" href="$classnewtonERP_1_1orm_1_1Orm.html#a5e20d5855932f6804c3891d5189420ee" title="newtonERP.orm.Orm.select" alt="" coords="291,59,485,88"/>
+<area shape="rect" id="node5" href="$classnewtonERP_1_1orm_1_1sgbd_1_1AbstractSgbd.html#abe3832d05b3dc02020af5b1abc5139b2" title="Method used to insert an entity in the database based into the entity passed in parameter." alt="" coords="535,5,820,35"/>
+</map>

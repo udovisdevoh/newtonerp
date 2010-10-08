@@ -1,0 +1,608 @@
+format 75
+"serveur" // src::newtonERP::serveur
+  revision 1
+  modified_by 12 "djo"
+  // class settings
+  //class diagram settings
+  draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+  //use case diagram settings
+  package_name_in_tab default show_context default auto_label_position default draw_all_relations default class_drawing_mode default shadow default show_stereotype_properties default
+  //sequence diagram settings
+  show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+  //collaboration diagram settings
+  show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default show_msg_context default draw_all_relations default shadow default show_stereotype_properties default
+  //object diagram settings
+   write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+  //component diagram settings
+  package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default
+  draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+  //deployment diagram settings
+  package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
+  draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+  //state diagram settings
+  package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  //activity diagram settings
+  package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+  show_infonote default drawing_language default show_stereotype_properties default
+  
+  java_dir "/home/djo/workspace/NewtonERP/src/newtonERP/serveur/"
+  java_package "newtonERP.serveur"
+  classview 131084 "serveur"
+    //class diagram settings
+    draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+    //collaboration diagram settings
+    show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default show_msg_context default draw_all_relations default shadow default show_stereotype_properties default
+    //object diagram settings
+     write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+    //sequence diagram settings
+    show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+    //state diagram settings
+    package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+    show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+    //class settings
+    //activity diagram settings
+    package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+    show_infonote default drawing_language default show_stereotype_properties default
+    class 143116 "CommandRouteur"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "@author Gabriel Therrien JoCloutier
+"
+      operation 226828 "routeCommand"
+	public return_type class_ref 128780 // AbstractEntity
+	nparams 4
+	  param in name "moduleName" explicit_type "String"
+	  param in name "actionName" explicit_type "String"
+	  param in name "entityName" explicit_type "String"
+	  param inout name "parameter" explicit_type "Hashtable<String, String>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "dirige une demande client vers une action d'un module
+
+@param moduleName nom du module
+@param actionName BaseAction a executer
+@param entityName nom de l'entite contenant la baseAction
+@param moduleGetter la nom du modulGetter a utiliser
+@param parameter parametre a passer a l'action
+@return une entity viewable"
+      end
+    end
+
+    class 143244 "ConfigManager"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "manage de config of the software from an XML file
+
+@author Guillaume Lacasse JoCloutier"
+      attribute 140428 "file"
+	class_attribute private explicit_type "File"
+	init_value " null"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 140556 "document"
+	class_attribute private explicit_type "Document"
+	init_value " null"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 140684 "configFile"
+	class_attribute const_attribute private explicit_type "String"
+	init_value " \"config.xml\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 140812 "propertyValue"
+	class_attribute private explicit_type "String, String"
+	init_value " new Hashtable<String, String>()"
+	stereotype "Hashtable"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 226956 "getDocument"
+	class_operation private explicit_return_type "Document"
+	nparams 0
+	nexceptions 1
+	  explicit_exception "Exception"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 227084 "getFile"
+	class_operation private explicit_return_type "File"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 227212 "loadStringProperty"
+	class_operation public explicit_return_type "String"
+	nparams 3
+	  param in name "propertyName" explicit_type "String"
+	  param in name "attributName" explicit_type "String"
+	  param in name "defaultValue" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param propertyName the property name
+@param attributName the attribut name
+@param defaultValue a default value in case the property is'nt present in
+           the config file
+@return String property value"
+      end
+
+      operation 227340 "loadStringProperty"
+	class_operation public explicit_return_type "String"
+	nparams 2
+	  param in name "propertyName" explicit_type "String"
+	  param in name "defaultValue" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param propertyName the propetry name
+@param defaultValue a default value in case the property is'nt present in
+           the config file
+@return String property value"
+      end
+
+      operation 227468 "loadStringAttrProperty"
+	class_operation public explicit_return_type "String"
+	nparams 2
+	  param in name "propertyName" explicit_type "String"
+	  param in name "attributName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param propertyName the propetry name
+@param attributName the attribut name
+@return String property value"
+      end
+
+      operation 227596 "loadStringProperty"
+	class_operation public explicit_return_type "String"
+	nparams 1
+	  param in name "propertyName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param propertyName the propetry name
+@return String property value"
+      end
+
+      operation 227724 "loadIntProperty"
+	class_operation public explicit_return_type "int"
+	nparams 3
+	  param in name "propertyName" explicit_type "String"
+	  param in name "attributName" explicit_type "String"
+	  param inout name "defaultValue" explicit_type "Integer"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param propertyName the propetry name
+@param attributName the attribut name
+@return int property value
+@param defaultValue a default value in case the property is'nt present in
+           the config file"
+      end
+
+      operation 227852 "loadIntProperty"
+	class_operation public explicit_return_type "int"
+	nparams 2
+	  param in name "propertyName" explicit_type "String"
+	  param inout name "defaultValue" explicit_type "Integer"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param propertyName the propetry name
+@return int property value
+@param defaultValue a default value in case the property is'nt present in
+           the config file"
+      end
+
+      operation 227980 "loadIntAttrProperty"
+	class_operation public explicit_return_type "int"
+	nparams 2
+	  param in name "propertyName" explicit_type "String"
+	  param in name "attributName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param propertyName the propetry name
+@param attributName the attribut name
+@return int property value"
+      end
+
+      operation 228108 "loadIntProperty"
+	class_operation public explicit_return_type "int"
+	nparams 1
+	  param in name "propertyName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param propertyName the propetry name
+@return int property value"
+      end
+
+      operation 228236 "loadBoolProperty"
+	class_operation public explicit_return_type "boolean"
+	nparams 3
+	  param in name "propertyName" explicit_type "String"
+	  param in name "attributName" explicit_type "String"
+	  param inout name "defaultValue" explicit_type "Boolean"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param propertyName the propetry name
+@param attributName the attribut name
+@param defaultValue a default value in case the property is'nt present in
+           the config file
+@return boolean property value"
+      end
+
+      operation 228364 "loadBoolProperty"
+	class_operation public explicit_return_type "boolean"
+	nparams 2
+	  param in name "propertyName" explicit_type "String"
+	  param inout name "defaultValue" explicit_type "Boolean"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param propertyName the propetry name
+@param defaultValue a default value in case the property is'nt present in
+           the config file
+@return boolean property value"
+      end
+
+      operation 228492 "loadBoolAttrProperty"
+	class_operation public explicit_return_type "boolean"
+	nparams 2
+	  param in name "propertyName" explicit_type "String"
+	  param in name "attributName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param propertyName the propetry name
+@param attributName the attribut name
+@return boolean property value"
+      end
+
+      operation 228620 "loadBoolProperty"
+	class_operation public explicit_return_type "boolean"
+	nparams 1
+	  param in name "propertyName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param propertyName the propetry name
+@return boolean property value"
+      end
+    end
+
+    class 143372 "Servlet"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "la gestion du serveur, request manager
+@author JoCloutier"
+      classrelation 144396 // <generalisation>
+	relation 144396 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 144396 // <generalisation>
+	  b parent class_ref 143500 // ServletHandler
+      end
+
+      attribute 140940 "urlPattern"
+	private explicit_type "Pattern"
+	init_value " Pattern
+			.compile(\"(/(\\\\w*)(/(\\\\w*)(/(\\\\w*))?)?)?\")"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      classrelation 144524 // cmdRouter (<unidirectional association>)
+	relation 144524 --->
+	  a role_name "cmdRouter" init_value " new CommandRouteur()" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 144524 // cmdRouter (<unidirectional association>)
+	  b parent class_ref 143116 // CommandRouteur
+      end
+
+      attribute 141068 "resourceHandler"
+	package explicit_type "ResourceHandler"
+	init_value " new ResourceHandler()"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 228748 "Servlet"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "constructeur"
+      end
+
+      operation 228876 "handle"
+	public explicit_return_type "void"
+	nparams 4
+	  param in name "target" explicit_type "String"
+	  param inout name "request" explicit_type "HttpServletRequest"
+	  param inout name "response" explicit_type "HttpServletResponse"
+	  param in name "dispatch" explicit_type "int"
+	nexceptions 2
+	  explicit_exception "IOException"
+	  explicit_exception "ServletException"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 229004 "urlToAction"
+	public return_type class_ref 128780 // AbstractEntity
+	nparams 2
+	  param in name "target" explicit_type "String"
+	  param inout name "request" explicit_type "HttpServletRequest"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param target url d'apelle
+@param request la request
+@return le Viewable"
+      end
+
+      operation 229132 "buildEntityName"
+	private explicit_return_type "String"
+	nparams 1
+	  param in name "target" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 229260 "buildActionName"
+	private explicit_return_type "String"
+	nparams 1
+	  param in name "target" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 229388 "buildModuleName"
+	private explicit_return_type "String"
+	nparams 1
+	  param in name "target" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 229516 "makeLink"
+	class_operation public explicit_return_type "String"
+	nparams 1
+	  param inout name "module" type class_ref 128140 // Module
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param module module a lier
+@return le lien relatif vers les ressource demander"
+      end
+
+      operation 229644 "makeLink"
+	class_operation public explicit_return_type "String"
+	nparams 2
+	  param inout name "module" type class_ref 128140 // Module
+	  param inout name "action" type class_ref 128396 // AbstractAction
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param module module a lier
+@param action action a lier
+@return le lien relatif vers les ressource demander"
+      end
+
+      operation 229772 "makeLink"
+	class_operation public explicit_return_type "String"
+	nparams 1
+	  param inout name "action" type class_ref 128396 // AbstractAction
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param action action a lier
+@return le lien relatif vers les ressource demander"
+      end
+    end
+  end
+
+  deploymentview 130956 "serveur"
+    //deployment diagram settings
+    package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
+    draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+    artifact 142092 "CommandRouteur"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 143116 // CommandRouteur
+      end
+    end
+
+    artifact 142220 "ConfigManager"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 143244 // ConfigManager
+      end
+    end
+
+    artifact 142348 "Servlet"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 143372 // Servlet
+      end
+    end
+  end
+end

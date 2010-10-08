@@ -1,9 +1,12 @@
 package modules.userRightModule.actions;
 
+import java.util.Hashtable;
 import java.util.Vector;
 
 import modules.userRightModule.entityDefinitions.Right;
 import modules.userRightModule.entityDefinitions.User;
+import newtonERP.module.AbstractAction;
+import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.Orm;
 import newtonERP.orm.associations.PluralAccessor;
@@ -12,11 +15,10 @@ import newtonERP.orm.associations.PluralAccessor;
  * Action class that checks the right on an entity
  * @author cloutierJo
  */
-public class RightCheck extends newtonERP.module.AbstractAction
+public class RightCheck extends AbstractAction
 {
 	@Override
-	public newtonERP.module.AbstractEntity doAction(
-			newtonERP.module.AbstractEntity entity,
+	public AbstractEntity doAction(AbstractEntity entity,
 			Hashtable<String, String> parameters)
 	{
 		Vector<String> search = new Vector<String>();

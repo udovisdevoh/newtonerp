@@ -1,0 +1,2250 @@
+format 75
+"viewerData" // src::newtonERP::viewers::viewerData
+  revision 1
+  modified_by 12 "djo"
+  // class settings
+  //class diagram settings
+  draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+  //use case diagram settings
+  package_name_in_tab default show_context default auto_label_position default draw_all_relations default class_drawing_mode default shadow default show_stereotype_properties default
+  //sequence diagram settings
+  show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+  //collaboration diagram settings
+  show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default show_msg_context default draw_all_relations default shadow default show_stereotype_properties default
+  //object diagram settings
+   write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+  //component diagram settings
+  package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default
+  draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+  //deployment diagram settings
+  package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
+  draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+  //state diagram settings
+  package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  //activity diagram settings
+  package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+  show_infonote default drawing_language default show_stereotype_properties default
+  
+  java_dir "/home/djo/workspace/NewtonERP/src/newtonERP/viewers/viewerData/"
+  java_package "newtonERP.viewers.viewerData"
+  classview 128908 "viewerData"
+    //class diagram settings
+    draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+    //collaboration diagram settings
+    show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default show_msg_context default draw_all_relations default shadow default show_stereotype_properties default
+    //object diagram settings
+     write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+    //sequence diagram settings
+    show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+    //state diagram settings
+    package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+    show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+    //class settings
+    //activity diagram settings
+    package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+    show_infonote default drawing_language default show_stereotype_properties default
+    class 129804 "BaseViewerData"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "viewer servant a standardisé nos viewer
+@author CloutierJo
+"
+      classrelation 137996 // <generalisation>
+	relation 137996 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 137996 // <generalisation>
+	  b parent class_ref 128780 // AbstractEntity
+      end
+
+      attribute 134796 "title"
+	private explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      classrelation 138124 // globalActions (<unidirectional association>)
+	relation 138124 --->
+	  stereotype "Vector"
+	  a role_name "globalActions" init_value " new Vector<ActionLink>()" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 138124 // globalActions (<unidirectional association>)
+	  b parent class_ref 128652 // ActionLink
+      end
+
+      attribute 134924 "alertMessageList"
+	private explicit_type "String"
+	init_value " new Vector<String>()"
+	stereotype "Vector"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 135052 "normalMessageList"
+	private explicit_type "String"
+	init_value " new Vector<String>()"
+	stereotype "Vector"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      classrelation 138252 // backLink (<unidirectional association>)
+	relation 138252 --->
+	  a role_name "backLink" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 138252 // backLink (<unidirectional association>)
+	  b parent class_ref 128652 // ActionLink
+      end
+
+      attribute 135180 "complementaryInfoLineList"
+	private explicit_type "String"
+	stereotype "Vector"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 181772 "BaseViewerData"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "constructeur vide"
+      end
+
+      operation 181900 "setTitle"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "title" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param title the title to set"
+      end
+
+      operation 182028 "getTitle"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return the title"
+      end
+
+      operation 182156 "setGlobalActions"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "globalActions" explicit_type "Vector<ActionLink>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param globalActions the globalActions to set"
+      end
+
+      operation 182284 "getGlobalActions"
+	public return_type class_ref 128652 // ActionLink
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return the globalActions"
+      end
+
+      operation 182412 "addGlobalActions"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "globalAction" type class_ref 128652 // ActionLink
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param globalAction the globalActions to add"
+      end
+
+      operation 182540 "removeGlobalActions"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "globalActionName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param globalActionName the globalActionName to remove"
+      end
+
+      operation 182668 "getAlertMessageList"
+	public explicit_return_type "Vector<String>"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return the alertMessageList"
+      end
+
+      operation 182796 "setAlertMessageList"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "alertMessageList" explicit_type "Vector<String>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param alertMessageList the alertMessageList to set"
+      end
+
+      operation 182924 "addAlertMessage"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "message" explicit_type "String"
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param message message à ajouter"
+      end
+
+      operation 183052 "getNormalMessageList"
+	public explicit_return_type "Vector<String>"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return the normalMessageList"
+      end
+
+      operation 183180 "setNormalMessageList"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "normalMessageList" explicit_type "Vector<String>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param normalMessageList the normalMessageList to set"
+      end
+
+      operation 183308 "addNormalMessage"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "message" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param message nouveau message normal"
+      end
+
+      operation 183436 "getBackLink"
+	public return_type class_ref 128652 // ActionLink
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return the backLink"
+      end
+
+      operation 183564 "setBackLink"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "backLink" type class_ref 128652 // ActionLink
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param backLink the backLink to set"
+      end
+
+      operation 183692 "addComplementaryInfoLine"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "complementaryInfoLine" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param complementaryInfoLine ligne d'information complémentaire à ajouter"
+      end
+
+      operation 183820 "getComplementaryInfoLineList"
+	public explicit_return_type "Vector<String>"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return liste des lignes d'information complémentaire"
+      end
+    end
+
+    class 129932 "ListViewerData"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "@author Guillaume Lacasse, CloutierJo
+"
+      classrelation 146188 // <generalisation>
+	relation 146188 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 146188 // <generalisation>
+	  b parent class_ref 145804 // GridViewerData
+      end
+
+      classrelation 146316 // <realization>
+	relation 146316 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 146316 // <realization>
+	  b parent class_ref 133004 // Iterable
+      end
+
+      classrelation 146444 // dataType (<unidirectional association>)
+	relation 146444 --->
+	  a role_name "dataType" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 146444 // dataType (<unidirectional association>)
+	  b parent class_ref 128268 // AbstractOrmEntity
+      end
+
+      classrelation 146572 // data (<unidirectional association>)
+	relation 146572 --->
+	  stereotype "Vector"
+	  a role_name "data" init_value " new Vector<AbstractOrmEntity>()" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 146572 // data (<unidirectional association>)
+	  b parent class_ref 128268 // AbstractOrmEntity
+      end
+
+      classrelation 146700 // pageSelector (<unidirectional association>)
+	relation 146700 --->
+	  a role_name "pageSelector" init_value " null" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 146700 // pageSelector (<unidirectional association>)
+	  b parent class_ref 147724 // PageSelector
+      end
+
+      classrelation 146828 // searchBar (<unidirectional association>)
+	relation 146828 --->
+	  a role_name "searchBar" init_value " null" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 146828 // searchBar (<unidirectional association>)
+	  b parent class_ref 148108 // SearchBar
+      end
+
+      operation 253068 "ListViewerData"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "dataType" type class_ref 128268 // AbstractOrmEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "constructeur par defaut
+@param dataType type d'entity a etre liste"
+      end
+
+      operation 253196 "getEntity"
+	public return_type class_ref 128268 // AbstractOrmEntity
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return les entity"
+      end
+
+      operation 253324 "getHeader"
+	public return_type class_ref 145932 // GridCaseData
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 253452 "getCases"
+	public return_type class_ref 145932 // GridCaseData
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 253580 "addEntity"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "entity" type class_ref 128268 // AbstractOrmEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param entity the entity to add"
+      end
+
+      operation 253708 "getDataType"
+	public return_type class_ref 128268 // AbstractOrmEntity
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return the dataType"
+      end
+
+      operation 253836 "iterator"
+	public return_type class_ref 128268 // AbstractOrmEntity
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 253964 "BuildOffset"
+	class_operation public explicit_return_type "int"
+	nparams 2
+	  param inout name "parameters" explicit_type "Hashtable<String, String>"
+	  param in name "limit" explicit_type "int"
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param parameters parametres d'action GetList
+@param limit limite par page
+@return offset de selection de liste d'entité, -1 si aucun"
+      end
+
+      operation 254092 "BuildLimit"
+	class_operation public explicit_return_type "int"
+	nparams 2
+	  param inout name "parameters" explicit_type "Hashtable<String, String>"
+	  param in name "defaultValue" explicit_type "int"
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param parameters parametres d'action GetList
+@param defaultValue nombre d'item par page par default
+@return limite de selection de liste d'entité, -1 si aucun"
+      end
+
+      operation 254220 "getPageSelector"
+	public return_type class_ref 147724 // PageSelector
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return page selector"
+      end
+
+      operation 254348 "setPageSelector"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "pageSelector" type class_ref 147724 // PageSelector
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param pageSelector page selector"
+      end
+
+      operation 254476 "getSearchBar"
+	public return_type class_ref 148108 // SearchBar
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return modèle de barre de recherche"
+      end
+
+      operation 254604 "setSearchBar"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "searchBar" type class_ref 148108 // SearchBar
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param searchBar modèle de barre de recherche"
+      end
+    end
+
+    class 137868 "PromptViewerData"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "data du promptViewer
+@author CloutierJo"
+      classrelation 138380 // <generalisation>
+	relation 138380 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 138380 // <generalisation>
+	  b parent class_ref 129804 // BaseViewerData
+      end
+
+      classrelation 138508 // buttonAction (<unidirectional association>)
+	relation 138508 --->
+	  a role_name "buttonAction" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 138508 // buttonAction (<unidirectional association>)
+	  b parent class_ref 128652 // ActionLink
+      end
+
+      classrelation 138636 // data (<unidirectional association>)
+	relation 138636 --->
+	  a role_name "data" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 138636 // data (<unidirectional association>)
+	  b parent class_ref 128780 // AbstractEntity
+      end
+
+      attribute 135308 "isReadOnly"
+	private explicit_type "boolean"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 183948 "PromptViewerData"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "default constructor"
+      end
+
+      operation 184076 "getButtonAction"
+	public return_type class_ref 128652 // ActionLink
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return nom du bouton \"ok\""
+      end
+
+      operation 184204 "setButtonAction"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "buttonAction" type class_ref 128652 // ActionLink
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param buttonAction nom du bouton \"ok\""
+      end
+
+      operation 184332 "setData"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "data" type class_ref 128780 // AbstractEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param data the data to set"
+      end
+
+      operation 184460 "getData"
+	public return_type class_ref 128780 // AbstractEntity
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return the data"
+      end
+
+      operation 184588 "isMatchCheckBox"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param in name "inputName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " *************************************************************************
+
+@param inputName nom du champ
+@return is le champ est un check box (bool)"
+      end
+
+      operation 184716 "tryMatchListOfValue"
+	public return_type class_ref 129164 // ListOfValue
+	nparams 1
+	  param in name "fieldKeyName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param fieldKeyName the field key name
+@return If list of value exist, return it, else, return null"
+      end
+
+      operation 184844 "getPositiveFlagPoolList"
+	public return_type class_ref 129676 // FlagPool
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return the flag pool list"
+      end
+
+      operation 184972 "getInputValue"
+	public explicit_return_type "String"
+	nparams 1
+	  param in name "inputName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Retourne la valeur actuelle d'un champ
+@param inputName nom du champ
+@return valeur contenue dans le champ"
+      end
+
+      operation 185100 "getLabelName"
+	public explicit_return_type "String"
+	nparams 1
+	  param in name "inputName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param inputName nom d'un field
+@return nom complete d'un field"
+      end
+
+      operation 185228 "getCurrentAction"
+	public return_type class_ref 128396 // AbstractAction
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return the current action"
+      end
+
+      operation 185356 "getCurrentModule"
+	public return_type class_ref 128140 // Module
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return the current module"
+      end
+
+      operation 185484 "setReadOnly"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "isReadOnly" explicit_type "boolean"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param isReadOnly si entité est présentement readonly dans le contexte
+           actuel"
+      end
+
+      operation 185612 "isReadOnly"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return si entité est présentement readonly"
+      end
+    end
+
+    class 145804 "GridViewerData"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Représente les données pouvant être visible par le grid viewer
+@author Guillaume"
+      classrelation 145420 // <generalisation>
+	relation 145420 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 145420 // <generalisation>
+	  b parent class_ref 129804 // BaseViewerData
+      end
+
+      classrelation 145548 // header (<unidirectional association>)
+	relation 145548 --->
+	  a role_name "header" multiplicity "[]" init_value " new GridCaseData[0]" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type}${multiplicity} ${name}${value};
+"
+	    classrelation_ref 145548 // header (<unidirectional association>)
+	  b parent class_ref 145932 // GridCaseData
+      end
+
+      classrelation 145676 // leftHeader (<unidirectional association>)
+	relation 145676 --->
+	  a role_name "leftHeader" multiplicity "[]" init_value " new GridCaseData[0]" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type}${multiplicity} ${name}${value};
+"
+	    classrelation_ref 145676 // leftHeader (<unidirectional association>)
+	  b parent class_ref 145932 // GridCaseData
+      end
+
+      classrelation 145804 // cases (<unidirectional association>)
+	relation 145804 --->
+	  a role_name "cases" multiplicity "[][]" init_value " new GridCaseData[0][0]" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type}${multiplicity} ${name}${value};
+"
+	    classrelation_ref 145804 // cases (<unidirectional association>)
+	  b parent class_ref 145932 // GridCaseData
+      end
+
+      classrelation 145932 // specificActionButtonList (<unidirectional association>)
+	relation 145932 --->
+	  stereotype "Vector"
+	  a role_name "specificActionButtonList" init_value " new Vector<ActionLink>()" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 145932 // specificActionButtonList (<unidirectional association>)
+	  b parent class_ref 128652 // ActionLink
+      end
+
+      attribute 144012 "isColored"
+	private explicit_type "boolean"
+	init_value " false"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 144140 "spanSimilar"
+	private explicit_type "boolean"
+	init_value " false"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 250508 "GridViewerData"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "s"
+      end
+
+      operation 250636 "getHeader"
+	public return_type class_ref 145932 // GridCaseData
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return the header"
+      end
+
+      operation 250764 "setHeader"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "header" type class_ref 145932 // GridCaseData
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param header the header to set"
+      end
+
+      operation 250892 "getLeftHeader"
+	public return_type class_ref 145932 // GridCaseData
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return the leftHeader"
+      end
+
+      operation 251020 "setLeftHeader"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "leftHeader" type class_ref 145932 // GridCaseData
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param leftHeader the leftHeader to set"
+      end
+
+      operation 251148 "getCases"
+	public return_type class_ref 145932 // GridCaseData
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return the cases"
+      end
+
+      operation 251276 "setCases"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "cases" type class_ref 145932 // GridCaseData
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param cases the cases to set"
+      end
+
+      operation 251404 "getSpecificActionButtonList"
+	public return_type class_ref 128652 // ActionLink
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "permet d'obtenir les action specifique
+@return liste de specificAction"
+      end
+
+      operation 251532 "setSpecificActionButtonList"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "specificActionButtonList" explicit_type "Vector<ActionLink>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param specificActionButtonList the specificActionButtonList to set"
+      end
+
+      operation 251660 "addSpecificActionButtonList"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "actionLink" type class_ref 128652 // ActionLink
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param actionLink action du bouton"
+      end
+
+      operation 251788 "removeSpecificActions"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "specificActionName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param specificActionName the globalActionName to remove"
+      end
+
+      operation 251916 "removeSpecificActions"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "SpecificActionName" type class_ref 128652 // ActionLink
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param SpecificActionName the globalActionName to remove"
+      end
+
+      operation 252044 "isColored"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return the color"
+      end
+
+      operation 252172 "setColored"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "isColored" explicit_type "boolean"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param isColored the color to set"
+      end
+
+      operation 252300 "isSpanSimilar"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return the spanSimilar"
+      end
+
+      operation 252428 "setSpanSimilar"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "spanSimilar" explicit_type "boolean"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param spanSimilar the spanSimilar to set"
+      end
+    end
+
+    class 145932 "GridCaseData"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "represent une cellule d'un tableau affichable
+@author CloutierJo
+"
+      classrelation 145292 // <generalisation>
+	relation 145292 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 145292 // <generalisation>
+	  b parent class_ref 128652 // ActionLink
+      end
+
+      attribute 143884 "isColored"
+	private explicit_type "boolean"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 249612 "GridCaseData"
+	public explicit_return_type ""
+	nparams 3
+	  param in name "name" explicit_type "String"
+	  param inout name "action" type class_ref 128396 // AbstractAction
+	  param inout name "parameters" explicit_type "Hashtable<String, String>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param name valeur a affiche dans cette case
+@param action action a effectuer lorsque clique (null par defaut)
+@param parameters parametre du lien"
+      end
+
+      operation 249740 "GridCaseData"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "name" explicit_type "String"
+	  param inout name "actionLink" type class_ref 128396 // AbstractAction
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param name valeur a affiche dans cette case
+@param actionLink action a effectuer lorsque clique (null par defaut)"
+      end
+
+      operation 249868 "GridCaseData"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "name" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param name valeur a affiche dans cette case"
+      end
+
+      operation 249996 "GridCaseData"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "constructeur vide"
+      end
+
+      operation 250124 "getActionLink"
+	public return_type class_ref 128396 // AbstractAction
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Deprecated
+"
+	
+	
+	
+	comment "methode de remplacement temporaire
+@return l'action"
+      end
+
+      operation 250252 "isColored"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return si la case doit être colorée"
+      end
+
+      operation 250380 "setColored"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "isColored" explicit_type "boolean"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param isColored si la case doit être colorée"
+      end
+    end
+
+    class 146188 "ImgViewerData"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "donnee pour faire affiche UNE image
+@author CloutierJo"
+      classrelation 146060 // <generalisation>
+	relation 146060 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 146060 // <generalisation>
+	  b parent class_ref 129804 // BaseViewerData
+      end
+
+      attribute 144268 "filePath"
+	package explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 252556 "ImgViewerData"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 252684 "ImgViewerData"
+	public explicit_return_type ""
+	nparams 2
+	  param inout name "bi" explicit_type "BufferedImage"
+	  param in name "fileName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param bi image sous forme de BufferedImage
+@param fileName nom du fichier"
+      end
+
+      operation 252812 "getFilePath"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return the filePath"
+      end
+
+      operation 252940 "setFilePath"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "filePath" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param filePath the filePath to set"
+      end
+    end
+
+    class 147724 "PageSelector"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Modèle d'un selecteur de page
+@author Guillaume"
+      classrelation 146956 // <generalisation>
+	relation 146956 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 146956 // <generalisation>
+	  b parent class_ref 128780 // AbstractEntity
+      end
+
+      attribute 144396 "currentUrl"
+	private explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 144524 "currentSearchEntry"
+	private explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 144652 "orderBy"
+	private explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 144780 "currentLimit"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 144908 "pageCount"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 145036 "currentOffset"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 145164 "totalRowCount"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 254732 "PageSelector"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 254860 "PageSelector"
+	public explicit_return_type ""
+	nparams 6
+	  param in name "limit" explicit_type "int"
+	  param in name "offset" explicit_type "int"
+	  param in name "totalRowCount" explicit_type "int"
+	  param in name "currentUrl" explicit_type "String"
+	  param in name "currentSearchEntry" explicit_type "String"
+	  param in name "orderBy" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}, ${t4} ${p4}, ${t5} ${p5}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param limit limite
+@param offset offset
+@param totalRowCount nonbre total de rangée
+@param currentUrl url courant
+@param currentSearchEntry texte de recherche
+@param orderBy ordre de tri
+@param rowPerPage row per page
+@param pageCount page count"
+      end
+
+      operation 254988 "getPageCount"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return nombre de pages"
+      end
+
+      operation 255116 "getCurrentLimit"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return nombre maximum de rangée par page"
+      end
+
+      operation 255244 "getCurrentUrl"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return url"
+      end
+
+      operation 255372 "getCurrentOffset"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return offset"
+      end
+
+      operation 255500 "getTotalRowCount"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return nombre total de rangée"
+      end
+
+      operation 255628 "getCurrentSearchEntry"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return recherche courante"
+      end
+
+      operation 255756 "getOrderBy"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return ordre de tri"
+      end
+    end
+
+    class 148108 "SearchBar"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Modele d'une barre de recherche
+@author Guillaume Lacasse"
+      classrelation 147084 // <generalisation>
+	relation 147084 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 147084 // <generalisation>
+	  b parent class_ref 128780 // AbstractEntity
+      end
+
+      attribute 145292 "targetUrl"
+	private explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 145420 "currentSearchEntry"
+	private explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 145548 "limit"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 145676 "offset"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 145804 "possibleOrderList"
+	private explicit_type "String"
+	stereotype "Vector"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 145932 "currentOrder"
+	private explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 255884 "SearchBar"
+	public explicit_return_type ""
+	nparams 6
+	  param in name "targetUrl" explicit_type "String"
+	  param in name "currentSearchEntry" explicit_type "String"
+	  param inout name "concernedEntity" type class_ref 128268 // AbstractOrmEntity
+	  param in name "currentOrder" explicit_type "String"
+	  param in name "limit" explicit_type "int"
+	  param in name "offset" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}, ${t4} ${p4}, ${t5} ${p5}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param targetUrl url de destination de la recherche
+@param currentSearchEntry contenu textuel courant de la rercherche
+@param concernedEntity entité concernée par la recherche
+@param currentOrder ordre actuel
+@param limit limite de recherche
+@param offset offset de recherche"
+      end
+
+      operation 256012 "getTargetUrl"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return Url de destination de la recherche"
+      end
+
+      operation 256140 "getCurrentSearchEntry"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return contenu textuel courant de la rercherche"
+      end
+
+      operation 256268 "getPossibleOrderNameList"
+	public explicit_return_type "Vector<String>"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return liste des ordres possibles"
+      end
+
+      operation 256396 "buildPossibleOrderList"
+	private explicit_return_type "Vector<String>"
+	nparams 1
+	  param inout name "concernedEntity" type class_ref 128268 // AbstractOrmEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 256524 "getCurrentOrder"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return ordre actuel"
+      end
+
+      operation 256652 "getOffset"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return search offset"
+      end
+
+      operation 256780 "getLimit"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return search limit"
+      end
+    end
+
+    class 149004 "BandDiagramViewerData"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Représente le modèle de donnée d'un diagramme à bandes
+@author Guillaume Lacasse"
+      classrelation 144780 // <generalisation>
+	relation 144780 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 144780 // <generalisation>
+	  b parent class_ref 128780 // AbstractEntity
+      end
+
+      classrelation 144908 // <realization>
+	relation 144908 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 144908 // <realization>
+	  b parent class_ref 144908 // BandDiagramViewable
+      end
+
+      attribute 142732 "diagramInfo"
+	private explicit_type "String, Double"
+	stereotype "Hashtable"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 248076 "BandDiagramViewerData"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "diagramInfo" explicit_type "Hashtable<String, Double>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param diagramInfo information interne du diagramme"
+      end
+
+      operation 248204 "getDiagramInfo"
+	public explicit_return_type "Hashtable<String, Double>"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return modèle de donnée d'un diagramme à bandes"
+      end
+
+      operation 248332 "getMaximumValue"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+    end
+
+    class 149132 "FloorViewerData"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Information pour visualiser un plancher
+@author Guillaume Lacasse"
+      classrelation 145036 // <generalisation>
+	relation 145036 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 145036 // <generalisation>
+	  b parent class_ref 128780 // AbstractEntity
+      end
+
+      classrelation 145164 // <realization>
+	relation 145164 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 145164 // <realization>
+	  b parent class_ref 145420 // FloorViewable
+      end
+
+      attribute 142860 "columnCount"
+	private explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 142988 "rowCount"
+	private explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 143116 "corridorMask"
+	private explicit_type "Boolean"
+	multiplicity "[][]"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type}${multiplicity} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 143244 "zoneNameMap"
+	private explicit_type "String"
+	multiplicity "[][]"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type}${multiplicity} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 143372 "zoneMap"
+	private explicit_type "Zone"
+	multiplicity "[][]"
+	init_value " null"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type}${multiplicity} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 143500 "sourceFloor"
+	private explicit_type "Floor"
+	init_value " null"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 143628 "wallHash"
+	private explicit_type "String"
+	stereotype "HashSet"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 143756 "lazyWallTypeNameList"
+	class_attribute private explicit_type "String"
+	init_value " null"
+	stereotype "Vector"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 248460 "FloorViewerData"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 248588 "FloorViewerData"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "sourceFloor" explicit_type "Floor"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param sourceFloor source floor"
+      end
+
+      operation 248716 "getWallTypeNameList"
+	private explicit_return_type "Vector<String>"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 248844 "getColumnCount"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 248972 "getRowCount"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 249100 "isCorridorAt"
+	public explicit_return_type "boolean"
+	nparams 2
+	  param in name "x" explicit_type "int"
+	  param in name "y" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 249228 "tryGetZoneNameAt"
+	public explicit_return_type "String"
+	nparams 2
+	  param in name "x" explicit_type "int"
+	  param in name "y" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 249356 "getActionLinkListAt"
+	public return_type class_ref 128652 // ActionLink
+	nparams 2
+	  param in name "x" explicit_type "int"
+	  param in name "y" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 249484 "isWallAt"
+	public explicit_return_type "boolean"
+	nparams 3
+	  param in name "wallName" explicit_type "String"
+	  param in name "x" explicit_type "int"
+	  param in name "y" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+    end
+  end
+
+  deploymentview 129932 "viewerData"
+    //deployment diagram settings
+    package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
+    draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+    artifact 135948 "BaseViewerData"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 129804 // BaseViewerData
+      end
+    end
+
+    artifact 136076 "PromptViewerData"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 137868 // PromptViewerData
+      end
+    end
+
+    artifact 147212 "BandDiagramViewerData"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 149004 // BandDiagramViewerData
+      end
+    end
+
+    artifact 147340 "FloorViewerData"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 149132 // FloorViewerData
+      end
+    end
+
+    artifact 147468 "GridCaseData"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 145932 // GridCaseData
+      end
+    end
+
+    artifact 147596 "GridViewerData"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 145804 // GridViewerData
+      end
+    end
+
+    artifact 147724 "ImgViewerData"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 146188 // ImgViewerData
+      end
+    end
+
+    artifact 147852 "ListViewerData"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 129932 // ListViewerData
+      end
+    end
+
+    artifact 147980 "PageSelector"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 147724 // PageSelector
+      end
+    end
+
+    artifact 148108 "SearchBar"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 148108 // SearchBar
+      end
+    end
+  end
+end

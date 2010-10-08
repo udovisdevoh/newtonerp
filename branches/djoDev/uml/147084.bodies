@@ -1,0 +1,54 @@
+class HelpViewer
+!!!242700.java!!!	getHtmlCode(inout actionLink : ActionLink, in helpDivId : int) : String
+		String html = "<div class=\"HelpBalloon\" id=\"balloon" + helpDivId
+				+ "\">";
+
+		html += "Cliquez ici pour ";
+
+		String actionName = getActionName(actionLink);
+		String entityName = getEntityName(actionLink);
+
+		html += actionName;
+
+		for (String word : entityName.split(" "))
+		{
+			if (!actionName.trim().toLowerCase().contains(
+					word.toLowerCase().trim()))
+				html += " " + word;
+		}
+
+		html += "</div>";
+
+		return html;
+!!!242828.java!!!	getActionName(inout actionLink : ActionLink) : String
+		if (actionLink.getAction().getDetailedDescription() != null)
+			return actionLink.getAction().getDetailedDescription();
+
+		return actionLink.getName();
+!!!242956.java!!!	getEntityName(inout actionLink : ActionLink) : String
+
+		if (actionLink.getAction() instanceof BaseAction)
+		{
+			BaseAction baseAction = (BaseAction) actionLink.getAction();
+
+			if (baseAction.getEntity().getDetailedDescription() != null)
+				return baseAction.getEntity().getDetailedDescription();
+
+			return baseAction.getEntity().getVisibleName();
+		}
+		else if (actionLink.getAction().getEntityUsable() != null)
+		{
+
+			if (actionLink.getAction().getEntityUsable() instanceof AbstractOrmEntity)
+			{
+				AbstractOrmEntity abstractOrmEntity = (AbstractOrmEntity) actionLink
+						.getAction().getEntityUsable();
+
+				if (abstractOrmEntity.getDetailedDescription() != null)
+					return abstractOrmEntity.getDetailedDescription();
+
+				return abstractOrmEntity.getVisibleName();
+			}
+			return actionLink.getAction().getEntityUsable().getSystemName();
+		}
+		return "";

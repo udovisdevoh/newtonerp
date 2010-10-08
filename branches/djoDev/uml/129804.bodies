@@ -1,0 +1,45 @@
+class BaseViewerData
+!!!181772.java!!!	BaseViewerData()
+		super();
+!!!181900.java!!!	setTitle(in title : String) : void
+		this.title = title;
+!!!182028.java!!!	getTitle() : String
+		return title;
+!!!182156.java!!!	setGlobalActions(inout globalActions : Vector<ActionLink>) : void
+		this.globalActions = globalActions;
+!!!182284.java!!!	getGlobalActions() : ActionLink
+		return globalActions;
+!!!182412.java!!!	addGlobalActions(inout globalAction : ActionLink) : void
+		globalActions.add(globalAction);
+!!!182540.java!!!	removeGlobalActions(in globalActionName : String) : void
+		for (Iterator<ActionLink> gActionIT = globalActions.iterator(); gActionIT
+				.hasNext();)
+		{
+			ActionLink gAction = gActionIT.next();
+			if (gAction.getName().equals(globalActionName))
+				gActionIT.remove();
+		}
+!!!182668.java!!!	getAlertMessageList() : Vector<String>
+		return alertMessageList;
+!!!182796.java!!!	setAlertMessageList(inout alertMessageList : Vector<String>) : void
+		this.alertMessageList = alertMessageList;
+!!!182924.java!!!	addAlertMessage(in message : String) : void
+		if (message.length() > 0)
+			alertMessageList.add(message);
+!!!183052.java!!!	getNormalMessageList() : Vector<String>
+		return normalMessageList;
+!!!183180.java!!!	setNormalMessageList(inout normalMessageList : Vector<String>) : void
+		this.normalMessageList = normalMessageList;
+!!!183308.java!!!	addNormalMessage(in message : String) : void
+		normalMessageList.add(message);
+!!!183436.java!!!	getBackLink() : ActionLink
+		return backLink;
+!!!183564.java!!!	setBackLink(inout backLink : ActionLink) : void
+		this.backLink = backLink;
+!!!183692.java!!!	addComplementaryInfoLine(in complementaryInfoLine : String) : void
+		// TODO Auto-generated method stub
+		getComplementaryInfoLineList().add(complementaryInfoLine);
+!!!183820.java!!!	getComplementaryInfoLineList() : Vector<String>
+		if (complementaryInfoLineList == null)
+			complementaryInfoLineList = new Vector<String>();
+		return complementaryInfoLineList;

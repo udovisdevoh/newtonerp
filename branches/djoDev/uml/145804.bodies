@@ -1,0 +1,50 @@
+class GridViewerData
+!!!250508.java!!!	GridViewerData()
+		super();
+!!!250636.java!!!	getHeader() : GridCaseData
+		return header;
+!!!250764.java!!!	setHeader(inout header : GridCaseData) : void
+		this.header = header;
+!!!250892.java!!!	getLeftHeader() : GridCaseData
+		return leftHeader;
+!!!251020.java!!!	setLeftHeader(inout leftHeader : GridCaseData) : void
+		this.leftHeader = leftHeader;
+!!!251148.java!!!	getCases() : GridCaseData
+		return cases;
+!!!251276.java!!!	setCases(inout cases : GridCaseData) : void
+		this.cases = cases;
+!!!251404.java!!!	getSpecificActionButtonList() : ActionLink
+		return specificActionButtonList;
+!!!251532.java!!!	setSpecificActionButtonList(inout specificActionButtonList : Vector<ActionLink>) : void
+		this.specificActionButtonList = specificActionButtonList;
+!!!251660.java!!!	addSpecificActionButtonList(inout actionLink : ActionLink) : void
+		specificActionButtonList.add(actionLink);
+!!!251788.java!!!	removeSpecificActions(in specificActionName : String) : void
+		for (Iterator<ActionLink> sActionIT = specificActionButtonList
+				.iterator(); sActionIT.hasNext();)
+		{
+			ActionLink gAction = sActionIT.next();
+			if (gAction.getName().equals(specificActionName))
+				sActionIT.remove();
+		}
+!!!251916.java!!!	removeSpecificActions(inout SpecificActionName : ActionLink) : void
+		for (Iterator<ActionLink> sActionIT = specificActionButtonList
+				.iterator(); sActionIT.hasNext();)
+		{
+			ActionLink gAction = sActionIT.next();
+			if (gAction.getName().equals(SpecificActionName)) // Es-tu sur que
+				// tu veux
+				// comparer le
+				// string du
+				// getName avec un
+				// ActionLink?
+				sActionIT.remove();
+		}
+!!!252044.java!!!	isColored() : boolean
+		return isColored;
+!!!252172.java!!!	setColored(inout isColored : boolean) : void
+		this.isColored = isColored;
+!!!252300.java!!!	isSpanSimilar() : boolean
+		return spanSimilar;
+!!!252428.java!!!	setSpanSimilar(inout spanSimilar : boolean) : void
+		this.spanSimilar = spanSimilar;

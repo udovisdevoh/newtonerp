@@ -1,0 +1,13 @@
+class UserRightModuleTest
+!!!258444.java!!!	setUp() : void
+	ListModule.initAllModule();
+	Orm.connect();
+!!!258572.java!!!	tearDown() : void
+	// TODO : Complete me
+!!!258700.java!!!	testRightCheck() : void
+	Hashtable<String, String> rightParam = new Hashtable<String, String>();
+	Module module = ListModule.getModule("UserRightModule");
+	rightParam.put("name", "admin");
+	rightParam.put("module", "UserRightModule");
+	rightParam.put("action", "GetUser");
+	assertNotNull(module.doAction("RightCheck", rightParam));

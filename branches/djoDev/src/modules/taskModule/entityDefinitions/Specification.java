@@ -47,8 +47,7 @@ public class Specification extends AbstractOrmEntity
 	public boolean isSatisfied(Hashtable<String, String> entityParameters,
 			boolean isStraightSearch)
 	{
-		Logger
-				.info("[TASKMODULE] Vérification à savoir si une spécification est satisfaite");
+		Logger.info("[TASKMODULE] Vérification à savoir si une spécification est satisfaite");
 
 		AbstractOrmEntity searchEntity = getSearchEntity();
 

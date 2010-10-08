@@ -1,0 +1,18 @@
+class Groups
+!!!163724.java!!!	Groups()
+		super();
+		AccessorManager.addAccessor(this, new Right());
+		setVisibleName("Groupe");
+!!!163852.java!!!	initFields() : Fields
+		FieldString groupName = new FieldString("Nom", "groupName");
+		groupName.setNaturalKey(true);
+
+		Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
+		fieldsInit.add(new FieldInt("Numéro", getPrimaryKeyName()));
+		fieldsInit.add(groupName);
+		return new Fields(fieldsInit);
+!!!163980.java!!!	getRightList() : Right
+		Vector<Right> rightList = new Vector<Right>();
+		for (AbstractOrmEntity entity : getPluralAccessor("Right"))
+			rightList.add((Right) entity);
+		return rightList;

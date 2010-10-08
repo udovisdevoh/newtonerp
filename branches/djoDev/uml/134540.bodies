@@ -1,0 +1,16 @@
+class User
+!!!165388.java!!!	User()
+		super();
+		AccessorManager.addAccessor(this, new Groups());
+		setVisibleName("Utilisateur");
+!!!165516.java!!!	initFields() : Fields
+		Vector<Field<?>> fieldsData = new Vector<Field<?>>();
+		fieldsData.add(new FieldInt("Numéro de user", getPrimaryKeyName()));
+		fieldsData.add(new FieldString("Nom", "name"));
+		FieldString pwd = new FieldString("Mot de passe", "password");
+		pwd.setHidden(true);
+		fieldsData.add(pwd);
+		fieldsData.add(new FieldInt("Numéro de groupe", "groupsID"));
+		return new Fields(fieldsData);
+!!!165644.java!!!	getGroupsEntity() : Groups
+		return (Groups) getSingleAccessor("groupsID");

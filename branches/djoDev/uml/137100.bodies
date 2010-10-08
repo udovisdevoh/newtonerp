@@ -1,0 +1,9 @@
+class ModuleNotFoundException
+!!!178188.java!!!	ModuleNotFoundException(in moduleName : String)
+		super(moduleName + " module doesn't exist");
+!!!178316.java!!!	ModuleNotFoundException()
+		super();
+!!!178444.java!!!	ModuleNotFoundException(in moduleName : String, inout cause : Throwable)
+		super(moduleName + " module doesn't exist", cause);
+!!!178572.java!!!	ModuleNotFoundException(inout cause : Throwable)
+		super(cause);

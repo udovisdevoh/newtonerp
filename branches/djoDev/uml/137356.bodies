@@ -1,0 +1,5 @@
+class AlertEntity
+!!!179340.java!!!	AlertEntity(in message : String)
+		this.message = message;
+!!!179468.java!!!	getMessage() : String
+		return message;

@@ -1,0 +1,4 @@
+<map id="G" name="G">
+<area shape="rect" id="node1" href="$classnewtonERP_1_1orm_1_1field_1_1type_1_1FieldString.html" title="String field in the entities (String is a short text where text is a long text)." alt="" coords="7,5,257,35"/>
+<area shape="rect" id="node3" href="$classnewtonERP_1_1orm_1_1field_1_1type_1_1FieldText.html" title="text field in the entities (text is a long text where String is a short text)" alt="" coords="308,5,545,35"/>
+</map>

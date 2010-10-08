@@ -1,6 +1,7 @@
 package newtonERP.orm.associations;
 
 import java.util.HashSet;
+import java.util.Hashtable;
 import java.util.TreeMap;
 import java.util.Vector;
 
@@ -15,12 +16,13 @@ import newtonERP.orm.Orm;
  */
 public class PluralAccessorManager
 {
+
 	/**
 	 * @param entity entité source
 	 * @return liste des accessors 1 à 1 et plusieurs à 1 pour l'entité source
 	 */
-	public final static PluralAccessor getPluralAccessorList(
-			newtonERP.module.AbstractOrmEntity entity)
+	public static final TreeMap<String, PluralAccessor> getPluralAccessorList(
+			AbstractOrmEntity entity)
 	{
 		TreeMap<String, PluralAccessor> pluralAccessorList = new TreeMap<String, PluralAccessor>();
 
@@ -38,9 +40,9 @@ public class PluralAccessorManager
 	 *            null)
 	 * @return accesseur multiple
 	 */
-	public static PluralAccessor getPluralAccessor(
-			newtonERP.module.AbstractOrmEntity entity, String accessorName,
-			newtonERP.module.AbstractOrmEntity searchCriteriaEntity)
+	public static PluralAccessor getPluralAccessor(AbstractOrmEntity entity,
+			String accessorName, AbstractOrmEntity searchCriteriaEntity)
+
 	{
 		PluralAccessor pluralAccessor;
 
@@ -82,15 +84,15 @@ public class PluralAccessorManager
 	 * @param accessorName nom de l'accesseur
 	 * @return accesseur multiple
 	 */
-	public final static PluralAccessor getPluralAccessor(
-			newtonERP.module.AbstractOrmEntity entity, String accessorName)
+	public static final PluralAccessor getPluralAccessor(
+			AbstractOrmEntity entity, String accessorName)
 	{
 		return getPluralAccessor(entity, accessorName, null);
 	}
 
 	private static void addFromNegativeFlagPoolList(
 			TreeMap<String, PluralAccessor> pluralAccessorList,
-			newtonERP.module.AbstractOrmEntity entity)
+			AbstractOrmEntity entity)
 	{
 		PluralAccessor intermediatePluralAccessor;
 		Vector<AbstractOrmEntity> resultSet;
@@ -170,7 +172,7 @@ public class PluralAccessorManager
 
 	private static void addFromNegativeListOfValueList(
 			TreeMap<String, PluralAccessor> pluralAccessorList,
-			newtonERP.module.AbstractOrmEntity entity)
+			AbstractOrmEntity entity)
 	{
 		// searchCriteriaEntity can be null
 
@@ -213,7 +215,7 @@ public class PluralAccessorManager
 
 	private static void addFromPositiveFlagPoolList(
 			TreeMap<String, PluralAccessor> pluralAccessorList,
-			newtonERP.module.AbstractOrmEntity entity)
+			AbstractOrmEntity entity)
 	{
 		PluralAccessor pluralAccessor;
 		FlagPool flagPool;
@@ -230,8 +232,8 @@ public class PluralAccessorManager
 	}
 
 	private static PluralAccessor tryGetAccessorFromPositiveFlagPool(
-			newtonERP.module.AbstractOrmEntity entity, String accessorName,
-			newtonERP.module.AbstractOrmEntity searchCriteriaEntity)
+			AbstractOrmEntity entity, String accessorName,
+			AbstractOrmEntity searchCriteriaEntity)
 	{
 		// searchCriteriaEntity can be null
 
@@ -278,9 +280,8 @@ public class PluralAccessorManager
 	}
 
 	private static PluralAccessor getPositivePluralAccessor(
-			newtonERP.module.AbstractOrmEntity entity,
-			newtonERP.module.generalEntity.FlagPool flagPool,
-			newtonERP.module.AbstractOrmEntity searchCriteriaEntity)
+			AbstractOrmEntity entity, FlagPool flagPool,
+			AbstractOrmEntity searchCriteriaEntity)
 	{
 		// searchCriteriaEntity can be null
 
@@ -288,5 +289,4 @@ public class PluralAccessorManager
 
 		return flagPool.getPositivePluralForeignAccessor(searchCriteriaEntity);
 	}
-
 }

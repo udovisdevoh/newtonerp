@@ -17,6 +17,9 @@ public class ModuleNotFoundException extends ModuleException
 		super(moduleName + " module doesn't exist");
 	}
 
+	/**
+	 * 
+	 */
 	public ModuleNotFoundException()
 	{
 		super();
@@ -38,5 +41,4 @@ public class ModuleNotFoundException extends ModuleException
 	{
 		super(cause);
 	}
-
 }

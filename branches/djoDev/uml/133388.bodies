@@ -1,0 +1,28 @@
+class SearchCriteriaOperator
+!!!158476.java!!!	SearchCriteriaOperator()
+		super();
+		setVisibleName("Opérateur");
+!!!158604.java!!!	initFields() : Fields
+		Vector<Field<?>> fieldList = new Vector<Field<?>>();
+		fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
+		fieldList.add(new FieldString("Nom", "name"));
+		return new Fields(fieldList);
+!!!158732.java!!!	deleteUI(inout parameters : Hashtable<String, String>) : AbstractEntity
+		/*
+		 * On ne veut pas permettre l'effacement d'opérateur alors on redirige
+		 * l'effacement vers GetList
+		 */
+		ListViewerData entityList = super.getList();
+		return entityList;
+!!!158860.java!!!	editUI(inout parameters : Hashtable<String, String>) : BaseViewerData
+		/*
+		 * On ne veut pas permettre la modification d'opérateur alors on
+		 * redirige vers GetList
+		 */
+		ListViewerData entityList = super.getList();
+		return entityList;
+!!!158988.java!!!	getList(inout parameters : Hashtable<String, String>) : ListViewerData
+		ListViewerData entityList = super.getList(parameters);
+		return entityList;
+!!!159116.java!!!	getOperator() : String
+		return getDataString("name");

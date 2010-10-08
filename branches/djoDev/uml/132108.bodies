@@ -1,0 +1,5 @@
+class StaticTextEntity
+!!!190860.java!!!	StaticTextEntity(in text : String)
+		this.text = text;
+!!!190988.java!!!	getText() : String
+		return text.replace("<", "&lt;").replace(">", "&gt;");

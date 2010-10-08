@@ -1,0 +1,1063 @@
+format 75
+"associations" // src::newtonERP::orm::associations
+  revision 1
+  modified_by 12 "djo"
+  // class settings
+  //class diagram settings
+  draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+  //use case diagram settings
+  package_name_in_tab default show_context default auto_label_position default draw_all_relations default class_drawing_mode default shadow default show_stereotype_properties default
+  //sequence diagram settings
+  show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+  //collaboration diagram settings
+  show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default show_msg_context default draw_all_relations default shadow default show_stereotype_properties default
+  //object diagram settings
+   write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+  //component diagram settings
+  package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default
+  draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+  //deployment diagram settings
+  package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
+  draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+  //state diagram settings
+  package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  //activity diagram settings
+  package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+  show_infonote default drawing_language default show_stereotype_properties default
+  
+  java_dir "/home/djo/workspace/NewtonERP/src/newtonERP/orm/associations/"
+  java_package "newtonERP.orm.associations"
+  classview 128780 "associations"
+    //class diagram settings
+    draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+    //collaboration diagram settings
+    show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default show_msg_context default draw_all_relations default shadow default show_stereotype_properties default
+    //object diagram settings
+     write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+    //sequence diagram settings
+    show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+    //state diagram settings
+    package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+    show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+    //class settings
+    //activity diagram settings
+    package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+    show_infonote default drawing_language default show_stereotype_properties default
+    class 129420 "PluralAccessor"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Accesseur multiple
+@author Guillaume"
+      classrelation 141324 // <realization>
+	relation 141324 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 141324 // <realization>
+	  b parent class_ref 140428 // Collection
+      end
+
+      classrelation 141452 // internalEntityDefinition (<unidirectional association>)
+	relation 141452 --->
+	  a role_name "internalEntityDefinition" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 141452 // internalEntityDefinition (<unidirectional association>)
+	  b parent class_ref 128268 // AbstractOrmEntity
+      end
+
+      classrelation 141580 // entityList (<unidirectional association>)
+	relation 141580 --->
+	  stereotype "Vector"
+	  a role_name "entityList" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 141580 // entityList (<unidirectional association>)
+	  b parent class_ref 128268 // AbstractOrmEntity
+      end
+
+      operation 199692 "PluralAccessor"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "internalEntityDefinition" type class_ref 128268 // AbstractOrmEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param internalEntityDefinition définition d'entité interne"
+      end
+
+      operation 199820 "PluralAccessor"
+	public explicit_return_type ""
+	nparams 2
+	  param inout name "internalEntityDefinition" type class_ref 128268 // AbstractOrmEntity
+	  param inout name "entityList" explicit_type "Vector<AbstractOrmEntity>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param internalEntityDefinition définition d'entité interne
+@param entityList liste d'entités"
+      end
+
+      operation 199948 "getInternalEntityDefinition"
+	public return_type class_ref 128268 // AbstractOrmEntity
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return définition d'entité interne"
+      end
+
+      operation 200076 "getEntityList"
+	private return_type class_ref 128268 // AbstractOrmEntity
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 200204 "iterator"
+	public return_type class_ref 128268 // AbstractOrmEntity
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 200332 "add"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "entity" type class_ref 128268 // AbstractOrmEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 200460 "addAll"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "collection" explicit_type "Collection<? extends AbstractOrmEntity>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 200588 "clear"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 200716 "contains"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "object" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 200844 "containsAll"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "collection" explicit_type "Collection<?>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 200972 "isEmpty"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 201100 "remove"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "object" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 201228 "removeAll"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "collection" explicit_type "Collection<?>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 201356 "retainAll"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "collection" explicit_type "Collection<?>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 201484 "size"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 201612 "toArray"
+	public explicit_return_type "Object"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 201740 "toArray"
+	public explicit_return_type "T"
+	nparams 1
+	  param inout name "a" explicit_type "T"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 201868 "get"
+	public return_type class_ref 128268 // AbstractOrmEntity
+	nparams 1
+	  param in name "i" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param i index
+@return entité à l'index i"
+      end
+    end
+
+    class 129548 "GateWay"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Accesseur passant par un autre accesseur
+@author Guillaume Lacasse"
+      classrelation 141068 // gateWayEntity (<unidirectional association>)
+	relation 141068 --->
+	  a role_name "gateWayEntity" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 141068 // gateWayEntity (<unidirectional association>)
+	  b parent class_ref 128268 // AbstractOrmEntity
+      end
+
+      classrelation 141196 // externalEntity (<unidirectional association>)
+	relation 141196 --->
+	  a role_name "externalEntity" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 141196 // externalEntity (<unidirectional association>)
+	  b parent class_ref 128268 // AbstractOrmEntity
+      end
+
+      operation 198796 "GateWay"
+	public explicit_return_type ""
+	nparams 2
+	  param inout name "gateWayEntity" type class_ref 128268 // AbstractOrmEntity
+	  param inout name "externalEntity" type class_ref 128268 // AbstractOrmEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param gateWayEntity entité de passerelle
+@param externalEntity entité externe"
+      end
+
+      operation 198924 "getGateWayEntity"
+	public return_type class_ref 128268 // AbstractOrmEntity
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return entité de passerelle"
+      end
+
+      operation 199052 "getExternalEntity"
+	public return_type class_ref 128268 // AbstractOrmEntity
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return entité externe"
+      end
+
+      operation 199180 "isColored"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return whether the external entity's field should be in color"
+      end
+    end
+
+    class 139916 "AccessorManager"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Facade vers FlagPoolManager et ListOfValueManager
+@author Guillaume Lacasse"
+      operation 197132 "addAccessor"
+	class_operation public explicit_return_type "void"
+	nparams 2
+	  param inout name "sourceEntity" type class_ref 128268 // AbstractOrmEntity
+	  param inout name "foreignEntityDefinition" type class_ref 128268 // AbstractOrmEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Essaie d'ajouter un accessor quelconque (1 à plusieur, plusiseurs à
+plusieurs selon la disponibilité des tables)
+
+@param sourceEntity the source entity
+@param foreignEntityDefinition entity of the foreign entity"
+      end
+
+      operation 197260 "addFlagPool"
+	class_operation public explicit_return_type "void"
+	nparams 2
+	  param inout name "sourceEntity" type class_ref 128268 // AbstractOrmEntity
+	  param inout name "foreignEntityDefinition" type class_ref 128268 // AbstractOrmEntity
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param sourceEntity the source entity
+@param foreignEntityDefinition entity of the foreign entity"
+      end
+
+      operation 197388 "addListOfValue"
+	class_operation public explicit_return_type "void"
+	nparams 2
+	  param inout name "entity" type class_ref 128268 // AbstractOrmEntity
+	  param inout name "foreignEntity" type class_ref 128268 // AbstractOrmEntity
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param entity Entité source
+@param foreignEntity Entité cible"
+      end
+
+      operation 197516 "getPluralAccessorList"
+	class_operation public return_type class_ref 129420 // PluralAccessor
+	nparams 1
+	  param inout name "abstractOrmEntity" type class_ref 128268 // AbstractOrmEntity
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param abstractOrmEntity entité source
+@return liste des accessors plusieurs à plusieurs pour l'entité source"
+      end
+
+      operation 197644 "getSingleAccessorList"
+	class_operation public return_type class_ref 128268 // AbstractOrmEntity
+	nparams 1
+	  param inout name "abstractOrmEntity" type class_ref 128268 // AbstractOrmEntity
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param abstractOrmEntity entité source
+@return liste des accessors 1 à 1 et plusieurs à 1 pour l'entité source"
+      end
+
+      operation 197772 "getSingleAccessor"
+	class_operation public return_type class_ref 128268 // AbstractOrmEntity
+	nparams 2
+	  param inout name "abstractOrmEntity" type class_ref 128268 // AbstractOrmEntity
+	  param in name "accessorName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param abstractOrmEntity entité
+@param accessorName nom de l'accessor
+@return accessor"
+      end
+
+      operation 197900 "addGateWay"
+	class_operation public explicit_return_type "void"
+	nparams 3
+	  param inout name "sourceEntity" type class_ref 128268 // AbstractOrmEntity
+	  param inout name "gateWayEntity" type class_ref 128268 // AbstractOrmEntity
+	  param inout name "externalEntity" type class_ref 128268 // AbstractOrmEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param sourceEntity entié de source
+@param gateWayEntity entité de passerelle
+@param externalEntity entié externe"
+      end
+    end
+
+    class 140044 "FlagPoolManager"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Cette classe gère les comportement d'association d'entités faites par le
+FlagPool
+@author Guillaume"
+      operation 198028 "applyFlagPoolChanges"
+	class_operation public explicit_return_type "void"
+	nparams 3
+	  param inout name "sourceEntity" type class_ref 128268 // AbstractOrmEntity
+	  param inout name "flagPoolList" explicit_type "Iterable<FlagPool>"
+	  param inout name "parameters" explicit_type "Hashtable<String, String>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param sourceEntity the source entity
+@param flagPoolList liste de FlagPool
+@param parameters paramêtres (mêmes type que dans doAction"
+      end
+
+      operation 198156 "applyFlagPoolChanges"
+	class_operation private explicit_return_type "void"
+	nparams 3
+	  param inout name "sourceEntity" type class_ref 128268 // AbstractOrmEntity
+	  param inout name "flagPool" type class_ref 129676 // FlagPool
+	  param inout name "parameters" explicit_type "Hashtable<String, String>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 198284 "getSearchEntity"
+	class_operation private return_type class_ref 128268 // AbstractOrmEntity
+	nparams 3
+	  param inout name "sourceEntity" type class_ref 128268 // AbstractOrmEntity
+	  param inout name "flagPool" type class_ref 129676 // FlagPool
+	  param in name "elementName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 198412 "addFlagPool"
+	class_operation public explicit_return_type "void"
+	nparams 2
+	  param inout name "sourceEntity" type class_ref 128268 // AbstractOrmEntity
+	  param inout name "foreignEntityDefinition" type class_ref 128268 // AbstractOrmEntity
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param sourceEntity the source entity
+@param foreignEntityDefinition entity of the foreign entity"
+      end
+
+      operation 198540 "buildIntermediateEntityDefinition"
+	class_operation private return_type class_ref 128268 // AbstractOrmEntity
+	nparams 2
+	  param inout name "entity1" type class_ref 128268 // AbstractOrmEntity
+	  param inout name "entity2" type class_ref 128268 // AbstractOrmEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 198668 "addFlagPool"
+	class_operation private explicit_return_type "void"
+	nparams 8
+	  param inout name "sourceEntity" type class_ref 128268 // AbstractOrmEntity
+	  param in name "visibleDescription" explicit_type "String"
+	  param inout name "intermediateEntityDefinition" type class_ref 128268 // AbstractOrmEntity
+	  param in name "intermediateKeyIn" explicit_type "String"
+	  param in name "intermediateKeyOut" explicit_type "String"
+	  param inout name "foreignEntityDefinition" type class_ref 128268 // AbstractOrmEntity
+	  param in name "foreignKey" explicit_type "String"
+	  param inout name "foreignDescriptionUiControls" explicit_type "Vector<String>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}, ${t4} ${p4}, ${t5} ${p5}, ${t6} ${p6}, ${t7} ${p7}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param sourceEntityDefinition Definition de l'entité de source, exemple:
+           groupe
+@param visibleDescription Description visible du flag pool
+@param intermediateEntityDefinition Entité de table intermédiaire,
+           exemple: GroupsRight
+@param intermediateKeyIn Colonne d'entré de table intermédiaire, exemple:
+           groupID
+@param intermediateKeyOut Colonne de sortie de table intermédiaire,
+           exemple: rightID
+@param foreignEntityDefinition entité de table étrangère, exemple: Right
+@param foreignKey clef d'identification de table étrangère, exemple:
+           PKrightID
+@param foreignDescriptionUiControls liste de colonne de description de
+           table étrangère, exemple: Action, Module"
+      end
+    end
+
+    class 140172 "GateWayManager"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Sert à gérer les accesseurs passant par des accesseurs
+@author Guillaume Lacasse"
+      operation 199308 "addGateWay"
+	class_operation public explicit_return_type "void"
+	nparams 3
+	  param inout name "sourceEntity" type class_ref 128268 // AbstractOrmEntity
+	  param inout name "gateWayEntity" type class_ref 128268 // AbstractOrmEntity
+	  param inout name "externalEntity" type class_ref 128268 // AbstractOrmEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param sourceEntity entité de source
+@param gateWayEntity entité de passerelle
+@param externalEntity entité externe"
+      end
+
+      operation 199436 "getExternalEntity"
+	class_operation public return_type class_ref 128268 // AbstractOrmEntity
+	nparams 2
+	  param inout name "gateWay" type class_ref 129548 // GateWay
+	  param inout name "sourceEntity" type class_ref 128268 // AbstractOrmEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param gateWay gateWay
+@param sourceEntity source entity
+@return external entity"
+      end
+    end
+
+    class 140300 "ListOfValueManager"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "List of value manager
+
+@author Guillaume Lacasse"
+      operation 199564 "addListOfValue"
+	class_operation public explicit_return_type "void"
+	nparams 2
+	  param inout name "entity" type class_ref 128268 // AbstractOrmEntity
+	  param inout name "foreignEntity" type class_ref 128268 // AbstractOrmEntity
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param entity Entité source
+@param foreignEntity Entité cible"
+      end
+    end
+
+    class 140556 "PluralAccessorManager"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Cette classe s'occupe de la gestion des accessor plusieurs à plusieurs
+@author Guillaume"
+      operation 201996 "getPluralAccessorList"
+	class_operation public return_type class_ref 129420 // PluralAccessor
+	nparams 1
+	  param inout name "entity" type class_ref 128268 // AbstractOrmEntity
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param entity entité source
+@return liste des accessors 1 à 1 et plusieurs à 1 pour l'entité source"
+      end
+
+      operation 202124 "getPluralAccessor"
+	class_operation public return_type class_ref 129420 // PluralAccessor
+	nparams 3
+	  param inout name "entity" type class_ref 128268 // AbstractOrmEntity
+	  param in name "accessorName" explicit_type "String"
+	  param inout name "searchCriteriaEntity" type class_ref 128268 // AbstractOrmEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param entity définition d'entité
+@param accessorName nom de l'accesseur
+@param searchCriteriaEntity critère de recherche (facultatif, peut être
+           null)
+@return accesseur multiple"
+      end
+
+      operation 202252 "getPluralAccessor"
+	class_operation public return_type class_ref 129420 // PluralAccessor
+	nparams 2
+	  param inout name "entity" type class_ref 128268 // AbstractOrmEntity
+	  param in name "accessorName" explicit_type "String"
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param entity entité source
+@param accessorName nom de l'accesseur
+@return accesseur multiple"
+      end
+
+      operation 202380 "addFromNegativeFlagPoolList"
+	class_operation private explicit_return_type "void"
+	nparams 2
+	  param inout name "pluralAccessorList" explicit_type "TreeMap<String, PluralAccessor>"
+	  param inout name "entity" type class_ref 128268 // AbstractOrmEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 202508 "addFromNegativeListOfValueList"
+	class_operation private explicit_return_type "void"
+	nparams 2
+	  param inout name "pluralAccessorList" explicit_type "TreeMap<String, PluralAccessor>"
+	  param inout name "entity" type class_ref 128268 // AbstractOrmEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 202636 "addFromPositiveFlagPoolList"
+	class_operation private explicit_return_type "void"
+	nparams 2
+	  param inout name "pluralAccessorList" explicit_type "TreeMap<String, PluralAccessor>"
+	  param inout name "entity" type class_ref 128268 // AbstractOrmEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 202764 "tryGetAccessorFromPositiveFlagPool"
+	class_operation private return_type class_ref 129420 // PluralAccessor
+	nparams 3
+	  param inout name "entity" type class_ref 128268 // AbstractOrmEntity
+	  param in name "accessorName" explicit_type "String"
+	  param inout name "searchCriteriaEntity" type class_ref 128268 // AbstractOrmEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 202892 "getPositivePluralAccessor"
+	class_operation private return_type class_ref 129420 // PluralAccessor
+	nparams 3
+	  param inout name "entity" type class_ref 128268 // AbstractOrmEntity
+	  param inout name "flagPool" type class_ref 129676 // FlagPool
+	  param inout name "searchCriteriaEntity" type class_ref 128268 // AbstractOrmEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 140684 "SingleAccessorManager"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Cette classe s'occupe de la gestion des accessor 1 à 1 ou plusieurs à 1
+@author Guillaume"
+      operation 203020 "getSingleAccessorList"
+	class_operation public return_type class_ref 128268 // AbstractOrmEntity
+	nparams 1
+	  param inout name "entity" type class_ref 128268 // AbstractOrmEntity
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param entity entité source
+@return liste des accessors plusieurs à plusieurs pour l'entité source"
+      end
+
+      operation 203148 "getForeignEntity"
+	class_operation private return_type class_ref 128268 // AbstractOrmEntity
+	nparams 2
+	  param inout name "sourceEntity" type class_ref 128268 // AbstractOrmEntity
+	  param inout name "foreignEntityDefinition" type class_ref 128268 // AbstractOrmEntity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 203276 "getSingleAccessor"
+	class_operation public return_type class_ref 128268 // AbstractOrmEntity
+	nparams 2
+	  param inout name "abstractOrmEntity" type class_ref 128268 // AbstractOrmEntity
+	  param in name "listOfValueName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param abstractOrmEntity entité
+@param listOfValueName nom de l'accessor
+@return accessor singulier"
+      end
+    end
+  end
+
+  deploymentview 130188 "associations"
+    //deployment diagram settings
+    package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
+    draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+    artifact 138380 "AccessorManager"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 139916 // AccessorManager
+      end
+    end
+
+    artifact 138508 "FlagPoolManager"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 140044 // FlagPoolManager
+      end
+    end
+
+    artifact 138636 "GateWay"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 129548 // GateWay
+      end
+    end
+
+    artifact 138764 "GateWayManager"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 140172 // GateWayManager
+      end
+    end
+
+    artifact 138892 "ListOfValueManager"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 140300 // ListOfValueManager
+      end
+    end
+
+    artifact 139020 "PluralAccessor"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 129420 // PluralAccessor
+      end
+    end
+
+    artifact 139148 "PluralAccessorManager"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 140556 // PluralAccessorManager
+      end
+    end
+
+    artifact 139276 "SingleAccessorManager"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 140684 // SingleAccessorManager
+      end
+    end
+  end
+end

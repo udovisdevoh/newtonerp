@@ -1,0 +1,13 @@
+class State
+!!!141964.java!!!	State()
+		super();
+		setVisibleName("Provinces / États");
+!!!142092.java!!!	initFields() : Fields
+		FieldString name = new FieldString("Nom", "name");
+		name.setNaturalKey(true);
+
+		Vector<Field<?>> fieldList = new Vector<Field<?>>();
+		fieldList.add(new FieldInt("Numero de province / état",
+				getPrimaryKeyName()));
+		fieldList.add(name);
+		return new Fields(fieldList);

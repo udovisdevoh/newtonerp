@@ -1,0 +1,51 @@
+class ActionSourceCodeBuilder
+!!!229900.java!!!	build(inout actionEntity : ActionEntity) : String
+		actionEntity = (ActionEntity) Orm.selectUnique(actionEntity);
+
+		String sourceCode = "";
+
+		String packageName = getPackageName(actionEntity);
+		String naturalKeyName = getNaturalKeyValue(actionEntity);
+		String systemName = getSystemName(actionEntity);
+
+		sourceCode += "package modules." + packageName + ".actions;\n";
+		sourceCode += "\n";
+		sourceCode += "import java.util.Hashtable;\n";
+		sourceCode += "import java.util.Vector;\n";
+		sourceCode += "import newtonERP.module.AbstractAction;\n";
+		sourceCode += "import newtonERP.module.AbstractEntity;\n";
+		sourceCode += "import newtonERP.module.AbstractOrmEntity;\n";
+		sourceCode += "import newtonERP.orm.Orm;\n";
+		sourceCode += "import newtonERP.orm.exceptions.OrmException;\n";
+		sourceCode += "import newtonERP.orm.field.Field;\n";
+		sourceCode += "import newtonERP.viewers.viewerData.BaseViewerData;\n";
+		sourceCode += "import newtonERP.module.generalEntity.StaticTextEntity;\n";
+
+		sourceCode += "\n";
+		sourceCode += "/**\n";
+		sourceCode += " * " + naturalKeyName + "\n";
+		sourceCode += " * @author NewtonERP code generator - Guillaume Lacasse\n";
+		sourceCode += " */\n";
+		sourceCode += "public class " + systemName
+				+ " extends AbstractAction\n";
+		sourceCode += "{\n";
+		sourceCode += "    @Override\n";
+		sourceCode += "    public AbstractEntity doAction(AbstractEntity sourceEntity, Hashtable<String, String> parameters)\n";
+		sourceCode += "    {\n";
+		sourceCode += "        return new StaticTextEntity(\"Please implement action\");\n";
+		sourceCode += "    }\n";
+		sourceCode += "}\n";
+
+		return sourceCode;
+!!!230028.java!!!	getSystemName(inout actionEntity : ActionEntity) : String
+		return actionEntity.getDataString("systemName");
+!!!230156.java!!!	getNaturalKeyValue(inout actionEntity : ActionEntity) : String
+		return actionEntity.getNaturalKeyDescription();
+!!!230284.java!!!	getPackageName(inout actionEntity : ActionEntity) : String
+		return ModuleSourceCodeBuilder
+				.getPackageName(getModuleEntity(actionEntity));
+!!!230412.java!!!	getModuleEntity(inout actionEntity : ActionEntity) : ModuleEntity
+		ModuleEntity moduleEntity = (ModuleEntity) actionEntity
+				.getSingleAccessor(new ModuleEntity().getForeignKeyName());
+
+		return moduleEntity;

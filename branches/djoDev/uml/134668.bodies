@@ -1,0 +1,7 @@
+class Logout
+!!!163340.java!!!	Logout()
+		setDetailedDescription("fermer votre session de manière sécuritaire");
+!!!163468.java!!!	doAction(inout entity : AbstractEntity, inout parameters : Hashtable<String, String>) : AbstractEntity
+		Authentication.setCurrentUserName(null);
+
+		return new StaticTextEntity("Au revoir!");

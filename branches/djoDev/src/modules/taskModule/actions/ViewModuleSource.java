@@ -26,7 +26,7 @@ public class ViewModuleSource extends AbstractAction
 			Hashtable<String, String> parameters)
 	{
 		ModuleEntity moduleEntity = (ModuleEntity) entity;
-		return new StaticTextEntity(SourceCodeBuilder
-				.buildModuleSourceCode(moduleEntity));
+		return new StaticTextEntity(
+				SourceCodeBuilder.buildModuleSourceCode(moduleEntity));
 	}
 }

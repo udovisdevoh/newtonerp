@@ -1,0 +1,104 @@
+class FieldViewer
+!!!241804.java!!!	getHtmlCode(inout field : Field) : String
+		String html;
+		if (field instanceof FieldBool)
+			html = boolViewer(field);
+		else if (field instanceof FieldCurrency)
+			html = currencyViewer(field);
+		else if (field instanceof FieldDouble || field instanceof FieldInt)
+			html = numberViewer(field);
+		else if (field instanceof FieldDateTime)
+			html = dateTimeViewer(field);
+		else if (field instanceof FieldText)
+			html = textViewer(field);
+		else
+			html = otherViewer(field);
+
+		return html;
+
+!!!241932.java!!!	currencyViewer(inout field : Field) : String
+		String moneyFormatStyle = " style=\"width:80px;text-align:right\"";
+		String textFieldType = "";
+
+		if (field.isHidden())
+			textFieldType = "password";
+		else
+			textFieldType = "text";
+
+		if (field.isReadOnly())
+			return "<input type='hidden' name='" + field.getShortName()
+					+ "' value='" + field.getDataString()
+					+ "' class='textField' />" + field.getDataString();
+
+		return "<input" + moneyFormatStyle + " type='" + textFieldType
+				+ "' name='" + field.getShortName() + "' value='"
+				+ field.getDataString() + "' class='textField' />";
+!!!242060.java!!!	textViewer(inout field : Field) : String
+		String longText = "";
+		if (!((FieldText) field).isVeryLong())
+			longText = "textField";
+		else
+			longText = "textFieldLong";
+
+		return "<textarea class='" + longText + "' name='"
+				+ field.getShortName() + "'>" + field.getDataString()
+				+ "</textarea><div class=\"printableText\">"
+				+ field.getDataString().replace("\n", "<br />")
+				+ "</div></td></tr>";
+!!!242188.java!!!	dateTimeViewer(inout field : Field) : String
+		return otherViewer(field);
+!!!242316.java!!!	numberViewer(inout field : Field) : String
+		return otherViewer(field);
+!!!242444.java!!!	boolViewer(inout field : Field) : String
+		String html = "";
+		String yesIsChecked, noIsChecked;
+
+		if (field.getData() != null && (Boolean) field.getData())
+		{
+			yesIsChecked = " checked";
+			noIsChecked = "";
+		}
+		else
+		{
+			yesIsChecked = "";
+			noIsChecked = " checked=\"checked\"";
+		}
+
+		if (field.isHidden())
+		{
+			html += "<input type=\"hidden\" name=\"" + field.getShortName()
+					+ "\" value=\"" + field.getData() + "\">";
+		}
+		else if (field.isReadOnly())
+		{
+			html += "<input type=\"hidden\" name=\"" + field.getShortName()
+					+ "\" value=\"" + field.getData() + "\">"
+					+ field.getDataString();
+		}
+		else
+		{
+			html += "oui: <input type=\"radio\" name=\"" + field.getShortName()
+					+ "\" value=\"true\"" + yesIsChecked + " />";
+			html += " | non: <input type=\"radio\" name=\""
+					+ field.getShortName() + "\" value=\"false\"" + noIsChecked
+					+ " />";
+		}
+
+		return html;
+!!!242572.java!!!	otherViewer(inout field : Field) : String
+		String textFieldType = "";
+		String isReadOnly = "";
+
+		if (field.isHidden())
+			textFieldType = "password";
+		else
+			textFieldType = "text";
+
+		if (field.isReadOnly())
+			return "<input type='hidden' name='" + field.getShortName()
+					+ "' value='" + field.getDataString()
+					+ "' class='textField' />" + field.getDataString();
+
+		return "<input type='" + textFieldType + "' name='"
+				+ field.getShortName() + "' value='" + field.getDataString()
+				+ "' class='textField'" + isReadOnly + " />";

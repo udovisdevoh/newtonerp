@@ -1,0 +1,26 @@
+class FieldString
+!!!218508.java!!!	FieldString(in name : String, in shortName : String, in data : String)
+		super(name, shortName, data);
+!!!218636.java!!!	FieldString(in name : String, in shortName : String)
+		this(name, shortName, null);
+!!!218764.java!!!	setOperator(in operator : String) : void
+		operator.trim();
+
+		if (operator.equals("="))
+		{
+			super.operator = operator;
+		}
+		else
+			throw new InvalidOperatorException("Opérateur invalide pour "
+					+ getClass().getSimpleName());
+!!!218892.java!!!	setDefaultValue() : void
+		setDataType("");
+!!!219020.java!!!	setData(in data : String) : void
+		setDataType(data);
+!!!219148.java!!!	setData(inout data : Object) : void
+		if (data instanceof String)
+			setDataType((String) data);
+		else if (data instanceof Number)
+			setDataType(data + "");
+		else
+			throw new FieldNotCompatibleException(getShortName(), data);

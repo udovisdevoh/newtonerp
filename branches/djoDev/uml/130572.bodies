@@ -1,0 +1,15 @@
+class FieldTypeEntity
+!!!155788.java!!!	FieldTypeEntity()
+		super();
+		setVisibleName("Type de champ");
+
+!!!155916.java!!!	preInitFields() : Fields
+		// always build the field from initField and not from DB, thats mean
+		// that we cannot add a dynamic Field, this should not be done anywhere
+		// else
+		return initFields();
+!!!156044.java!!!	initFields() : Fields
+		Vector<Field<?>> fieldList = new Vector<Field<?>>();
+		fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
+		fieldList.add(new FieldString("Nom système", "systemName"));
+		return new Fields(fieldList);

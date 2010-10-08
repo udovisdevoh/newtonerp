@@ -1,5 +1,9 @@
 package newtonERP.viewers.viewables;
 
+import java.util.Vector;
+
+import newtonERP.common.ActionLink;
+
 /**
  * Ce qui peut être vu en tant que plan 2D comportant des salles et des
  * corridors
@@ -36,7 +40,7 @@ public interface FloorViewable
 	 * @param y position y
 	 * @return liste des actionLink pour la position spécifiée
 	 */
-	newtonERP.common.ActionLink getActionLinkListAt(int x, int y);
+	Vector<ActionLink> getActionLinkListAt(int x, int y);
 
 	/**
 	 * @param string nom de type de mur
@@ -45,5 +49,4 @@ public interface FloorViewable
 	 * @return vrai s'il y a un mur à la position indiquée
 	 */
 	boolean isWallAt(String string, int x, int y);
-
 }

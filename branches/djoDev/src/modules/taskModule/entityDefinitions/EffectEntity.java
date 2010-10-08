@@ -51,7 +51,7 @@ public class EffectEntity extends AbstractOrmEntity
 	 * Exécute l'effet d'une tâche
 	 * @param entityParameters paramètres de l'entité
 	 * @param isStraightSearch si c'est une recherche
-	 * @return entité viewable en tant que résultat de la tâche 
+	 * @return entité viewable en tant que résultat de la tâche
 	 */
 	public AbstractEntity execute(Hashtable<String, String> entityParameters,
 			boolean isStraightSearch)

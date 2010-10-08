@@ -1,0 +1,78 @@
+class Logger
+!!!172940.java!!!	init() : void
+		try
+		{
+			if (out == null)
+			{
+				if (fstream != null)
+				{
+					fstream.close();
+					fstream = null;
+				}
+				fstream = new FileWriter("logs.txt", true);
+				out = new BufferedWriter(fstream);
+			}
+		} catch (IOException e)
+		{
+			e.printStackTrace(); // we do not want the logging system to crash
+			// the app
+		}
+!!!173068.java!!!	close() : void
+		try
+		{
+			out.close();
+		} catch (IOException e)
+		{
+			e.printStackTrace(); // we do not want the logging system to crash
+			// the app
+		}
+!!!173196.java!!!	log(in message : String, inout state : Logger::State) : void
+		String strState;
+		init();
+
+		switch (state)
+		{
+		case DEBUG:
+			strState = "DEBUG";
+			break;
+		default:
+		case INFO:
+			strState = "INFO";
+			break;
+		case WARNING:
+			strState = "WARNING";
+			break;
+		case ERROR:
+			strState = "ERROR";
+			break;
+		}
+		message = sdf.format(new GregorianCalendar().getTime()) + " ["
+				+ strState + "]  \t" + message;
+		try
+		{
+			out.write('\n' + message);
+		} catch (IOException e)
+		{
+			e.printStackTrace(); // we do not want the logging system to crash
+			// the app
+		}
+		switch (state)
+		{
+		case DEBUG:
+		case INFO:
+			System.out.println(message);
+			break;
+		case WARNING:
+		case ERROR:
+		default:
+			System.err.println(message);
+			break;
+		}
+!!!173324.java!!!	debug(in message : String) : void
+		log(message, State.DEBUG);
+!!!173452.java!!!	info(in message : String) : void
+		log(message, State.INFO);
+!!!173580.java!!!	warning(in message : String) : void
+		log(message, State.WARNING);
+!!!173708.java!!!	error(in message : String) : void
+		log(message, State.ERROR);

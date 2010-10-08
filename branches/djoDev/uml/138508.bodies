@@ -1,0 +1,36 @@
+class ScrollList
+!!!188812.java!!!	ScrollList(in title : String)
+		super();
+		this.title = title;
+!!!188940.java!!!	addLink(in name : String, in url : String) : void
+		if (linkList == null)
+			linkList = new TreeMap<String, String>();
+
+		linkList.put(name, url);
+!!!189068.java!!!	getLinkList() : TreeMap<String, String>
+		if (linkList == null)
+			linkList = new TreeMap<String, String>();
+		return linkList;
+!!!189196.java!!!	getLinkGroupList() : NaturalMap
+		if (linkPairList == null)
+			linkPairList = new Vector<NaturalMap<String, String>>();
+
+		return linkPairList;
+!!!189324.java!!!	getTitle() : String
+		return title;
+!!!189452.java!!!	addLinkGroup(in link1Name : String, in link1Url : String, in link2Name : String, in link2Url : String) : void
+		NaturalMap<String, String> linkGroup = new NaturalMap<String, String>();
+		linkGroup.put(link1Name, link1Url);
+		linkGroup.put(link2Name, link2Url);
+
+		getLinkGroupList().add(linkGroup);
+!!!189580.java!!!	setTitleUrl(in titleUrl : String) : void
+		this.titleUrl = titleUrl;
+!!!189708.java!!!	getTitleUrl() : String
+		return titleUrl;
+!!!189836.java!!!	addActionLink(inout actionLink : ActionLink) : void
+		getActionLinkList().add(actionLink);
+!!!189964.java!!!	getActionLinkList() : ActionLink
+		if (actionLinkList == null)
+			actionLinkList = new Vector<ActionLink>();
+		return actionLinkList;

@@ -4,6 +4,7 @@ import java.util.Vector;
 
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.associations.AccessorManager;
+import newtonERP.orm.field.Field;
 import newtonERP.orm.field.Fields;
 import newtonERP.orm.field.type.FieldInt;
 import newtonERP.orm.field.type.FieldString;
@@ -12,8 +13,10 @@ import newtonERP.orm.field.type.FieldString;
  * Entity defenition class representing a group for the users
  * @author CloutierJo, r3hallejo
  */
-public class Groups extends newtonERP.module.AbstractOrmEntity
+public class Groups extends AbstractOrmEntity
 {
+	/**
+	 */
 	public Groups()
 	{
 		super();
@@ -21,7 +24,7 @@ public class Groups extends newtonERP.module.AbstractOrmEntity
 		setVisibleName("Groupe");
 	}
 
-	public newtonERP.orm.field.Fields initFields()
+	public Fields initFields()
 	{
 		FieldString groupName = new FieldString("Nom", "groupName");
 		groupName.setNaturalKey(true);
@@ -38,12 +41,11 @@ public class Groups extends newtonERP.module.AbstractOrmEntity
 	 * 
 	 * @return rightResult the right list
 	 */
-	public Right getRightList()
+	public Vector<Right> getRightList()
 	{
 		Vector<Right> rightList = new Vector<Right>();
 		for (AbstractOrmEntity entity : getPluralAccessor("Right"))
 			rightList.add((Right) entity);
 		return rightList;
 	}
-
 }

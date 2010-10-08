@@ -1,0 +1,76 @@
+class EntityEntity
+!!!153228.java!!!	EntityEntity()
+		super();
+		setVisibleName("Entité");
+		AccessorManager.addAccessor(this, new ModuleEntity());
+!!!153356.java!!!	preInitFields() : Fields
+		// always build the field from initField and not from DB, thats mean
+		// that we cannot add a dynamic Field, this should not be done anywhere
+		// else
+		return initFields();
+!!!153484.java!!!	initFields() : Fields
+		FieldInt module = new FieldInt("Module", new ModuleEntity()
+				.getForeignKeyName());
+		module.setReadOnly(true);
+		module.setNaturalKey(true);
+
+		FieldString visibleName = new FieldString("Nom visible", "visibleName");
+		visibleName.setNaturalKey(true);
+
+		Vector<Field<?>> fieldList = new Vector<Field<?>>();
+		fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
+		fieldList.add(module);
+		fieldList.add(new FieldString("Nom système", "systemName"));
+		fieldList.add(visibleName);
+		return new Fields(fieldList);
+!!!153612.java!!!	deleteUI(inout parameters : Hashtable<String, String>) : AbstractEntity
+		/*
+		 * On ne veut pas permettre l'effacement d'entité alors on redirige
+		 * l'effacement vers GetList
+		 */
+		ListViewerData entityList = super.getList();
+		return entityList;
+!!!153740.java!!!	getList(inout parameters : Hashtable<String, String>) : ListViewerData
+		parameters.put(getPrimaryKeyName(), "&");
+
+		ListViewerData entityList = super.getList(parameters);
+		entityList.addSpecificActionButtonList(new ActionLink("Voir source",
+				new ViewEntitySource(), parameters));
+		entityList.addSpecificActionButtonList(new ActionLink("Générer source",
+				new GenerateEntityCode(), parameters));
+
+		// On doit créer une entité seulement avec le [+] de son module
+		entityList.removeGlobalActions("Nouveau" + getVisibleName());
+
+		return entityList;
+!!!153868.java!!!	getEntityDefinition() : AbstractOrmEntity
+		Module module = getModuleEntity().getModule();
+		String entityName = getEntityName();
+		return module.getEntityDefinition(entityName);
+!!!153996.java!!!	getEntityName() : String
+		return getDataString("systemName");
+!!!154124.java!!!	getModuleEntity() : ModuleEntity
+		return (ModuleEntity) getSingleAccessor(new ModuleEntity()
+				.getForeignKeyName());
+!!!154252.java!!!	iterator() : FieldEntity
+		Vector<FieldEntity> fieldEntityVector = new Vector<FieldEntity>();
+		PluralAccessor accessor;
+		accessor = getPluralAccessor("FieldEntity");
+		for (AbstractOrmEntity entity : accessor)
+			fieldEntityVector.add((FieldEntity) entity);
+
+		return fieldEntityVector.iterator();
+!!!154380.java!!!	ContainsPrimaryKeyField() : boolean
+		String primaryKeyName = buildPrimaryKeyName();
+
+		FieldEntity primaryKeyField = new FieldEntity();
+		primaryKeyField.setData("name", primaryKeyName);
+		primaryKeyField.assign(this);
+
+		return Orm.select(primaryKeyField).size() > 0;
+!!!154508.java!!!	buildPrimaryKeyName() : String
+		String primaryKeyName = getDataString("systemName");
+		primaryKeyName = primaryKeyName.substring(0, 1).toLowerCase()
+				+ primaryKeyName.substring(1);
+		primaryKeyName = "PK" + primaryKeyName + "ID";
+		return primaryKeyName;

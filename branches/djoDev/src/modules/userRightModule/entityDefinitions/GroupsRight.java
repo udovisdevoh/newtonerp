@@ -2,7 +2,9 @@ package modules.userRightModule.entityDefinitions;
 
 import java.util.Vector;
 
+import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.Orm;
+import newtonERP.orm.field.Field;
 import newtonERP.orm.field.Fields;
 import newtonERP.orm.field.type.FieldInt;
 
@@ -10,10 +12,12 @@ import newtonERP.orm.field.type.FieldInt;
  * Entity defenition representing a group right for the users
  * @author CloutierJo
  */
-public class GroupsRight extends newtonERP.module.AbstractOrmEntity
+public class GroupsRight extends AbstractOrmEntity
 {
 	private static Right rightDefinition;
 
+	/**
+	 */
 	public GroupsRight()
 	{
 		rightDefinition = new Right();
@@ -33,7 +37,7 @@ public class GroupsRight extends newtonERP.module.AbstractOrmEntity
 		getFields().setData("rightID", rightIdValue);
 	}
 
-	public newtonERP.orm.field.Fields initFields()
+	public Fields initFields()
 	{
 		Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
 		fieldsInit.add(new FieldInt("Numéro de groupe", "groupsID"));

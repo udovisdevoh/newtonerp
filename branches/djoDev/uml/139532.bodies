@@ -1,0 +1,3 @@
+class AbstractSgbd
+!!!222476.java!!!	count(inout searchEntity : AbstractOrmEntity) : int
+		return count(searchEntity, null);

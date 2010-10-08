@@ -1,0 +1,51 @@
+class LinkViewer
+!!!243212.java!!!	getHtmlCode(inout actionLink : ActionLink) : String
+		// String onClickConfirm = "";
+
+		int balloonDivId = getNextBalloonDivId();
+
+		/*
+		 * todo: a remettre des que les viewer son plus generaliser que
+		 * presentement if (isConfirm) if (action.getEntityUsable() == null)
+		 * onClickConfirm = getOnClickConfirm(buttonCaption,"", value); else
+		 * onClickConfirm = getOnClickConfirm(buttonCaption,
+		 * action.getEntityUsable() .getVisibleInternalElementName(), value);
+		 */
+
+		String html = "";
+
+		if (isPermissionAllowed(actionLink))
+		{
+			html += " <a href='"
+					+ actionLink.getUrlParam()
+					+ "' onmouseover='document.getElementById(\"balloon"
+					+ balloonDivId
+					+ "\").style.visibility=\"visible\"' onmouseout='document.getElementById(\"balloon"
+					+ balloonDivId + "\").style.visibility=\"hidden\"'>";
+			html += actionLink.getName() + "</a> ";
+
+			html += HelpViewer.getHtmlCode(actionLink, balloonDivId);
+		}
+
+		return html;
+
+!!!243340.java!!!	getNextBalloonDivId() : int
+		currentBalloonDivId++;
+		return currentBalloonDivId;
+!!!243468.java!!!	getOnClickConfirm(in actionName : String, in entityTypeName : String, in value : String) : String
+		String html = "";
+
+		html += "onclick=\"return confirm(\'Voulez-vous vraiment ";
+		html += actionName + " ";
+		html += entityTypeName;
+		html += " " + value;
+		html += "?\')";
+
+		html += "\"";
+
+		return html;
+!!!243596.java!!!	isPermissionAllowed(inout actionLink : ActionLink) : boolean
+		UserRightModule userRightModule = (UserRightModule) ListModule
+				.getModule("UserRightModule");
+
+		return userRightModule.isPermissionAllowed(actionLink);

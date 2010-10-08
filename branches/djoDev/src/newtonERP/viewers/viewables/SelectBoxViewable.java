@@ -1,5 +1,7 @@
 package newtonERP.viewers.viewables;
 
+import newtonERP.common.NaturalMap;
+
 /**
  * The select box view interface
  * @author Guillaume Lacasse
@@ -9,11 +11,10 @@ public interface SelectBoxViewable
 	/**
 	 * @return the elements of the select box
 	 */
-	newtonERP.common.NaturalMap getElements();
+	public NaturalMap<String, String> getElements();
 
 	/**
 	 * @return the label name
 	 */
-	String getLabelName();
-
+	public String getLabelName();
 }

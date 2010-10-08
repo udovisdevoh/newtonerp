@@ -1,0 +1,9 @@
+class ViewerException
+!!!237452.java!!!	ViewerException(in message : String)
+		super(message);
+!!!237580.java!!!	ViewerException()
+		super();
+!!!237708.java!!!	ViewerException(in message : String, inout cause : Throwable)
+		super(message, cause);
+!!!237836.java!!!	ViewerException(inout cause : Throwable)
+		super(cause);

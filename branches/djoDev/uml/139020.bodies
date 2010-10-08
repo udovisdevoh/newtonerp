@@ -1,0 +1,13 @@
+class VolatilEntity
+!!!191116.java!!!	VolatilEntity()
+		super();
+!!!191244.java!!!	initFields() : Fields
+		return new VolatileFields();
+!!!191372.java!!!	addField(in label : String, in fieldName : String, in currentValue : String) : void
+		Field<?> field = new FieldString(label, fieldName);
+		field.setData(currentValue);
+		addField(field);
+!!!191500.java!!!	addField(in label : String, in fieldName : String) : void
+		addField(label, fieldName, "");
+!!!191628.java!!!	addField(inout field : Field) : void
+		((VolatileFields) (getFields())).add(field);

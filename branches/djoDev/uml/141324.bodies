@@ -1,0 +1,19 @@
+class FieldValidator
+!!!212876.java!!!	validate(inout value : T, inout entityFields : Fields) : boolean
+		try
+		{
+			return valide(value, entityFields);
+		} catch (NullPointerException e)
+		{
+			setErrorMessage("Une valeur obligatoire n'a pas été remplie");
+			return false;
+		}
+!!!213004.java!!!	isValide(inout value : T, inout entityFields : Fields) : boolean
+		boolean ret = validate(value, entityFields);
+		if (!ret && errorMessage.length() == 0)
+			errorMessage = "Une erreur inconnue s'est produite";
+		return ret;
+!!!213132.java!!!	setErrorMessage(in errorMessage : String) : void
+		this.errorMessage = errorMessage;
+!!!213260.java!!!	getErrorMessage() : String
+		return errorMessage;

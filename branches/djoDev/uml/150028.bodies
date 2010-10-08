@@ -1,0 +1,15 @@
+class ServletTest
+!!!259084.java!!!	setUp() : void
+	super.setUp();
+	testServlet = new Servlet();
+	ListModule.initAllModule();
+!!!259212.java!!!	tearDown() : void
+	super.tearDown();
+!!!259340.java!!!	testHandleFullAdress() : void
+	// HttpServletRequestWrapper requ = new HttpServletRequestWrapper(null);
+
+	assertNotNull(testServlet.urlToAction("/TestModule/TestAction", null));
+!!!259468.java!!!	testHandleNoAction() : void
+	assertNotNull(testServlet.urlToAction("/TestModule", null));
+!!!259596.java!!!	testHandleNoModule() : void
+	assertNotNull(testServlet.urlToAction("", null));

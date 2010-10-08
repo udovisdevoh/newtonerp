@@ -1,0 +1,114 @@
+class Orm
+!!!192268.java!!!	getSgbd() : AbstractSgbd
+		return OrmFonction.getSgbd();
+!!!192396.java!!!	getOrCreateEntity(inout entityAsType : AbstractOrmEntity, in fieldName : String, in fieldValue : String) : AbstractOrmEntity
+		entityAsType.setData(fieldName, fieldValue);
+
+		Vector<AbstractOrmEntity> entityList = entityAsType.get();
+
+		if (entityList.size() > 0)
+		{
+			return entityList.get(0);
+		}
+
+		entityAsType.newE();
+		return entityAsType;
+!!!192524.java!!!	getOrCreateEntity(inout entityAsType : AbstractOrmEntity, in fieldName1 : String, in fieldValue1 : String, in fieldName2 : String, in fieldValue2 : String) : AbstractOrmEntity
+		entityAsType.setData(fieldName1, fieldValue1);
+		entityAsType.setData(fieldName2, fieldValue2);
+
+		Vector<AbstractOrmEntity> entityList = entityAsType.get();
+
+		if (entityList.size() > 0)
+		{
+			return entityList.get(0);
+		}
+
+		entityAsType.newE();
+		return entityAsType;
+!!!192652.java!!!	delete(inout entityAsType : AbstractOrmEntity, in fieldName1 : String, in fieldValue1 : String, in fieldName2 : String, in fieldValue2 : String) : void
+		entityAsType.setData(fieldName1, fieldValue1);
+		entityAsType.setData(fieldName2, fieldValue2);
+
+		Vector<AbstractOrmEntity> entityList = entityAsType.get();
+
+		if (entityList.size() > 0)
+		{
+			entityList.get(0).delete();
+		}
+
+!!!192780.java!!!	select(inout searchEntity : AbstractOrmEntity, inout searchParameters : Vector<String>, in limit : int, in offset : int, in orderBy : String) : AbstractOrmEntity
+		return EntityCreator.createEntitiesFromResultSet(
+				getSgbd().select(searchEntity, searchParameters, limit, offset,
+						orderBy), searchEntity);
+!!!192908.java!!!	isEntityExists(in entitySystemName : String) : boolean
+		return getSgbd().isEntityExists(entitySystemName);
+!!!193036.java!!!	select(inout searchEntity : AbstractOrmEntity, inout searchCriteriasParam : Vector<String>, in limit : int, in offset : int) : AbstractOrmEntity
+		return select(searchEntity, searchCriteriasParam, limit, offset, null);
+!!!193164.java!!!	count(inout searchEntity : AbstractOrmEntity) : int
+		return count(searchEntity, null);
+!!!193292.java!!!	count(inout searchEntity : AbstractOrmEntity, inout searchParameterList : Vector<String>) : int
+		return getSgbd().count(searchEntity, searchParameterList);
+!!!193420.java!!!	createIndex(inout entity : AbstractOrmEntity, inout field : Field) : void
+		createIndex(entity.getSystemName(), field.getSystemName());
+!!!193548.java!!!	createIndex(in entityName : String, in fieldName : String) : void
+		getSgbd().createIndex(entityName, fieldName);
+!!!193676.java!!!	connect() : void
+		getSgbd().connect();
+!!!193804.java!!!	disconnect() : void
+		getSgbd().disconnect();
+!!!193932.java!!!	executeCustomQuery(in sqlQuery : String) : void
+		getSgbd().execute(sqlQuery, OrmActions.OTHER);
+!!!194060.java!!!	select(inout searchEntity : AbstractOrmEntity, inout searchCriteriasParam : Vector<String>) : AbstractOrmEntity
+		return EntityCreator.createEntitiesFromResultSet(
+				getSgbd().select(searchEntity, searchCriteriasParam),
+				searchEntity);
+!!!194188.java!!!	select(inout searchEntities : Vector<AbstractOrmEntity>) : AbstractOrmEntity
+		return EntityCreator.createEntitiesFromResultSet(
+				getSgbd().select(searchEntities), searchEntities.get(0));
+!!!194316.java!!!	select(inout searchEntity : AbstractOrmEntity) : AbstractOrmEntity
+		Vector<AbstractOrmEntity> searchEntities = new Vector<AbstractOrmEntity>();
+		searchEntities.add(searchEntity);
+		return select(searchEntities);
+!!!194444.java!!!	selectUnique(inout searchEntity : AbstractOrmEntity) : AbstractOrmEntity
+		return select(searchEntity).get(0);
+!!!194572.java!!!	selectUnique(inout searchEntities : Vector<AbstractOrmEntity>) : AbstractOrmEntity
+		return select(searchEntities).get(0);
+!!!194700.java!!!	insert(inout newEntity : AbstractOrmEntity) : int
+		int primaryKeyValue = getSgbd().insert(newEntity);
+
+		// todo: pourquoi le task manager est apellé ici??
+		if (primaryKeyValue != 0)
+			TaskManager.executeTasks(newEntity, primaryKeyValue);
+
+		return primaryKeyValue;
+!!!194828.java!!!	insertUnique(inout newUniqueEntity : AbstractOrmEntity) : int
+		// todo: devrait alle dans OrmFonction
+		Vector<AbstractOrmEntity> entity = select(newUniqueEntity);
+		if (entity.size() < 1)
+			return insert(newUniqueEntity);
+		if (entity.size() == 1)
+		{
+			return entity.get(0).getPrimaryKeyValue();
+		}
+		throw new OrmException("too many entity cannot give ID");
+!!!194956.java!!!	delete(inout searchEntity : AbstractOrmEntity, inout searchCriterias : Vector<String>) : void
+		getSgbd().delete(searchEntity, searchCriterias);
+!!!195084.java!!!	delete(inout searchEntities : Vector<AbstractOrmEntity>) : void
+		getSgbd().delete(searchEntities);
+!!!195212.java!!!	delete(inout searchEntity : AbstractOrmEntity) : void
+		Vector<AbstractOrmEntity> searchEntities = new Vector<AbstractOrmEntity>();
+		searchEntities.add(searchEntity);
+		delete(searchEntities);
+!!!195340.java!!!	update(inout entityContainingChanges : AbstractOrmEntity, inout searchCriterias : Vector<String>) : void
+		getSgbd().update(entityContainingChanges, searchCriterias);
+!!!195468.java!!!	update(inout searchEntities : Vector<AbstractOrmEntity>, inout entityContainingChanges : AbstractOrmEntity) : void
+		getSgbd().update(searchEntities, entityContainingChanges);
+!!!195596.java!!!	updateUnique(inout searchEntity : AbstractOrmEntity, inout entityContainingChanges : AbstractOrmEntity) : void
+		getSgbd().updateUnique(searchEntity, entityContainingChanges);
+!!!195724.java!!!	addColumnToTable(inout entity : AbstractOrmEntity, inout field : Field) : ResultSet
+		return getSgbd().addColumnToTable(entity, field);
+!!!195852.java!!!	createNonExistentTables() : void
+		OrmFonction.createNonExistentTables();
+!!!195980.java!!!	doBackupIfTimeIntervalAllows() : void
+		OrmFonction.doBackupIfTimeIntervalAllows();

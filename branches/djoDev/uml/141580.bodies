@@ -1,0 +1,8 @@
+class VolatileFields
+!!!213388.java!!!	VolatileFields()
+		super();
+!!!213516.java!!!	VolatileFields(inout fields : Vector<Field<?>>)
+		super(fields);
+!!!213644.java!!!	add(inout field : Field) : void
+		fieldsDataMap.put(field.getShortName(), field);
+		fieldsDataVector.add(field);
