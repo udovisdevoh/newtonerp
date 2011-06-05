@@ -23,24 +23,34 @@ import newtonERP.taskManager.TaskManager;
  */
 public class Orm {
 
-    @Deprecated
-    private static AbstractSgbd getSgbd() {
-        return OrmFonction.getSgbd();
+    private static Orm instance;
+
+    private Orm() {
+        getSgbd().connect();
+        OrmFonction.createNonExistentTables();
     }
 
     /**
-     * Used to initialize the connection
+     * Gets the single instance of Orm.
+     * 
+     * @return single instance of Orm
      */
+    public static Orm getInstance() {
+        if (instance == null)
+            instance = new Orm();
+        return instance;
+    }
+
     @Deprecated
-    public static void connect() {
-        getSgbd().connect();
+    private AbstractSgbd getSgbd() {
+        return OrmFonction.getSgbd();
     }
 
     /**
      * Used to disconnect from the db
      */
     @Deprecated
-    public static void disconnect() {
+    public void disconnect() {
         getSgbd().disconnect();
     }
 
@@ -51,8 +61,8 @@ public class Orm {
      * @param fieldValue value
      * @return new entity or found entity
      */
-    public static AbstractOrmEntity getOrCreateEntity(
-            AbstractOrmEntity entityAsType, String fieldName, String fieldValue) {
+    public AbstractOrmEntity getOrCreateEntity(AbstractOrmEntity entityAsType,
+            String fieldName, String fieldValue) {
         entityAsType.setData(fieldName, fieldValue);
 
         Vector<AbstractOrmEntity> entityList = entityAsType.get();
@@ -73,9 +83,9 @@ public class Orm {
      * @param fieldValue2 value2
      * @return new entity or found entity
      */
-    public static AbstractOrmEntity getOrCreateEntity(
-            AbstractOrmEntity entityAsType, String fieldName1,
-            String fieldValue1, String fieldName2, String fieldValue2) {
+    public AbstractOrmEntity getOrCreateEntity(AbstractOrmEntity entityAsType,
+            String fieldName1, String fieldValue1, String fieldName2,
+            String fieldValue2) {
         entityAsType.setData(fieldName1, fieldValue1);
         entityAsType.setData(fieldName2, fieldValue2);
 
@@ -90,22 +100,13 @@ public class Orm {
     }
 
     /**
-     * Creates the non-existent table from the modules in the database
-     */
-    @Deprecated
-    public static void createNonExistentTables() {
-        OrmFonction.createNonExistentTables();
-    }
-
-    /**
      * Alter table
      * 
      * @param entity the entity containing the new field
      * @param field the field to add
      * @return ?
      */
-    public static ResultSet addColumnToTable(AbstractOrmEntity entity,
-            Field<?> field) {
+    public ResultSet addColumnToTable(AbstractOrmEntity entity, Field<?> field) {
         return getSgbd().addColumnToTable(entity, field);
     }
 
@@ -115,7 +116,7 @@ public class Orm {
      * @param entity entité
      * @param field champ
      */
-    public static void createIndex(AbstractOrmEntity entity, Field<?> field) {
+    public void createIndex(AbstractOrmEntity entity, Field<?> field) {
         createIndex(entity.getSystemName(), field.getSystemName());
     }
 
@@ -125,7 +126,7 @@ public class Orm {
      * @param entityName nom de l'entité
      * @param fieldName nom du field
      */
-    public static void createIndex(String entityName, String fieldName) {
+    public void createIndex(String entityName, String fieldName) {
         getSgbd().createIndex(entityName, fieldName);
     }
 
@@ -135,7 +136,7 @@ public class Orm {
      * @param sqlQuery the executed
      */
     @Deprecated
-    public static void executeCustomQuery(String sqlQuery) {
+    public void executeCustomQuery(String sqlQuery) {
         getSgbd().execute(sqlQuery, OrmActions.OTHER);
     }
 
@@ -143,7 +144,7 @@ public class Orm {
      * @param entitySystemName nom système d'une entité
      * @return true si l'entité a une table dans la base de donnée, sinon false
      */
-    public static boolean isEntityExists(String entitySystemName) {
+    public boolean isEntityExists(String entitySystemName) {
         return getSgbd().isEntityExists(entitySystemName);
     }
 
@@ -151,7 +152,7 @@ public class Orm {
      * @param searchEntity entité de recherche
      * @return nombre d'occurence du type de l'entité de recherche
      */
-    public static int count(AbstractOrmEntity searchEntity) {
+    public int count(AbstractOrmEntity searchEntity) {
         return count(searchEntity, null);
     }
 
@@ -160,7 +161,7 @@ public class Orm {
      * @param searchParameterList liste de paramètres de recherche
      * @return nombre d'occurence du type de l'entité de recherche
      */
-    public static int count(AbstractOrmEntity searchEntity,
+    public int count(AbstractOrmEntity searchEntity,
             Vector<String> searchParameterList) {
         return getSgbd().count(searchEntity, searchParameterList);
     }
@@ -172,8 +173,7 @@ public class Orm {
      * @param offset offset de début de résultats
      * @return liste d'entités trouvées
      */
-    public static Vector<AbstractOrmEntity> select(
-            AbstractOrmEntity searchEntity,
+    public Vector<AbstractOrmEntity> select(AbstractOrmEntity searchEntity,
             Vector<String> searchCriteriasParam, int limit, int offset) {
         return select(searchEntity, searchCriteriasParam, limit, offset, null);
     }
@@ -186,9 +186,9 @@ public class Orm {
      * @param orderBy ordre
      * @return liste d'entité
      */
-    public static Vector<AbstractOrmEntity> select(
-            AbstractOrmEntity searchEntity, Vector<String> searchParameters,
-            int limit, int offset, String orderBy) {
+    public Vector<AbstractOrmEntity> select(AbstractOrmEntity searchEntity,
+            Vector<String> searchParameters, int limit, int offset,
+            String orderBy) {
         return EntityCreator.createEntitiesFromResultSet(
                 getSgbd().select(searchEntity, searchParameters, limit, offset,
                         orderBy), searchEntity);
@@ -207,8 +207,8 @@ public class Orm {
      * @return a vector of ormizable entities
      */
     @Deprecated
-    public static Vector<AbstractOrmEntity> select(
-            AbstractOrmEntity searchEntity, Vector<String> searchCriteriasParam) {
+    public Vector<AbstractOrmEntity> select(AbstractOrmEntity searchEntity,
+            Vector<String> searchCriteriasParam) {
         return EntityCreator.createEntitiesFromResultSet(
                 getSgbd().select(searchEntity, searchCriteriasParam),
                 searchEntity);
@@ -224,7 +224,7 @@ public class Orm {
      * @param searchEntities the entities from which we will perform the search
      * @return the entities
      */
-    public static Vector<AbstractOrmEntity> select(
+    public Vector<AbstractOrmEntity> select(
             Vector<AbstractOrmEntity> searchEntities) {
         return EntityCreator.createEntitiesFromResultSet(
                 getSgbd().select(searchEntities), searchEntities.get(0));
@@ -234,8 +234,7 @@ public class Orm {
      * @param searchEntity the single search entity
      * @return the entities that have been selected in the db
      */
-    public static Vector<AbstractOrmEntity> select(
-            AbstractOrmEntity searchEntity) {
+    public Vector<AbstractOrmEntity> select(AbstractOrmEntity searchEntity) {
         Vector<AbstractOrmEntity> searchEntities = new Vector<AbstractOrmEntity>();
         searchEntities.add(searchEntity);
         return select(searchEntities);
@@ -248,7 +247,7 @@ public class Orm {
      * @param searchEntity the entity from which we will perform our search
      * @return the first entity from the result set
      */
-    public static AbstractOrmEntity selectUnique(AbstractOrmEntity searchEntity) {
+    public AbstractOrmEntity selectUnique(AbstractOrmEntity searchEntity) {
         return select(searchEntity).get(0);
     }
 
@@ -259,7 +258,7 @@ public class Orm {
      * @param searchEntities the entity from which we will perform our search
      * @return the first entity from the result set
      */
-    public static AbstractOrmEntity selectUnique(
+    public AbstractOrmEntity selectUnique(
             Vector<AbstractOrmEntity> searchEntities) {
         return select(searchEntities).get(0);
     }
@@ -271,7 +270,7 @@ public class Orm {
      * @param newEntity the entity to add
      * @return le id de clé primaire ajoutée
      */
-    public static int insert(AbstractOrmEntity newEntity) {
+    public int insert(AbstractOrmEntity newEntity) {
         int primaryKeyValue = getSgbd().insert(newEntity);
         // TODO: sa pas rapport ici sa...
         if (primaryKeyValue != 0)
@@ -285,7 +284,7 @@ public class Orm {
      * 
      * @param newUniqueEntity New unique entity to insert
      */
-    public static void insertUnique(AbstractOrmEntity newUniqueEntity) {
+    public void insertUnique(AbstractOrmEntity newUniqueEntity) {
         if (select(newUniqueEntity).size() < 1)
             insert(newUniqueEntity);
     }
@@ -298,9 +297,8 @@ public class Orm {
      * @param fieldName2 key2
      * @param fieldValue2 value2
      */
-    public static void delete(AbstractOrmEntity entityAsType,
-            String fieldName1, String fieldValue1, String fieldName2,
-            String fieldValue2) {
+    public void delete(AbstractOrmEntity entityAsType, String fieldName1,
+            String fieldValue1, String fieldName2, String fieldValue2) {
         entityAsType.setData(fieldName1, fieldValue1);
         entityAsType.setData(fieldName2, fieldValue2);
 
@@ -319,7 +317,7 @@ public class Orm {
      * @param searchCriterias the search criterias for the where clause
      */
     @Deprecated
-    public static void delete(AbstractOrmEntity searchEntity,
+    public void delete(AbstractOrmEntity searchEntity,
             Vector<String> searchCriterias) {
         getSgbd().delete(searchEntity, searchCriterias);
     }
@@ -332,7 +330,7 @@ public class Orm {
      * @param searchEntities the entities from which we will build our where
      *            clause
      */
-    public static void delete(Vector<AbstractOrmEntity> searchEntities) {
+    public void delete(Vector<AbstractOrmEntity> searchEntities) {
         getSgbd().delete(searchEntities);
     }
 
@@ -343,7 +341,7 @@ public class Orm {
      * 
      * @param searchEntity the entity from which we will build our where
      */
-    public static void delete(AbstractOrmEntity searchEntity) {
+    public void delete(AbstractOrmEntity searchEntity) {
         Vector<AbstractOrmEntity> searchEntities = new Vector<AbstractOrmEntity>();
         searchEntities.add(searchEntity);
         delete(searchEntities);
@@ -357,7 +355,7 @@ public class Orm {
      * @param searchCriterias the criterias used by the update
      */
     @Deprecated
-    public static void update(AbstractOrmEntity entityContainingChanges,
+    public void update(AbstractOrmEntity entityContainingChanges,
             Vector<String> searchCriterias) {
         getSgbd().update(entityContainingChanges, searchCriterias);
     }
@@ -371,7 +369,7 @@ public class Orm {
      *            clause
      * @param entityContainingChanges the changes to apply
      */
-    public static void update(Vector<AbstractOrmEntity> searchEntities,
+    public void update(Vector<AbstractOrmEntity> searchEntities,
             AbstractOrmEntity entityContainingChanges) {
         getSgbd().update(searchEntities, entityContainingChanges);
     }
@@ -385,7 +383,7 @@ public class Orm {
      *            clause
      * @param entityContainingChanges the changes to apply
      */
-    public static void updateUnique(AbstractOrmEntity searchEntity,
+    public void updateUnique(AbstractOrmEntity searchEntity,
             AbstractOrmEntity entityContainingChanges) {
         getSgbd().updateUnique(searchEntity, entityContainingChanges);
     }
@@ -395,7 +393,7 @@ public class Orm {
      */
     @Deprecated
     // cette fonction ne devrai plus etre apellé a l'extérieur de l'ORM
-    public static void doBackupIfTimeIntervalAllows() {
+    public void doBackupIfTimeIntervalAllows() {
         OrmFonction.doBackupIfTimeIntervalAllows();
     }
 }
