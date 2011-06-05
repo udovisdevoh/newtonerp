@@ -16,18 +16,15 @@ import org.w3c.dom.NodeList;
  * 
  * @author Guillaume Lacasse JoCloutier
  */
-public class ConfigManager
-{
+public class ConfigManager {
 	private static File file = null;
 	private static Document document = null;
 	private static final String configFile = "config.xml";
 
 	private static Hashtable<String, String> propertyValue = new Hashtable<String, String>();
 
-	private static Document getDocument() throws Exception
-	{
-		if (document == null)
-		{
+	private static Document getDocument() throws Exception {
+		if(document == null){
 			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 			DocumentBuilder db = dbf.newDocumentBuilder();
 			document = db.parse(getFile());
@@ -36,56 +33,45 @@ public class ConfigManager
 		return document;
 	}
 
-	private static File getFile()
-	{
-		if (file == null)
+	private static File getFile() {
+		if(file == null){
 			file = new File(configFile);
+		}
 		return file;
 	}
 
 	/**
 	 * @param propertyName the property name
 	 * @param attributName the attribut name
-	 * @param defaultValue a default value in case the property is'nt present in
-	 *            the config file
+	 * @param defaultValue a default value in case the property is'nt present in the config file
 	 * @return String property value
 	 */
-	public static String loadStringProperty(String propertyName,
-			String attributName, String defaultValue)
-	{
-		if (propertyName.contains("#")
-				|| (attributName != null && attributName.contains("#")))
-			throw new RuntimeException(
-					"name of config property or config attribut cannot containe '#' char");
-		if (propertyValue.containsKey(propertyName + "#" + attributName))
+	public static String loadStringProperty(String propertyName, String attributName, String defaultValue) {
+		if(propertyName.contains("#") || (attributName != null && attributName.contains("#"))){
+			throw new RuntimeException("name of config property or config attribut cannot containe '#' char");
+		}
+		if(propertyValue.containsKey(propertyName + "#" + attributName)){
 			return propertyValue.get(propertyName + "#" + attributName);
+		}
 
-		try
-		{
+		try{
 			String val;
-			NodeList nodeList = getDocument()
-					.getElementsByTagName(propertyName);
+			NodeList nodeList = getDocument().getElementsByTagName(propertyName);
 			Node node = nodeList.item(0);
-			if (attributName != null)
-			{
+			if(attributName != null){
 				NamedNodeMap attributeList = node.getAttributes();
-				val = attributeList.getNamedItem(attributName).getFirstChild()
-						.getNodeValue();
-			}
-			else
-			{
+				val = attributeList.getNamedItem(attributName).getFirstChild().getNodeValue();
+			}else{
 				val = node.getFirstChild().getNodeValue();
 			}
 
 			propertyValue.put(propertyName + "#" + attributName, val);
 			return val;
-		} catch (Exception e)
-		{
-			if (defaultValue == null)
-				throw new RuntimeException(
-						"the property "
-								+ propertyName
-								+ " is needed in the config file, there is no default value possible");
+		}catch(Exception e){
+			if(defaultValue == null){
+				throw new RuntimeException("the property " + propertyName
+				        + " is needed in the config file, there is no default value possible");
+			}
 
 			propertyValue.put(propertyName + "#" + attributName, defaultValue);
 			return defaultValue;
@@ -94,13 +80,10 @@ public class ConfigManager
 
 	/**
 	 * @param propertyName the propetry name
-	 * @param defaultValue a default value in case the property is'nt present in
-	 *            the config file
+	 * @param defaultValue a default value in case the property is'nt present in the config file
 	 * @return String property value
 	 */
-	public static String loadStringProperty(String propertyName,
-			String defaultValue)
-	{
+	public static String loadStringProperty(String propertyName, String defaultValue) {
 		return loadStringProperty(propertyName, null, defaultValue);
 	}
 
@@ -109,9 +92,7 @@ public class ConfigManager
 	 * @param attributName the attribut name
 	 * @return String property value
 	 */
-	public static String loadStringAttrProperty(String propertyName,
-			String attributName)
-	{
+	public static String loadStringAttrProperty(String propertyName, String attributName) {
 		return loadStringProperty(propertyName, attributName, null);
 	}
 
@@ -119,8 +100,7 @@ public class ConfigManager
 	 * @param propertyName the propetry name
 	 * @return String property value
 	 */
-	public static String loadStringProperty(String propertyName)
-	{
+	public static String loadStringProperty(String propertyName) {
 		return loadStringProperty(propertyName, null);
 	}
 
@@ -128,21 +108,16 @@ public class ConfigManager
 	 * @param propertyName the propetry name
 	 * @param attributName the attribut name
 	 * @return int property value
-	 * @param defaultValue a default value in case the property is'nt present in
-	 *            the config file
+	 * @param defaultValue a default value in case the property is'nt present in the config file
 	 */
-	public static int loadIntProperty(String propertyName, String attributName,
-			Integer defaultValue)
-	{
-		return Integer.parseInt(loadStringProperty(propertyName, attributName,
-				defaultValue + ""));
+	public static int loadIntProperty(String propertyName, String attributName, Integer defaultValue) {
+		return Integer.parseInt(loadStringProperty(propertyName, attributName, defaultValue + ""));
 	}
 
 	/**
 	 * @param propertyName the propetry name
 	 * @return int property value
-	 * @param defaultValue a default value in case the property is'nt present in
-	 *            the config file
+	 * @param defaultValue a default value in case the property is'nt present in the config file
 	 */
 	public static int loadIntProperty(String propertyName, Integer defaultValue)
 
@@ -155,9 +130,7 @@ public class ConfigManager
 	 * @param attributName the attribut name
 	 * @return int property value
 	 */
-	public static int loadIntAttrProperty(String propertyName,
-			String attributName)
-	{
+	public static int loadIntAttrProperty(String propertyName, String attributName) {
 		return loadIntProperty(propertyName, attributName, null);
 	}
 
@@ -165,34 +138,26 @@ public class ConfigManager
 	 * @param propertyName the propetry name
 	 * @return int property value
 	 */
-	public static int loadIntProperty(String propertyName)
-	{
+	public static int loadIntProperty(String propertyName) {
 		return loadIntProperty(propertyName, null);
 	}
 
 	/**
 	 * @param propertyName the propetry name
 	 * @param attributName the attribut name
-	 * @param defaultValue a default value in case the property is'nt present in
-	 *            the config file
+	 * @param defaultValue a default value in case the property is'nt present in the config file
 	 * @return boolean property value
 	 */
-	public static boolean loadBoolProperty(String propertyName,
-			String attributName, Boolean defaultValue)
-	{
-		return Boolean.parseBoolean(loadStringProperty(propertyName,
-				attributName, defaultValue + ""));
+	public static boolean loadBoolProperty(String propertyName, String attributName, Boolean defaultValue) {
+		return Boolean.parseBoolean(loadStringProperty(propertyName, attributName, defaultValue + ""));
 	}
 
 	/**
 	 * @param propertyName the propetry name
-	 * @param defaultValue a default value in case the property is'nt present in
-	 *            the config file
+	 * @param defaultValue a default value in case the property is'nt present in the config file
 	 * @return boolean property value
 	 */
-	public static boolean loadBoolProperty(String propertyName,
-			Boolean defaultValue)
-	{
+	public static boolean loadBoolProperty(String propertyName, Boolean defaultValue) {
 		return loadBoolProperty(propertyName, null, defaultValue);
 	}
 
@@ -201,9 +166,7 @@ public class ConfigManager
 	 * @param attributName the attribut name
 	 * @return boolean property value
 	 */
-	public static boolean loadBoolAttrProperty(String propertyName,
-			String attributName)
-	{
+	public static boolean loadBoolAttrProperty(String propertyName, String attributName) {
 		return loadBoolProperty(propertyName, attributName, null);
 	}
 

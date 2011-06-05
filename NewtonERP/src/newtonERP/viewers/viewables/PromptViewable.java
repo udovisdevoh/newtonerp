@@ -10,10 +10,10 @@ import newtonERP.module.generalEntity.ListOfValue;
 
 /**
  * Prompt view interface
+ * 
  * @author r3lacasgu
  */
-public interface PromptViewable
-{
+public interface PromptViewable {
 	/**
 	 * @param inputName nom d'un field
 	 * @return nom complete d'un field
@@ -48,6 +48,7 @@ public interface PromptViewable
 
 	/**
 	 * Retourne la valeur actuelle d'un champ
+	 * 
 	 * @param inputName nom du champ
 	 * @return valeur contenue dans le champ
 	 */

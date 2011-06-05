@@ -4,24 +4,20 @@ import newtonERP.module.AbstractEntity;
 import newtonERP.viewers.viewables.AlertViewable;
 
 /**
- * @author Guillaume Lacasse
- * 
- *         Represents an alert entity
+ * @author Guillaume Lacasse Represents an alert entity
  */
-public class AlertEntity extends AbstractEntity implements AlertViewable
-{
+public class AlertEntity extends AbstractEntity implements AlertViewable {
 	private String message;
 
 	/**
 	 * @param message the message of the alert
 	 */
-	public AlertEntity(String message)
-	{
+	public AlertEntity(String message) {
 		this.message = message;
 	}
 
-	public String getMessage()
-	{
+	@Override
+	public String getMessage() {
 		return message;
 	}
 }

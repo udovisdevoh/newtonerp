@@ -13,15 +13,13 @@ import newtonERP.orm.field.type.FieldInt;
 
 /**
  * entité représentant une task
- * @author Guillaume Lacasse
  * 
+ * @author Guillaume Lacasse
  */
-public class TaskEntity extends AbstractOrmEntity
-{
+public class TaskEntity extends AbstractOrmEntity {
 	/**
 	 */
-	public TaskEntity()
-	{
+	public TaskEntity() {
 		super();
 		setVisibleName("Tâche automatisée");
 		AccessorManager.addAccessor(this, new Specification());
@@ -29,14 +27,11 @@ public class TaskEntity extends AbstractOrmEntity
 	}
 
 	@Override
-	public Fields initFields()
-	{
-		FieldInt specification = new FieldInt("Specification",
-				new Specification().getForeignKeyName());
+	public Fields initFields() {
+		FieldInt specification = new FieldInt("Specification", new Specification().getForeignKeyName());
 		specification.setNaturalKey(true);
 
-		FieldInt effet = new FieldInt("Effet", new EffectEntity()
-				.getForeignKeyName());
+		FieldInt effet = new FieldInt("Effet", new EffectEntity().getForeignKeyName());
 		effet.setNaturalKey(true);
 
 		Vector<Field<?>> fieldList = new Vector<Field<?>>();
@@ -53,50 +48,40 @@ public class TaskEntity extends AbstractOrmEntity
 	 * @param isStraightSearch si c'est une recherche directe
 	 * @return true si la spécification de la tâche est satisfaite
 	 */
-	public boolean isSatisfied(Hashtable<String, String> entityParameters,
-			boolean isStraightSearch)
-	{
-		return getSpecification().isSatisfied(entityParameters,
-				isStraightSearch);
+	public boolean isSatisfied(Hashtable<String, String> entityParameters, boolean isStraightSearch) {
+		return getSpecification().isSatisfied(entityParameters, isStraightSearch);
 	}
 
-	private Specification getSpecification()
-	{
-		return (Specification) getSingleAccessor(new Specification()
-				.getForeignKeyName());
+	private Specification getSpecification() {
+		return (Specification) getSingleAccessor(new Specification().getForeignKeyName());
 	}
 
 	/**
 	 * Execute l'effet de la tâche
+	 * 
 	 * @param entityParameters paramètres de l'entité
 	 * @param isStraightSearch si c'est une recherche directe
 	 * @return entité viewable, résultat de la tâche
 	 */
-	public AbstractEntity execute(Hashtable<String, String> entityParameters,
-			boolean isStraightSearch)
-	{
+	public AbstractEntity execute(Hashtable<String, String> entityParameters, boolean isStraightSearch) {
 		return getEffect().execute(entityParameters, isStraightSearch);
 	}
 
-	private EffectEntity getEffect()
-	{
-		return (EffectEntity) getSingleAccessor(new EffectEntity()
-				.getForeignKeyName());
+	private EffectEntity getEffect() {
+		return (EffectEntity) getSingleAccessor(new EffectEntity().getForeignKeyName());
 	}
 
 	/**
 	 * @return si la tâche est présentement active
 	 */
-	public boolean isActive()
-	{
+	public boolean isActive() {
 		return (Boolean) (getData("isActive"));
 	}
 
 	/**
 	 * @return si c'est une recherche directe
 	 */
-	public boolean isStraightSearch()
-	{
+	public boolean isStraightSearch() {
 		return (Boolean) (getData("straightSearch"));
 	}
 }

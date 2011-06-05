@@ -10,21 +10,20 @@ import newtonERP.orm.field.type.FieldString;
 
 /**
  * Représente un type de field
+ * 
  * @author Guillaume
  */
-public class FieldTypeEntity extends AbstractOrmEntity
-{
+public class FieldTypeEntity extends AbstractOrmEntity {
 	/**
 	 */
-	public FieldTypeEntity()
-	{
+	public FieldTypeEntity() {
 		super();
 		setVisibleName("Type de champ");
 
 	}
 
-	protected Fields preInitFields()
-	{
+	@Override
+	protected Fields preInitFields() {
 		// always build the field from initField and not from DB, thats mean
 		// that we cannot add a dynamic Field, this should not be done anywhere
 		// else
@@ -32,8 +31,7 @@ public class FieldTypeEntity extends AbstractOrmEntity
 	}
 
 	@Override
-	public Fields initFields()
-	{
+	public Fields initFields() {
 		Vector<Field<?>> fieldList = new Vector<Field<?>>();
 		fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
 		fieldList.add(new FieldString("Nom système", "systemName"));

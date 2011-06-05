@@ -7,35 +7,23 @@ import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 
 /**
- * @author r3hallejo
- * 
- *         Class used to log system messages into an external log for purposes
- *         of viewing errors, information messages, warnings and much more that
- *         has happen on a later time.
- * 
- *         HOWTO : (Static class) Logger.log("MY MESSAGE GOES HERE",
- *         Log.State.STATE_OF_MESSAGE)
- * 
- *         See the state enumeration for all the actual states available
- * 
- *         For better results we might have to think a better way of
- *         implementing the logging in all the project so we wont have dozens of
- *         logger objects accessing the log file causing multiple write lines at
+ * @author r3hallejo Class used to log system messages into an external log for purposes of viewing errors, information
+ *         messages, warnings and much more that has happen on a later time. HOWTO : (Static class)
+ *         Logger.log("MY MESSAGE GOES HERE", Log.State.STATE_OF_MESSAGE) See the state enumeration for all the actual
+ *         states available For better results we might have to think a better way of implementing the logging in all
+ *         the project so we wont have dozens of logger objects accessing the log file causing multiple write lines at
  *         the same time
  */
-public class Logger
-{
+public class Logger {
 
 	private static FileWriter fstream = null;
 	private static BufferedWriter out = null;
-	private static SimpleDateFormat sdf = new SimpleDateFormat(
-			"HH:mm:ss yyyy.MM.dd");
+	private static SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss yyyy.MM.dd");
 
 	/**
 	 * States the logger can have
 	 */
-	public enum State
-	{
+	public enum State {
 		/**
 		 * An debug message
 		 */
@@ -60,22 +48,17 @@ public class Logger
 	/**
 	 * initialize the loging system if not already done
 	 */
-	public static void init()
-	{
-		try
-		{
-			if (out == null)
-			{
-				if (fstream != null)
-				{
+	public static void init() {
+		try{
+			if(out == null){
+				if(fstream != null){
 					fstream.close();
 					fstream = null;
 				}
 				fstream = new FileWriter("logs.txt", true);
 				out = new BufferedWriter(fstream);
 			}
-		} catch (IOException e)
-		{
+		}catch(IOException e){
 			e.printStackTrace(); // we do not want the logging system to crash
 			// the app
 		}
@@ -84,13 +67,10 @@ public class Logger
 	/**
 	 * properly close all File writer
 	 */
-	public static void close()
-	{
-		try
-		{
+	public static void close() {
+		try{
 			out.close();
-		} catch (IOException e)
-		{
+		}catch(IOException e){
 			e.printStackTrace(); // we do not want the logging system to crash
 			// the app
 		}
@@ -102,84 +82,78 @@ public class Logger
 	 * @param message the message
 	 * @param state the state
 	 */
-	public static void log(String message, State state)
-	{
+	public static void log(String message, State state) {
 		String strState;
 		init();
 
-		switch (state)
-		{
-		case DEBUG:
-			strState = "DEBUG";
-			break;
-		default:
-		case INFO:
-			strState = "INFO";
-			break;
-		case WARNING:
-			strState = "WARNING";
-			break;
-		case ERROR:
-			strState = "ERROR";
-			break;
+		switch(state){
+			case DEBUG:
+				strState = "DEBUG";
+				break;
+			default:
+			case INFO:
+				strState = "INFO";
+				break;
+			case WARNING:
+				strState = "WARNING";
+				break;
+			case ERROR:
+				strState = "ERROR";
+				break;
 		}
-		message = sdf.format(new GregorianCalendar().getTime()) + " ["
-				+ strState + "]  \t" + message;
-		try
-		{
+		message = sdf.format(new GregorianCalendar().getTime()) + " [" + strState + "]  \t" + message;
+		try{
 			out.write('\n' + message);
-		} catch (IOException e)
-		{
+		}catch(IOException e){
 			e.printStackTrace(); // we do not want the logging system to crash
 			// the app
 		}
-		switch (state)
-		{
-		case DEBUG:
-		case INFO:
-			System.out.println(message);
-			break;
-		case WARNING:
-		case ERROR:
-		default:
-			System.err.println(message);
-			break;
+		switch(state){
+			case DEBUG:
+			case INFO:
+				System.out.println(message);
+				break;
+			case WARNING:
+			case ERROR:
+			default:
+				System.err.println(message);
+				break;
 		}
 	}
 
 	/**
 	 * helper function to log a Debug message
+	 * 
 	 * @param message the message
 	 */
-	public static void debug(String message)
-	{
+	public static void debug(String message) {
 		log(message, State.DEBUG);
 	}
 
 	/**
 	 * helper function to log an Info message
+	 * 
 	 * @param message the message
 	 */
-	public static void info(String message)
-	{
+	public static void info(String message) {
 		log(message, State.INFO);
 	}
 
 	/**
 	 * helper function to log a Warning message
+	 * 
 	 * @param message the message
 	 */
-	public static void warning(String message)
-	{
+	public static void warning(String message) {
 		log(message, State.WARNING);
 	}
 
 	/**
 	 * helper function to log an Error message
+	 * 
 	 * @param message the message
 	 */
-	public static void error(String message)
-	{
+	public static void error(String message) {
 		log(message, State.ERROR);
 	}
 }

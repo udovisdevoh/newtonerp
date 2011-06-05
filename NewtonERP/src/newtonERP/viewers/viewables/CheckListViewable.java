@@ -5,10 +5,10 @@ import java.util.TreeMap;
 
 /**
  * The check list view interface
+ * 
  * @author Guillaume Lacasse
  */
-public interface CheckListViewable
-{
+public interface CheckListViewable {
 	/**
 	 * @return the visible description
 	 */

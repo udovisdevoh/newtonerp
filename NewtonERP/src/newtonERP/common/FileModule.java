@@ -6,14 +6,12 @@ package newtonERP.common;
 import newtonERP.module.Module;
 
 /**
- * représente les fichier de module et permet donc de ne pas faire la gestion du
- * systeme de fichier a l'extérieur de cette class
+ * représente les fichier de module et permet donc de ne pas faire la gestion du systeme de fichier a l'extérieur de
+ * cette class
  * 
  * @author Cloutierjo
- * 
  */
-public class FileModule
-{
+public class FileModule {
 	private String name;
 	private String filePath;
 	private String packagePath;
@@ -25,8 +23,7 @@ public class FileModule
 	 * @param name module name
 	 * @param filePath path to the module's root
 	 */
-	public FileModule(String name, String filePath)
-	{
+	public FileModule(String name, String filePath) {
 		String endName = name.substring(1);
 		String firstChar = name.substring(0, 1);
 		this.name = firstChar.toUpperCase() + endName;
@@ -39,8 +36,7 @@ public class FileModule
 	 * 
 	 * @return a full file path to a package
 	 */
-	public String getPackagePathName()
-	{
+	public String getPackagePathName() {
 		return getPackagePath() + "." + getName();
 	}
 
@@ -49,8 +45,7 @@ public class FileModule
 	 * 
 	 * @return the cached module, return null if there is no cache
 	 */
-	public Module getCache()
-	{
+	public Module getCache() {
 		return cache;
 	}
 
@@ -59,8 +54,7 @@ public class FileModule
 	 * 
 	 * @param cache the cache to set
 	 */
-	public void setCache(Module cache)
-	{
+	public void setCache(Module cache) {
 		this.cache = cache;
 	}
 
@@ -69,8 +63,7 @@ public class FileModule
 	 * 
 	 * @return the name
 	 */
-	public String getName()
-	{
+	public String getName() {
 		return name;
 	}
 
@@ -79,17 +72,16 @@ public class FileModule
 	 * 
 	 * @return the filePath
 	 */
-	public String getFilePath()
-	{
+	public String getFilePath() {
 		return filePath;
 	}
 
 	/**
 	 * get the package path to the module (whitout the module name)
+	 * 
 	 * @return the packagePath
 	 */
-	public String getPackagePath()
-	{
+	public String getPackagePath() {
 		return packagePath;
 	}
 }

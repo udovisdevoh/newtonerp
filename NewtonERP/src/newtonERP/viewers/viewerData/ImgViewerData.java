@@ -13,17 +13,16 @@ import newtonERP.logging.Logger;
 
 /**
  * donnee pour faire affiche UNE image
+ * 
  * @author CloutierJo
  */
-public class ImgViewerData extends BaseViewerData
-{
+public class ImgViewerData extends BaseViewerData {
 
 	String filePath;
 
 	/**
 	 */
-	public ImgViewerData()
-	{
+	public ImgViewerData() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -32,15 +31,12 @@ public class ImgViewerData extends BaseViewerData
 	 * @param bi image sous forme de BufferedImage
 	 * @param fileName nom du fichier
 	 */
-	public ImgViewerData(BufferedImage bi, String fileName)
-	{
+	public ImgViewerData(BufferedImage bi, String fileName) {
 		filePath = "file/" + fileName + ".png";
 		File outputfile = new File(filePath);
-		try
-		{
+		try{
 			ImageIO.write(bi, "png", outputfile);
-		} catch (IOException e)
-		{
+		}catch(IOException e){
 			// on log le probleme et affiche l'Exception, sa ne fera qu'une
 			// image introuvable pour l'utilisateur et nous avons une trace du
 			// probleme
@@ -53,16 +49,14 @@ public class ImgViewerData extends BaseViewerData
 	/**
 	 * @return the filePath
 	 */
-	public String getFilePath()
-	{
+	public String getFilePath() {
 		return filePath;
 	}
 
 	/**
 	 * @param filePath the filePath to set
 	 */
-	public void setFilePath(String filePath)
-	{
+	public void setFilePath(String filePath) {
 		this.filePath = filePath;
 	}
 

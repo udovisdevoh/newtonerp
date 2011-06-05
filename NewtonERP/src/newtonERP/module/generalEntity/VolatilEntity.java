@@ -8,21 +8,18 @@ import newtonERP.orm.field.type.FieldString;
 
 /**
  * @author CloutierJo
- * 
  */
-public class VolatilEntity extends AbstractEntity
-{
+public class VolatilEntity extends AbstractEntity {
 
 	/**
 	 * default constructor
 	 */
-	public VolatilEntity()
-	{
+	public VolatilEntity() {
 		super();
 	}
 
-	public Fields initFields()
-	{
+	@Override
+	public Fields initFields() {
 		return new VolatileFields();
 	}
 
@@ -43,16 +40,14 @@ public class VolatilEntity extends AbstractEntity
 	 * @param label étiquette du champ
 	 * @param fieldName nom du champ
 	 */
-	public void addField(String label, String fieldName)
-	{
+	public void addField(String label, String fieldName) {
 		addField(label, fieldName, "");
 	}
 
 	/**
 	 * @param field un field a ajouter
 	 */
-	public void addField(Field<?> field)
-	{
+	public void addField(Field<?> field) {
 		((VolatileFields) (getFields())).add(field);
 	}
 }

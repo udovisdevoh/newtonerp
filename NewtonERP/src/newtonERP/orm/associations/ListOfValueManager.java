@@ -9,23 +9,19 @@ import newtonERP.module.generalEntity.ListOfValue;
  * 
  * @author Guillaume Lacasse
  */
-public class ListOfValueManager
-{
+public class ListOfValueManager {
 	/**
 	 * @param entity Entité source
 	 * @param foreignEntity Entité cible
 	 */
-	public static final void addListOfValue(AbstractOrmEntity entity,
-			AbstractOrmEntity foreignEntity)
-	{
+	public static final void addListOfValue(AbstractOrmEntity entity, AbstractOrmEntity foreignEntity) {
 		String foreignKeyName = foreignEntity.getForeignKeyName();
 
-		if (entity.getFields().getField(foreignKeyName) == null)
-			throw new TableAssociationException(foreignKeyName
-					+ " introuvable dans " + entity.getSystemName());
+		if(entity.getFields().getField(foreignKeyName) == null){
+			throw new TableAssociationException(foreignKeyName + " introuvable dans " + entity.getSystemName());
+		}
 
-		ListOfValue listOfValue = new ListOfValue(entity, foreignEntity
-				.getNaturalKeyName(), foreignEntity);
+		ListOfValue listOfValue = new ListOfValue(entity, foreignEntity.getNaturalKeyName(), foreignEntity);
 
 		entity.addPositiveListOfValue(foreignKeyName, listOfValue);
 

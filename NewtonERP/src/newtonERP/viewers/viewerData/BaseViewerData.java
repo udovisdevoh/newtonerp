@@ -8,11 +8,10 @@ import newtonERP.module.AbstractEntity;
 
 /**
  * viewer servant a standardisé nos viewer
- * @author CloutierJo
  * 
+ * @author CloutierJo
  */
-public class BaseViewerData extends AbstractEntity
-{
+public class BaseViewerData extends AbstractEntity {
 	private String title;
 	private Vector<ActionLink> globalActions = new Vector<ActionLink>();
 	private Vector<String> alertMessageList = new Vector<String>();
@@ -23,135 +22,119 @@ public class BaseViewerData extends AbstractEntity
 	/**
 	 * constructeur vide
 	 */
-	public BaseViewerData()
-	{
+	public BaseViewerData() {
 		super();
 	}
 
 	/**
 	 * @param title the title to set
 	 */
-	public void setTitle(String title)
-	{
+	public void setTitle(String title) {
 		this.title = title;
 	}
 
 	/**
 	 * @return the title
 	 */
-	public String getTitle()
-	{
+	public String getTitle() {
 		return title;
 	}
 
 	/**
 	 * @param globalActions the globalActions to set
 	 */
-	public void setGlobalActions(Vector<ActionLink> globalActions)
-	{
+	public void setGlobalActions(Vector<ActionLink> globalActions) {
 		this.globalActions = globalActions;
 	}
 
 	/**
 	 * @return the globalActions
 	 */
-	public Vector<ActionLink> getGlobalActions()
-	{
+	public Vector<ActionLink> getGlobalActions() {
 		return globalActions;
 	}
 
 	/**
 	 * @param globalAction the globalActions to add
 	 */
-	public void addGlobalActions(ActionLink globalAction)
-	{
+	public void addGlobalActions(ActionLink globalAction) {
 		globalActions.add(globalAction);
 	}
 
 	/**
 	 * @param globalActionName the globalActionName to remove
 	 */
-	public void removeGlobalActions(String globalActionName)
-	{
-		for (Iterator<ActionLink> gActionIT = globalActions.iterator(); gActionIT
-				.hasNext();)
-		{
+	public void removeGlobalActions(String globalActionName) {
+		for(Iterator<ActionLink> gActionIT = globalActions.iterator(); gActionIT.hasNext();){
 			ActionLink gAction = gActionIT.next();
-			if (gAction.getName().equals(globalActionName))
+			if(gAction.getName().equals(globalActionName)){
 				gActionIT.remove();
+			}
 		}
 	}
 
 	/**
 	 * @return the alertMessageList
 	 */
-	public Vector<String> getAlertMessageList()
-	{
+	public Vector<String> getAlertMessageList() {
 		return alertMessageList;
 	}
 
 	/**
 	 * @param alertMessageList the alertMessageList to set
 	 */
-	public void setAlertMessageList(Vector<String> alertMessageList)
-	{
+	public void setAlertMessageList(Vector<String> alertMessageList) {
 		this.alertMessageList = alertMessageList;
 	}
 
 	/**
 	 * @param message message à ajouter
 	 */
-	public final void addAlertMessage(String message)
-	{
-		if (message.length() > 0)
+	public final void addAlertMessage(String message) {
+		if(message.length() > 0){
 			alertMessageList.add(message);
+		}
 	}
 
 	/**
 	 * @return the normalMessageList
 	 */
-	public Vector<String> getNormalMessageList()
-	{
+	public Vector<String> getNormalMessageList() {
 		return normalMessageList;
 	}
 
 	/**
 	 * @param normalMessageList the normalMessageList to set
 	 */
-	public void setNormalMessageList(Vector<String> normalMessageList)
-	{
+	public void setNormalMessageList(Vector<String> normalMessageList) {
 		this.normalMessageList = normalMessageList;
 	}
 
 	/**
 	 * @param message nouveau message normal
 	 */
-	public void addNormalMessage(String message)
-	{
+	public void addNormalMessage(String message) {
 		normalMessageList.add(message);
 	}
 
 	/**
 	 * @return the backLink
 	 */
-	public ActionLink getBackLink()
-	{
+	public ActionLink getBackLink() {
 		return backLink;
 	}
 
 	/**
 	 * @param backLink the backLink to set
 	 */
-	public void setBackLink(ActionLink backLink)
-	{
+	public void setBackLink(ActionLink backLink) {
 		this.backLink = backLink;
 	}
 
 	/**
 	 * @param complementaryInfoLine ligne d'information complémentaire à ajouter
 	 */
-	public void addComplementaryInfoLine(String complementaryInfoLine)
-	{
+	public void addComplementaryInfoLine(String complementaryInfoLine) {
 		// TODO Auto-generated method stub
 		getComplementaryInfoLineList().add(complementaryInfoLine);
 	}
@@ -159,10 +142,10 @@ public class BaseViewerData extends AbstractEntity
 	/**
 	 * @return liste des lignes d'information complémentaire
 	 */
-	public Vector<String> getComplementaryInfoLineList()
-	{
-		if (complementaryInfoLineList == null)
+	public Vector<String> getComplementaryInfoLineList() {
+		if(complementaryInfoLineList == null){
 			complementaryInfoLineList = new Vector<String>();
+		}
 		return complementaryInfoLineList;
 	}
 }

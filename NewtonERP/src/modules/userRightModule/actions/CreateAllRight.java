@@ -12,74 +12,69 @@ import newtonERP.orm.Orm;
 
 /**
  * Action class that creates all the rights for every module
+ * 
  * @author cloutierJo
  */
 public class CreateAllRight extends AbstractAction {
-    /**
-     * constructeur
-     */
-    public CreateAllRight() {
-        super(null); // ne travaille pas avec une entity
-    }
+	/**
+	 * constructeur
+	 */
+	public CreateAllRight() {
+		super(null); // ne travaille pas avec une entity
+	}
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * newtonERP.module.AbstractAction#doAction(newtonERP.module.AbstractEntity,
-     * java.util.Hashtable)
-     */
-    @Override
-    public AbstractEntity doAction(AbstractEntity entity,
-            Hashtable<String, String> parameters) {
-        Module module = null;
-        Vector<String> allModule;
-        allModule = new Vector<String>(ListModule.getAllModules());
-        allModule.remove("UserRightModule");
-        allModule.remove("TaskModule");
-        // on s'assure d'avoir créé le userRightModule en premier et le task
-        // module en dernier
-        allModule.add(0, "UserRightModule");
-        allModule.add("TaskModule");
-        for (String moduleName : allModule) {
-            module = ListModule.getModule(moduleName);
-            // on verifie si des droits du module on deja ete cree en DB
-            // sinon on appel le initdb du module
-            Vector<String> search = new Vector<String>();
-            search.add("ModuleName='" + moduleName + "'");
-            int numRight = 0;
+	/*
+	 * (non-Javadoc)
+	 * @see newtonERP.module.AbstractAction#doAction(newtonERP.module.AbstractEntity, java.util.Hashtable)
+	 */
+	@Override
+	public AbstractEntity doAction(AbstractEntity entity, Hashtable<String, String> parameters) {
+		Module module = null;
+		Vector<String> allModule;
+		allModule = new Vector<String>(ListModule.getAllModules());
+		allModule.remove("UserRightModule");
+		allModule.remove("TaskModule");
+		// on s'assure d'avoir créé le userRightModule en premier et le task
+		// module en dernier
+		allModule.add(0, "UserRightModule");
+		allModule.add("TaskModule");
+		for(String moduleName : allModule){
+			module = ListModule.getModule(moduleName);
+			// on verifie si des droits du module on deja ete cree en DB
+			// sinon on appel le initdb du module
+			Vector<String> search = new Vector<String>();
+			search.add("ModuleName='" + moduleName + "'");
+			int numRight = 0;
 
-            numRight = Orm.getInstance().select(new Right(), search).size();
+			numRight = Orm.getInstance().select(new Right(), search).size();
 
-            if (numRight == 0) {
-                // pour le action réguliere
-                for (String actionName : module.getActionList().keySet()) {
-                    // cree le right
-                    Right right = new Right();
-                    right.setData("actionName", actionName);
-                    right.setData("moduleName", moduleName);
-                    Orm.getInstance().insert(right);
-                }
+			if(numRight == 0){
+				// pour le action réguliere
+				for(String actionName : module.getActionList().keySet()){
+					// cree le right
+					Right right = new Right();
+					right.setData("actionName", actionName);
+					right.setData("moduleName", moduleName);
+					Orm.getInstance().insert(right);
+				}
 
-                // pour les BaseAction
-                for (String entityName : module.getEntityDefinitionList()
-                        .keySet()) {
-                    // cree le right
-                    String actionNames[] = { "Get", "New", "Edit", "Delete",
-                            "GetList" };
-                    for (String actionName : actionNames) {
-                        // cree le right
-                        Right right = new Right();
-                        right.setData("actionName", actionName);
-                        right.setData("entityName", entityName);
-                        right.setData("moduleName", moduleName);
-                        Orm.getInstance().insert(right);
-                    }
-                }
-                module.initDB();
-            }
-        }
+				// pour les BaseAction
+				for(String entityName : module.getEntityDefinitionList().keySet()){
+					// cree le right
+					String actionNames[] = {"Get", "New", "Edit", "Delete", "GetList"};
+					for(String actionName : actionNames){
+						// cree le right
+						Right right = new Right();
+						right.setData("actionName", actionName);
+						right.setData("entityName", entityName);
+						right.setData("moduleName", moduleName);
+						Orm.getInstance().insert(right);
+					}
+				}
+				module.initDB();
+			}
+		}
 
-        return null;
-    }
+		return null;
+	}
 }

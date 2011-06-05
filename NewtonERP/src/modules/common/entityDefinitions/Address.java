@@ -14,15 +14,12 @@ import newtonERP.orm.field.type.FieldString;
  * 
  * @author r3hallejo
  */
-public class Address extends AbstractOrmEntity
-{
+public class Address extends AbstractOrmEntity {
 
 	/**
 	 * Default constructor
-	 * 
 	 */
-	public Address()
-	{
+	public Address() {
 		super();
 		AccessorManager.addAccessor(this, new Country());
 		AccessorManager.addAccessor(this, new State());
@@ -30,8 +27,7 @@ public class Address extends AbstractOrmEntity
 	}
 
 	@Override
-	public Fields initFields()
-	{
+	public Fields initFields() {
 		FieldString streetName = new FieldString("Rue", "streetName");
 		streetName.setNaturalKey(true);
 
@@ -42,17 +38,14 @@ public class Address extends AbstractOrmEntity
 		city.setNaturalKey(true);
 
 		Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
-		fieldsInit
-				.add(new FieldInt("Numero de l'adresse", getPrimaryKeyName()));
+		fieldsInit.add(new FieldInt("Numero de l'adresse", getPrimaryKeyName()));
 		fieldsInit.add(city);
 		fieldsInit.add(streetNumber);
 		fieldsInit.add(streetName);
 		fieldsInit.add(new FieldString("Code postal", "postalCode"));
-		fieldsInit
-				.add(new FieldString("Numero de telephone", "telephoneNumber"));
+		fieldsInit.add(new FieldString("Numero de telephone", "telephoneNumber"));
 		fieldsInit.add(new FieldInt("Pays", new Country().getForeignKeyName()));
-		fieldsInit.add(new FieldInt("Province / État", new State()
-				.getForeignKeyName()));
+		fieldsInit.add(new FieldInt("Province / État", new State().getForeignKeyName()));
 		return new Fields(fieldsInit);
 	}
 

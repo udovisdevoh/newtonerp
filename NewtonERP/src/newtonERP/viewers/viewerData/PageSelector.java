@@ -4,10 +4,10 @@ import newtonERP.module.AbstractEntity;
 
 /**
  * Modèle d'un selecteur de page
+ * 
  * @author Guillaume
  */
-public class PageSelector extends AbstractEntity
-{
+public class PageSelector extends AbstractEntity {
 	private String currentUrl;
 	private String currentSearchEntry;
 	private String orderBy;
@@ -18,8 +18,7 @@ public class PageSelector extends AbstractEntity
 
 	/**
 	 */
-	public PageSelector()
-	{
+	public PageSelector() {
 		super();
 		// TODO Auto-generated constructor stub
 		currentLimit = 15;
@@ -36,79 +35,73 @@ public class PageSelector extends AbstractEntity
 	 * @param rowPerPage row per page
 	 * @param pageCount page count
 	 */
-	public PageSelector(int limit, int offset, int totalRowCount,
-			String currentUrl, String currentSearchEntry, String orderBy)
+	public PageSelector(int limit, int offset, int totalRowCount, String currentUrl, String currentSearchEntry,
+	        String orderBy)
 
 	{
-		if (currentSearchEntry == null)
+		if(currentSearchEntry == null){
 			currentSearchEntry = "";
+		}
 
-		if (orderBy == null)
+		if(orderBy == null){
 			orderBy = "";
+		}
 
 		this.totalRowCount = totalRowCount;
 		this.currentSearchEntry = currentSearchEntry;
 		this.orderBy = orderBy;
 		currentLimit = limit;
 		currentOffset = offset;
-		pageCount = (int) Math
-				.ceil((double) (totalRowCount) / (double) (limit));
+		pageCount = (int) Math.ceil((double) (totalRowCount) / (double) (limit));
 		this.currentUrl = currentUrl;
 	}
 
 	/**
 	 * @return nombre de pages
 	 */
-	public int getPageCount()
-	{
+	public int getPageCount() {
 		return pageCount;
 	}
 
 	/**
 	 * @return nombre maximum de rangée par page
 	 */
-	public int getCurrentLimit()
-	{
+	public int getCurrentLimit() {
 		return currentLimit;
 	}
 
 	/**
 	 * @return url
 	 */
-	public String getCurrentUrl()
-	{
+	public String getCurrentUrl() {
 		return currentUrl;
 	}
 
 	/**
 	 * @return offset
 	 */
-	public int getCurrentOffset()
-	{
+	public int getCurrentOffset() {
 		return currentOffset;
 	}
 
 	/**
 	 * @return nombre total de rangée
 	 */
-	public int getTotalRowCount()
-	{
+	public int getTotalRowCount() {
 		return totalRowCount;
 	}
 
 	/**
 	 * @return recherche courante
 	 */
-	public String getCurrentSearchEntry()
-	{
+	public String getCurrentSearchEntry() {
 		return currentSearchEntry;
 	}
 
 	/**
 	 * @return ordre de tri
 	 */
-	public String getOrderBy()
-	{
+	public String getOrderBy() {
 		return orderBy;
 	}
 }

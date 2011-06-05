@@ -1,13 +1,11 @@
 package newtonERP.orm.field.type;
 
-
 /**
  * text field in the entities (text is a long text where String is a short text)
  * 
  * @author CloutierJo
  */
-public class FieldText extends FieldString
-{
+public class FieldText extends FieldString {
 	private boolean isVeryLong = false;
 
 	/**
@@ -37,6 +35,7 @@ public class FieldText extends FieldString
 
 	/**
 	 * isVeryLong sera à false par default
+	 * 
 	 * @param name nom du champ qui sera visible par l'utilisateur
 	 * @param shortName nom du champ qui sera utiliser a l'interne
 	 */
@@ -49,16 +48,14 @@ public class FieldText extends FieldString
 	/**
 	 * @param isVeryLong if it is a very long text area
 	 */
-	public void setVeryLong(boolean isVeryLong)
-	{
+	public void setVeryLong(boolean isVeryLong) {
 		this.isVeryLong = isVeryLong;
 	}
 
 	/**
 	 * @return isVeryLong
 	 */
-	public boolean isVeryLong()
-	{
+	public boolean isVeryLong() {
 		return isVeryLong;
 	}
 

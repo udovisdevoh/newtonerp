@@ -10,10 +10,8 @@ import newtonERP.logging.Logger;
  * 
  * @author r3hallejo
  */
-public class FieldDate extends FieldDateTime
-{
-	private static SimpleDateFormat dateFormatter = new SimpleDateFormat(
-			"yyyy-MM-dd");
+public class FieldDate extends FieldDateTime {
+	private static SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
 
 	/**
 	 * constructeur minimum
@@ -22,8 +20,7 @@ public class FieldDate extends FieldDateTime
 	 * @param shortName nom du champ qui sera utiliser a l'interne
 	 * @param data donne du champ
 	 */
-	public FieldDate(String name, String shortName, GregorianCalendar data)
-	{
+	public FieldDate(String name, String shortName, GregorianCalendar data) {
 		super(name, shortName, data);
 	}
 
@@ -31,34 +28,30 @@ public class FieldDate extends FieldDateTime
 	 * @param name nom du champ qui sera visible par l'utilisateur
 	 * @param shortName nom du champ qui sera utiliser a l'interne
 	 */
-	public FieldDate(String name, String shortName)
-	{
+	public FieldDate(String name, String shortName) {
 		super(name, shortName);
 	}
 
 	@Override
-	public void setData(String date)
-	{
-		try
-		{
+	public void setData(String date) {
+		try{
 			GregorianCalendar tempDate = new GregorianCalendar();
 			tempDate.setTime(dateFormatter.parse(date));
 			data = tempDate;
-		} catch (Exception e)
-		{
-			setErrorMessage("Le format de donnée entrée ne correspond pas avec le type de champ (date): "
-					+ data);
+		}catch(Exception e){
+			setErrorMessage("Le format de donnée entrée ne correspond pas avec le type de champ (date): " + data);
 			Logger.error(e.getMessage());
 		}
 	}
 
 	@Override
-	public String getDataString(Boolean forOrm)
-	{
-		if (forOrm)
+	public String getDataString(Boolean forOrm) {
+		if(forOrm){
 			return super.getDataString(forOrm);
-		if (data == null)
+		}
+		if(data == null){
 			return null;
+		}
 		return dateFormatter.format(super.getData().getTime());
 	}
 }

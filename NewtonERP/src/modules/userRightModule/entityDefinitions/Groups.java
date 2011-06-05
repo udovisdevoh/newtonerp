@@ -11,21 +11,20 @@ import newtonERP.orm.field.type.FieldString;
 
 /**
  * Entity defenition class representing a group for the users
+ * 
  * @author CloutierJo, r3hallejo
  */
-public class Groups extends AbstractOrmEntity
-{
+public class Groups extends AbstractOrmEntity {
 	/**
 	 */
-	public Groups()
-	{
+	public Groups() {
 		super();
 		AccessorManager.addAccessor(this, new Right());
 		setVisibleName("Groupe");
 	}
 
-	public Fields initFields()
-	{
+	@Override
+	public Fields initFields() {
 		FieldString groupName = new FieldString("Nom", "groupName");
 		groupName.setNaturalKey(true);
 
@@ -36,16 +35,15 @@ public class Groups extends AbstractOrmEntity
 	}
 
 	/**
-	 * Searches the rights for this group by the groupsID and then returns this
-	 * list
+	 * Searches the rights for this group by the groupsID and then returns this list
 	 * 
 	 * @return rightResult the right list
 	 */
-	public Vector<Right> getRightList()
-	{
+	public Vector<Right> getRightList() {
 		Vector<Right> rightList = new Vector<Right>();
-		for (AbstractOrmEntity entity : getPluralAccessor("Right"))
+		for(AbstractOrmEntity entity : getPluralAccessor("Right")){
 			rightList.add((Right) entity);
+		}
 		return rightList;
 	}
 }

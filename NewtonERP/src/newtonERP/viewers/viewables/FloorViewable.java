@@ -5,12 +5,11 @@ import java.util.Vector;
 import newtonERP.common.ActionLink;
 
 /**
- * Ce qui peut être vu en tant que plan 2D comportant des salles et des
- * corridors
+ * Ce qui peut être vu en tant que plan 2D comportant des salles et des corridors
+ * 
  * @author Guillaume Lacasse
  */
-public interface FloorViewable
-{
+public interface FloorViewable {
 	/**
 	 * @return nombre de colonnes
 	 */

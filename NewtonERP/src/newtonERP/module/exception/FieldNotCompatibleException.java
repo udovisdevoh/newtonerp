@@ -5,35 +5,28 @@ package newtonERP.module.exception;
  * 
  * @author cloutierJo
  */
-public class FieldNotCompatibleException extends ModuleException
-{
+public class FieldNotCompatibleException extends ModuleException {
 	/**
 	 * Constructeur par default pour cette exception
 	 * 
 	 * @param fieldName nom du champ
 	 * @param data la donne nom compatible
 	 */
-	public FieldNotCompatibleException(String fieldName, Object data)
-	{
-		super(
-				fieldName + " field is not compatible with " + data != null ? data
-						.getClass().getSimpleName()
-						: "null");
+	public FieldNotCompatibleException(String fieldName, Object data) {
+		super(fieldName + " field is not compatible with " + data != null ? data.getClass().getSimpleName() : "null");
 	}
 
 	/**
 	 * @param message the message
 	 */
-	public FieldNotCompatibleException(String message)
-	{
+	public FieldNotCompatibleException(String message) {
 		super(message);
 	}
 
 	/**
 	 * 
 	 */
-	public FieldNotCompatibleException()
-	{
+	public FieldNotCompatibleException() {
 		super();
 	}
 
@@ -41,16 +34,14 @@ public class FieldNotCompatibleException extends ModuleException
 	 * @param message the message
 	 * @param cause the cause
 	 */
-	public FieldNotCompatibleException(String message, Throwable cause)
-	{
+	public FieldNotCompatibleException(String message, Throwable cause) {
 		super(message, cause);
 	}
 
 	/**
 	 * @param cause the cause
 	 */
-	public FieldNotCompatibleException(Throwable cause)
-	{
+	public FieldNotCompatibleException(Throwable cause) {
 		super(cause);
 	}
 }

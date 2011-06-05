@@ -7,11 +7,10 @@ import newtonERP.module.AbstractAction;
 
 /**
  * represent une cellule d'un tableau affichable
- * @author CloutierJo
  * 
+ * @author CloutierJo
  */
-public class GridCaseData extends ActionLink
-{
+public class GridCaseData extends ActionLink {
 	private boolean isColored;
 
 	/**
@@ -19,9 +18,7 @@ public class GridCaseData extends ActionLink
 	 * @param action action a effectuer lorsque clique (null par defaut)
 	 * @param parameters parametre du lien
 	 */
-	public GridCaseData(String name, AbstractAction action,
-			Hashtable<String, String> parameters)
-	{
+	public GridCaseData(String name, AbstractAction action, Hashtable<String, String> parameters) {
 		super(name, action, parameters);
 	}
 
@@ -38,42 +35,38 @@ public class GridCaseData extends ActionLink
 	/**
 	 * @param name valeur a affiche dans cette case
 	 */
-	public GridCaseData(String name)
-	{
+	public GridCaseData(String name) {
 		this(name, null);
 	}
 
 	/**
 	 * constructeur vide
 	 */
-	public GridCaseData()
-	{
+	public GridCaseData() {
 		this("");
 	}
 
 	/**
 	 * methode de remplacement temporaire
+	 * 
 	 * @return l'action
 	 */
 	@Deprecated
-	public AbstractAction getActionLink()
-	{
+	public AbstractAction getActionLink() {
 		return getAction();
 	}
 
 	/**
 	 * @return si la case doit être colorée
 	 */
-	public boolean isColored()
-	{
+	public boolean isColored() {
 		return isColored;
 	}
 
 	/**
 	 * @param isColored si la case doit être colorée
 	 */
-	public void setColored(boolean isColored)
-	{
+	public void setColored(boolean isColored) {
 		this.isColored = isColored;
 	}
 }

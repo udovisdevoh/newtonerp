@@ -11,10 +11,10 @@ import newtonERP.module.generalEntity.ListOfValue;
 
 /**
  * data du promptViewer
+ * 
  * @author CloutierJo
  */
-public class PromptViewerData extends BaseViewerData
-{
+public class PromptViewerData extends BaseViewerData {
 	private ActionLink buttonAction;
 	private AbstractEntity data;
 	private boolean isReadOnly;
@@ -22,42 +22,38 @@ public class PromptViewerData extends BaseViewerData
 	/**
 	 * default constructor
 	 */
-	public PromptViewerData()
-	{
+	public PromptViewerData() {
 		super();
 	}
 
 	/**
 	 * @return nom du bouton "ok"
 	 */
-	public ActionLink getButtonAction()
-	{
+	public ActionLink getButtonAction() {
 		return buttonAction;
 	}
 
 	/**
 	 * @param buttonAction nom du bouton "ok"
 	 */
-	public void setButtonAction(ActionLink buttonAction)
-	{
+	public void setButtonAction(ActionLink buttonAction) {
 		this.buttonAction = buttonAction;
 	}
 
 	/**
 	 * @param data the data to set
 	 */
-	public void setData(AbstractEntity data)
-	{
+	public void setData(AbstractEntity data) {
 		this.data = data;
-		if (getTitle() == null)
+		if(getTitle() == null){
 			setTitle(data.getSystemName());
+		}
 	}
 
 	/**
 	 * @return the data
 	 */
-	public AbstractEntity getData()
-	{
+	public AbstractEntity getData() {
 		return data;
 	}
 
@@ -66,8 +62,8 @@ public class PromptViewerData extends BaseViewerData
 	 * @param inputName nom du champ
 	 * @return is le champ est un check box (bool)
 	 */
-	public boolean isMatchCheckBox(String inputName)
-	{
+	@Override
+	public boolean isMatchCheckBox(String inputName) {
 		return false;
 	}
 
@@ -75,26 +71,25 @@ public class PromptViewerData extends BaseViewerData
 	 * @param fieldKeyName the field key name
 	 * @return If list of value exist, return it, else, return null
 	 */
-	public ListOfValue tryMatchListOfValue(String fieldKeyName)
-	{
+	@Override
+	public ListOfValue tryMatchListOfValue(String fieldKeyName) {
 		return null;
 	}
 
 	/**
 	 * @return the flag pool list
 	 */
-	public Hashtable<String, FlagPool> getPositiveFlagPoolList()
-	{
+	public Hashtable<String, FlagPool> getPositiveFlagPoolList() {
 		return null;
 	}
 
 	/**
 	 * Retourne la valeur actuelle d'un champ
+	 * 
 	 * @param inputName nom du champ
 	 * @return valeur contenue dans le champ
 	 */
-	public String getInputValue(String inputName)
-	{
+	public String getInputValue(String inputName) {
 		return null;
 	}
 
@@ -102,41 +97,38 @@ public class PromptViewerData extends BaseViewerData
 	 * @param inputName nom d'un field
 	 * @return nom complete d'un field
 	 */
-	public String getLabelName(String inputName)
-	{
+	@Override
+	public String getLabelName(String inputName) {
 		return null;
 	}
 
 	/**
 	 * @return the current action
 	 */
-	public AbstractAction getCurrentAction()
-	{
+	@Override
+	public AbstractAction getCurrentAction() {
 		return null;
 	}
 
 	/**
 	 * @return the current module
 	 */
-	public Module getCurrentModule()
-	{
+	@Override
+	public Module getCurrentModule() {
 		return null;
 	}
 
 	/**
-	 * @param isReadOnly si entité est présentement readonly dans le contexte
-	 *            actuel
+	 * @param isReadOnly si entité est présentement readonly dans le contexte actuel
 	 */
-	public void setReadOnly(boolean isReadOnly)
-	{
+	public void setReadOnly(boolean isReadOnly) {
 		this.isReadOnly = isReadOnly;
 	}
 
 	/**
 	 * @return si entité est présentement readonly
 	 */
-	public boolean isReadOnly()
-	{
+	public boolean isReadOnly() {
 		return isReadOnly;
 	}
 }

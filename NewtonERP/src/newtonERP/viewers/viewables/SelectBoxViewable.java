@@ -4,10 +4,10 @@ import newtonERP.common.NaturalMap;
 
 /**
  * The select box view interface
+ * 
  * @author Guillaume Lacasse
  */
-public interface SelectBoxViewable
-{
+public interface SelectBoxViewable {
 	/**
 	 * @return the elements of the select box
 	 */

@@ -7,22 +7,20 @@ import newtonERP.viewers.viewerData.BaseViewerData;
 
 /**
  * permet l'affichage des BaseViewerData
- * @author CloutierJo
  * 
+ * @author CloutierJo
  */
-public class BaseViewer
-{
+public class BaseViewer {
 
 	/**
 	 * donne le code html des element de base du haut
+	 * 
 	 * @param entity l'entity cntenant ces information
 	 * @return le code html
 	 */
-	public static String getTopHtmlCode(BaseViewerData entity)
-	{
+	public static String getTopHtmlCode(BaseViewerData entity) {
 		String html = "";
-		if (entity.getBackLink() != null)
-		{
+		if(entity.getBackLink() != null){
 			html += "<p class='backLink'>";
 			html += LinkViewer.getHtmlCode(entity.getBackLink());
 			html += "</p>";
@@ -40,21 +38,25 @@ public class BaseViewer
 	 * @param html
 	 * @return
 	 */
-	private static String getMessage(BaseViewerData entity)
-	{
+	private static String getMessage(BaseViewerData entity) {
 		String html = "";
-		if (entity.getAlertMessageList() != null)
-			for (String message : entity.getAlertMessageList())
+		if(entity.getAlertMessageList() != null){
+			for(String message : entity.getAlertMessageList()){
 				html += "<p class='errorMessage'>" + message + "</p>";
+			}
+		}
 
-		if (entity.getNormalMessageList() != null)
-			for (String message : entity.getNormalMessageList())
+		if(entity.getNormalMessageList() != null){
+			for(String message : entity.getNormalMessageList()){
 				html += "<p class='normalMessage'>" + message + "</p>";
+			}
+		}
 		return html;
 	}
 
 	/**
 	 * donne le code html des element de base du bas
+	 * 
 	 * @param entity l'entity cntenant ces information
 	 * @return le code html
 	 */
@@ -63,13 +65,11 @@ public class BaseViewer
 	{
 		String html = "";
 		html += "<p>";
-		for (ActionLink globalAction : entity.getGlobalActions())
-		{
+		for(ActionLink globalAction : entity.getGlobalActions()){
 			html += ButtonLinkViewer.getHtmlCode(globalAction);
 			/*
-			 * todo: remove when sucefully tested html += " <a href='" +
-			 * globalAction.getUrl() + "'>"; html += globalAction.getName() +
-			 * "</a> ";
+			 * todo: remove when sucefully tested html += " <a href='" + globalAction.getUrl() + "'>"; html +=
+			 * globalAction.getName() + "</a> ";
 			 */
 		}
 		html += getPrintButton(); // todo: find a way to get this out of here...
@@ -78,8 +78,7 @@ public class BaseViewer
 		return html;
 	}
 
-	private static String getPrintButton()
-	{
+	private static String getPrintButton() {
 		return "<ins><form class='submitButton' action='.\\'><div><input class='submitButton' type='submit' value='Imprimer' onclick='window.print();return false;'/></div></form></ins>";
 	}
 }

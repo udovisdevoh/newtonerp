@@ -11,10 +11,8 @@ import newtonERP.logging.Logger;
  * 
  * @author CloutierJo
  */
-public class FieldCurrency extends FieldDouble
-{
-	private DecimalFormat df = (DecimalFormat) NumberFormat
-			.getCurrencyInstance(Locale.CANADA_FRENCH);
+public class FieldCurrency extends FieldDouble {
+	private DecimalFormat df = (DecimalFormat) NumberFormat.getCurrencyInstance(Locale.CANADA_FRENCH);
 
 	/**
 	 * constructeur minimum
@@ -23,8 +21,7 @@ public class FieldCurrency extends FieldDouble
 	 * @param shortName nom du champ qui sera utiliser a l'interne
 	 * @param data donne du champ
 	 */
-	public FieldCurrency(String name, String shortName, Double data)
-	{
+	public FieldCurrency(String name, String shortName, Double data) {
 		super(name, shortName, data);
 		df.setGroupingUsed(false);
 	}
@@ -33,36 +30,35 @@ public class FieldCurrency extends FieldDouble
 	 * @param name nom du champ qui sera visible par l'utilisateur
 	 * @param shortName nom du champ qui sera utiliser a l'interne
 	 */
-	public FieldCurrency(String name, String shortName)
-	{
+	public FieldCurrency(String name, String shortName) {
 		this(name, shortName, null);
 	}
 
-	public String getDataString(Boolean forOrm)
-	{
+	@Override
+	public String getDataString(Boolean forOrm) {
 
-		if (forOrm)
+		if(forOrm){
 			return super.getDataString(forOrm);
-		if (getCalcul() != null)
+		}
+		if(getCalcul() != null){
 			data = super.getData();
-		if (data == null)
+		}
+		if(data == null){
 			return "";
+		}
 		return df.format(super.getData());
 	}
 
-	public void setData(String data)
-	{
-		try
-		{
+	@Override
+	public void setData(String data) {
+		try{
 			data = data.replaceAll("\\s", "");
 			data = data.replaceAll("\\$", "");
 			data = data.replaceAll("\\.", ",");
 			data += " $";
 			this.data = df.parse(data).doubleValue();
-		} catch (Exception e)
-		{
-			setErrorMessage("Le format de donnée entrée ne correspond pas avec le type de champ (Currency): "
-					+ data);
+		}catch(Exception e){
+			setErrorMessage("Le format de donnée entrée ne correspond pas avec le type de champ (Currency): " + data);
 			Logger.error(e.getMessage());
 		}
 	}

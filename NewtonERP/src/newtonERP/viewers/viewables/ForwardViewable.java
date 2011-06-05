@@ -2,10 +2,10 @@ package newtonERP.viewers.viewables;
 
 /**
  * Forward viewable interface
+ * 
  * @author Guillaume Lacasse
  */
-public interface ForwardViewable
-{
+public interface ForwardViewable {
 	/**
 	 * @return the forwarding url
 	 */

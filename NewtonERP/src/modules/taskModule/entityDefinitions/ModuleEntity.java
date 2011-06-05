@@ -18,20 +18,19 @@ import newtonERP.viewers.viewerData.ListViewerData;
 
 /**
  * Entité représentant un module
+ * 
  * @author Guillaume Lacasse
  */
-public class ModuleEntity extends AbstractOrmEntity
-{
+public class ModuleEntity extends AbstractOrmEntity {
 	/**
 	 */
-	public ModuleEntity()
-	{
+	public ModuleEntity() {
 		super();
 		setVisibleName("Module");
 	}
 
-	protected Fields preInitFields()
-	{
+	@Override
+	protected Fields preInitFields() {
 		// always build the field from initField and not from DB, thats mean
 		// that we cannot add a dynamic Field, this should not be done anywhere
 		// else
@@ -39,8 +38,7 @@ public class ModuleEntity extends AbstractOrmEntity
 	}
 
 	@Override
-	public Fields initFields()
-	{
+	public Fields initFields() {
 		FieldString visibleName = new FieldString("Nom visible", "visibleName");
 		visibleName.setNaturalKey(true);
 
@@ -54,13 +52,11 @@ public class ModuleEntity extends AbstractOrmEntity
 	/**
 	 * @return vrai module
 	 */
-	public Module getModule()
-	{
+	public Module getModule() {
 		return ListModule.getModule(getModuleName());
 	}
 
-	private String getModuleName()
-	{
+	private String getModuleName() {
 		return getDataString("systemName");
 	}
 
@@ -71,11 +67,9 @@ public class ModuleEntity extends AbstractOrmEntity
 		parameters.put(getPrimaryKeyName(), "&");
 
 		ListViewerData entityList = super.getList(parameters);
-		entityList.addSpecificActionButtonList(new ActionLink("Voir source",
-				new ViewModuleSource(), parameters));
+		entityList.addSpecificActionButtonList(new ActionLink("Voir source", new ViewModuleSource(), parameters));
 
-		entityList.addSpecificActionButtonList(new ActionLink("Générer source",
-				new GenerateSourceCode(), parameters));
+		entityList.addSpecificActionButtonList(new ActionLink("Générer source", new GenerateSourceCode(), parameters));
 
 		return entityList;
 	}
@@ -83,26 +77,24 @@ public class ModuleEntity extends AbstractOrmEntity
 	/**
 	 * @return list of entity entity for this module
 	 */
-	public Vector<EntityEntity> getEntityEntityList()
-	{
-		PluralAccessor accessor = getPluralAccessor(new EntityEntity()
-				.getSystemName());
+	public Vector<EntityEntity> getEntityEntityList() {
+		PluralAccessor accessor = getPluralAccessor(new EntityEntity().getSystemName());
 		Vector<EntityEntity> entityEntityList = new Vector<EntityEntity>();
-		for (AbstractOrmEntity entity : accessor)
+		for(AbstractOrmEntity entity : accessor){
 			entityEntityList.add((EntityEntity) entity);
+		}
 		return entityEntityList;
 	}
 
 	/**
 	 * @return list of action entity for this module
 	 */
-	public Vector<ActionEntity> getActionEntityList()
-	{
-		PluralAccessor accessor = getPluralAccessor(new ActionEntity()
-				.getSystemName());
+	public Vector<ActionEntity> getActionEntityList() {
+		PluralAccessor accessor = getPluralAccessor(new ActionEntity().getSystemName());
 		Vector<ActionEntity> actionEntityList = new Vector<ActionEntity>();
-		for (AbstractOrmEntity entity : accessor)
+		for(AbstractOrmEntity entity : accessor){
 			actionEntityList.add((ActionEntity) entity);
+		}
 		return actionEntityList;
 	}
 }

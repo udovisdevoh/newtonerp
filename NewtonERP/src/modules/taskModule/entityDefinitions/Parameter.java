@@ -11,21 +11,19 @@ import newtonERP.orm.field.type.FieldText;
 
 /**
  * Paramètres custom utilisé par effet de task
+ * 
  * @author Guillaume Lacasse
  */
-public class Parameter extends AbstractOrmEntity
-{
+public class Parameter extends AbstractOrmEntity {
 	/**
 	 */
-	public Parameter()
-	{
+	public Parameter() {
 		super();
 		setVisibleName("Paramètre générique");
 	}
 
 	@Override
-	public Fields initFields()
-	{
+	public Fields initFields() {
 		FieldString key = new FieldString("Nom de clef", "key");
 		key.setNaturalKey(true);
 
@@ -43,16 +41,14 @@ public class Parameter extends AbstractOrmEntity
 	/**
 	 * @return clef du paramètre
 	 */
-	public String getKey()
-	{
+	public String getKey() {
 		return getDataString("key");
 	}
 
 	/**
 	 * @return valeur du paramètre
 	 */
-	public String getValue()
-	{
+	public String getValue() {
 		return getDataString("value");
 	}
 }

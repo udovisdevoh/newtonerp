@@ -20,24 +20,21 @@ import newtonERP.viewers.viewerData.ListViewerData;
 
 /**
  * Représente une action définie dans une entitée
+ * 
  * @author Guillaume Lacasse
  */
-public class ActionEntity extends AbstractOrmEntity
-{
+public class ActionEntity extends AbstractOrmEntity {
 	/**
 	 */
-	public ActionEntity()
-	{
+	public ActionEntity() {
 		super();
 		setVisibleName("Action");
 		AccessorManager.addAccessor(this, new ModuleEntity());
 	}
 
 	@Override
-	public Fields initFields()
-	{
-		FieldInt moduleEntity = new FieldInt("Module", new ModuleEntity()
-				.getForeignKeyName());
+	public Fields initFields() {
+		FieldInt moduleEntity = new FieldInt("Module", new ModuleEntity().getForeignKeyName());
 		moduleEntity.setReadOnly(true);
 
 		FieldString systemName = new FieldString("Nom système", "systemName");
@@ -55,8 +52,7 @@ public class ActionEntity extends AbstractOrmEntity
 
 	{
 		/*
-		 * On ne veut pas permettre l'effacement d'action alors on redirige
-		 * l'effacement vers GetList
+		 * On ne veut pas permettre l'effacement d'action alors on redirige l'effacement vers GetList
 		 */
 		ListViewerData entityList = super.getList();
 		return entityList;
@@ -69,10 +65,8 @@ public class ActionEntity extends AbstractOrmEntity
 		parameters.put(getPrimaryKeyName(), "&");
 
 		ListViewerData entityList = super.getList(parameters);
-		entityList.addSpecificActionButtonList(new ActionLink("Voir source",
-				new ViewActionSource(), parameters));
-		entityList.addSpecificActionButtonList(new ActionLink("Générer source",
-				new GenerateActionCode(), parameters));
+		entityList.addSpecificActionButtonList(new ActionLink("Voir source", new ViewActionSource(), parameters));
+		entityList.addSpecificActionButtonList(new ActionLink("Générer source", new GenerateActionCode(), parameters));
 
 		// On doit créer une action seulement avec le [+] de son module
 		entityList.removeGlobalActions("Nouveau " + getVisibleName());
@@ -83,8 +77,7 @@ public class ActionEntity extends AbstractOrmEntity
 	/**
 	 * @return retourne une instance de vrai action selon l'entité d'action
 	 */
-	public AbstractAction getAction()
-	{
+	public AbstractAction getAction() {
 		String actionName = getActionName();
 		Module module = getModuleEntity().getModule();
 		return module.getAction(actionName);
@@ -93,17 +86,14 @@ public class ActionEntity extends AbstractOrmEntity
 	/**
 	 * @return module entity
 	 */
-	public ModuleEntity getModuleEntity()
-	{
-		return (ModuleEntity) getSingleAccessor(new ModuleEntity()
-				.getForeignKeyName());
+	public ModuleEntity getModuleEntity() {
+		return (ModuleEntity) getSingleAccessor(new ModuleEntity().getForeignKeyName());
 	}
 
 	/**
 	 * @return nom de l'action
 	 */
-	public String getActionName()
-	{
+	public String getActionName() {
 		return getDataString("systemName");
 	}
 
@@ -111,8 +101,7 @@ public class ActionEntity extends AbstractOrmEntity
 	 * @param entity entité
 	 * @return base action correspondant à la définition d'entité
 	 */
-	public BaseAction getBaseAction(AbstractOrmEntity entity)
-	{
+	public BaseAction getBaseAction(AbstractOrmEntity entity) {
 		return new BaseAction(getActionName(), entity);
 	}
 }

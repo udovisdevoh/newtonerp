@@ -12,60 +12,54 @@ import newtonERP.orm.field.type.FieldText;
 
 /**
  * Entité de recherche pour spécification
+ * 
  * @author Guillaume Lacasse
  */
-public class SearchEntity extends AbstractOrmEntity
-{
+public class SearchEntity extends AbstractOrmEntity {
 	/**
 	 */
-	public SearchEntity()
-	{
+	public SearchEntity() {
 		super();
 		setVisibleName("Entité de recherche");
 		AccessorManager.addAccessor(this, new EntityEntity());
 	}
 
 	@Override
-	public Fields initFields()
-	{
+	public Fields initFields() {
 		Vector<Field<?>> fieldList = new Vector<Field<?>>();
 		fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
 		fieldList.add(new FieldText("Description", "name", false));
-		fieldList.add(new FieldInt("Entité", new EntityEntity()
-				.getForeignKeyName()));
+		fieldList.add(new FieldInt("Entité", new EntityEntity().getForeignKeyName()));
 		return new Fields(fieldList);
 	}
 
 	/**
 	 * @return vraie entité de recherche
 	 */
-	public AbstractOrmEntity getEntity()
-	{
-		EntityEntity entityEntity = (EntityEntity) getSingleAccessor(new EntityEntity()
-				.getForeignKeyName());
+	public AbstractOrmEntity getEntity() {
+		EntityEntity entityEntity = (EntityEntity) getSingleAccessor(new EntityEntity().getForeignKeyName());
 
 		AbstractOrmEntity entity = entityEntity.getEntityDefinition();
 
 		Vector<SearchCriteria> searchCriteriaList = getSearchCriteriaList();
 
-		for (SearchCriteria searchCriteria : searchCriteriaList)
+		for(SearchCriteria searchCriteria : searchCriteriaList){
 			addSearchCriteria(entity, searchCriteria);
+		}
 
 		return entity;
 	}
 
-	private Vector<SearchCriteria> getSearchCriteriaList()
-	{
+	private Vector<SearchCriteria> getSearchCriteriaList() {
 		PluralAccessor searchCriteriaList = getPluralAccessor("SearchCriteria");
 		Vector<SearchCriteria> searchCriteriaVector = new Vector<SearchCriteria>();
-		for (AbstractOrmEntity entity : searchCriteriaList)
+		for(AbstractOrmEntity entity : searchCriteriaList){
 			searchCriteriaVector.add((SearchCriteria) entity);
+		}
 		return searchCriteriaVector;
 	}
 
-	private void addSearchCriteria(AbstractOrmEntity entity,
-			SearchCriteria searchCriteria)
-	{
+	private void addSearchCriteria(AbstractOrmEntity entity, SearchCriteria searchCriteria) {
 		String key = searchCriteria.getKey();
 		String value = searchCriteria.getValue();
 		String operator = searchCriteria.getOperator();

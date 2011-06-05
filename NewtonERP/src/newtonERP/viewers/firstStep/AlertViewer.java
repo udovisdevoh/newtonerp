@@ -4,16 +4,15 @@ import newtonERP.viewers.viewables.AlertViewable;
 
 /**
  * Alert viewer
+ * 
  * @author Guillaume Lacasse
  */
-public class AlertViewer
-{
+public class AlertViewer {
 	/**
 	 * @param entity the alert entity
 	 * @return the html code (Javascript) of this alert
 	 */
-	public static String getHtmlCode(AlertViewable entity)
-	{
+	public static String getHtmlCode(AlertViewable entity) {
 		String html = "";
 		html += "\n<script language=\"JavaScript\">";
 		html += "\n<!--";

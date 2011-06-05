@@ -13,26 +13,22 @@ import newtonERP.orm.field.type.FieldString;
  * 
  * @author r3hallejo
  */
-public class State extends AbstractOrmEntity
-{
+public class State extends AbstractOrmEntity {
 
 	/**
 	 */
-	public State()
-	{
+	public State() {
 		super();
 		setVisibleName("Provinces / États");
 	}
 
 	@Override
-	public Fields initFields()
-	{
+	public Fields initFields() {
 		FieldString name = new FieldString("Nom", "name");
 		name.setNaturalKey(true);
 
 		Vector<Field<?>> fieldList = new Vector<Field<?>>();
-		fieldList.add(new FieldInt("Numero de province / état",
-				getPrimaryKeyName()));
+		fieldList.add(new FieldInt("Numero de province / état", getPrimaryKeyName()));
 		fieldList.add(name);
 		return new Fields(fieldList);
 	}

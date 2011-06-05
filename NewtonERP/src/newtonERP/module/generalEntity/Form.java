@@ -6,12 +6,9 @@ import newtonERP.orm.field.Field;
 import newtonERP.viewers.viewerData.PromptViewerData;
 
 /**
- * @author Guillaume Lacasse
- * 
- *         A loging form
+ * @author Guillaume Lacasse A loging form
  */
-public class Form extends PromptViewerData
-{
+public class Form extends PromptViewerData {
 	/**
 	 * @param currentModule module courant
 	 * @param currentAction action courante
@@ -41,16 +38,14 @@ public class Form extends PromptViewerData
 	 * @param label étiquette du champ
 	 * @param fieldName nom du champ
 	 */
-	public void addField(String label, String fieldName)
-	{
+	public void addField(String label, String fieldName) {
 		((VolatilEntity) getData()).addField(label, fieldName);
 	}
 
 	/**
 	 * @param field un field a ajouter
 	 */
-	public void addField(Field<?> field)
-	{
+	public void addField(Field<?> field) {
 		((VolatilEntity) getData()).addField(field);
 	}
 }

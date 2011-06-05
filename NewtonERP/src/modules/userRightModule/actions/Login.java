@@ -19,23 +19,21 @@ import newtonERP.orm.field.Field;
  * 
  * @author cloutierJo
  */
-public class Login extends AbstractAction
-{
+public class Login extends AbstractAction {
 	/**
 	 * constructeur
 	 */
-	public Login()
-	{
+	public Login() {
 		super(new User()); // Travaille avec des users
 		setDetailedDescription("Vous connecter");
 	}
 
-	public AbstractEntity doAction(AbstractEntity entity,
-			Hashtable<String, String> parameters)
-	{
+	@Override
+	public AbstractEntity doAction(AbstractEntity entity, Hashtable<String, String> parameters) {
 		String currentLoginName = parameters.get("name");
-		if (currentLoginName == null)
+		if(currentLoginName == null){
 			currentLoginName = "";
+		}
 
 		Form loginForm = new Form(new UserRightModule(), new Login());
 		loginForm.addField("Utilisateur", "name", currentLoginName);
@@ -45,19 +43,13 @@ public class Login extends AbstractAction
 		loginForm.setTitle("Identification");
 		loginForm.setButtonAction(new ActionLink("Entrer", this));
 
-		if (parameters.containsKey("submit"))
-		{
-			Vector<AbstractOrmEntity> userList = ((AbstractOrmEntity) (entity))
-					.get((AbstractOrmEntity) (entity));
+		if(parameters.containsKey("submit")){
+			Vector<AbstractOrmEntity> userList = ((AbstractOrmEntity) (entity)).get((AbstractOrmEntity) (entity));
 
-			if (userList.size() > 0 && userList.get(0).getData("name") != null)
-			{
-				if (IsGroupValid((User) (userList.get(0))))
-				{
-					Authentication.setCurrentUserName(entity
-							.getDataString("name"));
-					return new StaticTextEntity("Bienvenue "
-							+ userList.get(0).getData("name"));
+			if(userList.size() > 0 && userList.get(0).getData("name") != null){
+				if(IsGroupValid((User) (userList.get(0)))){
+					Authentication.setCurrentUserName(entity.getDataString("name"));
+					return new StaticTextEntity("Bienvenue " + userList.get(0).getData("name"));
 				}
 
 				loginForm.addAlertMessage("Groupe invalide ou corrompu");
@@ -68,18 +60,16 @@ public class Login extends AbstractAction
 		return loginForm;
 	}
 
-	private boolean IsGroupValid(User user)
-	{
+	private boolean IsGroupValid(User user) {
 		AbstractOrmEntity groups;
-		try
-		{
+		try{
 			groups = user.getGroupsEntity();
-		} catch (Exception e)
-		{
+		}catch(Exception e){
 			return false;
 		}
-		if (groups == null)
+		if(groups == null){
 			return false;
+		}
 		return true;
 	}
 }

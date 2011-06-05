@@ -5,21 +5,18 @@ package newtonERP.orm.exceptions;
  * 
  * @author r3lacasgu, r3hallejo
  */
-public class OrmException extends RuntimeException
-{
+public class OrmException extends RuntimeException {
 	/**
 	 * @param message the message of the exception
 	 */
-	public OrmException(String message)
-	{
+	public OrmException(String message) {
 		super(message);
 	}
 
 	/**
 	 * 
 	 */
-	public OrmException()
-	{
+	public OrmException() {
 		super();
 	}
 
@@ -27,16 +24,14 @@ public class OrmException extends RuntimeException
 	 * @param message the message
 	 * @param cause the cause
 	 */
-	public OrmException(String message, Throwable cause)
-	{
+	public OrmException(String message, Throwable cause) {
 		super(message, cause);
 	}
 
 	/**
 	 * @param cause the cause
 	 */
-	public OrmException(Throwable cause)
-	{
+	public OrmException(Throwable cause) {
 		super(cause);
 	}
 

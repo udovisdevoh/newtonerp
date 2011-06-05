@@ -13,20 +13,17 @@ import newtonERP.orm.field.type.FieldString;
  * 
  * @author r3hallejo
  */
-public class Country extends AbstractOrmEntity
-{
+public class Country extends AbstractOrmEntity {
 
 	/**
 	 */
-	public Country()
-	{
+	public Country() {
 		super();
 		setVisibleName("Pays");
 	}
 
 	@Override
-	public Fields initFields()
-	{
+	public Fields initFields() {
 		FieldString name = new FieldString("Nom", "name");
 		name.setNaturalKey(true);
 
