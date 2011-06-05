@@ -5,42 +5,41 @@ import newtonERP.orm.Orm;
 
 /**
  * Sert à gérer les accesseurs passant par des accesseurs
+ * 
  * @author Guillaume Lacasse
  */
 public class GateWayManager {
-    /**
-     * @param sourceEntity entité de source
-     * @param gateWayEntity entité de passerelle
-     * @param externalEntity entité externe
-     */
-    public static void addGateWay(AbstractOrmEntity sourceEntity,
-            AbstractOrmEntity gateWayEntity, AbstractOrmEntity externalEntity) {
-        GateWay gateWay = new GateWay(gateWayEntity, externalEntity);
-        sourceEntity.getGateWayList().add(gateWay);
-    }
+	/**
+	 * @param sourceEntity entité de source
+	 * @param gateWayEntity entité de passerelle
+	 * @param externalEntity entité externe
+	 */
+	public static void addGateWay(AbstractOrmEntity sourceEntity, AbstractOrmEntity gateWayEntity,
+	        AbstractOrmEntity externalEntity) {
+		GateWay gateWay = new GateWay(gateWayEntity, externalEntity);
+		sourceEntity.getGateWayList().add(gateWay);
+	}
 
-    /**
-     * @param gateWay gateWay
-     * @param sourceEntity source entity
-     * @return external entity
-     */
-    public static AbstractOrmEntity getExternalEntity(GateWay gateWay,
-            AbstractOrmEntity sourceEntity) {
-        AbstractOrmEntity gateWayEntity = gateWay.getGateWayEntity();
-        gateWayEntity.setData(gateWayEntity.getPrimaryKeyName(),
-                sourceEntity.getData(gateWayEntity.getForeignKeyName()));
-        gateWayEntity = Orm.getInstance().selectUnique(gateWayEntity);
+	/**
+	 * @param gateWay gateWay
+	 * @param sourceEntity source entity
+	 * @return external entity
+	 */
+	public static AbstractOrmEntity getExternalEntity(GateWay gateWay, AbstractOrmEntity sourceEntity) {
+		AbstractOrmEntity gateWayEntity = gateWay.getGateWayEntity();
+		gateWayEntity.setData(gateWayEntity.getPrimaryKeyName(),
+		        sourceEntity.getData(gateWayEntity.getForeignKeyName()));
+		gateWayEntity = Orm.getInstance().selectUnique(gateWayEntity);
 
-        AbstractOrmEntity externalEntity = gateWay.getExternalEntity();
+		AbstractOrmEntity externalEntity = gateWay.getExternalEntity();
 
-        String externalPrimaryKeyName = externalEntity.getPrimaryKeyName();
-        String externalForeignKeyName = externalEntity.getForeignKeyName();
-        int externalPrimaryKeyValue = (Integer) gateWayEntity
-                .getData(externalForeignKeyName);
+		String externalPrimaryKeyName = externalEntity.getPrimaryKeyName();
+		String externalForeignKeyName = externalEntity.getForeignKeyName();
+		int externalPrimaryKeyValue = (Integer) gateWayEntity.getData(externalForeignKeyName);
 
-        externalEntity.setData(externalPrimaryKeyName, externalPrimaryKeyValue);
-        externalEntity = Orm.getInstance().selectUnique(externalEntity);
+		externalEntity.setData(externalPrimaryKeyName, externalPrimaryKeyValue);
+		externalEntity = Orm.getInstance().selectUnique(externalEntity);
 
-        return externalEntity;
-    }
+		return externalEntity;
+	}
 }

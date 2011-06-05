@@ -1,27 +1,22 @@
 package newtonERP.module.exception;
 
 /**
- * @author r3hallejo
- * 
- *         Exception class representing a module exception
+ * @author r3hallejo Exception class representing a module exception
  */
-public class ModuleException extends RuntimeException
-{
+public class ModuleException extends RuntimeException {
 	/**
 	 * Default constructor for the module exception
 	 * 
 	 * @param message the message
 	 */
-	public ModuleException(String message)
-	{
+	public ModuleException(String message) {
 		super(message);
 	}
 
 	/**
 	 * 
 	 */
-	public ModuleException()
-	{
+	public ModuleException() {
 		super();
 	}
 
@@ -29,16 +24,14 @@ public class ModuleException extends RuntimeException
 	 * @param message the message
 	 * @param cause the cause
 	 */
-	public ModuleException(String message, Throwable cause)
-	{
+	public ModuleException(String message, Throwable cause) {
 		super(message, cause);
 	}
 
 	/**
 	 * @param cause the cause
 	 */
-	public ModuleException(Throwable cause)
-	{
+	public ModuleException(Throwable cause) {
 		super(cause);
 	}
 }

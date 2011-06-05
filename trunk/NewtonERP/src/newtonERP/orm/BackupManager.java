@@ -4,10 +4,10 @@ import java.util.GregorianCalendar;
 
 /**
  * Sert à gérer les backup automatiques
+ * 
  * @author Guillaume Lacasse
  */
-public class BackupManager
-{
+public class BackupManager {
 	private static GregorianCalendar gregorianCalendar = new GregorianCalendar();
 
 	private static long desiredBackupTimeInterval = 1800000; // Chaque demie
@@ -18,8 +18,7 @@ public class BackupManager
 	/**
 	 * @return temps actuel en ms
 	 */
-	public static long getCurrentTime()
-	{
+	public static long getCurrentTime() {
 		gregorianCalendar = new GregorianCalendar();
 		return gregorianCalendar.getTime().getTime();
 	}
@@ -27,16 +26,14 @@ public class BackupManager
 	/**
 	 * @return interval désirée pour backup en ms
 	 */
-	public static long getDesiredBackupIntervalTime()
-	{
+	public static long getDesiredBackupIntervalTime() {
 		return desiredBackupTimeInterval;
 	}
 
 	/**
 	 * @return nombre maximum d'instance de backup
 	 */
-	public static int getMaximumBackupInstanceCount()
-	{
+	public static int getMaximumBackupInstanceCount() {
 		return maximumBackupInstanceCount;
 	}
 }

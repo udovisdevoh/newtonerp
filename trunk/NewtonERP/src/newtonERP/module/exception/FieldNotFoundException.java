@@ -1,27 +1,22 @@
 package newtonERP.module.exception;
 
 /**
- * @author cloutierJo
- * 
- *         exception lancé lorsque le champ ne peut etre trouvé
+ * @author cloutierJo exception lancé lorsque le champ ne peut etre trouvé
  */
-public class FieldNotFoundException extends ModuleException
-{
+public class FieldNotFoundException extends ModuleException {
 	/**
 	 * Constructeur par default pour cette exception
 	 * 
 	 * @param fieldName nom du champ
 	 */
-	public FieldNotFoundException(String fieldName)
-	{
+	public FieldNotFoundException(String fieldName) {
 		super(fieldName + " field doesn't exist");
 	}
 
 	/**
 	 * 
 	 */
-	public FieldNotFoundException()
-	{
+	public FieldNotFoundException() {
 		super();
 	}
 
@@ -29,16 +24,14 @@ public class FieldNotFoundException extends ModuleException
 	 * @param fieldName the message
 	 * @param cause the cause
 	 */
-	public FieldNotFoundException(String fieldName, Throwable cause)
-	{
+	public FieldNotFoundException(String fieldName, Throwable cause) {
 		super(fieldName + " field doesn't exist", cause);
 	}
 
 	/**
 	 * @param cause the cause
 	 */
-	public FieldNotFoundException(Throwable cause)
-	{
+	public FieldNotFoundException(Throwable cause) {
 		super(cause);
 	}
 }

@@ -4,10 +4,10 @@ import java.util.Hashtable;
 
 /**
  * Diagramme à bande
+ * 
  * @author Guillaume Lacasse
  */
-public interface BandDiagramViewable
-{
+public interface BandDiagramViewable {
 	/**
 	 * @return modèle de donnée du diagramme
 	 */

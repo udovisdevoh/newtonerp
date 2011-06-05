@@ -6,41 +6,34 @@ import newtonERP.common.ListModule;
 
 /**
  * Sert à formatter de l'argent
- * @author Guillaume
  * 
+ * @author Guillaume
  */
-public class LinkViewer
-{
+public class LinkViewer {
 	private static int currentBalloonDivId = 0;
 
 	/**
 	 * @param actionLink representation du lien a effectuer
 	 * @return bouton de lien
 	 */
-	public static String getHtmlCode(ActionLink actionLink)
-	{
+	public static String getHtmlCode(ActionLink actionLink) {
 		// String onClickConfirm = "";
 
 		int balloonDivId = getNextBalloonDivId();
 
 		/*
-		 * todo: a remettre des que les viewer son plus generaliser que
-		 * presentement if (isConfirm) if (action.getEntityUsable() == null)
-		 * onClickConfirm = getOnClickConfirm(buttonCaption,"", value); else
-		 * onClickConfirm = getOnClickConfirm(buttonCaption,
-		 * action.getEntityUsable() .getVisibleInternalElementName(), value);
+		 * todo: a remettre des que les viewer son plus generaliser que presentement if (isConfirm) if
+		 * (action.getEntityUsable() == null) onClickConfirm = getOnClickConfirm(buttonCaption,"", value); else
+		 * onClickConfirm = getOnClickConfirm(buttonCaption, action.getEntityUsable() .getVisibleInternalElementName(),
+		 * value);
 		 */
 
 		String html = "";
 
-		if (isPermissionAllowed(actionLink))
-		{
-			html += " <a href='"
-					+ actionLink.getUrlParam()
-					+ "' onmouseover='document.getElementById(\"balloon"
-					+ balloonDivId
-					+ "\").style.visibility=\"visible\"' onmouseout='document.getElementById(\"balloon"
-					+ balloonDivId + "\").style.visibility=\"hidden\"'>";
+		if(isPermissionAllowed(actionLink)){
+			html += " <a href='" + actionLink.getUrlParam() + "' onmouseover='document.getElementById(\"balloon"
+			        + balloonDivId + "\").style.visibility=\"visible\"' onmouseout='document.getElementById(\"balloon"
+			        + balloonDivId + "\").style.visibility=\"hidden\"'>";
 			html += actionLink.getName() + "</a> ";
 
 			html += HelpViewer.getHtmlCode(actionLink, balloonDivId);
@@ -53,17 +46,14 @@ public class LinkViewer
 	/**
 	 * @return prochain ID de bulle d'aide
 	 */
-	public static int getNextBalloonDivId()
-	{
+	public static int getNextBalloonDivId() {
 		currentBalloonDivId++;
 		return currentBalloonDivId;
 	}
 
 	@SuppressWarnings("unused")
 	// todo: retire lorsque la correction est aporter plus haut
-	private static String getOnClickConfirm(String actionName,
-			String entityTypeName, String value)
-	{
+	private static String getOnClickConfirm(String actionName, String entityTypeName, String value) {
 		String html = "";
 
 		html += "onclick=\"return confirm(\'Voulez-vous vraiment ";
@@ -80,8 +70,7 @@ public class LinkViewer
 	private static boolean isPermissionAllowed(ActionLink actionLink)
 
 	{
-		UserRightModule userRightModule = (UserRightModule) ListModule
-				.getModule("UserRightModule");
+		UserRightModule userRightModule = (UserRightModule) ListModule.getModule("UserRightModule");
 
 		return userRightModule.isPermissionAllowed(actionLink);
 	}

@@ -10,24 +10,20 @@ import newtonERP.sourceCodeBuilder.SourceCodeBuilder;
 
 /**
  * Pour voir le code source (stub) d'une action
+ * 
  * @author Guillaume Lacasse
  */
-public class ViewActionSource extends AbstractAction
-{
+public class ViewActionSource extends AbstractAction {
 	/**
 	 */
-	public ViewActionSource()
-	{
+	public ViewActionSource() {
 		super(new ActionEntity());
 	}
 
 	@Override
-	public AbstractEntity doAction(AbstractEntity entity,
-			Hashtable<String, String> parameters)
-	{
+	public AbstractEntity doAction(AbstractEntity entity, Hashtable<String, String> parameters) {
 		ActionEntity actionEntity = (ActionEntity) entity;
-		return new StaticTextEntity(SourceCodeBuilder
-				.buildActionSourceCode(actionEntity));
+		return new StaticTextEntity(SourceCodeBuilder.buildActionSourceCode(actionEntity));
 	}
 
 }

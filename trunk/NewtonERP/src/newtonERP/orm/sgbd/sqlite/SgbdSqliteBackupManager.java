@@ -10,13 +10,14 @@ import java.io.OutputStream;
 
 import newtonERP.logging.Logger;
 import newtonERP.orm.BackupManager;
+import newtonERP.orm.exceptions.OrmException;
 
 /**
  * Gestionnaire de backup pour SQLite
+ * 
  * @author Guillaume Lacasse
  */
-public class SgbdSqliteBackupManager
-{
+public class SgbdSqliteBackupManager {
 	private static long latestBackupTime;
 
 	private static String backupDirectoryPath = "./sqliteDbBackup/";
@@ -25,64 +26,50 @@ public class SgbdSqliteBackupManager
 	 * @param originalFileName fichier de DB original
 	 * @param maxBackupCount nombre maximum de backup persistants
 	 */
-	public void doBackup(String originalFileName, int maxBackupCount)
-	{
-		if (countBackupFile(originalFileName) > maxBackupCount)
+	public void doBackup(String originalFileName, int maxBackupCount) {
+		if(countBackupFile(originalFileName) > maxBackupCount){
 			deleteFile(getEarliestBackupFile(originalFileName));
+		}
 
 		long currentTime = BackupManager.getCurrentTime();
 
-		copyFile("./" + originalFileName, backupDirectoryPath
-				+ originalFileName + "." + currentTime);
+		copyFile("./" + originalFileName, backupDirectoryPath + originalFileName + "." + currentTime);
 
 		latestBackupTime = currentTime;
 	}
 
-	private void deleteFile(String fileName)
-	{
+	private void deleteFile(String fileName) {
 		File file = new File(backupDirectoryPath + fileName);
 		file.delete();
 	}
 
-	private String getEarliestBackupFile(String originalFileName)
-	{
+	private String getEarliestBackupFile(String originalFileName) {
 		File folder = new File(backupDirectoryPath);
 		File[] listOfFiles = folder.listFiles();
 
-		for (int i = 0; i < listOfFiles.length; i++)
-		{
-			if (!listOfFiles[i].isDirectory()
-					&& listOfFiles[i].getName().startsWith(
-							originalFileName + "."))
-			{
+		for(int i = 0; i < listOfFiles.length; i++){
+			if(!listOfFiles[i].isDirectory() && listOfFiles[i].getName().startsWith(originalFileName + ".")){
 				return listOfFiles[i].getName();
 			}
 		}
 		return null;
 	}
 
-	private int countBackupFile(String originalFileName)
-	{
+	private int countBackupFile(String originalFileName) {
 		int count = 0;
 		File folder = new File(backupDirectoryPath);
 		File[] listOfFiles = folder.listFiles();
 
-		for (int i = 0; i < listOfFiles.length; i++)
-		{
-			if (!listOfFiles[i].isDirectory()
-					&& listOfFiles[i].getName().startsWith(
-							originalFileName + "."))
-			{
+		for(int i = 0; i < listOfFiles.length; i++){
+			if(!listOfFiles[i].isDirectory() && listOfFiles[i].getName().startsWith(originalFileName + ".")){
 				count++;
 			}
 		}
 		return count;
 	}
 
-	private void copyFile(String sourceFile, String destinationFile)
-	{
-		try
-		{
+	private void copyFile(String sourceFile, String destinationFile) {
+		try{
 			File f1 = new File(sourceFile);
 			File f2 = new File(destinationFile);
 			InputStream in = new FileInputStream(f1);
@@ -95,20 +82,16 @@ public class SgbdSqliteBackupManager
 
 			byte[] buf = new byte[1024];
 			int len;
-			while ((len = in.read(buf)) > 0)
-			{
+			while((len = in.read(buf)) > 0){
 				out.write(buf, 0, len);
 			}
 			in.close();
 			out.close();
 			Logger.info("[SQLITE_BACKUP] File copied.");
-		} catch (FileNotFoundException ex)
-		{
-			Logger.error("[SQLITE_BACKUP] " + ex.getMessage()
-					+ " in the specified directory.");
-			System.exit(0);
-		} catch (IOException e)
-		{
+		}catch(FileNotFoundException ex){
+			Logger.error("[SQLITE_BACKUP] " + ex.getMessage() + " in the specified directory.");
+			throw new OrmException(ex);
+		}catch(IOException e){
 			Logger.error("[SQLITE_BACKUP] " + e.getMessage());
 		}
 	}
@@ -116,8 +99,7 @@ public class SgbdSqliteBackupManager
 	/**
 	 * @return moment où le dernier backup à été fait
 	 */
-	public long getLatestBackupTime()
-	{
+	public long getLatestBackupTime() {
 		return latestBackupTime;
 	}
 }

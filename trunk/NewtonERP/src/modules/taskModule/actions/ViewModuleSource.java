@@ -9,24 +9,18 @@ import newtonERP.module.generalEntity.StaticTextEntity;
 import newtonERP.sourceCodeBuilder.SourceCodeBuilder;
 
 /**
- * 
  * @author Guillaume Lacasse
  */
-public class ViewModuleSource extends AbstractAction
-{
+public class ViewModuleSource extends AbstractAction {
 	/**
 	 */
-	public ViewModuleSource()
-	{
+	public ViewModuleSource() {
 		super(new ModuleEntity());
 	}
 
 	@Override
-	public StaticTextEntity doAction(AbstractEntity entity,
-			Hashtable<String, String> parameters)
-	{
+	public StaticTextEntity doAction(AbstractEntity entity, Hashtable<String, String> parameters) {
 		ModuleEntity moduleEntity = (ModuleEntity) entity;
-		return new StaticTextEntity(SourceCodeBuilder
-				.buildModuleSourceCode(moduleEntity));
+		return new StaticTextEntity(SourceCodeBuilder.buildModuleSourceCode(moduleEntity));
 	}
 }

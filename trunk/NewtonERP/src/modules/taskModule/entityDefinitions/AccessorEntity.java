@@ -11,26 +11,23 @@ import newtonERP.orm.field.type.FieldString;
 
 /**
  * Entité qui représente un accesseur
+ * 
  * @author Guillaume Lacasse
  */
-public class AccessorEntity extends AbstractOrmEntity
-{
+public class AccessorEntity extends AbstractOrmEntity {
 	/**
 	 */
-	public AccessorEntity()
-	{
+	public AccessorEntity() {
 		super();
 		setVisibleName("Accesseur");
 		AccessorManager.addAccessor(this, new EntityEntity());
 	}
 
 	@Override
-	public Fields initFields()
-	{
+	public Fields initFields() {
 		Vector<Field<?>> fieldList = new Vector<Field<?>>();
 		fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
-		fieldList.add(new FieldInt("Entité parent", new EntityEntity()
-				.getForeignKeyName()));
+		fieldList.add(new FieldInt("Entité parent", new EntityEntity().getForeignKeyName()));
 		fieldList.add(new FieldString("Entité étrangère", "foreignEntityName"));
 		return new Fields(fieldList);
 	}

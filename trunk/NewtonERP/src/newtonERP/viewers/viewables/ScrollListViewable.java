@@ -7,12 +7,11 @@ import newtonERP.common.ActionLink;
 import newtonERP.common.NaturalMap;
 
 /**
- * Element graphique visible en tant que liste scrollable de lien ou de texte
- * avec une scrollbar
+ * Element graphique visible en tant que liste scrollable de lien ou de texte avec une scrollbar
+ * 
  * @author Guillaume
  */
-public interface ScrollListViewable
-{
+public interface ScrollListViewable {
 	/**
 	 * @return le titre de la liste
 	 */

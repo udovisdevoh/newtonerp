@@ -14,20 +14,19 @@ import newtonERP.viewers.viewerData.ListViewerData;
 
 /**
  * Entity defenition class representing a right
+ * 
  * @author CloutierJo, r3hallejo
  */
-public class Right extends AbstractOrmEntity
-{
+public class Right extends AbstractOrmEntity {
 	/**
 	 */
-	public Right()
-	{
+	public Right() {
 		super();
 		setVisibleName("Droit");
 	}
 
-	public Fields initFields()
-	{
+	@Override
+	public Fields initFields() {
 		FieldString moduleName = new FieldString("Module", "moduleName");
 		moduleName.setNaturalKey(true);
 
@@ -51,8 +50,7 @@ public class Right extends AbstractOrmEntity
 
 	{
 		/*
-		 * On ne veut pas permettre l'effacement de droit alors on redirige
-		 * l'effacement vers GetList
+		 * On ne veut pas permettre l'effacement de droit alors on redirige l'effacement vers GetList
 		 */
 		ListViewerData entityList = super.getList();
 		return entityList;
@@ -63,8 +61,7 @@ public class Right extends AbstractOrmEntity
 
 	{
 		/*
-		 * On ne veut pas permettre la modification de droit alors on redirige
-		 * vers GetList
+		 * On ne veut pas permettre la modification de droit alors on redirige vers GetList
 		 */
 		ListViewerData entityList = super.getList();
 		return entityList;

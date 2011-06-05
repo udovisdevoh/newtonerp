@@ -10,10 +10,8 @@ import newtonERP.logging.Logger;
  * 
  * @author r3hallejo
  */
-public class FieldTime extends FieldDateTime
-{
-	private static SimpleDateFormat dateFormatter = new SimpleDateFormat(
-			"HH:mm");
+public class FieldTime extends FieldDateTime {
+	private static SimpleDateFormat dateFormatter = new SimpleDateFormat("HH:mm");
 
 	/**
 	 * constructeur minimum
@@ -39,28 +37,25 @@ public class FieldTime extends FieldDateTime
 	}
 
 	@Override
-	public void setData(String date)
-	{
-		try
-		{
+	public void setData(String date) {
+		try{
 			GregorianCalendar tempDate = new GregorianCalendar();
 			tempDate.setTime(dateFormatter.parse(date));
 			data = tempDate;
-		} catch (Exception e)
-		{
-			setErrorMessage("Le format de donnée entrée ne correspond pas avec le type de champ (Time): "
-					+ data);
+		}catch(Exception e){
+			setErrorMessage("Le format de donnée entrée ne correspond pas avec le type de champ (Time): " + data);
 			Logger.error(e.getMessage());
 		}
 	}
 
 	@Override
-	public String getDataString(Boolean forOrm)
-	{
-		if (forOrm)
+	public String getDataString(Boolean forOrm) {
+		if(forOrm){
 			return super.getDataString(forOrm);
-		if (data == null)
+		}
+		if(data == null){
 			return null;
+		}
 		return dateFormatter.format(super.getData().getTime());
 	}
 }

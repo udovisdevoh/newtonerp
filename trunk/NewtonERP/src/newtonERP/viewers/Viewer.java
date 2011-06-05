@@ -37,10 +37,10 @@ import newtonERP.viewers.viewerData.PromptViewerData;
 
 /**
  * Represents the main viewer for our ERP
+ * 
  * @author Guillaume Lacasse, Pascal Lemay
  */
-public abstract class Viewer
-{
+public abstract class Viewer {
 	private static final String defaultEncoding = "iso-8859-1";
 
 	/**
@@ -51,52 +51,48 @@ public abstract class Viewer
 	 * @param actionName the action to perform
 	 * @return the viewer
 	 */
-	public static String getHtmlCode(AbstractEntity entity, String moduleName,
-			String actionName)
-	{
+	public static String getHtmlCode(AbstractEntity entity, String moduleName, String actionName) {
 		String viewerHtml = "";
-		if (entity instanceof BaseViewerData)
+		if(entity instanceof BaseViewerData){
 			viewerHtml += BaseViewer.getTopHtmlCode((BaseViewerData) entity);
+		}
 
-		if (entity instanceof FloorViewable)
+		if(entity instanceof FloorViewable){
 			viewerHtml += FloorViewer.getHtmlCode((FloorViewable) entity);
-		else if (entity instanceof PromptViewerData)
+		}else if(entity instanceof PromptViewerData){
 			viewerHtml += PromptViewer.getHtmlCode((PromptViewerData) entity);
-		else if (entity instanceof ForwardViewable)
+		}else if(entity instanceof ForwardViewable){
 			viewerHtml += ForwardViewer.getHtmlCode((ForwardViewable) entity);
-		else if (entity instanceof AlertViewable)
+		}else if(entity instanceof AlertViewable){
 			viewerHtml += AlertViewer.getHtmlCode((AlertViewable) entity);
-		else if (entity instanceof StaticTextViewable)
-			viewerHtml += StaticTextViewer
-					.getHtmlCode((StaticTextViewable) entity);
-		else if (entity instanceof GridViewerData)
+		}else if(entity instanceof StaticTextViewable){
+			viewerHtml += StaticTextViewer.getHtmlCode((StaticTextViewable) entity);
+		}else if(entity instanceof GridViewerData){
 			viewerHtml += GridViewer.getHtmlCode((GridViewerData) entity);
-		else if (entity instanceof ImgViewerData)
+		}else if(entity instanceof ImgViewerData){
 			viewerHtml += ImgViewer.getHtmlCode((ImgViewerData) entity);
-		else if (entity instanceof SplashScreen)
+		}else if(entity instanceof SplashScreen){
 			viewerHtml += SplashScreenViewer.getHtmlCode((SplashScreen) entity);
-		else if (entity instanceof BandDiagramViewable)
-			viewerHtml += BandDiagramViewer
-					.getHtmlCode((BandDiagramViewable) entity);
-		else if (entity == null)
+		}else if(entity instanceof BandDiagramViewable){
+			viewerHtml += BandDiagramViewer.getHtmlCode((BandDiagramViewable) entity);
+		}else if(entity == null){
 			viewerHtml += "<!-- page vide -->";
-		else
+		}else{
 			throw new ViewerException("Couldn't find proper viewer for entity");
+		}
 
-		if (entity instanceof BaseViewerData)
+		if(entity instanceof BaseViewerData){
 			viewerHtml += BaseViewer.getBottomHtmlCode((BaseViewerData) entity);
+		}
 
-		return getHeader(moduleName, actionName) + getLeftMenu(moduleName)
-				+ viewerHtml + getFooter();
+		return getHeader(moduleName, actionName) + getLeftMenu(moduleName) + viewerHtml + getFooter();
 	}
 
 	/**
-	 * Gets the html code for the header ***(id="header" -> dans css pour mise
-	 * en page)
+	 * Gets the html code for the header ***(id="header" -> dans css pour mise en page)
 	 * 
 	 * @param moduleName the module name
 	 * @param actionName the action name
-	 * 
 	 * @return html
 	 */
 	public static String getHeader(String moduleName, String actionName)
@@ -106,42 +102,38 @@ public abstract class Viewer
 
 		String header = "";
 		header += "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">"
-				+ "<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"fr\" >"
-				+ "<head><title>"
-				+ pageTitle
-				+ "</title>"
-				+ "<meta http-equiv=\"Content-Type\" content=\"text/html; charset="
-				+ Viewer.getEncoding() + "\" />";
+		        + "<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"fr\" >"
+		        + "<head><title>"
+		        + pageTitle
+		        + "</title>"
+		        + "<meta http-equiv=\"Content-Type\" content=\"text/html; charset="
+		        + Viewer.getEncoding()
+		        + "\" />";
 
 		// css******************************************************************
 		header += "<link rel=\"stylesheet\" type=\"text/css\" title=\"base\" href=\""
-				+ ConfigManager.loadStringProperty("style-screen")
-				+ "\" media=\"screen\" />";
+		        + ConfigManager.loadStringProperty("style-screen") + "\" media=\"screen\" />";
 		header += "<link rel=\"stylesheet\" type=\"text/css\" title=\"base\" href=\""
-				+ ConfigManager.loadStringProperty("style-print")
-				+ "\" media=\"print\" />";
+		        + ConfigManager.loadStringProperty("style-print") + "\" media=\"print\" />";
 		header += "</head><body>";
 
-		if (ConfigManager.loadBoolProperty("show-top-title", true))
+		if(ConfigManager.loadBoolProperty("show-top-title", true)){
 			header += "<div id=\"header\"><h1>" + pageTitle + "</h1></div>";
+		}
 
 		return header;
 	}
 
-	private static String buildTopMenu()
-	{
+	private static String buildTopMenu() {
 		String html = "";
 
 		html += "<div class=\"topMenu\">";
 
-		if (Authentication.getCurrentUserName().equals("unLogedUser"))
-		{
+		if(Authentication.getCurrentUserName().equals("unLogedUser")){
 			// html += "<a href=\"" + new ActionLink. + "\">Login</a>";
 			ActionLink actionLink = new ActionLink("Login", new Login());
 			html += LinkViewer.getHtmlCode(actionLink);
-		}
-		else
-		{
+		}else{
 			html += Authentication.getCurrentUserName();
 
 			html += " | ";
@@ -160,10 +152,12 @@ public abstract class Viewer
 	{
 		String title = ConfigManager.loadStringProperty("display-name");
 
-		if (moduleName != null && !moduleName.equals("null"))
+		if(moduleName != null && !moduleName.equals("null")){
 			title += " - " + moduleName;
-		if (actionName != null && !actionName.equals("null"))
+		}
+		if(actionName != null && !actionName.equals("null")){
 			title += " : " + actionName;
+		}
 
 		return title;
 	}
@@ -174,62 +168,45 @@ public abstract class Viewer
 	 * @param moduleName the module name
 	 * @return html
 	 */
-	public static String getLeftMenu(String moduleName)
-	{
+	public static String getLeftMenu(String moduleName) {
 		Iterator<String> keys = ListModule.getAllModules().iterator();
 
 		String menuModuleHtml = "";
 
 		String menu = "<div class=\"element_menu\"><!-- Cadre englobant tous les sous-menus -->";
-		menuModuleHtml += "<h3>Modules</h3> <!-- Titre du sous-menu -->"
-				+ "<ul>";
+		menuModuleHtml += "<h3>Modules</h3> <!-- Titre du sous-menu -->" + "<ul>";
 		String modNameFromIterator = "";
 
 		// pour l'instant un seul sous-menu, autres sous-menus à déterminer
-		while (keys.hasNext())
-		{
+		while(keys.hasNext()){
 			modNameFromIterator = keys.next();
 
 			Module module = ListModule.getModule(modNameFromIterator);
-			if (module.isVisible())
-			{
-				if (modNameFromIterator.equals(moduleName))
-				{
-					menuModuleHtml += "<li><span class=\"selectedLink\">"
-							+ module.getVisibleName() + "</span><ul>";
+			if(module.isVisible()){
+				if(modNameFromIterator.equals(moduleName)){
+					menuModuleHtml += "<li><span class=\"selectedLink\">" + module.getVisibleName() + "</span><ul>";
 
-					for (String globalActionName : module
-							.getGlobalActionMenuOrReturnDefaultBehavior()
-							.getKeyList())
-					{
-						AbstractAction defaultAction = module
-								.getGlobalActionMenuOrReturnDefaultBehavior()
-								.get(globalActionName);
+					for(String globalActionName : module.getGlobalActionMenuOrReturnDefaultBehavior().getKeyList()){
+						AbstractAction defaultAction = module.getGlobalActionMenuOrReturnDefaultBehavior().get(
+						        globalActionName);
 
 						String currentLinkHtml = LinkViewer
-								.getHtmlCode(new ActionLink(globalActionName,
-										defaultAction));
+						        .getHtmlCode(new ActionLink(globalActionName, defaultAction));
 
-						if (currentLinkHtml.length() > 0)
-							menuModuleHtml += "<li>" + currentLinkHtml
-									+ "</li>";
+						if(currentLinkHtml.length() > 0){
+							menuModuleHtml += "<li>" + currentLinkHtml + "</li>";
+						}
 					}
 
-					for (ActionLink button : module.getGlobalActionButtonList())
-					{
-						String currentLinkHtml = ButtonLinkViewer
-								.getHtmlCode(button);
-						if (currentLinkHtml != null
-								&& currentLinkHtml.length() > 0)
-							menuModuleHtml += "<li>" + currentLinkHtml
-									+ "</li>";
+					for(ActionLink button : module.getGlobalActionButtonList()){
+						String currentLinkHtml = ButtonLinkViewer.getHtmlCode(button);
+						if(currentLinkHtml != null && currentLinkHtml.length() > 0){
+							menuModuleHtml += "<li>" + currentLinkHtml + "</li>";
+						}
 					}
-				}
-				else
-				{
-					menuModuleHtml += "<li><a href=\""
-							+ Servlet.makeLink(module) + "\">"
-							+ module.getVisibleName() + "</a><ul>";
+				}else{
+					menuModuleHtml += "<li><a href=\"" + Servlet.makeLink(module) + "\">" + module.getVisibleName()
+					        + "</a><ul>";
 				}
 
 				menuModuleHtml += "</ul></li>";
@@ -244,13 +221,11 @@ public abstract class Viewer
 	}
 
 	/**
-	 * Gets the html code for the footer ***(id="footer" -> dans css pour mise
-	 * en page)
+	 * Gets the html code for the footer ***(id="footer" -> dans css pour mise en page)
 	 * 
 	 * @return html
 	 */
-	public static String getFooter()
-	{
+	public static String getFooter() {
 		String footer = "</div><div id=\"footer\"><p>Copyright © \"G.Lacasse, J.Cloutier, J.Hallée, P.Lemay, G.Therrien\" 2009, tous droits réservés</p></div></body></html>";
 		return footer;
 	}
@@ -258,8 +233,7 @@ public abstract class Viewer
 	/**
 	 * @return encodage de charset
 	 */
-	public static String getEncoding()
-	{
+	public static String getEncoding() {
 		return defaultEncoding;
 	}
 }

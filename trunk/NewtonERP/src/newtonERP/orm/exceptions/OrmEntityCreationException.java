@@ -5,21 +5,18 @@ package newtonERP.orm.exceptions;
  * 
  * @author r3hallejo
  */
-public class OrmEntityCreationException extends OrmException
-{
+public class OrmEntityCreationException extends OrmException {
 	/**
 	 * @param message the message of the exception
 	 */
-	public OrmEntityCreationException(String message)
-	{
+	public OrmEntityCreationException(String message) {
 		super(message);
 	}
 
 	/**
 	 * 
 	 */
-	public OrmEntityCreationException()
-	{
+	public OrmEntityCreationException() {
 		super();
 	}
 
@@ -27,16 +24,14 @@ public class OrmEntityCreationException extends OrmException
 	 * @param message the message
 	 * @param cause the cause
 	 */
-	public OrmEntityCreationException(String message, Throwable cause)
-	{
+	public OrmEntityCreationException(String message, Throwable cause) {
 		super(message, cause);
 	}
 
 	/**
 	 * @param cause the cause
 	 */
-	public OrmEntityCreationException(Throwable cause)
-	{
+	public OrmEntityCreationException(Throwable cause) {
 		super(cause);
 	}
 

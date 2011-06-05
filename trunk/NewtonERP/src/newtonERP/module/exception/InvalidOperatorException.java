@@ -1,27 +1,22 @@
 package newtonERP.module.exception;
 
 /**
- * @author r3hallejo
- * 
- *         When an operator for a field is not valid
+ * @author r3hallejo When an operator for a field is not valid
  */
-public class InvalidOperatorException extends ModuleException
-{
+public class InvalidOperatorException extends ModuleException {
 	/**
 	 * Default constructor
 	 * 
 	 * @param message the message
 	 */
-	public InvalidOperatorException(String message)
-	{
+	public InvalidOperatorException(String message) {
 		super(message);
 	}
 
 	/**
 	 * 
 	 */
-	public InvalidOperatorException()
-	{
+	public InvalidOperatorException() {
 		super();
 	}
 
@@ -29,16 +24,14 @@ public class InvalidOperatorException extends ModuleException
 	 * @param message the message
 	 * @param cause the cause
 	 */
-	public InvalidOperatorException(String message, Throwable cause)
-	{
+	public InvalidOperatorException(String message, Throwable cause) {
 		super(message, cause);
 	}
 
 	/**
 	 * @param cause the cause
 	 */
-	public InvalidOperatorException(Throwable cause)
-	{
+	public InvalidOperatorException(Throwable cause) {
 		super(cause);
 	}
 }

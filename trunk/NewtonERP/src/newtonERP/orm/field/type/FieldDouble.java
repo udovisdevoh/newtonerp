@@ -10,8 +10,7 @@ import newtonERP.orm.field.Field;
  * 
  * @author CloutierJo
  */
-public class FieldDouble extends Field<Double>
-{
+public class FieldDouble extends Field<Double> {
 	/**
 	 * constructeur minimum
 	 * 
@@ -38,48 +37,43 @@ public class FieldDouble extends Field<Double>
 	/**
 	 * @param data the data to set
 	 */
-	public void setData(String data)
-	{
-		try
-		{
-			if (data == null || data.equals("null"))
+	@Override
+	public void setData(String data) {
+		try{
+			if(data == null || data.equals("null")){
 				data = "0.0";
+			}
 			this.data = Double.parseDouble(data);
-		} catch (Exception e)
-		{
-			setErrorMessage("Le format de donnée entrée ne correspond pas avec le type de champ (Double): "
-					+ data);
+		}catch(Exception e){
+			setErrorMessage("Le format de donnée entrée ne correspond pas avec le type de champ (Double): " + data);
 			Logger.error(e.getMessage());
 		}
 	}
 
 	@Override
-	public void setOperator(String operator)
-	{
-		operator.trim();
+	public void setOperator(String operator) {
+		operator = operator.trim();
 
-		if (operator.equals("<") || operator.equals(">")
-				|| operator.equals("="))
-		{
+		if(operator.equals("<") || operator.equals(">") || operator.equals("=")){
 			super.operator = operator;
+		}else{
+			throw new InvalidOperatorException("Opérateur invalide pour " + getClass().getSimpleName());
 		}
-		else
-			throw new InvalidOperatorException("Opérateur invalide pour "
-					+ getClass().getSimpleName());
 	}
 
-	public void setDefaultValue()
-	{
+	@Override
+	public void setDefaultValue() {
 		setData(0.);
 	}
 
-	public void setData(Object data)
-	{
-		if (data instanceof Double)
+	@Override
+	public void setData(Object data) {
+		if(data instanceof Double){
 			setDataType((Double) data);
-		else if (data instanceof Integer)
+		}else if(data instanceof Integer){
 			setDataType((double) ((Integer) (data)));
-		else
+		}else{
 			throw new FieldNotCompatibleException(getShortName(), data);
+		}
 	}
 }

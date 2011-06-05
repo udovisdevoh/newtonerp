@@ -7,17 +7,16 @@ import newtonERP.viewers.viewables.CheckListViewable;
 
 /**
  * A checkList viewer
+ * 
  * @author Guillaume Lacasse
  */
-public class CheckListViewer
-{
+public class CheckListViewer {
 	/**
 	 * @param entity the checklist viewable entity
 	 * @return the html code
 	 */
 	@SuppressWarnings("null")
-	public static String getHtmlCode(CheckListViewable entity)
-	{
+	public static String getHtmlCode(CheckListViewable entity) {
 		String html = "";
 		String isChecked;
 		String currentDescription;
@@ -25,8 +24,7 @@ public class CheckListViewer
 		String currentFirstWord = null;
 		String currentSecondWord = null;
 		String previousSecondWord = null;
-		TreeMap<String, String> availableElementList = entity
-				.getAvailableElementList();
+		TreeMap<String, String> availableElementList = entity.getAvailableElementList();
 
 		HashSet<String> checkedElementList = entity.getCheckedElementList();
 
@@ -34,39 +32,36 @@ public class CheckListViewer
 		html += "<h3>" + entity.getVisibleDescription() + "</h3>";
 
 		html += "<ul>";
-		for (String currentDescriptionI : availableElementList.keySet())
-		{
+		for(String currentDescriptionI : availableElementList.keySet()){
 			currentDescription = currentDescriptionI;
 
 			String id = availableElementList.get(currentDescription);
 
-			while (wordCount(currentDescription) < 3)
+			while(wordCount(currentDescription) < 3){
 				currentDescription += " -";
+			}
 
-			if (wordCount(currentDescription) > 1)
-			{
+			if(wordCount(currentDescription) > 1){
 				currentFirstWord = getFirstWord(currentDescription);
 				currentDescription = removeFirstWord(currentDescription);
 				currentSecondWord = getFirstWord(currentDescription);
 
-				if (!currentFirstWord.equals(previousFirstWord))
-				{
+				if(!currentFirstWord.equals(previousFirstWord)){
 					previousSecondWord = null;
-					if (previousFirstWord != null)
+					if(previousFirstWord != null){
 						html += "</ul>";
+					}
 
 					html += "\n<li>" + currentFirstWord + "</li><ul>";
 				}
 
-				if (wordCount(currentDescription) > 1)
+				if(wordCount(currentDescription) > 1){
 					currentDescription = removeFirstWord(currentDescription);
+				}
 			}
 
-			if (!currentSecondWord.equals(previousSecondWord)
-					&& currentSecondWord != null)
-			{
-				if (previousSecondWord != null)
-					html += "\n</li>";
+			if(!currentSecondWord.equals(previousSecondWord) && currentSecondWord != null){
+				html += "\n</li>";
 
 				html += "\n<li>" + currentSecondWord + ": <br />";
 			}
@@ -76,17 +71,16 @@ public class CheckListViewer
 			// ne semble pas bien marcher sur IE 6
 			html += "<table class=\"checkBoxAtomicElement\" style=\"display:inline\"><tr><td>";
 
-			if (checkedElementList.contains(id))
+			if(checkedElementList.contains(id)){
 				isChecked = " checked";
-			else
+			}else{
 				isChecked = "";
+			}
 
-			html += "<input type=\"checkbox\" name=\"" + id + "\"" + isChecked
-					+ "></input> " + currentDescription;
+			html += "<input type=\"checkbox\" name=\"" + id + "\"" + isChecked + "></input> " + currentDescription;
 
 			/*
-			 * if (currentSecondWord != previousSecondWord && currentSecondWord
-			 * != null) html += "</li>";
+			 * if (currentSecondWord != previousSecondWord && currentSecondWord != null) html += "</li>";
 			 */
 
 			html += "</td></tr></table>";
@@ -101,19 +95,15 @@ public class CheckListViewer
 		return html;
 	}
 
-	private static String removeFirstWord(String currentDescription)
-	{
-		return currentDescription.substring(currentDescription.indexOf(' '))
-				.trim();
+	private static String removeFirstWord(String currentDescription) {
+		return currentDescription.substring(currentDescription.indexOf(' ')).trim();
 	}
 
-	private static String getFirstWord(String currentDescription)
-	{
+	private static String getFirstWord(String currentDescription) {
 		return currentDescription.split(" ")[0].trim();
 	}
 
-	private static int wordCount(String currentDescription)
-	{
+	private static int wordCount(String currentDescription) {
 		return currentDescription.split(" ").length;
 	}
 }

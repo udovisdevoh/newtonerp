@@ -13,11 +13,8 @@ import newtonERP.orm.field.Field;
 
 /**
  * @author Guillaume Lacasse, CloutierJo
- * 
  */
-public class ListViewerData extends GridViewerData implements
-		Iterable<AbstractOrmEntity>
-{
+public class ListViewerData extends GridViewerData implements Iterable<AbstractOrmEntity> {
 	private AbstractOrmEntity dataType;
 	private Vector<AbstractOrmEntity> data = new Vector<AbstractOrmEntity>();
 	private PageSelector pageSelector = null;
@@ -25,10 +22,10 @@ public class ListViewerData extends GridViewerData implements
 
 	/**
 	 * constructeur par defaut
+	 * 
 	 * @param dataType type d'entity a etre liste
 	 */
-	public ListViewerData(AbstractOrmEntity dataType)
-	{
+	public ListViewerData(AbstractOrmEntity dataType) {
 		super();
 		this.dataType = dataType;
 	}
@@ -36,110 +33,88 @@ public class ListViewerData extends GridViewerData implements
 	/**
 	 * @return les entity
 	 */
-	public Vector<AbstractOrmEntity> getEntity()
-	{
+	public Vector<AbstractOrmEntity> getEntity() {
 		return data;
 	}
 
-	public GridCaseData[] getHeader()
-	{
+	@Override
+	public GridCaseData[] getHeader() {
 		Vector<GridCaseData> header = new Vector<GridCaseData>();
 
 		GridCaseData gridCaseData;
 
-		for (Field<?> field : dataType.getFields())
-		{
-			ListOfValue listOfValue = dataType.tryMatchListOfValue(field
-					.getShortName());
+		for(Field<?> field : dataType.getFields()){
+			ListOfValue listOfValue = dataType.tryMatchListOfValue(field.getShortName());
 
-			if (listOfValue != null)
-			{
-				gridCaseData = new GridCaseData(listOfValue.getLabelName(),
-						new BaseAction("GetList", listOfValue
-								.getForeignEntityDefinition()));
+			if(listOfValue != null){
+				gridCaseData = new GridCaseData(listOfValue.getLabelName(), new BaseAction("GetList",
+				        listOfValue.getForeignEntityDefinition()));
 				header.add(gridCaseData);
-			}
-			else if (!field.isHidden())
-			{
+			}else if(!field.isHidden()){
 				gridCaseData = new GridCaseData(field.getName());
 				header.add(gridCaseData);
 			}
 		}
 
-		for (GateWay gateWay : dataType.getGateWayList())
-		{
-			gridCaseData = new GridCaseData(gateWay.getExternalEntity()
-					.getNaturalKeyName());
+		for(GateWay gateWay : dataType.getGateWayList()){
+			gridCaseData = new GridCaseData(gateWay.getExternalEntity().getNaturalKeyName());
 			header.add(gridCaseData);
 		}
 
 		return header.toArray(new GridCaseData[0]);
 	}
 
-	public GridCaseData[][] getCases()
-	{
+	@Override
+	public GridCaseData[][] getCases() {
 		Vector<GridCaseData[]> dataList = new Vector<GridCaseData[]>();
 		String value;
 		GridCaseData gridCaseData;
 
-		for (AbstractOrmEntity entity : data)
-		{
+		for(AbstractOrmEntity entity : data){
 			Vector<GridCaseData> oneData = new Vector<GridCaseData>();
-			for (Field<?> field : entity.getFields())
-			{
+			for(Field<?> field : entity.getFields()){
 				value = "";
-				if (field.isHidden())
+				if(field.isHidden()){
 					continue;
+				}
 
-				ListOfValue listOfValue = entity.tryMatchListOfValue(field
-						.getShortName());
+				ListOfValue listOfValue = entity.tryMatchListOfValue(field.getShortName());
 
-				if (listOfValue != null)
-				{
+				if(listOfValue != null){
 					value = listOfValue.getForeignValue(field.getDataString());
 					Hashtable<String, String> param = new Hashtable<String, String>();
-					param.put(listOfValue.getForeignEntityDefinition()
-							.getPrimaryKeyName(), field.getDataString());
+					param.put(listOfValue.getForeignEntityDefinition().getPrimaryKeyName(), field.getDataString());
 
-					gridCaseData = new GridCaseData(value, new BaseAction(
-							"Edit", listOfValue.getForeignEntityDefinition()),
-							param);
+					gridCaseData = new GridCaseData(value, new BaseAction("Edit",
+					        listOfValue.getForeignEntityDefinition()), param);
 					gridCaseData.setColored(field.isColored());
 					oneData.add(gridCaseData);
-				}
-				else if (!field.isHidden())
-				{
+				}else if(!field.isHidden()){
 					value = field.getDataString();
-					if (value == null)
+					if(value == null){
 						value = "";
-					if (value.length() > 64)
-						value = field.getDataString().substring(0, 64)
-								+ "[...]";
+					}
+					if(value.length() > 64){
+						value = field.getDataString().substring(0, 64) + "[...]";
+					}
 					gridCaseData = new GridCaseData(value);
 					gridCaseData.setColored(field.isColored());
 					oneData.add(gridCaseData);
-				}
-				else
-				{
+				}else{
 					gridCaseData = new GridCaseData(value);
 					gridCaseData.setColored(field.isColored());
 					oneData.add(gridCaseData);
 				}
 			}
 
-			for (GateWay gateWay : entity.getGateWayList())
-			{
-				AbstractOrmEntity foreignEntity = GateWayManager
-						.getExternalEntity(gateWay, entity);
-				String naturalKeyValue = foreignEntity
-						.getNaturalKeyDescription();
+			for(GateWay gateWay : entity.getGateWayList()){
+				AbstractOrmEntity foreignEntity = GateWayManager.getExternalEntity(gateWay, entity);
+				String naturalKeyValue = foreignEntity.getNaturalKeyDescription();
 
 				Hashtable<String, String> param = new Hashtable<String, String>();
-				param.put(foreignEntity.getPrimaryKeyName(), foreignEntity
-						.getPrimaryKeyValue().toString());
+				param.put(foreignEntity.getPrimaryKeyName(), foreignEntity.getPrimaryKeyValue().toString());
 
-				gridCaseData = new GridCaseData(naturalKeyValue,
-						new BaseAction("Edit", foreignEntity), param);
+				gridCaseData = new GridCaseData(naturalKeyValue, new BaseAction("Edit", foreignEntity), param);
 				gridCaseData.setColored(gateWay.isColored());
 				oneData.add(gridCaseData);
 			}
@@ -153,22 +128,19 @@ public class ListViewerData extends GridViewerData implements
 	/**
 	 * @param entity the entity to add
 	 */
-	public void addEntity(AbstractOrmEntity entity)
-	{
+	public void addEntity(AbstractOrmEntity entity) {
 		data.add(entity);
 	}
 
 	/**
 	 * @return the dataType
 	 */
-	public AbstractOrmEntity getDataType()
-	{
+	public AbstractOrmEntity getDataType() {
 		return dataType;
 	}
 
 	@Override
-	public Iterator<AbstractOrmEntity> iterator()
-	{
+	public Iterator<AbstractOrmEntity> iterator() {
 		return data.iterator();
 	}
 
@@ -177,15 +149,13 @@ public class ListViewerData extends GridViewerData implements
 	 * @param limit limite par page
 	 * @return offset de selection de liste d'entité, -1 si aucun
 	 */
-	public final static int BuildOffset(Hashtable<String, String> parameters,
-			int limit)
-	{
+	public final static int buildOffset(Hashtable<String, String> parameters, int limit) {
 		int offset = 0;
-		if (parameters.containsKey("offset"))
-		{
+		if(parameters.containsKey("offset")){
 			offset = Integer.parseInt(parameters.get("offset"));
-			if (offset % limit != 0)
+			if(offset % limit != 0){
 				offset = offset / limit * limit;
+			}
 		}
 		return offset;
 	}
@@ -195,43 +165,38 @@ public class ListViewerData extends GridViewerData implements
 	 * @param defaultValue nombre d'item par page par default
 	 * @return limite de selection de liste d'entité, -1 si aucun
 	 */
-	public final static int BuildLimit(Hashtable<String, String> parameters,
-			int defaultValue)
-	{
-		if (parameters.containsKey("limit"))
+	public final static int buildLimit(Hashtable<String, String> parameters, int defaultValue) {
+		if(parameters.containsKey("limit")){
 			return Integer.parseInt(parameters.get("limit"));
+		}
 		return defaultValue;
 	}
 
 	/**
 	 * @return page selector
 	 */
-	public PageSelector getPageSelector()
-	{
+	public PageSelector getPageSelector() {
 		return pageSelector;
 	}
 
 	/**
 	 * @param pageSelector page selector
 	 */
-	public void setPageSelector(PageSelector pageSelector)
-	{
+	public void setPageSelector(PageSelector pageSelector) {
 		this.pageSelector = pageSelector;
 	}
 
 	/**
 	 * @return modèle de barre de recherche
 	 */
-	public SearchBar getSearchBar()
-	{
+	public SearchBar getSearchBar() {
 		return searchBar;
 	}
 
 	/**
 	 * @param searchBar modèle de barre de recherche
 	 */
-	public void setSearchBar(SearchBar searchBar)
-	{
+	public void setSearchBar(SearchBar searchBar) {
 		this.searchBar = searchBar;
 	}
 }

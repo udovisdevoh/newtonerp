@@ -7,33 +7,26 @@ import newtonERP.module.BaseAction;
 import newtonERP.module.Module;
 
 /**
- * A general common module for everything that could have been duplicated
- * between modules
+ * A general common module for everything that could have been duplicated between modules
  * 
  * @author r3hallejo
  */
-public class Common extends Module
-{
+public class Common extends Module {
 
 	/**
 	 * Default constructor
-	 * 
 	 */
-	public Common()
-	{
+	public Common() {
 		super();
 		setDefaultAction(new BaseAction("GetList", new Address()));
-		addGlobalActionMenuItem("Adresses", new BaseAction("GetList",
-				new Address()));
-		addGlobalActionMenuItem("Pays",
-				new BaseAction("GetList", new Country()));
-		addGlobalActionMenuItem("Province / États", new BaseAction("GetList",
-				new State()));
+		addGlobalActionMenuItem("Adresses", new BaseAction("GetList", new Address()));
+		addGlobalActionMenuItem("Pays", new BaseAction("GetList", new Country()));
+		addGlobalActionMenuItem("Province / États", new BaseAction("GetList", new State()));
 		setVisibleName("General");
 	}
 
-	public void initDB()
-	{
+	@Override
+	public void initDB() {
 		super.initDB();
 
 		Country country = new Country();

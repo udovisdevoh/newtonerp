@@ -10,8 +10,7 @@ import newtonERP.orm.field.Field;
  * 
  * @author CloutierJo, r3hallejo
  */
-public class FieldBool extends Field<Boolean>
-{
+public class FieldBool extends Field<Boolean> {
 	/**
 	 * constructeur minimum
 	 * 
@@ -19,8 +18,7 @@ public class FieldBool extends Field<Boolean>
 	 * @param shortName nom du champ qui sera utiliser a l'interne
 	 * @param data donne du champ
 	 */
-	public FieldBool(String name, String shortName, Boolean data)
-	{
+	public FieldBool(String name, String shortName, Boolean data) {
 		super(name, shortName, data);
 	}
 
@@ -28,72 +26,64 @@ public class FieldBool extends Field<Boolean>
 	 * @param name nom du champ qui sera visible par l'utilisateur
 	 * @param shortName nom du champ qui sera utiliser a l'interne
 	 */
-	public FieldBool(String name, String shortName)
-	{
+	public FieldBool(String name, String shortName) {
 		this(name, shortName, null);
 	}
 
 	@Override
-	public String getDataString(Boolean forOrm)
-	{
-		if (data == null)
+	public String getDataString(Boolean forOrm) {
+		if(data == null){
 			return "";
+		}
 
-		if (forOrm)
+		if(forOrm){
 			return addSlash(data.toString());
-		else if (data)
+		}else if(data){
 			return "Oui";
-		else
+		}else{
 			return "Non";
+		}
 	}
 
 	/**
 	 * @param data the data to set
 	 */
-	public void setData(String data)
-	{
-		try
-		{
-			if (data.toLowerCase().equals("on")
-					|| data.toLowerCase().equals("true"))
-			{
+	@Override
+	public void setData(String data) {
+		try{
+			if(data.toLowerCase().equals("on") || data.toLowerCase().equals("true")){
 				setDataType(true);
-			}
-			else
+			}else{
 				setDataType(Boolean.parseBoolean(data));
-		} catch (Exception e)
-		{
-			setErrorMessage("Le format de donnée entrée ne correspond pas avec le type de champ (boolean): "
-					+ data);
+			}
+		}catch(Exception e){
+			setErrorMessage("Le format de donnée entrée ne correspond pas avec le type de champ (boolean): " + data);
 			Logger.error(e.getMessage());
 		}
 	}
 
 	@Override
-	public void setOperator(String operator)
-	{
-		operator.trim();
+	public void setOperator(String operator) {
+		operator = operator.trim();
 
-		if (operator.equals("="))
-		{
+		if(operator.equals("=")){
 			super.operator = operator;
+		}else{
+			throw new InvalidOperatorException("Opérateur ( " + operator + " ) invalide pour " + getSystemName());
 		}
-		else
-			throw new InvalidOperatorException("Opérateur ( " + operator
-					+ " ) invalide pour " + getSystemName());
 	}
 
 	@Override
-	public void setDefaultValue()
-	{
+	public void setDefaultValue() {
 		data = false;
 	}
 
-	public void setData(Object data)
-	{
-		if (data instanceof Boolean)
+	@Override
+	public void setData(Object data) {
+		if(data instanceof Boolean){
 			setDataType((Boolean) data);
-		else
+		}else{
 			throw new FieldNotCompatibleException(getShortName(), data);
+		}
 	}
 }

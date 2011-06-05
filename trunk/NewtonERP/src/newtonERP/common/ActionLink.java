@@ -8,10 +8,10 @@ import newtonERP.serveur.Servlet;
 
 /**
  * class englobant une action et tout les composants néscéssaire pour l'executer
+ * 
  * @author CloutierJo
  */
-public class ActionLink
-{
+public class ActionLink {
 	private String name;
 	private AbstractAction action;
 	private Hashtable<String, String> parameters;
@@ -20,16 +20,14 @@ public class ActionLink
 	/**
 	 * constructeur vide
 	 */
-	public ActionLink()
-	{
+	public ActionLink() {
 		this(null);
 	}
 
 	/**
 	 * @param action action a effectuer
 	 */
-	public ActionLink(AbstractAction action)
-	{
+	public ActionLink(AbstractAction action) {
 		this("", action);
 	}
 
@@ -37,8 +35,7 @@ public class ActionLink
 	 * @param name nom a afficher
 	 * @param action action a effectuer
 	 */
-	public ActionLink(String name, AbstractAction action)
-	{
+	public ActionLink(String name, AbstractAction action) {
 		this(name, action, null);
 	}
 
@@ -48,54 +45,48 @@ public class ActionLink
 	 * @param parameters parametre de lien
 	 */
 	@SuppressWarnings("unchecked")
-	public ActionLink(String name, AbstractAction action,
-			Hashtable<String, String> parameters)
-	{
+	public ActionLink(String name, AbstractAction action, Hashtable<String, String> parameters) {
 		this.name = name;
 		this.action = action;
-		if (parameters != null)
+		if(parameters != null){
 			this.parameters = (Hashtable<String, String>) parameters.clone();
-		else
+		}else{
 			this.parameters = new Hashtable<String, String>();
+		}
 	}
 
 	/**
 	 * @return the name
 	 */
-	public String getName()
-	{
+	public String getName() {
 		return name;
 	}
 
 	/**
 	 * @param name the name to set
 	 */
-	public void setName(String name)
-	{
+	public void setName(String name) {
 		this.name = name;
 	}
 
 	/**
 	 * @return the action
 	 */
-	public AbstractAction getAction()
-	{
+	public AbstractAction getAction() {
 		return action;
 	}
 
 	/**
 	 * @param action the action to set
 	 */
-	public void setAction(AbstractAction action)
-	{
+	public void setAction(AbstractAction action) {
 		this.action = action;
 	}
 
 	/**
 	 * @return the parameters
 	 */
-	public Hashtable<String, String> getParameters()
-	{
+	public Hashtable<String, String> getParameters() {
 		return parameters;
 	}
 
@@ -103,15 +94,14 @@ public class ActionLink
 	 * @param entity entity servant a compile les parametre
 	 * @return les parametre compile
 	 */
-	public Hashtable<String, String> getParameters(AbstractEntity entity)
-	{
+	public Hashtable<String, String> getParameters(AbstractEntity entity) {
 		Hashtable<String, String> newparam = new Hashtable<String, String>();
-		for (String key : parameters.keySet())
-		{
-			if (parameters.get(key).startsWith("&"))
+		for(String key : parameters.keySet()){
+			if(parameters.get(key).startsWith("&")){
 				newparam.put(key, entity.getDataString(key));
-			else
+			}else{
 				newparam.put(key, parameters.get(key));
+			}
 		}
 		return newparam;
 	}
@@ -119,8 +109,7 @@ public class ActionLink
 	/**
 	 * @param parameters the parameters to set
 	 */
-	public void setParameters(Hashtable<String, String> parameters)
-	{
+	public void setParameters(Hashtable<String, String> parameters) {
 		this.parameters = parameters;
 	}
 
@@ -129,116 +118,116 @@ public class ActionLink
 	 * @param value valeur du champ a ajouter
 	 * @param parameters ajoute le parametre a la liste de parametre
 	 */
-	public void addParameters(String field, String value)
-	{
+	public void addParameters(String field, String value) {
 		parameters.put(field, value);
 	}
 
 	/**
 	 * @return l'url relatif
 	 */
-	public String getUrl()
-	{
+	public String getUrl() {
 		return Servlet.makeLink(action);
 	}
 
 	/**
 	 * @param entity entity servant a definir les parametre dynamique
-	 * @return les parametre sous la forme key=value&key2=value2... (ne contien
-	 *         pas le '?')
+	 * @return les parametre sous la forme key=value&key2=value2... (ne contien pas le '?')
 	 */
-	public String getParam(AbstractEntity entity)
-	{
+	public String getParam(AbstractEntity entity) {
 		String param = "";
-		for (String key : getParameters(entity).keySet())
-		{
+		for(String key : getParameters(entity).keySet()){
 			param += key + "=";
 			param += parameters.get(key);
 			param += "&";
 		}
-		if (param.length() > 0)
+		if(param.length() > 0){
 			param = param.substring(0, param.length() - 1);
+		}
 
 		return param;
 	}
 
 	/**
 	 * @param entity entity servant a definir les parametre dynamique
-	 * @return l'url relatif et suivie des parametre, utilisabe directement dans
-	 *         un lien web
+	 * @return l'url relatif et suivie des parametre, utilisabe directement dans un lien web
 	 */
-	public String getUrlParam(AbstractEntity entity)
-	{
+	public String getUrlParam(AbstractEntity entity) {
 		return getUrl() + "?" + getParam(entity);
 	}
 
 	/**
-	 * @return l'url relatif et suivie des parametre, utilisabe directement dans
-	 *         un lien web
+	 * @return l'url relatif et suivie des parametre, utilisabe directement dans un lien web
 	 */
-	public String getUrlParam()
-	{
+	public String getUrlParam() {
 		return getUrlParam(null);
 	}
 
 	/**
 	 * @return the confirm
 	 */
-	public boolean isConfirm()
-	{
+	public boolean isConfirm() {
 		return confirm;
 	}
 
 	/**
 	 * @param confirm the confirm to set
 	 */
-	public void setConfirm(boolean confirm)
-	{
+	public void setConfirm(boolean confirm) {
 		this.confirm = confirm;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
-	public boolean equals(Object obj)
-	{
-		if (this == obj)
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((action == null) ? 0 : action.hashCode());
+		result = prime * result + (confirm ? 1231 : 1237);
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((parameters == null) ? 0 : parameters.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if(this == obj){
 			return true;
-		if (obj == null)
+		}
+		if(obj == null){
 			return false;
-		if (!(obj instanceof ActionLink))
+		}
+		if(getClass() != obj.getClass()){
 			return false;
+		}
 		ActionLink other = (ActionLink) obj;
-		if (action == null)
-		{
-			if (other.action != null)
+		if(action == null){
+			if(other.action != null){
 				return false;
+			}
+		}else if(!action.equals(other.action)){
+			return false;
 		}
-		else if (!action.equals(other.action))
+		if(confirm != other.confirm){
 			return false;
-		if (confirm != other.confirm)
-			return false;
-		if (name == null)
-		{
-			if (other.name != null)
+		}
+		if(name == null){
+			if(other.name != null){
 				return false;
-		}
-		else if (!name.equals(other.name))
+			}
+		}else if(!name.equals(other.name)){
 			return false;
-		if (parameters == null)
-		{
-			if (other.parameters != null)
+		}
+		if(parameters == null){
+			if(other.parameters != null){
 				return false;
-		}
-		else if (!parameters.equals(other.parameters))
+			}
+		}else if(!parameters.equals(other.parameters)){
 			return false;
+		}
 		return true;
 	}
 
-	public String toString()
-	{
+	@Override
+	public String toString() {
 		return name;
 	}
 

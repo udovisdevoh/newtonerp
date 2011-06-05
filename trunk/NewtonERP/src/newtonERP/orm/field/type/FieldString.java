@@ -5,13 +5,11 @@ import newtonERP.module.exception.InvalidOperatorException;
 import newtonERP.orm.field.Field;
 
 /**
- * String field in the entities (String is a short text where text is a long
- * text)
+ * String field in the entities (String is a short text where text is a long text)
  * 
  * @author CloutierJo, r3hallejo
  */
-public class FieldString extends Field<String>
-{
+public class FieldString extends Field<String> {
 	/**
 	 * constructeur minimum
 	 * 
@@ -36,36 +34,34 @@ public class FieldString extends Field<String>
 	}
 
 	@Override
-	public void setOperator(String operator)
-	{
-		operator.trim();
+	public void setOperator(String operator) {
+		operator = operator.trim();
 
-		if (operator.equals("="))
-		{
+		if(operator.equals("=")){
 			super.operator = operator;
+		}else{
+			throw new InvalidOperatorException("Opérateur invalide pour " + getClass().getSimpleName());
 		}
-		else
-			throw new InvalidOperatorException("Opérateur invalide pour "
-					+ getClass().getSimpleName());
 	}
 
-	public void setDefaultValue()
-	{
+	@Override
+	public void setDefaultValue() {
 		setDataType("");
 	}
 
-	public void setData(String data)
-	{
+	@Override
+	public void setData(String data) {
 		setDataType(data);
 	}
 
-	public void setData(Object data)
-	{
-		if (data instanceof String)
+	@Override
+	public void setData(Object data) {
+		if(data instanceof String){
 			setDataType((String) data);
-		else if (data instanceof Number)
+		}else if(data instanceof Number){
 			setDataType(data + "");
-		else
+		}else{
 			throw new FieldNotCompatibleException(getShortName(), data);
+		}
 	}
 }

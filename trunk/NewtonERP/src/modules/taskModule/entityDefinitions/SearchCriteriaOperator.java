@@ -14,21 +14,19 @@ import newtonERP.viewers.viewerData.ListViewerData;
 
 /**
  * Opérateur de critère de recherche
+ * 
  * @author Guillaume Lacasse
  */
-public class SearchCriteriaOperator extends AbstractOrmEntity
-{
+public class SearchCriteriaOperator extends AbstractOrmEntity {
 	/**
 	 */
-	public SearchCriteriaOperator()
-	{
+	public SearchCriteriaOperator() {
 		super();
 		setVisibleName("Opérateur");
 	}
 
 	@Override
-	public Fields initFields()
-	{
+	public Fields initFields() {
 		Vector<Field<?>> fieldList = new Vector<Field<?>>();
 		fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
 		fieldList.add(new FieldString("Nom", "name"));
@@ -40,8 +38,7 @@ public class SearchCriteriaOperator extends AbstractOrmEntity
 
 	{
 		/*
-		 * On ne veut pas permettre l'effacement d'opérateur alors on redirige
-		 * l'effacement vers GetList
+		 * On ne veut pas permettre l'effacement d'opérateur alors on redirige l'effacement vers GetList
 		 */
 		ListViewerData entityList = super.getList();
 		return entityList;
@@ -52,8 +49,7 @@ public class SearchCriteriaOperator extends AbstractOrmEntity
 
 	{
 		/*
-		 * On ne veut pas permettre la modification d'opérateur alors on
-		 * redirige vers GetList
+		 * On ne veut pas permettre la modification d'opérateur alors on redirige vers GetList
 		 */
 		ListViewerData entityList = super.getList();
 		return entityList;
@@ -70,8 +66,7 @@ public class SearchCriteriaOperator extends AbstractOrmEntity
 	/**
 	 * @return opérateur en string
 	 */
-	public String getOperator()
-	{
+	public String getOperator() {
 		return getDataString("name");
 	}
 }
