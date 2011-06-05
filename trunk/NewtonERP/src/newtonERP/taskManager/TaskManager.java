@@ -19,211 +19,198 @@ import newtonERP.orm.associations.PluralAccessor;
  * Gestionnaire de tâches (effectue les tâches automatisées)
  * @author Guillaume Lacasse
  */
-public class TaskManager
-{
-	private static Vector<String> taskModuleEntityDefinitionNameList;
+public class TaskManager {
+    private static Vector<String> taskModuleEntityDefinitionNameList;
 
-	/**
-	 * @param entity entité pour laquelle on veut exécuter les tâches
-	 * @param primaryKeyValue valeur de clef primaire
-	 * @return retour de l'action d'une tâche exécutée (s'il y a lieu)
-	 */
-	public static AbstractEntity executeTasks(AbstractOrmEntity entity,
-			int primaryKeyValue)
-	{
-		Hashtable<String, String> entityParameters = new Hashtable<String, String>();
+    /**
+     * @param entity entité pour laquelle on veut exécuter les tâches
+     * @param primaryKeyValue valeur de clef primaire
+     * @return retour de l'action d'une tâche exécutée (s'il y a lieu)
+     */
+    public static AbstractEntity executeTasks(AbstractOrmEntity entity,
+            int primaryKeyValue) {
+        Hashtable<String, String> entityParameters = new Hashtable<String, String>();
 
-		if (entity.getFields().containsFieldName(entity.getPrimaryKeyName()))
-			if (primaryKeyValue != 0)
-				entityParameters.put(entity.getPrimaryKeyName(), Integer
-						.toString(primaryKeyValue));
+        if (entity.getFields().containsFieldName(entity.getPrimaryKeyName()))
+            if (primaryKeyValue != 0)
+                entityParameters.put(entity.getPrimaryKeyName(),
+                        Integer.toString(primaryKeyValue));
 
-		return executeTasks(entity, entityParameters);
-	}
+        return executeTasks(entity, entityParameters);
+    }
 
-	/**
-	 * @param entity entité pour laquelle on veut exécuter les tâches
-	 * @return retour de l'action d'une tâche exécutée (s'il y a lieu)
-	 */
-	public static AbstractEntity executeTasks(AbstractOrmEntity entity)
+    /**
+     * @param entity entité pour laquelle on veut exécuter les tâches
+     * @return retour de l'action d'une tâche exécutée (s'il y a lieu)
+     */
+    public static AbstractEntity executeTasks(AbstractOrmEntity entity)
 
-	{
-		Hashtable<String, String> entityParameters = new Hashtable<String, String>();
+    {
+        Hashtable<String, String> entityParameters = new Hashtable<String, String>();
 
-		if (entity.getFields().containsFieldName(entity.getPrimaryKeyName()))
-			if (entity.getPrimaryKeyValue() != null)
-				if (entity.getPrimaryKeyValue() != 0)
-					entityParameters.put(entity.getPrimaryKeyName(), entity
-							.getPrimaryKeyValue().toString());
+        if (entity.getFields().containsFieldName(entity.getPrimaryKeyName()))
+            if (entity.getPrimaryKeyValue() != null)
+                if (entity.getPrimaryKeyValue() != 0)
+                    entityParameters.put(entity.getPrimaryKeyName(), entity
+                            .getPrimaryKeyValue().toString());
 
-		return executeTasks(entity, entityParameters);
-	}
+        return executeTasks(entity, entityParameters);
+    }
 
-	/**
-	 * @param entity Entité pour laquelle on doit effecter des tâches s'il y a
-	 *            lieu
-	 * @param entityParameters paramètres de l'entité
-	 * @return entité viewable de retour
-	 */
-	public static AbstractEntity executeTasks(AbstractOrmEntity entity,
-			Hashtable<String, String> entityParameters)
-	{
-		return executeTasks(entity.getSystemName(), entityParameters);
-	}
+    /**
+     * @param entity Entité pour laquelle on doit effecter des tâches s'il y a
+     *            lieu
+     * @param entityParameters paramètres de l'entité
+     * @return entité viewable de retour
+     */
+    public static AbstractEntity executeTasks(AbstractOrmEntity entity,
+            Hashtable<String, String> entityParameters) {
+        return executeTasks(entity.getSystemName(), entityParameters);
+    }
 
-	/**
-	 * @param entityName nom de l'entité
-	 * @param entityParameters paramètres de l'entité
-	 * @return enitité visible de retour
-	 */
-	public static AbstractEntity executeTasks(String entityName,
-			Hashtable<String, String> entityParameters)
-	{
-		if (entityName == null)
-			return null;
+    /**
+     * @param entityName nom de l'entité
+     * @param entityParameters paramètres de l'entité
+     * @return enitité visible de retour
+     */
+    public static AbstractEntity executeTasks(String entityName,
+            Hashtable<String, String> entityParameters) {
+        if (entityName == null)
+            return null;
 
-		AbstractEntity retEntity = null;
+        AbstractEntity retEntity = null;
 
-		if (isEntityRelatedToTaskModule(entityName))
-			TaskCache.clear();
+        if (isEntityRelatedToTaskModule(entityName))
+            TaskCache.clear();
 
-		Collection<TaskEntity> concernedTaskList = getConcernedTaskList(entityName);
-		for (TaskEntity task : concernedTaskList)
-			if (task.isActive())
-				if (task.isSatisfied(entityParameters, task.isStraightSearch()))
-					retEntity = task.execute(entityParameters, task
-							.isStraightSearch());
+        Collection<TaskEntity> concernedTaskList = getConcernedTaskList(entityName);
+        for (TaskEntity task : concernedTaskList)
+            if (task.isActive())
+                if (task.isSatisfied(entityParameters, task.isStraightSearch()))
+                    retEntity = task.execute(entityParameters,
+                            task.isStraightSearch());
 
-		return retEntity;
-	}
+        return retEntity;
+    }
 
-	private static boolean isEntityRelatedToTaskModule(String entityName)
+    private static boolean isEntityRelatedToTaskModule(String entityName)
 
-	{
-		return getTaskModuleEntityDefinitionNameList().contains(entityName);
-	}
+    {
+        return getTaskModuleEntityDefinitionNameList().contains(entityName);
+    }
 
-	private static Vector<String> getTaskModuleEntityDefinitionNameList()
+    private static Vector<String> getTaskModuleEntityDefinitionNameList()
 
-	{
-		if (taskModuleEntityDefinitionNameList == null)
-		{
-			taskModuleEntityDefinitionNameList = new Vector<String>();
+    {
+        if (taskModuleEntityDefinitionNameList == null) {
+            taskModuleEntityDefinitionNameList = new Vector<String>();
 
-			Module taskModule = ListModule.getModule("TaskModule");
+            Module taskModule = ListModule.getModule("TaskModule");
 
-			for (String entityDefinitionName : taskModule
-					.getEntityDefinitionList().keySet())
-			{
-				taskModuleEntityDefinitionNameList.add(entityDefinitionName);
-			}
-		}
+            for (String entityDefinitionName : taskModule
+                    .getEntityDefinitionList().keySet()) {
+                taskModuleEntityDefinitionNameList.add(entityDefinitionName);
+            }
+        }
 
-		return taskModuleEntityDefinitionNameList;
-	}
+        return taskModuleEntityDefinitionNameList;
+    }
 
-	private static Collection<TaskEntity> getConcernedTaskList(String entityName)
+    private static Collection<TaskEntity> getConcernedTaskList(String entityName)
 
-	{
-		Vector<TaskEntity> concernedTaskList = TaskCache
-				.getConcernedTaskList(entityName);
+    {
+        Vector<TaskEntity> concernedTaskList = TaskCache
+                .getConcernedTaskList(entityName);
 
-		if (concernedTaskList != null)
-			return concernedTaskList;
+        if (concernedTaskList != null)
+            return concernedTaskList;
 
-		concernedTaskList = new Vector<TaskEntity>();
+        concernedTaskList = new Vector<TaskEntity>();
 
-		try
-		{
-			// On va chercher l'entité représentant le type d'entité de l'entité
-			// (c'est très fourrant)
-			EntityEntity entityEntity = getEntityEntity(entityName);
+        try {
+            // On va chercher l'entité représentant le type d'entité de l'entité
+            // (c'est très fourrant)
+            EntityEntity entityEntity = getEntityEntity(entityName);
 
-			// On va chercher les entités de recherches concernant l'entité de
-			// définition d'entité
-			PluralAccessor searchEntityList = getSearchEntityList(entityEntity);
+            // On va chercher les entités de recherches concernant l'entité de
+            // définition d'entité
+            PluralAccessor searchEntityList = getSearchEntityList(entityEntity);
 
-			// On va chercher la liste de spécification qui concerne les
-			// entitées de
-			// recherches
-			PluralAccessor specificationList = getSpecificationEntityList(searchEntityList);
+            // On va chercher la liste de spécification qui concerne les
+            // entitées de
+            // recherches
+            PluralAccessor specificationList = getSpecificationEntityList(searchEntityList);
 
-			// On va chercher la liste de tâches qui concerne la liste de
-			// spécification
-			PluralAccessor taskList = getTaskList(specificationList);
+            // On va chercher la liste de tâches qui concerne la liste de
+            // spécification
+            PluralAccessor taskList = getTaskList(specificationList);
 
-			for (AbstractOrmEntity currentEntity : taskList)
-				concernedTaskList.add((TaskEntity) currentEntity);
+            for (AbstractOrmEntity currentEntity : taskList)
+                concernedTaskList.add((TaskEntity) currentEntity);
 
-		} catch (Exception e)
-		{
-			Logger
-					.error("[TASK_MANAGER] Impossible d'obtenir la liste des tâches pour cette entité");
-		}
+        } catch (Exception e) {
+            Logger.error("[TASK_MANAGER] Impossible d'obtenir la liste des tâches pour cette entité");
+        }
 
-		TaskCache.setConcernedTaskList(entityName, concernedTaskList);
+        TaskCache.setConcernedTaskList(entityName, concernedTaskList);
 
-		return concernedTaskList;
-	}
+        return concernedTaskList;
+    }
 
-	private static PluralAccessor getTaskList(PluralAccessor specificationList)
+    private static PluralAccessor getTaskList(PluralAccessor specificationList)
 
-	{
-		PluralAccessor taskEntityList = new PluralAccessor(new TaskEntity());
+    {
+        PluralAccessor taskEntityList = new PluralAccessor(new TaskEntity());
 
-		for (AbstractOrmEntity specificationEntity : specificationList)
-		{
-			PluralAccessor currentAccessor = specificationEntity
-					.getPluralAccessor("TaskEntity");
+        for (AbstractOrmEntity specificationEntity : specificationList) {
+            PluralAccessor currentAccessor = specificationEntity
+                    .getPluralAccessor("TaskEntity");
 
-			taskEntityList.addAll(currentAccessor);
-		}
+            taskEntityList.addAll(currentAccessor);
+        }
 
-		return taskEntityList;
-	}
+        return taskEntityList;
+    }
 
-	private static PluralAccessor getSpecificationEntityList(
-			PluralAccessor searchEntityList)
-	{
-		PluralAccessor specificationEntityList = new PluralAccessor(
-				new Specification());
+    private static PluralAccessor getSpecificationEntityList(
+            PluralAccessor searchEntityList) {
+        PluralAccessor specificationEntityList = new PluralAccessor(
+                new Specification());
 
-		for (AbstractOrmEntity searchEntity : searchEntityList)
-		{
-			PluralAccessor currentAccessor = searchEntity
-					.getPluralAccessor("Specification");
+        for (AbstractOrmEntity searchEntity : searchEntityList) {
+            PluralAccessor currentAccessor = searchEntity
+                    .getPluralAccessor("Specification");
 
-			specificationEntityList.addAll(currentAccessor);
-		}
+            specificationEntityList.addAll(currentAccessor);
+        }
 
-		return specificationEntityList;
-	}
+        return specificationEntityList;
+    }
 
-	private static PluralAccessor getSearchEntityList(EntityEntity entityEntity)
+    private static PluralAccessor getSearchEntityList(EntityEntity entityEntity)
 
-	{
-		return entityEntity.getPluralAccessor("SearchEntity");
-	}
+    {
+        return entityEntity.getPluralAccessor("SearchEntity");
+    }
 
-	private static EntityEntity getEntityEntity(String entityName)
+    private static EntityEntity getEntityEntity(String entityName)
 
-	{
-		EntityEntity searchEntity = new EntityEntity();
-		searchEntity.initFields();
-		searchEntity.setData("systemName", entityName);
+    {
+        EntityEntity searchEntity = new EntityEntity();
+        searchEntity.initFields();
+        searchEntity.setData("systemName", entityName);
 
-		return (EntityEntity) (Orm.selectUnique(searchEntity));
-	}
+        return (EntityEntity) (Orm.getInstance().selectUnique(searchEntity));
+    }
 
-	/**
-	 * @param searchEntities entités pour lesquelles on doit possiblement
-	 *            effectuer des tâches
-	 * @param entityParameters paramètres de l'entité
-	 */
-	public static void executeTasks(Vector<AbstractOrmEntity> searchEntities,
-			Hashtable<String, String> entityParameters)
-	{
-		if (searchEntities.size() > 0)
-			executeTasks(searchEntities.get(0), entityParameters);
-	}
+    /**
+     * @param searchEntities entités pour lesquelles on doit possiblement
+     *            effectuer des tâches
+     * @param entityParameters paramètres de l'entité
+     */
+    public static void executeTasks(Vector<AbstractOrmEntity> searchEntities,
+            Hashtable<String, String> entityParameters) {
+        if (searchEntities.size() > 0)
+            executeTasks(searchEntities.get(0), entityParameters);
+    }
 }
