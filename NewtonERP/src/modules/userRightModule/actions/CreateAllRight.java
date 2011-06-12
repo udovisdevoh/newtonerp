@@ -15,6 +15,7 @@ import newtonERP.orm.Orm;
  * 
  * @author cloutierJo
  */
+@SuppressWarnings("deprecation")
 public class CreateAllRight extends AbstractAction {
 	/**
 	 * constructeur

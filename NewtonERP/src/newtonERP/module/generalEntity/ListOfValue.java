@@ -8,8 +8,12 @@ import newtonERP.orm.Orm;
 import newtonERP.viewers.viewables.SelectBoxViewable;
 
 /**
- * @author Guillaume Lacasse List of value for the viewers
+ * List of value for the viewers
+ * 
+ * @author Guillaume Lacasse
  */
+
+@SuppressWarnings("deprecation")
 public class ListOfValue implements SelectBoxViewable {
 	private String labelName;
 	private AbstractOrmEntity sourceEntity;

@@ -1,12 +1,16 @@
 package newtonERP.orm;
 
 import java.sql.ResultSet;
+import java.util.Hashtable;
+import java.util.Map.Entry;
 import java.util.Vector;
 
 import newtonERP.module.AbstractOrmEntity;
+import newtonERP.orm.exceptions.OrmException;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.sgbd.AbstractSgbd;
-import newtonERP.taskManager.TaskManager;
+import newtonERP.orm.sgbd.sqlite.SgbdSqlite;
+import newtonERP.serveur.ConfigManager;
 
 /**
  * Basic class for the orm. It is used to put the objects in the databse using a sgdb and its java binding. The orm will
@@ -16,13 +20,33 @@ import newtonERP.taskManager.TaskManager;
  * 
  * @author r3hallejo, r3lacasgu, r3cloutjo
  */
-public class Orm {
+public final class Orm {
 
-	private static Orm instance;
+	private static Hashtable<String, Orm> instances;
+	private AbstractSgbd sgdb;
 
-	private Orm() {
-		getSgbd().connect();
-		OrmFonction.createNonExistentTables();
+	/**
+	 * Instantiates a new orm.
+	 * 
+	 * @param databaseName the database name
+	 */
+	private Orm(String databaseName) {
+		sgdb = buildSGDB(databaseName);
+		sgdb.connect();
+		sgdb.createNonExistentTables();
+	}
+
+	/**
+	 * Gets the sgbd.
+	 * 
+	 * @param databaseName the data base name (need to be set in config file)
+	 * @return abstractSgdb that was asked
+	 */
+	private AbstractSgbd buildSGDB(String databaseName) {
+		if(ConfigManager.loadStringProperty("dmbs-name").equals("sqlite")){
+			return new SgbdSqlite();// On crée la référence
+		}
+		throw new OrmException("Invalid DBMS type");
 	}
 
 	/**
@@ -31,23 +55,39 @@ public class Orm {
 	 * @return single instance of Orm
 	 */
 	public static Orm getInstance() {
-		if(instance == null){
-			instance = new Orm();
-		}
-		return instance;
+		return getInstance("test");
 	}
 
-	@Deprecated
-	private AbstractSgbd getSgbd() {
-		return OrmFonction.getSgbd();
+	/**
+	 * Gets the single instance of Orm representing the database asked.
+	 * 
+	 * @param databaseName the database name
+	 * @return single instance of Orm asked
+	 */
+	public static Orm getInstance(String databaseName) {
+		if(instances == null){
+			instances = new Hashtable<String, Orm>();
+		}
+		Orm database = instances.get(databaseName);
+		if(database != null){
+			return database;
+		}
+		database = new Orm(databaseName);
+		instances.put(databaseName, database);
+		return database;
 	}
 
 	/**
 	 * Used to disconnect from the db
 	 */
-	@Deprecated
 	public void disconnect() {
-		getSgbd().disconnect();
+		sgdb.disconnect();
+		for(Entry<String, Orm> instance : instances.entrySet()){
+			if(instance.getValue().equals(this)){
+				instances.remove(instance.getKey());
+				break;
+			}
+		}
 	}
 
 	/**
@@ -56,6 +96,7 @@ public class Orm {
 	 * @param fieldValue value
 	 * @return new entity or found entity
 	 */
+	@Deprecated
 	public AbstractOrmEntity getOrCreateEntity(AbstractOrmEntity entityAsType, String fieldName, String fieldValue) {
 		entityAsType.setData(fieldName, fieldValue);
 
@@ -77,6 +118,7 @@ public class Orm {
 	 * @param fieldValue2 value2
 	 * @return new entity or found entity
 	 */
+	@Deprecated
 	public AbstractOrmEntity getOrCreateEntity(AbstractOrmEntity entityAsType, String fieldName1, String fieldValue1,
 	        String fieldName2, String fieldValue2) {
 		entityAsType.setData(fieldName1, fieldValue1);
@@ -100,7 +142,7 @@ public class Orm {
 	 * @return ?
 	 */
 	public ResultSet addColumnToTable(AbstractOrmEntity entity, Field<?> field) {
-		return getSgbd().addColumnToTable(entity, field);
+		return sgdb.addColumnToTable(entity, field);
 	}
 
 	/**
@@ -120,17 +162,7 @@ public class Orm {
 	 * @param fieldName nom du field
 	 */
 	public void createIndex(String entityName, String fieldName) {
-		getSgbd().createIndex(entityName, fieldName);
-	}
-
-	/**
-	 * To execute a custom query
-	 * 
-	 * @param sqlQuery the executed
-	 */
-	@Deprecated
-	public void executeCustomQuery(String sqlQuery) {
-		getSgbd().execute(sqlQuery, OrmActions.OTHER);
+		sgdb.createIndex(entityName, fieldName);
 	}
 
 	/**
@@ -138,7 +170,7 @@ public class Orm {
 	 * @return true si l'entité a une table dans la base de donnée, sinon false
 	 */
 	public boolean isEntityExists(String entitySystemName) {
-		return getSgbd().isEntityExists(entitySystemName);
+		return sgdb.isEntityExists(entitySystemName);
 	}
 
 	/**
@@ -146,7 +178,7 @@ public class Orm {
 	 * @return nombre d'occurence du type de l'entité de recherche
 	 */
 	public int count(AbstractOrmEntity searchEntity) {
-		return count(searchEntity, null);
+		return sgdb.count(searchEntity);
 	}
 
 	/**
@@ -154,8 +186,9 @@ public class Orm {
 	 * @param searchParameterList liste de paramètres de recherche
 	 * @return nombre d'occurence du type de l'entité de recherche
 	 */
+	@Deprecated
 	public int count(AbstractOrmEntity searchEntity, Vector<String> searchParameterList) {
-		return getSgbd().count(searchEntity, searchParameterList);
+		return sgdb.count(searchEntity, searchParameterList);
 	}
 
 	/**
@@ -178,10 +211,11 @@ public class Orm {
 	 * @param orderBy ordre
 	 * @return liste d'entité
 	 */
+	@Deprecated
 	public Vector<AbstractOrmEntity> select(AbstractOrmEntity searchEntity, Vector<String> searchParameters, int limit,
 	        int offset, String orderBy) {
 		return EntityCreator.createEntitiesFromResultSet(
-		        getSgbd().select(searchEntity, searchParameters, limit, offset, orderBy), searchEntity);
+		        sgdb.select(searchEntity, searchParameters, limit, offset, orderBy), searchEntity);
 	}
 
 	/**
@@ -195,8 +229,7 @@ public class Orm {
 	 */
 	@Deprecated
 	public Vector<AbstractOrmEntity> select(AbstractOrmEntity searchEntity, Vector<String> searchCriteriasParam) {
-		return EntityCreator.createEntitiesFromResultSet(getSgbd().select(searchEntity, searchCriteriasParam),
-		        searchEntity);
+		return EntityCreator.createEntitiesFromResultSet(sgdb.select(searchEntity, searchCriteriasParam), searchEntity);
 	}
 
 	/**
@@ -207,7 +240,7 @@ public class Orm {
 	 * @return the entities
 	 */
 	public Vector<AbstractOrmEntity> select(Vector<AbstractOrmEntity> searchEntities) {
-		return EntityCreator.createEntitiesFromResultSet(getSgbd().select(searchEntities), searchEntities.get(0));
+		return EntityCreator.createEntitiesFromResultSet(sgdb.select(searchEntities), searchEntities.get(0));
 	}
 
 	/**
@@ -215,9 +248,7 @@ public class Orm {
 	 * @return the entities that have been selected in the db
 	 */
 	public Vector<AbstractOrmEntity> select(AbstractOrmEntity searchEntity) {
-		Vector<AbstractOrmEntity> searchEntities = new Vector<AbstractOrmEntity>();
-		searchEntities.add(searchEntity);
-		return select(searchEntities);
+		return select(vectorize(searchEntity));
 	}
 
 	/**
@@ -247,13 +278,7 @@ public class Orm {
 	 * @return le id de clé primaire ajoutée
 	 */
 	public int insert(AbstractOrmEntity newEntity) {
-		int primaryKeyValue = getSgbd().insert(newEntity);
-		// TODO: sa pas rapport ici sa...
-		if(primaryKeyValue != 0){
-			TaskManager.executeTasks(newEntity, primaryKeyValue);
-		}
-
-		return primaryKeyValue;
+		return sgdb.insert(newEntity);
 	}
 
 	/**
@@ -274,6 +299,7 @@ public class Orm {
 	 * @param fieldName2 key2
 	 * @param fieldValue2 value2
 	 */
+	@Deprecated
 	public void delete(AbstractOrmEntity entityAsType, String fieldName1, String fieldValue1, String fieldName2,
 	        String fieldValue2) {
 		entityAsType.setData(fieldName1, fieldValue1);
@@ -295,7 +321,7 @@ public class Orm {
 	 */
 	@Deprecated
 	public void delete(AbstractOrmEntity searchEntity, Vector<String> searchCriterias) {
-		getSgbd().delete(searchEntity, searchCriterias);
+		sgdb.delete(searchEntity, searchCriterias);
 	}
 
 	/**
@@ -304,7 +330,7 @@ public class Orm {
 	 * @param searchEntities the entities from which we will build our where clause
 	 */
 	public void delete(Vector<AbstractOrmEntity> searchEntities) {
-		getSgbd().delete(searchEntities);
+		sgdb.delete(searchEntities);
 	}
 
 	/**
@@ -313,9 +339,7 @@ public class Orm {
 	 * @param searchEntity the entity from which we will build our where
 	 */
 	public void delete(AbstractOrmEntity searchEntity) {
-		Vector<AbstractOrmEntity> searchEntities = new Vector<AbstractOrmEntity>();
-		searchEntities.add(searchEntity);
-		delete(searchEntities);
+		delete(vectorize(searchEntity));
 	}
 
 	/**
@@ -326,7 +350,7 @@ public class Orm {
 	 */
 	@Deprecated
 	public void update(AbstractOrmEntity entityContainingChanges, Vector<String> searchCriterias) {
-		getSgbd().update(entityContainingChanges, searchCriterias);
+		sgdb.update(entityContainingChanges, searchCriterias);
 	}
 
 	/**
@@ -336,25 +360,19 @@ public class Orm {
 	 * @param entityContainingChanges the changes to apply
 	 */
 	public void update(Vector<AbstractOrmEntity> searchEntities, AbstractOrmEntity entityContainingChanges) {
-		getSgbd().update(searchEntities, entityContainingChanges);
+		sgdb.update(searchEntities, entityContainingChanges);
 	}
 
 	/**
-	 * Uses the new where builder Method used to update / change an entity
+	 * Vectorize.
 	 * 
-	 * @param searchEntity the entities from which we will build our where clause
-	 * @param entityContainingChanges the changes to apply
+	 * @param <T> the generic type
+	 * @param object the object
+	 * @return the vector
 	 */
-	public void updateUnique(AbstractOrmEntity searchEntity, AbstractOrmEntity entityContainingChanges) {
-		getSgbd().updateUnique(searchEntity, entityContainingChanges);
-	}
-
-	/**
-	 * Fait un backup de la DB si l'intervale de temps est assez grande
-	 */
-	@Deprecated
-	// cette fonction ne devrai plus etre apellé a l'extérieur de l'ORM
-	public void doBackupIfTimeIntervalAllows() {
-		OrmFonction.doBackupIfTimeIntervalAllows();
+	private <T> Vector<T> vectorize(T object) {
+		Vector<T> objectVector = new Vector<T>();
+		objectVector.add(object);
+		return objectVector;
 	}
 }

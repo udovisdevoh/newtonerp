@@ -16,6 +16,8 @@ import newtonERP.orm.associations.PluralAccessor;
  * 
  * @author cloutierJo
  */
+
+@SuppressWarnings("deprecation")
 public class RightCheck extends AbstractAction {
 	@Override
 	public AbstractEntity doAction(AbstractEntity entity, Hashtable<String, String> parameters) {
