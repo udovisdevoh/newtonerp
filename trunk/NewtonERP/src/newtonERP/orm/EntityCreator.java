@@ -16,7 +16,7 @@ import newtonERP.orm.field.Field;
  * 
  * @author r3hallejo
  */
-public class EntityCreator {
+class EntityCreator {
 	/**
 	 * Default constructor used to create the entities from the result set
 	 * 

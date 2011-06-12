@@ -11,10 +11,13 @@ import newtonERP.orm.associations.PluralAccessor;
 import newtonERP.viewers.viewables.CheckListViewable;
 
 /**
- * @author Guillaume Lacasse cette classe sert à faire des liste de flag qu'on peut attribuer à une entité lorsque ces
- *         flags sont dans une table étrangère passant par une table intermédiaire. Exemple: attribution de droits pour
- *         un groupe (ça passe par GroupsRight)
+ * cette classe sert à faire des liste de flag qu'on peut attribuer à une entité lorsque ces flags sont dans une table
+ * étrangère passant par une table intermédiaire. Exemple: attribution de droits pour un groupe (ça passe par
+ * GroupsRight)
+ * 
+ * @author Guillaume Lacasse
  */
+@SuppressWarnings("deprecation")
 public class FlagPool implements CheckListViewable {
 	private AbstractOrmEntity sourceEntityDefinition;
 	private String sourceKeyName;

@@ -21,6 +21,8 @@ import newtonERP.serveur.ConfigManager;
  * @author Gabriel Therrien, Guillaume Lacasse, CloutierJo Class representing the user right module. Base module for the
  *         ERP.
  */
+
+@SuppressWarnings("deprecation")
 public class UserRightModule extends Module {
 	/**
 	 * Default constructor for the user right module initializing himself. Adds the actions and the entity defenitions

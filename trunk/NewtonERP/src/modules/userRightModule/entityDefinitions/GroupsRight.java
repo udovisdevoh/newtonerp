@@ -13,6 +13,7 @@ import newtonERP.orm.field.type.FieldInt;
  * 
  * @author CloutierJo
  */
+@SuppressWarnings("deprecation")
 public class GroupsRight extends AbstractOrmEntity {
 	private static Right rightDefinition;
 

@@ -8,7 +8,6 @@ import newtonERP.common.ListModule;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.Module;
 import newtonERP.module.generalEntity.AlertEntity;
-import newtonERP.orm.Orm;
 import newtonERP.taskManager.TaskManager;
 
 /**
@@ -74,10 +73,6 @@ public class CommandRouteur {
 		if(taskManagerRetView != null){
 			retView = taskManagerRetView;
 		}
-
-		// On averti l'Orm de faire des backup si c'est le temps
-		// TODO: placé sa ailleur
-		Orm.getInstance().doBackupIfTimeIntervalAllows();
 
 		return retView;
 	}

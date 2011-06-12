@@ -228,7 +228,6 @@ public abstract class Field<T> {
 
 	/**
 	 * @param fieldValidator un validateur
-	 * @param validator the validator to set
 	 */
 	public void setValidator(FieldValidator<T> fieldValidator) {
 		validator = fieldValidator;
@@ -300,7 +299,7 @@ public abstract class Field<T> {
 		if(getClass() != obj.getClass()){
 			return false;
 		}
-		Field other = (Field) obj;
+		Field<?> other = (Field<?>) obj;
 		if(calcul == null){
 			if(other.calcul != null){
 				return false;

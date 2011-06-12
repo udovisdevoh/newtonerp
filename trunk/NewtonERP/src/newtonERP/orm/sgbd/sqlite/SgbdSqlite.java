@@ -12,7 +12,6 @@ import java.util.Vector;
 import newtonERP.logging.Logger;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
-import newtonERP.orm.BackupManager;
 import newtonERP.orm.OrmActions;
 import newtonERP.orm.exceptions.OrmSqlException;
 import newtonERP.orm.field.Field;
@@ -24,22 +23,29 @@ import newtonERP.orm.field.type.FieldInt;
 import newtonERP.orm.field.type.FieldString;
 import newtonERP.orm.sgbd.AbstractSgbd;
 
+// TODO: Auto-generated Javadoc
 /**
- * Class who's role is only for executing the statements that has been sent from the orm
+ * Class who's role is only for executing the statements that has been sent from the orm.
  * 
  * @author r3lacasgu, r3hallejo
  */
 public class SgbdSqlite extends AbstractSgbd {
+
+	/** The prefix. */
 	private static String prefix = "Bee_";
 
+	/** The data base file name. */
 	private static String dataBaseFileName = "test.db";
 
+	/** The connexion. */
 	private Connection connexion;
 
-	private SgbdSqliteBackupManager sgbdSqliteBackupManager = new SgbdSqliteBackupManager();
-
+	/*
+	 * (non-Javadoc)
+	 * @see newtonERP.orm.sgbd.AbstractSgbd#execute(java.lang.String, newtonERP.orm.OrmActions)
+	 */
 	@Override
-	public ResultSet execute(String request, OrmActions action)
+	protected ResultSet execute(String request, OrmActions action)
 
 	{
 		Statement stat = null;
@@ -69,6 +75,10 @@ public class SgbdSqlite extends AbstractSgbd {
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see newtonERP.orm.sgbd.AbstractSgbd#disconnect()
+	 */
 	@Override
 	public void disconnect() {
 		try{
@@ -78,6 +88,10 @@ public class SgbdSqlite extends AbstractSgbd {
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see newtonERP.orm.sgbd.AbstractSgbd#connect()
+	 */
 	@Override
 	public void connect() {
 		try{
@@ -88,6 +102,11 @@ public class SgbdSqlite extends AbstractSgbd {
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see newtonERP.orm.sgbd.AbstractSgbd#addColumnToTable(newtonERP.module.AbstractOrmEntity,
+	 * newtonERP.orm.field.Field)
+	 */
 	@Override
 	public ResultSet addColumnToTable(AbstractOrmEntity entity, Field<?> field)
 
@@ -109,26 +128,9 @@ public class SgbdSqlite extends AbstractSgbd {
 		// todo: mettre une valeur par defaut dans la colone ajoute
 	}
 
-	@Override
-	@Deprecated
-	public ResultSet select(AbstractOrmEntity searchEntity, Vector<String> searchCriteriasParam) {
-		String sqlQuery = "SELECT * FROM " + prefix + searchEntity.getSystemName();
-
-		if(searchCriteriasParam != null){
-			sqlQuery = buildWhereClauseForQuery(sqlQuery, searchCriteriasParam);
-		}
-
-		Logger.debug("[SGDB_SQLITE] SQL query produced : " + sqlQuery);
-
-		ResultSet rs = execute(sqlQuery, OrmActions.SEARCH);
-
-		return rs;
-	}
-
 	/**
-	 * This is the new where builder! Method used to build the where clause for the query
+	 * This is the new where builder! Method used to build the where clause for the query.
 	 * 
-	 * @param sqlQuery the non-finished sqlQuery
 	 * @param searchEntities the entities used for the search
 	 * @return the sqlQuery
 	 */
@@ -139,9 +141,7 @@ public class SgbdSqlite extends AbstractSgbd {
 		whereClause += " WHERE ";
 
 		for(AbstractOrmEntity entity : searchEntities){
-			// Si les fields de
-			// cette entité
-			// ne contiennent que des null
+			// Si les fields de cette entité ne contiennent que des null
 			if(!entity.getFields().containsValues()){
 				continue;
 			}
@@ -179,30 +179,7 @@ public class SgbdSqlite extends AbstractSgbd {
 	}
 
 	/**
-	 * This is the new where builder! Method used to build the where clause for the query
-	 * 
-	 * @param sqlQuery the non-finished sqlQuery
-	 * @param searchEntities the entities used for the search
-	 * @return the sqlQuery
-	 */
-	private static String buildWhereClauseForQuery(AbstractOrmEntity searchEntity, String sqlQuery) {
-		sqlQuery += " WHERE ( ";
-
-		for(Field<?> field : searchEntity.getFields().getFields()){
-			if(field.getCalcul() == null && field.getData() != null){
-				sqlQuery += field.getShortName() + " " + field.getOperator() + " '" + field.getDataString(true) + "'";
-
-				sqlQuery += " AND ";
-			}
-		}
-
-		sqlQuery = sqlQuery.substring(0, sqlQuery.length() - 4);
-
-		return sqlQuery += ");";
-	}
-
-	/**
-	 * Method used internally by the update method to build the set statement
+	 * Method used internally by the update method to build the set statement.
 	 * 
 	 * @param fields the data from the entities
 	 * @param sqlQuery the non-finished sqlQuery
@@ -234,6 +211,58 @@ public class SgbdSqlite extends AbstractSgbd {
 		return sqlQuery + buildWhereClause(searchCriterias) + ";";
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see newtonERP.orm.sgbd.AbstractSgbd#select(newtonERP.module.AbstractOrmEntity, java.util.Vector)
+	 */
+	@Override
+	@Deprecated
+	public ResultSet select(AbstractOrmEntity searchEntity, Vector<String> searchCriteriasParam) {
+		String sqlQuery = "SELECT * FROM " + prefix + searchEntity.getSystemName();
+
+		if(searchCriteriasParam != null){
+			sqlQuery = buildWhereClauseForQuery(sqlQuery, searchCriteriasParam);
+		}
+
+		Logger.debug("[SGDB_SQLITE] SQL query produced : " + sqlQuery);
+
+		ResultSet rs = execute(sqlQuery, OrmActions.SEARCH);
+
+		return rs;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see newtonERP.orm.sgbd.AbstractSgbd#select(newtonERP.module.AbstractOrmEntity, java.util.Vector, int, int,
+	 * java.lang.String)
+	 */
+	@Deprecated
+	@Override
+	public ResultSet select(AbstractOrmEntity searchEntity, Vector<String> searchCriteriasParam, int limit, int offset,
+	        String orderBy) {
+		String sqlQuery = "SELECT * FROM " + prefix + searchEntity.getSystemName();
+
+		if(searchCriteriasParam != null){
+			sqlQuery += buildWhereClause(searchCriteriasParam);
+		}
+
+		if(orderBy != null && orderBy.length() > 0){
+			sqlQuery += " ORDER BY " + orderBy;
+		}
+
+		sqlQuery = sqlQuery + " LIMIT " + offset + ", " + limit + ";";
+
+		Logger.debug("[SGDB_SQLITE] SQL query produced : " + sqlQuery);
+
+		ResultSet rs = execute(sqlQuery, OrmActions.SEARCH);
+
+		return rs;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see newtonERP.orm.sgbd.AbstractSgbd#select(java.util.Vector)
+	 */
 	@Override
 	public ResultSet select(Vector<AbstractOrmEntity> searchEntities)
 
@@ -251,6 +280,20 @@ public class SgbdSqlite extends AbstractSgbd {
 		return rs;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see newtonERP.orm.sgbd.AbstractSgbd#select(java.util.Vector, int, int, boolean)
+	 */
+	@Override
+	public ResultSet select(Vector<AbstractOrmEntity> searchEntities, int limit, int offset, boolean orderByAsc) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see newtonERP.orm.sgbd.AbstractSgbd#insert(newtonERP.module.AbstractOrmEntity)
+	 */
 	@Override
 	public int insert(AbstractOrmEntity newEntity) {
 		String sqlQuery = "INSERT INTO " + prefix + newEntity.getSystemName() + "( ";
@@ -303,6 +346,10 @@ public class SgbdSqlite extends AbstractSgbd {
 		return primaryKeyValue;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see newtonERP.orm.sgbd.AbstractSgbd#delete(newtonERP.module.AbstractOrmEntity, java.util.Vector)
+	 */
 	@Override
 	@Deprecated
 	public void delete(AbstractOrmEntity searchEntity, Vector<String> searchCriterias) {
@@ -315,6 +362,10 @@ public class SgbdSqlite extends AbstractSgbd {
 		execute(sqlQuery, OrmActions.DELETE);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see newtonERP.orm.sgbd.AbstractSgbd#delete(java.util.Vector)
+	 */
 	@Override
 	public void delete(Vector<AbstractOrmEntity> searchEntities)
 
@@ -328,6 +379,10 @@ public class SgbdSqlite extends AbstractSgbd {
 		execute(sqlQuery, OrmActions.DELETE);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see newtonERP.orm.sgbd.AbstractSgbd#update(newtonERP.module.AbstractOrmEntity, java.util.Vector)
+	 */
 	@Deprecated
 	@Override
 	public void update(AbstractOrmEntity entityContainingChanges, Vector<String> searchCriterias) {
@@ -341,6 +396,10 @@ public class SgbdSqlite extends AbstractSgbd {
 		execute(sqlQuery, OrmActions.UPDATE);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see newtonERP.orm.sgbd.AbstractSgbd#update(java.util.Vector, newtonERP.module.AbstractOrmEntity)
+	 */
 	@Override
 	public void update(Vector<AbstractOrmEntity> searchEntities, AbstractOrmEntity entityContainingChanges) {
 		String sqlQuery = "UPDATE " + prefix + entityContainingChanges.getSystemName() + " SET ";
@@ -353,6 +412,10 @@ public class SgbdSqlite extends AbstractSgbd {
 		execute(sqlQuery, OrmActions.UPDATE);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see newtonERP.orm.sgbd.AbstractSgbd#isEntityExists(java.lang.String)
+	 */
 	@Override
 	public boolean isEntityExists(String entitySystemName) {
 		String sqlQuery = "SELECT name FROM sqlite_master where name='" + prefix + entitySystemName + "';";
@@ -368,6 +431,10 @@ public class SgbdSqlite extends AbstractSgbd {
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see newtonERP.orm.sgbd.AbstractSgbd#createIndex(java.lang.String, java.lang.String)
+	 */
 	@Override
 	public void createIndex(String entityName, String fieldName)
 
@@ -381,6 +448,10 @@ public class SgbdSqlite extends AbstractSgbd {
 		execute(sqlQuery, OrmActions.OTHER);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see newtonERP.orm.sgbd.AbstractSgbd#createTableForEntity(newtonERP.module.AbstractOrmEntity)
+	 */
 	@Override
 	public void createTableForEntity(AbstractOrmEntity entity)
 
@@ -422,40 +493,12 @@ public class SgbdSqlite extends AbstractSgbd {
 		execute(sqlQuery, OrmActions.CREATE);
 	}
 
-	@Override
-	public void updateUnique(AbstractOrmEntity searchEntity, AbstractOrmEntity entityContainingChanges) {
-		String sqlQuery = "UPDATE " + prefix + entityContainingChanges.getSystemName() + " SET ";
-
-		sqlQuery = buildSetClauseForQuery(entityContainingChanges.getFields(), sqlQuery);
-		sqlQuery = buildWhereClauseForQuery(searchEntity, sqlQuery);
-
-		Logger.debug("[SGDB_SQLITE] SQL query produced : " + sqlQuery);
-
-		execute(sqlQuery, OrmActions.UPDATE);
-	}
-
-	@Override
-	public ResultSet select(AbstractOrmEntity searchEntity, Vector<String> searchCriteriasParam, int limit, int offset,
-	        String orderBy) {
-		String sqlQuery = "SELECT * FROM " + prefix + searchEntity.getSystemName();
-
-		if(searchCriteriasParam != null){
-			sqlQuery += buildWhereClause(searchCriteriasParam);
-		}
-
-		if(orderBy != null && orderBy.length() > 0){
-			sqlQuery += " ORDER BY " + orderBy;
-		}
-
-		sqlQuery = sqlQuery + " LIMIT " + offset + ", " + limit + ";";
-
-		Logger.debug("[SGDB_SQLITE] SQL query produced : " + sqlQuery);
-
-		ResultSet rs = execute(sqlQuery, OrmActions.SEARCH);
-
-		return rs;
-	}
-
+	/**
+	 * Builds the where clause.
+	 * 
+	 * @param searchCriteriasParam the search criterias param
+	 * @return the string
+	 */
 	private static String buildWhereClause(Vector<String> searchCriteriasParam) {
 		String whereClause = " WHERE ( ";
 
@@ -467,6 +510,11 @@ public class SgbdSqlite extends AbstractSgbd {
 		return whereClause + " )";
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see newtonERP.orm.sgbd.AbstractSgbd#count(newtonERP.module.AbstractOrmEntity, java.util.Vector)
+	 */
+	@Deprecated
 	@Override
 	public int count(AbstractOrmEntity searchEntity, Vector<String> searchParameterList) {
 		// Pour une raison quelconque, la fonction COUNT de SQLite empêche la
@@ -496,18 +544,5 @@ public class SgbdSqlite extends AbstractSgbd {
 			throw new OrmSqlException("probleme ici");
 		}
 		return count;
-	}
-
-	@Override
-	@Deprecated
-	public void doBackup() {
-		Logger.info("Backup de la DB");
-		sgbdSqliteBackupManager.doBackup(dataBaseFileName, BackupManager.getMaximumBackupInstanceCount());
-	}
-
-	@Override
-	@Deprecated
-	public long getLatestBackupTime() {
-		return sgbdSqliteBackupManager.getLatestBackupTime();
 	}
 }

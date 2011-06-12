@@ -44,7 +44,6 @@ public abstract class AbstractOrmEntity extends AbstractEntity {
 
 	private static Hashtable<String, FlagPool> negativeFlagPoolList;
 
-	// oblige le redefinition pour les sous-classe de AbstractOrmEntity
 	@Override
 	public abstract Fields initFields();
 
@@ -133,11 +132,8 @@ public abstract class AbstractOrmEntity extends AbstractEntity {
 	 * supprime l'entity en DB corespondant aux whereClauses en utilisant le whereBuilder
 	 * 
 	 * @param whereClause the where clause for the query
-	 * @see
 	 */
-	public final void delete(Vector<AbstractOrmEntity> whereClause)
-
-	{
+	public final void delete(Vector<AbstractOrmEntity> whereClause) {
 		Orm.getInstance().delete(whereClause);
 	}
 
@@ -147,9 +143,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity {
 	 * @param parameters parametre suplementaire
 	 * @return todo: qu'Est-ce que l'on devrai retourné en general?
 	 */
-	public BaseViewerData editUI(Hashtable<String, String> parameters)
-
-	{
+	public BaseViewerData editUI(Hashtable<String, String> parameters) {
 		return editUI(parameters, false);
 	}
 
@@ -227,6 +221,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity {
 	 * 
 	 * @param whereClause the where clause for the query
 	 */
+	@Deprecated
 	public final void edit(String whereClause) {
 		Vector<String> whereParameter = new Vector<String>();
 		whereParameter.add(whereClause);
@@ -236,8 +231,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity {
 	/**
 	 * met a jour l'entity en DB, l'ID doit etre présent, le whereclause correspond a this
 	 * 
-	 * @param whereClause the where clause for the query
-	 * @param changeToApply the chang to apply to entity matching the where clause
+	 * @param changeToApply the change to apply to entity matching the where clause
 	 */
 	public final void edit(AbstractOrmEntity changeToApply) {
 		edit(this, changeToApply);
