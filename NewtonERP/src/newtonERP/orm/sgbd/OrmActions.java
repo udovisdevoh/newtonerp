@@ -1,4 +1,4 @@
-package newtonERP.orm;
+package newtonERP.orm.sgbd;
 
 /**
  * This enum is only describing the type of actions the orm can do. It is only used internally so when we execute the

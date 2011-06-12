@@ -12,7 +12,6 @@ import java.util.Vector;
 import newtonERP.logging.Logger;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
-import newtonERP.orm.OrmActions;
 import newtonERP.orm.exceptions.OrmSqlException;
 import newtonERP.orm.field.Field;
 import newtonERP.orm.field.Fields;
@@ -22,6 +21,7 @@ import newtonERP.orm.field.type.FieldDouble;
 import newtonERP.orm.field.type.FieldInt;
 import newtonERP.orm.field.type.FieldString;
 import newtonERP.orm.sgbd.AbstractSgbd;
+import newtonERP.orm.sgbd.OrmActions;
 
 // TODO: Auto-generated Javadoc
 /**
