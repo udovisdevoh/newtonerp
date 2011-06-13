@@ -54,6 +54,7 @@ public final class Orm {
 	 * 
 	 * @return single instance of Orm
 	 */
+	@Deprecated
 	public static Orm getInstance() {
 		return getInstance("test");
 	}
