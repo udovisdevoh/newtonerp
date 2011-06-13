@@ -110,7 +110,7 @@ public class Servlet extends ServletHandler {
 		}
 
 		entityName = buildEntityName(target);
-		// on trouve les parametres pour les mettre dans le hashtable
+		// on trouve les paramètres pour les mettre dans le hashtable
 
 		Enumeration<?> e = request.getParameterNames();
 		while(e.hasMoreElements()){
