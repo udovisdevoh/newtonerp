@@ -27,7 +27,7 @@ public class Starter {
 	 */
 	public static void main(String[] args) throws Exception {
 		ListModule.initAllModule();
-		startOrm();
+		// startOrm();
 		startWebWerver();
 	}
 

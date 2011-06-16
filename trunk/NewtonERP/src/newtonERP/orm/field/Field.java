@@ -9,6 +9,7 @@ package newtonERP.orm.field;
 public abstract class Field<T> {
 	protected T data;
 	private String name; // Name is the name that is visible by the end-user
+	@Deprecated
 	private String shortName; // Short name is the name that is used internally
 	protected String operator;
 	private Boolean hidden = false;
@@ -275,7 +276,6 @@ public abstract class Field<T> {
 		int result = 1;
 		result = prime * result + ((calcul == null) ? 0 : calcul.hashCode());
 		result = prime * result + ((data == null) ? 0 : data.hashCode());
-		result = prime * result + ((fieldsRef == null) ? 0 : fieldsRef.hashCode());
 		result = prime * result + ((hidden == null) ? 0 : hidden.hashCode());
 		result = prime * result + (isColored ? 1231 : 1237);
 		result = prime * result + ((isDynamicField == null) ? 0 : isDynamicField.hashCode());
@@ -318,8 +318,6 @@ public abstract class Field<T> {
 			if(other.fieldsRef != null){
 				return false;
 			}
-		}else if(!fieldsRef.equals(other.fieldsRef)){
-			return false;
 		}
 		if(hidden == null){
 			if(other.hidden != null){
