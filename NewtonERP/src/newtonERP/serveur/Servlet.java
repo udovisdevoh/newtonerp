@@ -25,6 +25,7 @@ import newtonERP.viewers.firstStep.ErrorViewer;
 import org.mortbay.jetty.Request;
 import org.mortbay.jetty.handler.ResourceHandler;
 import org.mortbay.jetty.servlet.ServletHandler;
+import org.mortbay.util.ajax.JSON;
 
 /**
  * la gestion du serveur, request manager
@@ -60,7 +61,7 @@ public class Servlet extends ServletHandler {
 			try{
 
 				AbstractEntity viewEntity = urlToAction(target, request);
-
+				System.out.println(JSON.toString(viewEntity));
 				pageContent += Viewer.getHtmlCode(viewEntity, buildModuleName(target), buildActionName(target));
 
 			}catch(Exception e){

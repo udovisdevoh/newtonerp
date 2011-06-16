@@ -33,7 +33,7 @@ public final class Orm {
 	private Orm(String databaseName) {
 		sgdb = buildSGDB(databaseName);
 		sgdb.connect();
-		sgdb.createNonExistentTables();
+		// sgdb.createNonExistentTables();
 	}
 
 	/**
@@ -75,6 +75,7 @@ public final class Orm {
 		}
 		database = new Orm(databaseName);
 		instances.put(databaseName, database);
+		database.sgdb.createNonExistentTables();
 		return database;
 	}
 
