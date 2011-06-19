@@ -137,8 +137,6 @@ public abstract class Field<T> {
 	protected void setDataType(T data) {
 		if(validator.isValide(data, fieldsRef)){
 			this.data = data;
-		}else{
-			fieldsRef.setErrorState(true);
 		}
 	}
 

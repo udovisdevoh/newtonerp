@@ -25,7 +25,6 @@ import newtonERP.viewers.firstStep.ErrorViewer;
 import org.mortbay.jetty.Request;
 import org.mortbay.jetty.handler.ResourceHandler;
 import org.mortbay.jetty.servlet.ServletHandler;
-import org.mortbay.util.ajax.JSON;
 
 /**
  * la gestion du serveur, request manager
@@ -52,8 +51,19 @@ public class Servlet extends ServletHandler {
 		if(target.matches("/file/.*")) // si on veut un fichier
 		{
 			resourceHandler.handle(target, request, response, dispatch);
-		}// ou une page normale de l'aplication
-		else{
+		}/*
+		 * else if(target.matches("/ajax/.*")) // ou une requete ajax (on retourne en JSON) { HttpSession session =
+		 * request.getSession(true); Authentication.setCurrentUserName((String)
+		 * session.getAttribute("SESSION_UserName")); String pageContent = ""; try{ AbstractEntity viewEntity =
+		 * urlToAction(target, request); pageContent += Viewer.getJsonCode(viewEntity, buildModuleName(target),
+		 * buildActionName(target)); }catch(Exception e){ e.printStackTrace(); StringWriter sw = new StringWriter();
+		 * e.printStackTrace(new PrintWriter(sw)); String stacktrace = sw.toString(); pageContent =
+		 * ErrorViewer.getErrorPage(stacktrace); } // on formate la reponse response.setContentType("text/html");
+		 * response.setCharacterEncoding(Viewer.getEncoding()); response.setStatus(HttpServletResponse.SC_OK);
+		 * response.getWriter().println(pageContent); ((Request) request).setHandled(true);
+		 * session.setAttribute("SESSION_UserName", Authentication.getCurrentUserName()); } }
+		 */else// ou une page normale de l'aplication
+		{
 			HttpSession session = request.getSession(true);
 
 			Authentication.setCurrentUserName((String) session.getAttribute("SESSION_UserName"));
@@ -61,7 +71,6 @@ public class Servlet extends ServletHandler {
 			try{
 
 				AbstractEntity viewEntity = urlToAction(target, request);
-				System.out.println(JSON.toString(viewEntity));
 				pageContent += Viewer.getHtmlCode(viewEntity, buildModuleName(target), buildActionName(target));
 
 			}catch(Exception e){

@@ -76,7 +76,7 @@ public abstract class AbstractSgbd {
 	 */
 	private final void createIndexesForEntity(AbstractOrmEntity entity) {
 		// On crée des index pour chaque clef étrangère
-		for(String fieldName : entity.getFields().getKeyList()){
+		for(String fieldName : entity.getFields().getKey()){
 			if((fieldName.endsWith("ID") && !fieldName.startsWith("PK")) || fieldName.startsWith("system")){
 				createIndex(entity.getSystemName(), fieldName);
 			}
