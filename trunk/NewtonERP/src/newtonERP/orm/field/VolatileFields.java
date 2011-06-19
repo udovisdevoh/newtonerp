@@ -28,6 +28,5 @@ public class VolatileFields extends Fields {
 	 */
 	public void add(Field<?> field) {
 		fieldsDataMap.put(field.getShortName(), field);
-		fieldsDataVector.add(field);
 	}
 }

@@ -76,7 +76,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity {
 	 * @return this
 	 */
 	public final AbstractOrmEntity newE() {
-		if(getFields().getKeyList().contains(getPrimaryKeyName())){
+		if(getFields().getKey().contains(getPrimaryKeyName())){
 			setData(getPrimaryKeyName(), Orm.getInstance().insert(this));
 		}else{
 			Orm.getInstance().insert(this);
@@ -179,7 +179,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity {
 		}
 		retEntity.setCurrentAction(new BaseAction("Edit", this));
 
-		if(parameters != null && parameters.containsKey("submit") && !fields.isErrorState() && !isReadOnly){
+		if(parameters != null && parameters.containsKey("submit") && !isReadOnly){
 			if(getPrimaryKeyValue() == 0){
 				newE();
 			}else{
@@ -196,7 +196,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity {
 		// On doit ajouter les paramètres spécifiés par défaut lors de la
 		// création de l'entité.
 		if(parameters != null){
-			for(String key : getFields().getKeyList()){
+			for(String key : getFields().getKey()){
 				if(parameters.get(key) != null){
 					setData(key, parameters.get(key));
 				}
@@ -319,7 +319,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity {
 			}
 		}
 
-		for(String fieldName : searchEntity.getFields().getKeyList()){
+		for(String fieldName : searchEntity.getFields().getKey()){
 			if(searchParameters == null){
 				searchParameters = new Vector<String>();
 			}

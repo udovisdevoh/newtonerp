@@ -1,94 +1,27 @@
 <map version="0.9.0">
 <!-- To view this file, download free mind mapping software FreeMind from http://freemind.sourceforge.net -->
 <node CREATED="1301879080698" ID="ID_1103643671" MODIFIED="1302551888366" TEXT="beeERP">
-<node CREATED="1301879205962" FOLDED="true" ID="ID_1606969501" MODIFIED="1302564096341" POSITION="right" TEXT="donn&#xe9;e">
-<node CREATED="1301879295228" ID="ID_1726697124" MODIFIED="1301879306264" TEXT="mutli type de donn&#xe9;e">
-<node CREATED="1301879448458" ID="ID_1568065390" MODIFIED="1301879508387" TEXT="type">
-<node CREATED="1301879306266" ID="ID_955414294" MODIFIED="1301879511009" TEXT="base de donn&#xe9;e (ORM)">
-<node CREATED="1302551675266" ID="ID_1291105475" MODIFIED="1302551684438" TEXT="multi SGDB">
-<node CREATED="1302551684439" ID="ID_547196181" MODIFIED="1302551687387" TEXT="sqlite"/>
-<node CREATED="1302551687964" ID="ID_1348554309" MODIFIED="1302551691619" TEXT="postGreSQL"/>
-<node CREATED="1302551692181" ID="ID_1514665024" MODIFIED="1302551694944" TEXT="MySQL"/>
+<node CREATED="1302553787302" ID="ID_577710673" MODIFIED="1308186434148" POSITION="right" TEXT="testing">
+<node CREATED="1302553794522" ID="ID_751839155" MODIFIED="1302553818032" TEXT="unitTesting de tout les &#xe9;l&#xe9;ment interne de l&apos;application">
+<node CREATED="1302553914915" ID="ID_1180593057" MODIFIED="1302554003697" TEXT="test&#xe9; obligatoirement">
+<node CREATED="1302553926645" ID="ID_824476303" MODIFIED="1302553934736" TEXT="tout se qui est sous le data layer"/>
+<node CREATED="1302553935352" ID="ID_1114478496" MODIFIED="1302553948244" TEXT="les entit&#xe9;s"/>
+<node CREATED="1302553948894" ID="ID_1984200184" MODIFIED="1302553956006" TEXT="le task manager"/>
+<node CREATED="1302553959345" ID="ID_934344086" MODIFIED="1302553971996" TEXT="le module de gestion de droit">
+<node CREATED="1302553971997" ID="ID_536310433" MODIFIED="1302553983958" TEXT="testin tr&#xe8;s en profondeur... s&#xe9;curity risk"/>
 </node>
-<node CREATED="1302551734794" ID="ID_1268579052" MODIFIED="1302551838547" TEXT="selfTest">
-<richcontent TYPE="NOTE"><html>
-  <head>
-    
-  </head>
-  <body>
-    <p>
-      doit pouvoir v&#233;rifier sur demande que tout les acc&#232;s n&#233;sc&#233;ssaire sont pr&#233;sent sans modifier les donn&#233; pr&#233;sente
-    </p>
-  </body>
-</html></richcontent>
+<node CREATED="1302554004810" ID="ID_575466154" MODIFIED="1302554019283" TEXT="les interfaces de module et d&apos;extension">
+<node CREATED="1302554019284" ID="ID_1578617029" MODIFIED="1302554050005" TEXT="test&#xe9; de mani&#xe8;re exaustive pour &#xe9;vit&#xe9; les probl&#xe8;me de r&#xe9;tro compatibilit&#xe9;"/>
 </node>
 </node>
-<node CREATED="1301879313868" ID="ID_10590509" MODIFIED="1301879514647" TEXT="fichier XML"/>
-<node CREATED="1301879322827" ID="ID_406284454" MODIFIED="1301879516619" TEXT="page internet ((X)HTML)"/>
-<node CREATED="1301879337097" ID="ID_1905790899" MODIFIED="1301879519455" TEXT="service SOAP">
-<node CREATED="1302554427791" ID="ID_1549325243" MODIFIED="1302554432625" TEXT="serveur"/>
-<node CREATED="1302554433114" ID="ID_713036546" MODIFIED="1302554436402" TEXT="client"/>
-</node>
-<node CREATED="1301879344737" ID="ID_704440370" MODIFIED="1301879521077" TEXT="service XML-RPC">
-<node CREATED="1302554438367" ID="ID_868525455" MODIFIED="1302554440737" TEXT="client"/>
-</node>
-<node CREATED="1301879359735" ID="ID_1042028747" MODIFIED="1301879502869" TEXT="SVN et co"/>
-<node CREATED="1301879353365" ID="ID_76024404" MODIFIED="1301879504951" TEXT="LDAP"/>
-</node>
-<node CREATED="1301879554290" ID="ID_358254953" MODIFIED="1301879570667" TEXT="type facilement ajoutable par:">
-<node CREATED="1301879570669" ID="ID_757833185" MODIFIED="1301879575416" TEXT="extension"/>
-<node CREATED="1301879575827" ID="ID_1709288243" MODIFIED="1301879600949" TEXT="sous-classement dans le code originale"/>
-<node CREATED="1301879601393" ID="ID_1184204578" MODIFIED="1301879622907" TEXT="par fichier de configuration"/>
-</node>
-<node CREATED="1301879626661" ID="ID_645159723" MODIFIED="1301879655103" TEXT="configuration des source de donn&#xe9;es par fichier de config (XML)">
-<node CREATED="1301879683902" ID="ID_604845761" MODIFIED="1301879689709" TEXT="selon le type"/>
-<node CREATED="1301879690517" ID="ID_1542791154" MODIFIED="1302552246604" TEXT="le plus standard possible"/>
+<node CREATED="1302553889681" ID="ID_657509427" MODIFIED="1302553895556" TEXT="non test&#xe9;:">
+<node CREATED="1302553879532" ID="ID_970262312" MODIFIED="1302553908121" TEXT="le serveur"/>
+<node CREATED="1302553895557" ID="ID_1194803905" MODIFIED="1302553903886" TEXT="les vue html"/>
 </node>
 </node>
-<node CREATED="1301879387740" ID="ID_1777959600" MODIFIED="1301879394736" TEXT="facilement accessible"/>
-<node CREATED="1301879395357" ID="ID_1809732340" MODIFIED="1301879402339" TEXT="facilement modifiable">
-<node CREATED="1302552260145" ID="ID_356965975" MODIFIED="1302552280569" TEXT="pour le type possible (ex:HTML impossible)"/>
+<node CREATED="1302553818552" ID="ID_1577925385" MODIFIED="1302553876302" TEXT="cr&#xe9;&#xe9; un serveur de test continue"/>
 </node>
-<node CREATED="1301879407578" ID="ID_652651985" MODIFIED="1301879724011" TEXT="interface la plus simple possible mais complete..."/>
-<node CREATED="1301880332944" ID="ID_61936753" MODIFIED="1301880377351" TEXT="revoir le fonctionnement des liaisons entre les donn&#xe9;es et explorer comment le faire avec les sources multiple"/>
-<node CREATED="1301881028684" ID="ID_689984005" MODIFIED="1301881059202" TEXT="validation des donn&#xe9;e &#xe9;crite dans tout les cas et sanyty check sur les donn&#xe9;es externe qui sont utilis&#xe9;"/>
-</node>
-<node CREATED="1301879214628" FOLDED="true" ID="ID_1744739860" MODIFIED="1302564095219" POSITION="right" TEXT="module">
-<node CREATED="1301879737612" ID="ID_1994862218" MODIFIED="1301879759811" TEXT="le modele de donn&#xe9; doit etre simple a cr&#xe9;&#xe9;">
-<node CREATED="1301879759812" ID="ID_1097663904" MODIFIED="1301879763718" TEXT="pas de code"/>
-<node CREATED="1301879764611" ID="ID_185942024" MODIFIED="1301879781382" TEXT="pas de fichier de config manuel"/>
-<node CREATED="1301879782360" ID="ID_726906875" MODIFIED="1301879809962" TEXT="soft bulding (cr&#xe9;ation assist&#xe9;)"/>
-<node CREATED="1301879811932" ID="ID_1084044118" MODIFIED="1301879824587" TEXT="doit &#xea;tre exportable/importable">
-<node CREATED="1301879824588" ID="ID_1348731259" MODIFIED="1301879834912" TEXT="fichier XML"/>
-<node CREATED="1301879835569" ID="ID_1822860261" MODIFIED="1301879844805" TEXT="avec ou sans donn&#xe9;es"/>
-</node>
-<node CREATED="1301879869972" ID="ID_917592996" MODIFIED="1301879902467" TEXT="un module peut avoir des enregistrement obligatoire a l&apos;installe">
-<node CREATED="1301879902468" ID="ID_342102805" MODIFIED="1301879914127" TEXT="probablement avec le fichier d&apos;import"/>
-</node>
-</node>
-<node CREATED="1301879917168" ID="ID_1355696019" MODIFIED="1301879955578" TEXT="les actions doivent tout permettre">
-<node CREATED="1301879932019" ID="ID_1370993010" MODIFIED="1301879976430" TEXT="acc&#xe8;s directe au mod&#xe8;le de donn&#xe9; du module">
-<node CREATED="1301879976431" ID="ID_542079368" MODIFIED="1301879984739" TEXT="pas n&#xe9;sc&#xe9;ssairement au autre"/>
-</node>
-</node>
-<node CREATED="1301880236334" ID="ID_75427565" MODIFIED="1301880257497" TEXT="les vue possible sont d&#xe9;finie a l&apos;int&#xe9;rieur du module"/>
-<node CREATED="1301881500435" ID="ID_539547830" MODIFIED="1301881541634" TEXT="les module interne sont fais en java(a l&apos;int&#xe9;rieur de BeeERP) les module esterne sont fait sous forme d&apos;extension"/>
-</node>
-<node CREATED="1301879662386" FOLDED="true" ID="ID_679573232" MODIFIED="1302564094563" POSITION="right" TEXT="extension">
-<node CREATED="1301881547971" ID="ID_247722007" MODIFIED="1301881571280" TEXT="doivent &#xea;tre simple a initialis&#xe9;/install&#xe9;"/>
-<node CREATED="1301881572841" ID="ID_1970751999" MODIFIED="1301881591700" TEXT="doivent permetre l&apos;acc&#xe8;s a l&apos;ensemlbe des fonctionnalit&#xe9; de BeeERP">
-<node CREATED="1301881591701" ID="ID_1068329957" MODIFIED="1301881600568" TEXT="donn&#xe9;"/>
-<node CREATED="1301881601103" ID="ID_1908634209" MODIFIED="1301881605688" TEXT="gestion de droit">
-<node CREATED="1301881605690" ID="ID_399751776" MODIFIED="1301881621599" TEXT="ajout de droit particulier, aps seulement sur les donn&#xe9;es"/>
-</node>
-<node CREATED="1301881675747" ID="ID_99173330" MODIFIED="1301881678986" TEXT="vue">
-<node CREATED="1301881678987" ID="ID_214745843" MODIFIED="1301881689668" TEXT="par template (obligatoire)"/>
-</node>
-<node CREATED="1301881692411" ID="ID_1880365412" MODIFIED="1301881701470" TEXT="acc&#xe8;s SOAP"/>
-</node>
-</node>
-<node CREATED="1301879217094" FOLDED="true" ID="ID_617654158" MODIFIED="1302564093151" POSITION="right" TEXT="serveur">
-<node CREATED="1301880279302" ID="ID_1457279529" MODIFIED="1301880290205" TEXT="support&#xe9; TOMCAT"/>
+<node CREATED="1301879217094" ID="ID_617654158" MODIFIED="1308186384595" POSITION="right" TEXT="serveur">
 <node CREATED="1301880474920" ID="ID_1630261416" MODIFIED="1301880497618" TEXT="ajout&#xe9; le support pour des vue ajax"/>
 <node CREATED="1301880498180" ID="ID_1503936176" MODIFIED="1301880527459" TEXT="ajout&#xe9; la possibilit&#xe9; d&apos;offrir un service SAOP">
 <node CREATED="1301880527460" ID="ID_1352288673" MODIFIED="1301880538290" TEXT="probablement pas par le meme serveur"/>
@@ -96,8 +29,9 @@
 <node CREATED="1301880593468" ID="ID_23392980" MODIFIED="1301880649899" TEXT="ne peu &#xea;tre un utilisateur normale"/>
 </node>
 </node>
+<node CREATED="1301880279302" ID="ID_1457279529" MODIFIED="1308186603394" TEXT="support&#xe9; TOMCAT"/>
 </node>
-<node CREATED="1301879225121" ID="ID_1344801408" MODIFIED="1301879268704" POSITION="right" TEXT="vue">
+<node CREATED="1301879225121" ID="ID_1344801408" MODIFIED="1308186388941" POSITION="right" TEXT="vue">
 <node CREATED="1302555679963" ID="ID_932929924" MODIFIED="1302555691862" TEXT="refonte compl&#xe8;te du systeme de vue">
 <node CREATED="1302555590873" ID="ID_1516030621" MODIFIED="1302555753417" TEXT="ensemble de widget standard permetant un d&#xe9;velopement rapide d&apos;un vue">
 <node CREATED="1302555963351" ID="ID_1430415348" MODIFIED="1302556027893" TEXT="doivent tous avoir seulement des m&#xe9;thode static permetant de g&#xe9;n&#xe9;r&#xe9; le HTML n&#xe9;sc&#xe9;ssair epour l&apos;affichage du bouton comme voulue"/>
@@ -111,8 +45,7 @@
       ne fais que sortir le HTML avec les param&#232;tre pris en compte, ne fais pas de traitement par rapport au donn&#233; (except&#233; les select, radio et checkbox ou on leur passe une liste d'option pouvant provenir d'une table)
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <node CREATED="1302555753418" ID="ID_358644251" MODIFIED="1302555961351" TEXT="formulaire">
 <node CREATED="1302555800834" ID="ID_560629839" MODIFIED="1302555805021" TEXT="buttons"/>
 <node CREATED="1302555806124" ID="ID_1006706885" MODIFIED="1302555808806" TEXT="checkbox">
@@ -160,12 +93,28 @@
 </node>
 </node>
 </node>
-<node CREATED="1301879657804" FOLDED="true" ID="ID_521546054" MODIFIED="1302564098348" POSITION="right" TEXT="configuration">
-<node CREATED="1301881165214" ID="ID_842976561" MODIFIED="1301881172096" TEXT="via fichier XML">
-<node CREATED="1301881172097" ID="ID_1677110661" MODIFIED="1301881209906" TEXT="d&#xe8;s quil sera possible d&apos;utilis&#xe9; des fichier XML comme source de donn&#xe9;e nous aurons un &#xe9;diteur de config interne"/>
+<node CREATED="1301879214628" FOLDED="true" ID="ID_1744739860" MODIFIED="1308186159878" POSITION="right" TEXT="module">
+<node CREATED="1301879737612" ID="ID_1994862218" MODIFIED="1301879759811" TEXT="le modele de donn&#xe9; doit etre simple a cr&#xe9;&#xe9;">
+<node CREATED="1301879759812" ID="ID_1097663904" MODIFIED="1301879763718" TEXT="pas de code"/>
+<node CREATED="1301879764611" ID="ID_185942024" MODIFIED="1301879781382" TEXT="pas de fichier de config manuel"/>
+<node CREATED="1301879782360" ID="ID_726906875" MODIFIED="1301879809962" TEXT="soft bulding (cr&#xe9;ation assist&#xe9;)"/>
+<node CREATED="1301879811932" ID="ID_1084044118" MODIFIED="1301879824587" TEXT="doit &#xea;tre exportable/importable">
+<node CREATED="1301879824588" ID="ID_1348731259" MODIFIED="1301879834912" TEXT="fichier XML"/>
+<node CREATED="1301879835569" ID="ID_1822860261" MODIFIED="1301879844805" TEXT="avec ou sans donn&#xe9;es"/>
+</node>
+<node CREATED="1301879869972" ID="ID_917592996" MODIFIED="1301879902467" TEXT="un module peut avoir des enregistrement obligatoire a l&apos;installe">
+<node CREATED="1301879902468" ID="ID_342102805" MODIFIED="1301879914127" TEXT="probablement avec le fichier d&apos;import"/>
 </node>
 </node>
-<node CREATED="1301879987429" FOLDED="true" ID="ID_776232759" MODIFIED="1302564099502" POSITION="right" TEXT="gestion de droit">
+<node CREATED="1301879917168" ID="ID_1355696019" MODIFIED="1301879955578" TEXT="les actions doivent tout permettre">
+<node CREATED="1301879932019" ID="ID_1370993010" MODIFIED="1301879976430" TEXT="acc&#xe8;s directe au mod&#xe8;le de donn&#xe9; du module">
+<node CREATED="1301879976431" ID="ID_542079368" MODIFIED="1301879984739" TEXT="pas n&#xe9;sc&#xe9;ssairement au autre"/>
+</node>
+</node>
+<node CREATED="1301880236334" ID="ID_75427565" MODIFIED="1301880257497" TEXT="les vue possible sont d&#xe9;finie a l&apos;int&#xe9;rieur du module"/>
+<node CREATED="1301881500435" ID="ID_539547830" MODIFIED="1301881541634" TEXT="les module interne sont fais en java(a l&apos;int&#xe9;rieur de BeeERP) les module esterne sont fait sous forme d&apos;extension"/>
+</node>
+<node CREATED="1301879987429" FOLDED="true" ID="ID_776232759" MODIFIED="1308186423377" POSITION="right" TEXT="gestion de droit">
 <node CREATED="1301879991813" ID="ID_912333493" MODIFIED="1301880011221" TEXT="ajout&#xe9; un gestion des droits au niveau des module">
 <node CREATED="1301880011223" ID="ID_1096100418" MODIFIED="1301880028519" TEXT="une action a le droit de touch&#xe9; a telle table/colone"/>
 <node CREATED="1301880072757" ID="ID_778269647" MODIFIED="1301880109557" TEXT="probablement en ajoutant une sorte d&apos;utilisateur (systeme) pour chaque action"/>
@@ -218,7 +167,7 @@
 <node CREATED="1301882028874" ID="ID_1515072066" MODIFIED="1301882036075" TEXT="non effacable"/>
 </node>
 </node>
-<node CREATED="1301880300138" FOLDED="true" ID="ID_1892697604" MODIFIED="1302564100878" POSITION="right" TEXT="task manager">
+<node CREATED="1301880300138" FOLDED="true" ID="ID_1892697604" MODIFIED="1308186425488" POSITION="right" TEXT="task manager">
 <node CREATED="1301880310552" ID="ID_475805414" MODIFIED="1301880318077" TEXT="(a renom&#xe9;)"/>
 <node CREATED="1301882177687" ID="ID_683095498" MODIFIED="1301882227672" TEXT="doit permetre tout action automatis&#xe9;"/>
 <node CREATED="1301882228337" ID="ID_512298148" MODIFIED="1301882239250" TEXT="se d&#xe9;clanche">
@@ -234,25 +183,75 @@
 <node CREATED="1301882663196" ID="ID_117913545" MODIFIED="1301882686887" TEXT="voire comment g&#xe9;r&#xe9; la visibilit&#xe9; de ces tache et leur condition d&apos;ex&#xe9;cution"/>
 </node>
 </node>
-<node CREATED="1302553787302" FOLDED="true" ID="ID_577710673" MODIFIED="1302564101751" POSITION="right" TEXT="testing">
-<node CREATED="1302553794522" ID="ID_751839155" MODIFIED="1302553818032" TEXT="unitTesting de tout les &#xe9;l&#xe9;ment interne de l&apos;application">
-<node CREATED="1302553914915" ID="ID_1180593057" MODIFIED="1302554003697" TEXT="test&#xe9; obligatoirement">
-<node CREATED="1302553926645" ID="ID_824476303" MODIFIED="1302553934736" TEXT="tout se qui est sous le data layer"/>
-<node CREATED="1302553935352" ID="ID_1114478496" MODIFIED="1302553948244" TEXT="les entit&#xe9;s"/>
-<node CREATED="1302553948894" ID="ID_1984200184" MODIFIED="1302553956006" TEXT="le task manager"/>
-<node CREATED="1302553959345" ID="ID_934344086" MODIFIED="1302553971996" TEXT="le module de gestion de droit">
-<node CREATED="1302553971997" ID="ID_536310433" MODIFIED="1302553983958" TEXT="testin tr&#xe8;s en profondeur... s&#xe9;curity risk"/>
+<node CREATED="1301879205962" FOLDED="true" ID="ID_1606969501" MODIFIED="1308187602908" POSITION="right" TEXT="donn&#xe9;e">
+<node CREATED="1301879295228" ID="ID_1726697124" MODIFIED="1301879306264" TEXT="mutli type de donn&#xe9;e">
+<node CREATED="1301879448458" ID="ID_1568065390" MODIFIED="1301879508387" TEXT="type">
+<node CREATED="1301879306266" ID="ID_955414294" MODIFIED="1301879511009" TEXT="base de donn&#xe9;e (ORM)">
+<node CREATED="1302551675266" ID="ID_1291105475" MODIFIED="1302551684438" TEXT="multi SGDB">
+<node CREATED="1302551684439" ID="ID_547196181" MODIFIED="1302551687387" TEXT="sqlite"/>
+<node CREATED="1302551687964" ID="ID_1348554309" MODIFIED="1302551691619" TEXT="postGreSQL"/>
+<node CREATED="1302551692181" ID="ID_1514665024" MODIFIED="1302551694944" TEXT="MySQL"/>
 </node>
-<node CREATED="1302554004810" ID="ID_575466154" MODIFIED="1302554019283" TEXT="les interfaces de module et d&apos;extension">
-<node CREATED="1302554019284" ID="ID_1578617029" MODIFIED="1302554050005" TEXT="test&#xe9; de mani&#xe8;re exaustive pour &#xe9;vit&#xe9; les probl&#xe8;me de r&#xe9;tro compatibilit&#xe9;"/>
+<node CREATED="1302551734794" ID="ID_1268579052" MODIFIED="1302551838547" TEXT="selfTest">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      doit pouvoir v&#233;rifier sur demande que tout les acc&#232;s n&#233;sc&#233;ssaire sont pr&#233;sent sans modifier les donn&#233; pr&#233;sente
+    </p>
+  </body>
+</html></richcontent>
 </node>
 </node>
-<node CREATED="1302553889681" ID="ID_657509427" MODIFIED="1302553895556" TEXT="non test&#xe9;:">
-<node CREATED="1302553879532" ID="ID_970262312" MODIFIED="1302553908121" TEXT="le serveur"/>
-<node CREATED="1302553895557" ID="ID_1194803905" MODIFIED="1302553903886" TEXT="les vue html"/>
+<node CREATED="1301879313868" ID="ID_10590509" MODIFIED="1301879514647" TEXT="fichier XML"/>
+<node CREATED="1301879322827" ID="ID_406284454" MODIFIED="1301879516619" TEXT="page internet ((X)HTML)"/>
+<node CREATED="1301879337097" ID="ID_1905790899" MODIFIED="1301879519455" TEXT="service SOAP">
+<node CREATED="1302554427791" ID="ID_1549325243" MODIFIED="1302554432625" TEXT="serveur"/>
+<node CREATED="1302554433114" ID="ID_713036546" MODIFIED="1302554436402" TEXT="client"/>
+</node>
+<node CREATED="1301879344737" ID="ID_704440370" MODIFIED="1301879521077" TEXT="service XML-RPC">
+<node CREATED="1302554438367" ID="ID_868525455" MODIFIED="1302554440737" TEXT="client"/>
+</node>
+<node CREATED="1301879359735" ID="ID_1042028747" MODIFIED="1301879502869" TEXT="SVN et co"/>
+<node CREATED="1301879353365" ID="ID_76024404" MODIFIED="1301879504951" TEXT="LDAP"/>
+</node>
+<node CREATED="1301879554290" ID="ID_358254953" MODIFIED="1301879570667" TEXT="type facilement ajoutable par:">
+<node CREATED="1301879570669" ID="ID_757833185" MODIFIED="1301879575416" TEXT="extension"/>
+<node CREATED="1301879575827" ID="ID_1709288243" MODIFIED="1301879600949" TEXT="sous-classement dans le code originale"/>
+<node CREATED="1301879601393" ID="ID_1184204578" MODIFIED="1301879622907" TEXT="par fichier de configuration"/>
+</node>
+<node CREATED="1301879626661" ID="ID_645159723" MODIFIED="1301879655103" TEXT="configuration des source de donn&#xe9;es par fichier de config (XML)">
+<node CREATED="1301879683902" ID="ID_604845761" MODIFIED="1301879689709" TEXT="selon le type"/>
+<node CREATED="1301879690517" ID="ID_1542791154" MODIFIED="1302552246604" TEXT="le plus standard possible"/>
 </node>
 </node>
-<node CREATED="1302553818552" ID="ID_1577925385" MODIFIED="1302553876302" TEXT="cr&#xe9;&#xe9; un serveur de test continue"/>
+<node CREATED="1301879387740" ID="ID_1777959600" MODIFIED="1301879394736" TEXT="facilement accessible"/>
+<node CREATED="1301879395357" ID="ID_1809732340" MODIFIED="1301879402339" TEXT="facilement modifiable">
+<node CREATED="1302552260145" ID="ID_356965975" MODIFIED="1302552280569" TEXT="pour le type possible (ex:HTML impossible)"/>
+</node>
+<node CREATED="1301879407578" ID="ID_652651985" MODIFIED="1301879724011" TEXT="interface la plus simple possible mais complete..."/>
+<node CREATED="1301880332944" ID="ID_61936753" MODIFIED="1301880377351" TEXT="revoir le fonctionnement des liaisons entre les donn&#xe9;es et explorer comment le faire avec les sources multiple"/>
+<node CREATED="1301881028684" ID="ID_689984005" MODIFIED="1301881059202" TEXT="validation des donn&#xe9;e &#xe9;crite dans tout les cas et sanyty check sur les donn&#xe9;es externe qui sont utilis&#xe9;"/>
+</node>
+<node CREATED="1301879657804" FOLDED="true" ID="ID_521546054" MODIFIED="1308186427844" POSITION="right" TEXT="configuration">
+<node CREATED="1301881165214" ID="ID_842976561" MODIFIED="1301881172096" TEXT="via fichier XML">
+<node CREATED="1301881172097" ID="ID_1677110661" MODIFIED="1301881209906" TEXT="d&#xe8;s quil sera possible d&apos;utilis&#xe9; des fichier XML comme source de donn&#xe9;e nous aurons un &#xe9;diteur de config interne"/>
+</node>
+</node>
+<node CREATED="1301879662386" FOLDED="true" ID="ID_679573232" MODIFIED="1308186154275" POSITION="right" TEXT="extension">
+<node CREATED="1301881547971" ID="ID_247722007" MODIFIED="1301881571280" TEXT="doivent &#xea;tre simple a initialis&#xe9;/install&#xe9;"/>
+<node CREATED="1301881572841" ID="ID_1970751999" MODIFIED="1301881591700" TEXT="doivent permetre l&apos;acc&#xe8;s a l&apos;ensemlbe des fonctionnalit&#xe9; de BeeERP">
+<node CREATED="1301881591701" ID="ID_1068329957" MODIFIED="1301881600568" TEXT="donn&#xe9;"/>
+<node CREATED="1301881601103" ID="ID_1908634209" MODIFIED="1301881605688" TEXT="gestion de droit">
+<node CREATED="1301881605690" ID="ID_399751776" MODIFIED="1301881621599" TEXT="ajout de droit particulier, aps seulement sur les donn&#xe9;es"/>
+</node>
+<node CREATED="1301881675747" ID="ID_99173330" MODIFIED="1301881678986" TEXT="vue">
+<node CREATED="1301881678987" ID="ID_214745843" MODIFIED="1301881689668" TEXT="par template (obligatoire)"/>
+</node>
+<node CREATED="1301881692411" ID="ID_1880365412" MODIFIED="1301881701470" TEXT="acc&#xe8;s SOAP"/>
+</node>
 </node>
 </node>
 </map>

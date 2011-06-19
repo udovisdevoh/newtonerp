@@ -3,53 +3,54 @@ package newtonERP.orm.field;
 import java.util.Collection;
 import java.util.Hashtable;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Vector;
 
 import newtonERP.module.exception.FieldNotFoundException;
 
 /**
- * All the fields of an entity
+ * All the fields of an entity.
  * 
  * @author CloutierJo
  */
 public class Fields implements Iterable<Field<?>> {
 
-	Hashtable<String, Field<?>> fieldsDataMap;
-	Collection<Field<?>> fieldsDataVector;
-	boolean ErrorState = false;
+	/** The fields data map. */
+	protected Map<String, Field<?>> fieldsDataMap; // todo remove the protected
 
 	/**
-	 * constructeur vide, permet de construire un Fields sans aucun champ
+	 * constructeur vide, permet de construire un Fields sans aucun champ.
 	 */
 	public Fields() {
-		fieldsDataMap = new Hashtable<String, Field<?>>();
-		fieldsDataVector = new Vector<Field<?>>();
+		fieldsDataMap = new LinkedHashMap<String, Field<?>>();
 	}
 
 	/**
+	 * Instantiates a new fields.
+	 * 
 	 * @param fields une liste de champ a inclure dans le Fields
 	 */
 	public Fields(Vector<Field<?>> fields) {
-		fieldsDataVector = fields;
-		fieldsDataMap = new Hashtable<String, Field<?>>();
+		fieldsDataMap = new LinkedHashMap<String, Field<?>>();
 		for(Field<?> field : fields){
-			if(field.getShortName().matches("PK.*")){
-				field.setReadOnly(true);
-			}
 			fieldsDataMap.put(field.getShortName(), field);
-			field.setFieldsRef(this);
 		}
 	}
 
 	/**
+	 * Gets the fields.
+	 * 
 	 * @return the fields
 	 */
 	public Collection<Field<?>> getFields() {
-		return fieldsDataVector;
+		return fieldsDataMap.values();
 	}
 
 	/**
+	 * Gets the field.
+	 * 
 	 * @param shortName le nom du champ voulu
 	 * @return the named field
 	 */
@@ -58,7 +59,7 @@ public class Fields implements Iterable<Field<?>> {
 	}
 
 	/**
-	 * methode pour changer la valeur d'un champ
+	 * methode pour changer la valeur d'un champ.
 	 * 
 	 * @param shortName nom du champ
 	 * @param data valeur modifie
@@ -78,6 +79,8 @@ public class Fields implements Iterable<Field<?>> {
 	}
 
 	/**
+	 * Sets the values from a hash table.
+	 * 
 	 * @param parameters Hashtable de parametre
 	 */
 	public void setFromHashTable(Hashtable<String, ?> parameters)
@@ -97,16 +100,22 @@ public class Fields implements Iterable<Field<?>> {
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (ErrorState ? 1231 : 1237);
 		result = prime * result + ((fieldsDataMap == null) ? 0 : fieldsDataMap.hashCode());
-		result = prime * result + ((fieldsDataVector == null) ? 0 : fieldsDataVector.hashCode());
 		return result;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if(this == obj){
@@ -115,13 +124,10 @@ public class Fields implements Iterable<Field<?>> {
 		if(obj == null){
 			return false;
 		}
-		if(getClass() != obj.getClass()){
+		if(!(obj instanceof Fields)){
 			return false;
 		}
 		Fields other = (Fields) obj;
-		if(ErrorState != other.ErrorState){
-			return false;
-		}
 		if(fieldsDataMap == null){
 			if(other.fieldsDataMap != null){
 				return false;
@@ -129,52 +135,42 @@ public class Fields implements Iterable<Field<?>> {
 		}else if(!fieldsDataMap.equals(other.fieldsDataMap)){
 			return false;
 		}
-		if(fieldsDataVector == null){
-			if(other.fieldsDataVector != null){
-				return false;
-			}
-		}else if(!fieldsDataVector.equals(other.fieldsDataVector)){
-			return false;
-		}
 		return true;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return fieldsDataMap.toString();
 	}
 
 	/**
-	 * iterate over the fields (not the keys)
+	 * iterate over the fields (not the keys).
+	 * 
+	 * @return the iterator
 	 */
 	@Override
 	public Iterator<Field<?>> iterator() {
-		return fieldsDataVector.iterator();
+		return fieldsDataMap.values().iterator();
 	}
 
 	/**
+	 * Gets the key.
+	 * 
 	 * @return Liste des clefs des fields
 	 */
-	public Collection<String> getKeyList() {
-		return new Vector<String>(fieldsDataMap.keySet());
+	public Collection<String> getKey() {
+		return fieldsDataMap.keySet();
 	}
 
 	/**
-	 * @return Liste des nom utilisateur des fields
-	 */
-	public Collection<String> getLongFieldNameList() {
-		Vector<String> longFieldName = new Vector<String>();
-		for(Field<?> field : this){
-			longFieldName.add(field.getName());
-		}
-		return longFieldName;
-	}
-
-	/**
-	 * met les valeur par defaut dans les field pour ne pas avoir de valeur null *ATTENTION* NE PAS UTILISE UNE ENTITY
-	 * COMME SEARCHCRITERIA APRES AVOIR UTILISER CETTE FONCTION
+	 * met les valeur par defaut dans les field pour ne pas avoir de valeur null <br>
+	 * <b>*ATTENTION* NE PAS UTILISE UNE ENTITY COMME SEARCHCRITERIA APRES AVOIR UTILISER CETTE FONCTION</b>.
 	 * 
-	 * @param allField true pour mettre tous les champ a leur valeur par defaut false pour ne mettre les valeurpar
+	 * @param allField true pour mettre tous les champ a leur valeur par defaut false pour ne mettre les valeur par
 	 *        defaut qu'au field n'étant pas settez
 	 */
 	public void setDefaultValue(boolean allField) {
@@ -186,13 +182,15 @@ public class Fields implements Iterable<Field<?>> {
 	}
 
 	/**
-	 * identique a setDefaultValue(true);
+	 * identique a setDefaultValue(true);.
 	 */
 	public void setDefaultValue() {
 		setDefaultValue(true);
 	}
 
 	/**
+	 * Contains field name.
+	 * 
 	 * @param fieldName nom du champ
 	 * @return true si nom du champ existe dans les fields
 	 */
@@ -201,6 +199,8 @@ public class Fields implements Iterable<Field<?>> {
 	}
 
 	/**
+	 * Contains values.
+	 * 
 	 * @return true si au moins un field n'a pas une valeur null, sinon false
 	 */
 	public boolean containsValues() {
@@ -213,25 +213,10 @@ public class Fields implements Iterable<Field<?>> {
 	}
 
 	/**
-	 * @return the errorState
-	 */
-	public boolean isErrorState() {
-		return ErrorState;
-	}
-
-	/**
-	 * @param errorState the errorState to set
-	 */
-	public void setErrorState(boolean errorState) {
-		ErrorState = errorState;
-	}
-
-	/**
-	 * remet les valeur a null
+	 * remet les valeur a null.
 	 */
 	public void reset() {
-		ErrorState = false;
-		for(Field<?> field : fieldsDataVector){
+		for(Field<?> field : getFields()){
 			field.reset();
 		}
 	}

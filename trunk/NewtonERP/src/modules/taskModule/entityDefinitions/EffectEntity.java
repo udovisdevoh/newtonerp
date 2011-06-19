@@ -131,7 +131,7 @@ public class EffectEntity extends AbstractOrmEntity {
 		String value;
 		for(Entry<String, String> parameter : parameters.entrySet()){
 			value = parameter.getValue();
-			for(String variable : entity.getFields().getKeyList()){
+			for(String variable : entity.getFields().getKey()){
 				value = replaceToEntityFieldValue(entity, value, variable);
 				parameters.put(parameter.getKey(), value);
 			}
