@@ -1,4 +1,5 @@
-package newtonERP.orm.exceptions;
+package newtonERP.orm.exceptions; 
+ // TODO: clean up that file
 
 /**
  * Basic exception class representing an sql exception that can be thrown from the orm
@@ -6,6 +7,11 @@ package newtonERP.orm.exceptions;
  * @author r3hallejo
  */
 public class OrmSqlException extends OrmException {
+	/**
+     * 
+     */
+    private static final long serialVersionUID = -8868841083237755991L;
+
 	/**
 	 * @param message the message of the exception
 	 */

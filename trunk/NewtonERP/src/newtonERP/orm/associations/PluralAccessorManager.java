@@ -1,4 +1,5 @@
-package newtonERP.orm.associations;
+package newtonERP.orm.associations; 
+ // TODO: clean up that file
 
 import java.util.HashSet;
 import java.util.Hashtable;

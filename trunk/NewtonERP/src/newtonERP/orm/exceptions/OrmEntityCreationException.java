@@ -1,4 +1,5 @@
-package newtonERP.orm.exceptions;
+package newtonERP.orm.exceptions; 
+ // TODO: clean up that file
 
 /**
  * Class used in the entity creator
@@ -6,6 +7,11 @@ package newtonERP.orm.exceptions;
  * @author r3hallejo
  */
 public class OrmEntityCreationException extends OrmException {
+	/**
+     * 
+     */
+    private static final long serialVersionUID = 5641629724853451303L;
+
 	/**
 	 * @param message the message of the exception
 	 */

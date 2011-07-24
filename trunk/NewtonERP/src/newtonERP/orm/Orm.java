@@ -7,7 +7,7 @@ import java.util.Vector;
 
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.exceptions.OrmException;
-import newtonERP.orm.field.Field;
+import newtonERP.orm.fields.field.Field;
 import newtonERP.orm.sgbd.AbstractSgbd;
 import newtonERP.orm.sgbd.sqlite.SgbdSqlite;
 import newtonERP.serveur.ConfigManager;
@@ -143,7 +143,7 @@ public final class Orm {
 	 * @param field the field to add
 	 * @return ?
 	 */
-	public ResultSet addColumnToTable(AbstractOrmEntity entity, Field<?> field) {
+	public ResultSet addColumnToTable(AbstractOrmEntity entity, Field field) {
 		return sgdb.addColumnToTable(entity, field);
 	}
 
@@ -153,7 +153,7 @@ public final class Orm {
 	 * @param entity entité
 	 * @param field champ
 	 */
-	public void createIndex(AbstractOrmEntity entity, Field<?> field) {
+	public void createIndex(AbstractOrmEntity entity, Field field) {
 		createIndex(entity.getSystemName(), field.getSystemName());
 	}
 

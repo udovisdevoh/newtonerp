@@ -25,6 +25,7 @@
                 <exclude name="**/*.launch"/>
                 <exclude name="**/*.java"/>
                 <exclude name="newtonERP/viewers/viewerData/FloorViewerData.java"/>
+                <exclude name="modules/*"/>
             </fileset>
         </copy>
         <copy includeemptydirs="false" todir="bin">
@@ -55,7 +56,7 @@
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
-            <test name="newtonERP.orm.fields.field.type.AllTests" todir="${junit.output.dir}"/>
+            <test name="newtonERP.AllTests" todir="${junit.output.dir}"/>
             <classpath refid="BeeERP.classpath"/>
         </junit>
     </target>
