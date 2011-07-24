@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. -->
+<project basedir="." default="build" name="BeeERP_Externe">
+    <property environment="env"/>
+    <property name="junit.output.dir" value="junit"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.6"/>
+    <property name="source" value="1.6"/>
+    <path id="JUnit 4.libraryclasspath">
+        <pathelement location="${ECLIPSE_HOME}/plugins/org.junit_4.8.2.v4_8_2_v20110321-1705/junit.jar"/>
+        <pathelement location="${ECLIPSE_HOME}/plugins/org.hamcrest.core_1.1.0.v20090501071000.jar"/>
+    </path>
+    <path id="BeeERP.classpath">
+        <pathelement location="bin"/>
+        <pathelement location="Librairies/sqlitejdbc-v056.jar"/>
+        <pathelement location="Librairies/jetty6.1.21/jetty-6.1.21.jar"/>
+        <pathelement location="Librairies/jetty6.1.21/jetty-util-6.1.21.jar"/>
+        <pathelement location="Librairies/jetty6.1.21/servlet-api-2.5-20081211.jar"/>
+        <path refid="JUnit 4.libraryclasspath"/>
+    </path>
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+                <exclude name="newtonERP/viewers/viewerData/FloorViewerData.java"/>
+            </fileset>
+        </copy>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="unitTest">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-project" name="build"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
+            <src path="src"/>
+            <exclude name="newtonERP/viewers/viewerData/FloorViewerData.java"/>
+            <classpath refid="BeeERP.classpath"/>
+        </javac>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
+            <src path="unitTest"/>
+            <classpath refid="BeeERP.classpath"/>
+        </javac>
+    </target>
+    <target name="AllTests">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="newtonERP.orm.fields.field.type.AllTests" todir="${junit.output.dir}"/>
+            <classpath refid="BeeERP.classpath"/>
+        </junit>
+    </target>
+</project>
