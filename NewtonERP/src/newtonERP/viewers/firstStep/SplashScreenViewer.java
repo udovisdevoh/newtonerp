@@ -1,4 +1,5 @@
-package newtonERP.viewers.firstStep;
+package newtonERP.viewers.firstStep; 
+ // TODO: clean up that file
 
 import newtonERP.common.ActionLink;
 import newtonERP.module.generalEntity.ImageFile;

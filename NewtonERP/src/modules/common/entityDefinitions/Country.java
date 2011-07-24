@@ -1,12 +1,13 @@
-package modules.common.entityDefinitions;
+package modules.common.entityDefinitions; 
+ // TODO: clean up that file
 
 import java.util.Vector;
 
 import newtonERP.module.AbstractOrmEntity;
-import newtonERP.orm.field.Field;
-import newtonERP.orm.field.Fields;
-import newtonERP.orm.field.type.FieldInt;
-import newtonERP.orm.field.type.FieldString;
+import newtonERP.orm.fields.Fields;
+import newtonERP.orm.fields.field.Field;
+import newtonERP.orm.fields.field.type.FieldInt;
+import newtonERP.orm.fields.field.type.FieldString;
 
 /**
  * A country in the common module

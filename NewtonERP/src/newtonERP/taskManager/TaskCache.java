@@ -1,4 +1,5 @@
-package newtonERP.taskManager;
+package newtonERP.taskManager; 
+ // TODO: clean up that file
 
 import java.util.Hashtable;
 import java.util.Vector;

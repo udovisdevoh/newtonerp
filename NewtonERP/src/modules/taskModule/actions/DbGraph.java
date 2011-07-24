@@ -1,4 +1,5 @@
-package modules.taskModule.actions;
+package modules.taskModule.actions; 
+ // TODO: clean up that file
 
 import java.awt.Color;
 import java.awt.Font;
@@ -11,7 +12,7 @@ import modules.taskModule.TaskModule;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
-import newtonERP.orm.field.Field;
+import newtonERP.orm.fields.field.Field;
 import newtonERP.viewers.viewerData.BaseViewerData;
 import newtonERP.viewers.viewerData.ImgViewerData;
 

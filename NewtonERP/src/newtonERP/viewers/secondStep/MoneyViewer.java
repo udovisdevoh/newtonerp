@@ -1,4 +1,5 @@
-package newtonERP.viewers.secondStep;
+package newtonERP.viewers.secondStep; 
+ // TODO: clean up that file
 
 import java.text.NumberFormat;
 

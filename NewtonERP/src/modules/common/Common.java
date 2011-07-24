@@ -1,4 +1,5 @@
-package modules.common;
+package modules.common; 
+ // TODO: clean up that file
 
 import modules.common.entityDefinitions.Address;
 import modules.common.entityDefinitions.Country;

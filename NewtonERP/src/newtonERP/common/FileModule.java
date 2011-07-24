@@ -1,7 +1,8 @@
 /**
  * 
  */
-package newtonERP.common;
+package newtonERP.common; 
+ // TODO: clean up that file
 
 import newtonERP.module.Module;
 

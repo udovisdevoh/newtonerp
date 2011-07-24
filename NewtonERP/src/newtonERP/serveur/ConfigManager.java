@@ -1,4 +1,5 @@
-package newtonERP.serveur;
+package newtonERP.serveur; 
+ // TODO: clean up that file
 
 import java.io.File;
 import java.util.Hashtable;

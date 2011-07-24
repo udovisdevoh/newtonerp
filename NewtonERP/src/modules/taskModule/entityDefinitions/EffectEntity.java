@@ -1,10 +1,11 @@
-package modules.taskModule.entityDefinitions;
+package modules.taskModule.entityDefinitions; 
+ // TODO: clean up that file
 
 import java.util.Hashtable;
 import java.util.Map.Entry;
 import java.util.Vector;
 
-import newtonERP.logging.Logger;
+import newtonERP.common.logging.Logger;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
@@ -12,10 +13,10 @@ import newtonERP.module.BaseAction;
 import newtonERP.orm.Orm;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.associations.PluralAccessor;
-import newtonERP.orm.field.Field;
-import newtonERP.orm.field.Fields;
-import newtonERP.orm.field.type.FieldInt;
-import newtonERP.orm.field.type.FieldText;
+import newtonERP.orm.fields.Fields;
+import newtonERP.orm.fields.field.Field;
+import newtonERP.orm.fields.field.type.FieldInt;
+import newtonERP.orm.fields.field.type.FieldText;
 
 /**
  * Représente l'effet d'une task son action son entité de recherche ses paramètres custom

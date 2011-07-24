@@ -1,4 +1,5 @@
-package newtonERP.module.generalEntity;
+package newtonERP.module.generalEntity; 
+ // TODO: clean up that file
 
 import newtonERP.module.AbstractEntity;
 

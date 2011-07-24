@@ -1,4 +1,5 @@
-package newtonERP.common;
+package newtonERP.common; 
+ // TODO: clean up that file
 
 import java.util.Collection;
 import java.util.Hashtable;

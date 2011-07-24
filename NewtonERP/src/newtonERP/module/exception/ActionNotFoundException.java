@@ -1,9 +1,15 @@
-package newtonERP.module.exception;
+package newtonERP.module.exception; 
+ // TODO: clean up that file
 
 /**
  * @author cloutierJo exception lancé lorsque le module ne peut etre trouvé
  */
 public class ActionNotFoundException extends ModuleException {
+	/**
+     * 
+     */
+    private static final long serialVersionUID = 4934815493311711418L;
+
 	/**
 	 * Constructeur par default pour cette exception
 	 * 

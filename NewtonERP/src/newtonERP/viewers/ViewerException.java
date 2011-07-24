@@ -1,4 +1,5 @@
-package newtonERP.viewers;
+package newtonERP.viewers; 
+ // TODO: clean up that file
 
 /**
  * Represents the general viewer exception
@@ -6,6 +7,11 @@ package newtonERP.viewers;
  * @author Guillaume Lacasse, Pascal Lemay
  */
 public class ViewerException extends RuntimeException {
+	/**
+     * 
+     */
+    private static final long serialVersionUID = 4467077301709049091L;
+
 	/**
 	 * Default constructor for the exception
 	 * 

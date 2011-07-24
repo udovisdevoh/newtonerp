@@ -1,4 +1,5 @@
-package newtonERP.viewers.firstStep;
+package newtonERP.viewers.firstStep; 
+ // TODO: clean up that file
 
 import newtonERP.viewers.secondStep.MoneyViewer;
 import newtonERP.viewers.secondStep.colorViewer.ColorViewer;

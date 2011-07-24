@@ -1,4 +1,5 @@
-package newtonERP.module;
+package newtonERP.module; 
+ // TODO: clean up that file
 
 import java.util.Hashtable;
 import java.util.TreeMap;
@@ -14,9 +15,9 @@ import newtonERP.orm.associations.FlagPoolManager;
 import newtonERP.orm.associations.GateWay;
 import newtonERP.orm.associations.PluralAccessor;
 import newtonERP.orm.associations.PluralAccessorManager;
-import newtonERP.orm.field.Field;
-import newtonERP.orm.field.Fields;
-import newtonERP.orm.field.type.FieldCurrency;
+import newtonERP.orm.fields.Fields;
+import newtonERP.orm.fields.field.Field;
+import newtonERP.orm.fields.field.type.FieldCurrency;
 import newtonERP.viewers.secondStep.MoneyViewer;
 import newtonERP.viewers.viewerData.BaseViewerData;
 import newtonERP.viewers.viewerData.ListViewerData;

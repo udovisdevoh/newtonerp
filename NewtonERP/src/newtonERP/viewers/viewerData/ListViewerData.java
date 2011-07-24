@@ -1,4 +1,5 @@
-package newtonERP.viewers.viewerData;
+package newtonERP.viewers.viewerData; 
+ // TODO: clean up that file
 
 import java.util.Hashtable;
 import java.util.Iterator;
@@ -9,7 +10,7 @@ import newtonERP.module.BaseAction;
 import newtonERP.module.generalEntity.ListOfValue;
 import newtonERP.orm.associations.GateWay;
 import newtonERP.orm.associations.GateWayManager;
-import newtonERP.orm.field.Field;
+import newtonERP.orm.fields.field.Field;
 
 /**
  * @author Guillaume Lacasse, CloutierJo

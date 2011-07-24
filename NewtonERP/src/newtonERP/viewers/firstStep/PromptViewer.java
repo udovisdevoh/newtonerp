@@ -1,4 +1,5 @@
-package newtonERP.viewers.firstStep;
+package newtonERP.viewers.firstStep; 
+ // TODO: clean up that file
 
 import newtonERP.common.ActionLink;
 import newtonERP.module.AbstractEntity;
@@ -10,7 +11,7 @@ import newtonERP.module.generalEntity.ScrollList;
 import newtonERP.orm.associations.GateWay;
 import newtonERP.orm.associations.GateWayManager;
 import newtonERP.orm.associations.PluralAccessor;
-import newtonERP.orm.field.Field;
+import newtonERP.orm.fields.field.Field;
 import newtonERP.serveur.Servlet;
 import newtonERP.viewers.secondStep.CheckListViewer;
 import newtonERP.viewers.secondStep.FieldViewer;

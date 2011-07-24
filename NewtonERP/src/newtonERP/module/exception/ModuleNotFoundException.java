@@ -1,9 +1,15 @@
-package newtonERP.module.exception;
+package newtonERP.module.exception; 
+ // TODO: clean up that file
 
 /**
  * @author cloutierJo exception lancé lorsque le module ne peut etre trouvé
  */
 public class ModuleNotFoundException extends ModuleException {
+	/**
+     * 
+     */
+    private static final long serialVersionUID = -8744376040273790389L;
+
 	/**
 	 * Constructeur par default pour cette exception
 	 * 

@@ -1,4 +1,5 @@
-package modules.userRightModule;
+package modules.userRightModule; 
+ // TODO: clean up that file
 
 import java.util.Vector;
 
