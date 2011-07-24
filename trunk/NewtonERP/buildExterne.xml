@@ -10,17 +10,13 @@
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="1.6"/>
     <property name="source" value="1.6"/>
-    <path id="JUnit 4.libraryclasspath">
-        <pathelement location="${ECLIPSE_HOME}/plugins/org.junit_4.8.2.v4_8_2_v20110321-1705/junit.jar"/>
-        <pathelement location="${ECLIPSE_HOME}/plugins/org.hamcrest.core_1.1.0.v20090501071000.jar"/>
-    </path>
     <path id="BeeERP.classpath">
         <pathelement location="bin"/>
         <pathelement location="Librairies/sqlitejdbc-v056.jar"/>
         <pathelement location="Librairies/jetty6.1.21/jetty-6.1.21.jar"/>
         <pathelement location="Librairies/jetty6.1.21/jetty-util-6.1.21.jar"/>
         <pathelement location="Librairies/jetty6.1.21/servlet-api-2.5-20081211.jar"/>
-        <path refid="JUnit 4.libraryclasspath"/>
+        <pathelement location="/usr/share/java/junit.jar"/>
     </path>
     <target name="init">
         <mkdir dir="bin"/>
