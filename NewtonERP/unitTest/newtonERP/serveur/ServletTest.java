@@ -1,7 +1,8 @@
 /**
  * 
  */
-package newtonERP.serveur;
+package newtonERP.serveur; 
+ // TODO: clean up that file
 
 import static org.junit.Assert.assertNotNull;
 import newtonERP.common.ListModule;

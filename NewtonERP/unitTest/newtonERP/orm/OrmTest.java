@@ -1,4 +1,5 @@
-package newtonERP.orm;
+package newtonERP.orm; 
+ // TODO: clean up that file
 
 import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertSame;
