@@ -1,4 +1,5 @@
-package newtonERP.serveur;
+package newtonERP.serveur; 
+ // TODO: clean up that file
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import newtonERP.common.Authentication;
-import newtonERP.logging.Logger;
+import newtonERP.common.logging.Logger;
 import newtonERP.module.AbstractAction;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.BaseAction;

@@ -1,4 +1,5 @@
-package newtonERP.viewers.secondStep;
+package newtonERP.viewers.secondStep; 
+ // TODO: clean up that file
 
 /**
  * Viewer d'élément bool switchable de vrai à faux

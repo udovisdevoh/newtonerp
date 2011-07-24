@@ -1,4 +1,5 @@
-package newtonERP.module.exception;
+package newtonERP.module.exception; 
+ // TODO: clean up that file
 
 /**
  * Exception thrown when table association fails
@@ -6,6 +7,11 @@ package newtonERP.module.exception;
  * @author Guillaume Lacasse
  */
 public class TableAssociationException extends RuntimeException {
+	/**
+     * 
+     */
+    private static final long serialVersionUID = -4121095804623947873L;
+
 	/**
 	 * @param message message de l'esception
 	 */

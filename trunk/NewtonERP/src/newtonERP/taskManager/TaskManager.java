@@ -1,4 +1,5 @@
-package newtonERP.taskManager;
+package newtonERP.taskManager; 
+ // TODO: clean up that file
 
 import java.util.Collection;
 import java.util.Hashtable;
@@ -8,7 +9,7 @@ import modules.taskModule.entityDefinitions.EntityEntity;
 import modules.taskModule.entityDefinitions.Specification;
 import modules.taskModule.entityDefinitions.TaskEntity;
 import newtonERP.common.ListModule;
-import newtonERP.logging.Logger;
+import newtonERP.common.logging.Logger;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.Module;

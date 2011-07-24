@@ -1,4 +1,5 @@
-package modules.taskModule.entityDefinitions;
+package modules.taskModule.entityDefinitions; 
+ // TODO: clean up that file
 
 import java.util.Hashtable;
 import java.util.Vector;
@@ -9,17 +10,17 @@ import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.Orm;
 import newtonERP.orm.associations.AccessorManager;
-import newtonERP.orm.field.Field;
-import newtonERP.orm.field.Fields;
-import newtonERP.orm.field.type.FieldBool;
-import newtonERP.orm.field.type.FieldCurrency;
-import newtonERP.orm.field.type.FieldDate;
-import newtonERP.orm.field.type.FieldDateTime;
-import newtonERP.orm.field.type.FieldDouble;
-import newtonERP.orm.field.type.FieldInt;
-import newtonERP.orm.field.type.FieldString;
-import newtonERP.orm.field.type.FieldText;
-import newtonERP.orm.field.type.FieldTime;
+import newtonERP.orm.fields.Fields;
+import newtonERP.orm.fields.field.Field;
+import newtonERP.orm.fields.field.type.FieldBool;
+import newtonERP.orm.fields.field.type.FieldCurrency;
+import newtonERP.orm.fields.field.type.FieldDate;
+import newtonERP.orm.fields.field.type.FieldDateTime;
+import newtonERP.orm.fields.field.type.FieldDouble;
+import newtonERP.orm.fields.field.type.FieldInt;
+import newtonERP.orm.fields.field.type.FieldString;
+import newtonERP.orm.fields.field.type.FieldText;
+import newtonERP.orm.fields.field.type.FieldTime;
 import newtonERP.viewers.viewerData.BaseViewerData;
 import newtonERP.viewers.viewerData.ListViewerData;
 

@@ -1,4 +1,5 @@
-package newtonERP.module;
+package newtonERP.module; 
+ // TODO: clean up that file
 
 import java.util.HashSet;
 import java.util.Hashtable;
@@ -8,11 +9,11 @@ import modules.taskModule.entityDefinitions.EntityEntity;
 import modules.taskModule.entityDefinitions.FieldEntity;
 import newtonERP.module.exception.EntityException;
 import newtonERP.module.generalEntity.ListOfValue;
-import newtonERP.orm.field.DynamicFieldCache;
-import newtonERP.orm.field.Field;
-import newtonERP.orm.field.Fields;
-import newtonERP.orm.field.VolatileFields;
-import newtonERP.orm.field.type.FieldBool;
+import newtonERP.orm.fields.Fields;
+import newtonERP.orm.fields.VolatileFields;
+import newtonERP.orm.fields.field.DynamicFieldCache;
+import newtonERP.orm.fields.field.Field;
+import newtonERP.orm.fields.field.type.FieldBool;
 
 /**
  * @author r3lemaypa, r3lacasgu, CloutierJo

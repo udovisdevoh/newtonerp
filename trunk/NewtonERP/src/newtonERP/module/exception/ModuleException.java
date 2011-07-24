@@ -1,9 +1,15 @@
-package newtonERP.module.exception;
+package newtonERP.module.exception; 
+ // TODO: clean up that file
 
 /**
  * @author r3hallejo Exception class representing a module exception
  */
 public class ModuleException extends RuntimeException {
+	/**
+     * 
+     */
+    private static final long serialVersionUID = -5179180833569225276L;
+
 	/**
 	 * Default constructor for the module exception
 	 * 

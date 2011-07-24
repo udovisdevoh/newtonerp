@@ -1,4 +1,5 @@
-package modules.userRightModule.actions;
+package modules.userRightModule.actions; 
+ // TODO: clean up that file
 
 import java.util.Hashtable;
 import java.util.Vector;

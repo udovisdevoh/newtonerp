@@ -1,4 +1,5 @@
-package modules.userRightModule.actions;
+package modules.userRightModule.actions; 
+ // TODO: clean up that file
 
 import java.util.Hashtable;
 import java.util.Vector;
@@ -12,7 +13,7 @@ import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.generalEntity.Form;
 import newtonERP.module.generalEntity.StaticTextEntity;
-import newtonERP.orm.field.Field;
+import newtonERP.orm.fields.field.Field;
 
 /**
  * Action class that creates all the rights for every module

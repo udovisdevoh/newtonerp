@@ -1,4 +1,5 @@
-package newtonERP.viewers;
+package newtonERP.viewers; 
+ // TODO: clean up that file
 
 import java.util.Iterator;
 

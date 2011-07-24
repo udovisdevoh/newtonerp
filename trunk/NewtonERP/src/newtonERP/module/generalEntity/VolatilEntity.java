@@ -1,10 +1,11 @@
-package newtonERP.module.generalEntity;
+package newtonERP.module.generalEntity; 
+ // TODO: clean up that file
 
 import newtonERP.module.AbstractEntity;
-import newtonERP.orm.field.Field;
-import newtonERP.orm.field.Fields;
-import newtonERP.orm.field.VolatileFields;
-import newtonERP.orm.field.type.FieldString;
+import newtonERP.orm.fields.Fields;
+import newtonERP.orm.fields.VolatileFields;
+import newtonERP.orm.fields.field.Field;
+import newtonERP.orm.fields.field.type.FieldString;
 
 /**
  * @author CloutierJo

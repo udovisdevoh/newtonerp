@@ -1,4 +1,5 @@
-package modules.taskModule.actions;
+package modules.taskModule.actions; 
+ // TODO: clean up that file
 
 import java.util.Hashtable;
 
@@ -9,8 +10,8 @@ import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.Orm;
 import newtonERP.orm.exceptions.OrmException;
-import newtonERP.orm.field.DynamicFieldCache;
-import newtonERP.orm.field.Field;
+import newtonERP.orm.fields.field.DynamicFieldCache;
+import newtonERP.orm.fields.field.Field;
 import newtonERP.viewers.viewerData.BaseViewerData;
 
 /**

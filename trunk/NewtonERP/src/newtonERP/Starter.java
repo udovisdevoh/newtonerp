@@ -1,10 +1,11 @@
-package newtonERP;
+package newtonERP; 
+ // TODO: clean up that file
 
 import java.net.BindException;
 
 import modules.userRightModule.actions.CreateAllRight;
 import newtonERP.common.ListModule;
-import newtonERP.logging.Logger;
+import newtonERP.common.logging.Logger;
 import newtonERP.orm.Orm;
 import newtonERP.orm.exceptions.OrmException;
 import newtonERP.serveur.ConfigManager;

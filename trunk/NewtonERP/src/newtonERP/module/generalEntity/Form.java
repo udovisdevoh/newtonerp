@@ -1,8 +1,9 @@
-package newtonERP.module.generalEntity;
+package newtonERP.module.generalEntity; 
+ // TODO: clean up that file
 
 import newtonERP.module.AbstractAction;
 import newtonERP.module.Module;
-import newtonERP.orm.field.Field;
+import newtonERP.orm.fields.field.Field;
 import newtonERP.viewers.viewerData.PromptViewerData;
 
 /**

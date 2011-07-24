@@ -1,10 +1,11 @@
-package newtonERP.viewers.viewerData;
+package newtonERP.viewers.viewerData; 
+ // TODO: clean up that file
 
 import java.util.Vector;
 
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
-import newtonERP.orm.field.Field;
+import newtonERP.orm.fields.field.Field;
 
 /**
  * Modele d'une barre de recherche

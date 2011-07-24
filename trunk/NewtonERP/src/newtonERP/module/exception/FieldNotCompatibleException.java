@@ -1,4 +1,5 @@
-package newtonERP.module.exception;
+package newtonERP.module.exception; 
+ // TODO: clean up that file
 
 /**
  * exception lancé lorsque le type du champ ne correspond pas
@@ -6,6 +7,11 @@ package newtonERP.module.exception;
  * @author cloutierJo
  */
 public class FieldNotCompatibleException extends ModuleException {
+	/**
+     * 
+     */
+    private static final long serialVersionUID = -8703702958764872840L;
+
 	/**
 	 * Constructeur par default pour cette exception
 	 * 

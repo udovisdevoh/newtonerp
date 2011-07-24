@@ -1,12 +1,13 @@
-package modules.userRightModule.entityDefinitions;
+package modules.userRightModule.entityDefinitions; 
+ // TODO: clean up that file
 
 import java.util.Vector;
 
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.Orm;
-import newtonERP.orm.field.Field;
-import newtonERP.orm.field.Fields;
-import newtonERP.orm.field.type.FieldInt;
+import newtonERP.orm.fields.Fields;
+import newtonERP.orm.fields.field.Field;
+import newtonERP.orm.fields.field.type.FieldInt;
 
 /**
  * Entity defenition representing a group right for the users

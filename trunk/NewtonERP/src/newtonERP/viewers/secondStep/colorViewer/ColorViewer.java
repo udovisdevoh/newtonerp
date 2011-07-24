@@ -1,4 +1,5 @@
-package newtonERP.viewers.secondStep.colorViewer;
+package newtonERP.viewers.secondStep.colorViewer; 
+ // TODO: clean up that file
 
 import java.util.Hashtable;
 

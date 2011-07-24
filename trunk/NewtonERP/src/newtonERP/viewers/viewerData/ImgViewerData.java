@@ -1,7 +1,8 @@
 /**
  * 
  */
-package newtonERP.viewers.viewerData;
+package newtonERP.viewers.viewerData; 
+ // TODO: clean up that file
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -9,7 +10,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import newtonERP.logging.Logger;
+import newtonERP.common.logging.Logger;
 
 /**
  * donnee pour faire affiche UNE image

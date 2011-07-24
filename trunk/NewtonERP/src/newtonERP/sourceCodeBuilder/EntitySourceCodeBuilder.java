@@ -1,4 +1,5 @@
-package newtonERP.sourceCodeBuilder;
+package newtonERP.sourceCodeBuilder; 
+ // TODO: clean up that file
 
 import modules.taskModule.entityDefinitions.AccessorEntity;
 import modules.taskModule.entityDefinitions.EntityEntity;

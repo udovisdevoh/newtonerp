@@ -1,9 +1,15 @@
-package newtonERP.module.exception;
+package newtonERP.module.exception; 
+ // TODO: clean up that file
 
 /**
  * @author r3hallejo When an operator for a field is not valid
  */
 public class InvalidOperatorException extends ModuleException {
+	/**
+     * 
+     */
+    private static final long serialVersionUID = 7735164355767841316L;
+
 	/**
 	 * Default constructor
 	 * 
