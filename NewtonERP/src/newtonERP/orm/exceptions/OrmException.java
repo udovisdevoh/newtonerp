@@ -1,4 +1,5 @@
-package newtonERP.orm.exceptions;
+package newtonERP.orm.exceptions; 
+ // TODO: clean up that file
 
 /**
  * OrmException super class for all the other classes
@@ -6,6 +7,11 @@ package newtonERP.orm.exceptions;
  * @author r3lacasgu, r3hallejo
  */
 public class OrmException extends RuntimeException {
+	/**
+     * 
+     */
+    private static final long serialVersionUID = 2631213877222753163L;
+
 	/**
 	 * @param message the message of the exception
 	 */

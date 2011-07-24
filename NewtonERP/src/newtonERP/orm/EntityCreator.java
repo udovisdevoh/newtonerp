@@ -1,5 +1,7 @@
 package newtonERP.orm;
 
+// TODO: clean up that file
+
 import java.sql.ResultSet;
 import java.util.Collection;
 import java.util.Hashtable;
@@ -8,7 +10,7 @@ import java.util.Vector;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.exceptions.OrmEntityCreationException;
-import newtonERP.orm.field.Field;
+import newtonERP.orm.fields.field.Field;
 
 /**
  * Class used to create the entities in the select statement of the orm because it's not the orm's responsibility. By
@@ -36,14 +38,14 @@ class EntityCreator {
 				// We initialize our instance of the ormizable entity.
 				// Our Fields array and our parameters hashtable
 				AbstractOrmEntity entity = searchEntity.getClass().newInstance();
-				Collection<Field<?>> fields = ((AbstractEntity) entity).getFields().getFields();
+				Collection<Field> fields = ((AbstractEntity) entity).getFields().getFields();
 				Hashtable<String, Object> parameters = new Hashtable<String, Object>();
 
 				// We add each column to the hashtable plus it's value
-				for(Field<?> field : fields){
+				for(Field field : fields){
 					if(field.getCalcul() == null){
-						String key = field.getShortName();
-						Object value = rs.getObject(field.getShortName());
+						String key = field.getSystemName();
+						Object value = rs.getObject(field.getSystemName());
 						if(value != null){
 							parameters.put(key, value);
 						}

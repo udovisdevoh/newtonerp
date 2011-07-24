@@ -1,5 +1,7 @@
 package newtonERP.orm.sgbd.sqlite;
 
+// TODO: clean up that file
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -9,17 +11,17 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.Vector;
 
-import newtonERP.logging.Logger;
+import newtonERP.common.logging.Logger;
 import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.exceptions.OrmSqlException;
-import newtonERP.orm.field.Field;
-import newtonERP.orm.field.Fields;
-import newtonERP.orm.field.type.FieldBool;
-import newtonERP.orm.field.type.FieldDateTime;
-import newtonERP.orm.field.type.FieldDouble;
-import newtonERP.orm.field.type.FieldInt;
-import newtonERP.orm.field.type.FieldString;
+import newtonERP.orm.fields.Fields;
+import newtonERP.orm.fields.field.Field;
+import newtonERP.orm.fields.field.type.FieldBool;
+import newtonERP.orm.fields.field.type.FieldDateTime;
+import newtonERP.orm.fields.field.type.FieldDouble;
+import newtonERP.orm.fields.field.type.FieldInt;
+import newtonERP.orm.fields.field.type.FieldString;
 import newtonERP.orm.sgbd.AbstractSgbd;
 import newtonERP.orm.sgbd.OrmActions;
 
@@ -108,17 +110,17 @@ public class SgbdSqlite extends AbstractSgbd {
 	 * newtonERP.orm.field.Field)
 	 */
 	@Override
-	public ResultSet addColumnToTable(AbstractOrmEntity entity, Field<?> field)
+	public ResultSet addColumnToTable(AbstractOrmEntity entity, Field field)
 
 	{
 		String sqlQuery = "ALTER TABLE " + prefix + entity.getSystemName() + " ADD COLUMN ";
 
 		if(field instanceof FieldDouble){
-			sqlQuery += " " + field.getShortName() + " DOUBLE PRECISION;";
+			sqlQuery += " " + field.getSystemName() + " DOUBLE PRECISION;";
 		}else if(field instanceof FieldString || field instanceof FieldDateTime){
-			sqlQuery += " " + field.getShortName() + " STRING;";
+			sqlQuery += " " + field.getSystemName() + " STRING;";
 		}else if(field instanceof FieldBool || field instanceof FieldInt){
-			sqlQuery += " " + field.getShortName() + " INTEGER;";
+			sqlQuery += " " + field.getSystemName() + " INTEGER;";
 		}
 
 		Logger.debug("[SGDB_SQLITE] SQL query produced : " + sqlQuery);
@@ -149,9 +151,9 @@ public class SgbdSqlite extends AbstractSgbd {
 			entityPosition += 1;
 			whereClause += "( ";
 
-			for(Field<?> field : entity.getFields().getFields()){
+			for(Field field : entity.getFields().getFields()){
 				if(field.getCalcul() == null && field.getData() != null){
-					whereClause += field.getShortName() + " " + field.getOperator() + " '" + field.getDataString(true)
+					whereClause += field.getSystemName() + " " + field.getOperator() + " '" + field.getDataString(true)
 					        + "'";
 
 					whereClause += " AND ";
@@ -186,13 +188,13 @@ public class SgbdSqlite extends AbstractSgbd {
 	 * @return the sqlQuery
 	 */
 	private static String buildSetClauseForQuery(Fields fields, String sqlQuery) {
-		Iterator<Field<?>> dataIterator = fields.iterator();
+		Iterator<Field> dataIterator = fields.iterator();
 
 		while(dataIterator.hasNext()){
 			// Retrieve key
-			Field<?> data = dataIterator.next();
-			if(!data.getShortName().matches("PK.*") && data.getCalcul() == null && data.getData() != null){
-				sqlQuery += data.getShortName() + "='" + data.getDataString(true) + "', ";
+			Field data = dataIterator.next();
+			if(!data.getSystemName().matches("PK.*") && data.getCalcul() == null && data.getData() != null){
+				sqlQuery += data.getSystemName() + "='" + data.getDataString(true) + "', ";
 			}
 		}
 
@@ -301,11 +303,11 @@ public class SgbdSqlite extends AbstractSgbd {
 		Iterator<?> keyIterator = newEntity.getFields().iterator();
 
 		while(keyIterator.hasNext()){
-			Field<?> field = (Field<?>) keyIterator.next();
+			Field field = (Field) keyIterator.next();
 
-			if(!field.getShortName().matches("PK.*")){
+			if(!field.getSystemName().matches("PK.*")){
 				if(field.getCalcul() == null && field.getData() != null){
-					sqlQuery += "'" + field.getShortName() + "', ";
+					sqlQuery += "'" + field.getSystemName() + "', ";
 				}
 			}
 
@@ -317,9 +319,9 @@ public class SgbdSqlite extends AbstractSgbd {
 		Iterator<?> dataIterator = newEntity.getFields().iterator();
 
 		while(dataIterator.hasNext()){
-			Field<?> field = (Field<?>) dataIterator.next();
+			Field field = (Field) dataIterator.next();
 
-			if(!field.getShortName().matches("PK.*")){
+			if(!field.getSystemName().matches("PK.*")){
 				if(field.getCalcul() == null && field.getData() != null){
 					sqlQuery += "'" + field.getDataString(true) + "', ";
 				}
@@ -459,31 +461,25 @@ public class SgbdSqlite extends AbstractSgbd {
 		// Be sure to create the table only if it doesn't already
 		// exists
 		String sqlQuery = "CREATE TABLE IF NOT EXISTS ";
-		Collection<Field<?>> fields = ((AbstractEntity) entity).getFields().getFields();
+		Collection<Field> fields = ((AbstractEntity) entity).getFields().getFields();
 
 		sqlQuery += prefix + entity.getSystemName() + " ( ";
 
 		// For each field into my entity
-		for(Field<?> field : fields){
+		for(Field field : fields){
 			// If it is a primary because it matches PK, else we
 			// check the datatypes and match them with a datatype
 			// good for the database
-			// TODO : Jo je ne comprend pas pourquoi tu fesait ca,
-			// bref ca buggait car il arrivait sur le if, ce n'était
-			// pas vrai alors il n'insérait aucun champs. Svp dire
-			// c'est quoi tu veut faire. La je l'ai enlevé, anyway
-			// ca sert a rien de faire un if avec aucun traitement
-			// non?
 			if(field.getCalcul() != null){
 				// do not do anything
-			}else if(field.getShortName().matches("PK.*")){
-				sqlQuery += field.getShortName() + " INTEGER PRIMARY KEY AUTOINCREMENT, ";
+			}else if(field.getSystemName().matches("PK.*")){
+				sqlQuery += field.getSystemName() + " INTEGER PRIMARY KEY AUTOINCREMENT, ";
 			}else if(field instanceof FieldDouble){
-				sqlQuery += field.getShortName() + " DOUBLE PRECISION, ";
+				sqlQuery += field.getSystemName() + " DOUBLE PRECISION, ";
 			}else if(field instanceof FieldString || field instanceof FieldDateTime){
-				sqlQuery += field.getShortName() + " STRING, ";
+				sqlQuery += field.getSystemName() + " STRING, ";
 			}else if(field instanceof FieldBool || field instanceof FieldInt){
-				sqlQuery += field.getShortName() + " INTEGER, ";
+				sqlQuery += field.getSystemName() + " INTEGER, ";
 			}
 		}
 		sqlQuery = sqlQuery.substring(0, sqlQuery.length() - 2) + " );";

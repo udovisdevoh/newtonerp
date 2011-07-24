@@ -1,16 +1,18 @@
 package newtonERP.orm.sgbd;
 
+// TODO: clean up that file
+
 import java.sql.ResultSet;
 import java.util.Collection;
 import java.util.Vector;
 
 import newtonERP.common.ListModule;
-import newtonERP.logging.Logger;
+import newtonERP.common.logging.Logger;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.module.Module;
 import newtonERP.module.exception.ModuleException;
 import newtonERP.orm.exceptions.OrmException;
-import newtonERP.orm.field.Field;
+import newtonERP.orm.fields.field.Field;
 
 /**
  * Représente tous les SGBD et leurs implémentations et déclarations communes
@@ -60,7 +62,7 @@ public abstract class AbstractSgbd {
 	 * @param entity the entity
 	 */
 	private final void addMissingColumnsForEntity(AbstractOrmEntity entity) {
-		for(Field<?> field : entity.getFields()){
+		for(Field field : entity.getFields()){
 			try{
 				addColumnToTable(entity, field);
 			}catch(OrmException e){
@@ -148,7 +150,7 @@ public abstract class AbstractSgbd {
 	 * @param searchEntities the entities from which we will perform the search
 	 * @param limit limite de résultat
 	 * @param offset offset du début des résultats
-	 * @param orderBy ordre facultatif
+	 * @param orderByAsc ordre facultatif
 	 * @return a vector of ormizable entities
 	 */
 	public abstract ResultSet select(Vector<AbstractOrmEntity> searchEntities, int limit, int offset, boolean orderByAsc);
@@ -225,7 +227,7 @@ public abstract class AbstractSgbd {
 	 * @param field the field to add
 	 * @return ?
 	 */
-	public abstract ResultSet addColumnToTable(AbstractOrmEntity entity, Field<?> field);
+	public abstract ResultSet addColumnToTable(AbstractOrmEntity entity, Field field);
 
 	/**
 	 * Créer une table pour un type d'entité
