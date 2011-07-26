@@ -1,5 +1,6 @@
-package modules.taskModule; 
- // TODO: clean up that file
+package modules.taskModule;
+
+// TODO: clean up that file
 
 import java.util.Vector;
 
@@ -24,6 +25,9 @@ import newtonERP.module.BaseAction;
 import newtonERP.module.Module;
 import newtonERP.orm.Orm;
 import newtonERP.orm.fields.field.Field;
+import newtonERP.orm.fields.field.property.NaturalKey;
+import newtonERP.orm.fields.field.property.ReadOnly;
+import newtonERP.orm.fields.field.property.hidden;
 
 /**
  * Module des tasks
@@ -47,6 +51,7 @@ public class TaskModule extends Module {
 		addGlobalActionMenuItem("Voir le shcéma de DB", new DbGraph());
 	}
 
+	@Override
 	public void initDB() {
 		super.initDB();
 		initActionsAndEntities();
@@ -520,28 +525,28 @@ public class TaskModule extends Module {
 	{
 		realEntity.initFields();
 
-		for(Field<?> field : realEntity.getFields()){
+		for(Field field : realEntity.getFields()){
 			initFieldEntity(field, entityEntity);
 		}
 	}
 
-	private static void initFieldEntity(Field<?> field, EntityEntity entityEntity)
+	private static void initFieldEntity(Field field, EntityEntity entityEntity)
 
 	{
 		FieldTypeEntity fieldType = getOrCreateFieldType(field);
 		FieldEntity fieldEntity = new FieldEntity();
-		fieldEntity.setData("name", field.getShortName());
+		fieldEntity.setData("name", field.getSystemName());
 		fieldEntity.setData("visibleName", field.getName());
-		fieldEntity.setData("readOnly", field.isReadOnly());
-		fieldEntity.setData("hidden", field.isHidden());
-		fieldEntity.setData("naturalKey", field.isNaturalKey());
+		fieldEntity.setData("readOnly", field.isPropertySet(ReadOnly.class));
+		fieldEntity.setData("hidden", field.isPropertySet(hidden.class));
+		fieldEntity.setData("naturalKey", field.isPropertySet(NaturalKey.class));
 		fieldEntity.setData("dynamicField", field.isDynamicField());
 		fieldEntity.assign(fieldType);
 		fieldEntity.assign(entityEntity);
 		fieldEntity.newE();
 	}
 
-	private static FieldTypeEntity getOrCreateFieldType(Field<?> field)
+	private static FieldTypeEntity getOrCreateFieldType(Field field)
 
 	{
 		FieldTypeEntity fieldType = new FieldTypeEntity();

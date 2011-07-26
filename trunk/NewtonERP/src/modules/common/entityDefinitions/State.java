@@ -1,18 +1,20 @@
-package modules.common.entityDefinitions; 
- // TODO: clean up that file
+package modules.common.entityDefinitions;
+
+// TODO: clean up that file
 
 import java.util.Vector;
 
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.fields.Fields;
 import newtonERP.orm.fields.field.Field;
-import newtonERP.orm.fields.field.type.FieldInt;
-import newtonERP.orm.fields.field.type.FieldString;
+import newtonERP.orm.fields.field.FieldFactory;
+import newtonERP.orm.fields.field.FieldType;
+import newtonERP.orm.fields.field.property.NaturalKey;
 
 /**
  * State
  * 
- * @author r3hallejo
+ * @author r3hallejo, Jonatan Cloutier
  */
 public class State extends AbstractOrmEntity {
 
@@ -25,11 +27,10 @@ public class State extends AbstractOrmEntity {
 
 	@Override
 	public Fields initFields() {
-		FieldString name = new FieldString("Nom", "name");
-		name.setNaturalKey(true);
+		Field name = FieldFactory.newField(FieldType.STRING, "name");
+		name.addProperty(new NaturalKey());
 
-		Vector<Field<?>> fieldList = new Vector<Field<?>>();
-		fieldList.add(new FieldInt("Numero de province / état", getPrimaryKeyName()));
+		Vector<Field> fieldList = new Vector<Field>();
 		fieldList.add(name);
 		return new Fields(fieldList);
 	}

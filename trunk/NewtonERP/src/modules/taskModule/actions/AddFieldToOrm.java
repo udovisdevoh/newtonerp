@@ -1,5 +1,6 @@
-package modules.taskModule.actions; 
- // TODO: clean up that file
+package modules.taskModule.actions;
+
+// TODO: clean up that file
 
 import java.util.Hashtable;
 
@@ -33,7 +34,7 @@ public class AddFieldToOrm extends AbstractAction {
 		EntityEntity entityEntity = (EntityEntity) fieldEntity
 		        .getSingleAccessor(new EntityEntity().getForeignKeyName());
 
-		Field<?> field = fieldEntity.getFieldInstance();
+		Field field = fieldEntity.getFieldInstance();
 		BaseViewerData editUI = fieldEntity.editUI(parameters);
 
 		try{

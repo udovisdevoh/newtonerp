@@ -1,5 +1,6 @@
-package newtonERP.viewers.viewerData; 
- // TODO: clean up that file
+package newtonERP.viewers.viewerData;
+
+// TODO: clean up that file
 
 import java.util.Hashtable;
 import java.util.Iterator;
@@ -11,6 +12,7 @@ import newtonERP.module.generalEntity.ListOfValue;
 import newtonERP.orm.associations.GateWay;
 import newtonERP.orm.associations.GateWayManager;
 import newtonERP.orm.fields.field.Field;
+import newtonERP.orm.fields.field.property.hidden;
 
 /**
  * @author Guillaume Lacasse, CloutierJo
@@ -44,14 +46,14 @@ public class ListViewerData extends GridViewerData implements Iterable<AbstractO
 
 		GridCaseData gridCaseData;
 
-		for(Field<?> field : dataType.getFields()){
-			ListOfValue listOfValue = dataType.tryMatchListOfValue(field.getShortName());
+		for(Field field : dataType.getFields()){
+			ListOfValue listOfValue = dataType.tryMatchListOfValue(field.getSystemName());
 
 			if(listOfValue != null){
 				gridCaseData = new GridCaseData(listOfValue.getLabelName(), new BaseAction("GetList",
 				        listOfValue.getForeignEntityDefinition()));
 				header.add(gridCaseData);
-			}else if(!field.isHidden()){
+			}else if(!field.isPropertySet(hidden.class)){
 				gridCaseData = new GridCaseData(field.getName());
 				header.add(gridCaseData);
 			}
@@ -73,13 +75,13 @@ public class ListViewerData extends GridViewerData implements Iterable<AbstractO
 
 		for(AbstractOrmEntity entity : data){
 			Vector<GridCaseData> oneData = new Vector<GridCaseData>();
-			for(Field<?> field : entity.getFields()){
+			for(Field field : entity.getFields()){
 				value = "";
-				if(field.isHidden()){
+				if(field.isPropertySet(hidden.class)){
 					continue;
 				}
 
-				ListOfValue listOfValue = entity.tryMatchListOfValue(field.getShortName());
+				ListOfValue listOfValue = entity.tryMatchListOfValue(field.getSystemName());
 
 				if(listOfValue != null){
 					value = listOfValue.getForeignValue(field.getDataString());
@@ -90,7 +92,7 @@ public class ListViewerData extends GridViewerData implements Iterable<AbstractO
 					        listOfValue.getForeignEntityDefinition()), param);
 					gridCaseData.setColored(field.isColored());
 					oneData.add(gridCaseData);
-				}else if(!field.isHidden()){
+				}else if(!field.isPropertySet(hidden.class)){
 					value = field.getDataString();
 					if(value == null){
 						value = "";

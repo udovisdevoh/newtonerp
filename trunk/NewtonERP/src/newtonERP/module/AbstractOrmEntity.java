@@ -17,6 +17,7 @@ import newtonERP.orm.associations.PluralAccessor;
 import newtonERP.orm.associations.PluralAccessorManager;
 import newtonERP.orm.fields.Fields;
 import newtonERP.orm.fields.field.Field;
+import newtonERP.orm.fields.field.property.NaturalKey;
 import newtonERP.orm.fields.field.type.FieldCurrency;
 import newtonERP.viewers.secondStep.MoneyViewer;
 import newtonERP.viewers.viewerData.BaseViewerData;
@@ -208,7 +209,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity {
 		promptData.setButtonAction(new ActionLink("Enregistrer", new BaseAction("Edit", this)));
 		promptData.setBackLink(new ActionLink("Voir Liste", new BaseAction("GetList", this)));
 		promptData.setTitle(retEntity.getVisibleName());
-		for(Field<?> fld : getFields()){
+		for(Field fld : getFields()){
 			promptData.addAlertMessage(fld.getErrorMessage());
 		}
 
@@ -311,8 +312,8 @@ public abstract class AbstractOrmEntity extends AbstractEntity {
 		if(searchEntry != null && searchEntry.length() > 0 && !searchEntry.equals("null")){
 			searchParameters = new Vector<String>();
 			String currentParameter;
-			for(Field<?> field : getFields()){
-				currentParameter = field.getShortName() + " like '%" + searchEntry + "%'";
+			for(Field field : getFields()){
+				currentParameter = field.getSystemName() + " like '%" + searchEntry + "%'";
 				if(searchParameters.size() > 0){
 					currentParameter = "or " + currentParameter;
 				}
@@ -376,7 +377,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity {
 	public int getItemLimitListPerPage() {
 		return 15;
 	}
-
+	
 	/**
 	 * @return Module par default
 	 */
@@ -477,7 +478,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity {
 	public final Integer getPrimaryKeyValue() {
 		String primaryKeyName = getPrimaryKeyName();
 		Fields fieldsList = getFields();
-		Field<?> field = fieldsList.getField(primaryKeyName);
+		Field field = fieldsList.getField(primaryKeyName);
 
 		if(field == null || field.getData() == null){
 			return null;
@@ -527,18 +528,18 @@ public abstract class AbstractOrmEntity extends AbstractEntity {
 	{
 		Vector<String> naturalKeyNameList = new Vector<String>();
 
-		for(Field<?> field : getFields()){
-			if(field.isNaturalKey()){
-				naturalKeyNameList.add(field.getShortName());
+		for(Field field : getFields()){
+			if(field.isPropertySet(NaturalKey.class)){// FIXME: add in order
+				naturalKeyNameList.add(field.getSystemName());
 			}
 		}
 
 		if(naturalKeyNameList.size() < 1){
 			// clef
 			// naturelle vide
-			for(Field<?> field : getFields()){
-				if(field.getShortName().toLowerCase().contains("name")){
-					naturalKeyNameList.add(field.getShortName());
+			for(Field field : getFields()){
+				if(field.getSystemName().toLowerCase().contains("name")){
+					naturalKeyNameList.add(field.getSystemName());
 				}
 			}
 		}
@@ -546,9 +547,9 @@ public abstract class AbstractOrmEntity extends AbstractEntity {
 		if(naturalKeyNameList.size() < 1){
 			// clef
 			// naturelle vide
-			for(Field<?> field : getFields()){
-				if(field.getShortName().toLowerCase().contains("nom")){
-					naturalKeyNameList.add(field.getShortName());
+			for(Field field : getFields()){
+				if(field.getSystemName().toLowerCase().contains("nom")){
+					naturalKeyNameList.add(field.getSystemName());
 				}
 			}
 		}
@@ -556,9 +557,9 @@ public abstract class AbstractOrmEntity extends AbstractEntity {
 		if(naturalKeyNameList.size() < 1){
 			// clef
 			// naturelle vide
-			for(Field<?> field : getFields()){
-				if(!field.getShortName().equals(getPrimaryKeyName())){
-					naturalKeyNameList.add(field.getShortName());
+			for(Field field : getFields()){
+				if(!field.getSystemName().equals(getPrimaryKeyName())){
+					naturalKeyNameList.add(field.getSystemName());
 				}
 			}
 		}
@@ -725,8 +726,8 @@ public abstract class AbstractOrmEntity extends AbstractEntity {
 
 	private boolean matchesCriteriasFrom(AbstractOrmEntity searchCriteriaEntity) {
 		String fieldValue, fieldValueToMatch;
-		for(Field<?> field : searchCriteriaEntity.getFields()){
-			fieldValue = getDataString(field.getShortName());
+		for(Field field : searchCriteriaEntity.getFields()){
+			fieldValue = getDataString(field.getSystemName());
 			fieldValueToMatch = field.getDataString();
 
 			if(fieldValueToMatch != null && !fieldValueToMatch.equals("null") && !fieldValueToMatch.equals(fieldValue)){

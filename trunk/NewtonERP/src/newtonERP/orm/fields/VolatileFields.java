@@ -1,5 +1,6 @@
-package newtonERP.orm.fields; 
- // TODO: clean up that file
+package newtonERP.orm.fields;
+
+// TODO: clean up that file
 
 import java.util.Vector;
 
@@ -22,14 +23,14 @@ public class VolatileFields extends Fields {
 	/**
 	 * @param fields une liste de champ a inclure dans le Fields
 	 */
-	public VolatileFields(Vector<Field<?>> fields) {
+	public VolatileFields(Vector<Field> fields) {
 		super(fields);
 	}
 
 	/**
 	 * @param field field à ajouter ou remplacer s'il existe
 	 */
-	public void add(Field<?> field) {
-		fieldsDataMap.put(field.getShortName(), field);
+	public void add(Field field) {
+		fieldsDataMap.put(field.getSystemName(), field);
 	}
 }

@@ -1,5 +1,6 @@
-package newtonERP.module; 
- // TODO: clean up that file
+package newtonERP.module;
+
+// TODO: clean up that file
 
 import java.util.HashSet;
 import java.util.Hashtable;
@@ -34,7 +35,7 @@ public abstract class AbstractEntity {
 	}
 
 	protected Fields preInitFields() {
-		Vector<Field<?>> fieldsData = new Vector<Field<?>>();
+		Vector<Field> fieldsData = new Vector<Field>();
 		Fields originalField = initFields();
 
 		fieldsData.addAll(originalField.getFields());
@@ -76,9 +77,9 @@ public abstract class AbstractEntity {
 		return new Fields();
 	}
 
-	private Vector<Field<?>> initFieldsFromDb(Vector<AbstractOrmEntity> dataField) {
+	private Vector<Field> initFieldsFromDb(Vector<AbstractOrmEntity> dataField) {
 		FieldEntity field;
-		Vector<Field<?>> fieldsData = new Vector<Field<?>>();
+		Vector<Field> fieldsData = new Vector<Field>();
 
 		for(AbstractOrmEntity abstractField : dataField){
 			field = (FieldEntity) abstractField;
@@ -305,7 +306,7 @@ public abstract class AbstractEntity {
 	 * @return si le champ est un checkbox
 	 */
 	public boolean isMatchCheckBox(String inputName) {
-		Field<?> field = getFields().getField(inputName);
+		Field field = getFields().getField(inputName);
 
 		if(field == null){
 			return false;

@@ -1,5 +1,6 @@
-package modules.taskModule.entityDefinitions; 
- // TODO: clean up that file
+package modules.taskModule.entityDefinitions;
+
+// TODO: clean up that file
 
 import java.util.Hashtable;
 import java.util.Vector;
@@ -13,8 +14,9 @@ import newtonERP.module.Module;
 import newtonERP.orm.associations.PluralAccessor;
 import newtonERP.orm.fields.Fields;
 import newtonERP.orm.fields.field.Field;
-import newtonERP.orm.fields.field.type.FieldInt;
-import newtonERP.orm.fields.field.type.FieldString;
+import newtonERP.orm.fields.field.FieldFactory;
+import newtonERP.orm.fields.field.FieldType;
+import newtonERP.orm.fields.field.property.NaturalKey;
 import newtonERP.viewers.viewerData.ListViewerData;
 
 /**
@@ -40,12 +42,11 @@ public class ModuleEntity extends AbstractOrmEntity {
 
 	@Override
 	public Fields initFields() {
-		FieldString visibleName = new FieldString("Nom visible", "visibleName");
-		visibleName.setNaturalKey(true);
+		Field visibleName = FieldFactory.newField(FieldType.STRING, "visibleName");
+		visibleName.addProperty(new NaturalKey());
 
-		Vector<Field<?>> fieldList = new Vector<Field<?>>();
-		fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
-		fieldList.add(new FieldString("Nom système", "systemName"));
+		Vector<Field> fieldList = new Vector<Field>();
+		fieldList.add(FieldFactory.newField(FieldType.STRING, "systemName"));
 		fieldList.add(visibleName);
 		return new Fields(fieldList);
 	}

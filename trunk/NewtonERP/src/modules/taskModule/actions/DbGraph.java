@@ -1,5 +1,6 @@
-package modules.taskModule.actions; 
- // TODO: clean up that file
+package modules.taskModule.actions;
+
+// TODO: clean up that file
 
 import java.awt.Color;
 import java.awt.Font;
@@ -123,9 +124,9 @@ public class DbGraph extends AbstractAction {
 			this.entity = entity;
 			width = entity.getSystemName().length() * charWidth;
 
-			for(Field<?> fld : entity.getFields()){
-				if(fld.getShortName().length() * charWidth > width){
-					width = fld.getShortName().length() * charWidth;
+			for(Field fld : entity.getFields()){
+				if(fld.getSystemName().length() * charWidth > width){
+					width = fld.getSystemName().length() * charWidth;
 				}
 			}
 			height = (entity.getFields().getFields().size() + 1) * lineHeight + 2 * marge;
@@ -146,8 +147,8 @@ public class DbGraph extends AbstractAction {
 			g.drawString(entity.getSystemName(), inx, iny);
 			iny += lineHeight;
 			g.setFont(new Font(Font.MONOSPACED, 0, lineHeight - 2));
-			for(Field<?> fld : entity.getFields()){
-				g.drawString(fld.getShortName(), inx, iny);
+			for(Field fld : entity.getFields()){
+				g.drawString(fld.getSystemName(), inx, iny);
 				iny += lineHeight;
 			}
 			g.drawRect(marge, marge, width + pad, height);

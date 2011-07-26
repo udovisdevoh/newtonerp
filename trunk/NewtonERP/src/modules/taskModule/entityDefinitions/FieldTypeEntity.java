@@ -1,13 +1,14 @@
-package modules.taskModule.entityDefinitions; 
- // TODO: clean up that file
+package modules.taskModule.entityDefinitions;
+
+// TODO: clean up that file
 
 import java.util.Vector;
 
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.fields.Fields;
 import newtonERP.orm.fields.field.Field;
-import newtonERP.orm.fields.field.type.FieldInt;
-import newtonERP.orm.fields.field.type.FieldString;
+import newtonERP.orm.fields.field.FieldFactory;
+import newtonERP.orm.fields.field.FieldType;
 
 /**
  * Représente un type de field
@@ -33,9 +34,8 @@ public class FieldTypeEntity extends AbstractOrmEntity {
 
 	@Override
 	public Fields initFields() {
-		Vector<Field<?>> fieldList = new Vector<Field<?>>();
-		fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
-		fieldList.add(new FieldString("Nom système", "systemName"));
+		Vector<Field> fieldList = new Vector<Field>();
+		fieldList.add(FieldFactory.newField(FieldType.STRING, "systemName"));
 		return new Fields(fieldList);
 	}
 }

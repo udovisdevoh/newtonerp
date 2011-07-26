@@ -1,5 +1,6 @@
-package modules.userRightModule.entityDefinitions; 
- // TODO: clean up that file
+package modules.userRightModule.entityDefinitions;
+
+// TODO: clean up that file
 
 import java.util.Vector;
 
@@ -7,8 +8,8 @@ import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.fields.Fields;
 import newtonERP.orm.fields.field.Field;
-import newtonERP.orm.fields.field.type.FieldInt;
-import newtonERP.orm.fields.field.type.FieldString;
+import newtonERP.orm.fields.field.FieldFactory;
+import newtonERP.orm.fields.field.FieldType;
 
 /**
  * Entity defenition class representing a user
@@ -29,13 +30,12 @@ public class User extends AbstractOrmEntity {
 
 	@Override
 	public Fields initFields() {
-		Vector<Field<?>> fieldsData = new Vector<Field<?>>();
-		fieldsData.add(new FieldInt("Numéro de user", getPrimaryKeyName()));
-		fieldsData.add(new FieldString("Nom", "name"));
-		FieldString pwd = new FieldString("Mot de passe", "password");
-		pwd.setHidden(true);
+		Vector<Field> fieldsData = new Vector<Field>();
+		fieldsData.add(FieldFactory.newField(FieldType.STRING, "name"));
+		Field pwd = FieldFactory.newField(FieldType.STRING, "password");
+		pwd.setHidden(true); // todo: should be password or encrypted
 		fieldsData.add(pwd);
-		fieldsData.add(new FieldInt("Numéro de groupe", "groupsID"));
+		fieldsData.add(FieldFactory.newField(FieldType.INT, "groupsID"));
 		return new Fields(fieldsData);
 	}
 

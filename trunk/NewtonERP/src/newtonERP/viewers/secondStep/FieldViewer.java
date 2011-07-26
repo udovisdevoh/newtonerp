@@ -1,7 +1,10 @@
-package newtonERP.viewers.secondStep; 
- // TODO: clean up that file
+package newtonERP.viewers.secondStep;
+
+// TODO: clean up that file
 
 import newtonERP.orm.fields.field.Field;
+import newtonERP.orm.fields.field.property.ReadOnly;
+import newtonERP.orm.fields.field.property.hidden;
 import newtonERP.orm.fields.field.type.FieldBool;
 import newtonERP.orm.fields.field.type.FieldCurrency;
 import newtonERP.orm.fields.field.type.FieldDateTime;
@@ -19,7 +22,7 @@ public class FieldViewer {
 	 * @param field field a afficher
 	 * @return les code html
 	 */
-	public static String getHtmlCode(Field<?> field) {
+	public static String getHtmlCode(Field field) {
 		String html;
 		if(field instanceof FieldBool){
 			html = boolViewer(field);
@@ -39,47 +42,47 @@ public class FieldViewer {
 
 	}
 
-	private static String currencyViewer(Field<?> field) {
+	private static String currencyViewer(Field field) {
 		String moneyFormatStyle = " style=\"width:80px;text-align:right\"";
 		String textFieldType = "";
 
-		if(field.isHidden()){
+		if(field.isPropertySet(hidden.class)){
 			textFieldType = "password";
 		}else{
 			textFieldType = "text";
 		}
 
-		if(field.isReadOnly()){
-			return "<input type='hidden' name='" + field.getShortName() + "' value='" + field.getDataString()
+		if(field.isPropertySet(ReadOnly.class)){
+			return "<input type='hidden' name='" + field.getSystemName() + "' value='" + field.getDataString()
 			        + "' class='textField' />" + field.getDataString();
 		}
 
-		return "<input" + moneyFormatStyle + " type='" + textFieldType + "' name='" + field.getShortName()
+		return "<input" + moneyFormatStyle + " type='" + textFieldType + "' name='" + field.getSystemName()
 		        + "' value='" + field.getDataString() + "' class='textField' />";
 	}
 
-	private static String textViewer(Field<?> field) {
+	private static String textViewer(Field field) {
 		String longText = "";
-		if(!((FieldText) field).isVeryLong()){
+		if(!field.isVeryLong()){
 			longText = "textField";
 		}else{
 			longText = "textFieldLong";
 		}
 
-		return "<textarea class='" + longText + "' name='" + field.getShortName() + "'>" + field.getDataString()
+		return "<textarea class='" + longText + "' name='" + field.getSystemName() + "'>" + field.getDataString()
 		        + "</textarea><div class=\"printableText\">" + field.getDataString().replace("\n", "<br />")
 		        + "</div></td></tr>";
 	}
 
-	private static String dateTimeViewer(Field<?> field) {
+	private static String dateTimeViewer(Field field) {
 		return otherViewer(field);
 	}
 
-	private static String numberViewer(Field<?> field) {
+	private static String numberViewer(Field field) {
 		return otherViewer(field);
 	}
 
-	private static String boolViewer(Field<?> field) {
+	private static String boolViewer(Field field) {
 		String html = "";
 		String yesIsChecked, noIsChecked;
 
@@ -91,37 +94,37 @@ public class FieldViewer {
 			noIsChecked = " checked=\"checked\"";
 		}
 
-		if(field.isHidden()){
-			html += "<input type=\"hidden\" name=\"" + field.getShortName() + "\" value=\"" + field.getData() + "\">";
-		}else if(field.isReadOnly()){
-			html += "<input type=\"hidden\" name=\"" + field.getShortName() + "\" value=\"" + field.getData() + "\">"
+		if(field.isPropertySet(hidden.class)){
+			html += "<input type=\"hidden\" name=\"" + field.getSystemName() + "\" value=\"" + field.getData() + "\">";
+		}else if(field.isPropertySet(ReadOnly.class)){
+			html += "<input type=\"hidden\" name=\"" + field.getSystemName() + "\" value=\"" + field.getData() + "\">"
 			        + field.getDataString();
 		}else{
-			html += "oui: <input type=\"radio\" name=\"" + field.getShortName() + "\" value=\"true\"" + yesIsChecked
+			html += "oui: <input type=\"radio\" name=\"" + field.getSystemName() + "\" value=\"true\"" + yesIsChecked
 			        + " />";
-			html += " | non: <input type=\"radio\" name=\"" + field.getShortName() + "\" value=\"false\"" + noIsChecked
-			        + " />";
+			html += " | non: <input type=\"radio\" name=\"" + field.getSystemName() + "\" value=\"false\""
+			        + noIsChecked + " />";
 		}
 
 		return html;
 	}
 
-	private static String otherViewer(Field<?> field) {
+	private static String otherViewer(Field field) {
 		String textFieldType = "";
 		String isReadOnly = "";
 
-		if(field.isHidden()){
+		if(field.isPropertySet(hidden.class)){
 			textFieldType = "password";
 		}else{
 			textFieldType = "text";
 		}
 
-		if(field.isReadOnly()){
-			return "<input type='hidden' name='" + field.getShortName() + "' value='" + field.getDataString()
+		if(field.isPropertySet(ReadOnly.class)){
+			return "<input type='hidden' name='" + field.getSystemName() + "' value='" + field.getDataString()
 			        + "' class='textField' />" + field.getDataString();
 		}
 
-		return "<input type='" + textFieldType + "' name='" + field.getShortName() + "' value='"
+		return "<input type='" + textFieldType + "' name='" + field.getSystemName() + "' value='"
 		        + field.getDataString() + "' class='textField'" + isReadOnly + " />";
 	}
 }

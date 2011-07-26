@@ -1,5 +1,6 @@
-package modules.taskModule.entityDefinitions; 
- // TODO: clean up that file
+package modules.taskModule.entityDefinitions;
+
+// TODO: clean up that file
 
 import java.util.Vector;
 
@@ -24,7 +25,7 @@ public class EffectEntityParameter extends AbstractOrmEntity {
 
 	@Override
 	public Fields initFields() {
-		Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
+		Vector<Field> fieldsInit = new Vector<Field>();
 		fieldsInit.add(new FieldInt("Effet", "effectEntityID"));
 		fieldsInit.add(new FieldInt("Paramètre", "parameterID"));
 		return new Fields(fieldsInit);

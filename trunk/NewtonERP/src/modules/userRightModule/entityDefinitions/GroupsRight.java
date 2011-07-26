@@ -1,5 +1,6 @@
-package modules.userRightModule.entityDefinitions; 
- // TODO: clean up that file
+package modules.userRightModule.entityDefinitions;
+
+// TODO: clean up that file
 
 import java.util.Vector;
 
@@ -39,7 +40,7 @@ public class GroupsRight extends AbstractOrmEntity {
 
 	@Override
 	public Fields initFields() {
-		Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
+		Vector<Field> fieldsInit = new Vector<Field>();
 		fieldsInit.add(new FieldInt("Numéro de groupe", "groupsID"));
 		fieldsInit.add(new FieldInt("Numéro de droit", "rightID"));
 		return new Fields(fieldsInit);

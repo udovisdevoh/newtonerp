@@ -1,5 +1,6 @@
-package modules.taskModule.entityDefinitions; 
- // TODO: clean up that file
+package modules.taskModule.entityDefinitions;
+
+// TODO: clean up that file
 
 import java.util.Hashtable;
 import java.util.Vector;
@@ -9,7 +10,9 @@ import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.fields.Fields;
 import newtonERP.orm.fields.field.Field;
-import newtonERP.orm.fields.field.type.FieldBool;
+import newtonERP.orm.fields.field.FieldFactory;
+import newtonERP.orm.fields.field.FieldType;
+import newtonERP.orm.fields.field.property.NaturalKey;
 import newtonERP.orm.fields.field.type.FieldInt;
 
 /**
@@ -29,16 +32,15 @@ public class TaskEntity extends AbstractOrmEntity {
 
 	@Override
 	public Fields initFields() {
-		FieldInt specification = new FieldInt("Specification", new Specification().getForeignKeyName());
-		specification.setNaturalKey(true);
+		Field specification = new FieldInt("Specification", new Specification().getForeignKeyName());
+		specification.addProperty(new NaturalKey());
 
-		FieldInt effet = new FieldInt("Effet", new EffectEntity().getForeignKeyName());
-		effet.setNaturalKey(true);
+		Field effet = new FieldInt("Effet", new EffectEntity().getForeignKeyName());
+		effet.addProperty(new NaturalKey());
 
-		Vector<Field<?>> fieldList = new Vector<Field<?>>();
-		fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
-		fieldList.add(new FieldBool("Est active", "isActive"));
-		fieldList.add(new FieldBool("Recherche directe", "straightSearch"));
+		Vector<Field> fieldList = new Vector<Field>();
+		fieldList.add(FieldFactory.newField(FieldType.BOOL, "isActive"));
+		fieldList.add(FieldFactory.newField(FieldType.BOOL, "straightSearch"));
 		fieldList.add(specification);
 		fieldList.add(effet);
 		return new Fields(fieldList);

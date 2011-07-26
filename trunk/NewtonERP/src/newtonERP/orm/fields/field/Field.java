@@ -54,6 +54,16 @@ public class Field extends AbstractFieldDecorator {
 	}
 
 	/**
+	 * Gets the property.
+	 * 
+	 * @param propertyClass the property class
+	 * @return the property
+	 */
+	public boolean isPropertySet(Class<? extends AbstractProperty> propertyClass) {
+		return properties.containsKey(propertyClass);
+	}
+
+	/**
 	 * Gets the name.
 	 * 
 	 * @return the name
