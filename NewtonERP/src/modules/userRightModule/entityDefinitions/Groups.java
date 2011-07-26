@@ -1,5 +1,6 @@
-package modules.userRightModule.entityDefinitions; 
- // TODO: clean up that file
+package modules.userRightModule.entityDefinitions;
+
+// TODO: clean up that file
 
 import java.util.Vector;
 
@@ -7,8 +8,9 @@ import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.fields.Fields;
 import newtonERP.orm.fields.field.Field;
-import newtonERP.orm.fields.field.type.FieldInt;
-import newtonERP.orm.fields.field.type.FieldString;
+import newtonERP.orm.fields.field.FieldFactory;
+import newtonERP.orm.fields.field.FieldType;
+import newtonERP.orm.fields.field.property.NaturalKey;
 
 /**
  * Entity defenition class representing a group for the users
@@ -26,11 +28,10 @@ public class Groups extends AbstractOrmEntity {
 
 	@Override
 	public Fields initFields() {
-		FieldString groupName = new FieldString("Nom", "groupName");
-		groupName.setNaturalKey(true);
+		Field groupName = FieldFactory.newField(FieldType.STRING, "groupName");
+		groupName.addProperty(new NaturalKey());
 
-		Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
-		fieldsInit.add(new FieldInt("Numéro", getPrimaryKeyName()));
+		Vector<Field> fieldsInit = new Vector<Field>();
 		fieldsInit.add(groupName);
 		return new Fields(fieldsInit);
 	}

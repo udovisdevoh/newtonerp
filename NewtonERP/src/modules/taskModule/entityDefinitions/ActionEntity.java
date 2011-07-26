@@ -1,5 +1,6 @@
-package modules.taskModule.entityDefinitions; 
- // TODO: clean up that file
+package modules.taskModule.entityDefinitions;
+
+// TODO: clean up that file
 
 import java.util.Hashtable;
 import java.util.Vector;
@@ -15,8 +16,11 @@ import newtonERP.module.Module;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.fields.Fields;
 import newtonERP.orm.fields.field.Field;
+import newtonERP.orm.fields.field.FieldFactory;
+import newtonERP.orm.fields.field.FieldType;
+import newtonERP.orm.fields.field.property.NaturalKey;
+import newtonERP.orm.fields.field.property.ReadOnly;
 import newtonERP.orm.fields.field.type.FieldInt;
-import newtonERP.orm.fields.field.type.FieldString;
 import newtonERP.viewers.viewerData.ListViewerData;
 
 /**
@@ -35,14 +39,13 @@ public class ActionEntity extends AbstractOrmEntity {
 
 	@Override
 	public Fields initFields() {
-		FieldInt moduleEntity = new FieldInt("Module", new ModuleEntity().getForeignKeyName());
-		moduleEntity.setReadOnly(true);
+		Field moduleEntity = new FieldInt("Module", new ModuleEntity().getForeignKeyName());
+		moduleEntity.addProperty(new ReadOnly());
 
-		FieldString systemName = new FieldString("Nom système", "systemName");
-		systemName.setNaturalKey(true);
+		Field systemName = FieldFactory.newField(FieldType.STRING, "systemName");
+		systemName.addProperty(new NaturalKey());
 
-		Vector<Field<?>> fieldList = new Vector<Field<?>>();
-		fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
+		Vector<Field> fieldList = new Vector<Field>();
 		fieldList.add(systemName);
 		fieldList.add(moduleEntity);
 		return new Fields(fieldList);

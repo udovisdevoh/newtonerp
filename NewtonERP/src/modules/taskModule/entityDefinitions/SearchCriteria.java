@@ -1,5 +1,6 @@
-package modules.taskModule.entityDefinitions; 
- // TODO: clean up that file
+package modules.taskModule.entityDefinitions;
+
+// TODO: clean up that file
 
 import java.util.Vector;
 
@@ -7,9 +8,10 @@ import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.fields.Fields;
 import newtonERP.orm.fields.field.Field;
+import newtonERP.orm.fields.field.FieldFactory;
+import newtonERP.orm.fields.field.FieldType;
+import newtonERP.orm.fields.field.property.NaturalKey;
 import newtonERP.orm.fields.field.type.FieldInt;
-import newtonERP.orm.fields.field.type.FieldString;
-import newtonERP.orm.fields.field.type.FieldText;
 
 /**
  * Critère de recherche pour une entité de recherche
@@ -28,17 +30,16 @@ public class SearchCriteria extends AbstractOrmEntity {
 
 	@Override
 	public Fields initFields() {
-		FieldString key = new FieldString("Nom de clef", "key");
-		key.setNaturalKey(true);
+		Field key = FieldFactory.newField(FieldType.STRING, "key");
+		key.addProperty(new NaturalKey());
 
-		FieldInt specOperator = new FieldInt("Opérateur", new SearchCriteriaOperator().getForeignKeyName());
-		specOperator.setNaturalKey(true);
+		Field specOperator = new FieldInt("Opérateur", new SearchCriteriaOperator().getForeignKeyName());
+		specOperator.addProperty(new NaturalKey());
 
-		FieldText value = new FieldText("Valeur", "value", false);
-		value.setNaturalKey(true);
+		Field value = FieldFactory.newField(FieldType.TEXT, "value");
+		value.addProperty(new NaturalKey());
 
-		Vector<Field<?>> fieldList = new Vector<Field<?>>();
-		fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
+		Vector<Field> fieldList = new Vector<Field>();
 		fieldList.add(new FieldInt("Entité de recherche", new SearchEntity().getForeignKeyName()));
 		fieldList.add(key);
 		fieldList.add(specOperator);

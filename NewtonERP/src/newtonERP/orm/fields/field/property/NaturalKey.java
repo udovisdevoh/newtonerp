@@ -4,11 +4,12 @@ import newtonERP.orm.fields.field.AbstractProperty;
 
 /**
  * The property naturalKey, specified that this field is part of the natural key, the optional parameter position
- * specified the order of this field when the natural key is visible.
+ * specified the order of this field when the natural key is visible. If the position is not set the order is not
+ * determinism and can change any time.
  * 
  * @author Jonatan Cloutier
  */
-public class naturalKey extends AbstractProperty {
+public class NaturalKey extends AbstractProperty {
 
 	/** The position. */
 	private int position;
@@ -16,7 +17,7 @@ public class naturalKey extends AbstractProperty {
 	/**
 	 * Instantiates a new natural key.
 	 */
-	public naturalKey() {
+	public NaturalKey() {
 		super();
 		position = 0;
 	}
@@ -26,7 +27,7 @@ public class naturalKey extends AbstractProperty {
 	 * 
 	 * @param position the position
 	 */
-	public naturalKey(int position) {
+	public NaturalKey(int position) {
 		super();
 		this.position = position;
 	}

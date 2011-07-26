@@ -1,5 +1,6 @@
-package newtonERP.viewers.firstStep; 
- // TODO: clean up that file
+package newtonERP.viewers.firstStep;
+
+// TODO: clean up that file
 
 import newtonERP.common.ActionLink;
 import newtonERP.module.AbstractEntity;
@@ -12,6 +13,7 @@ import newtonERP.orm.associations.GateWay;
 import newtonERP.orm.associations.GateWayManager;
 import newtonERP.orm.associations.PluralAccessor;
 import newtonERP.orm.fields.field.Field;
+import newtonERP.orm.fields.field.property.ReadOnly;
 import newtonERP.serveur.Servlet;
 import newtonERP.viewers.secondStep.CheckListViewer;
 import newtonERP.viewers.secondStep.FieldViewer;
@@ -47,19 +49,19 @@ public class PromptViewer {
 
 		html += "<table>";
 
-		for(Field<?> field : promptData.getData().getFields()){
+		for(Field field : promptData.getData().getFields()){
 			if(promptData.isReadOnly()){
-				field.setReadOnly(true);
+				field.addProperty(new ReadOnly());
 			}
 
-			ListOfValue listOfValue = promptData.getData().tryMatchListOfValue(field.getShortName());
+			ListOfValue listOfValue = promptData.getData().tryMatchListOfValue(field.getSystemName());
 
 			if(listOfValue == null){
 				html += "\n<tr><td>" + field.getName() + ": </td><td>" + FieldViewer.getHtmlCode(field) + "</td></tr>";
 			}else{
 				html += "<tr><td>"
-				        + SelectBoxViewer.getHtmlCode(listOfValue, field.getShortName(), field.getDataString(),
-				                field.isReadOnly()) + "</td></tr>";
+				        + SelectBoxViewer.getHtmlCode(listOfValue, field.getSystemName(), field.getDataString(),
+				                field.isPropertySet(ReadOnly.class)) + "</td></tr>";
 			}
 
 		}

@@ -1,15 +1,18 @@
-package newtonERP.module.generalEntity; 
- // TODO: clean up that file
+package newtonERP.module.generalEntity;
+
+// TODO: clean up that file
 
 import newtonERP.module.AbstractEntity;
 import newtonERP.orm.fields.Fields;
 import newtonERP.orm.fields.VolatileFields;
 import newtonERP.orm.fields.field.Field;
-import newtonERP.orm.fields.field.type.FieldString;
+import newtonERP.orm.fields.field.FieldFactory;
+import newtonERP.orm.fields.field.FieldType;
 
 /**
  * @author CloutierJo
  */
+@Deprecated
 public class VolatilEntity extends AbstractEntity {
 
 	/**
@@ -32,7 +35,7 @@ public class VolatilEntity extends AbstractEntity {
 	public void addField(String label, String fieldName, String currentValue)
 
 	{
-		Field<?> field = new FieldString(label, fieldName);
+		Field field = FieldFactory.newField(FieldType.STRING, fieldName);
 		field.setData(currentValue);
 		addField(field);
 	}
@@ -48,7 +51,7 @@ public class VolatilEntity extends AbstractEntity {
 	/**
 	 * @param field un field a ajouter
 	 */
-	public void addField(Field<?> field) {
+	public void addField(Field field) {
 		((VolatileFields) (getFields())).add(field);
 	}
 }

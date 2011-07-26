@@ -1,5 +1,6 @@
-package modules.taskModule.entityDefinitions; 
- // TODO: clean up that file
+package modules.taskModule.entityDefinitions;
+
+// TODO: clean up that file
 
 import java.util.Vector;
 
@@ -8,8 +9,9 @@ import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.associations.PluralAccessor;
 import newtonERP.orm.fields.Fields;
 import newtonERP.orm.fields.field.Field;
+import newtonERP.orm.fields.field.FieldFactory;
+import newtonERP.orm.fields.field.FieldType;
 import newtonERP.orm.fields.field.type.FieldInt;
-import newtonERP.orm.fields.field.type.FieldText;
 
 /**
  * Entité de recherche pour spécification
@@ -27,9 +29,8 @@ public class SearchEntity extends AbstractOrmEntity {
 
 	@Override
 	public Fields initFields() {
-		Vector<Field<?>> fieldList = new Vector<Field<?>>();
-		fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
-		fieldList.add(new FieldText("Description", "name", false));
+		Vector<Field> fieldList = new Vector<Field>();
+		fieldList.add(FieldFactory.newField(FieldType.TEXT, "name"));
 		fieldList.add(new FieldInt("Entité", new EntityEntity().getForeignKeyName()));
 		return new Fields(fieldList);
 	}

@@ -1,5 +1,6 @@
-package newtonERP.viewers.viewerData; 
- // TODO: clean up that file
+package newtonERP.viewers.viewerData;
+
+// TODO: clean up that file
 
 import java.util.Vector;
 
@@ -63,12 +64,12 @@ public class SearchBar extends AbstractEntity {
 	private Vector<String> buildPossibleOrderList(AbstractOrmEntity concernedEntity) {
 		Vector<String> newPossibleOrderList = new Vector<String>();
 
-		for(Field<?> field : concernedEntity.getFields()){
-			newPossibleOrderList.add(field.getShortName() + " ASC");
+		for(Field field : concernedEntity.getFields()){
+			newPossibleOrderList.add(field.getSystemName() + " ASC");
 		}
 
-		for(Field<?> field : concernedEntity.getFields()){
-			newPossibleOrderList.add(field.getShortName() + " DESC");
+		for(Field field : concernedEntity.getFields()){
+			newPossibleOrderList.add(field.getSystemName() + " DESC");
 		}
 
 		return newPossibleOrderList;

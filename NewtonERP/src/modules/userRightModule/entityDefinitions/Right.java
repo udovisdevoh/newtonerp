@@ -1,5 +1,6 @@
-package modules.userRightModule.entityDefinitions; 
- // TODO: clean up that file
+package modules.userRightModule.entityDefinitions;
+
+// TODO: clean up that file
 
 import java.util.Hashtable;
 import java.util.Vector;
@@ -8,8 +9,9 @@ import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.fields.Fields;
 import newtonERP.orm.fields.field.Field;
-import newtonERP.orm.fields.field.type.FieldInt;
-import newtonERP.orm.fields.field.type.FieldString;
+import newtonERP.orm.fields.field.FieldFactory;
+import newtonERP.orm.fields.field.FieldType;
+import newtonERP.orm.fields.field.property.NaturalKey;
 import newtonERP.viewers.viewerData.BaseViewerData;
 import newtonERP.viewers.viewerData.ListViewerData;
 
@@ -28,17 +30,16 @@ public class Right extends AbstractOrmEntity {
 
 	@Override
 	public Fields initFields() {
-		FieldString moduleName = new FieldString("Module", "moduleName");
-		moduleName.setNaturalKey(true);
+		Field moduleName = FieldFactory.newField(FieldType.STRING, "moduleName");
+		moduleName.addProperty(new NaturalKey());
 
-		FieldString entityName = new FieldString("Entité", "entityName");
-		entityName.setNaturalKey(true);
+		Field entityName = FieldFactory.newField(FieldType.STRING, "entityName");
+		entityName.addProperty(new NaturalKey());
 
-		FieldString actionName = new FieldString("Action", "actionName");
-		actionName.setNaturalKey(true);
+		Field actionName = FieldFactory.newField(FieldType.STRING, "actionName");
+		actionName.addProperty(new NaturalKey());
 
-		Vector<Field<?>> fieldsInit = new Vector<Field<?>>();
-		fieldsInit.add(new FieldInt("Numéro", getPrimaryKeyName()));
+		Vector<Field> fieldsInit = new Vector<Field>();
 		fieldsInit.add(moduleName);
 		fieldsInit.add(entityName);
 		fieldsInit.add(actionName);

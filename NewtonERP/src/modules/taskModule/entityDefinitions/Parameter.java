@@ -1,14 +1,15 @@
-package modules.taskModule.entityDefinitions; 
- // TODO: clean up that file
+package modules.taskModule.entityDefinitions;
+
+// TODO: clean up that file
 
 import java.util.Vector;
 
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.fields.Fields;
 import newtonERP.orm.fields.field.Field;
-import newtonERP.orm.fields.field.type.FieldInt;
-import newtonERP.orm.fields.field.type.FieldString;
-import newtonERP.orm.fields.field.type.FieldText;
+import newtonERP.orm.fields.field.FieldFactory;
+import newtonERP.orm.fields.field.FieldType;
+import newtonERP.orm.fields.field.property.NaturalKey;
 
 /**
  * Paramètres custom utilisé par effet de task
@@ -25,14 +26,13 @@ public class Parameter extends AbstractOrmEntity {
 
 	@Override
 	public Fields initFields() {
-		FieldString key = new FieldString("Nom de clef", "key");
-		key.setNaturalKey(true);
+		Field key = FieldFactory.newField(FieldType.STRING, "key");
+		key.addProperty(new NaturalKey());
 
-		FieldText value = new FieldText("Valeur", "value", false);
-		value.setNaturalKey(true);
+		Field value = FieldFactory.newField(FieldType.TEXT, "value", false);
+		value.addProperty(new NaturalKey());
 
-		Vector<Field<?>> fieldList = new Vector<Field<?>>();
-		fieldList.add(new FieldInt("Numéro", getPrimaryKeyName()));
+		Vector<Field> fieldList = new Vector<Field>();
 		fieldList.add(key);
 		fieldList.add(value);
 
