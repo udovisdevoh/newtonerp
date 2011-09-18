@@ -48,6 +48,7 @@ public class Address extends AbstractOrmEntity {
 		fieldsInit.add(streetName);
 		fieldsInit.add(FieldFactory.newField(FieldType.STRING, "Zip Code"));
 		fieldsInit.add(FieldFactory.newField(FieldType.STRING, "Phone Number"));
+
 		fieldsInit.add(new FieldInt("Pays", new Country().getForeignKeyName()));
 		fieldsInit.add(new FieldInt("Province / État", new State().getForeignKeyName()));
 		return new Fields(fieldsInit);

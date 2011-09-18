@@ -4,7 +4,6 @@ package newtonERP.orm.fields.field;
  * The Class AbstractFieldDecorator.
  * 
  * @author Jonatan Cloutier
- * @param <T> the generic type
  */
 public abstract class AbstractFieldDecorator {
 
@@ -48,7 +47,7 @@ public abstract class AbstractFieldDecorator {
 	 * @return the data
 	 */
 	public <T> T getData() {
-		return (T) next.getData();
+		return next.getData();
 	}
 
 	/**

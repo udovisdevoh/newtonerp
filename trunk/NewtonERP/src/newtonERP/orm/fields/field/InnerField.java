@@ -1,7 +1,5 @@
 package newtonERP.orm.fields.field;
 
-// TODO: Auto-generated Javadoc
-
 /**
  * Super class for entity fields used in the modules.
  * 

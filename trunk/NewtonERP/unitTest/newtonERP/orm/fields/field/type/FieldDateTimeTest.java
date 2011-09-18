@@ -28,11 +28,9 @@ public class FieldDateTimeTest {
 
 	/**
 	 * Sets the up.
-	 * 
-	 * @throws Exception the exception
 	 */
 	@Before
-	public void setUp() throws Exception {
+	public void setUp() {
 		fieldDateTime = new FieldDateTime();
 
 		gregorianCalendar = new GregorianCalendar();
@@ -42,11 +40,9 @@ public class FieldDateTimeTest {
 
 	/**
 	 * Tear down.
-	 * 
-	 * @throws Exception the exception
 	 */
 	@After
-	public void tearDown() throws Exception {
+	public void tearDown() {
 		// nothing to do
 	}
 

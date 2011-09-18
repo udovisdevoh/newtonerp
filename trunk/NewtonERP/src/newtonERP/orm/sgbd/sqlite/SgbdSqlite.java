@@ -17,6 +17,7 @@ import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.exceptions.OrmSqlException;
 import newtonERP.orm.fields.Fields;
 import newtonERP.orm.fields.field.Field;
+import newtonERP.orm.fields.field.property.CalculateProperty;
 import newtonERP.orm.fields.field.type.FieldBool;
 import newtonERP.orm.fields.field.type.FieldDateTime;
 import newtonERP.orm.fields.field.type.FieldDouble;
@@ -64,8 +65,8 @@ public class SgbdSqlite extends AbstractSgbd {
 
 		}catch(SQLException e){
 			throw new OrmSqlException(
-			        "SqlException when executing the request. Check for entity names matching SqLite keyword could be done : "
-			                + e.getMessage());
+					"SqlException when executing the request. Check for entity names matching SqLite keyword could be done : "
+							+ e.getMessage());
 		}finally{
 			if(stat != null){
 				try{
@@ -152,9 +153,9 @@ public class SgbdSqlite extends AbstractSgbd {
 			whereClause += "( ";
 
 			for(Field field : entity.getFields().getFields()){
-				if(field.getCalcul() == null && field.getData() != null){
+				if(!field.isPropertySet(CalculateProperty.class) && field.getData() != null){
 					whereClause += field.getSystemName() + " " + field.getOperator() + " '" + field.getDataString(true)
-					        + "'";
+							+ "'";
 
 					whereClause += " AND ";
 				}
@@ -193,7 +194,8 @@ public class SgbdSqlite extends AbstractSgbd {
 		while(dataIterator.hasNext()){
 			// Retrieve key
 			Field data = dataIterator.next();
-			if(!data.getSystemName().matches("PK.*") && data.getCalcul() == null && data.getData() != null){
+			if(!data.getSystemName().matches("PK.*") && !data.isPropertySet(CalculateProperty.class)
+					&& data.getData() != null){
 				sqlQuery += data.getSystemName() + "='" + data.getDataString(true) + "', ";
 			}
 		}
@@ -241,7 +243,7 @@ public class SgbdSqlite extends AbstractSgbd {
 	@Deprecated
 	@Override
 	public ResultSet select(AbstractOrmEntity searchEntity, Vector<String> searchCriteriasParam, int limit, int offset,
-	        String orderBy) {
+			String orderBy) {
 		String sqlQuery = "SELECT * FROM " + prefix + searchEntity.getSystemName();
 
 		if(searchCriteriasParam != null){
@@ -306,7 +308,7 @@ public class SgbdSqlite extends AbstractSgbd {
 			Field field = (Field) keyIterator.next();
 
 			if(!field.getSystemName().matches("PK.*")){
-				if(field.getCalcul() == null && field.getData() != null){
+				if(!field.isPropertySet(CalculateProperty.class) && field.getData() != null){
 					sqlQuery += "'" + field.getSystemName() + "', ";
 				}
 			}
@@ -322,7 +324,7 @@ public class SgbdSqlite extends AbstractSgbd {
 			Field field = (Field) dataIterator.next();
 
 			if(!field.getSystemName().matches("PK.*")){
-				if(field.getCalcul() == null && field.getData() != null){
+				if(!field.isPropertySet(CalculateProperty.class) && field.getData() != null){
 					sqlQuery += "'" + field.getDataString(true) + "', ";
 				}
 			}
@@ -470,7 +472,7 @@ public class SgbdSqlite extends AbstractSgbd {
 			// If it is a primary because it matches PK, else we
 			// check the datatypes and match them with a datatype
 			// good for the database
-			if(field.getCalcul() != null){
+			if(field.isPropertySet(CalculateProperty.class)){
 				// do not do anything
 			}else if(field.getSystemName().matches("PK.*")){
 				sqlQuery += field.getSystemName() + " INTEGER PRIMARY KEY AUTOINCREMENT, ";
@@ -518,7 +520,7 @@ public class SgbdSqlite extends AbstractSgbd {
 		// Alors on utilise un count fait à bras
 
 		String sqlQuery = "SELECT " + searchEntity.getPrimaryKeyName() + " FROM " + prefix
-		        + searchEntity.getSystemName();
+				+ searchEntity.getSystemName();
 
 		if(searchParameterList != null){
 			sqlQuery += buildWhereClause(searchParameterList);

@@ -66,7 +66,7 @@ public abstract class FieldValidator extends AbstractProperty {
 	 */
 	@Override
 	protected AbstractFieldDecorator getDecorator() {
-		return new CalculateDecorator(this);
+		return new FieldValidatorDecorator(this);
 	}
 
 	/**
@@ -81,7 +81,7 @@ public abstract class FieldValidator extends AbstractProperty {
 	/**
 	 * The Class CalculateDecorator.
 	 */
-	private final class CalculateDecorator extends AbstractFieldDecorator {
+	private final class FieldValidatorDecorator extends AbstractFieldDecorator {
 
 		/** The calcule ref. */
 		private FieldValidator validatorRef;
@@ -91,7 +91,7 @@ public abstract class FieldValidator extends AbstractProperty {
 		 * 
 		 * @param validatorRef the validator ref
 		 */
-		public CalculateDecorator(FieldValidator validatorRef) {
+		public FieldValidatorDecorator(FieldValidator validatorRef) {
 			this.validatorRef = validatorRef;
 		}
 

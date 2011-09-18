@@ -1,5 +1,5 @@
-package newtonERP.orm; 
- // TODO: clean up that file
+package newtonERP.orm;
+// TODO: clean up that file
 
 import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertSame;
@@ -21,21 +21,17 @@ public class OrmTest {
 
 	/**
 	 * Sets the up.
-	 * 
-	 * @throws Exception the exception
 	 */
 	@Before
-	public void setUp() throws Exception {
+	public void setUp() {
 		orm = Orm.getInstance("unitTesting");
 	}
 
 	/**
 	 * Tear down.
-	 * 
-	 * @throws Exception the exception
 	 */
 	@After
-	public void tearDown() throws Exception {
+	public void tearDown() {
 		orm.disconnect();
 	}
 

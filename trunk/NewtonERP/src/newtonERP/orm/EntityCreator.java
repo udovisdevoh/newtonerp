@@ -11,6 +11,7 @@ import newtonERP.module.AbstractEntity;
 import newtonERP.module.AbstractOrmEntity;
 import newtonERP.orm.exceptions.OrmEntityCreationException;
 import newtonERP.orm.fields.field.Field;
+import newtonERP.orm.fields.field.property.CalculateProperty;
 
 /**
  * Class used to create the entities in the select statement of the orm because it's not the orm's responsibility. By
@@ -43,7 +44,7 @@ class EntityCreator {
 
 				// We add each column to the hashtable plus it's value
 				for(Field field : fields){
-					if(field.getCalcul() == null){
+					if(!field.isPropertySet(CalculateProperty.class)){
 						String key = field.getSystemName();
 						Object value = rs.getObject(field.getSystemName());
 						if(value != null){
@@ -62,7 +63,7 @@ class EntityCreator {
 			}
 		}catch(Exception e){
 			throw new OrmEntityCreationException("Erreur à la création des entitées provenant d'une requête de l'orm",
-			        e);
+					e);
 		}
 		return returnedEntities;
 	}

@@ -28,11 +28,9 @@ public class FieldTimeTest {
 
 	/**
 	 * Sets the up.
-	 * 
-	 * @throws Exception the exception
 	 */
 	@Before
-	public void setUp() throws Exception {
+	public void setUp() {
 		fieldTime = new FieldTime();
 
 		gregorianCalendar = new GregorianCalendar();
@@ -42,11 +40,9 @@ public class FieldTimeTest {
 
 	/**
 	 * Tear down.
-	 * 
-	 * @throws Exception the exception
 	 */
 	@After
-	public void tearDown() throws Exception {
+	public void tearDown() {
 		// nothing to do
 	}
 
@@ -81,19 +77,19 @@ public class FieldTimeTest {
 	 * Test method for {@link newtonERP.orm.fields.field.type.FieldBool#FieldBool()}.
 	 */
 	@Test
-	public final void testFieldSDateTime() {
-		FieldDateTime testFieldDateTime = new FieldTime();
-		assertNotNull(testFieldDateTime);
+	public final void testFieldsTime() {
+		FieldTime testFieldTime = new FieldTime();
+		assertNotNull(testFieldTime);
 	}
 
 	/**
 	 * Test method for {@link newtonERP.orm.fields.field.type.FieldBool#FieldBool(java.lang.Boolean)}.
 	 */
 	@Test
-	public final void testFieldDateTimeDate() {
-		FieldDateTime testFieldDateTime = new FieldTime(gregorianCalendar);
-		assertNotNull(testFieldDateTime);
-		assertEquals(gregorianCalendar, testFieldDateTime.getData());
+	public final void testFieldTimeDate() {
+		FieldTime testFieldTime = new FieldTime(gregorianCalendar);
+		assertNotNull(testFieldTime);
+		assertEquals(gregorianCalendar, testFieldTime.getData());
 	}
 
 	/**

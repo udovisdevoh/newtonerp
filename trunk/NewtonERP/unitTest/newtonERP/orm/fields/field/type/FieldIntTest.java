@@ -22,21 +22,17 @@ public class FieldIntTest {
 
 	/**
 	 * Sets the up.
-	 * 
-	 * @throws Exception the exception
 	 */
 	@Before
-	public void setUp() throws Exception {
+	public void setUp() {
 		fieldInt = new FieldInt();
 	}
 
 	/**
 	 * Tear down.
-	 * 
-	 * @throws Exception the exception
 	 */
 	@After
-	public void tearDown() throws Exception {
+	public void tearDown() {
 		// nothing to do
 	}
 
