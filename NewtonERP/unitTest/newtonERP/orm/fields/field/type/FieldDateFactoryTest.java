@@ -32,11 +32,9 @@ public class FieldDateFactoryTest {
 
 	/**
 	 * Sets the up.
-	 * 
-	 * @throws Exception the exception
 	 */
 	@Before
-	public void setUp() throws Exception {
+	public void setUp() {
 		fieldDateTime = FieldFactory.newField(FieldType.DATE, "date test");
 
 		gregorianCalendar = new GregorianCalendar();
@@ -46,11 +44,9 @@ public class FieldDateFactoryTest {
 
 	/**
 	 * Tear down.
-	 * 
-	 * @throws Exception the exception
 	 */
 	@After
-	public void tearDown() throws Exception {
+	public void tearDown() {
 		// nothing to do
 	}
 

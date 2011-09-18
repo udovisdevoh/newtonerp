@@ -2,30 +2,31 @@ package newtonERP.module;
 
 // TODO: clean up that file
 
-import java.util.HashSet;
-import java.util.Hashtable;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Vector;
 
 import modules.taskModule.entityDefinitions.EntityEntity;
 import modules.taskModule.entityDefinitions.FieldEntity;
 import newtonERP.module.exception.EntityException;
-import newtonERP.module.generalEntity.ListOfValue;
+import newtonERP.orm.Orm;
+import newtonERP.orm.entity.OrmEntity;
+import newtonERP.orm.entity.RelationEntity;
 import newtonERP.orm.fields.Fields;
 import newtonERP.orm.fields.VolatileFields;
 import newtonERP.orm.fields.field.DynamicFieldCache;
 import newtonERP.orm.fields.field.Field;
-import newtonERP.orm.fields.field.type.FieldBool;
+import newtonERP.orm.relation.AbstractRelation;
 
 /**
- * @author r3lemaypa, r3lacasgu, CloutierJo
+ * @author r3lemaypa, r3lacasgu, Jonatan Cloutier
  */
-public abstract class AbstractEntity {
+public abstract class AbstractEntity implements RelationEntity {
 	protected Fields fields;
-	private Hashtable<String, ListOfValue> positiveListOfValueList;
-	private static HashSet<ListOfValue> negativeListOfValueList;
 	protected Module currentModule;
 	private AbstractAction currentAction;
 	private String detailedDescription = null;
+	private HashMap<Class<? extends RelationEntity>, AbstractRelation> relationMap;
 
 	/**
 	 * construit une entity ne comportant aucun champ
@@ -97,7 +98,6 @@ public abstract class AbstractEntity {
 		result = prime * result + ((currentModule == null) ? 0 : currentModule.hashCode());
 		result = prime * result + ((detailedDescription == null) ? 0 : detailedDescription.hashCode());
 		result = prime * result + ((fields == null) ? 0 : fields.hashCode());
-		result = prime * result + ((positiveListOfValueList == null) ? 0 : positiveListOfValueList.hashCode());
 		return result;
 	}
 
@@ -139,13 +139,6 @@ public abstract class AbstractEntity {
 				return false;
 			}
 		}else if(!fields.equals(other.fields)){
-			return false;
-		}
-		if(positiveListOfValueList == null){
-			if(other.positiveListOfValueList != null){
-				return false;
-			}
-		}else if(!positiveListOfValueList.equals(other.positiveListOfValueList)){
 			return false;
 		}
 		return true;
@@ -190,20 +183,9 @@ public abstract class AbstractEntity {
 	 * @param shortName le nom du champ voulu
 	 * @param data the data to set
 	 */
+	@Override
 	public void setData(String shortName, Object data) {
 		getFields().setData(shortName, data);
-	}
-
-	/**
-	 * @param fieldKeyName the field name
-	 * @return If list of value exist, return it, else, return null
-	 */
-	public ListOfValue tryMatchListOfValue(String fieldKeyName) {
-		if(positiveListOfValueList == null){
-			return null;
-		}
-
-		return positiveListOfValueList.get(fieldKeyName);
 	}
 
 	/**
@@ -255,70 +237,6 @@ public abstract class AbstractEntity {
 	}
 
 	/**
-	 * @return liste des listOfValue
-	 */
-	public Hashtable<String, ListOfValue> getPositiveListOfValueList() {
-		if(positiveListOfValueList == null){
-			positiveListOfValueList = new Hashtable<String, ListOfValue>();
-		}
-
-		return positiveListOfValueList;
-	}
-
-	/**
-	 * @return liste des listOfValue
-	 */
-	public HashSet<ListOfValue> getNegativeListOfValueList() {
-		if(negativeListOfValueList == null){
-			negativeListOfValueList = new HashSet<ListOfValue>();
-		}
-
-		return negativeListOfValueList;
-	}
-
-	/**
-	 * @param foreignKeyName nom de la clef etrangère de la listOfValue
-	 * @param listOfValue listOfValue à ajouter
-	 */
-	public void addPositiveListOfValue(String foreignKeyName, ListOfValue listOfValue) {
-		// laissez le get car c'est de la lazy initialization -Guillaume
-		getPositiveListOfValueList().put(foreignKeyName, listOfValue);
-	}
-
-	/**
-	 * @param foreignKeyName nom de la clef etrangère de la listOfValue
-	 * @param listOfValue listOfValue à ajouter
-	 */
-	public void addNegativeListOfValue(ListOfValue listOfValue) {
-		// laissez le get car c'est de la lazy initialization -Guillaume
-
-		for(ListOfValue currentListOfValue : getNegativeListOfValueList()){
-			if(currentListOfValue.equals(listOfValue)){
-				return;
-			}
-		}
-
-		getNegativeListOfValueList().add(listOfValue);
-	}
-
-	/**
-	 * @param inputName nom du champ
-	 * @return si le champ est un checkbox
-	 */
-	public boolean isMatchCheckBox(String inputName) {
-		Field field = getFields().getField(inputName);
-
-		if(field == null){
-			return false;
-		}
-
-		if(field instanceof FieldBool){
-			return true;
-		}
-		return false;
-	}
-
-	/**
 	 * remet l'etat de l'entity a ses valeur initial
 	 */
 	public void reset() {
@@ -337,5 +255,43 @@ public abstract class AbstractEntity {
 	 */
 	public void setDetailedDescription(String detailedDescription) {
 		this.detailedDescription = detailedDescription;
+	}
+
+	/**
+	 * Gets the id.
+	 * 
+	 * @return the id
+	 */
+	@Override
+	public int getId() {
+		return (Integer) getData("id");
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public List<? extends RelationEntity> get() {
+		// TODO: replace by query ASAP
+		Vector<OrmEntity> entities = new Vector<OrmEntity>();
+		entities.add(this);
+		return Orm.getInstance().select(entities);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public AbstractRelation getRelation(Class<? extends RelationEntity> relatedEntityClass) {
+		return relationMap.get(relatedEntityClass);
+
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void addNewRelation(AbstractRelation newRelation) {
+		relationMap.put(newRelation.getRelatedEntityClass(), newRelation);
 	}
 }

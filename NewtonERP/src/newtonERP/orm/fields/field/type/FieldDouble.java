@@ -36,12 +36,13 @@ public class FieldDouble extends InnerField<Double> {
 	public void setDataString(String data) {
 		try{
 			if(data == null || data.equals("null")){
-				data = "0.0";
+				setData(0.0);
+			}else{
+				setData(Double.parseDouble(data));
 			}
-			this.data = Double.parseDouble(data);
 		}catch(Exception e){
 			root.addProperty(new ErrorProperty(
-			        "Le format de donnée entrée ne correspond pas avec le type de champ (Double): " + data));
+					"Le format de donnée entrée ne correspond pas avec le type de champ (Double): " + data));
 			Logger.error(e.getMessage());// TODO: change to send error back to front end
 		}
 	}

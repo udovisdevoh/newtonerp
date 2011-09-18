@@ -25,21 +25,17 @@ public class FieldIntFactoryTest {
 
 	/**
 	 * Sets the up.
-	 * 
-	 * @throws Exception the exception
 	 */
 	@Before
-	public void setUp() throws Exception {
+	public void setUp() {
 		fieldInt = FieldFactory.newField(FieldType.INT, "test int");
 	}
 
 	/**
 	 * Tear down.
-	 * 
-	 * @throws Exception the exception
 	 */
 	@After
-	public void tearDown() throws Exception {
+	public void tearDown() {
 		// nothing to do
 	}
 

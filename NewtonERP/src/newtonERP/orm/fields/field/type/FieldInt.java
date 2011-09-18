@@ -36,12 +36,12 @@ public class FieldInt extends InnerField<Integer> {
 	public void setDataString(String data) {
 		try{
 			if(data == null || data.equals("null")){
-				data = "0";
+				setData(0);
 			}
 			setData(Integer.parseInt(data));
 		}catch(Exception e){
 			root.addProperty(new ErrorProperty(
-			        "Le format de donnée entrée ne correspond pas avec le type de champ (int): " + data));
+					"Le format de donnée entrée ne correspond pas avec le type de champ (int): " + data));
 			Logger.error(e.getMessage());// TODO: change to send error back to front end
 		}
 	}

@@ -54,6 +54,30 @@ public class DbGraph extends AbstractAction {
 		return ret;
 	}
 
+	protected Hashtable<String, VisualEntity> getvEntity() {
+		return vEntity;
+	}
+
+	protected void setvEntity(Hashtable<String, VisualEntity> vEntity) {
+		this.vEntity = vEntity;
+	}
+
+	protected int getMaxX() {
+		return maxX;
+	}
+
+	protected void setMaxX(int maxX) {
+		this.maxX = maxX;
+	}
+
+	protected int getMaxY() {
+		return maxY;
+	}
+
+	protected void setMaxY(int maxY) {
+		this.maxY = maxY;
+	}
+
 	private class visualGraph {
 		Vector<String> tmpEntityNameList;
 		int nextx;
@@ -63,18 +87,18 @@ public class DbGraph extends AbstractAction {
 			nextx = 0;
 			presenty = 0;
 			for(AbstractOrmEntity entity : new TaskModule().getEntityDefinitionList().values()){
-				vEntity.put(entity.getSystemName(), new VisualEntity(entity));
+				getvEntity().put(entity.getSystemName(), new VisualEntity(entity));
 			}
 
 			tmpEntityNameList = new Vector<String>();
-			for(String str : vEntity.keySet()){
+			for(String str : getvEntity().keySet()){
 				tmpEntityNameList.add(str);
 			}
 		}
 
 		public void designGraph() {
-			for(VisualEntity entity : vEntity.values()){
-				if(tmpEntityNameList.remove(entity.entity.getSystemName())){
+			for(VisualEntity entity : getvEntity().values()){
+				if(tmpEntityNameList.remove(entity.getEntity().getSystemName())){
 					drawGraph(entity);
 				}
 			}
@@ -83,17 +107,17 @@ public class DbGraph extends AbstractAction {
 		public void drawGraph(VisualEntity entity) {
 			if(nextx > 500){
 				nextx = 0;
-				presenty = maxY + 10;
+				presenty = getMaxY() + 10;
 			}
 			entity.x = nextx;
 			nextx += entity.width + 15;
-			if(maxX < nextx){
-				maxX = nextx;
+			if(getMaxX() < nextx){
+				setMaxX(nextx);
 			}
 
 			entity.y = presenty;
-			if(maxY < entity.height + presenty){
-				maxY = entity.height + presenty;
+			if(getMaxY() < entity.height + presenty){
+				setMaxY(entity.height + presenty);
 			}
 
 			/*
@@ -132,12 +156,20 @@ public class DbGraph extends AbstractAction {
 			height = (entity.getFields().getFields().size() + 1) * lineHeight + 2 * marge;
 		}
 
+		protected AbstractOrmEntity getEntity() {
+			return entity;
+		}
+
+		protected void setEntity(AbstractOrmEntity entity) {
+			this.entity = entity;
+		}
+
 		/**
 		 * @return l'image généré
 		 */
 		public BufferedImage getDrawEntity() {
 			BufferedImage bi = new BufferedImage(width + 2 * marge + pad, height + 2 * marge,
-			        BufferedImage.TYPE_BYTE_BINARY);
+					BufferedImage.TYPE_BYTE_BINARY);
 			Graphics g = bi.getGraphics();
 			g.setColor(Color.BLACK);
 			g.fillRect(0, 0, bi.getWidth(), bi.getHeight());

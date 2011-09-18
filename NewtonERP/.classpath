@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry excluding="newtonERP/viewers/viewerData/FloorViewerData.java" kind="src" path="src"/>
+	<classpathentry excluding="newtonERP/viewers/viewerData/FloorViewerData.java|newtonERP/orm/fields/field/OldField.java" kind="src" path="src"/>
 	<classpathentry kind="src" path="unitTest"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="Librairies/sqlitejdbc-v056.jar"/>
@@ -19,6 +19,6 @@
 			<attribute name="javadoc_location" value="http://jetty.mortbay.org/jetty/jetty-6/apidocs/"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry exported="true" kind="lib" path="Librairies/junit.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -31,6 +31,6 @@ public class VolatileFields extends Fields {
 	 * @param field field à ajouter ou remplacer s'il existe
 	 */
 	public void add(Field field) {
-		fieldsDataMap.put(field.getSystemName(), field);
+		// fieldsDataMap.put(field.getSystemName(), field);
 	}
 }

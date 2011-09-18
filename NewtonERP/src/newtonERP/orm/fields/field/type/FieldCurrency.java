@@ -50,15 +50,16 @@ public class FieldCurrency extends FieldDouble {
 	@Override
 	public void setDataString(String data) {
 		try{
-			data = data.replaceAll("\\s", "");
-			data = data.replaceAll("\\$", "");
-			data = data.replaceAll("\\.", ",");
-			data = data.trim();
-			data += " $";
-			this.data = df.parse(data).doubleValue();
+			String dataFormated = data;
+			dataFormated = dataFormated.replaceAll("\\s", "");
+			dataFormated = dataFormated.replaceAll("\\$", "");
+			dataFormated = dataFormated.replaceAll("\\.", ",");
+			dataFormated = dataFormated.trim();
+			dataFormated += " $";
+			setData(df.parse(dataFormated).doubleValue());
 		}catch(Exception e){
 			root.addProperty(new ErrorProperty(
-			        "Le format de donnée entrée ne correspond pas avec le type de champ (Currency): " + data));
+					"Le format de donnée entrée ne correspond pas avec le type de champ (Currency): " + data));
 			Logger.error(e.getMessage());// TODO: change to send error back to front end
 		}
 	}

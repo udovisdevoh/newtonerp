@@ -2,10 +2,9 @@ package newtonERP.orm.fields.field.property;
 
 import newtonERP.orm.fields.Fields;
 import newtonERP.orm.fields.field.AbstractFieldDecorator;
-import newtonERP.orm.fields.field.Field;
 import newtonERP.orm.fields.field.AbstractProperty;
+import newtonERP.orm.fields.field.Field;
 
-// TODO: Auto-generated Javadoc
 /**
  * The property CalculateProperty set a calculated field every read will get the value generated from the calcul method.
  * This property also set the field as readOnly since a write operation is not possible.

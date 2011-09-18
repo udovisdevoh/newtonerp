@@ -1,20 +1,14 @@
-package newtonERP.module; 
- // TODO: clean up that file
+package newtonERP.module;
+// TODO: clean up that file
 
 import java.util.Hashtable;
-import java.util.TreeMap;
 import java.util.Vector;
 
 import newtonERP.common.ActionLink;
 import newtonERP.common.ListModule;
-import newtonERP.module.generalEntity.FlagPool;
 import newtonERP.module.generalEntity.ListOfValue;
 import newtonERP.orm.Orm;
-import newtonERP.orm.associations.AccessorManager;
 import newtonERP.orm.associations.FlagPoolManager;
-import newtonERP.orm.associations.GateWay;
-import newtonERP.orm.associations.PluralAccessor;
-import newtonERP.orm.associations.PluralAccessorManager;
 import newtonERP.orm.fields.Fields;
 import newtonERP.orm.fields.field.Field;
 import newtonERP.orm.fields.field.property.NaturalKey;
@@ -27,24 +21,16 @@ import newtonERP.viewers.viewerData.PromptViewerData;
 import newtonERP.viewers.viewerData.SearchBar;
 
 /**
- * @author cloutierJo
+ * @author Jonatan Cloutier
  */
 public abstract class AbstractOrmEntity extends AbstractEntity {
 	private String visibleName;
-	private TreeMap<String, PluralAccessor> pluralAccessorList;
-	private TreeMap<String, AbstractOrmEntity> singleAccessorList;
-	private Vector<GateWay> gateWayList;
-	private Vector<String> accessorNameList;
 
 	/**
 	 */
 	public AbstractOrmEntity() {
 		super();
 	}
-
-	private Hashtable<String, FlagPool> positiveFlagPoolList;
-
-	private static Hashtable<String, FlagPool> negativeFlagPoolList;
 
 	@Override
 	public abstract Fields initFields();
@@ -191,7 +177,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity {
 			FlagPoolManager.applyFlagPoolChanges(this, getPositiveFlagPoolList().values(), parameters);
 
 			retEntity = (AbstractOrmEntity) ((PromptViewerData) editUI(new Hashtable<String, String>(), isReadOnly))
-			        .getData();
+					.getData();
 			promptData.addNormalMessage("Changements accomplis");
 		}
 
@@ -342,13 +328,13 @@ public abstract class AbstractOrmEntity extends AbstractEntity {
 		int totalRowCount = Orm.getInstance().count(searchEntity, searchParameters);
 		if(limit < totalRowCount){
 			entityList.setPageSelector(new PageSelector(limit, offset, totalRowCount, "/"
-			        + getCurrentModule().getSystemName() + "/GetList/" + getSystemName(), searchEntry, orderBy));
+					+ getCurrentModule().getSystemName() + "/GetList/" + getSystemName(), searchEntry, orderBy));
 		}else{
 			entityList.setPageSelector(null);
 		}
 
 		entityList.setSearchBar(new SearchBar("/" + getCurrentModule().getSystemName() + "/GetList/" + getSystemName(),
-		        parameters.get("searchEntry"), this, orderBy, limit, offset));
+				parameters.get("searchEntry"), this, orderBy, limit, offset));
 
 		for(AbstractOrmEntity entity : resultSet){
 			entityList.addEntity(entity);
@@ -377,7 +363,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity {
 	public int getItemLimitListPerPage() {
 		return 15;
 	}
-	
+
 	/**
 	 * @return Module par default
 	 */
@@ -428,6 +414,7 @@ public abstract class AbstractOrmEntity extends AbstractEntity {
 	 * 
 	 * @return the selected entities
 	 */
+	@Override
 	public final Vector<AbstractOrmEntity> get() {
 		return get(this);
 	}
@@ -507,17 +494,6 @@ public abstract class AbstractOrmEntity extends AbstractEntity {
 		}
 
 		return visibleName;
-	}
-
-	/**
-	 * @return the flag pool list
-	 */
-	public final Hashtable<String, FlagPool> getPositiveFlagPoolList() {
-		if(positiveFlagPoolList == null){
-			positiveFlagPoolList = new Hashtable<String, FlagPool>();
-		}
-
-		return positiveFlagPoolList;
 	}
 
 	/**
@@ -622,106 +598,11 @@ public abstract class AbstractOrmEntity extends AbstractEntity {
 	}
 
 	/**
-	 * @return la liste des accessors plusieurs à plusieurs pour cette entité
-	 */
-	public final TreeMap<String, PluralAccessor> getPluralAccessorList()
-
-	{
-		if(pluralAccessorList == null){
-			pluralAccessorList = AccessorManager.getPluralAccessorList(this);
-		}
-
-		return pluralAccessorList;
-	}
-
-	/**
-	 * @return la liste des accessors 1 à 1 ou plusieurs à 1 pour cette entité
-	 */
-	public final TreeMap<String, AbstractOrmEntity> getSingleAccessorList()
-
-	{
-		if(singleAccessorList == null){
-			singleAccessorList = AccessorManager.getSingleAccessorList(this);
-		}
-
-		return singleAccessorList;
-	}
-
-	/**
-	 * @param accessorName nom de l'accessor
-	 * @return accesseur singulier
-	 */
-	public final AbstractOrmEntity getSingleAccessor(String accessorName)
-
-	{
-		return AccessorManager.getSingleAccessor(this, accessorName);
-	}
-
-	/**
 	 * @param inputName nom du field
 	 * @return valeur contenue dans le field
 	 */
 	public String getInputValue(String inputName) {
 		return fields.getField(inputName).getDataString();
-	}
-
-	/**
-	 * @param visibleDescription description visible du flagPool
-	 * @param flagPool le flag pool
-	 */
-	public void addPositiveFlagPool(String visibleDescription, FlagPool flagPool) {
-		getPositiveFlagPoolList().put(visibleDescription, flagPool);
-	}
-
-	/**
-	 * @param visibleDescription description du flag pool
-	 * @param flagPool flag pool
-	 */
-	public void addNegativeFlagPool(String visibleDescription, FlagPool flagPool) {
-		getNegativeFlagPoolList().put(visibleDescription, flagPool);
-	}
-
-	/**
-	 * @return liste des référence de flag pool inversées
-	 */
-	public Hashtable<String, FlagPool> getNegativeFlagPoolList() {
-		if(negativeFlagPoolList == null){
-			negativeFlagPoolList = new Hashtable<String, FlagPool>();
-		}
-		return negativeFlagPoolList;
-	}
-
-	/**
-	 * @param accessorName non de l'accesseur
-	 * @return accesseur multiple voulu
-	 */
-	public PluralAccessor getPluralAccessor(String accessorName) {
-		return PluralAccessorManager.getPluralAccessor(this, accessorName);
-	}
-
-	/**
-	 * @param accessorName nom de l'accesseur
-	 * @param searchCriteriaEntity entité de recherche pour accesseur multiple critérié
-	 * @return accesseur multiple critérié
-	 */
-	public PluralAccessor getPluralAccessor(String accessorName, AbstractOrmEntity searchCriteriaEntity) {
-		PluralAccessor pluralAccessor = PluralAccessorManager.getPluralAccessor(this, accessorName,
-		        searchCriteriaEntity);
-
-		if(pluralAccessor != null){
-			return pluralAccessor;
-		}
-
-		PluralAccessor uncleanedList = getPluralAccessor(accessorName);
-		PluralAccessor cleanList = new PluralAccessor(uncleanedList.getInternalEntityDefinition());
-
-		for(AbstractOrmEntity entityFromList : uncleanedList){
-			if(entityFromList.matchesCriteriasFrom(searchCriteriaEntity)){
-				cleanList.add(entityFromList);
-			}
-		}
-
-		return cleanList;
 	}
 
 	private boolean matchesCriteriasFrom(AbstractOrmEntity searchCriteriaEntity) {
@@ -738,23 +619,6 @@ public abstract class AbstractOrmEntity extends AbstractEntity {
 	}
 
 	/**
-	 * @param foreignEntity entité étrangère
-	 */
-	public void assign(AbstractOrmEntity foreignEntity) {
-		String foreignEntityForeignKeyName = foreignEntity.getForeignKeyName();
-		String localEntityForeignKeyName = getForeignKeyName();
-
-		if(getFields().containsFieldName(foreignEntityForeignKeyName)){
-			setData(foreignEntityForeignKeyName, foreignEntity.getPrimaryKeyValue());
-		}else if(foreignEntity.getFields().containsFieldName(localEntityForeignKeyName)){
-			foreignEntity.setData(localEntityForeignKeyName, getPrimaryKeyValue());
-		}else{
-			throw new RuntimeException("Impossible d'assigner " + getNaturalKeyName() + " à "
-			        + foreignEntity.getNaturalKeyName());
-		}
-	}
-
-	/**
 	 */
 	public void save() {
 		if(getPrimaryKeyValue() == null){
@@ -762,25 +626,5 @@ public abstract class AbstractOrmEntity extends AbstractEntity {
 		}
 
 		edit(getPrimaryKeyName() + "='" + getPrimaryKeyValue() + "'");
-	}
-
-	/**
-	 * @return nom de tous les accesseurs
-	 */
-	public Vector<String> getAccessorNameList() {
-		if(accessorNameList == null){
-			accessorNameList = new Vector<String>();
-		}
-		return accessorNameList;
-	}
-
-	/**
-	 * @return liste des gateways (accesseurs passant par un autre)
-	 */
-	public Vector<GateWay> getGateWayList() {
-		if(gateWayList == null){
-			gateWayList = new Vector<GateWay>();
-		}
-		return gateWayList;
 	}
 }

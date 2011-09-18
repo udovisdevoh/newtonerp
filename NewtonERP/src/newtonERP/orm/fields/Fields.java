@@ -11,6 +11,7 @@ import java.util.Vector;
 import newtonERP.module.exception.FieldNotFoundException;
 import newtonERP.orm.fields.field.Field;
 
+// TODO: cleanup this class again
 /**
  * All the fields of an entity.
  * 
@@ -19,7 +20,7 @@ import newtonERP.orm.fields.field.Field;
 public class Fields implements Iterable<Field> {
 
 	/** The fields data map. */
-	private Map<String, Field> fieldsDataMap; // todo remove the protected
+	private Map<String, Field> fieldsDataMap;
 
 	/**
 	 * constructeur vide, permet de construire un Fields sans aucun champ.

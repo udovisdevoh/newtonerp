@@ -3,7 +3,6 @@ package newtonERP.orm.fields.field.property;
 import newtonERP.orm.fields.field.AbstractFieldDecorator;
 import newtonERP.orm.fields.field.AbstractProperty;
 
-// TODO: Auto-generated Javadoc
 /**
  * The property ReadOnly block every write method on the field, so the field must be set before setting this property.
  * 
